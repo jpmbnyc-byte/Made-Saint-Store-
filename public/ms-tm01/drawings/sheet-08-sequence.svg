@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="420mm" height="297mm" viewBox="0 0 420 297">
+  <rect width="420" height="297" fill="#f6f5f2"/>
+  <rect x="6" y="6" width="408" height="285" fill="none" stroke="#1a1a1a" stroke-width="0.6"/>
+  <text x="12" y="16" font-family="Liberation Serif, Times New Roman, serif" font-size="7" fill="#1a1a1a">MADE SAiNT</text>
+  <text x="78" y="16" font-family="Liberation Sans, sans-serif" font-size="3.6" fill="#4d6274">MS-TM01 · TRAIL MULE · PROTOTYPE 001 · REV A</text>
+  <text x="300" y="16" font-family="Liberation Sans, sans-serif" font-size="4.2" fill="#1a1a1a">SHEET 08 / 08</text>
+  <text x="12" y="24" font-family="Liberation Serif, Times New Roman, serif" font-size="7" fill="#1a1a1a">Prototype sequence</text>
+  <text x="250" y="24" font-family="Liberation Sans, sans-serif" font-size="3.2" fill="#4d6274">04 / POWDER BLUE · FOG GRID · US M 12 2E</text>
+  <line x1="10" y1="28" x2="410" y2="28" stroke="#1a1a1a" stroke-width="0.35"/>
+  <text x="14" y="38" font-size="4" font-family="Liberation Serif, Times New Roman, serif" fill="#1a1a1a">A  Verify</text>
+<text x="14" y="43" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">Swatch the ripstop. Confirm powder blue and whether the white grid is actually in the cloth. Identify a US M 12 2E</text>
+<text x="14" y="47.2" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">last and a black sole with a raised wall and a round toe bumper. Do not cut yet.</text>
+<text x="14" y="55.2" font-size="4" font-family="Liberation Serif, Times New Roman, serif" fill="#1a1a1a">B  Trace</text>
+<text x="14" y="60.2" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">Tape the last. Trace the feather, the opening, and the sole cavity. Rebuild sheets 02 and 06 on that trace. Retire</text>
+<text x="14" y="64.4" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">this proportion model.</text>
+<text x="14" y="72.4" font-size="4" font-family="Liberation Serif, Times New Roman, serif" fill="#1a1a1a">C  Mock</text>
+<text x="14" y="77.4" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">Paper or cheap-cloth upper. Check the open heel, the collar height, and the logo-tab position against the card.</text>
+<text x="14" y="85.4" font-size="4" font-family="Liberation Serif, Times New Roman, serif" fill="#1a1a1a">D  Upper</text>
+<text x="14" y="90.4" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">Stabilize only after a bond test. Sew the shell, foam, and lining. Roll the collar in the shell cloth. Stitch the logo</text>
+<text x="14" y="94.60000000000001" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">tab on the heel collar. Deboss or stamp from the wordmark file.</text>
+<text x="14" y="102.60000000000001" font-size="4" font-family="Liberation Serif, Times New Roman, serif" fill="#1a1a1a">E  Footbed</text>
+<text x="14" y="107.60000000000001" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">Fit cork to the cavity. Laminate microfiber. Place the supplied art head-to-toe, wordmark toward the heel. Rub-test a</text>
+<text x="14" y="111.80000000000001" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">spare.</text>
+<text x="14" y="119.80000000000001" font-size="4" font-family="Liberation Serif, Times New Roman, serif" fill="#1a1a1a">F  Bottom</text>
+<text x="14" y="124.80000000000001" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">Rough and cement per the adhesive sheet. Wipe squeeze-out. Do not add a separate rand if the sole already has the</text>
+<text x="14" y="129.0" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">wall.</text>
+<text x="14" y="137.0" font-size="4" font-family="Liberation Serif, Times New Roman, serif" fill="#1a1a1a">G  Check</text>
+<text x="14" y="142.0" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">Forefoot clearance, heel retention, level sole, no early separation, collar comfort, art still readable. Record</text>
+<text x="14" y="146.2" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">changes as revision 002.</text>
+  <line x1="10" y1="268" x2="410" y2="268" stroke="#1a1a1a" stroke-width="0.35"/>
+  <text x="12" y="274" font-family="Liberation Sans, sans-serif" font-size="2.7" fill="#1a1a1a">Full tools, adhesive, and QC text is in manual/MS-TM01-prototype-construction.md. One handmade pair. Not certified outdoor footwear.</text>
+  <text x="12" y="280" font-family="Liberation Sans, sans-serif" font-size="2.7" fill="#4d6274">SCALE NTS · PROPORTION MODEL FROM THE REFERENCE CARD · NOT A MEASURED DRAWING · PROVISIONAL — PHYSICAL VALIDATION REQUIRED</text>
+  <text x="12" y="286" font-family="Liberation Sans, sans-serif" font-size="2.6" fill="#1a1a1a">WORDMARK STAND-IN: MADE / SAiNT, LOWERCASE i REQUIRED. MATCH THE FOUNDER FILE. DO NOT CUT FROM THIS SHEET.</text>
+</svg>

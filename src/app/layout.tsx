@@ -20,9 +20,9 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "MADE SAiNT · MS-01 HALO · Rev A",
+  title: "MADE SAiNT · MS-TM01 Trail Mule · Prototype 001",
   description:
-    "Sample-room specification for the MADE SAiNT launch shoe. Lateral, plan, sole, section, bill of materials, and the first pull sequence.",
+    "Provisional technical package for the MADE SAiNT Trail Mule. Orthographic drawings, patterns, bill of materials, and the hand-build sequence.",
 };
 
 export default function RootLayout({

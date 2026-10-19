@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="420mm" height="297mm" viewBox="0 0 420 297">
+  <rect width="420" height="297" fill="#f6f5f2"/>
+  <rect x="6" y="6" width="408" height="285" fill="none" stroke="#1a1a1a" stroke-width="0.6"/>
+  <text x="12" y="16" font-family="Liberation Serif, Times New Roman, serif" font-size="7" fill="#1a1a1a">MADE SAiNT</text>
+  <text x="78" y="16" font-family="Liberation Sans, sans-serif" font-size="3.6" fill="#4d6274">MS-TM01 · TRAIL MULE · PROTOTYPE 001 · REV A</text>
+  <text x="300" y="16" font-family="Liberation Sans, sans-serif" font-size="4.2" fill="#1a1a1a">SHEET 04 / 08</text>
+  <text x="12" y="24" font-family="Liberation Serif, Times New Roman, serif" font-size="7" fill="#1a1a1a">Footbed</text>
+  <text x="250" y="24" font-family="Liberation Sans, sans-serif" font-size="3.2" fill="#4d6274">04 / POWDER BLUE · FOG GRID · US M 12 2E</text>
+  <line x1="10" y1="28" x2="410" y2="28" stroke="#1a1a1a" stroke-width="0.35"/>
+  
+      <rect x="10" y="34" width="180" height="220" fill="none" stroke="#c8c8c8" stroke-width="0.3"/><text x="12" y="39" font-size="3.1" font-family="Liberation Sans, sans-serif" fill="#4d6274">FOOTBED PLAN · TOE AT TOP · HEAD OF THE FIGURE TOWARD THE TOE</text>
+      <g transform="translate(48 44) scale(0.72)">
+        <path d="M 40.00 0.00 C 40.00 -2.00 30.33 11.33 28.00 18.00 C 25.67 24.67 24.67 31.33 26.00 40.00 C 27.33 48.67 31.67 60.00 36.00 70.00 C 40.33 80.00 46.33 90.00 52.00 100.00 C 57.67 110.00 65.67 120.00 70.00 130.00 C 74.33 140.00 78.00 150.33 78.00 160.00 C 78.00 169.67 75.00 181.33 70.00 188.00 C 65.00 194.67 53.00 200.00 48.00 200.00 C 43.00 200.00 42.33 194.67 40.00 188.00 C 37.67 181.33 36.00 171.33 34.00 160.00 C 32.00 148.67 29.67 135.00 28.00 120.00 C 26.33 105.00 24.00 85.00 24.00 70.00 C 24.00 55.00 25.33 41.67 28.00 30.00 C 30.67 18.33 40.00 2.00 40.00 0.00 Z" fill="#b7c5d2" stroke="#1a1a1a" stroke-width="0.9"/>
+        <rect x="36" y="28" width="36" height="120" fill="none" stroke="#4d6274" stroke-width="0.4" stroke-dasharray="1.2 0.8"/>
+        <text x="54" y="40" text-anchor="middle" font-size="3" fill="#4d6274" font-family="Liberation Sans, sans-serif">WINGS</text>
+        <line x1="54" y1="46" x2="54" y2="118" stroke="#4d6274" stroke-width="0.35"/>
+        <text x="54" y="78" text-anchor="middle" font-size="3" fill="#4d6274" font-family="Liberation Sans, sans-serif">SPEAR</text>
+        <text x="54" y="128" text-anchor="middle" font-size="2.8" fill="#4d6274" font-family="Liberation Sans, sans-serif">FIGURE</text>
+        <text x="54" y="136" text-anchor="middle" font-size="2.8" fill="#4d6274" font-family="Liberation Sans, sans-serif">UNDERFOOT</text>
+        <g fill="#4d6274" font-family="Liberation Sans, sans-serif" font-weight="700">
+      <text x="54" y="156" text-anchor="middle" font-size="3.04" letter-spacing="0.6">MADE</text>
+      <text x="54" y="159.84" text-anchor="middle" font-size="3.68" letter-spacing="0.4">SAiNT</text>
+    </g>
+        <text x="54" y="12" text-anchor="middle" font-size="3" fill="#1a1a1a" font-family="Liberation Sans, sans-serif">TOE</text>
+        <text x="54" y="196" text-anchor="middle" font-size="3" fill="#1a1a1a" font-family="Liberation Sans, sans-serif">HEEL</text>
+      </g>
+      <g font-family="Liberation Sans, sans-serif" font-size="3.1" fill="#1a1a1a">
+        <text x="200" y="44">ARTWORK PLACEMENT — NOT PRODUCTION ART</text>
+        <text x="200" y="54">Insert the supplied Saint Michael woodcut.</text>
+        <text x="200" y="62">Do not redraw it from this sheet.</text>
+        <text x="200" y="74">Orientation, locked to the card:</text>
+        <text x="200" y="84">Head and wings toward the toe.</text>
+        <text x="200" y="92">Spear runs along the footbed.</text>
+        <text x="200" y="100">Figure underfoot toward the heel.</text>
+        <text x="200" y="108">MADE SAiNT sits beneath the scene,</text>
+        <text x="200" y="116">toward the heel. Lowercase i required.</text>
+        <text x="200" y="128">Ink: slate, tonal on powder-blue</text>
+        <text x="200" y="136">microfiber. It must stay legible.</text>
+        <text x="200" y="152">STACK, TOP TO BOTTOM</text>
+        <text x="200" y="162">F1 Microfiber topcover, powder blue.</text>
+        <text x="200" y="170">F2 Print or transfer. Rub-test it.</text>
+        <text x="200" y="178">F3 Cork-latex base, contoured,</text>
+        <text x="200" y="186">removable. Source the contour.</text>
+        <text x="200" y="194">This outline is the plan view only.</text>
+      </g>
+      <rect x="196" y="206" width="208" height="54" fill="none" stroke="#c8c8c8" stroke-width="0.3"/><text x="198" y="211" font-size="3.1" font-family="Liberation Sans, sans-serif" fill="#4d6274">SECTION ACROSS THE FOREFOOT · SCHEMATIC</text>
+      <g transform="translate(210 218)">
+        <path d="M 10 28 C 40 8 120 8 150 28 L 146 36 C 120 22 40 22 14 36 Z" fill="#d7c4a4" stroke="#1a1a1a" stroke-width="0.6"/>
+        <path d="M 14 28 C 40 14 120 14 146 28" fill="none" stroke="#8ea3b5" stroke-width="2.2"/>
+        <text x="0" y="48" font-size="2.8" font-family="Liberation Sans, sans-serif">Cork-latex below. Microfiber skin above. Thicknesses not measured.</text>
+      </g>
+    
+  <line x1="10" y1="268" x2="410" y2="268" stroke="#1a1a1a" stroke-width="0.35"/>
+  <text x="12" y="274" font-family="Liberation Sans, sans-serif" font-size="2.7" fill="#1a1a1a">The dashed window is orientation only. Print from the supplied art file. Confirm the print survives rub and moisture before the pair is walked.</text>
+  <text x="12" y="280" font-family="Liberation Sans, sans-serif" font-size="2.7" fill="#4d6274">SCALE NTS · PROPORTION MODEL FROM THE REFERENCE CARD · NOT A MEASURED DRAWING · PROVISIONAL — PHYSICAL VALIDATION REQUIRED</text>
+  <text x="12" y="286" font-family="Liberation Sans, sans-serif" font-size="2.6" fill="#1a1a1a">WORDMARK STAND-IN: MADE / SAiNT, LOWERCASE i REQUIRED. MATCH THE FOUNDER FILE. DO NOT CUT FROM THIS SHEET.</text>
+</svg>

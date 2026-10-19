@@ -1,23 +1,31 @@
-# MADE SAiNT · MS-01 HALO
+# MADE SAiNT · MS-TM01 Trail Mule
 
-Sample-room specification for the MADE SAiNT launch shoe. Rev A is a development sketch a factory can quote and pull from: orthographic views, a cupsole section, pattern logic, a bill of materials, stitch and bond targets, two colorways, a size grade, and the first-pull sequence.
+Prototype 001 technical package for one handmade pair. US men’s 12 wide (2E). Powder blue / fog grid / black.
 
-MS-01 HALO is a low, board-lasted calf shoe on a cemented one-piece cupsole. The only ornament is a lapped arc on each quarter. The reference size is US M 9. The first pull is three pairs in RELIC.
+The reference card is the design authority. Drawings are proportion studies for a patternmaker. They are not measured patterns.
 
-Figures are in millimetres. Do not scale a print. This is not a graded production file: the last still has to be digitized, and the pattern sheet is panel logic, not a nest.
+## Package
 
-## Run
+All source files are in `ms-tm01/`:
+
+- `drawings/` — eight editable A3 SVGs
+- `pdf/MS-TM01-P001-technical-package.pdf` — A3 landscape
+- `patterns/` — provisional DXF nets
+- `bom/MS-TM01-bom.csv`
+- `manual/MS-TM01-prototype-construction.md`
+- `notes/ambiguity-register.md`
+
+Regenerate drawings, DXF, and CSV with:
+
+```bash
+python3 ms-tm01/generate.py
+```
+
+## View
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open the local URL Next prints. Arrow keys move between sheets. **Print all sheets** lays the pack out for A3 landscape.
-
-## What the factory still does
-
-1. Digitize last MS-LAST-01 and send a side photo before clicking.
-2. Develop patterns on that last. Add 14 mm lasting allowance beyond the feather, and do not add it again on the lap.
-3. Approve calf and a resin sole before steel.
-4. Peel-test one of the three pairs. Target 3.5 N/mm.
+The local site shows the eight sheets and links the PDF, the bill of materials, and the construction manual.

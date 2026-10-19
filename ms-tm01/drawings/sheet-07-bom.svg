@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="420mm" height="297mm" viewBox="0 0 420 297">
+  <rect width="420" height="297" fill="#f6f5f2"/>
+  <rect x="6" y="6" width="408" height="285" fill="none" stroke="#1a1a1a" stroke-width="0.6"/>
+  <text x="12" y="16" font-family="Liberation Serif, Times New Roman, serif" font-size="7" fill="#1a1a1a">MADE SAiNT</text>
+  <text x="78" y="16" font-family="Liberation Sans, sans-serif" font-size="3.6" fill="#4d6274">MS-TM01 · TRAIL MULE · PROTOTYPE 001 · REV A</text>
+  <text x="300" y="16" font-family="Liberation Sans, sans-serif" font-size="4.2" fill="#1a1a1a">SHEET 07 / 08</text>
+  <text x="12" y="24" font-family="Liberation Serif, Times New Roman, serif" font-size="7" fill="#1a1a1a">Bill of materials</text>
+  <text x="250" y="24" font-family="Liberation Sans, sans-serif" font-size="3.2" fill="#4d6274">04 / POWDER BLUE · FOG GRID · US M 12 2E</text>
+  <line x1="10" y1="28" x2="410" y2="28" stroke="#1a1a1a" stroke-width="0.35"/>
+  <text x="12" y="40" font-size="2.8" font-family="Liberation Sans, sans-serif" fill="#4d6274">ID  COMPONENT          MATERIAL                     COLOR           SUPPLIER</text>
+<text x="12" y="46" font-size="2.7" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">U1  Upper shell       Yardblox A033513              Powder blue     Yardblox — confirm listing</text>
+<text x="22" y="50.2" font-size="2.4" font-family="Liberation Sans, sans-serif" fill="#4d6274">DWR stretch crinkle ripstop, 92/8, 40 GSM · 1 yard buy · Grid may be absent on the plain listing</text>
+<text x="12" y="55.6" font-size="2.7" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">U2  Stabilizer        Sew-in tricot or nonwoven     Neutral         UNASSIGNED</text>
+<text x="22" y="59.800000000000004" font-size="2.4" font-family="Liberation Sans, sans-serif" fill="#4d6274">Bond-test before any fuse · 0.5 yard buy · 40 GSM shell needs a test</text>
+<text x="12" y="65.2" font-size="2.7" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">U3  Toe puff          Flexible footwear puff        Neutral         UNASSIGNED</text>
+<text x="22" y="69.4" font-size="2.4" font-family="Liberation Sans, sans-serif" fill="#4d6274">Hidden · 1 sheet · Memorandum item</text>
+<text x="12" y="74.80000000000001" font-size="2.7" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">U4  Lining            Breathable textile            Powder family   UNASSIGNED</text>
+<text x="22" y="79.00000000000001" font-size="2.4" font-family="Liberation Sans, sans-serif" fill="#4d6274">Inside the opening · 0.5 yard buy · Exact cloth not on the card</text>
+<text x="12" y="84.40000000000002" font-size="2.7" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">U5  Collar foam       Soft footwear foam            Neutral         UNASSIGNED</text>
+<text x="22" y="88.60000000000002" font-size="2.4" font-family="Liberation Sans, sans-serif" fill="#4d6274">4–6 mm named in the memo · 1 sheet · Thickness not measured</text>
+<text x="12" y="94.00000000000003" font-size="2.7" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">U6  Logo tab          Coated textile or synthetic   Powder blue     UNASSIGNED</text>
+<text x="22" y="98.20000000000003" font-size="2.4" font-family="Liberation Sans, sans-serif" fill="#4d6274">Stitched, debossed wordmark · 2 · Heel collar, not a tongue</text>
+<text x="12" y="103.60000000000004" font-size="2.7" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">U7  Thread            Bonded polyester              Slate / powder  UNASSIGNED</text>
+<text x="22" y="107.80000000000004" font-size="2.4" font-family="Liberation Sans, sans-serif" fill="#4d6274">Tone-on-tone · 1 set · Needle and stitch length by test</text>
+<text x="12" y="113.20000000000005" font-size="2.7" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">F1  Footbed base      Cork-latex, contoured         Natural         UNASSIGNED</text>
+<text x="22" y="117.40000000000005" font-size="2.4" font-family="Liberation Sans, sans-serif" fill="#4d6274">Removable, size 12 2E cavity · 1 pair · Fit the real cavity</text>
+<text x="12" y="122.80000000000005" font-size="2.7" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">F2  Topcover          Microfiber                    Powder blue     UNASSIGNED</text>
+<text x="22" y="127.00000000000006" font-size="2.4" font-family="Liberation Sans, sans-serif" fill="#4d6274">Powder blue · 0.25 yard · Laminate before art</text>
+<text x="12" y="132.40000000000006" font-size="2.7" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">F3  Artwork           Supplied woodcut file         Slate           Founder file</text>
+<text x="22" y="136.60000000000005" font-size="2.4" font-family="Liberation Sans, sans-serif" fill="#4d6274">Slate ink, abrasion test · 2 + tests · Do not redraw</text>
+<text x="12" y="142.00000000000006" font-size="2.7" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">O1  Rubber bottom     Black rubber, lugged          Black           UNASSIGNED</text>
+<text x="22" y="146.20000000000005" font-size="2.4" font-family="Liberation Sans, sans-serif" fill="#4d6274">Wide wall and toe bumper · 1 pair · No brand selected</text>
+<text x="12" y="151.60000000000005" font-size="2.7" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">A1  Adhesive          Flexible footwear contact     —               UNASSIGNED</text>
+<text x="22" y="155.80000000000004" font-size="2.4" font-family="Liberation Sans, sans-serif" fill="#4d6274">Match rubber and textile · Small · Follow the can and ventilate</text>
+<text x="12" y="161.20000000000005" font-size="2.7" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">B1  Insole board      Footwear board                Neutral         UNASSIGNED</text>
+<text x="22" y="165.40000000000003" font-size="2.4" font-family="Liberation Sans, sans-serif" fill="#4d6274">Only if the sole requires it · 1 sheet · Omit if the sole is a closed cup</text><text x="12" y="258" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">Buy allowances are from the 19 Oct 2026 memorandum. They are not yields. The CSV is the editable bill.</text>
+  <line x1="10" y1="268" x2="410" y2="268" stroke="#1a1a1a" stroke-width="0.35"/>
+  <text x="12" y="274" font-family="Liberation Sans, sans-serif" font-size="2.7" fill="#1a1a1a">Suppliers other than the named Yardblox listing are unassigned. Do not infer a vendor from a similar product.</text>
+  <text x="12" y="280" font-family="Liberation Sans, sans-serif" font-size="2.7" fill="#4d6274">SCALE NTS · PROPORTION MODEL FROM THE REFERENCE CARD · NOT A MEASURED DRAWING · PROVISIONAL — PHYSICAL VALIDATION REQUIRED</text>
+  <text x="12" y="286" font-family="Liberation Sans, sans-serif" font-size="2.6" fill="#1a1a1a">WORDMARK STAND-IN: MADE / SAiNT, LOWERCASE i REQUIRED. MATCH THE FOUNDER FILE. DO NOT CUT FROM THIS SHEET.</text>
+</svg>

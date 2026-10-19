@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="420mm" height="297mm" viewBox="0 0 420 297">
+  <rect width="420" height="297" fill="#f6f5f2"/>
+  <rect x="6" y="6" width="408" height="285" fill="none" stroke="#1a1a1a" stroke-width="0.6"/>
+  <text x="12" y="16" font-family="Liberation Serif, Times New Roman, serif" font-size="7" fill="#1a1a1a">MADE SAiNT</text>
+  <text x="78" y="16" font-family="Liberation Sans, sans-serif" font-size="3.6" fill="#4d6274">MS-TM01 · TRAIL MULE · PROTOTYPE 001 · REV A</text>
+  <text x="300" y="16" font-family="Liberation Sans, sans-serif" font-size="4.2" fill="#1a1a1a">SHEET 06 / 08</text>
+  <text x="12" y="24" font-family="Liberation Serif, Times New Roman, serif" font-size="7" fill="#1a1a1a">Provisional patterns</text>
+  <text x="250" y="24" font-family="Liberation Sans, sans-serif" font-size="3.2" fill="#4d6274">04 / POWDER BLUE · FOG GRID · US M 12 2E</text>
+  <line x1="10" y1="28" x2="410" y2="28" stroke="#1a1a1a" stroke-width="0.35"/>
+  
+      <text x="12" y="36" font-size="3" font-family="Liberation Sans, sans-serif" fill="#4d6274">GRAY DASH = 8-UNIT MOCK-UP ALLOWANCE, AN ASSUMPTION. SLATE = STITCH GUIDE 3 UNITS INSIDE THE NET. NEITHER IS A MEASURED SPEC.</text>
+      <g transform="translate(16 48)">
+      <path d="M 27.88 81.37 L 36.34 44.88 L 72.50 25.60 L 130.00 18.00 L 187.50 25.60 L 224.29 45.60 L 242.09 76.80 L 233.76 84.32 L 199.71 76.01 L 160.00 88.00 L 120.22 76.00 L 67.54 88.39 L 36.47 102.01 L 25.09 96.29 Z" fill="none" stroke="#9a9a9a" stroke-width="0.35" stroke-dasharray="1.2 0.7"/>
+      <path d="M 20.00 80.00 L 30.00 40.00 L 70.00 18.00 L 130.00 10.00 L 190.00 18.00 L 230.00 40.00 L 250.00 78.00 L 236.00 92.00 L 200.00 84.00 L 160.00 96.00 L 120.00 84.00 L 70.00 96.00 L 36.00 110.00 L 18.00 100.00 Z" fill="#b7c5d2" stroke="#1a1a1a" stroke-width="0.7"/>
+      <path d="M 17.04 79.49 L 27.62 38.17 L 69.06 15.15 L 130.00 7.00 L 190.94 15.15 L 232.14 37.90 L 252.97 78.45 L 236.84 94.88 L 200.11 87.00 L 160.00 99.00 L 119.92 87.00 L 70.92 98.85 L 35.83 112.99 L 15.34 101.39 Z" fill="none" stroke="#4d6274" stroke-width="0.3"/>
+    </g>
+    <text x="141.71428571428572" y="115.57142857142857" text-anchor="middle" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">P01 UPPER SHELL  ×2</text>
+    <line x1="129.71428571428572" y1="123.57142857142857" x2="155.71428571428572" y2="123.57142857142857" stroke="#4d6274" stroke-width="0.4"/><path d="M 151.71428571428572 121.57142857142857 L 155.71428571428572 123.57142857142857 L 151.71428571428572 125.57142857142857" fill="none" stroke="#4d6274" stroke-width="0.4"/>
+      <g transform="translate(200 56)">
+      <path d="M 33.88 85.37 L 42.34 48.88 L 78.50 29.60 L 136.00 22.00 L 193.50 29.60 L 230.29 49.60 L 248.09 80.80 L 239.76 88.32 L 205.71 80.01 L 166.00 92.00 L 126.22 80.00 L 73.54 92.39 L 42.47 106.01 L 31.09 100.29 Z" fill="none" stroke="#9a9a9a" stroke-width="0.35" stroke-dasharray="1.2 0.7"/>
+      <path d="M 26.00 84.00 L 36.00 44.00 L 76.00 22.00 L 136.00 14.00 L 196.00 22.00 L 236.00 44.00 L 256.00 82.00 L 242.00 96.00 L 206.00 88.00 L 166.00 100.00 L 126.00 88.00 L 76.00 100.00 L 42.00 114.00 L 24.00 104.00 Z" fill="#b7c5d2" stroke="#1a1a1a" stroke-width="0.7"/>
+      <path d="M 23.04 83.49 L 33.62 42.17 L 75.06 19.15 L 136.00 11.00 L 196.94 19.15 L 238.14 41.90 L 258.97 82.45 L 242.84 98.88 L 206.11 91.00 L 166.00 103.00 L 125.92 91.00 L 76.92 102.85 L 41.83 116.99 L 21.34 105.39 Z" fill="none" stroke="#4d6274" stroke-width="0.3"/>
+    </g>
+    <text x="331.7142857142857" y="127.57142857142857" text-anchor="middle" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">P02 LINING  ×2</text>
+    
+      <g transform="translate(16 176)">
+      <path d="M 27.44 22.94 L 42.33 15.65 L 119.90 12.00 L 197.58 17.62 L 222.00 28.00 L 208.20 32.21 L 140.04 26.00 L 60.36 32.01 L 29.33 28.03 Z" fill="none" stroke="#9a9a9a" stroke-width="0.35" stroke-dasharray="1.2 0.7"/>
+      <path d="M 20.00 20.00 L 40.00 8.00 L 120.00 4.00 L 200.00 10.00 L 230.00 28.00 L 210.00 40.00 L 140.00 34.00 L 60.00 40.00 L 24.00 34.00 Z" fill="#b7c5d2" stroke="#1a1a1a" stroke-width="0.7"/>
+      <path d="M 17.21 18.90 L 39.13 5.13 L 120.04 1.00 L 200.91 7.14 L 233.00 28.00 L 210.68 42.92 L 139.98 37.00 L 59.86 43.00 L 22.00 36.24 Z" fill="none" stroke="#4d6274" stroke-width="0.3"/>
+    </g>
+    <text x="132.0" y="200.22222222222223" text-anchor="middle" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">P03 COLLAR FOAM  ×2</text>
+    
+      <g transform="translate(250 190)">
+      <path d="M 5.66 5.66 L 30.34 5.66 L 30.34 16.34 L 5.66 16.34 Z" fill="none" stroke="#9a9a9a" stroke-width="0.35" stroke-dasharray="1.2 0.7"/>
+      <path d="M 0.00 0.00 L 36.00 0.00 L 36.00 22.00 L 0.00 22.00 Z" fill="#b7c5d2" stroke="#1a1a1a" stroke-width="0.7"/>
+      <path d="M -2.12 -2.12 L 38.12 -2.12 L 38.12 24.12 L -2.12 24.12 Z" fill="none" stroke="#4d6274" stroke-width="0.3"/>
+    </g>
+    <text x="268.0" y="201.0" text-anchor="middle" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">P05 LOGO TAB  ×2</text>
+    
+      <g transform="translate(310 186)">
+      <path d="M 7.99 10.36 L 14.72 7.52 L 37.28 7.52 L 44.01 10.36 L 36.94 14.61 L 15.06 14.61 Z" fill="none" stroke="#9a9a9a" stroke-width="0.35" stroke-dasharray="1.2 0.7"/>
+      <path d="M 0.00 10.00 L 12.00 0.00 L 40.00 0.00 L 52.00 10.00 L 40.00 22.00 L 12.00 22.00 Z" fill="#b7c5d2" stroke="#1a1a1a" stroke-width="0.7"/>
+      <path d="M -3.00 9.86 L 10.98 -2.82 L 41.02 -2.82 L 55.00 9.86 L 41.15 24.77 L 10.85 24.77 Z" fill="none" stroke="#4d6274" stroke-width="0.3"/>
+    </g>
+    <text x="336.0" y="196.66666666666666" text-anchor="middle" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">P06 TOE PUFF  ×2</text>
+    
+      <g font-family="Liberation Sans, sans-serif" font-size="2.8" fill="#1a1a1a">
+        <text x="300" y="160">P04 BINDING is a straight strip.</text>
+        <text x="300" y="166">Length comes from the opening</text>
+        <text x="300" y="172">after the mock-up. Not drawn to size.</text>
+      </g>
+      <text x="12" y="258" font-size="3" font-family="Liberation Sans, sans-serif" fill="#1a1a1a">These nets are proportion studies of the visible surfaces. They are not last-flattened patterns. Trace the real last before any hide is cut.</text>
+    
+  <line x1="10" y1="268" x2="410" y2="268" stroke="#1a1a1a" stroke-width="0.35"/>
+  <text x="12" y="274" font-family="Liberation Sans, sans-serif" font-size="2.7" fill="#1a1a1a">Grain arrow is the intended heel-to-toe direction of the shell. Confirm warp on the Yardblox swatch. Grid alignment is visual.</text>
+  <text x="12" y="280" font-family="Liberation Sans, sans-serif" font-size="2.7" fill="#4d6274">SCALE NTS · PROPORTION MODEL FROM THE REFERENCE CARD · NOT A MEASURED DRAWING · PROVISIONAL — PHYSICAL VALIDATION REQUIRED</text>
+  <text x="12" y="286" font-family="Liberation Sans, sans-serif" font-size="2.6" fill="#1a1a1a">WORDMARK STAND-IN: MADE / SAiNT, LOWERCASE i REQUIRED. MATCH THE FOUNDER FILE. DO NOT CUT FROM THIS SHEET.</text>
+</svg>

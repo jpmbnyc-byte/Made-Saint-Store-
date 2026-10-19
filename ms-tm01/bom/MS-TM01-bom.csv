@@ -1,0 +1,15 @@
+component_id,component,material,specification,quantity,color,supplier,notes,status
+U1,Upper shell,Solid stretch crinkled DWR nylon ripstop,Yardblox A033513; 92% nylon / 8% spandex; 40 GSM; confirm grid,"1 yard buy allowance for the pair, not a yield",Powder blue / fog grid,Yardblox listing named by the brief — verify the live swatch,Image shows a white windowpane grid. A plain listing may not include it.,PROVISIONAL
+U2,Upper stabilizer,Sew-in tricot or nonwoven,Test a fuse only after a bond trial on the DWR face,0.5 yard buy allowance,Neutral,UNASSIGNED,Required because 40 GSM is light for a lasted shell.,FROM MEMORANDUM
+U3,Toe puff,Flexible footwear toe puff,"Hidden under the round toe, behind the bumper",1 sheet,Neutral,UNASSIGNED,Not a visible style line.,FROM MEMORANDUM
+U4,Upper lining,Breathable textile,Seen as a soft interior; exact cloth unspecified,0.5 yard buy allowance,Powder-blue family,UNASSIGNED,Do not invent a supplier.,"OBSERVED, SPEC OPEN"
+U5,Collar foam,Soft footwear foam,Memorandum names 4–6 mm; card shows a thick rolled collar,1 sheet,Neutral,UNASSIGNED,Thickness is not a measurement from the image.,PROVISIONAL
+U6,Logo tab,Coated textile or synthetic leather,"Stitched perimeter, debossed MADE SAiNT, lowercase i",2 tabs,Powder blue,UNASSIGNED,Located on the heel collar. The card does not show a vamp tongue.,OBSERVED
+U7,Thread,Bonded polyester,Tone-on-tone; needle chosen on a swatch,1 set,Slate or powder,UNASSIGNED,"Stitch length by test, not by this drawing.",ASSUMPTION
+F1,Footbed base,Contoured cork-latex,Removable; must fit the US M 12 2E cavity of the sourced sole,1 pair,Natural cork,UNASSIGNED,Do not size from the nominal shoe size alone.,FROM MEMORANDUM
+F2,Footbed topcover,Microfiber,"Powder blue, laminated to F1",0.25 yard,Powder blue,UNASSIGNED,Matches the card’s footbed ground.,OBSERVED
+F3,Footbed artwork,Supplied Saint Michael woodcut,"Slate ink; head to the toe; wordmark beneath, toward the heel",2 prints plus rub-test pieces,Slate,Founder-supplied file,This package does not redraw the woodcut.,ART FILE REQUIRED
+O1,Rubber bottom,"Black rubber with raised sidewall, toe bumper, and plus-form lugs",Compatible with a US M 12 2E last; brand not selected,1 pair,Black,UNASSIGNED,Do not describe any commercial sole as chosen.,UNSOURCED
+A1,Adhesive,Flexible footwear contact cement,Primer only if the cement maker requires it for that rubber,Small containers,—,UNASSIGNED,Ventilate. Follow the container.,FROM MEMORANDUM
+B1,Insole board,Footwear-grade board,Use only if the sourced sole is not a closed cup,1 sheet,Neutral,UNASSIGNED,Omit rather than invent a board the sole does not need.,CONDITIONAL
+T1,Last,"US men’s 12 wide, 2E",Physical last required before patterns are rebuilt,1,—,UNASSIGNED,Not yet selected.,REQUIRED

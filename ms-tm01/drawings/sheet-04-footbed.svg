@@ -3,15 +3,15 @@
   <rect width="420" height="297" fill="#f6f5f2"/>
   <rect x="6" y="6" width="408" height="285" fill="none" stroke="#1a1a1a" stroke-width="0.6"/>
   <text x="12" y="16" font-family="Liberation Serif, Times New Roman, serif" font-size="7" fill="#1a1a1a">MADE SAiNT</text>
-  <text x="78" y="16" font-family="Liberation Sans, sans-serif" font-size="3.6" fill="#4d6274">MS-TM01 · TRAIL MULE · PROTOTYPE 001 · REV A</text>
+  <text x="78" y="16" font-family="Liberation Sans, sans-serif" font-size="3.6" fill="#4d6274">MS-TM01 · TRAIL MULE · PROTOTYPE 001 · REV B</text>
   <text x="300" y="16" font-family="Liberation Sans, sans-serif" font-size="4.2" fill="#1a1a1a">SHEET 04 / 08</text>
   <text x="12" y="24" font-family="Liberation Serif, Times New Roman, serif" font-size="7" fill="#1a1a1a">Footbed</text>
   <text x="250" y="24" font-family="Liberation Sans, sans-serif" font-size="3.2" fill="#4d6274">04 / POWDER BLUE · FOG GRID · US M 12 2E</text>
   <line x1="10" y1="28" x2="410" y2="28" stroke="#1a1a1a" stroke-width="0.35"/>
   
       <rect x="10" y="34" width="180" height="220" fill="none" stroke="#c8c8c8" stroke-width="0.3"/><text x="12" y="39" font-size="3.1" font-family="Liberation Sans, sans-serif" fill="#4d6274">FOOTBED PLAN · TOE AT TOP · HEAD OF THE FIGURE TOWARD THE TOE</text>
-      <g transform="translate(48 44) scale(0.72)">
-        <path d="M 40.00 0.00 C 40.00 -2.00 30.33 11.33 28.00 18.00 C 25.67 24.67 24.67 31.33 26.00 40.00 C 27.33 48.67 31.67 60.00 36.00 70.00 C 40.33 80.00 46.33 90.00 52.00 100.00 C 57.67 110.00 65.67 120.00 70.00 130.00 C 74.33 140.00 78.00 150.33 78.00 160.00 C 78.00 169.67 75.00 181.33 70.00 188.00 C 65.00 194.67 53.00 200.00 48.00 200.00 C 43.00 200.00 42.33 194.67 40.00 188.00 C 37.67 181.33 36.00 171.33 34.00 160.00 C 32.00 148.67 29.67 135.00 28.00 120.00 C 26.33 105.00 24.00 85.00 24.00 70.00 C 24.00 55.00 25.33 41.67 28.00 30.00 C 30.67 18.33 40.00 2.00 40.00 0.00 Z" fill="#b7c5d2" stroke="#1a1a1a" stroke-width="0.9"/>
+      <g transform="translate(36 42) scale(0.78)">
+        <path d="M 76.00 4.00 C 85.50 6.00 85.33 11.33 89.00 16.00 C 92.67 20.67 95.17 26.00 98.00 32.00 C 100.83 38.00 104.00 44.67 106.00 52.00 C 108.00 59.33 109.50 67.33 110.00 76.00 C 110.50 84.67 109.33 94.67 109.00 104.00 C 108.67 113.33 108.67 123.00 108.00 132.00 C 107.33 141.00 106.50 150.00 105.00 158.00 C 103.50 166.00 102.17 173.67 99.00 180.00 C 95.83 186.33 90.33 191.67 86.00 196.00 C 81.67 200.33 77.83 204.33 73.00 206.00 C 68.17 207.67 61.50 207.67 57.00 206.00 C 52.50 204.33 49.67 200.33 46.00 196.00 C 42.33 191.67 37.83 186.33 35.00 180.00 C 32.17 173.67 30.83 166.00 29.00 158.00 C 27.17 150.00 26.00 141.00 24.00 132.00 C 22.00 123.00 19.33 113.33 17.00 104.00 C 14.67 94.67 11.17 84.67 10.00 76.00 C 8.83 67.33 9.33 59.33 10.00 52.00 C 10.67 44.67 12.17 38.00 14.00 32.00 C 15.83 26.00 18.00 20.67 21.00 16.00 C 24.00 11.33 22.83 6.00 32.00 4.00 C 41.17 2.00 66.50 2.00 76.00 4.00 Z" fill="#93a3ae" stroke="#1a1a1a" stroke-width="0.9"/>
         <rect x="36" y="28" width="36" height="120" fill="none" stroke="#4d6274" stroke-width="0.4" stroke-dasharray="1.2 0.8"/>
         <text x="54" y="40" text-anchor="middle" font-size="3" fill="#4d6274" font-family="Liberation Sans, sans-serif">WINGS</text>
         <line x1="54" y1="46" x2="54" y2="118" stroke="#4d6274" stroke-width="0.35"/>
@@ -47,7 +47,7 @@
       <rect x="196" y="206" width="208" height="54" fill="none" stroke="#c8c8c8" stroke-width="0.3"/><text x="198" y="211" font-size="3.1" font-family="Liberation Sans, sans-serif" fill="#4d6274">SECTION ACROSS THE FOREFOOT · SCHEMATIC</text>
       <g transform="translate(210 218)">
         <path d="M 10 28 C 40 8 120 8 150 28 L 146 36 C 120 22 40 22 14 36 Z" fill="#d7c4a4" stroke="#1a1a1a" stroke-width="0.6"/>
-        <path d="M 14 28 C 40 14 120 14 146 28" fill="none" stroke="#8ea3b5" stroke-width="2.2"/>
+        <path d="M 14 28 C 40 14 120 14 146 28" fill="none" stroke="#6e808c" stroke-width="2.2"/>
         <text x="0" y="48" font-size="2.8" font-family="Liberation Sans, sans-serif">Cork-latex below. Microfiber skin above. Thicknesses not measured.</text>
       </g>
     

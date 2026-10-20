@@ -15,7 +15,7 @@ This pair is not certified outdoor, trail, or winter footwear. Walk-test it indo
 - A wide black outsole with a sculpted wave sidewall and a field of plus-form lugs. Each lug on the card has a small center pip.
 - A powder-blue ripstop upper with a light windowpane grid. The grid runs over the padded collar.
 - A rolled, tonal, padded collar. The edge is the same cloth, not a contrast binding.
-- A small stitched tab on the heel collar, debossed MADE / SAiNT. The lowercase i is required. Match the founder wordmark file. Do not redraw the letters.
+- A small stitched tab on the instep collar, centered, debossed MADE / SAiNT. The lowercase i is required. Match the founder wordmark file. Do not redraw the letters. It is not a tongue and it is not a label on the backstay.
 - A removable powder-blue footbed. Saint Michael is printed in slate, head and wings toward the toe, the figure underfoot toward the heel, and MADE SAiNT beneath the scene.
 
 ## What is not on the card
@@ -24,7 +24,7 @@ Record these. Do not build them in unless a later sample asks for them.
 
 - Navy elastic side gores are in the 19 October memorandum. They are not visible on the card. Leave them out of prototype 001.
 - Navy edge tape is in the memorandum. The card shows a rolled tonal collar. Use the shell cloth for the roll.
-- A center front seam and side seams are not clearly resolved. Do not add them for decoration. A short back seam may hide under the logo tab. Confirm when the last is taped.
+- A center front seam and side seams are not on the card. Do not add them for decoration. If the trace needs a close, put a short seam inside the collar roll at the back, not under the instep tab.
 - No outsole brand has been selected. Do not describe a commercial sole as specified.
 - No last has been selected. A nominal size 12 sole is not assumed to fit a 2E last.
 
@@ -61,7 +61,7 @@ Named listing for the shell: Yardblox A033513, 92% nylon / 8% spandex, 40 GSM, D
 1. Cover the last with tape.
 2. Mark the feather where the upper should disappear into the sidewall, using the card’s wave as the picture and the real sole as the limit.
 3. Mark the collar opening. It is low and generous. The heel stays open.
-4. Mark where the logo tab sits: on the heel collar, centered, stitched, not on the vamp.
+4. Mark where the logo tab sits: centered on the instep collar, just forward of the heel opening, stitched through the border.
 5. Rebuild the upper net from that trace. Retire the DXF files in `patterns/` once the trace exists. Those files are proportion nets with an 8-unit mock-up allowance that is an assumption, not a specification.
 
 ### C — Mock-up
@@ -77,8 +77,8 @@ Named listing for the shell: Yardblox A033513, 92% nylon / 8% spandex, 40 GSM, D
 2. If a stabilizer is used, baste or sew it. Fuse only after the swatch still peels clean and the DWR face is not spoiled.
 3. Set the toe puff behind the round toe so the bumper, not the puff, makes the outside shape.
 4. Sew shell to lining where the opening will roll. Sandwich the foam in the collar. Roll the edge so the outside cloth is the ripstop. Stitch through the roll.
-5. A short back seam is allowed only if the trace needs it to close the collar. Keep it under the logo tab.
-6. Stitch the logo tab on the outside of the heel collar. Border stitch as on the card. Deboss or stamp MADE / SAiNT from the founder file, lowercase i. Do not stitch through the letters.
+5. A short back seam is allowed only if the trace needs it to close the collar. Keep it inside the collar roll at the back of the opening.
+6. Stitch the logo tab on the outside of the instep collar, centered. Border stitch as on the card. Deboss or stamp MADE / SAiNT from the founder file, lowercase i. Do not stitch through the letters.
 7. Mount the upper on the last. Leave it until the cloth relaxes. Photograph it beside the card before any cement.
 
 ### E — Footbed

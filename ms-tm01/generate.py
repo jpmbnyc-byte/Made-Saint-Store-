@@ -22,8 +22,9 @@ INK = "#1a1a1a"
 GRAY = "#9a9a9a"
 HAIR = "#c8c8c8"
 PAPER = "#f6f5f2"
-POWDER = "#b7c5d2"
-POWDER_DEEP = "#8ea3b5"
+POWDER = "#93a3ae"
+POWDER_DEEP = "#6e808c"
+GRID = "#e7eef2"
 SLATE = "#4d6274"
 SOLE = "#2b2b2b"
 SOLE_MID = "#3a3a3a"
@@ -64,25 +65,54 @@ def poly(pts, closed=False):
     return d + (" Z" if closed else "")
 
 
-# --- shared side geometry, toe at left, y down. Proportion units, not millimetres. ---
+# Side master, toe at left, y down.
+# Traced from the card's lateral view and checked against the medial view.
+# Drawing units are proportions. They are not millimetres.
 
-UPPER = [
-    (86, 150), (104, 132), (128, 118), (158, 110), (186, 112),
-    (206, 104), (228, 98), (250, 102), (266, 114), (274, 132), (270, 150),
+# Black bottom unit. Wave is the top edge. Ground is nearly flat. Toe and heel are round.
+# Points below are sampled from the card's lateral view (toe left).
+# The toe and heel are blunt. The ground line is flat. The wave is only the wall.
+SOLE_PTS = [
+    (12, 58), (6, 76), (6, 98),
+    (16, 112), (34, 124), (52, 131),
+    (120, 134), (200, 135), (268, 137),
+    (292, 132), (306, 120), (314, 102), (312, 78), (304, 68),
+    (288, 72), (264, 84), (236, 84), (208, 74),
+    (180, 70), (152, 75), (124, 86), (96, 91),
+    (72, 86), (48, 78), (28, 70),
 ]
-FOX = [
-    (270, 150), (236, 156), (190, 160), (140, 158), (104, 150), (86, 150),
+# Topline has a flat seat so the tab sits on the collar. The bite is pushed
+# into the sole so the textile tucks behind the wall instead of floating above it.
+UPPER_PTS = [
+    (28, 56), (56, 50), (88, 42), (112, 32), (132, 26),
+    (146, 22), (178, 22),
+    (194, 34), (214, 48), (238, 56), (266, 60), (290, 54), (302, 50),
+    (296, 78), (270, 92), (244, 94), (216, 84),
+    (188, 78), (160, 82), (132, 94), (104, 100),
+    (80, 94), (56, 86), (36, 76), (28, 70),
 ]
-SOLE_TOP = [
-    (22, 162), (40, 140), (64, 148), (100, 158), (150, 164),
-    (200, 160), (240, 150), (276, 146), (300, 156), (304, 168),
+BITE = [
+    (28, 68), (48, 76), (72, 86), (96, 91),
+    (124, 86), (152, 75), (180, 70), (208, 74),
+    (236, 84), (264, 84), (288, 72), (304, 66),
 ]
-SOLE_BOTTOM = [
-    (304, 168), (296, 182), (260, 192), (180, 196), (100, 194),
-    (48, 184), (22, 170), (18, 160), (22, 162),
+COLLAR = [
+    (178, 24), (194, 36), (214, 48), (244, 58), (276, 58), (298, 52),
 ]
-LUG_BASE = [
-    (40, 176), (70, 186), (120, 190), (180, 190), (240, 186), (275, 176),
+# Top view of the same shoe. Length/width from the card's top view: about 1.58, round toe, broad heel.
+PLAN_SOLE = [
+    (18, -10), (16, 0), (18, 10),
+    (28, 40), (52, 68), (96, 88), (160, 98), (220, 94),
+    (268, 76), (298, 48), (314, 20), (318, 0),
+    (314, -20), (298, -48), (268, -76), (220, -94), (160, -98),
+    (96, -88), (52, -68), (28, -40),
+]
+PLAN_UPPER = [
+    (44, -8), (42, 0), (44, 8),
+    (56, 28), (84, 50), (130, 66), (190, 70),
+    (236, 60), (266, 40), (284, 16), (286, 0),
+    (284, -16), (266, -40), (236, -60), (190, -70),
+    (130, -66), (84, -50), (56, -28),
 ]
 
 
@@ -104,117 +134,142 @@ def logo_tab(x, y, w=34, h=22):
 _clip_n = 0
 
 
+def _y_at(pts, x):
+    for (x0, y0), (x1, y1) in zip(pts, pts[1:]):
+        lo, hi = (x0, x1) if x0 <= x1 else (x1, x0)
+        if lo <= x <= hi and x1 != x0:
+            t = (x - x0) / (x1 - x0)
+            return y0 + t * (y1 - y0)
+    return pts[-1][1]
+
+
+def _inside(x, y, pts):
+    n = len(pts)
+    c = False
+    j = n - 1
+    for i in range(n):
+        xi, yi = pts[i]
+        xj, yj = pts[j]
+        if (yi > y) != (yj > y):
+            xint = (xj - xi) * (y - yi) / ((yj - yi) or 1e-9) + xi
+            if x < xint:
+                c = not c
+        j = i
+    return c
+
+
+def side_lugs():
+    """Gaps cut into the flat ground line so the teeth read. The wave stays in the wall."""
+    parts = []
+    x = 46
+    while x < 292:
+        parts.append(f'<rect x="{x:.1f}" y="118" width="3.4" height="22" fill="{PAPER}"/>')
+        x += 17
+    return "".join(parts)
+
+
 def side_shoe(show_grid=True):
     global _clip_n
     _clip_n += 1
     cid = f"up{_clip_n}"
-    upper = cr(UPPER + FOX[1:], closed=True)
-    sole = cr(SOLE_TOP + SOLE_BOTTOM[1:], closed=True)
-    lugs = []
-    xs = [36, 54, 72, 90, 108, 126, 144, 162, 180, 198, 216, 234, 252, 270, 286]
-    for i, x in enumerate(xs):
-        h = 11 + (i % 3)
-        top = 190 - (3 if x < 60 or x > 270 else 0)
-        w = 8 if i % 4 else 11
-        lugs.append(
-            f'<path d="M {x} {top} L {x+w*0.2:.1f} {top+h} L {x+w*0.8:.1f} {top+h} L {x+w:.1f} {top}" fill="{SOLE}" stroke="{INK}" stroke-width="0.35"/>'
-        )
+    upper = cr(UPPER_PTS, closed=True)
+    sole = cr(SOLE_PTS, closed=True)
     grid = ""
     if show_grid:
         lines = []
-        for i in range(8):
-            yy = 100 + i * 8
-            lines.append(f'<line x1="70" y1="{yy}" x2="268" y2="{yy}" stroke="#ffffff" stroke-width="0.25" opacity="0.55"/>')
-        for i in range(16):
-            xx = 70 + i * 12
-            lines.append(f'<line x1="{xx}" y1="96" x2="{xx-6}" y2="160" stroke="#ffffff" stroke-width="0.25" opacity="0.45"/>')
+        for i in range(9):
+            yy = 16 + i * 12
+            lines.append(f'<line x1="30" y1="{yy}" x2="310" y2="{yy}" stroke="{GRID}" stroke-width="0.45"/>')
+        for i in range(20):
+            xx = 36 + i * 14
+            lines.append(f'<line x1="{xx}" y1="10" x2="{xx}" y2="96" stroke="{GRID}" stroke-width="0.45"/>')
         grid = f'<g clip-path="url(#{cid})">{"".join(lines)}</g>'
+    collar = cr([(x, y + 8) for x, y in COLLAR])
     return f'''<g>
       <defs><clipPath id="{cid}"><path d="{upper}"/></clipPath></defs>
       <path d="{sole}" fill="{SOLE}" stroke="{INK}" stroke-width="0.9"/>
-      {''.join(lugs)}
-      <path d="{upper}" fill="{POWDER}" stroke="{INK}" stroke-width="0.9"/>
+      {side_lugs()}
+      <path d="{upper}" fill="{POWDER}" stroke="{INK}" stroke-width="0.85"/>
       {grid}
-      <path d="{cr(UPPER)}" fill="none" stroke="{INK}" stroke-width="0.8"/>
-      <path d="{cr([(p[0]+1.5, p[1]+3.2) for p in UPPER[5:]])}" fill="none" stroke="{GRAY}" stroke-width="0.4"/>
-      {logo_tab(200, 78, 52, 30)}
-      <path d="M 22 162 C 70 150 140 162 220 158 C 270 150 300 156 304 168" fill="none" stroke="#111" stroke-width="0.55"/>
+      <path d="{cr(BITE)}" fill="none" stroke="{INK}" stroke-width="0.9"/>
+      <path d="{cr(COLLAR)}" fill="none" stroke="{INK}" stroke-width="0.7"/>
+      <path d="{collar}" fill="none" stroke="{GRAY}" stroke-width="0.45"/>
+      {logo_tab(146, 4, 32, 22)}
     </g>'''
 
 
 def plan_shoe():
-    sole = cr([
-        (40, -36), (22, -22), (16, 0), (22, 22), (40, 36),
-        (90, 54), (150, 62), (210, 58), (260, 44),
-        (300, 22), (308, 0), (300, -22),
-        (260, -44), (210, -58), (150, -62), (90, -54),
-    ], closed=True)
-    upper = cr([
-        (52, -26), (36, -14), (32, 0), (36, 14), (52, 26),
-        (96, 40), (156, 46), (210, 42), (250, 28),
-        (268, 12), (262, 0), (268, -12),
-        (250, -28), (210, -42), (156, -46), (96, -40),
-    ], closed=True)
-    opening = "M 196 -30 C 240 -24 286 -8 286 0 C 286 8 240 24 196 30 C 176 16 176 -16 196 -30 Z"
+    sole = cr(PLAN_SOLE, closed=True)
+    upper = cr(PLAN_UPPER, closed=True)
+    opening = "M 176 -52 C 240 -64 286 -28 286 0 C 286 28 240 64 176 52 C 158 24 158 -24 176 -52 Z"
+    lines = []
+    for i in range(-3, 5):
+        yy = i * 14
+        lines.append(f'<line x1="40" y1="{yy}" x2="290" y2="{yy}" stroke="{GRID}" stroke-width="0.5"/>')
+    for i in range(16):
+        xx = 40 + i * 16
+        lines.append(f'<line x1="{xx}" y1="-60" x2="{xx}" y2="60" stroke="{GRID}" stroke-width="0.5"/>')
     return f'''<g>
       <path d="{sole}" fill="{SOLE}" stroke="{INK}" stroke-width="0.8"/>
+      <defs><clipPath id="planup"><path d="{upper}"/></clipPath></defs>
       <path d="{upper}" fill="{POWDER}" stroke="{INK}" stroke-width="0.7"/>
+      <g clip-path="url(#planup)">{"".join(lines)}</g>
       <path d="{opening}" fill="{POWDER_DEEP}" stroke="{INK}" stroke-width="0.6"/>
-      {logo_tab(232, -10, 36, 20)}
-      <text x="120" y="3" text-anchor="middle" font-size="5" fill="{SLATE}" font-family="Liberation Sans, sans-serif">ART · SHEET 04</text>
+      <text x="230" y="2" text-anchor="middle" font-size="5.5" fill="{PAPER}" font-family="Liberation Sans, sans-serif">FOOTBED</text>
+      {logo_tab(138, -9, 36, 18)}
     </g>'''
 
 
 def front_shoe():
+    """Front elevation. Wide and low: thick bumper, a small textile cap, a flat lug line."""
+    lugs = []
+    x = 8
+    while x < 198:
+        w = 14 if x > 24 and x < 180 else 10
+        lugs.append(f'<path d="M {x} 66 h {w} l -2 12 h -{w-4} Z" fill="{SOLE}" stroke="{INK}" stroke-width="0.3"/>')
+        x += w + 4
     return f'''<g>
-      <path d="M 8 78 H 132 L 128 92 H 12 Z" fill="{SOLE}" stroke="{INK}" stroke-width="0.8"/>
-      <path d="M 18 78 C 14 62 28 50 46 48 H 94 C 112 50 126 62 122 78 Z" fill="{SOLE}" stroke="{INK}" stroke-width="0.8"/>
-      <path d="M 48 52 C 52 40 88 40 92 52 L 98 70 H 42 Z" fill="{POWDER}" stroke="{INK}" stroke-width="0.7"/>
-      <g fill="{SOLE}" stroke="{INK}" stroke-width="0.3">
-        <path d="M 18 92 l 5 12 h 8 l 4 -12"/>
-        <path d="M 42 92 l 5 14 h 10 l 5 -14"/>
-        <path d="M 74 92 l 5 14 h 10 l 5 -14"/>
-        <path d="M 106 92 l 4 12 h 8 l 4 -12"/>
-      </g>
+      <path d="M 4 40 C 2 32 18 26 40 24 H 170 C 192 26 208 32 206 40 L 198 66 H 12 Z" fill="{SOLE}" stroke="{INK}" stroke-width="0.8"/>
+      <path d="M 28 40 C 24 30 48 24 70 24 H 140 C 162 24 186 30 182 40 Z" fill="{SOLE_MID}" stroke="{INK}" stroke-width="0.45"/>
+      <path d="M 78 26 C 86 14 124 14 132 26 L 138 34 H 72 Z" fill="{POWDER}" stroke="{INK}" stroke-width="0.65"/>
+      {''.join(lugs)}
     </g>'''
 
 
 def rear_shoe():
+    """Open heel. Wide collar ring, footbed visible, tab seen on edge, flat lug line."""
+    lugs = []
+    x = 10
+    while x < 196:
+        w = 14
+        lugs.append(f'<path d="M {x} 92 h {w} l -2 12 h -{w-4} Z" fill="{SOLE}" stroke="{INK}" stroke-width="0.3"/>')
+        x += w + 4
     return f'''<g>
-      <path d="M 8 86 H 140 L 134 100 H 14 Z" fill="{SOLE}" stroke="{INK}" stroke-width="0.8"/>
-      <path d="M 20 86 H 128 L 120 74 H 28 Z" fill="{SOLE_MID}" stroke="{INK}" stroke-width="0.6"/>
-      <path d="M 34 74 C 32 50 50 38 74 36 C 98 38 116 50 114 74 Z" fill="{POWDER}" stroke="{INK}" stroke-width="0.75"/>
-      <path d="M 46 62 C 50 48 98 48 102 62 C 90 70 58 70 46 62 Z" fill="{POWDER_DEEP}" stroke="{INK}" stroke-width="0.6"/>
-      {logo_tab(54, 16, 40, 22)}
-      <g fill="{SOLE}" stroke="{INK}" stroke-width="0.3">
-        <path d="M 16 100 l 6 12 h 10 l 4 -12"/>
-        <path d="M 44 100 l 6 14 h 12 l 5 -14"/>
-        <path d="M 78 100 l 6 14 h 12 l 5 -14"/>
-        <path d="M 112 100 l 5 12 h 10 l 4 -12"/>
-      </g>
+      <path d="M 6 70 H 204 L 196 92 H 14 Z" fill="{SOLE}" stroke="{INK}" stroke-width="0.8"/>
+      <path d="M 22 70 H 188 L 176 58 H 34 Z" fill="{SOLE_MID}" stroke="{INK}" stroke-width="0.5"/>
+      <path d="M 40 58 C 34 28 58 14 105 12 C 152 14 176 28 170 58 Z" fill="{POWDER}" stroke="{INK}" stroke-width="0.75"/>
+      <path d="M 58 54 C 56 34 74 24 105 24 C 136 24 154 34 152 54 Z" fill="{POWDER_DEEP}" stroke="{INK}" stroke-width="0.6"/>
+      <text x="105" y="44" text-anchor="middle" font-size="5" fill="{PAPER}" font-family="Liberation Sans, sans-serif">FOOTBED</text>
+      {logo_tab(86, 0, 38, 16)}
+      {''.join(lugs)}
     </g>'''
 
 
 def bottom_shoe():
-    outline = cr([
-        (40, -36), (22, -20), (16, 0), (22, 20), (40, 36),
-        (90, 54), (150, 62), (210, 58), (260, 44),
-        (300, 22), (308, 0), (300, -22),
-        (260, -44), (210, -58), (150, -62), (90, -54),
-    ], closed=True)
+    outline_pts = PLAN_SOLE
+    outline = cr(outline_pts, closed=True)
     lugs = []
-    for row, y in enumerate(range(-40, 48, 16)):
-        for col, x in enumerate(range(48, 280, 18)):
-            # keep inside a simple ellipse
-            nx = (x - 160) / 145
-            ny = y / 58
-            if nx * nx + ny * ny > 1:
+    for y in range(-86, 90, 24):
+        for x in range(36, 300, 26):
+            if not _inside(x, y, outline_pts):
+                continue
+            if not all(_inside(x + dx, y + dy, outline_pts) for dx, dy in ((0, 12), (0, -12), (12, 0), (-12, 0))):
                 continue
             lugs.append(
-                f'<g transform="translate({x} {y})" fill="{PAPER}" stroke="{INK}" stroke-width="0.35">'
-                f'<rect x="-5" y="-1.6" width="10" height="3.2" rx="0.6"/>'
-                f'<rect x="-1.6" y="-5" width="3.2" height="10" rx="0.6"/>'
-                f'<circle cx="0" cy="0" r="0.7" fill="{INK}" stroke="none"/></g>'
+                f'<g transform="translate({x} {y})" fill="{PAPER}" stroke="{INK}" stroke-width="0.45">'
+                f'<rect x="-9" y="-2.6" width="18" height="5.2" rx="0.8"/>'
+                f'<rect x="-2.6" y="-9" width="5.2" height="18" rx="0.8"/>'
+                f'<circle cx="0" cy="0" r="1.15" fill="{INK}" stroke="none"/></g>'
             )
     return f'''<g>
       <path d="{outline}" fill="{SOLE}" stroke="{INK}" stroke-width="0.8"/>
@@ -223,11 +278,16 @@ def bottom_shoe():
 
 
 def footbed_shape():
-    return cr([
-        (40, 0), (28, 18), (26, 40), (36, 70), (52, 100),
-        (70, 130), (78, 160), (70, 188), (48, 200), (40, 188),
-        (34, 160), (28, 120), (24, 70), (28, 30),
-    ], closed=True)
+    """Card insole, toe at top. Widths and the mild centerline drift come from the photograph."""
+    samples = [
+        (4, 22, 0), (16, 34, 1), (32, 42, 2), (52, 48, 4),
+        (76, 50, 6), (104, 46, 9), (132, 42, 12), (158, 38, 13),
+        (180, 32, 13), (196, 20, 12), (206, 8, 11),
+    ]
+    cx = 54
+    right = [(cx + mx + hw, y) for y, hw, mx in samples]
+    left = [(cx + mx - hw, y) for y, hw, mx in reversed(samples)]
+    return cr(right + left, closed=True)
 
 
 def sheet(num, title, body, note):
@@ -236,7 +296,7 @@ def sheet(num, title, body, note):
   <rect width="420" height="297" fill="{PAPER}"/>
   <rect x="6" y="6" width="408" height="285" fill="none" stroke="{INK}" stroke-width="0.6"/>
   <text x="12" y="16" font-family="Liberation Serif, Times New Roman, serif" font-size="7" fill="{INK}">MADE SAiNT</text>
-  <text x="78" y="16" font-family="Liberation Sans, sans-serif" font-size="3.6" fill="{SLATE}">MS-TM01 · TRAIL MULE · PROTOTYPE 001 · REV A</text>
+  <text x="78" y="16" font-family="Liberation Sans, sans-serif" font-size="3.6" fill="{SLATE}">MS-TM01 · TRAIL MULE · PROTOTYPE 001 · REV B</text>
   <text x="300" y="16" font-family="Liberation Sans, sans-serif" font-size="4.2" fill="{INK}">SHEET {num:02d} / 08</text>
   <text x="12" y="24" font-family="Liberation Serif, Times New Roman, serif" font-size="7" fill="{INK}">{title}</text>
   <text x="250" y="24" font-family="Liberation Sans, sans-serif" font-size="3.2" fill="{SLATE}">04 / POWDER BLUE · FOG GRID · US M 12 2E</text>
@@ -256,20 +316,20 @@ def frame(x, y, w, h, label):
 
 def sheet_01():
     body = f'''
-      {frame(10, 32, 200, 112, "LATERAL · TOE LEFT · LOGO TAB ON THE HEEL COLLAR")}
-      <g transform="translate(16 40) scale(0.58)">{side_shoe()}</g>
-      {frame(214, 32, 196, 112, "MEDIAL · SAME SILHOUETTE · NO CONFIRMED ASYMMETRY")}
-      <g transform="translate(220 40) scale(0.55)">{side_shoe(False)}</g>
-      {frame(10, 148, 132, 112, "TOP · TOE LEFT · HEEL OPENING TO THE RIGHT")}
-      <g transform="translate(22 168) scale(0.34)">{plan_shoe()}</g>
-      {frame(146, 148, 86, 112, "FRONT · TOE BUMPER")}
-      <g transform="translate(154 162) scale(0.7)">{front_shoe()}</g>
-      {frame(236, 148, 86, 112, "REAR · OPEN COLLAR")}
-      <g transform="translate(242 160) scale(0.68)">{rear_shoe()}</g>
-      {frame(326, 148, 84, 112, "BOTTOM · GROUND FACE")}
-      <g transform="translate(332 176) scale(0.24)">{bottom_shoe()}</g>
+      {frame(10, 32, 200, 112, "LATERAL · TOE LEFT · TAB ON THE INSTEP COLLAR")}
+      <g transform="translate(12 38) scale(0.60)">{side_shoe()}</g>
+      {frame(214, 32, 196, 112, "MEDIAL · SAME PROFILE · NO SEPARATE PANEL BREAK")}
+      <g transform="translate(216 40) scale(0.56)">{side_shoe()}</g>
+      {frame(10, 148, 124, 112, "TOP · TOE LEFT · OPENING TO THE RIGHT")}
+      <g transform="translate(14 200) scale(0.36)">{plan_shoe()}</g>
+      {frame(138, 148, 96, 112, "FRONT · WIDE BUMPER, LOW CAP")}
+      <g transform="translate(142 178) scale(0.42)">{front_shoe()}</g>
+      {frame(238, 148, 96, 112, "REAR · OPEN COLLAR, TAB ON EDGE")}
+      <g transform="translate(242 164) scale(0.42)">{rear_shoe()}</g>
+      {frame(338, 148, 72, 112, "BOTTOM · PLUS LUGS")}
+      <g transform="translate(340 192) scale(0.21)">{bottom_shoe()}</g>
       <g font-family="Liberation Sans, sans-serif" font-size="2.8" fill="{INK}">
-        <text x="12" y="254">Callouts are visual, not dimensions: 1 rounded toe inside the bumper · 2 ripstop vamp, no confirmed center seam · 3 padded rolled collar · 4 heel logo tab, wordmark MADE / SAiNT · 5 wave sidewall · 6 plus-lug ground face · 7 open heel.</text>
+        <text x="12" y="254">Callouts, visual only: 1 round toe behind the bumper · 2 one-piece ripstop vamp · 3 rolled collar · 4 instep tab, MADE / SAiNT · 5 wave sidewall · 6 flat lug line · 7 open heel with the footbed showing.</text>
       </g>
     '''
     return sheet(1, "Orthographic set", body, "Reference card is the design authority. Lateral and medial are paired. Elastic gores from the memorandum are not drawn: they are not visible on the card.")
@@ -278,7 +338,7 @@ def sheet_01():
 def sheet_02():
     body = f'''
       {frame(10, 34, 250, 150, "LATERAL CONSTRUCTION · BLACK = VISIBLE EDGE · GRAY = HIDDEN OR UNCONFIRMED")}
-      <g transform="translate(20 48) scale(0.72)">{side_shoe()}</g>
+      <g transform="translate(16 46) scale(0.70)">{side_shoe()}</g>
       <g font-family="Liberation Sans, sans-serif" font-size="3.1" fill="{INK}">
         <text x="268" y="42">UPPER BUILD — OBSERVED VS ASSUMED</text>
         <text x="268" y="52">U1 Shell. Powder-blue grid ripstop.</text>
@@ -287,9 +347,9 @@ def sheet_02():
         <text x="268" y="74">U2 Collar. Same shell over foam.</text>
         <text x="268" y="80">Image: rolled, tonal, padded.</text>
         <text x="268" y="86">Navy tape is not on the card.</text>
-        <text x="268" y="96">U3 Logo tab. Heel collar only.</text>
-        <text x="268" y="102">Stitched border. Debossed wordmark.</text>
-        <text x="268" y="108">Not a vamp tongue.</text>
+        <text x="268" y="96">U3 Logo tab. Instep collar.</text>
+        <text x="268" y="102">Centered, stitched, debossed.</text>
+        <text x="268" y="108">Not a tongue. Not a backstay label.</text>
         <text x="268" y="118">U4 Lining. Breathable textile.</text>
         <text x="268" y="124">Seen inside the opening. Spec open.</text>
         <text x="268" y="134">U5 Toe puff. Hidden. Memorandum.</text>
@@ -297,8 +357,8 @@ def sheet_02():
         <text x="268" y="150">U6 Stabilizer. Memorandum. Test</text>
         <text x="268" y="156">before fusing a 40 GSM shell.</text>
         <text x="268" y="166">No confirmed side seam. No center</text>
-        <text x="268" y="172">seam. A short back seam may sit</text>
-        <text x="268" y="178">under the logo tab. Unverified.</text>
+        <text x="268" y="172">seam. If the trace needs a close,</text>
+        <text x="268" y="178">hide it in the collar roll.</text>
       </g>
       {frame(10, 190, 400, 72, "COLLAR SECTION — SCHEMATIC, THROUGH THE PADDING · THICKNESS NOT MEASURED")}
       <g transform="translate(24 206)">
@@ -317,17 +377,17 @@ def sheet_02():
 def sheet_03():
     body = f'''
       {frame(10, 34, 230, 140, "GROUND FACE · TOE LEFT · PLUS LUGS AS OBSERVED CHARACTER")}
-      <g transform="translate(24 58) scale(0.62)">{bottom_shoe()}</g>
+      <g transform="translate(18 108) scale(0.66)">{bottom_shoe()}</g>
       {frame(246, 34, 164, 140, "SIDEWALL PROFILE · WAVE AND TOE BUMPER")}
-      <g transform="translate(250 48) scale(0.48)">{side_shoe(False)}</g>
+      <g transform="translate(248 52) scale(0.46)">{side_shoe(False)}</g>
       <g font-family="Liberation Sans, sans-serif" font-size="3.1" fill="{INK}">
         <text x="14" y="186">O1 One black rubber bottom is what the card shows: sidewall, toe bumper, and lug field read as one sculpted unit.</text>
         <text x="14" y="194">O2 A separate rand is not drawn. Add one only if the sourced sole does not already include the raised wall.</text>
         <text x="14" y="202">O3 Lug family on the card: plus-form, multi-directional, with a small center pip. This layout is a schematic, not a mold.</text>
         <text x="14" y="210">O4 Do not name or imply a commercial outsole brand. None has been selected.</text>
         <text x="14" y="218">O5 Bond surface is the cavity and the top of the wall. Its outline comes from the physical sole, not from this drawing.</text>
-        <text x="14" y="226">O6 Sidewall top edge is a wave: higher at the toe bumper and the heel, lower through the waist.</text>
-        <text x="14" y="234">O7 Toe bumper wraps the round toe. The textile toe sits behind the rubber, not in front of it.</text>
+        <text x="14" y="226">O6 Sidewall top is a wave: high at the toe bumper, down through the waist, up under the collar, down again, up at the heel.</text>
+        <text x="14" y="234">O7 The lug ground line is nearly flat. The wave is in the wall, not in the teeth. Textile toe sits behind the bumper.</text>
         <text x="14" y="248">Target: US M 12 2E compatible sole. A nominal size 12 sole is not assumed to fit a 2E last.</text>
       </g>
     '''
@@ -338,7 +398,7 @@ def sheet_04():
     shape = footbed_shape()
     body = f'''
       {frame(10, 34, 180, 220, "FOOTBED PLAN · TOE AT TOP · HEAD OF THE FIGURE TOWARD THE TOE")}
-      <g transform="translate(48 44) scale(0.72)">
+      <g transform="translate(36 42) scale(0.78)">
         <path d="{shape}" fill="{POWDER}" stroke="{INK}" stroke-width="0.9"/>
         <rect x="36" y="28" width="36" height="120" fill="none" stroke="{SLATE}" stroke-width="0.4" stroke-dasharray="1.2 0.8"/>
         <text x="54" y="40" text-anchor="middle" font-size="3" fill="{SLATE}" font-family="Liberation Sans, sans-serif">WINGS</text>
@@ -381,7 +441,7 @@ def sheet_04():
 
 def sheet_05():
     rows = [
-        (36, "5  Logo tab", "heel collar, stitched, not bonded into the sole"),
+        (36, "5  Logo tab", "instep collar, stitched, not bonded into the sole"),
         (68, "4  Upper shell + collar foam", "ripstop over foam, rolled edge"),
         (100, "3  Lining", "inside the shell"),
         (132, "2  Toe puff + stabilizer", "hidden, memorandum"),
@@ -394,9 +454,9 @@ def sheet_05():
         for y, text, sub in rows
     )
     body = f'''
-      <g transform="translate(16 40) scale(0.42)">{side_shoe(False)}</g>
+      <g transform="translate(12 38) scale(0.40)">{side_shoe(False)}</g>
       <text x="16" y="132" font-size="3" font-family="Liberation Sans, sans-serif" fill="{SLATE}">ASSEMBLY REFERENCE SILHOUETTE</text>
-      <g transform="translate(20 150) scale(0.36)">{bottom_shoe()}</g>
+      <g transform="translate(16 168) scale(0.32)">{bottom_shoe()}</g>
       {labels}
       <text x="14" y="214" font-size="3.1" font-family="Liberation Sans, sans-serif" fill="{INK}">Order is from the ground up. The footbed is removable and is not in the bond stack.</text>
       <text x="14" y="222" font-size="3.1" font-family="Liberation Sans, sans-serif" fill="{INK}">It is made and fitted after the upper will accept a last, and it must fit the real cavity.</text>
@@ -486,9 +546,10 @@ def sheet_06():
       {draw_piece(logo_poly(), 250, 190, "P05 LOGO TAB  ×2", False)}
       {draw_piece(puff_poly(), 310, 186, "P06 TOE PUFF  ×2", False)}
       <g font-family="Liberation Sans, sans-serif" font-size="2.8" fill="{INK}">
-        <text x="300" y="160">P04 BINDING is a straight strip.</text>
-        <text x="300" y="166">Length comes from the opening</text>
-        <text x="300" y="172">after the mock-up. Not drawn to size.</text>
+        <text x="300" y="156">No contrast binding.</text>
+        <text x="300" y="164">The collar roll is the shell</text>
+        <text x="300" y="170">cloth. Do not cut a tape piece</text>
+        <text x="300" y="176">for prototype 001.</text>
       </g>
       <text x="12" y="258" font-size="3" font-family="Liberation Sans, sans-serif" fill="{INK}">These nets are proportion studies of the visible surfaces. They are not last-flattened patterns. Trace the real last before any hide is cut.</text>
     '''
@@ -502,7 +563,7 @@ def sheet_07():
         ("U3", "Toe puff", "Flexible footwear puff", "Hidden", "1 sheet", "Neutral", "UNASSIGNED", "Memorandum item"),
         ("U4", "Lining", "Breathable textile", "Inside the opening", "0.5 yard buy", "Powder family", "UNASSIGNED", "Exact cloth not on the card"),
         ("U5", "Collar foam", "Soft footwear foam", "4–6 mm named in the memo", "1 sheet", "Neutral", "UNASSIGNED", "Thickness not measured"),
-        ("U6", "Logo tab", "Coated textile or synthetic", "Stitched, debossed wordmark", "2", "Powder blue", "UNASSIGNED", "Heel collar, not a tongue"),
+        ("U6", "Logo tab", "Coated textile or synthetic", "Stitched, debossed wordmark", "2", "Powder blue", "UNASSIGNED", "Instep collar, not a tongue"),
         ("U7", "Thread", "Bonded polyester", "Tone-on-tone", "1 set", "Slate / powder", "UNASSIGNED", "Needle and stitch length by test"),
         ("F1", "Footbed base", "Cork-latex, contoured", "Removable, size 12 2E cavity", "1 pair", "Natural", "UNASSIGNED", "Fit the real cavity"),
         ("F2", "Topcover", "Microfiber", "Powder blue", "0.25 yard", "Powder blue", "UNASSIGNED", "Laminate before art"),
@@ -530,7 +591,7 @@ def sheet_08():
         ("A", "Verify", "Swatch the ripstop. Confirm powder blue and whether the white grid is actually in the cloth. Identify a US M 12 2E last and a black sole with a raised wall and a round toe bumper. Do not cut yet."),
         ("B", "Trace", "Tape the last. Trace the feather, the opening, and the sole cavity. Rebuild sheets 02 and 06 on that trace. Retire this proportion model."),
         ("C", "Mock", "Paper or cheap-cloth upper. Check the open heel, the collar height, and the logo-tab position against the card."),
-        ("D", "Upper", "Stabilize only after a bond test. Sew the shell, foam, and lining. Roll the collar in the shell cloth. Stitch the logo tab on the heel collar. Deboss or stamp from the wordmark file."),
+        ("D", "Upper", "Stabilize only after a bond test. Sew the shell, foam, and lining. Roll the collar in the shell cloth. Stitch the logo tab on the instep collar, centered. Deboss or stamp from the wordmark file."),
         ("E", "Footbed", "Fit cork to the cavity. Laminate microfiber. Place the supplied art head-to-toe, wordmark toward the heel. Rub-test a spare."),
         ("F", "Bottom", "Rough and cement per the adhesive sheet. Wipe squeeze-out. Do not add a separate rand if the sole already has the wall."),
         ("G", "Check", "Forefoot clearance, heel retention, level sole, no early separation, collar comfort, art still readable. Record changes as revision 002."),
@@ -638,7 +699,7 @@ def write_bom():
         ["U3", "Toe puff", "Flexible footwear toe puff", "Hidden under the round toe, behind the bumper", "1 sheet", "Neutral", "UNASSIGNED", "Not a visible style line.", "FROM MEMORANDUM"],
         ["U4", "Upper lining", "Breathable textile", "Seen as a soft interior; exact cloth unspecified", "0.5 yard buy allowance", "Powder-blue family", "UNASSIGNED", "Do not invent a supplier.", "OBSERVED, SPEC OPEN"],
         ["U5", "Collar foam", "Soft footwear foam", "Memorandum names 4–6 mm; card shows a thick rolled collar", "1 sheet", "Neutral", "UNASSIGNED", "Thickness is not a measurement from the image.", "PROVISIONAL"],
-        ["U6", "Logo tab", "Coated textile or synthetic leather", "Stitched perimeter, debossed MADE SAiNT, lowercase i", "2 tabs", "Powder blue", "UNASSIGNED", "Located on the heel collar. The card does not show a vamp tongue.", "OBSERVED"],
+        ["U6", "Logo tab", "Coated textile or synthetic leather", "Stitched perimeter, debossed MADE SAiNT, lowercase i", "2 tabs", "Powder blue", "UNASSIGNED", "Centered on the instep collar. Not a vamp tongue and not a backstay label.", "OBSERVED"],
         ["U7", "Thread", "Bonded polyester", "Tone-on-tone; needle chosen on a swatch", "1 set", "Slate or powder", "UNASSIGNED", "Stitch length by test, not by this drawing.", "ASSUMPTION"],
         ["F1", "Footbed base", "Contoured cork-latex", "Removable; must fit the US M 12 2E cavity of the sourced sole", "1 pair", "Natural cork", "UNASSIGNED", "Do not size from the nominal shoe size alone.", "FROM MEMORANDUM"],
         ["F2", "Footbed topcover", "Microfiber", "Powder blue, laminated to F1", "0.25 yard", "Powder blue", "UNASSIGNED", "Matches the card’s footbed ground.", "OBSERVED"],

@@ -18,7 +18,7 @@ export default function Home() {
         <div>
           <p className="font-serif text-2xl leading-none">MADE SAiNT</p>
           <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.14em] text-white/70">
-            MS-TM01 Trail Mule · Prototype 001 · Rev A
+            MS-TM01 Trail Mule · Prototype 001 · Rev B
           </p>
         </div>
         <nav className="flex flex-wrap gap-2 font-mono text-[11px] uppercase tracking-[0.12em]">

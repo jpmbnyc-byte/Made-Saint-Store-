@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
 import { WardrobeCatalog } from "@/components/wardrobe/catalog";
+import { Foundation } from "@/components/wardrobe/foundation";
 import { statusLine } from "@/lib/business";
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export default function WardrobePage() {
             </h1>
             <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-[#f6f4ef]/75">
               Three annual collections. One personal fit. A wardrobe that evolves with you. The client buys the
-              year, not access to a shop.
+              year — not access to a shop, then more clothing.
             </p>
           </div>
           <Link href="/shop" className="text-[11px] tracking-[0.18em] uppercase text-[#f6f4ef]/70 hover:text-[#f6f4ef]">
@@ -32,6 +33,7 @@ export default function WardrobePage() {
           </Link>
         </div>
       </div>
+      <Foundation />
       <WardrobeCatalog />
       <ShopFooter />
     </div>

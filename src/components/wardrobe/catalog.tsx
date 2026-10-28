@@ -22,13 +22,13 @@ export function WardrobeCatalog() {
   const withImage = list.filter((p) => p.image).length;
 
   return (
-    <div className="min-h-screen bg-[#f6f4ef] text-[#1c1a17]">
+    <div className="border-t border-[#1c1a17]/15 bg-[#f6f4ef] text-[#1c1a17]">
       <header className="border-b border-[#1c1a17]/10">
         <div className="mx-auto flex max-w-[1320px] items-end justify-between gap-6 px-5 py-8 md:px-8">
           <div>
-            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">The Private Wardrobe / 2027 collection</p>
-            <h1 className="mt-2 font-serif text-[42px] leading-none md:text-[64px]">{t.name}</h1>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#1c1a17]/70">{t.idea}</p>
+            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Visual register · {t.name}</p>
+            <h2 className="mt-2 font-serif text-[36px] leading-none md:text-[48px]">{t.name} menu</h2>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#1c1a17]/70">{t.idea} Higher tiers inherit every piece below them.</p>
           </div>
           <p className="shrink-0 font-serif text-3xl tabular-nums md:text-4xl">{usd(t.price)}<span className="ml-2 text-sm tracking-[0.16em] text-[#1c1a17]/50 uppercase">/ year</span></p>
         </div>

@@ -188,7 +188,7 @@ export default function BrandPage() {
                       {[r.colors.quarter, t.fill, t.keyline].map((h) => <span key={h} className="size-4 rounded-sm border border-black/15" style={{ background: h }} title={h} />)}
                     </span>
                   </div>
-                  <RunnerFlat colors={r.colors} view="lateral" paper={PAPER} variant={{ textures: r.textures, grid: false, label: r.storyData?.label, mark: "midfoot" }} className="mt-2 [&_svg]:h-auto [&_svg]:w-full" />
+                  <RunnerFlat colors={r.colors} view="lateral" paper={PAPER} variant={{ textures: r.textures, grid: false, mark: "midfoot" }} className="mt-2 [&_svg]:h-auto [&_svg]:w-full" />
                 </div>
               );
             })}

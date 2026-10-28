@@ -1,13 +1,12 @@
 import { useId } from "react";
 import { STYLES, type Texture } from "@/lib/collection";
-import { mix } from "@/lib/color";
+import { deltaE, mix } from "@/lib/color";
 import { INK, Pattern, cr, type Pt } from "./textures";
 import { MARK_PLACEMENTS, MMark, tonalMark, type MarkPlacementId } from "./mark";
 
 export type RunnerVariant = {
   textures?: Record<string, Texture>;
   grid?: boolean;
-  label?: "woven" | "printed";
   /** Side mark placement. Always tonal, derived from the quarter overlay colour. */
   mark?: MarkPlacementId;
   /** Draws the forefoot flex zone, for placement studies. */
@@ -17,6 +16,10 @@ type Props = { colors: Record<string, string>; view: "lateral" | "top"; paper?: 
 type ViewProps = { uid: string; colors: Record<string, string>; paper: string; variant: RunnerVariant };
 
 const comps = STYLES.runner.components;
+
+/** Sockliner wordmark takes the tongue ink, or the tongue colour when that reads better (cream on a navy sockliner). */
+const sockInk = (colors: Record<string, string>) =>
+  deltaE(colors.label, colors.sockliner) >= deltaE(colors.tongue, colors.sockliner) ? colors.label : colors.tongue;
 
 function Defs({ uid, colors, variant }: { uid: string; colors: Record<string, string>; variant: RunnerVariant }) {
   const grid = variant.grid ?? true;
@@ -90,20 +93,10 @@ function Lateral({ uid, colors, paper, variant }: ViewProps) {
 
       <path d={L_MIDSOLE} fill={f("midsole")} stroke={INK} strokeWidth="1" />
 
-      {variant.label === "printed" ? (
-        <g transform="rotate(-9 297 76)" fill={colors.label} fontFamily="Arial, sans-serif" fontWeight="700" textAnchor="middle">
-          <text x="297.5" y="74" fontSize="6.2">MADE</text>
-          <text x="297.5" y="81.5" fontSize="6.2">SAiNT</text>
-        </g>
-      ) : (
-        <g transform="rotate(-9 297 76)">
-          <rect x="284" y="66" width="27" height="20" rx="1.5" fill={colors.label} stroke={INK} strokeWidth="0.7" />
-          <rect x="293.5" y="68.5" width="8" height="8" rx="1" fill={colors.emblem} />
-          <text x="297.5" y="82.6" textAnchor="middle" fontSize="3.6" fontWeight="700" fill={colors.emblem} fontFamily="Arial, sans-serif">
-            MADE SAiNT
-          </text>
-        </g>
-      )}
+      <g transform="rotate(-9 297 76)" fill={colors.label} fontFamily="Arial, sans-serif" fontWeight="700" textAnchor="middle">
+        <text x="297.5" y="74" fontSize="6.2">MADE</text>
+        <text x="297.5" y="81.5" fontSize="6.2">SAiNT</text>
+      </g>
 
       {L_EYELETS.map(([x, y], i) => (
         <g key={i}>
@@ -216,24 +209,15 @@ function Top({ uid, colors, paper, variant }: ViewProps) {
       </g>
       <path d={T_UPPER} fill="none" stroke={INK} strokeWidth="1.1" />
 
-      <text x="140" y="128.5" textAnchor="middle" fontSize="9" letterSpacing="1.6" fill={variant.label === "printed" ? colors.label : mix(colors.sockliner, colors.lining, 0.7)} fontFamily={variant.label === "printed" ? "Arial, sans-serif" : "Georgia, serif"} fontWeight={variant.label === "printed" ? 700 : 400}>
-        MADE SAiNT
-      </text>
+      <g fill={sockInk(colors)} fontFamily="Arial, sans-serif" fontWeight="700" textAnchor="middle" transform="rotate(90 112 125)">
+        <text x="112" y="121" fontSize="9">MADE</text>
+        <text x="112" y="131" fontSize="9">SAiNT</text>
+      </g>
 
-      {variant.label === "printed" ? (
-        <g fill={colors.label} fontFamily="Arial, sans-serif" fontWeight="700" textAnchor="middle" transform="rotate(90 229 125)">
-          <text x="229" y="122" fontSize="8">MADE</text>
-          <text x="229" y="131" fontSize="8">SAiNT</text>
-        </g>
-      ) : (
-        <>
-          <rect x="214" y="113" width="28" height="24" rx="1.5" fill={colors.label} stroke={INK} strokeWidth="0.7" />
-          <rect x="224" y="116" width="8" height="8" rx="1" fill={colors.emblem} />
-          <text x="228" y="132" textAnchor="middle" fontSize="3.8" fontWeight="700" fill={colors.emblem} fontFamily="Arial, sans-serif">
-            MADE SAiNT
-          </text>
-        </>
-      )}
+      <g fill={colors.label} fontFamily="Arial, sans-serif" fontWeight="700" textAnchor="middle" transform="rotate(90 229 125)">
+        <text x="229" y="122" fontSize="8">MADE</text>
+        <text x="229" y="131" fontSize="8">SAiNT</text>
+      </g>
 
       {T_EYELET_X.map((x) => (
         <g key={x}>

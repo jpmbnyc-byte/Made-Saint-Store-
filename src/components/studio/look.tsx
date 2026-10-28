@@ -37,7 +37,7 @@ export function Segmented<T extends string>({ value, options, onChange, label }:
 
 export function variantOf(r: SlotResult): RunnerVariant {
   const mark = { mark: "midfoot" as const };
-  return r.storyData ? { textures: r.textures, grid: false, label: r.storyData.label, ...mark } : mark;
+  return r.storyData ? { textures: r.textures, grid: false, ...mark } : mark;
 }
 
 export function Flat({ style, colors, view, variant }: { style: StyleId; colors: Record<string, string>; view: "lateral" | "top"; variant?: RunnerVariant }) {
@@ -208,7 +208,7 @@ export function LookCard({
       </div>
       {story && (
         <div className="space-y-1 border-t border-[#22201d]/10 px-4 py-2.5 text-[12px] text-[#22201d]/75">
-          <p>Changes to the locked flat: woven label becomes a printed MADE SAiNT on the tongue and sockliner; the grid band is dropped for a one-color sole.</p>
+          <p>Changes to the locked flat: the grid band is dropped for a one-color sole.</p>
           {story.flags?.map((f) => (
             <p key={f} className="text-[#a2362f]">{f}</p>
           ))}

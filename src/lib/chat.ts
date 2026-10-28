@@ -92,7 +92,7 @@ function lookCostText(ctx: ChatContext, i: number) {
 const COMPONENT_WORDS: Record<string, string[]> = {
   mudguard: ["mudguard", "toe"], eyestay: ["eyestay"], saddle: ["saddle", "strap"], quarter: ["quarter", "heel"],
   tongue: ["tongue"], mesh: ["mesh", "window"], lining: ["lining", "collar lining"], laces: ["lace"], eyelets: ["eyelet"],
-  label: ["label"], emblem: ["emblem"], midsole: ["midsole", "foxing", "band"], print: ["print", "grid"], outsole: ["outsole", "sole", "lug"],
+  label: ["label", "wordmark", "tongue print"], midsole: ["midsole", "foxing", "band"], print: ["print", "grid"], outsole: ["outsole", "sole", "lug"],
   sockliner: ["sockliner", "insole"], thread: ["thread", "stitch"], shell: ["shell", "upper"], collar: ["collar"], grid: ["grid"],
   tab: ["tab", "logo tab"], footbed: ["footbed", "insole"],
 };

@@ -10,7 +10,6 @@ export type Story = {
   read: string;
   /** Components dropped from the locked flat in this story. */
   omit: string[];
-  label: "printed" | "woven";
   parts: Record<string, StoryPart>;
   flags?: string[];
 };
@@ -30,8 +29,7 @@ export const STORIES: Story[] = [
     name: "Navy intrecciato",
     image: "/stories/navy-intrecciato.webp",
     read: "Woven navy leather on the toe, sides and heel; smooth navy eyestay and tongue; sand perforated mesh; navy jersey lining; navy nub sole.",
-    omit: ["print", "emblem"],
-    label: "printed",
+    omit: ["print"],
     parts: {
       ...overlays(
         { hex: "#2c323d", texture: "intrecciato", families: ["leather-exotic"], pin: WOVEN_PIN, material: "Woven leather (intrecciato)" },
@@ -54,8 +52,7 @@ export const STORIES: Story[] = [
     name: "Espresso / oxblood",
     image: "/stories/espresso-oxblood.webp",
     read: "Espresso suede overlays, black mesh, oxblood terry lining and oxblood print, dark brown nub sole.",
-    omit: ["print", "emblem"],
-    label: "printed",
+    omit: ["print"],
     parts: {
       ...overlays({ hex: "#3a2e28", texture: "suede", families: ["suede", "vegan-suede"], material: "Suede" }),
       mesh: { hex: "#1b1b1b", texture: "mesh", material: "Air mesh" },
@@ -74,8 +71,7 @@ export const STORIES: Story[] = [
     name: "Graphite tonal",
     image: "/stories/graphite-tonal.webp",
     read: "Charcoal snake-embossed suede, black mesh, black lining, tonal grey print, black nub sole.",
-    omit: ["print", "emblem"],
-    label: "printed",
+    omit: ["print"],
     parts: {
       ...overlays({ hex: "#404042", texture: "emboss", families: ["leather-exotic", "vegan-exotic"], material: "Embossed suede" }),
       mesh: { hex: "#252527", texture: "mesh", material: "Air mesh" },
@@ -94,8 +90,7 @@ export const STORIES: Story[] = [
     name: "Chalk / navy",
     image: "/stories/chalk-navy.webp",
     read: "White bouclé-suede overlays, navy canvas windows, white lining and laces, navy print, navy-black nub sole.",
-    omit: ["print", "emblem"],
-    label: "printed",
+    omit: ["print"],
     parts: {
       ...overlays({ hex: "#e4e3e3", texture: "boucle", families: ["pile", "felt"], pin: BOUCLE_PIN, material: "Bouclé / terry" }),
       mesh: { hex: "#1c2433", texture: "canvas", families: ["canvas"], material: "Canvas" },
@@ -115,8 +110,7 @@ export const STORIES: Story[] = [
     name: "Navy weave / rust",
     image: "/stories/navy-weave-rust.webp",
     read: "Woven navy leather throughout the overlays, rust canvas windows, grey lining, rust print, navy nub sole.",
-    omit: ["print", "emblem"],
-    label: "printed",
+    omit: ["print"],
     parts: {
       ...overlays({ hex: "#262f36", texture: "intrecciato", families: ["leather-exotic"], pin: WOVEN_PIN, material: "Woven leather (intrecciato)" }),
       mesh: { hex: "#6e3521", texture: "canvas", families: ["canvas"], material: "Canvas" },
@@ -136,8 +130,7 @@ export const STORIES: Story[] = [
     name: "Washed denim",
     image: "/stories/washed-denim.webp",
     read: "Light washed denim overlays, raw indigo denim windows, navy lining, light denim laces, navy print, black nub sole.",
-    omit: ["print", "emblem"],
-    label: "printed",
+    omit: ["print"],
     parts: {
       ...overlays({ hex: "#7e97ab", texture: "denim", families: ["canvas"], pin: DENIM_PIN, material: "Washed denim" }),
       mesh: { hex: "#1d2534", texture: "denim", families: ["canvas"], pin: DENIM_PIN, material: "Raw denim" },

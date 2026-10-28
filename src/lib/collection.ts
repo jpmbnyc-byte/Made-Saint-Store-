@@ -17,10 +17,10 @@ export const SOLES = catalog.soles as Sole[];
 export const FAMILY_LABEL = catalog.families as Record<string, string>;
 
 export const ROLE_INFO: Record<Role, { label: string; job: string }> = {
-  ground: { label: "Ground", job: "Mesh, lining, laces, label base" },
+  ground: { label: "Ground", job: "Mesh, lining, laces, tongue wordmark" },
   body: { label: "Body", job: "Suede overlays, the shell" },
   depth: { label: "Depth", job: "Outsole, sockliner" },
-  signal: { label: "Signal", job: "Emblem, print accent" },
+  signal: { label: "Signal", job: "Print accent" },
   bridge: { label: "Bridge", job: "Midsole band, logo tab" },
 };
 
@@ -59,23 +59,22 @@ export const STYLES: Record<StyleId, Style> = {
       { id: "eyestay", label: "Eyestay", group: "Upper", texture: "suede", families: SUEDE, sameAs: "mudguard", spec: "6 eyelets per side. Same hide as mudguard." },
       { id: "saddle", label: "Saddle strap", group: "Upper", texture: "suede", families: SUEDE, sameAs: "mudguard", spec: "Diagonal strap splitting the two mesh windows." },
       { id: "quarter", label: "Quarter / heel panel", group: "Upper", texture: "suede", families: SUEDE, sameAs: "mudguard", spec: "Curved front edge. Heel counter sits behind it." },
-      { id: "tongue", label: "Tongue", group: "Upper", texture: "suede", families: SUEDE, sameAs: "mudguard", spec: "Padded. Carries the woven label." },
+      { id: "tongue", label: "Tongue", group: "Upper", texture: "suede", families: SUEDE, sameAs: "mudguard", spec: "Padded. Stacked MADE SAiNT printed straight onto it, no patch." },
       { id: "mesh", label: "Base mesh / windows", group: "Upper", texture: "mesh", families: ["mesh"], spec: "Visible in the front and rear windows. Backed with foam scrim." },
       { id: "lining", label: "Collar lining", group: "Lining", texture: "jersey", families: ["stretch", "mesh", "vegan-suede"], spec: "Padded collar roll and tongue back." },
       { id: "laces", label: "Laces", group: "Trim", texture: "lace", families: ["laces"], spec: "Flat or oval. Length set at sampling." },
       { id: "eyelets", label: "Eyelets", group: "Trim", texture: "metal", families: [], spec: "Hidden-ring or painted metal, matched to the overlay." },
-      { id: "label", label: "Woven tongue label", group: "Decoration", texture: "woven", families: [], spec: "Winged emblem from the founder file. Wordmark MADE SAiNT." },
-      { id: "emblem", label: "Emblem thread", group: "Decoration", texture: "thread", families: [], spec: "Woven into the label. Shared across the collection." },
+      { id: "label", label: "Printed tongue wordmark", group: "Decoration", texture: "print", families: [], spec: "Stacked MADE / SAiNT, lowercase i, screen printed on the tongue. No woven label, no emblem." },
       { id: "midsole", label: "Midsole / foxing band", group: "Bottom", texture: "rubber", families: ["sole-color"], sole: true, spec: "Separate midsole layer on the nub-lug unit." },
       { id: "print", label: "Grid print on band", group: "Decoration", texture: "print", families: [], spec: "Tattersall grid, pad or screen printed on the band." },
       { id: "outsole", label: "Outsole, round nub lugs", group: "Bottom", texture: "rubber", families: ["sole-color"], sole: true, spec: "Bubble lugs wrap up the edge." },
-      { id: "sockliner", label: "Sockliner", group: "Lining", texture: "suede", families: ["vegan-suede", "stretch"], spec: "Topcover printed MADE SAiNT at the heel." },
+      { id: "sockliner", label: "Sockliner", group: "Lining", texture: "suede", families: ["vegan-suede", "stretch"], spec: "Topcover printed with the stacked MADE / SAiNT at the heel, in the tongue colour when the ink would not read." },
       { id: "thread", label: "Stitching thread", group: "Trim", texture: "thread", families: [], spec: "Tone-on-tone to the overlay." },
     ],
     recipes: {
-      hero: { mudguard: "body", eyestay: "body", saddle: "body", quarter: "body", tongue: "body", mesh: "ground", lining: "ground", laces: "ground", eyelets: "body", label: "ground", emblem: "signal", midsole: "bridge", print: "signal", outsole: "depth", sockliner: "depth", thread: "body" },
-      tonal: { mudguard: "body", eyestay: "body", saddle: "body", quarter: "body", tongue: "body", mesh: "bodyTint", lining: "ground", laces: "bodyTint", eyelets: "body", label: "ground", emblem: "signal", midsole: "bodyTint", print: "body", outsole: "bodyShade", sockliner: "bodyShade", thread: "body" },
-      inverse: { mudguard: "depth", eyestay: "depth", saddle: "depth", quarter: "depth", tongue: "depth", mesh: "bodyTint", lining: "ground", laces: "ground", eyelets: "depth", label: "ground", emblem: "signal", midsole: "ground", print: "signal", outsole: "body", sockliner: "depth", thread: "depth" },
+      hero: { mudguard: "body", eyestay: "body", saddle: "body", quarter: "body", tongue: "body", mesh: "ground", lining: "ground", laces: "ground", eyelets: "body", label: "ground", midsole: "bridge", print: "signal", outsole: "depth", sockliner: "depth", thread: "body" },
+      tonal: { mudguard: "body", eyestay: "body", saddle: "body", quarter: "body", tongue: "body", mesh: "bodyTint", lining: "ground", laces: "bodyTint", eyelets: "body", label: "ground", midsole: "bodyTint", print: "body", outsole: "bodyShade", sockliner: "bodyShade", thread: "body" },
+      inverse: { mudguard: "depth", eyestay: "depth", saddle: "depth", quarter: "depth", tongue: "depth", mesh: "bodyTint", lining: "ground", laces: "ground", eyelets: "depth", label: "ground", midsole: "ground", print: "signal", outsole: "body", sockliner: "depth", thread: "depth" },
     },
   },
   mule: {
@@ -103,7 +102,7 @@ export const STYLES: Record<StyleId, Style> = {
 
 export const RECIPES: Record<RecipeId, { label: string; idea: string }> = {
   hero: { label: "Hero", idea: "The concept read: body overlays on a light ground, dark sole, one signal accent." },
-  tonal: { label: "Tonal", idea: "Everything in the body family, light to dark. Signal survives only in the emblem." },
+  tonal: { label: "Tonal", idea: "Everything in the body family, light to dark. No signal accent." },
   inverse: { label: "Inverse", idea: "Depth takes the overlays, the ground goes to the sole edge." },
 };
 

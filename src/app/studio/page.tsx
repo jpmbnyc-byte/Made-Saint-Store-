@@ -251,7 +251,7 @@ export default function Studio() {
             <div className="mt-3 flex flex-wrap items-center gap-3 text-[12px] text-[#22201d]/65">
               <span className="flex items-center gap-1.5"><span className="size-3.5 rounded-sm border border-black/10" style={{ background: tones.bodyTint }} /> body tint {tones.bodyTint}</span>
               <span className="flex items-center gap-1.5"><span className="size-3.5 rounded-sm border border-black/10" style={{ background: tones.bodyShade }} /> body shade {tones.bodyShade}</span>
-              <span>Lining and emblem stay fixed across all three looks.</span>
+              <span>Lining and the printed MADE SAiNT tongue wordmark stay fixed across all three looks.</span>
             </div>
           </div>
         </section>
@@ -450,7 +450,7 @@ export default function Studio() {
             <li>Card colors are measured from MEES photos on Google Drive. Lighting shifts them, so every ΔE is a starting point. Confirm against physical swatch cards.</li>
             <li>Texture families are a visual read of each card. Confirm the article, weight, and minimum with MEES before costing.</li>
             <li>Sole compound colors are pigment-matched by the sole maker. The verdict there tells you how far the target sits from their standard colors.</li>
-            <li>The winged emblem comes from the founder file. The flats show a placeholder block in its position and color only.</li>
+            <li>The tongue carries a stacked MADE / SAiNT printed straight onto the leather, repeated on the sockliner. There is no woven label or emblem.</li>
             <li>Wordmark is MADE SAiNT with a lowercase i. The runner concept image shows an uppercase I. The flats follow the brand rule.</li>
             <li>Duty on footwear into the US depends on the HTS classification of the upper (textile, leather, or synthetic). The 20% default is a placeholder.</li>
             <li>No style codes or SKUs are assigned here. Look 03 reuses the runner flat until a third locked flat is supplied.</li>

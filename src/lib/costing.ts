@@ -60,7 +60,7 @@ const USAGE: Record<string, number> = {
 
 /** Flat € per pair for trims and decoration. Estimates. */
 const FLAT: Record<string, number> = {
-  "runner.laces": 0.35, "runner.eyelets": 0.6, "runner.label": 0.5, "runner.emblem": 0, "runner.print": 0.8, "runner.thread": 0.2,
+  "runner.laces": 0.35, "runner.eyelets": 0.6, "runner.label": 0.5, "runner.print": 0.8, "runner.thread": 0.2,
   "runner.midsole": 2, "mule.grid": 1.2, "mule.thread": 0.15,
 };
 

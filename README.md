@@ -69,8 +69,8 @@ The local site shows the eight sheets and links the PDF, the bill of materials, 
 Feed a palette and get a three-look collection on the locked flats, with every component matched to a real MEES material card.
 
 - **Palette.** Up to 7 hex colors, typed, picked, or extracted from an image. Share one with `/studio?p=e4dccd,7f5f65,3d2c31`.
-- **Roles.** Colors are assigned to Ground (mesh, lining, laces), Body (overlays, shell), Depth (outsole, sockliner), Signal (emblem, print), and Bridge (midsole band, logo tab). Missing roles are derived and marked.
-- **Looks.** Each look picks a locked flat (bubble-lug runner or Trail Mule) and a recipe (Hero, Tonal, Inverse). Lining and emblem stay fixed across the collection.
+- **Roles.** Colors are assigned to Ground (mesh, lining, laces), Body (overlays, shell), Depth (outsole, sockliner), Signal (print accent), and Bridge (midsole band, logo tab). Missing roles are derived and marked.
+- **Looks.** Each look picks a locked flat (bubble-lug runner or Trail Mule) and a recipe (Hero, Tonal, Inverse). Lining and the printed MADE SAiNT tongue wordmark stay fixed across the collection.
 - **Sourcing.** Each component searches only the MEES families that make sense for it, picks the card with the closest swatch (OKLab ΔE ×100), and prefers cards already used elsewhere in the collection. Under 2.5 is on card, 2.5–8 is a lab dip, over 8 is dye to target. Components outside the MEES library are listed as trims to specify.
 - **Colorway stories.** Six runner colorways from the founder renders (navy intrecciato, espresso/oxblood, graphite tonal, chalk/navy, navy weave/rust, washed denim). Each fixes exact colors and constructions, pins construction-specific MEES cards where they exist, prints the wordmark on the tongue, and drops the grid band. Share a lineup with `/studio?looks=navy-intrecciato,chalk-navy,washed-denim`.
 - **Cost.** Per-pair build-up (materials, trims, sole, make, packaging, freight, duty, development) to retail and margin, per look and for the collection. Per-pair rates are estimates until MEES quotes.

@@ -59,11 +59,17 @@ export default function Studio() {
   const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    const fromUrl = (new URLSearchParams(window.location.search).get("p") ?? "")
+      .split(/[,\s]+/)
+      .map((h) => normalizeHex(h))
+      .filter((h): h is string => !!h)
+      .slice(0, MAX);
     try {
       const s = JSON.parse(localStorage.getItem(STORE) ?? "null") as Saved | null;
       if (s?.palette?.length) setPalette(s.palette);
       if (s?.slots?.length === 3) setSlots(s.slots);
     } catch {}
+    if (fromUrl.length) setPalette(fromUrl);
     setLoaded(true);
   }, []);
   useEffect(() => {

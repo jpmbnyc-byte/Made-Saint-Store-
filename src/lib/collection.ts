@@ -139,7 +139,10 @@ export function assignRoles(input: string[]): Tones {
 
   let bridge = [...pool].sort((x, y) => Math.abs(hexToLab(x).L - 0.74) - Math.abs(hexToLab(y).L - 0.74))[0];
   if (bridge) take(bridge);
-  else { derived.push("bridge"); bridge = mix(ground, signal, 0.3); }
+  else {
+    bridge = derived.includes("signal") ? mix(ground, body, 0.3) : mix(ground, signal, 0.3);
+    derived.push("bridge");
+  }
 
   return {
     ground, body, depth, signal, bridge,

@@ -6,10 +6,11 @@ import { Download, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   BENCHMARKS, CAMPAIGN, DTC, LUXURY_SPEC, LUXURY_UPCHARGE, PRODUCTS, SIZES,
-  campaignStatus, cashTimeline, fmtDate, launchEconomics, shipWindow, sizeRun,
+  FUNDING, campaignStatus, fmtDate, fundingTimeline, launchEconomics, shipWindow, sizeRun,
 } from "@/lib/business";
 import { DEFAULT_ASSUMPTIONS, eur, pct, usd } from "@/lib/costing";
 import type { Reservation, Tally } from "@/lib/preorders";
+import type { FundingId } from "@/lib/business";
 
 const LAUNCH = PRODUCTS.filter((p) => p.launch);
 const a = DEFAULT_ASSUMPTIONS;
@@ -61,23 +62,29 @@ export function LaunchDashboard({
 }) {
   const launch = LAUNCH;
   const [pairs, setPairs] = useState(CAMPAIGN.threshold);
-  const [marketing, setMarketing] = useState(15000);
+  const [fundingId, setFundingId] = useState<FundingId>("render");
+  const model = FUNDING.find((f) => f.id === fundingId) ?? FUNDING[0];
+  const [marketing, setMarketing] = useState(model.marketingUsd);
 
   const econ = useMemo(() => launchEconomics(pairs), [pairs]);
-  const cash = useMemo(
+  const timelineInput = useMemo(
+    () => ({
+      pairs: launch.map(() => pairs),
+      prices: launch.map((p) => p.usd),
+      landedUsd: econ.map((e) => e.landedUsd + DTC.fulfilmentUsd),
+      fobUsd: econ.map((e) => e.fobUsd),
+      devUsdPerStyle: (a.designFee + a.samplingFee) * a.fx,
+    }),
+    [pairs, econ, launch],
+  );
+  const cash = useMemo(() => fundingTimeline(model, { ...timelineInput, marketingUsd: marketing }), [model, timelineInput, marketing]);
+  const compare = useMemo(
     () =>
-      cashTimeline({
-        pairs: launch.map(() => pairs),
-        prices: launch.map((p) => p.usd),
-        landedUsd: econ.map((e) => e.landedUsd + DTC.fulfilmentUsd),
-        fobUsd: econ.map((e) => e.fobUsd),
-        styles: launch.length,
-        devUsdPerStyle: (a.designFee + a.samplingFee) * a.fx,
-        depositShare: CAMPAIGN.depositShare,
-        paymentFee: DTC.paymentFee,
-        marketingUsd: marketing,
+      FUNDING.map((f) => {
+        const t = fundingTimeline(f, { ...timelineInput, marketingUsd: f.marketingUsd });
+        return { f, owner: -Math.min(0, ...t.map((c) => c.balance)), profit: t[t.length - 1].balance };
       }),
-    [pairs, marketing, econ, launch],
+    [timelineInput],
   );
   const peak = Math.min(0, ...cash.map((c) => c.balance));
   const profit = cash[cash.length - 1].balance;
@@ -300,13 +307,59 @@ export function LaunchDashboard({
           </p>
         </section>
 
+        <section className={card} id="funding">
+          <h2 className="font-serif text-3xl">Funding model</h2>
+          <p className="mt-1 max-w-3xl text-[13px] text-[#22201d]/65">
+            How much of your own cash each route needs before customers pay, at {pairs} pairs per colorway. MEES charges design and sampling upfront, so the only way to need no
+            capital is to sample after the money is in.
+          </p>
+          <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            {compare.map(({ f, owner, profit: p }) => (
+              <button
+                key={f.id}
+                type="button"
+                onClick={() => {
+                  setFundingId(f.id);
+                  setMarketing(f.marketingUsd);
+                }}
+                aria-pressed={f.id === fundingId}
+                className={`flex flex-col rounded-lg border p-4 text-left transition ${f.id === fundingId ? "border-[#22201d] bg-white shadow-sm" : "border-[#22201d]/12 bg-white/40 hover:border-[#22201d]/40"}`}
+              >
+                <div className="flex items-baseline justify-between gap-2">
+                  <p className="font-serif text-xl">{f.name}</p>
+                  {f.id === "render" && <span className="rounded bg-[#2f5d3a] px-1.5 py-0.5 font-mono text-[9px] text-white uppercase">Suggested</span>}
+                </div>
+                <div className="mt-3 grid grid-cols-2 gap-2">
+                  <div>
+                    <p className={label}>Your cash</p>
+                    <p className={`font-serif text-2xl ${owner < 1000 ? "text-[#2f5d3a]" : ""}`}>{usd(owner)}</p>
+                  </div>
+                  <div>
+                    <p className={label}>Gross profit</p>
+                    <p className="font-serif text-2xl">{usd(p)}</p>
+                  </div>
+                </div>
+                <p className="mt-1 font-mono text-[10px] text-[#22201d]/50 uppercase">{f.extraWeeks ? `Delivery about ${f.extraWeeks} weeks later` : `Ships ${shipWindow()}`}</p>
+                <p className="mt-3 text-[12px] leading-relaxed text-[#22201d]/70">{f.idea}</p>
+                <ul className="mt-3 space-y-1 text-[12px]">
+                  {f.pros.map((x) => <li key={x} className="flex gap-2"><span className="text-[#2f5d3a]">+</span>{x}</li>)}
+                  {f.risks.map((x) => <li key={x} className="flex gap-2 text-[#22201d]/70"><span className="text-[#9a2a1f]">−</span>{x}</li>)}
+                </ul>
+              </button>
+            ))}
+          </div>
+          <p className="mt-4 text-[12px] text-[#22201d]/55">
+            Estimates. Your cash is the lowest point of the cash timeline. Under render-first and crowdfunding, the pre-order money pays for samples, so refunds after a failed sample come from what has not yet gone to MEES: never pay the production deposit before the sample is approved.
+          </p>
+        </section>
+
         <section className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
           <div className={card}>
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
-                <h2 className="font-serif text-3xl">Cash flow against MEES terms</h2>
+                <h2 className="font-serif text-3xl">Cash flow · {model.name}</h2>
                 <p className="mt-1 text-[13px] text-[#22201d]/65">
-                  {pairs} pairs in each of {launch.length} colorways, paid in full at checkout. MEES: design and sampling upfront, production 50% at order, 50% before dispatch, FOB.
+                  {pairs} pairs in each of {launch.length} colorways, paid in full. MEES: design and sampling paid before work starts, production 50% at order, 50% before dispatch, FOB.
                 </p>
               </div>
               <label className="flex items-center gap-2 text-[13px]">
@@ -336,9 +389,9 @@ export function LaunchDashboard({
             </div>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               <div className="rounded-lg bg-[#22201d] p-3 text-[#f7f3ea]">
-                <p className="font-mono text-[10px] tracking-[0.12em] text-[#f7f3ea]/60 uppercase">Cash needed before the first sale</p>
+                <p className="font-mono text-[10px] tracking-[0.12em] text-[#f7f3ea]/60 uppercase">Your cash needed</p>
                 <p className="mt-1 font-serif text-3xl">{usd(-peak)}</p>
-                <p className="mt-1 text-[12px] text-[#f7f3ea]/70">Development and marketing. Production is funded by the pre-orders.</p>
+                <p className="mt-1 text-[12px] text-[#f7f3ea]/70">{model.sampleFirst === 0 ? "Only pre-launch marketing. Samples and production are paid from the proceeds." : "Samples and marketing before launch. Production is funded by the pre-orders."}</p>
               </div>
               <div className="rounded-lg border border-[#22201d]/15 p-3">
                 <p className={label}>Gross profit after delivery</p>

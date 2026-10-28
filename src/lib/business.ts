@@ -196,3 +196,86 @@ export function statusLine(now = new Date()) {
   if (s === "open") return `The Founding Edition · reservations close ${fmtDate(CAMPAIGN.closes)}`;
   return "The founding window has closed · join the list for the next run";
 }
+
+export type FundingId = "owner" | "lean" | "render" | "crowd";
+
+export type FundingModel = {
+  id: FundingId;
+  name: string;
+  idea: string;
+  /** MEES styles sampled before money comes in: "all" = one per colorway, 1 = one runner, 0 = after the window. */
+  sampleFirst: "all" | 1 | 0;
+  marketingUsd: number;
+  /** Share of revenue lost to the platform and card processing. */
+  fee: number;
+  /** Weeks added to delivery because sampling happens after the window. */
+  extraWeeks: number;
+  pros: string[];
+  risks: string[];
+};
+
+export const FUNDING: FundingModel[] = [
+  {
+    id: "owner", name: "Owner-funded", sampleFirst: "all", marketingUsd: 15000, fee: DTC.paymentFee, extraWeeks: 0,
+    idea: "Sample all three colorways and pay for the shoot and seeding before the window opens. Production is funded by pre-orders.",
+    pros: ["Real photographs and try-ons before anyone pays", "Fastest delivery after close"],
+    risks: ["About $24k at risk before the first sale"],
+  },
+  {
+    id: "lean", name: "Lean sample", sampleFirst: 1, marketingUsd: 1500, fee: DTC.paymentFee, extraWeeks: 0,
+    idea: "Sample one runner in the lead colorway only. The other two colorways are approved from MEES lab dips and material cards. Marketing is founder-led: phone shoot of the sample, the waitlist, private try-ons.",
+    pros: ["One real sample to photograph and fit-test", "Keeps the shop and its luxury feel as built"],
+    risks: ["About $4.5k still comes from you", "Ask MEES whether colorways of one style need separate sampling fees"],
+  },
+  {
+    id: "render", name: "Render-first pre-order", sampleFirst: 0, marketingUsd: 500, fee: DTC.paymentFee, extraWeeks: 8,
+    idea: "Open the window on the photoreal renders, clearly labelled. When a colorway confirms, pay MEES design and sampling from the proceeds, approve the sample, then produce.",
+    pros: ["Close to zero owner cash", "Lowest fees, your own customer list and brand"],
+    risks: [
+      "Stripe often holds a reserve on pre-orders that ship months later; agree it with Stripe before launch",
+      "Delivery is about 8 weeks later, for sampling",
+      "If the sample fails, refunds must come from funds you have not yet spent: pay MEES only after the sample is approved",
+    ],
+  },
+  {
+    id: "crowd", name: "All-or-nothing crowdfunding", sampleFirst: 0, marketingUsd: 500, fee: 0.09, extraWeeks: 10,
+    idea: "Run the founding window on Kickstarter or a similar platform with a goal that covers samples, production and landing. Backers are only charged if the goal is met; funds arrive in one payout about two weeks after close.",
+    pros: ["Zero owner cash and no payment-processor reserve", "Backers accept the risk of a product in development", "The platform brings some of its own audience"],
+    risks: ["About 9% in platform and card fees (estimate)", "Reads less luxurious; keep the page restrained and the price unchanged", "Check the platform's prototype rules; some want a physical sample shown"],
+  },
+];
+
+/** Cash timeline under a funding model, from the per-pair economics. */
+export function fundingTimeline(m: FundingModel, o: {
+  pairs: number[];
+  prices: number[];
+  landedUsd: number[];
+  fobUsd: number[];
+  devUsdPerStyle: number;
+  marketingUsd: number;
+}): CashStep[] {
+  const colorways = o.pairs.filter((n) => n > 0).length;
+  const revenue = o.pairs.reduce((s, n, i) => s + n * o.prices[i], 0);
+  const fob = o.pairs.reduce((s, n, i) => s + n * o.fobUsd[i], 0);
+  const landing = o.pairs.reduce((s, n, i) => s + n * (o.landedUsd[i] - o.fobUsd[i]), 0);
+  const sampleStyles = m.sampleFirst === "all" ? colorways : 1;
+  const dev = sampleStyles * o.devUsdPerStyle;
+  const inflow = revenue * (1 - m.fee);
+  const steps: Omit<CashStep, "balance">[] = [];
+  if (m.sampleFirst !== 0) steps.push({ when: "Before launch", what: `MEES design and sampling, ${sampleStyles === 1 ? "one runner" : `${sampleStyles} colorways`}, paid upfront`, inUsd: 0, outUsd: dev });
+  steps.push({ when: "Before launch", what: m.marketingUsd >= 5000 ? "Sample shoot, film, seeding" : "Founder-led content and list building", inUsd: 0, outUsd: o.marketingUsd });
+  steps.push({
+    when: m.id === "crowd" ? "About 2 weeks after close" : "Pre-order window",
+    what: m.id === "crowd" ? "Campaign payout, less platform and card fees" : "Pre-orders collected in full, less card fees",
+    inUsd: inflow, outUsd: 0,
+  });
+  if (m.sampleFirst === 0) steps.push({ when: "After close", what: "MEES design and sampling, one runner, paid from proceeds", inUsd: 0, outUsd: dev });
+  steps.push({ when: "Sample approved", what: "MEES production, 50% at order", inUsd: 0, outUsd: fob / 2 });
+  steps.push({ when: "Before dispatch", what: "MEES production, final 50%", inUsd: 0, outUsd: fob / 2 });
+  steps.push({ when: "Arrival", what: "Freight, duty and US fulfilment", inUsd: 0, outUsd: landing });
+  let bal = 0;
+  return steps.map((s) => {
+    bal += s.inUsd - s.outUsd;
+    return { ...s, balance: bal };
+  });
+}

@@ -8,7 +8,7 @@ import { MARK_PLACEMENTS, tonalMark, type MarkPlacementId } from "@/components/f
 
 export const metadata: Metadata = {
   title: "MADE SAiNT · M side mark",
-  description: "Placement study and specification for the reflective M side mark on the runner.",
+  description: "Placement study and specification for the tonal M side mark on the runner.",
 };
 
 const PAPER = "#f4f0e6";

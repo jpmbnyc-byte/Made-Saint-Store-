@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 240" fill="none">
+  <title>MADE SAiNT M side mark</title>
+  <defs>
+    <path id="m" d="M58 204 L104 66 Q116 32 140 60 L232 168 Q250 188 268 168 L360 60 Q384 32 396 66 L442 204" />
+    <mask id="inline" maskUnits="userSpaceOnUse" x="0" y="0" width="560" height="240">
+      <use href="#m" stroke="#fff" stroke-width="54" stroke-linecap="round" stroke-linejoin="round" />
+      <use href="#m" stroke="#000" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
+    </mask>
+  </defs>
+  <g transform="skewX(-14) translate(52 0)">
+    <rect x="-80" y="0" width="820" height="240" fill="currentColor" mask="url(#inline)" />
+  </g>
+</svg>

@@ -1,4 +1,37 @@
-# MADE SAiNT · MS-TM01 Trail Mule
+# MADE SAiNT
+
+A pre-order footwear business made with MEES (Felgueiras, Portugal): the storefront, the launch plan, the Collection Studio, and the MS-TM01 Trail Mule technical package.
+
+| Route | What it is |
+| --- | --- |
+| `/shop` | Founding Edition pre-order storefront |
+| `/launch` | Pricing, unit economics, pre-order tracker, cash flow, size run, marketing plan, reservations |
+| `/studio` | Collection Studio |
+| `/` | MS-TM01 Trail Mule technical package |
+
+## Pre-order shop (`/shop`)
+
+Three launch colorways ($545–$695) open for reservation; three more collect a waitlist. Each colorway is made only if it reaches 120 pairs by the close date, otherwise every reservation for it is refunded. Prices, colorways and campaign dates live in `src/lib/business.ts`.
+
+Payments:
+
+- **No keys (default).** Reservations are recorded in `data/preorders.json` without taking a card, and the customer sees a confirmation with a founding number. Good for testing and for a soft launch to a private list.
+- **Stripe.** Set `STRIPE_SECRET_KEY` and the reserve button goes to Stripe Checkout for the full price. Payment is confirmed on the return page and by the webhook at `/api/stripe/webhook` (set `STRIPE_WEBHOOK_SECRET`, events `checkout.session.completed` and `checkout.session.expired`). Set `SITE_URL` to the public origin if it sits behind a proxy.
+
+Set `ADMIN_TOKEN` to protect customer details on `/launch` (open with `/launch?token=…`) and on `GET /api/preorders?token=…`. Without it, details are shown only in development.
+
+The JSON store suits one long-running server. Move it to a database before deploying to serverless hosting, where the filesystem does not persist.
+
+## Launch plan (`/launch`)
+
+- Price position against Brunello Cucinelli ($795–$1,400) and Bogner ($339–$550), with sources.
+- Unit economics per colorway at luxury spec: studio FOB from the matched MEES materials plus calf lining, calf suede, packaging and hand finishing, landed with duty and freight, then fulfilment and card fees. Per-pair figures are estimates until MEES quotes.
+- Live pre-order tracker with go / no-go per colorway and the size curve.
+- Cash timeline against MEES terms (design and sampling upfront, production 50/50) and the size run for the PO.
+- Positioning, launch sequence, channels with budget, and targets.
+- Reservation list with CSV export.
+
+# MS-TM01 Trail Mule
 
 Prototype 001 technical package for one handmade pair. US men’s 12 wide (2E). Powder blue / fog grid / black.
 

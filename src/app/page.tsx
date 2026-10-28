@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 
 const sheets = [
@@ -25,6 +26,12 @@ export default function Home() {
           <a className="border border-[#c46a62] bg-[#c46a62] px-2 py-1 text-[#1c1b19] hover:bg-transparent hover:text-[#f4f0e6]" href="/studio">
             Collection Studio
           </a>
+          <Link className="border border-white/30 px-2 py-1 hover:bg-[#f4f0e6] hover:text-[#1c1b19]" href="/shop">
+            Shop
+          </Link>
+          <Link className="border border-white/30 px-2 py-1 hover:bg-[#f4f0e6] hover:text-[#1c1b19]" href="/launch">
+            Launch plan
+          </Link>
           <a className="border border-white/30 px-2 py-1 hover:bg-[#f4f0e6] hover:text-[#1c1b19]" href="/ms-tm01/pdf/MS-TM01-P001-technical-package.pdf">
             PDF
           </a>

@@ -7,8 +7,8 @@ import { RunnerFlat, type RunnerVariant } from "@/components/flats/runner";
 import { MARK_PLACEMENTS, tonalMark, type MarkPlacementId } from "@/components/flats/mark";
 
 export const metadata: Metadata = {
-  title: "MADE SAiNT · M side mark",
-  description: "Placement study and specification for the tonal M side mark on the runner.",
+  title: "MADE SAiNT · wave side mark",
+  description: "Placement study and specification for the molded TPU wave on both quarter panels of the runner.",
 };
 
 const PAPER = "#f4f0e6";
@@ -98,9 +98,9 @@ export default function BrandPage() {
           <div>
             <h1 className="font-serif text-4xl leading-none">The M</h1>
             <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-[#22201d]/75">
-              A wide, forward-leaning monoline M with an inline channel, carried over from the nested-bar mark. Every application is tonal:
-              the mark is the overlay colour a step lighter, keylined a step darker. Placement follows the rules New Balance uses for
-              the N on the 9060; the letterform is our own.
+              A long three-peak zig-zag wave in molded TPU, not a letter M and not a stitched channel. It sits on the quarter mesh
+              of both the lateral and the medial, peaks toward the laces, tonal to the overlay, keylined a step darker. Placement
+              follows the 9060 midfoot rules; the wave is our own.
             </p>
             <a href="/brand/m-mark.svg" download className="mt-4 inline-block font-mono text-[11px] tracking-[0.1em] uppercase underline underline-offset-4">
               Download vector
@@ -154,7 +154,7 @@ export default function BrandPage() {
           </div>
           <dl className="divide-y divide-[#22201d]/10 self-center text-[13px]">
             {[
-              ["Position", "Lateral side, midfoot. Medial side stays clean."],
+              ["Position", "Lateral and medial quarter panels, matching pair. Four marks on a pair."],
               ["Size, US 9", `About ${markW} × ${markH} mm. Grade with the pattern, not by a fixed size.`],
               ["Lean", `${Math.abs(q.lean)}° forward`],
               ["Span", "37% to 63% of length from the heel"],
@@ -162,9 +162,9 @@ export default function BrandPage() {
               ["Bottom", "About 5 mm above the midsole line, on the lower overlay"],
               ["Swatch", `Fill ${tones.fill}, keyline ${tones.keyline} on overlay ${hero.colors.quarter}`],
               ["Colour", "Tonal only: mark one step lighter than the overlay, keyline one step darker"],
-              ["Stroke", "Inline channel 2 mm, panel shows through; keyline 1.5 mm"],
-              ["Material", "Tonal suede or nubuck overlay, stitched. Silver or contrast versions are not used."],
-              ["Process", "Cut and stitched onto the closed upper before lasting"],
+              ["Stroke", "Solid molded TPU, about 8 mm wide, three peaks toward the laces"],
+              ["Material", "Glossy molded TPU, tonal to the overlay. Silver or contrast versions are not used."],
+              ["Process", "Molded and bonded to the quarter window on the closed upper before lasting"],
             ].map(([k, v]) => (
               <div key={k} className="grid grid-cols-[110px_1fr] gap-3 py-2">
                 <dt className="font-mono text-[10px] tracking-[0.1em] text-[#22201d]/55 uppercase">{k}</dt>

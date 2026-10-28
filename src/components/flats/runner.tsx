@@ -219,6 +219,17 @@ function Top({ uid, colors, paper, variant }: ViewProps) {
         <text x="229" y="131" fontSize="8">SAiNT</text>
       </g>
 
+      {variant.mark && (
+        <>
+          <g transform="translate(268 46) rotate(90) scale(0.2 0.155) translate(-250 -118)">
+            <MMark uid={`${uid}-tl`} placement={MARK_PLACEMENTS[variant.mark]} tone={tonalMark(colors.quarter)} />
+          </g>
+          <g transform="translate(268 204) rotate(-90) scale(0.2 0.155) translate(-250 -118)">
+            <MMark uid={`${uid}-tm`} placement={MARK_PLACEMENTS[variant.mark]} tone={tonalMark(colors.quarter)} />
+          </g>
+        </>
+      )}
+
       {T_EYELET_X.map((x) => (
         <g key={x}>
           <path d={`M ${x} 101 L ${x} 149`} stroke={INK} strokeWidth="5.6" strokeLinecap="round" />

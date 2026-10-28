@@ -2,6 +2,8 @@
 
 A pre-order footwear business made with MEES (Felgueiras, Portugal): the storefront, the launch plan, the Collection Studio, and the MS-TM01 Trail Mule technical package.
 
+Public origin: [madesaint.store](https://madesaint.store). Point the Namecheap DNS at Vercel (see Domain below), then set `SITE_URL=https://madesaint.store` in the Vercel project.
+
 | Route | What it is |
 | --- | --- |
 | `/wardrobe` | The Private Wardrobe: $20,000 founding collection (six patterns, cost envelope, looks) plus the visual register |
@@ -21,6 +23,25 @@ Payments:
 - **Stripe.** Set `STRIPE_SECRET_KEY` and the reserve button goes to Stripe Checkout for the full price. Payment is confirmed on the return page and by the webhook at `/api/stripe/webhook` (set `STRIPE_WEBHOOK_SECRET`, events `checkout.session.completed` and `checkout.session.expired`). Set `SITE_URL` to the public origin if it sits behind a proxy.
 
 Set `ADMIN_TOKEN` to protect customer details on `/launch` (open with `/launch?token=…`) and on `GET /api/preorders?token=…`. Without it, details are shown only in development.
+
+## Domain (`madesaint.store`)
+
+The registrar is Namecheap. Nameservers stay on `dns1.registrar-servers.com` / `dns2.registrar-servers.com`. The apex currently uses Namecheap URL Forward to a parking page — that has to come off before Vercel can serve the shop.
+
+In **Namecheap → Domain List → madesaint.store → Advanced DNS**:
+
+1. Delete the URL Redirect / Redirect Domain record on `@`.
+2. Delete the parking `CNAME` on `www` (`parkingpage.namecheap.com`).
+3. Add:
+
+| Type | Host | Value | TTL |
+| --- | --- | --- | --- |
+| A | `@` | `10.0.1.2` | Automatic |
+| CNAME | `www` | `cname.vercel-dns.com.` | Automatic |
+
+In **Vercel → Project → Settings → Domains**, add `madesaint.store` and `www.madesaint.store`. Redirect `www` to the apex. Set Production env `SITE_URL` to `https://madesaint.store`.
+
+Propagation is usually a few minutes; SSL issues until both DNS and the Vercel domain are in place.
 
 The JSON store suits one long-running server. Move it to a database before deploying to serverless hosting, where the filesystem does not persist.
 

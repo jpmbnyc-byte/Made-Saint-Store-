@@ -3,17 +3,11 @@ import { CAMPAIGN, SIZES, campaignStatus, productById, shipWindow } from "@/lib/
 import { createReservation, listReservations, tally, updateReservation } from "@/lib/preorders";
 import { createCheckout, stripeEnabled } from "@/lib/stripe";
 import { isAdmin } from "@/lib/admin";
+import { siteOrigin } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-function origin(req: NextRequest) {
-  if (process.env.SITE_URL) return process.env.SITE_URL.replace(/\/$/, "");
-  const host = req.headers.get("x-forwarded-host") ?? req.headers.get("host");
-  const proto = req.headers.get("x-forwarded-proto") ?? "http";
-  return `${proto}://${host}`;
-}
 
 export async function GET(req: NextRequest) {
   const rows = await listReservations();
@@ -52,7 +46,7 @@ export async function POST(req: NextRequest) {
 
   const r = await createReservation({ kind: "preorder", productId: product.id, size: input.size, email, name, amountUsd, status: "pending" });
   try {
-    const base = origin(req);
+    const base = siteOrigin(req);
     const session = await createCheckout({
       reservationId: r.id,
       name: `MADE SAiNT ${product.name}, US ${input.size}`,

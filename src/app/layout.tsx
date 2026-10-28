@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { PRODUCTION_ORIGIN } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,9 +21,14 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "MADE SAiNT · MS-TM01 Trail Mule · Prototype 001",
+  metadataBase: new URL(process.env.SITE_URL || PRODUCTION_ORIGIN),
+  title: {
+    default: "MADE SAiNT",
+    template: "%s · MADE SAiNT",
+  },
   description:
-    "Provisional technical package for the MADE SAiNT Trail Mule. Orthographic drawings, patterns, bill of materials, and the hand-build sequence.",
+    "Founding Edition runners, made to order in Felgueiras, Portugal. The Private Wardrobe and the MS-TM01 Trail Mule.",
+  alternates: { canonical: "/" },
 };
 
 export default function RootLayout({

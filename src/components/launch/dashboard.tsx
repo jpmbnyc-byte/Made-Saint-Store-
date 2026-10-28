@@ -115,7 +115,7 @@ export function LaunchDashboard({
   }
 
   return (
-    <div className="min-h-screen bg-[#efe9dd] text-[#22201d]">
+    <div className="min-h-screen overflow-x-hidden bg-[#efe9dd] text-[#22201d]">
       <header className="sticky top-0 z-20 border-b border-[#22201d]/10 bg-[#efe9dd]/95 backdrop-blur">
         <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-3 px-4 py-3">
           <div>
@@ -157,7 +157,7 @@ export function LaunchDashboard({
               frame of reference, priced for the Bogner customer trading up.
             </p>
           </div>
-          <div className="relative mt-10 mb-14 h-px bg-[#22201d]/25">
+          <div className="relative mt-12 mb-16 h-px bg-[#22201d]/25">
             {[300, 500, 700, 900, 1100, 1300].map((v) => (
               <span key={v} className="absolute top-3 -translate-x-1/2 font-mono text-[10px] text-[#22201d]/45" style={{ left: x(v) }}>${v}</span>
             ))}
@@ -172,11 +172,11 @@ export function LaunchDashboard({
             {launch.map((p) => (
               <span key={p.id} className="absolute -top-[7px] size-[15px] -translate-x-1/2 rounded-full bg-[#9a3b2c]" style={{ left: x(p.usd) }} title={`${p.name} $${p.usd}`} />
             ))}
-            <span className="absolute -top-8 -translate-x-1/2 font-mono text-[10px] text-[#8a6a43] uppercase" style={{ left: x(445) }}>Bogner $339–550</span>
-            <span className="absolute -top-8 -translate-x-1/2 font-mono text-[10px] text-[#9a3b2c] uppercase" style={{ left: x(620) }}>MADE SAiNT $545–695</span>
-            <span className="absolute -top-8 -translate-x-1/2 font-mono text-[10px] uppercase" style={{ left: x(1100) }}>Brunello Cucinelli $795–1,400</span>
+            <span className="absolute -top-8 left-0 font-mono text-[10px] text-[#8a6a43] uppercase">Bogner $339–550</span>
+            <span className="absolute -top-8 left-1/2 -translate-x-1/2 font-mono text-[10px] text-[#9a3b2c] uppercase">MADE SAiNT $545–695</span>
+            <span className="absolute -top-8 right-0 text-right font-mono text-[10px] uppercase">Cucinelli $795–1,400</span>
           </div>
-          <div className="overflow-x-auto">
+          <div className="min-w-0 overflow-x-auto">
             <table className="w-full min-w-[640px] text-[13px]">
               <thead>
                 <tr className={`${label} border-b border-[#22201d]/15 text-left`}>
@@ -214,7 +214,7 @@ export function LaunchDashboard({
                 <input type="number" min={50} max={2000} step={10} value={pairs} onChange={(e) => setPairs(Math.max(1, Number(e.target.value) || 1))} className="w-20 rounded-md border border-[#22201d]/20 bg-white px-2 py-1 tabular-nums" />
               </label>
             </div>
-            <div className="mt-4 overflow-x-auto">
+            <div className="mt-4 min-w-0 overflow-x-auto">
               <table className="w-full min-w-[620px] text-[13px] tabular-nums">
                 <thead>
                   <tr className={`${label} border-b border-[#22201d]/15 text-right`}>
@@ -367,7 +367,7 @@ export function LaunchDashboard({
                 <input type="number" min={0} step={1000} value={marketing} onChange={(e) => setMarketing(Math.max(0, Number(e.target.value) || 0))} className="w-24 rounded-md border border-[#22201d]/20 bg-white px-2 py-1 tabular-nums" />
               </label>
             </div>
-            <div className="mt-4 overflow-x-auto">
+            <div className="mt-4 min-w-0 overflow-x-auto">
               <table className="w-full min-w-[560px] text-[13px] tabular-nums">
                 <thead>
                   <tr className={`${label} border-b border-[#22201d]/15 text-right`}>
@@ -511,7 +511,7 @@ export function LaunchDashboard({
               No reservations yet. They appear here as soon as someone reserves on the shop.
             </p>
           ) : (
-            <div className="mt-4 overflow-x-auto">
+            <div className="mt-4 min-w-0 overflow-x-auto">
               <table className="w-full min-w-[720px] text-[12px]">
                 <thead>
                   <tr className={`${label} border-b border-[#22201d]/15 text-left`}>

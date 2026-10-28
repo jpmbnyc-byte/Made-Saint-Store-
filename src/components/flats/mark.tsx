@@ -33,13 +33,16 @@ export type MarkTone = { fill: string; keyline: string };
 
 /** Tonal treatment: the mark is the overlay colour a step lighter (or darker on pale overlays), keylined a step darker. */
 export function tonalMark(overlay: string): MarkTone {
-  return lightness(overlay) > 0.72
-    ? { fill: mix(overlay, "#000000", 0.09), keyline: mix(overlay, "#000000", 0.22) }
-    : { fill: mix(overlay, "#ffffff", 0.17), keyline: mix(overlay, "#000000", 0.3) };
+  const hex = overlay && overlay.startsWith("#") ? overlay : "#7f5f65";
+  return lightness(hex) > 0.72
+    ? { fill: mix(hex, "#000000", 0.09), keyline: mix(hex, "#000000", 0.22) }
+    : { fill: mix(hex, "#ffffff", 0.17), keyline: mix(hex, "#000000", 0.3) };
 }
 
 /** Inline M with a keyline border; the channel shows the panel underneath. */
-export function MMark({ uid, placement, tone, clip }: { uid: string; placement: MarkPlacement; tone: MarkTone; clip?: string }) {
+export function MMark({ uid, placement, tone, clip }: { uid: string; placement: MarkPlacement; tone?: MarkTone; clip?: string }) {
+  if (!placement) return null;
+  const { fill, keyline } = tone ?? tonalMark("#7f5f65");
   const { tx, ty, sx, sy, lean } = placement;
   const id = `${uid}-m-${placement.id}`;
   const k = 3.2 / Math.min(sx, sy);
@@ -57,8 +60,8 @@ export function MMark({ uid, placement, tone, clip }: { uid: string; placement: 
     <g clipPath={clip ? `url(#${clip})` : undefined}>
       <g transform={`translate(${tx} ${ty}) skewX(${lean}) scale(${sx} ${sy})`}>
         {layer("ink", OUTER + 2 * k + e, Math.max(1, INNER - e), INK)}
-        {layer("key", OUTER + 2 * k, INNER, tone.keyline)}
-        {layer("fill", OUTER, INNER + k, tone.fill)}
+        {layer("key", OUTER + 2 * k, INNER, keyline)}
+        {layer("fill", OUTER, INNER + k, fill)}
       </g>
     </g>
   );

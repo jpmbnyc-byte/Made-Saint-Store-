@@ -84,6 +84,66 @@ export function Pattern({ id, texture, hex, accent, extra }: { id: string; textu
           <stop offset="1" stopColor={dark(hex, 0.1)} />
         </linearGradient>
       );
+    case "intrecciato":
+      // Basket weave: alternating 2-strip blocks, each strip shaded at its ends.
+      return (
+        <pattern id={id} width="12" height="12" patternUnits="userSpaceOnUse">
+          <rect width="12" height="12" fill={hex} />
+          {[0, 3].map((y) => (
+            <rect key={`a${y}`} x="0.3" y={y + 0.3} width="5.4" height="2.4" rx="1" fill={light(hex, 0.08)} stroke={dark(hex, 0.35)} strokeWidth="0.35" />
+          ))}
+          {[6, 9].map((x) => (
+            <rect key={`b${x}`} x={x + 0.3} y="0.3" width="2.4" height="5.4" rx="1" fill={light(hex, 0.04)} stroke={dark(hex, 0.35)} strokeWidth="0.35" />
+          ))}
+          {[0, 3].map((x) => (
+            <rect key={`c${x}`} x={x + 0.3} y="6.3" width="2.4" height="5.4" rx="1" fill={light(hex, 0.04)} stroke={dark(hex, 0.35)} strokeWidth="0.35" />
+          ))}
+          {[6, 9].map((y) => (
+            <rect key={`d${y}`} x="6.3" y={y + 0.3} width="5.4" height="2.4" rx="1" fill={light(hex, 0.08)} stroke={dark(hex, 0.35)} strokeWidth="0.35" />
+          ))}
+        </pattern>
+      );
+    case "emboss":
+      return (
+        <pattern id={id} width="6" height="4" patternUnits="userSpaceOnUse">
+          <rect width="6" height="4" fill={hex} />
+          <path d="M0 4 Q1.5 1 3 4 M3 2 Q4.5 -1 6 2 M-3 2 Q-1.5 -1 0 2" fill="none" stroke={dark(hex, 0.3)} strokeWidth="0.45" />
+          <path d="M0.8 3.4 Q1.5 2 2.2 3.4" fill="none" stroke={light(hex, 0.18)} strokeWidth="0.35" />
+        </pattern>
+      );
+    case "boucle":
+      return (
+        <pattern id={id} width="8" height="8" patternUnits="userSpaceOnUse">
+          <rect width="8" height="8" fill={hex} />
+          {[[1.5, 1.8], [5.5, 1.2], [3.4, 4.2], [0.8, 6], [6.4, 5.8], [4.6, 7.2]].map(([x, y], i) => (
+            <circle key={i} cx={x} cy={y} r="1.15" fill="none" stroke={dark(hex, 0.16)} strokeWidth="0.5" />
+          ))}
+        </pattern>
+      );
+    case "denim":
+      return (
+        <pattern id={id} width="4" height="4" patternUnits="userSpaceOnUse">
+          <rect width="4" height="4" fill={hex} />
+          <path d="M-1 1 L1 -1 M0 4 L4 0 M3 5 L5 3" stroke={light(hex, 0.18)} strokeWidth="0.6" />
+          <circle cx="2.6" cy="2.9" r="0.25" fill={light(hex, 0.45)} />
+        </pattern>
+      );
+    case "canvas":
+      return (
+        <pattern id={id} width="3" height="3" patternUnits="userSpaceOnUse">
+          <rect width="3" height="3" fill={hex} />
+          <path d="M0 0.75 H3 M0.75 0 V3" stroke={light(hex, 0.12)} strokeWidth="0.5" />
+          <path d="M0 2.25 H3 M2.25 0 V3" stroke={dark(hex, 0.12)} strokeWidth="0.5" />
+        </pattern>
+      );
+    case "perf":
+      return (
+        <pattern id={id} width="3.2" height="2.8" patternUnits="userSpaceOnUse">
+          <rect width="3.2" height="2.8" fill={hex} />
+          <circle cx="0.8" cy="0.7" r="0.45" fill={dark(hex, 0.35)} />
+          <circle cx="2.4" cy="2.1" r="0.45" fill={dark(hex, 0.35)} />
+        </pattern>
+      );
     case "print":
       // Tattersall: accent lines over a ground line on the base color.
       return (

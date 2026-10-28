@@ -1,9 +1,10 @@
 import catalog from "@/data/mees-catalog.json";
 import { chroma, deltaE, hexToLab, mix, normalizeHex, withLightness } from "@/lib/color";
+import { storyById, type Story } from "@/lib/stories";
 
 export type Role = "ground" | "body" | "depth" | "signal" | "bridge";
 export type Tone = Role | "bodyTint" | "bodyShade";
-export type Texture = "suede" | "mesh" | "knit" | "jersey" | "lace" | "rubber" | "ripstop" | "smooth" | "woven" | "metal" | "thread" | "print";
+export type Texture = "suede" | "mesh" | "knit" | "jersey" | "lace" | "rubber" | "ripstop" | "smooth" | "woven" | "metal" | "thread" | "print" | "intrecciato" | "emboss" | "boucle" | "denim" | "canvas" | "perf";
 export type StyleId = "runner" | "mule";
 export type RecipeId = "hero" | "tonal" | "inverse";
 
@@ -166,17 +167,26 @@ export type Match = { article: Article; cardHex: string; dE: number };
 
 export type Line = {
   component: Component;
-  tone: Tone;
+  tone: Tone | "story";
   hex: string;
   match?: Match;
   alternatives: Match[];
   verdict: Verdict;
   sole?: Sole;
   reused: boolean;
+  /** Construction named by a story, e.g. "Woven leather (intrecciato)". */
+  material?: string;
+  pinned?: boolean;
 };
 
-export type SlotConfig = { style: StyleId; recipe: RecipeId };
-export type SlotResult = SlotConfig & { index: number; colors: Record<string, string>; lines: Line[] };
+export type SlotConfig = { style: StyleId; recipe: RecipeId; story?: string };
+export type SlotResult = SlotConfig & {
+  index: number;
+  colors: Record<string, string>;
+  textures: Record<string, Texture>;
+  lines: Line[];
+  storyData?: Story;
+};
 
 /** On a multicolor card, a light neutral cluster is the card paper, not a material color. */
 function isPaper(article: Article, hex: string) {
@@ -207,31 +217,46 @@ export function buildCollection(tones: Tones, slots: SlotConfig[]): SlotResult[]
   return slots.map((slot, index) => {
     const style = STYLES[slot.style];
     const recipe = style.recipes[slot.recipe];
+    const story = slot.style === "runner" ? storyById(slot.story) : undefined;
     const colors: Record<string, string> = {};
+    const textures: Record<string, Texture> = {};
     const lines: Line[] = [];
     const byId: Record<string, Line> = {};
+    const sourceKey: Record<string, string> = {};
 
     for (const component of style.components) {
-      const tone = recipe[component.id];
-      const hex = tones[tone];
+      const part = story?.parts[component.id];
+      const tone: Line["tone"] = part ? "story" : recipe[component.id];
+      const hex = part ? part.hex : tones[recipe[component.id]];
       colors[component.id] = hex;
+      textures[component.id] = part?.texture ?? component.texture;
+      if (story?.omit.includes(component.id)) continue;
 
-      if (component.sameAs && byId[component.sameAs]?.match && recipe[component.sameAs] === tone) {
-        const parent = byId[component.sameAs];
-        const line = { component, tone, hex, match: parent.match, alternatives: [], verdict: parent.verdict, reused: true, sole: undefined };
+      const families = part?.families ?? component.families;
+      const pins = part?.pin ?? [];
+      const key = `${hex}|${families.join(",")}|${pins.join(",")}`;
+      sourceKey[component.id] = key;
+      const extra = { material: part?.material };
+      const isTrim = !families.length || (story && component.id === "label");
+
+      const parent = component.sameAs ? byId[component.sameAs] : undefined;
+      if (parent?.match && component.sameAs && sourceKey[component.sameAs] === key) {
+        const line: Line = { component, tone, hex, match: parent.match, alternatives: [], verdict: parent.verdict, reused: true, pinned: parent.pinned, ...extra };
         lines.push(line); byId[component.id] = line;
         continue;
       }
-      if (!component.families.length) {
-        const line: Line = { component, tone, hex, alternatives: [], verdict: "trim", reused: false };
+      if (isTrim) {
+        const line: Line = { component, tone, hex, alternatives: [], verdict: "trim", reused: false, ...extra };
         lines.push(line); byId[component.id] = line;
         continue;
       }
 
-      const ranked = ARTICLES.filter((a) => component.families.includes(a.family))
+      const ranked = ARTICLES.filter((a) => families.includes(a.family))
         .map((a) => nearest(a, hex))
         .sort((x, y) => x.dE - y.dE);
-      const scored = [...ranked].sort((x, y) => x.dE - (used.has(x.article.id) ? REUSE_BONUS : 0) - (y.dE - (used.has(y.article.id) ? REUSE_BONUS : 0)));
+      const pinned = ranked.filter((m) => pins.includes(m.article.ref));
+      const pool = pinned.length ? pinned : ranked;
+      const scored = [...pool].sort((x, y) => x.dE - (used.has(x.article.id) ? REUSE_BONUS : 0) - (y.dE - (used.has(y.article.id) ? REUSE_BONUS : 0)));
       const match = scored[0];
       const reused = !!match && used.has(match.article.id);
       if (match) used.set(match.article.id, (used.get(match.article.id) ?? 0) + 1);
@@ -240,11 +265,13 @@ export function buildCollection(tones: Tones, slots: SlotConfig[]): SlotResult[]
         alternatives: ranked.filter((m) => m.article.id !== match?.article.id).slice(0, 3),
         verdict: match ? verdictFor(match.dE) : "custom",
         reused,
+        pinned: pinned.length > 0,
         sole: component.sole ? pickedSole(slot.style) : undefined,
+        ...extra,
       };
       lines.push(line); byId[component.id] = line;
     }
-    return { ...slot, index, colors, lines };
+    return { ...slot, story: story?.id, index, colors, textures, lines, storyData: story };
   });
 }
 

@@ -2,13 +2,14 @@
 
 import Image from "next/image";
 import { MuleFlat } from "@/components/flats/mule";
-import { RunnerFlat } from "@/components/flats/runner";
+import { RunnerFlat, type RunnerVariant } from "@/components/flats/runner";
 import {
   FAMILY_LABEL, RECIPES, STYLES, VERDICT_INFO, driveView, thumbSrc,
   type Line, type RecipeId, type SlotResult, type StyleId,
 } from "@/lib/collection";
 import { inkOn } from "@/lib/color";
 import { eur, pct, usd, type LookCost } from "@/lib/costing";
+import { STORIES } from "@/lib/stories";
 import { cn } from "@/lib/utils";
 
 const PAPER = "#f7f3ea";
@@ -34,9 +35,17 @@ export function Segmented<T extends string>({ value, options, onChange, label }:
   );
 }
 
-export function Flat({ style, colors, view }: { style: StyleId; colors: Record<string, string>; view: "lateral" | "top" }) {
-  const F = style === "runner" ? RunnerFlat : MuleFlat;
-  return <F colors={colors} view={view} paper={PAPER} className="w-full [&_svg]:h-auto [&_svg]:w-full" />;
+export function variantOf(r: SlotResult): RunnerVariant {
+  return r.storyData ? { textures: r.textures, grid: false, label: r.storyData.label } : {};
+}
+
+export function Flat({ style, colors, view, variant }: { style: StyleId; colors: Record<string, string>; view: "lateral" | "top"; variant?: RunnerVariant }) {
+  const cls = "w-full [&_svg]:h-auto [&_svg]:w-full";
+  return style === "runner" ? (
+    <RunnerFlat colors={colors} view={view} paper={PAPER} className={cls} variant={variant} />
+  ) : (
+    <MuleFlat colors={colors} view={view} paper={PAPER} className={cls} />
+  );
 }
 
 function Chip({ hex, size = "size-5" }: { hex: string; size?: string }) {
@@ -52,7 +61,7 @@ function VerdictBadge({ line }: { line: Line }) {
   );
 }
 
-type RenderInfo = { file: string; swatches: string[]; note?: string };
+type RenderInfo = { file: string; swatches: string[]; note?: string; founder?: boolean };
 
 function SpecRow({ line, eurPerPair }: { line: Line; eurPerPair?: number }) {
   const m = line.match;
@@ -64,7 +73,7 @@ function SpecRow({ line, eurPerPair }: { line: Line; eurPerPair?: number }) {
           <div>
             <p className="text-[13px] font-medium leading-tight">{line.component.label}</p>
             <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.06em] text-[#22201d]/55">
-              {line.tone.replace("body", "body ").trim()} · {line.hex}
+              {line.material ?? line.tone.replace("body", "body ").trim()} · {line.hex}
             </p>
           </div>
         </div>
@@ -82,6 +91,7 @@ function SpecRow({ line, eurPerPair }: { line: Line; eurPerPair?: number }) {
               <p className="mt-0.5 flex items-center gap-1 font-mono text-[10px] text-[#22201d]/55">
                 card <Chip hex={m.cardHex} size="size-3" /> {m.cardHex} · ΔE {m.dE.toFixed(1)}
                 {line.reused && <span className="ml-1 rounded-sm bg-[#22201d]/10 px-1">shared</span>}
+                {line.pinned && <span className="ml-1 rounded-sm bg-[#a2362f]/15 px-1 text-[#a2362f]" title="Chosen for its construction, then matched on color">construction pick</span>}
               </p>
               {line.sole && <p className="mt-0.5 text-[11px] text-[#22201d]/65">Compound color on {line.sole.label.toLowerCase()} ({line.sole.path})</p>}
               {line.alternatives.length > 0 && (
@@ -109,14 +119,16 @@ function SpecRow({ line, eurPerPair }: { line: Line; eurPerPair?: number }) {
 }
 
 export function LookCard({
-  result, cost, render, onStyle, onRecipe,
+  result, cost, render, onStyle, onRecipe, onStory,
 }: {
   result: SlotResult;
   cost?: LookCost;
   render?: RenderInfo;
   onStyle: (s: StyleId) => void;
   onRecipe: (r: RecipeId) => void;
+  onStory: (id: string | undefined) => void;
 }) {
+  const story = result.storyData;
   const style = STYLES[result.style];
   const groups = ["Upper", "Lining", "Trim", "Bottom", "Decoration"] as const;
   const keyColors = [...new Set(result.lines.filter((l) => l.component.group !== "Decoration").map((l) => l.hex))];
@@ -126,7 +138,7 @@ export function LookCard({
         <div className="flex items-baseline gap-3">
           <span className="font-serif text-3xl leading-none">Look 0{result.index + 1}</span>
           <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-[#22201d]/60">
-            {style.short} · {RECIPES[result.recipe].label}
+            {style.short} · {story ? story.name : RECIPES[result.recipe].label}
           </span>
           {cost && (
             <span className="font-mono text-[11px] text-[#22201d]/80">
@@ -136,27 +148,49 @@ export function LookCard({
         </div>
         <div className="flex flex-wrap gap-2">
           <Segmented label="Locked flat" value={result.style} onChange={onStyle} options={[{ id: "runner", label: "Runner" }, { id: "mule", label: "Trail Mule" }]} />
-          <Segmented label="Recipe" value={result.recipe} onChange={onRecipe} options={(Object.keys(RECIPES) as RecipeId[]).map((id) => ({ id, label: RECIPES[id].label }))} />
+          {result.style === "runner" && (
+            <select
+              aria-label="Colorway story"
+              value={result.story ?? ""}
+              onChange={(e) => onStory(e.target.value || undefined)}
+              className="rounded-md border border-[#22201d]/20 bg-white/60 px-2 py-1 font-mono text-[11px] uppercase tracking-[0.06em] print:hidden"
+            >
+              <option value="">Palette recipe</option>
+              {STORIES.map((s) => (
+                <option key={s.id} value={s.id}>Story · {s.name}</option>
+              ))}
+            </select>
+          )}
+          {!story && <Segmented label="Recipe" value={result.recipe} onChange={onRecipe} options={(Object.keys(RECIPES) as RecipeId[]).map((id) => ({ id, label: RECIPES[id].label }))} />}
         </div>
       </header>
 
       {render && (
         <figure className="relative border-b border-[#22201d]/10 bg-[#ece6da]">
-          <Image src={render.file} alt={`Look 0${result.index + 1} hero render`} width={1600} height={900} unoptimized className="h-auto max-h-[560px] w-full object-cover" />
+          <Image src={render.file} alt={`Look 0${result.index + 1} hero render`} width={1600} height={900} unoptimized className={cn("h-auto max-h-[560px] w-full", render.founder ? "object-contain" : "object-cover")} />
           <figcaption className="absolute bottom-2 left-2 flex flex-wrap items-center gap-1.5 rounded-md font-sans normal-case tracking-normal bg-[#fbf8f2]/90 px-2 py-1 text-[11px]">
-            <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#a2362f]">AI render</span>
-            from the locked flat and MEES swatch photos {render.swatches.join(", ")}. Not a sample photo.{render.note ? ` ${render.note}` : ""}
+            {render.founder ? (
+              <>
+                <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#a2362f]">Founder render</span>
+                The colorway brief. Flats and sourcing below are built from it.
+              </>
+            ) : (
+              <>
+                <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#a2362f]">AI render</span>
+                from the locked flat and MEES swatch photos {render.swatches.join(", ")}. Not a sample photo.{render.note ? ` ${render.note}` : ""}
+              </>
+            )}
           </figcaption>
         </figure>
       )}
 
       <div className="grid gap-px bg-[#22201d]/10 md:grid-cols-2">
         <figure className="bg-[#f7f3ea] p-3">
-          <Flat style={result.style} colors={result.colors} view="lateral" />
+          <Flat style={result.style} colors={result.colors} view="lateral" variant={variantOf(result)} />
           <figcaption className="mt-1 font-mono text-[10px] uppercase tracking-[0.1em] text-[#22201d]/50">Lateral</figcaption>
         </figure>
         <figure className="bg-[#f7f3ea] p-3">
-          <Flat style={result.style} colors={result.colors} view="top" />
+          <Flat style={result.style} colors={result.colors} view="top" variant={variantOf(result)} />
           <figcaption className="mt-1 font-mono text-[10px] uppercase tracking-[0.1em] text-[#22201d]/50">Top</figcaption>
         </figure>
       </div>
@@ -169,8 +203,16 @@ export function LookCard({
             </span>
           ))}
         </div>
-        <p className="text-[12px] text-[#22201d]/65">{RECIPES[result.recipe].idea}</p>
+        <p className="text-[12px] text-[#22201d]/65">{story ? story.read : RECIPES[result.recipe].idea}</p>
       </div>
+      {story && (
+        <div className="space-y-1 border-t border-[#22201d]/10 px-4 py-2.5 text-[12px] text-[#22201d]/75">
+          <p>Changes to the locked flat: woven label becomes a printed MADE SAiNT on the tongue and sockliner; the grid band is dropped for a one-color sole.</p>
+          {story.flags?.map((f) => (
+            <p key={f} className="text-[#a2362f]">{f}</p>
+          ))}
+        </div>
+      )}
 
       <div className="overflow-x-auto px-4 pb-3">
         <table className="w-full min-w-[560px] text-left">

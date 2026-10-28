@@ -7,7 +7,8 @@ import { Download, ImageUp, Plus, Printer, RotateCcw, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductionChat } from "@/components/studio/chat";
 import { AssumptionsPanel, CostTable, CostTotals } from "@/components/studio/costing";
-import { Flat, LookCard } from "@/components/studio/look";
+import { Flat, LookCard, variantOf } from "@/components/studio/look";
+import { STORIES } from "@/lib/stories";
 import renders from "@/data/renders.json";
 import type { ChatAction } from "@/lib/chat";
 import { DEFAULT_ASSUMPTIONS, costCollection, eur, usd, type Assumptions } from "@/lib/costing";
@@ -79,6 +80,11 @@ export default function Studio() {
       if (s?.assumptions) setAssumptions({ ...DEFAULT_ASSUMPTIONS, ...s.assumptions });
     } catch {}
     if (fromUrl.length) setPalette(fromUrl);
+    const looksParam = new URLSearchParams(window.location.search).get("looks");
+    if (looksParam) {
+      const ids = looksParam.split(",").slice(0, 3);
+      setSlots((cur) => cur.map((sl, i) => (ids[i] && STORIES.some((x) => x.id === ids[i]) ? { style: "runner", recipe: sl.recipe, story: ids[i] } : sl)));
+    }
     setLoaded(true);
   }, []);
   useEffect(() => {
@@ -90,6 +96,10 @@ export default function Studio() {
   const summary = useMemo(() => summarize(results), [results]);
   const cost = useMemo(() => costCollection(results, assumptions), [results, assumptions]);
   const keyFor = (style: StyleId, recipe: RecipeId) => renderKey(palette, style, recipe);
+  const renderFor = (r: (typeof results)[number]) =>
+    r.storyData
+      ? { file: r.storyData.image, swatches: [], founder: true }
+      : RENDERS.find((x) => x.key === keyFor(r.style, r.recipe));
   const sourced = results.reduce((n, r) => n + r.lines.filter((l) => l.match).length, 0);
 
   function setSlot(i: number, patch: Partial<SlotConfig>) {
@@ -248,15 +258,22 @@ export default function Studio() {
             {results.map((r) => (
               <div key={r.index}>
                 {(() => {
-                  const hero = RENDERS.find((x) => x.key === keyFor(r.style, r.recipe));
+                  const hero = renderFor(r);
                   return hero ? (
-                    <Image src={hero.file} alt={`Look 0${r.index + 1} render`} width={800} height={450} unoptimized className="aspect-video w-full rounded-md object-cover" />
+                    <Image
+                      src={hero.file}
+                      alt={`Look 0${r.index + 1} render`}
+                      width={800}
+                      height={450}
+                      unoptimized
+                      className={`aspect-video w-full rounded-md ${"founder" in hero ? "bg-[#ece9e4] object-contain" : "object-cover"}`}
+                    />
                   ) : (
-                    <Flat style={r.style} colors={r.colors} view="lateral" />
+                    <Flat style={r.style} colors={r.colors} view="lateral" variant={variantOf(r)} />
                   );
                 })()}
                 <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.1em] text-[#22201d]/60">
-                  0{r.index + 1} · {r.style === "runner" ? "Runner" : "Trail Mule"} · {RECIPES[r.recipe].label}
+                  0{r.index + 1} · {r.style === "runner" ? "Runner" : "Trail Mule"} · {r.storyData ? r.storyData.name : RECIPES[r.recipe].label}
                 </p>
                 <p className="font-mono text-[11px] text-[#22201d]/80">
                   FOB {eur(cost.looks[r.index].fob)} · retail {usd(cost.looks[r.index].retailUsd)}
@@ -266,13 +283,53 @@ export default function Studio() {
           </div>
         </section>
 
+        <section id="stories" aria-labelledby="stories-h" className="scroll-mt-20 rounded-xl border border-[#22201d]/15 bg-[#fbf8f2] p-4 print:hidden">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <h2 id="stories-h" className="font-serif text-3xl leading-none">Colorway stories</h2>
+            <p className="max-w-xl text-[12px] text-[#22201d]/60">
+              Six runner colorways from your renders. Each fixes exact colors and constructions, then sources them from MEES. Put any story on any look.
+            </p>
+          </div>
+          <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
+            {STORIES.map((st) => {
+              const active = slots.map((s, i) => (s.story === st.id && s.style === "runner" ? i : -1)).filter((i) => i >= 0);
+              const chips = [...new Set(Object.values(st.parts).map((p) => p.hex))].slice(0, 6);
+              return (
+                <div key={st.id} className={`overflow-hidden rounded-lg border bg-white/60 ${active.length ? "border-[#22201d]" : "border-[#22201d]/10"}`}>
+                  <Image src={st.image} alt={st.name} width={360} height={540} unoptimized className="aspect-[2/3] w-full bg-[#ece9e4] object-cover" />
+                  <div className="space-y-2 p-2.5">
+                    <p className="text-[13px] font-medium leading-tight">{st.name}</p>
+                    <div className="flex">
+                      {chips.map((h) => (
+                        <span key={h} className="h-3 flex-1 border border-black/5" style={{ background: h }} />
+                      ))}
+                    </div>
+                    <div className="flex gap-1">
+                      {[0, 1, 2].map((i) => (
+                        <button
+                          key={i}
+                          onClick={() => setSlot(i, { style: "runner", story: active.includes(i) ? undefined : st.id })}
+                          className={`flex-1 rounded px-1 py-0.5 font-mono text-[10px] ${active.includes(i) ? "bg-[#22201d] text-[#f7f3ea]" : "border border-[#22201d]/15 hover:bg-[#22201d]/10"}`}
+                        >
+                          L0{i + 1}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
         <section className="space-y-6">
           {results.map((r, i) => (
             <LookCard
               key={i}
               result={r}
               cost={cost.looks[i]}
-              render={RENDERS.find((x) => x.key === keyFor(r.style, r.recipe))}
+              render={renderFor(r)}
+              onStory={(id) => setSlot(i, { story: id, style: "runner" })}
               onStyle={(s: StyleId) => setSlot(i, { style: s })} onRecipe={(rc: RecipeId) => setSlot(i, { recipe: rc })} />
           ))}
         </section>

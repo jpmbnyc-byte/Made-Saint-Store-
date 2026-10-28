@@ -4,6 +4,16 @@ import {
 } from "@/lib/collection";
 import { normalizeHex } from "@/lib/color";
 import { eur, pct, usd, type Assumptions, type CollectionCost } from "@/lib/costing";
+import { STORIES } from "@/lib/stories";
+
+const STORY_WORDS: [RegExp, string][] = [
+  [/\b(navy\s+)?intrecciato\b/, "navy-intrecciato"],
+  [/\b(espresso|oxblood)\b/, "espresso-oxblood"],
+  [/\bgraphite\b/, "graphite-tonal"],
+  [/\bchalk\b/, "chalk-navy"],
+  [/\b(navy\s+weave|weave\s*\/?\s*rust|rust\s+canvas)\b/, "navy-weave-rust"],
+  [/\b(washed\s+)?denim\b/, "washed-denim"],
+];
 
 export type ChatAction =
   | { type: "palette"; colors: string[] }
@@ -88,6 +98,8 @@ const COMPONENT_WORDS: Record<string, string[]> = {
 };
 
 export const SUGGESTIONS = [
+  "Washed denim on look 3",
+  "Show the stories",
   "Cost per pair for every look",
   "Palette olive, bone, espresso, rust",
   "Look 2 runner tonal",
@@ -101,6 +113,7 @@ export const HELP = [
   "I run the collection from plain sentences. Try:",
   "• Palette: “use olive, bone, espresso and #c8383a” or “add rust”",
   "• Looks: “look 3 trail mule hero”, “all looks tonal”",
+  "• Stories: “navy intrecciato on look 1”, “chalk on look 2”, “stories”, “look 1 clear story”",
   "• Cost: “cost look 1”, “what does the collection cost”",
   "• Assumptions: “300 pairs per look”, “duty 12%”, “freight 3.2”, “fx 1.1”, “markup 4.5”, “make runner 21”, “custom outsole on”",
   "• Sourcing: “what's on the look 1 mudguard”, “lab dips”, “materials”",
@@ -150,10 +163,24 @@ export function interpret(input: string, ctx: ChatContext): ChatReply {
     );
   }
 
+  // Stories
+  const story = STORY_WORDS.find(([re]) => re.test(t))?.[1];
+  if (/\bstories\b/.test(t) && !looks.length) {
+    said.push(["Colorway stories:", ...STORIES.map((s) => `• ${s.name}: ${s.read}`), "Say “washed denim on look 3” to use one."].join("\n"));
+    actions.push({ type: "scroll", id: "stories" });
+  } else if (looks.length && /\b(no story|clear story|drop story|palette recipe)\b/.test(t)) {
+    for (const i of looks) actions.push({ type: "slot", index: i, patch: { story: undefined } });
+    said.push(`Look${looks.length > 1 ? "s" : ""} ${looks.map((i) => `0${i + 1}`).join(", ")} back on the palette recipe.`);
+  } else if (story && looks.length && !/\b(cost|price|how much)\b/.test(t)) {
+    const st = STORIES.find((s) => s.id === story)!;
+    for (const i of looks) actions.push({ type: "slot", index: i, patch: { style: "runner", story } });
+    said.push(`Look${looks.length > 1 ? "s" : ""} ${looks.map((i) => `0${i + 1}`).join(", ")} → ${st.name}. ${st.read}${st.flags?.length ? `\nNote: ${st.flags.join(" ")}` : ""}`);
+  }
+
   // Looks
   const style: StyleId | undefined = /\b(trail\s*)?mule\b/.test(t) && !/sole\s+(unit\s+)?(on\s+)?(the\s+)?(trail\s+)?mule|make\s+(on\s+)?(the\s+)?(trail\s+)?mule/.test(t) ? "mule" : /\brunner\b/.test(t) && !/(make|sole)\s+(unit\s+)?(on\s+)?(the\s+)?runner/.test(t) ? "runner" : undefined;
   const recipe = (["hero", "tonal", "inverse"] as RecipeId[]).find((r) => new RegExp(`\\b${r}\\b`).test(t));
-  if (looks.length && (style || recipe) && !/\b(cost|price|how much|render)/.test(t)) {
+  if (looks.length && (style || recipe) && !story && !/\b(cost|price|how much|render)/.test(t)) {
     for (const i of looks) {
       actions.push({ type: "slot", index: i, patch: { ...(style && { style }), ...(recipe && { recipe }) } });
     }
@@ -161,7 +188,7 @@ export function interpret(input: string, ctx: ChatContext): ChatReply {
   }
 
   // Palette
-  const colors = findColors(t);
+  const colors = story ? [] : findColors(t);
   const paletteIntent = /\b(palette|colou?rs?|colorway|use|try|make it|swap|go|change)\b/.test(t) || colors.length >= 2;
   if (colors.length && /\badd\b/.test(t)) {
     const next = [...new Set([...ctx.palette, ...colors])].slice(0, 7);

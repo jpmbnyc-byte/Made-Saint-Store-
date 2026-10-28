@@ -59,7 +59,7 @@ export const STYLES: Record<StyleId, Style> = {
       { id: "saddle", label: "Saddle strap", group: "Upper", texture: "suede", families: SUEDE, sameAs: "mudguard", spec: "Diagonal strap splitting the two mesh windows." },
       { id: "quarter", label: "Quarter / heel panel", group: "Upper", texture: "suede", families: SUEDE, sameAs: "mudguard", spec: "Curved front edge. Heel counter sits behind it." },
       { id: "tongue", label: "Tongue", group: "Upper", texture: "suede", families: SUEDE, sameAs: "mudguard", spec: "Padded. Carries the woven label." },
-      { id: "mesh", label: "Base mesh / windows", group: "Upper", texture: "mesh", families: ["mesh", "knit"], spec: "Visible in the front and rear windows. Backed with foam scrim." },
+      { id: "mesh", label: "Base mesh / windows", group: "Upper", texture: "mesh", families: ["mesh"], spec: "Visible in the front and rear windows. Backed with foam scrim." },
       { id: "lining", label: "Collar lining", group: "Lining", texture: "jersey", families: ["stretch", "mesh", "vegan-suede"], spec: "Padded collar roll and tongue back." },
       { id: "laces", label: "Laces", group: "Trim", texture: "lace", families: ["laces"], spec: "Flat or oval. Length set at sampling." },
       { id: "eyelets", label: "Eyelets", group: "Trim", texture: "metal", families: [], spec: "Hidden-ring or painted metal, matched to the overlay." },
@@ -266,8 +266,14 @@ export function summarize(results: SlotResult[]) {
 export const driveView = (id: string) => `https://drive.google.com/file/d/${id}/view`;
 export const thumbSrc = (id: string) => `/mees/thumbs/${id}.webp`;
 
-export function toCsv(results: SlotResult[]): string {
-  const head = ["Slot", "Style", "Colorway recipe", "Component", "Group", "Texture", "Target hex", "Source", "MEES ref", "MEES folder", "MEES file", "Nearest card hex", "Delta E (OKLab x100)", "Verdict", "Sole unit", "Drive link", "Spec"];
+/** Renders are keyed to the palette (order-free), the flat, and the recipe. */
+export function renderKey(palette: string[], style: StyleId, recipe: RecipeId) {
+  const sig = [...new Set(palette.map((h) => normalizeHex(h)).filter(Boolean))].sort().join("").replace(/#/g, "");
+  return `${style}-${recipe}-${sig}`;
+}
+
+export function toCsv(results: SlotResult[], lineEur?: (slot: number, componentId: string) => number | undefined): string {
+  const head = ["Slot", "Style", "Colorway recipe", "Component", "Group", "Texture", "Target hex", "Source", "MEES ref", "MEES folder", "MEES file", "Nearest card hex", "Delta E (OKLab x100)", "Verdict", "Sole unit", "Drive link", "Est. EUR per pair", "Spec"];
   const esc = (v: string | number) => {
     const s = String(v);
     return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
@@ -278,7 +284,8 @@ export function toCsv(results: SlotResult[]): string {
       l.match ? FAMILY_LABEL[l.match.article.family] ?? l.match.article.family : "Trim, outside MEES library",
       l.match?.article.ref ?? "", l.match?.article.path ?? "", l.match?.article.name ?? "",
       l.match?.cardHex ?? "", l.match ? l.match.dE.toFixed(1) : "", VERDICT_INFO[l.verdict].label,
-      l.sole ? `${l.sole.path} / ${l.sole.name}` : "", l.match ? driveView(l.match.article.id) : "", l.component.spec,
+      l.sole ? `${l.sole.path} / ${l.sole.name}` : "", l.match ? driveView(l.match.article.id) : "",
+      lineEur?.(r.index, l.component.id)?.toFixed(2) ?? "", l.component.spec,
     ]),
   );
   return [head, ...rows].map((row) => row.map(esc).join(",")).join("\n");

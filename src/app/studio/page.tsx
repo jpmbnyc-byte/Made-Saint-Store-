@@ -5,10 +5,15 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Download, ImageUp, Plus, Printer, RotateCcw, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ProductionChat } from "@/components/studio/chat";
+import { AssumptionsPanel, CostTable, CostTotals } from "@/components/studio/costing";
 import { Flat, LookCard } from "@/components/studio/look";
+import renders from "@/data/renders.json";
+import type { ChatAction } from "@/lib/chat";
+import { DEFAULT_ASSUMPTIONS, costCollection, eur, usd, type Assumptions } from "@/lib/costing";
 import {
   CONCEPT_PALETTE, FAMILY_LABEL, RECIPES, ROLE_INFO, VERDICT_INFO,
-  assignRoles, buildCollection, driveView, summarize, thumbSrc, toCsv,
+  assignRoles, buildCollection, driveView, renderKey, summarize, thumbSrc, toCsv,
   type RecipeId, type Role, type SlotConfig, type StyleId, type Verdict,
 } from "@/lib/collection";
 import { extractPalette, inkOn, normalizeHex } from "@/lib/color";
@@ -21,7 +26,9 @@ const DEFAULT_SLOTS: SlotConfig[] = [
 const STORE = "ms-studio-v1";
 const MAX = 7;
 
-type Saved = { palette: string[]; slots: SlotConfig[] };
+type Saved = { palette: string[]; slots: SlotConfig[]; assumptions?: Assumptions };
+export type Render = { key: string; file: string; style: StyleId; recipe: RecipeId; palette: string[]; swatches: string[] };
+const RENDERS = renders as Render[];
 
 function ColorField({ hex, onChange, onRemove, canRemove }: { hex: string; onChange: (h: string) => void; onRemove: () => void; canRemove: boolean }) {
   const [draft, setDraft] = useState(hex);
@@ -53,6 +60,7 @@ function ColorField({ hex, onChange, onRemove, canRemove }: { hex: string; onCha
 export default function Studio() {
   const [palette, setPalette] = useState<string[]>(CONCEPT_PALETTE);
   const [slots, setSlots] = useState<SlotConfig[]>(DEFAULT_SLOTS);
+  const [assumptions, setAssumptions] = useState<Assumptions>(DEFAULT_ASSUMPTIONS);
   const [extracting, setExtracting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loaded, setLoaded] = useState(false);
@@ -68,17 +76,20 @@ export default function Studio() {
       const s = JSON.parse(localStorage.getItem(STORE) ?? "null") as Saved | null;
       if (s?.palette?.length) setPalette(s.palette);
       if (s?.slots?.length === 3) setSlots(s.slots);
+      if (s?.assumptions) setAssumptions({ ...DEFAULT_ASSUMPTIONS, ...s.assumptions });
     } catch {}
     if (fromUrl.length) setPalette(fromUrl);
     setLoaded(true);
   }, []);
   useEffect(() => {
-    if (loaded) localStorage.setItem(STORE, JSON.stringify({ palette, slots }));
-  }, [palette, slots, loaded]);
+    if (loaded) localStorage.setItem(STORE, JSON.stringify({ palette, slots, assumptions }));
+  }, [palette, slots, assumptions, loaded]);
 
   const tones = useMemo(() => assignRoles(palette), [palette]);
   const results = useMemo(() => buildCollection(tones, slots), [tones, slots]);
   const summary = useMemo(() => summarize(results), [results]);
+  const cost = useMemo(() => costCollection(results, assumptions), [results, assumptions]);
+  const keyFor = (style: StyleId, recipe: RecipeId) => renderKey(palette, style, recipe);
   const sourced = results.reduce((n, r) => n + r.lines.filter((l) => l.match).length, 0);
 
   function setSlot(i: number, patch: Partial<SlotConfig>) {
@@ -115,12 +126,24 @@ export default function Studio() {
   }
 
   function exportCsv() {
-    const blob = new Blob([toCsv(results)], { type: "text/csv;charset=utf-8" });
+    const lineEur = (slot: number, id: string) => cost.looks[slot]?.lines.find((l) => l.id === id)?.eur;
+    const blob = new Blob([toCsv(results, lineEur)], { type: "text/csv;charset=utf-8" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = "MADE-SAiNT-collection-materials.csv";
     a.click();
     URL.revokeObjectURL(a.href);
+  }
+
+  function runActions(actions: ChatAction[]) {
+    for (const a of actions) {
+      if (a.type === "palette") setPalette(a.colors);
+      else if (a.type === "slot") setSlot(a.index, a.patch);
+      else if (a.type === "assume") setAssumptions((x) => ({ ...x, ...a.patch }));
+      else if (a.type === "export") exportCsv();
+      else if (a.type === "print") setTimeout(() => window.print(), 300);
+      else if (a.type === "scroll") document.getElementById(a.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }
 
   const roles = Object.keys(ROLE_INFO) as Role[];
@@ -228,6 +251,9 @@ export default function Studio() {
                 <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.1em] text-[#22201d]/60">
                   0{r.index + 1} · {r.style === "runner" ? "Runner" : "Trail Mule"} · {RECIPES[r.recipe].label}
                 </p>
+                <p className="font-mono text-[11px] text-[#22201d]/80">
+                  FOB {eur(cost.looks[r.index].fob)} · retail {usd(cost.looks[r.index].retailUsd)}
+                </p>
               </div>
             ))}
           </div>
@@ -235,11 +261,36 @@ export default function Studio() {
 
         <section className="space-y-6">
           {results.map((r, i) => (
-            <LookCard key={i} result={r} onStyle={(s: StyleId) => setSlot(i, { style: s })} onRecipe={(rc: RecipeId) => setSlot(i, { recipe: rc })} />
+            <LookCard
+              key={i}
+              result={r}
+              cost={cost.looks[i]}
+              render={RENDERS.find((x) => x.key === keyFor(r.style, r.recipe))}
+              onStyle={(s: StyleId) => setSlot(i, { style: s })} onRecipe={(rc: RecipeId) => setSlot(i, { recipe: rc })} />
           ))}
         </section>
 
-        <section className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
+        <section id="costing" className="scroll-mt-20 space-y-4 rounded-xl border border-[#22201d]/15 bg-[#fbf8f2] p-4 print:break-before-page">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <h2 className="font-serif text-3xl leading-none">Cost and retail per pair</h2>
+            <p className="max-w-xl text-[12px] text-[#22201d]/60">
+              MEES publishes design, sampling, mold fees and MOQ, and quotes production per style. Fields marked est. are placeholders until that quote arrives. Edit them here or in the chat.
+            </p>
+          </div>
+          <CostTotals cost={cost} />
+          <CostTable cost={cost} />
+          <details className="rounded-lg border border-[#22201d]/10 bg-white/50 p-3" open>
+            <summary className="cursor-pointer font-mono text-[11px] uppercase tracking-[0.12em] text-[#22201d]/70">Assumptions</summary>
+            <div className="mt-3">
+              <AssumptionsPanel value={assumptions} onChange={setAssumptions} />
+            </div>
+            <button onClick={() => setAssumptions(DEFAULT_ASSUMPTIONS)} className="mt-3 font-mono text-[10px] uppercase tracking-[0.1em] text-[#22201d]/50 hover:text-[#22201d]">
+              Reset assumptions
+            </button>
+          </details>
+        </section>
+
+        <section id="consolidation" className="grid scroll-mt-20 gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
           <div className="rounded-xl border border-[#22201d]/15 bg-[#fbf8f2] p-4">
             <h2 className="font-serif text-3xl leading-none">Material consolidation</h2>
             <p className="mt-2 text-[13px] text-[#22201d]/65">
@@ -328,10 +379,15 @@ export default function Studio() {
             <li>Sole compound colors are pigment-matched by the sole maker. The verdict there tells you how far the target sits from their standard colors.</li>
             <li>The winged emblem comes from the founder file. The flats show a placeholder block in its position and color only.</li>
             <li>Wordmark is MADE SAiNT with a lowercase i. The runner concept image shows an uppercase I. The flats follow the brand rule.</li>
+            <li>Duty on footwear into the US depends on the HTS classification of the upper (textile, leather, or synthetic). The 20% default is a placeholder.</li>
             <li>No style codes or SKUs are assigned here. Look 03 reuses the runner flat until a third locked flat is supplied.</li>
           </ul>
         </section>
       </main>
+      <ProductionChat
+        ctx={{ palette, slots, tones, results, cost, assumptions, renders: RENDERS, renderKey: keyFor }}
+        onActions={runActions}
+      />
     </div>
   );
 }

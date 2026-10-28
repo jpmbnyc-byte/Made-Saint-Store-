@@ -8,6 +8,7 @@ import {
   type Line, type RecipeId, type SlotResult, type StyleId,
 } from "@/lib/collection";
 import { inkOn } from "@/lib/color";
+import { eur, pct, usd, type LookCost } from "@/lib/costing";
 import { cn } from "@/lib/utils";
 
 const PAPER = "#f7f3ea";
@@ -51,7 +52,9 @@ function VerdictBadge({ line }: { line: Line }) {
   );
 }
 
-function SpecRow({ line }: { line: Line }) {
+type RenderInfo = { file: string; swatches: string[] };
+
+function SpecRow({ line, eurPerPair }: { line: Line; eurPerPair?: number }) {
   const m = line.match;
   return (
     <tr className="border-t border-[#22201d]/10 align-top">
@@ -99,15 +102,18 @@ function SpecRow({ line }: { line: Line }) {
       </td>
       <td className="py-2 text-right">
         <VerdictBadge line={line} />
+        {eurPerPair !== undefined && eurPerPair > 0 && <p className="mt-1 font-mono text-[10px] text-[#22201d]/55">{eur(eurPerPair)}/pr est.</p>}
       </td>
     </tr>
   );
 }
 
 export function LookCard({
-  result, onStyle, onRecipe,
+  result, cost, render, onStyle, onRecipe,
 }: {
   result: SlotResult;
+  cost?: LookCost;
+  render?: RenderInfo;
   onStyle: (s: StyleId) => void;
   onRecipe: (r: RecipeId) => void;
 }) {
@@ -122,12 +128,27 @@ export function LookCard({
           <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-[#22201d]/60">
             {style.short} · {RECIPES[result.recipe].label}
           </span>
+          {cost && (
+            <span className="font-mono text-[11px] text-[#22201d]/80">
+              FOB {eur(cost.fob)} · total {usd(cost.totalUsd, 2)} · retail {usd(cost.retailUsd)} · {pct(cost.dtcMargin)}
+            </span>
+          )}
         </div>
         <div className="flex flex-wrap gap-2">
           <Segmented label="Locked flat" value={result.style} onChange={onStyle} options={[{ id: "runner", label: "Runner" }, { id: "mule", label: "Trail Mule" }]} />
           <Segmented label="Recipe" value={result.recipe} onChange={onRecipe} options={(Object.keys(RECIPES) as RecipeId[]).map((id) => ({ id, label: RECIPES[id].label }))} />
         </div>
       </header>
+
+      {render && (
+        <figure className="relative border-b border-[#22201d]/10 bg-[#ece6da]">
+          <Image src={render.file} alt={`Look 0${result.index + 1} hero render`} width={1600} height={900} unoptimized className="h-auto max-h-[560px] w-full object-cover" />
+          <figcaption className="absolute bottom-2 left-2 flex flex-wrap items-center gap-1.5 rounded-md bg-[#fbf8f2]/90 px-2 py-1 text-[11px]">
+            <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#a2362f]">AI render</span>
+            from the locked flat and MEES swatch photos {render.swatches.join(", ")}. Not a sample photo.
+          </figcaption>
+        </figure>
+      )}
 
       <div className="grid gap-px bg-[#22201d]/10 md:grid-cols-2">
         <figure className="bg-[#f7f3ea] p-3">
@@ -169,7 +190,7 @@ export function LookCard({
                   <td colSpan={3} className="pt-3 font-mono text-[10px] uppercase tracking-[0.14em] text-[#a2362f]">{g}</td>
                 </tr>
                 {rows.map((l) => (
-                  <SpecRow key={l.component.id} line={l} />
+                  <SpecRow key={l.component.id} line={l} eurPerPair={cost?.lines.find((c) => c.id === l.component.id)?.eur} />
                 ))}
               </tbody>
             );

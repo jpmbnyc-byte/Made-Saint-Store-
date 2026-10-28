@@ -3,9 +3,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { CONCEPT_PALETTE, assignRoles, buildCollection } from "@/lib/collection";
 import { STORIES } from "@/lib/stories";
-import { mix } from "@/lib/color";
 import { RunnerFlat, type RunnerVariant } from "@/components/flats/runner";
-import { MARK_PLACEMENTS, type MarkPlacementId } from "@/components/flats/mark";
+import { MARK_PLACEMENTS, tonalMark, type MarkPlacementId } from "@/components/flats/mark";
 
 export const metadata: Metadata = {
   title: "MADE SAiNT · M side mark",
@@ -13,52 +12,50 @@ export const metadata: Metadata = {
 };
 
 const PAPER = "#f4f0e6";
-const REFLECTIVE = "#b9bbbd";
 /** Heel-to-toe length on the lateral flat, in flat units, and a US 9 last length in mm. */
 const FLAT_LENGTH = 526;
 const LAST_MM = 275;
 const MM = LAST_MM / FLAT_LENGTH;
 
-const STUDY: { id: MarkPlacementId; verdict: "Recommended" | "Alternative" | "Rejected"; points: string[] }[] = [
+const RULES = [
+  ["Length", "Centred at half the shoe length, spanning about 37% to 63%: the mark owns the midfoot, between the heel overlay and the toe."],
+  ["Top", "Tucked against the eyestay, as if the lacing sits on it. No gap that makes it float."],
+  ["Bottom", "Ends on the lower overlay, about a sixth of the side height above the midsole. Never on the foam."],
+  ["Height", "Fills about 80% of the side between eyestay and midsole."],
+  ["Lean", "15° forward, the italic of the letter, not the rake of the panels."],
+  ["Layering", "Sits on top of every panel and crosses the seams, so it reads as one graphic, not a panel filler."],
+  ["Keyline", "A border a step darker than the mark separates it from mesh and suede."],
+  ["Front", "Stops short of the forefoot flex zone."],
+];
+
+const STUDY: { id: MarkPlacementId; verdict: "Locked" | "Previous" | "Alternative" | "Rejected"; points: string[] }[] = [
+  {
+    id: "midfoot",
+    verdict: "Locked",
+    points: [
+      "Placed by the 9060 rules: centred at half length, top tucked under the eyestay, bottom on the lower overlay",
+      "Crosses the mesh window and the saddle, so it holds the side together",
+      "Stops before the forefoot flex zone, so the overlay does not stiffen the crease",
+    ],
+  },
   {
     id: "quarter",
-    verdict: "Recommended",
-    points: [
-      "Owns the side of the shoe like the reference, but stays behind the flex zone, so the film never creases",
-      "Leans with the saddle and the eyestay, so the M reads as motion, not a sticker",
-      "Bridges the heel overlay and the mesh window; peaks tuck under the eyestay, feet stop on the midsole line",
-      "Crosses the quarter overlay and mesh: bond it to the closed upper before lasting",
-    ],
+    verdict: "Previous",
+    points: ["Sat too far back and ran down to the midsole, so it read as a heel graphic", "The 20° rake fought the letter's own italic"],
   },
   {
     id: "window",
     verdict: "Alternative",
-    points: [
-      "The quiet option: contained in the rear mesh window, no seams crossed",
-      "Can be cut from one piece and bonded to the flat mesh panel, the cheapest to make",
-      "Too small to carry the brand from across a room",
-    ],
+    points: ["Contained in the rear mesh window, cheapest to make", "Too small to carry the brand from across a room"],
   },
   {
     id: "full",
     verdict: "Rejected",
-    points: [
-      "Closest to the 700 MNVN, and that is the problem: it reads as borrowed",
-      "Runs through the forefoot flex zone, where bonded film cracks and lifts within weeks",
-      "Fights the saddle and mudguard lines instead of working with them",
-    ],
-  },
-  {
-    id: "heel",
-    verdict: "Rejected",
-    points: [
-      "Tidy, but the heel counter is already where the tongue label leads the eye",
-      "Lost in the curve of the heel from the side",
-    ],
+    points: ["Reads as borrowed from the 700 MNVN", "Runs through the forefoot flex zone, where bonded film cracks"],
   },
 ];
 
-const tone = { Recommended: "bg-[#2f5d3a] text-white", Alternative: "bg-[#22201d]/10", Rejected: "bg-[#9a3b2c]/12 text-[#9a3b2c]" };
+const tone = { Locked: "bg-[#2f5d3a] text-white", Previous: "bg-[#22201d]/10", Alternative: "bg-[#22201d]/10", Rejected: "bg-[#9a3b2c]/12 text-[#9a3b2c]" };
 
 function looks() {
   const tones = assignRoles(CONCEPT_PALETTE);
@@ -71,7 +68,8 @@ function looks() {
 export default function BrandPage() {
   const hero = buildCollection(assignRoles(CONCEPT_PALETTE), [{ style: "runner", recipe: "hero" }])[0];
   const stories = looks();
-  const q = MARK_PLACEMENTS.quarter;
+  const q = MARK_PLACEMENTS.midfoot;
+  const tones = tonalMark(hero.colors.quarter);
   const markW = Math.round((442 - 58 + 54) * q.sx * MM + Math.abs(Math.tan((q.lean * Math.PI) / 180)) * 226 * q.sy * MM);
   const markH = Math.round((204 - 32 + 54) * q.sy * MM);
 
@@ -100,8 +98,9 @@ export default function BrandPage() {
           <div>
             <h1 className="font-serif text-4xl leading-none">The M</h1>
             <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-[#22201d]/75">
-              A wide, forward-leaning monoline M with an inline channel, carried over from the nested-bar mark. Bonded reflective film,
-              flush, no stitching. Inspired by the scale and finish of the 700 MNVN graphics; the letterform and placement are our own.
+              A wide, forward-leaning monoline M with an inline channel, carried over from the nested-bar mark. Every application is tonal:
+              the mark is the overlay colour a step lighter, keylined a step darker. Placement follows the rules New Balance uses for
+              the N on the 9060; the letterform is our own.
             </p>
             <a href="/brand/m-mark.svg" download className="mt-4 inline-block font-mono text-[11px] tracking-[0.1em] uppercase underline underline-offset-4">
               Download vector
@@ -109,16 +108,29 @@ export default function BrandPage() {
           </div>
         </section>
 
+        <section className="rounded-xl border border-[#22201d]/15 bg-[#fbf8f2] p-5">
+          <h2 className="font-serif text-3xl">What the 9060 teaches</h2>
+          <p className="mt-1 max-w-3xl text-[13px] text-[#22201d]/65">Measured from the lateral view of the New Balance 9060, applied to our locked flat.</p>
+          <dl className="mt-4 grid gap-x-8 gap-y-3 md:grid-cols-2">
+            {RULES.map(([k, v]) => (
+              <div key={k} className="grid grid-cols-[90px_1fr] gap-3 border-t border-[#22201d]/10 pt-3 text-[13px]">
+                <dt className="font-mono text-[10px] tracking-[0.1em] text-[#22201d]/55 uppercase">{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
         <section>
           <h2 className="font-serif text-3xl">Placement</h2>
           <p className="mt-1 max-w-3xl text-[13px] text-[#22201d]/65">
-            Four positions on the locked lateral flat. The red band is the forefoot flex zone, where the upper creases on every step.
+            Four positions on the locked lateral flat, all tonal. The red band is the forefoot flex zone, where the upper creases on every step.
           </p>
           <div className="mt-4 grid gap-4 lg:grid-cols-2">
             {STUDY.map((s) => {
-              const variant: RunnerVariant = { mark: s.id, markColor: REFLECTIVE, guides: true };
+              const variant: RunnerVariant = { mark: s.id, guides: true };
               return (
-                <div key={s.id} className={`rounded-xl border bg-[#fbf8f2] p-4 ${s.verdict === "Recommended" ? "border-[#22201d] shadow-sm" : "border-[#22201d]/15"}`}>
+                <div key={s.id} className={`rounded-xl border bg-[#fbf8f2] p-4 ${s.verdict === "Locked" ? "border-[#22201d] shadow-sm" : "border-[#22201d]/15"}`}>
                   <div className="flex items-baseline justify-between gap-3">
                     <h3 className="font-serif text-2xl">{MARK_PLACEMENTS[s.id].name}</h3>
                     <span className={`rounded px-2 py-0.5 font-mono text-[10px] uppercase ${tone[s.verdict]}`}>{s.verdict}</span>
@@ -137,21 +149,22 @@ export default function BrandPage() {
 
         <section className="grid gap-6 rounded-xl border border-[#22201d]/15 bg-[#fbf8f2] p-5 lg:grid-cols-[1.3fr_1fr]">
           <div>
-            <h2 className="font-serif text-3xl">Specification, quarter sweep</h2>
-            <RunnerFlat colors={hero.colors} view="lateral" paper={PAPER} variant={{ mark: "quarter", markColor: REFLECTIVE }} className="mt-3 [&_svg]:h-auto [&_svg]:w-full" />
+            <h2 className="font-serif text-3xl">Specification, locked</h2>
+            <RunnerFlat colors={hero.colors} view="lateral" paper={PAPER} variant={{ mark: "midfoot" }} className="mt-3 [&_svg]:h-auto [&_svg]:w-full" />
           </div>
           <dl className="divide-y divide-[#22201d]/10 self-center text-[13px]">
             {[
-              ["Position", "Lateral quarter only. Medial side stays clean."],
+              ["Position", "Lateral side, midfoot. Medial side stays clean."],
               ["Size, US 9", `About ${markW} × ${markH} mm. Grade with the pattern, not by a fixed size.`],
-              ["Lean", `${Math.abs(q.lean)}° forward, between the eyestay and saddle angles`],
-              ["Top", "Leading peak 4 mm below the eyestay edge"],
-              ["Bottom", "Feet end 2 mm above the midsole line, never on the foam"],
-              ["Rear", "Rear foot on the heel overlay, about 40 mm ahead of the back seam"],
-              ["Front", "Ends before the saddle, under half the shoe length; the flex zone starts at 65%"],
-              ["Stroke", "Inline channel 2 mm, panel shows through"],
-              ["Material", "Heat-transfer reflective film, matte silver or tonal reflective"],
-              ["Process", "Bonded after closing, before lasting, on a contoured press"],
+              ["Lean", `${Math.abs(q.lean)}° forward`],
+              ["Span", "37% to 63% of length from the heel"],
+              ["Top", "Tucked against the eyestay edge, under the third and fourth eyelets"],
+              ["Bottom", "About 5 mm above the midsole line, on the lower overlay"],
+              ["Swatch", `Fill ${tones.fill}, keyline ${tones.keyline} on overlay ${hero.colors.quarter}`],
+              ["Colour", "Tonal only: mark one step lighter than the overlay, keyline one step darker"],
+              ["Stroke", "Inline channel 2 mm, panel shows through; keyline 1.5 mm"],
+              ["Material", "Tonal suede or nubuck overlay, stitched. Silver or contrast versions are not used."],
+              ["Process", "Cut and stitched onto the closed upper before lasting"],
             ].map(([k, v]) => (
               <div key={k} className="grid grid-cols-[110px_1fr] gap-3 py-2">
                 <dt className="font-mono text-[10px] tracking-[0.1em] text-[#22201d]/55 uppercase">{k}</dt>
@@ -163,18 +176,19 @@ export default function BrandPage() {
 
         <section>
           <h2 className="font-serif text-3xl">Across the colorways</h2>
-          <p className="mt-1 max-w-3xl text-[13px] text-[#22201d]/65">
-            Quarter sweep on every story. Top row in silver reflective; bottom row in tonal reflective, a shade lighter than the overlay, which only flashes under light.
-          </p>
+          <p className="mt-1 max-w-3xl text-[13px] text-[#22201d]/65">Locked placement, tonal on every story. The tone is derived from each colorway&apos;s overlay.</p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {stories.map((r) => {
-              const base: RunnerVariant = { textures: r.textures, grid: false, label: r.storyData?.label, mark: "quarter" };
-              const overlay = r.colors.quarter;
+              const t = tonalMark(r.colors.quarter);
               return (
                 <div key={r.story} className="rounded-xl border border-[#22201d]/15 bg-[#fbf8f2] p-3">
-                  <p className="font-serif text-xl">{r.storyData?.name}</p>
-                  <RunnerFlat colors={r.colors} view="lateral" paper={PAPER} variant={{ ...base, markColor: REFLECTIVE }} className="mt-2 [&_svg]:h-auto [&_svg]:w-full" />
-                  <RunnerFlat colors={r.colors} view="lateral" paper={PAPER} variant={{ ...base, markColor: mix(overlay, "#ffffff", 0.22) }} className="mt-1 [&_svg]:h-auto [&_svg]:w-full" />
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="font-serif text-xl">{r.storyData?.name}</p>
+                    <span className="flex gap-1">
+                      {[r.colors.quarter, t.fill, t.keyline].map((h) => <span key={h} className="size-4 rounded-sm border border-black/15" style={{ background: h }} title={h} />)}
+                    </span>
+                  </div>
+                  <RunnerFlat colors={r.colors} view="lateral" paper={PAPER} variant={{ textures: r.textures, grid: false, label: r.storyData?.label, mark: "midfoot" }} className="mt-2 [&_svg]:h-auto [&_svg]:w-full" />
                 </div>
               );
             })}
@@ -182,10 +196,10 @@ export default function BrandPage() {
         </section>
 
         <section>
-          <h2 className="font-serif text-3xl">Concept renders</h2>
+          <h2 className="font-serif text-3xl">Renders, tonal</h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            {["m-concept-runner-placed", "m-concept-runner-aubergine", "m-concept-mule", "m-concept-runner-oversized"].map((f) => (
-              <Image key={f} src={`/brand/${f}.webp`} alt={f} width={1280} height={720} className="w-full rounded-xl" />
+            {["/hero/look1-runner-hero.webp", "/hero/look3-runner-inverse.webp", "/hero/look2-mule-tonal.webp"].map((f) => (
+              <Image key={f} src={f} alt="Tonal M render" width={1280} height={720} className="w-full rounded-xl" />
             ))}
           </div>
         </section>

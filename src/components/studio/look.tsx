@@ -36,7 +36,7 @@ export function Segmented<T extends string>({ value, options, onChange, label }:
 }
 
 export function variantOf(r: SlotResult): RunnerVariant {
-  const mark = { mark: "quarter" as const, markColor: "#b9bbbd" };
+  const mark = { mark: "midfoot" as const };
   return r.storyData ? { textures: r.textures, grid: false, label: r.storyData.label, ...mark } : mark;
 }
 

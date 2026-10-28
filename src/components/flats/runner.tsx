@@ -2,14 +2,14 @@ import { useId } from "react";
 import { STYLES, type Texture } from "@/lib/collection";
 import { mix } from "@/lib/color";
 import { INK, Pattern, cr, type Pt } from "./textures";
-import { MARK_PLACEMENTS, MMark, type MarkPlacementId } from "./mark";
+import { MARK_PLACEMENTS, MMark, tonalMark, type MarkPlacementId } from "./mark";
 
 export type RunnerVariant = {
   textures?: Record<string, Texture>;
   grid?: boolean;
   label?: "woven" | "printed";
+  /** Side mark placement. Always tonal, derived from the quarter overlay colour. */
   mark?: MarkPlacementId;
-  markColor?: string;
   /** Draws the forefoot flex zone, for placement studies. */
   guides?: boolean;
 };
@@ -84,7 +84,7 @@ function Lateral({ uid, colors, paper, variant }: ViewProps) {
         <path d={L_LINING} fill="none" stroke={INK} strokeWidth="0.6" transform="translate(0 3.6)" />
       </g>
       {variant.mark && (
-        <MMark uid={uid} placement={MARK_PLACEMENTS[variant.mark]} color={variant.markColor ?? "#b9bbbd"} clip={`${uid}-clip`} />
+        <MMark uid={uid} placement={MARK_PLACEMENTS[variant.mark]} tone={tonalMark(colors.quarter)} clip={`${uid}-clip`} />
       )}
       <path d={L_UPPER} fill="none" stroke={INK} strokeWidth="1.1" />
 

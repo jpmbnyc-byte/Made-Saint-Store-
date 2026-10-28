@@ -143,7 +143,7 @@ export function LookCard({
       {render && (
         <figure className="relative border-b border-[#22201d]/10 bg-[#ece6da]">
           <Image src={render.file} alt={`Look 0${result.index + 1} hero render`} width={1600} height={900} unoptimized className="h-auto max-h-[560px] w-full object-cover" />
-          <figcaption className="absolute bottom-2 left-2 flex flex-wrap items-center gap-1.5 rounded-md bg-[#fbf8f2]/90 px-2 py-1 text-[11px]">
+          <figcaption className="absolute bottom-2 left-2 flex flex-wrap items-center gap-1.5 rounded-md font-sans normal-case tracking-normal bg-[#fbf8f2]/90 px-2 py-1 text-[11px]">
             <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#a2362f]">AI render</span>
             from the locked flat and MEES swatch photos {render.swatches.join(", ")}. Not a sample photo.{render.note ? ` ${render.note}` : ""}
           </figcaption>

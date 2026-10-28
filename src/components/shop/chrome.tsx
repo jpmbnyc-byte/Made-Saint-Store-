@@ -10,7 +10,7 @@ export function ShopHeader({ status }: { status?: string }) {
         <nav className="flex gap-5 text-[11px] tracking-[0.16em] text-[#1c1a17]/70 uppercase">
           <Link href="/shop#edition" className="whitespace-nowrap hover:text-[#1c1a17]"><span className="hidden sm:inline">Founding </span>Edition</Link>
           <Link href="/shop#how" className="hidden hover:text-[#1c1a17] sm:inline">How it works</Link>
-          <Link href="/shop#atelier" className="hidden hover:text-[#1c1a17] md:inline">Atelier</Link>
+          <Link href="/wardrobe" className="hidden hover:text-[#1c1a17] md:inline">Wardrobe</Link>
         </nav>
         <Link href="/shop" className="font-serif text-[28px] leading-none tracking-[0.02em] md:text-[34px]">
           MADE SAiNT
@@ -42,6 +42,7 @@ export function ShopFooter() {
         </div>
         <div className="space-y-2 text-sm text-[#1c1a17]/70">
           <p className="text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">House</p>
+          <Link href="/wardrobe" className="block hover:text-[#1c1a17]">The Private Wardrobe</Link>
           <Link href="/launch" className="block hover:text-[#1c1a17]">Launch plan</Link>
           <Link href="/studio" className="block hover:text-[#1c1a17]">Collection Studio</Link>
           <Link href="/" className="block hover:text-[#1c1a17]">Trail Mule technical package</Link>

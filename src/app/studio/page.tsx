@@ -176,6 +176,9 @@ export default function Studio() {
             <Link href="/launch" className="px-2 font-mono text-[11px] uppercase tracking-[0.1em] text-[#22201d]/60 hover:text-[#22201d]">
               Launch plan
             </Link>
+            <Link href="/wardrobe" className="px-2 font-mono text-[11px] uppercase tracking-[0.1em] text-[#22201d]/60 hover:text-[#22201d]">
+              Wardrobe
+            </Link>
             <Link href="/shop" className="px-2 font-mono text-[11px] uppercase tracking-[0.1em] text-[#22201d]/60 hover:text-[#22201d]">
               Shop
             </Link>

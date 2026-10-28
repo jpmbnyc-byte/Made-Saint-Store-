@@ -4,6 +4,7 @@ A pre-order footwear business made with MEES (Felgueiras, Portugal): the storefr
 
 | Route | What it is |
 | --- | --- |
+| `/wardrobe` | The Private Wardrobe: categorized, color-coded collection from the 28 Oct 2026 visual register |
 | `/shop` | Founding Edition pre-order storefront |
 | `/launch` | Pricing, unit economics, pre-order tracker, cash flow, size run, marketing plan, reservations |
 | `/studio` | Collection Studio |

@@ -205,7 +205,7 @@ export function interpret(input: string, ctx: ChatContext): ChatReply {
     said.push(rows.length ? [...new Set(rows)].join("\n") : "Nothing needs a lab dip. Every sourced component is on card.");
   }
 
-  if (/\b(materials?|consolidat|bom|articles?|cards?)\b/.test(t) && !said.length) {
+  if (/\b(materials?|consolidat|bom|articles?|cards?)\b/.test(t) && !said.length && !/\b(export|csv|download|spreadsheet)\b/.test(t)) {
     const map = new Map<string, string[]>();
     for (const r of ctx.results) for (const l of r.lines) if (l.match) {
       const k = `${l.match.article.ref} · ${FAMILY_LABEL[l.match.article.family]}`;

@@ -22,6 +22,9 @@ export default function Home() {
           </p>
         </div>
         <nav className="flex flex-wrap gap-2 font-mono text-[11px] uppercase tracking-[0.12em]">
+          <a className="border border-[#c46a62] bg-[#c46a62] px-2 py-1 text-[#1c1b19] hover:bg-transparent hover:text-[#f4f0e6]" href="/studio">
+            Collection Studio
+          </a>
           <a className="border border-white/30 px-2 py-1 hover:bg-[#f4f0e6] hover:text-[#1c1b19]" href="/ms-tm01/pdf/MS-TM01-P001-technical-package.pdf">
             PDF
           </a>

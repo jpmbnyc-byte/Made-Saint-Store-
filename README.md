@@ -7,6 +7,7 @@ A pre-order footwear business made with MEES (Felgueiras, Portugal): the storefr
 | `/shop` | Founding Edition pre-order storefront |
 | `/launch` | Pricing, unit economics, pre-order tracker, cash flow, size run, marketing plan, reservations |
 | `/studio` | Collection Studio |
+| `/brand` | M side mark: placement study, spec, colorways, vector |
 | `/` | MS-TM01 Trail Mule technical package |
 
 ## Pre-order shop (`/shop`)

@@ -36,7 +36,8 @@ export function Segmented<T extends string>({ value, options, onChange, label }:
 }
 
 export function variantOf(r: SlotResult): RunnerVariant {
-  return r.storyData ? { textures: r.textures, grid: false, label: r.storyData.label } : {};
+  const mark = { mark: "quarter" as const, markColor: "#b9bbbd" };
+  return r.storyData ? { textures: r.textures, grid: false, label: r.storyData.label, ...mark } : mark;
 }
 
 export function Flat({ style, colors, view, variant }: { style: StyleId; colors: Record<string, string>; view: "lateral" | "top"; variant?: RunnerVariant }) {

@@ -2,8 +2,17 @@ import { useId } from "react";
 import { STYLES, type Texture } from "@/lib/collection";
 import { mix } from "@/lib/color";
 import { INK, Pattern, cr, type Pt } from "./textures";
+import { MARK_PLACEMENTS, MMark, type MarkPlacementId } from "./mark";
 
-export type RunnerVariant = { textures?: Record<string, Texture>; grid?: boolean; label?: "woven" | "printed" };
+export type RunnerVariant = {
+  textures?: Record<string, Texture>;
+  grid?: boolean;
+  label?: "woven" | "printed";
+  mark?: MarkPlacementId;
+  markColor?: string;
+  /** Draws the forefoot flex zone, for placement studies. */
+  guides?: boolean;
+};
 type Props = { colors: Record<string, string>; view: "lateral" | "top"; paper?: string; className?: string; variant?: RunnerVariant };
 type ViewProps = { uid: string; colors: Record<string, string>; paper: string; variant: RunnerVariant };
 
@@ -74,6 +83,9 @@ function Lateral({ uid, colors, paper, variant }: ViewProps) {
         <path d={L_LINING} fill="none" stroke={f("lining")} strokeWidth="7" />
         <path d={L_LINING} fill="none" stroke={INK} strokeWidth="0.6" transform="translate(0 3.6)" />
       </g>
+      {variant.mark && (
+        <MMark uid={uid} placement={MARK_PLACEMENTS[variant.mark]} color={variant.markColor ?? "#b9bbbd"} clip={`${uid}-clip`} />
+      )}
       <path d={L_UPPER} fill="none" stroke={INK} strokeWidth="1.1" />
 
       <path d={L_MIDSOLE} fill={f("midsole")} stroke={INK} strokeWidth="1" />
@@ -109,6 +121,15 @@ function Lateral({ uid, colors, paper, variant }: ViewProps) {
           </g>
         ))}
       </g>
+      {variant.guides && (
+        <g pointerEvents="none">
+          <rect x="384" y="40" width="70" height="210" fill="#c8383a" opacity="0.1" />
+          <path d="M 384 40 V 250 M 454 40 V 250" stroke="#c8383a" strokeWidth="0.8" strokeDasharray="3 3" />
+          <text x="419" y="34" textAnchor="middle" fontSize="8" fill="#c8383a" fontFamily="ui-monospace, monospace" letterSpacing="0.6">
+            FOREFOOT FLEX
+          </text>
+        </g>
+      )}
     </svg>
   );
 }

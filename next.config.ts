@@ -1,16 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  async redirects() {
-    return [
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.madesaint.store" }],
-        destination: "https://madesaint.store/:path*",
-        permanent: true,
-      },
-    ];
-  },
+  // Apex → www is handled in the Vercel domain settings. Do not bounce the other way.
 };
 
 export default nextConfig;

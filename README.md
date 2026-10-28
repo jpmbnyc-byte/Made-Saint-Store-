@@ -39,7 +39,19 @@ In **Namecheap → Domain List → madesaint.store → Advanced DNS**:
 | A | `@` | `10.0.1.2` | Automatic |
 | CNAME | `www` | `cname.vercel-dns.com.` | Automatic |
 
-In **Vercel → Project → Settings → Domains**, add `madesaint.store` and `www.madesaint.store`. Redirect `www` to the apex. Set Production env `SITE_URL` to `https://madesaint.store`.
+In **Vercel → Project → Settings → Domains**, add `madesaint.store` and `www.madesaint.store`. Keep `www` as the primary (apex already redirects there). Set Production env `SITE_URL` to `https://madesaint.store`.
+
+In **Vercel → Project → Settings → General → Build & Development Settings**:
+
+| Field | Value |
+| --- | --- |
+| Framework Preset | Next.js |
+| Root Directory | `.` (repo root) |
+| Build Command | `npm run build` |
+| Output Directory | *empty* (not `public`) |
+| Install Command | `npm ci` |
+
+If Output Directory is `public`, Vercel serves the static assets and every App Router page 404s. That is the current production failure mode. `vercel.json` in this repo pins the Next.js preset so a new deploy on `main` should rebuild correctly.
 
 Propagation is usually a few minutes; SSL issues until both DNS and the Vercel domain are in place.
 

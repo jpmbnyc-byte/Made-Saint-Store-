@@ -61,7 +61,7 @@ FAMILY_LABEL = {
     "natural": "Linen / natural weave",
     "cork": "Cork sheet",
     "neoprene": "Neoprene",
-    "laces": "Lace cord",
+    "laces": "Woven flat band (lace stock)",
     "tape": "Tape / ribbon (nastro)",
     "sole-color": "Sole compound colors",
 }

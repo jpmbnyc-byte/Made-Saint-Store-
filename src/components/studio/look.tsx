@@ -52,7 +52,7 @@ function VerdictBadge({ line }: { line: Line }) {
   );
 }
 
-type RenderInfo = { file: string; swatches: string[] };
+type RenderInfo = { file: string; swatches: string[]; note?: string };
 
 function SpecRow({ line, eurPerPair }: { line: Line; eurPerPair?: number }) {
   const m = line.match;
@@ -145,7 +145,7 @@ export function LookCard({
           <Image src={render.file} alt={`Look 0${result.index + 1} hero render`} width={1600} height={900} unoptimized className="h-auto max-h-[560px] w-full object-cover" />
           <figcaption className="absolute bottom-2 left-2 flex flex-wrap items-center gap-1.5 rounded-md bg-[#fbf8f2]/90 px-2 py-1 text-[11px]">
             <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#a2362f]">AI render</span>
-            from the locked flat and MEES swatch photos {render.swatches.join(", ")}. Not a sample photo.
+            from the locked flat and MEES swatch photos {render.swatches.join(", ")}. Not a sample photo.{render.note ? ` ${render.note}` : ""}
           </figcaption>
         </figure>
       )}

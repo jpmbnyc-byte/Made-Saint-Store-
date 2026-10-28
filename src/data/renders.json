@@ -1,1 +1,60 @@
-[]
+[
+  {
+    "key": "runner-hero-3d2c317f5f65c8383ad6a994e4dccd",
+    "file": "/hero/look1-runner-hero.webp",
+    "style": "runner",
+    "recipe": "hero",
+    "palette": [
+      "#e4dccd",
+      "#7f5f65",
+      "#3d2c31",
+      "#d6a994",
+      "#c8383a"
+    ],
+    "swatches": [
+      "MEES-272",
+      "MEES-281",
+      "MEES-648"
+    ],
+    "note": "The label lettering reads SAINT in this render. Production follows MADE SAiNT."
+  },
+  {
+    "key": "mule-tonal-3d2c317f5f65c8383ad6a994e4dccd",
+    "file": "/hero/look2-mule-tonal.webp",
+    "style": "mule",
+    "recipe": "tonal",
+    "palette": [
+      "#e4dccd",
+      "#7f5f65",
+      "#3d2c31",
+      "#d6a994",
+      "#c8383a"
+    ],
+    "swatches": [
+      "MEES-334",
+      "MEES-281",
+      "MEES-140",
+      "MEES-272"
+    ],
+    "note": ""
+  },
+  {
+    "key": "runner-inverse-3d2c317f5f65c8383ad6a994e4dccd",
+    "file": "/hero/look3-runner-inverse.webp",
+    "style": "runner",
+    "recipe": "inverse",
+    "palette": [
+      "#e4dccd",
+      "#7f5f65",
+      "#3d2c31",
+      "#d6a994",
+      "#c8383a"
+    ],
+    "swatches": [
+      "MEES-272",
+      "MEES-281",
+      "MEES-648"
+    ],
+    "note": "The label lettering reads SAINT in this render. Production follows MADE SAiNT."
+  }
+]

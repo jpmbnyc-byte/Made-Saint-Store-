@@ -178,10 +178,17 @@ export type Line = {
 export type SlotConfig = { style: StyleId; recipe: RecipeId };
 export type SlotResult = SlotConfig & { index: number; colors: Record<string, string>; lines: Line[] };
 
+/** On a multicolor card, a light neutral cluster is the card paper, not a material color. */
+function isPaper(article: Article, hex: string) {
+  const lab = hexToLab(hex);
+  const colorful = article.swatches.some((s) => chroma(hexToLab(s.hex)) > 0.06);
+  return (colorful || article.family === "laces" || article.family === "tape") && lab.L > 0.78 && chroma(lab) < 0.03;
+}
+
 function nearest(article: Article, target: string): Match {
   let best = { hex: article.swatches[0]?.hex ?? "#000000", d: Infinity };
   for (const s of article.swatches) {
-    if (s.w < 0.05) continue;
+    if (s.w < 0.05 || isPaper(article, s.hex)) continue;
     const d = deltaE(target, s.hex);
     if (d < best.d) best = { hex: s.hex, d };
   }

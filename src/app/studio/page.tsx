@@ -27,7 +27,7 @@ const STORE = "ms-studio-v1";
 const MAX = 7;
 
 type Saved = { palette: string[]; slots: SlotConfig[]; assumptions?: Assumptions };
-export type Render = { key: string; file: string; style: StyleId; recipe: RecipeId; palette: string[]; swatches: string[] };
+export type Render = { key: string; file: string; style: StyleId; recipe: RecipeId; palette: string[]; swatches: string[]; note?: string };
 const RENDERS = renders as Render[];
 
 function ColorField({ hex, onChange, onRemove, canRemove }: { hex: string; onChange: (h: string) => void; onRemove: () => void; canRemove: boolean }) {
@@ -247,7 +247,14 @@ export default function Studio() {
           <div className="mt-4 grid gap-4 sm:grid-cols-3">
             {results.map((r) => (
               <div key={r.index}>
-                <Flat style={r.style} colors={r.colors} view="lateral" />
+                {(() => {
+                  const hero = RENDERS.find((x) => x.key === keyFor(r.style, r.recipe));
+                  return hero ? (
+                    <Image src={hero.file} alt={`Look 0${r.index + 1} render`} width={800} height={450} unoptimized className="aspect-video w-full rounded-md object-cover" />
+                  ) : (
+                    <Flat style={r.style} colors={r.colors} view="lateral" />
+                  );
+                })()}
                 <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.1em] text-[#22201d]/60">
                   0{r.index + 1} · {r.style === "runner" ? "Runner" : "Trail Mule"} · {RECIPES[r.recipe].label}
                 </p>

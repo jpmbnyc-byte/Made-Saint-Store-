@@ -4,7 +4,7 @@
  * is `public` (static hosting) still serves every page instead of platform 404s.
  */
 import { spawnSync } from "node:child_process";
-import { cp, mkdir, readdir, rename, rm, stat } from "node:fs/promises";
+import { cp, mkdir, readFile, readdir, rename, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const root = process.cwd();
@@ -29,6 +29,7 @@ async function cleanSnapshot() {
     await rm(path.join(publicDir, name), { force: true });
   }
   await rm(path.join(publicDir, "_next"), { recursive: true, force: true });
+  await rm(path.join(publicDir, "ms-static"), { recursive: true, force: true });
   for (const route of ["shop", "launch", "studio", "brand", "wardrobe"]) {
     const dir = path.join(publicDir, route);
     if (!(await exists(dir))) continue;
@@ -40,6 +41,21 @@ async function cleanSnapshot() {
       await rm(path.join(dir, e.name, "index.html"), { force: true });
       await rm(path.join(dir, e.name, "index.txt"), { force: true });
     }
+  }
+}
+
+async function rewriteNextPrefix(dir) {
+  const entries = await readdir(dir, { withFileTypes: true });
+  for (const e of entries) {
+    const p = path.join(dir, e.name);
+    if (e.isDirectory()) {
+      await rewriteNextPrefix(p);
+      continue;
+    }
+    if (!/\.(html|txt|js|css|json|map)$/.test(e.name)) continue;
+    const buf = await readFile(p, "utf8");
+    if (!buf.includes("/_next/")) continue;
+    await writeFile(p, buf.replaceAll("/_next/", "/ms-static/"));
   }
 }
 
@@ -92,7 +108,14 @@ try {
     exitCode = 1;
   } else {
     await copyHtmlTree(outDir, publicDir);
-    console.log("Copied prerendered HTML into public/");
+  const nextDir = path.join(publicDir, "_next");
+  const staticDir = path.join(publicDir, "ms-static");
+  if (await exists(nextDir)) {
+    await rm(staticDir, { recursive: true, force: true });
+    await rename(nextDir, staticDir);
+  }
+  await rewriteNextPrefix(publicDir);
+  console.log("Copied prerendered HTML into public/ (assets at /ms-static)");
   }
 } finally {
   if (movedApi && (await exists(apiBak))) {

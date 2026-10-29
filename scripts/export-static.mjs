@@ -30,7 +30,7 @@ async function cleanSnapshot() {
   }
   await rm(path.join(publicDir, "_next"), { recursive: true, force: true });
   await rm(path.join(publicDir, "ms-static"), { recursive: true, force: true });
-  for (const route of ["shop", "launch", "studio", "brand", "wardrobe"]) {
+  for (const route of ["shop", "launch", "studio", "brand", "wardrobe", "admin"]) {
     const dir = path.join(publicDir, route);
     if (!(await exists(dir))) continue;
     await rm(path.join(dir, "index.html"), { force: true });

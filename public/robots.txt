@@ -5,6 +5,7 @@ Disallow: /launch
 Disallow: /brand
 Disallow: /package
 Disallow: /wardrobe/study
+Disallow: /admin
 Disallow: /api
 
 Host: https://madesaint.store

@@ -14,6 +14,7 @@ Public origin: [madesaint.store](https://madesaint.store). Point the Namecheap D
 | `/studio` | Collection Studio |
 | `/brand` | M side mark: midfoot placement (9060 rules), tonal only, spec, colorways, vector |
 | `/package` | MS-TM01 Trail Mule technical package |
+| `/admin/visual-atelier` | Internal image pipeline. Plans batches, calls OpenAI only when `OPENAI_API_KEY` is set, and holds every frame for approval. Not linked from the shop. |
 
 ## Pre-order shop (`/shop`)
 
@@ -59,6 +60,16 @@ If Output Directory is left as `public`, Vercel serves only static files. This r
 Propagation is usually a few minutes; SSL issues until both DNS and the Vercel domain are in place.
 
 The JSON store suits one long-running server. Move it to a database before deploying to serverless hosting, where the filesystem does not persist.
+
+## Visual Atelier (`/admin/visual-atelier`)
+
+The atelier plans five-view sets from the product catalog, queues one job per image, and writes masters under `data/atelier` (gitignored). It calls `POST https://api.openai.com/v1/images/edits` with `gpt-image-2.5-sunburst` when a product has a reference, and `/images/generations` when it does not. Parameters are `quality: high`, `background: opaque`, `output_format: png`, `n: 1`. `input_fidelity` is omitted.
+
+Set `OPENAI_API_KEY` on the server. Without it, a batch is refused and no file is invented. Dollar estimates are withheld because OpenAI does not publish a fixed output-token count for this model; actual cost is computed from the response `usage` at $8 / $5 / $30 per million image-input, text-input, and image-output tokens. Set `ATELIER_SPEND_CEILING_USD` or a ceiling in the batch form to pause after recorded spend.
+
+A generated image lands in `quality_review`. Approve, reject, or requeue it in the atelier. Publish copies a web derivative to `public/atelier` and adds it beside the existing product views. It does not replace a locked overhead. In production, set `ADMIN_TOKEN`. A long batch should be drained with `npm run atelier:work`, because a single web request only runs one job.
+
+The provider does not guarantee that a model or a garment stays identical across frames. Automated checks flag size, missing references, and an unverified material. They do not certify construction.
 
 ## Launch plan (`/launch`)
 

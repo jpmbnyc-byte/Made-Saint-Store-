@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { ChevronLeft } from "lucide-react";
 import { CAMPAIGN, PRODUCTS, SIZES, campaignStatus, fmtDate, productById, shipWindow, statusLine } from "@/lib/business";
 import { viewsFor } from "@/lib/catalog";
+import { withPublished } from "@/lib/atelier/publish";
 import { stripeEnabled } from "@/lib/stripe";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
 import { ProductGallery } from "@/components/shop/gallery";
@@ -26,7 +27,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   const { id } = await params;
   const product = productById(id);
   if (!product) notFound();
-  const views = viewsFor(product);
+  const views = await withPublished(product.id, viewsFor(product));
   const siblings = PRODUCTS.filter((p) => p.launch === product.launch && p.id !== product.id);
   const closed = campaignStatus() === "closed";
 

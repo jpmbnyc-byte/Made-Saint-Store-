@@ -1,7 +1,7 @@
 import { PRODUCTS, type Product } from "@/lib/business";
 
 /** Approved store views. Overhead is the placement lock for the wave on both quarters. */
-export type ViewId = "product" | "threequarter" | "reverse" | "detail";
+export type ViewId = "product" | "threequarter" | "reverse" | "detail" | "hero" | "study";
 
 export type CatalogView = {
   id: ViewId;

@@ -1,4 +1,4 @@
-import catalog from "@/data/mees-catalog.json";
+import catalog from "@/data/mees-catalog.json" with { type: "json" };
 import { chroma, deltaE, hexToLab, mix, normalizeHex, withLightness } from "@/lib/color";
 import { storyById, type Story } from "@/lib/stories";
 

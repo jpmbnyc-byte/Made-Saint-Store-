@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { ConfirmedClient } from "./client";
 
-export const metadata: Metadata = { title: "MADE SAiNT · Reservation confirmed" };
+export const metadata: Metadata = { title: "Reservation confirmed" };
 
 export default function Confirmed() {
   return (

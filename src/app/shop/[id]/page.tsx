@@ -16,7 +16,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const p = productById((await params).id);
-  return { title: p ? `MADE SAiNT · ${p.name}` : "MADE SAiNT" };
+  return { title: p ? p.name : "The Founding Edition" };
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {

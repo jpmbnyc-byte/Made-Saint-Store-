@@ -9,7 +9,7 @@ import { CancelledBanner, LiveProgress, LiveWaitlistCount } from "@/components/s
 import { WaitlistForm } from "@/components/shop/waitlist";
 
 export const metadata: Metadata = {
-  title: "MADE SAiNT · The Founding Edition",
+  title: "The Founding Edition",
   description: "Three runners, made to order in Portugal. Numbered, reserved before they are made.",
 };
 

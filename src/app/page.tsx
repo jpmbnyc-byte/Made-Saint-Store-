@@ -121,6 +121,38 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="line" className="scroll-mt-20 border-t border-[#1c1a17]/10">
+        <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-12 md:py-24">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-xl">
+              <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">The 2027 line</p>
+              <h2 className="mt-4 font-serif text-[46px] leading-[0.92] md:text-[68px]">
+                Seventy-five styles.
+                <br />
+                <em>Proposed, not checked out.</em>
+              </h2>
+            </div>
+            <Link href="/line" className="bg-[#1c1a17] px-6 py-4 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase">
+              Open the line
+            </Link>
+          </div>
+          <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3">
+            {[
+              ["/line/f23.webp", "Denim-trim duffel in butter yellow", "/line/r067"],
+              ["/line/f12.webp", "Suede lace mule", "/line/n015"],
+              ["/line/f06.webp", "Shirt-and-tie jersey", "/line/r010"],
+              ["/line/f33.webp", "Grouped-stripe suit on a course", "/line/r031"],
+              ["/line/f01.webp", "Arch script cap", "/line/r043"],
+              ["/line/f47.webp", "Wordmark neck under a sage jacket", "/line/n014"],
+            ].map(([src, alt, href]) => (
+              <Link key={src} href={href} className="block bg-[#f1eee8]">
+                <Image src={src} alt={alt} width={1024} height={1280} className="h-auto w-full" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="wardrobe" data-theme="dark" className="scroll-mt-20 bg-[#1c1a17] text-[#f6f4ef]">
         <div className="mx-auto grid min-h-svh max-w-[1440px] items-center gap-10 px-5 py-16 md:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] md:gap-14 md:px-12 md:py-20">
           <div>
@@ -145,12 +177,12 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <Link href="/wardrobe" className="block bg-[#f1eee8]">
+          <Link href="/line/r031" className="block bg-[#f1eee8]">
             <Image
-              src="/wardrobe/denim-pastel-knit.webp"
-              alt="MADE SAiNT washed denim and knit, three color stories"
-              width={1200}
-              height={900}
+              src="/line/f32.webp"
+              alt="Grouped-stripe jacket and trouser, photographed on a course"
+              width={1536}
+              height={1024}
               className="h-auto w-full"
             />
           </Link>

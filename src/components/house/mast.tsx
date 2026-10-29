@@ -24,6 +24,9 @@ export function Mast() {
           <Link href="#edition" className="hover:text-[#1c1a17]">
             Edition
           </Link>
+          <Link href="/line" className="hover:text-[#1c1a17]">
+            Line
+          </Link>
           <Link href="#wardrobe" className="hover:text-[#1c1a17]">
             Private
           </Link>

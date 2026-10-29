@@ -4,9 +4,10 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ChevronLeft } from "lucide-react";
 import { CAMPAIGN, PRODUCTS, SIZES, campaignStatus, fmtDate, productById, shipWindow, statusLine } from "@/lib/business";
+import { viewsFor } from "@/lib/catalog";
 import { stripeEnabled } from "@/lib/stripe";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
-import { LiveProgress } from "@/components/shop/live";
+import { ProductGallery } from "@/components/shop/gallery";
 import { ReserveForm } from "@/components/shop/reserve";
 import { WaitlistForm } from "@/components/shop/waitlist";
 
@@ -19,102 +20,122 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return { title: p ? p.name : "The Founding Edition" };
 }
 
+const short = (name: string) => name.replace("Runner, ", "");
+
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const product = productById(id);
   if (!product) notFound();
-  const others = PRODUCTS.filter((p) => p.launch && p.id !== product.id);
+  const views = viewsFor(product);
+  const siblings = PRODUCTS.filter((p) => p.launch === product.launch && p.id !== product.id);
+  const closed = campaignStatus() === "closed";
 
   return (
     <div className="min-h-screen bg-[#f6f4ef] text-[#1c1a17]">
       <ShopHeader status={statusLine()} />
-      <main className="mx-auto max-w-[1320px] px-5 py-6 md:px-8">
-        <Link href="/shop#edition" className="inline-flex items-center gap-1 text-[11px] tracking-[0.16em] text-[#1c1a17]/60 uppercase hover:text-[#1c1a17]">
-          <ChevronLeft className="size-3.5" /> The Founding Edition
-        </Link>
+      <main className="mx-auto max-w-[1440px] px-0 py-0 md:px-8 md:py-8">
+        <div className="px-5 pt-5 md:px-0 md:pt-0">
+          <Link href="/shop#edition" className="inline-flex items-center gap-1 text-[11px] tracking-[0.16em] text-[#1c1a17]/60 uppercase hover:text-[#1c1a17]">
+            <ChevronLeft className="size-3.5" /> The Founding Edition
+          </Link>
+        </div>
 
-        <div className="mt-6 grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
-          <div className="relative aspect-[4/5] overflow-hidden bg-[#ebebeb] lg:sticky lg:top-32 lg:self-start">
-            <Image src={product.image} alt={`MADE SAiNT ${product.name}, top view`} fill priority sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover" />
-          </div>
+        <div className="mt-4 grid items-start gap-8 lg:mt-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)] lg:gap-14">
+          <ProductGallery views={views} />
 
-          <div className="pb-10">
-            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/60 uppercase">The Runner · Edition 001</p>
-            <h1 className="mt-3 font-serif text-5xl leading-none md:text-6xl">{product.name.replace("Runner, ", "")}</h1>
-            <p className="mt-3 text-[15px] text-[#1c1a17]/70">{product.line}</p>
-            <p className="mt-6 text-2xl tabular-nums">${product.usd}</p>
+          <div className="px-5 pb-12 lg:sticky lg:top-28 lg:self-start lg:px-0 lg:pb-0">
+            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">The Runner · Edition 001</p>
+            <h1 className="mt-3 font-serif text-4xl leading-none md:text-5xl">{short(product.name)}</h1>
+            <p className="mt-4 text-lg tabular-nums">${product.usd}</p>
+            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{product.line}. Made to order in Felgueiras.</p>
 
-            {product.launch ? (
-              <>
-                <div className="mt-6">
-                  <LiveProgress productId={product.id} of={CAMPAIGN.threshold} />
+            <div className="mt-8">
+              <p className="text-[11px] tracking-[0.16em] uppercase">Colorway</p>
+              <div className="mt-3 flex gap-3 overflow-x-auto">
+                <Link href={`/shop/${product.id}`} aria-current="page" className="w-16 shrink-0 ring-1 ring-[#1c1a17]">
+                  <span className="relative block aspect-square bg-[#f1eee8]">
+                    <Image src={product.image} alt="" fill sizes="64px" className="object-contain" />
+                  </span>
+                  <span className="mt-1 block text-center text-[10px] tracking-[0.08em] uppercase">{short(product.name)}</span>
+                </Link>
+                {siblings.map((p) => (
+                  <Link key={p.id} href={`/shop/${p.id}`} className="w-16 shrink-0 opacity-80 hover:opacity-100">
+                    <span className="relative block aspect-square bg-[#f1eee8]">
+                      <Image src={p.image} alt="" fill sizes="64px" className="object-contain" />
+                    </span>
+                    <span className="mt-1 block text-center text-[10px] tracking-[0.08em] uppercase">{short(p.name)}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8">
+              {product.launch ? (
+                <ReserveForm
+                  productId={product.id}
+                  priceUsd={product.usd}
+                  payments={stripeEnabled() ? "stripe" : "mock"}
+                  closed={closed}
+                  shipWindow={shipWindow()}
+                  sizes={SIZES}
+                />
+              ) : (
+                <div className="border border-[#1c1a17]/15 p-5">
+                  <p className="text-sm">In development for Edition 002. Join the list to be offered the run before it opens.</p>
+                  <WaitlistForm productId={product.id} />
                 </div>
-                <div className="mt-8">
-                  <ReserveForm
-                    productId={product.id}
-                    priceUsd={product.usd}
-                    payments={stripeEnabled() ? "stripe" : "mock"}
-                    closed={campaignStatus() === "closed"}
-                    shipWindow={shipWindow()}
-                    sizes={SIZES}
-                  />
-                </div>
-              </>
-            ) : (
-              <div className="mt-8 border border-[#1c1a17]/15 p-5">
-                <p className="text-sm">In development for Edition 002. Join the list to be offered the run before it opens.</p>
-                <WaitlistForm productId={product.id} />
-              </div>
-            )}
+              )}
+            </div>
 
-            <div className="mt-12 space-y-8 border-t border-[#1c1a17]/15 pt-8">
-              <div>
-                <h2 className="text-[11px] tracking-[0.16em] uppercase">Materials</h2>
-                <ul className="mt-3 space-y-1.5 text-sm text-[#1c1a17]/75">
-                  {product.materials.map((m) => (
-                    <li key={m} className="flex gap-3">
-                      <span className="mt-2 h-px w-3 shrink-0 bg-[#1c1a17]/40" />
-                      {m}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h2 className="text-[11px] tracking-[0.16em] uppercase">Made to order</h2>
-                <p className="mt-3 text-sm leading-relaxed text-[#1c1a17]/75">
-                  Reservations close {fmtDate(CAMPAIGN.closes)}. If {CAMPAIGN.threshold} pairs are reserved, the run goes to our
-                  workshop in Felgueiras, Portugal, and pairs ship {shipWindow()}. If not, your payment is refunded in full within five
-                  business days.
+            <div className="mt-10 divide-y divide-[#1c1a17]/12 border-y border-[#1c1a17]/12">
+              <details open className="group py-4">
+                <summary className="flex cursor-pointer list-none items-center justify-between text-[13px] tracking-[0.14em] uppercase">
+                  Product details
+                  <span className="text-lg leading-none text-[#1c1a17]/40 group-open:rotate-45">+</span>
+                </summary>
+                <div className="mt-4 space-y-3 text-sm leading-relaxed text-[#1c1a17]/75">
+                  <p>The three-peak wave is molded on the mesh of both quarters, lateral and medial, and matches the overhead photograph.</p>
+                  <ul className="space-y-1.5">
+                    {product.materials.map((m) => (
+                      <li key={m}>{m}</li>
+                    ))}
+                  </ul>
+                  <p>Tongue wordmark printed MADE SAiNT, lowercase i. Calf lined. Nub-lug sole.</p>
+                  <p className="text-[12px] tracking-[0.08em] text-[#1c1a17]/50 uppercase">Code {product.id}</p>
+                </div>
+              </details>
+              <details className="group py-4">
+                <summary className="flex cursor-pointer list-none items-center justify-between text-[13px] tracking-[0.14em] uppercase">
+                  Made to order
+                  <span className="text-lg leading-none text-[#1c1a17]/40 group-open:rotate-45">+</span>
+                </summary>
+                <p className="mt-4 text-sm leading-relaxed text-[#1c1a17]/75">
+                  {product.launch
+                    ? `Reservations close ${fmtDate(CAMPAIGN.closes)}. If ${CAMPAIGN.threshold} pairs are reserved, the run is cut in Felgueiras and ships ${shipWindow()}. If not, the reservation is refunded in full within five business days.`
+                    : "This colorway is not open for reservation. The list is offered the run before it opens."}
                 </p>
-              </div>
-              <div>
-                <h2 className="text-[11px] tracking-[0.16em] uppercase">In the box</h2>
-                <p className="mt-3 text-sm leading-relaxed text-[#1c1a17]/75">
-                  Rigid box, tissue, cotton dust bag, a spare pair of laces, and a card bearing your founding number.
+              </details>
+              <details className="group py-4">
+                <summary className="flex cursor-pointer list-none items-center justify-between text-[13px] tracking-[0.14em] uppercase">
+                  Care
+                  <span className="text-lg leading-none text-[#1c1a17]/40 group-open:rotate-45">+</span>
+                </summary>
+                <p className="mt-4 text-sm leading-relaxed text-[#1c1a17]/75">
+                  Brush suede and woven leather with a soft crepe brush. Treat once before the first wear. Store in the dust bag, away from direct sun. Size exchanges are free within 30 days of delivery.
                 </p>
-              </div>
+              </details>
+              <details className="group py-4">
+                <summary className="flex cursor-pointer list-none items-center justify-between text-[13px] tracking-[0.14em] uppercase">
+                  Shipping and returns
+                  <span className="text-lg leading-none text-[#1c1a17]/40 group-open:rotate-45">+</span>
+                </summary>
+                <p className="mt-4 text-sm leading-relaxed text-[#1c1a17]/75">
+                  Free insured shipping in the US. In the box: rigid box, tissue, cotton dust bag, spare laces, and a card with the founding number. Cancel for a full refund any time before {fmtDate(CAMPAIGN.closes)}.
+                </p>
+              </details>
             </div>
           </div>
         </div>
-
-        {others.length > 0 && (
-          <section className="border-t border-[#1c1a17]/15 py-14">
-            <h2 className="font-serif text-3xl">Also in the edition</h2>
-            <div className="mt-6 grid gap-6 sm:grid-cols-2">
-              {others.map((p) => (
-                <Link key={p.id} href={`/shop/${p.id}`} className="group grid grid-cols-[120px_1fr] items-center gap-5">
-                  <div className="relative aspect-[4/5] overflow-hidden bg-[#ebebeb]">
-                    <Image src={p.image} alt={p.name} fill sizes="120px" className="object-cover" />
-                  </div>
-                  <div>
-                    <p className="font-serif text-2xl group-hover:underline">{p.name.replace("Runner, ", "")}</p>
-                    <p className="mt-1 text-sm text-[#1c1a17]/60">{p.line} · ${p.usd}</p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
       </main>
       <ShopFooter />
     </div>

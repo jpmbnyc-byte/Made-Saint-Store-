@@ -45,13 +45,14 @@ In **Vercel → Project → Settings → General → Build & Development Setting
 
 | Field | Value |
 | --- | --- |
-| Framework Preset | Other |
+| Framework Preset | Next.js |
 | Root Directory | `.` (repo root) |
-| Build Command | `npm run export:static` |
-| Output Directory | `public` |
+| Build Command | `npm run build` |
+| Output Directory | *empty* (not `public`) |
+| Node.js Version | 24.x |
 | Install Command | `npm ci` |
 
-`vercel.json` matches those values. `export:static` prerenders every App Router page into `public/` (including `index.html`), which is what Vercel serves. If the dashboard Output Directory is `public` and the build is skipped, the committed HTML in `public/` still serves `/`, `/shop`, `/wardrobe`, and the rest instead of a platform 404.
+If Output Directory is left as `public`, Vercel serves only static files. This repo also commits prerendered `public/index.html` (and `/shop`, `/wardrobe`, …) so that setting still shows the site instead of a platform 404. Clear it so App Router and `/api/preorders` run on Vercel. `vercel.json` pins Framework to Next.js and Node 24 (`engines` in `package.json`). If a deploy is Ready in ~30 seconds, it did not compile Next.js — click **Redeploy** on the latest `main` commit.
 
 Propagation is usually a few minutes; SSL issues until both DNS and the Vercel domain are in place.
 

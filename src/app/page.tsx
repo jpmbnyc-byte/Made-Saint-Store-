@@ -163,6 +163,36 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="border-t border-[#1c1a17]/10 bg-[#1c1a17] text-[#f6f4ef]">
+        <div className="mx-auto grid max-w-[1440px] items-center gap-10 px-5 py-16 md:grid-cols-2 md:px-10 md:py-20">
+          <div>
+            <p className="text-[11px] tracking-[0.22em] text-[#f6f4ef]/55 uppercase">The Private Wardrobe</p>
+            <h2 className="mt-4 font-serif text-4xl leading-[1.05] md:text-6xl">
+              Same silhouette.
+              <br />
+              <em>Your proportions.</em>
+            </h2>
+            <p className="mt-5 max-w-md text-[15px] leading-relaxed text-[#f6f4ef]/75">
+              Discover a piece, compose a look, or commission the year. Athletes and other clients with exceptional proportions are fitted inside this wardrobe, not sent to another one.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/wardrobe#discover" className="border border-[#f6f4ef]/40 px-5 py-3 text-[11px] tracking-[0.16em] uppercase hover:bg-[#f6f4ef] hover:text-[#1c1a17]">
+                Discover
+              </Link>
+              <Link href="/wardrobe#compose" className="border border-[#f6f4ef]/40 px-5 py-3 text-[11px] tracking-[0.16em] uppercase hover:bg-[#f6f4ef] hover:text-[#1c1a17]">
+                Compose
+              </Link>
+              <Link href="/wardrobe#commission" className="bg-[#f6f4ef] px-5 py-3 text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">
+                Commission
+              </Link>
+            </div>
+          </div>
+          <Link href="/wardrobe" className="block bg-[#f1eee8]">
+            <Image src="/wardrobe/arrival-art-suit-blue.webp" alt="MADE SAiNT Arrival jacket" width={1200} height={1500} className="h-auto w-full" />
+          </Link>
+        </div>
+      </section>
+
       <ShopFooter />
     </div>
   );

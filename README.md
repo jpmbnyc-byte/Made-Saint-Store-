@@ -1,17 +1,19 @@
 # MADE SAiNT
 
-A pre-order footwear business made with MEES (Felgueiras, Portugal): the storefront, the launch plan, the Collection Studio, and the MS-TM01 Trail Mule technical package.
+A pre-order footwear house in Felgueiras, Portugal, and a private wardrobe built on the same silhouettes. A client can buy one piece, compose a look, or commission the year. Exceptional proportions change the manufacturing pathway, not the design.
 
 Public origin: [madesaint.store](https://madesaint.store). Point the Namecheap DNS at Vercel (see Domain below), then set `SITE_URL=https://madesaint.store` in the Vercel project.
 
 | Route | What it is |
 | --- | --- |
-| `/wardrobe` | The Private Wardrobe: $20,000 founding collection (six patterns, cost envelope, looks) plus the visual register |
+| `/` | Client homepage: Founding Edition, then the private wardrobe |
 | `/shop` | Founding Edition pre-order storefront |
+| `/wardrobe` | Private wardrobe. Discover, compose, and commission. Same products; ready-to-wear, made-to-measure, or a technical review. Seasonal figures from $6,500 and annual figures from $20,000 are preliminary targets, not checkout prices. Only published runner prices are added into a look. |
+| `/wardrobe/study` | Internal cost sheet. Not linked, and disallowed in `robots.txt`. |
 | `/launch` | Pricing, unit economics, pre-order tracker, cash flow, size run, marketing plan, reservations |
 | `/studio` | Collection Studio |
 | `/brand` | M side mark: midfoot placement (9060 rules), tonal only, spec, colorways, vector |
-| `/` | MS-TM01 Trail Mule technical package |
+| `/package` | MS-TM01 Trail Mule technical package |
 
 ## Pre-order shop (`/shop`)
 

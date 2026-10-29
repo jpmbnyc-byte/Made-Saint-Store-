@@ -15,7 +15,10 @@
 
 # next.js
 /.next/
+/.next-export/
 /out/
+src/app/_api.static-bak
+src/app/_icon.static-bak.tsx
 
 # production
 /build

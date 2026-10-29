@@ -1,13 +1,12 @@
+import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import { CAMPAIGN, PRODUCTS, fmtDate, shipWindow, statusLine } from "@/lib/business";
-import { listReservations, tally } from "@/lib/preorders";
-import { ShopFooter, ShopHeader, Progress } from "@/components/shop/chrome";
+import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
+import { CancelledBanner, LiveProgress, LiveWaitlistCount } from "@/components/shop/live";
 import { WaitlistForm } from "@/components/shop/waitlist";
-
-export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "MADE SAiNT · The Founding Edition",
@@ -30,9 +29,7 @@ const FAQ = [
   { q: "Caring for suede and woven leather", a: "Brush with a soft crepe or nylon brush after wear. Treat once with a suede protector before the first wear. Store in the dust bag, away from direct sun." },
 ];
 
-export default async function ShopPage({ searchParams }: { searchParams: Promise<{ cancelled?: string }> }) {
-  const { cancelled } = await searchParams;
-  const t = tally(await listReservations());
+export default async function ShopPage() {
   const launch = PRODUCTS.filter((p) => p.launch);
   const next = PRODUCTS.filter((p) => !p.launch);
   const hero = launch[0];
@@ -41,13 +38,9 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
     <div className="min-h-screen bg-[#f6f4ef] text-[#1c1a17]">
       <ShopHeader status={statusLine()} />
 
-      {cancelled && (
-        <div className="mx-auto max-w-[1320px] px-5 pt-6 md:px-8">
-          <p className="border border-[#1c1a17]/15 bg-white/60 px-4 py-3 text-sm">
-            Checkout was cancelled and nothing was charged. Your size is not held until payment is complete.
-          </p>
-        </div>
-      )}
+      <Suspense fallback={null}>
+        <CancelledBanner />
+      </Suspense>
 
       <section className="mx-auto grid max-w-[1320px] items-center gap-10 px-5 py-10 md:grid-cols-[1fr_1.05fr] md:px-8 md:py-16">
         <div className="order-2 md:order-1">
@@ -98,7 +91,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
               </div>
               <p className="mt-1 text-[13px] text-[#1c1a17]/60">The Runner · {p.line}</p>
               <div className="mt-4">
-                <Progress n={t.pairs[p.id] ?? 0} of={CAMPAIGN.threshold} />
+                <LiveProgress productId={p.id} of={CAMPAIGN.threshold} />
               </div>
             </Link>
           ))}
@@ -174,7 +167,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
                 </div>
                 <div className="mt-3 flex items-baseline justify-between">
                   <h3 className="font-serif text-xl">{p.name.replace("Runner, ", "")}</h3>
-                  <p className="text-[12px] text-[#1c1a17]/55">{t.waitlist[p.id] ?? 0} on the list</p>
+                  <LiveWaitlistCount productId={p.id} />
                 </div>
                 <p className="mt-1 text-[13px] text-[#1c1a17]/60">{p.line}</p>
                 <WaitlistForm productId={p.id} />

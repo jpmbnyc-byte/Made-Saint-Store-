@@ -39,10 +39,16 @@ export function ReserveForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ productId, size, email, name }),
       });
-      const json = await res.json();
+      const text = await res.text();
+      let json: { error?: string; mode?: string; redirect?: string; id?: string } = {};
+      try {
+        json = JSON.parse(text) as typeof json;
+      } catch {
+        throw new Error("Reservations are temporarily unavailable. Write to us and we will hold your size.");
+      }
       if (!res.ok) throw new Error(json.error ?? "Something went wrong.");
-      if (json.mode === "stripe") window.location.href = json.redirect;
-      else router.push(json.redirect);
+      if (json.mode === "stripe" && json.redirect) window.location.href = json.redirect;
+      else router.push(json.redirect ?? `/shop/confirmed?r=${json.id ?? ""}&product=${productId}&size=${size}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
       setBusy(false);

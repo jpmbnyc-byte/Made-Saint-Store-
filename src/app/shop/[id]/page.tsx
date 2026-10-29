@@ -4,13 +4,15 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ChevronLeft } from "lucide-react";
 import { CAMPAIGN, PRODUCTS, SIZES, campaignStatus, fmtDate, productById, shipWindow, statusLine } from "@/lib/business";
-import { listReservations, tally } from "@/lib/preorders";
 import { stripeEnabled } from "@/lib/stripe";
-import { Progress, ShopFooter, ShopHeader } from "@/components/shop/chrome";
+import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
+import { LiveProgress } from "@/components/shop/live";
 import { ReserveForm } from "@/components/shop/reserve";
 import { WaitlistForm } from "@/components/shop/waitlist";
 
-export const dynamic = "force-dynamic";
+export function generateStaticParams() {
+  return PRODUCTS.map((p) => ({ id: p.id }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const p = productById((await params).id);
@@ -21,8 +23,6 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   const { id } = await params;
   const product = productById(id);
   if (!product) notFound();
-  const t = tally(await listReservations());
-  const reserved = t.pairs[product.id] ?? 0;
   const others = PRODUCTS.filter((p) => p.launch && p.id !== product.id);
 
   return (
@@ -47,7 +47,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             {product.launch ? (
               <>
                 <div className="mt-6">
-                  <Progress n={reserved} of={CAMPAIGN.threshold} />
+                  <LiveProgress productId={product.id} of={CAMPAIGN.threshold} />
                 </div>
                 <div className="mt-8">
                   <ReserveForm

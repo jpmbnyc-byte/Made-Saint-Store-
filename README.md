@@ -45,13 +45,13 @@ In **Vercel → Project → Settings → General → Build & Development Setting
 
 | Field | Value |
 | --- | --- |
-| Framework Preset | Next.js |
+| Framework Preset | Other |
 | Root Directory | `.` (repo root) |
-| Build Command | `npm run build` |
-| Output Directory | *empty* (not `public`) |
+| Build Command | `npm run export:static` |
+| Output Directory | `public` |
 | Install Command | `npm ci` |
 
-If Output Directory is `public`, Vercel serves the static assets and every App Router page 404s. That is the current production failure mode. `vercel.json` in this repo pins the Next.js preset so a new deploy on `main` should rebuild correctly.
+`vercel.json` matches those values. `export:static` prerenders every App Router page into `public/` (including `index.html`), which is what Vercel serves. If the dashboard Output Directory is `public` and the build is skipped, the committed HTML in `public/` still serves `/`, `/shop`, `/wardrobe`, and the rest instead of a platform 404.
 
 Propagation is usually a few minutes; SSL issues until both DNS and the Vercel domain are in place.
 

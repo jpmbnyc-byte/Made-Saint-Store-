@@ -18,7 +18,13 @@ export function WaitlistForm({ productId }: { productId: string }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ kind: "waitlist", productId, email }),
       });
-      const json = await res.json();
+      const text = await res.text();
+      let json: { error?: string } = {};
+      try {
+        json = JSON.parse(text) as typeof json;
+      } catch {
+        throw new Error("The list is temporarily unavailable. Try again in a moment.");
+      }
       if (!res.ok) throw new Error(json.error ?? "Something went wrong.");
       setState("done");
     } catch (err) {

@@ -8,6 +8,7 @@ import { statusLine } from "@/lib/business";
 export const metadata: Metadata = {
   title: "MADE SAiNT · The Private Wardrobe",
   description: "Three annual collections. One personal fit. A wardrobe that evolves with you.",
+  robots: { index: false, follow: false },
 };
 
 export default function WardrobePage() {

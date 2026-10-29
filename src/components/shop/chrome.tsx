@@ -6,18 +6,16 @@ export function ShopHeader({ status }: { status?: string }) {
       {status && (
         <div className="bg-[#1c1a17] px-4 py-2 text-center text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase">{status}</div>
       )}
-      <div className="mx-auto grid max-w-[1320px] grid-cols-[1fr_auto_1fr] items-center gap-4 px-5 py-4 md:px-8">
-        <nav className="flex gap-5 text-[11px] tracking-[0.16em] text-[#1c1a17]/70 uppercase">
+      <div className="mx-auto grid max-w-[1320px] grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 py-4 sm:gap-4 sm:px-5 md:px-8">
+        <nav className="flex gap-3 text-[10px] tracking-[0.14em] text-[#1c1a17]/70 uppercase sm:gap-5 sm:text-[11px] sm:tracking-[0.16em]">
           <Link href="/shop#edition" className="whitespace-nowrap hover:text-[#1c1a17]"><span className="hidden sm:inline">Founding </span>Edition</Link>
-          <Link href="/shop#how" className="hidden hover:text-[#1c1a17] sm:inline">How it works</Link>
-          <Link href="/wardrobe" className="hidden hover:text-[#1c1a17] md:inline">Wardrobe</Link>
+          <Link href="/#atelier" className="hover:text-[#1c1a17]">Atelier</Link>
         </nav>
-        <Link href="/shop" className="font-serif text-[28px] leading-none tracking-[0.02em] md:text-[34px]">
+        <Link href="/" className="whitespace-nowrap font-serif text-[22px] leading-none tracking-[0.02em] sm:text-[28px] md:text-[34px]">
           MADE SAiNT
         </Link>
-        <nav className="flex justify-end gap-5 text-[11px] tracking-[0.16em] text-[#1c1a17]/70 uppercase">
-          <Link href="/shop#list" className="whitespace-nowrap hover:text-[#1c1a17]">The List</Link>
-          <Link href="/shop#faq" className="hidden hover:text-[#1c1a17] sm:inline">Care &amp; FAQ</Link>
+        <nav className="flex justify-end gap-3 text-[10px] tracking-[0.14em] text-[#1c1a17]/70 uppercase sm:gap-5 sm:text-[11px] sm:tracking-[0.16em]">
+          <Link href="/shop#edition" className="whitespace-nowrap hover:text-[#1c1a17]">Reserve</Link>
         </nav>
       </div>
     </header>
@@ -42,10 +40,10 @@ export function ShopFooter() {
         </div>
         <div className="space-y-2 text-sm text-[#1c1a17]/70">
           <p className="text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">House</p>
-          <Link href="/wardrobe" className="block hover:text-[#1c1a17]">The Private Wardrobe</Link>
-          <Link href="/launch" className="block hover:text-[#1c1a17]">Launch plan</Link>
-          <Link href="/studio" className="block hover:text-[#1c1a17]">Collection Studio</Link>
-          <Link href="/" className="block hover:text-[#1c1a17]">Trail Mule technical package</Link>
+          <Link href="/shop#edition" className="block hover:text-[#1c1a17]">The Founding Edition</Link>
+          <Link href="/#atelier" className="block hover:text-[#1c1a17]">The atelier</Link>
+          <Link href="/shop#how" className="block hover:text-[#1c1a17]">How a pair is made</Link>
+          <Link href="/shop#faq" className="block hover:text-[#1c1a17]">Care and questions</Link>
         </div>
       </div>
     </footer>

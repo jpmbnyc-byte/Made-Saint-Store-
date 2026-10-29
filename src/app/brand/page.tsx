@@ -9,6 +9,7 @@ import { MARK_PLACEMENTS, tonalMark, type MarkPlacementId } from "@/components/f
 export const metadata: Metadata = {
   title: "MADE SAiNT · wave side mark",
   description: "Placement study and specification for the molded TPU wave on both quarter panels of the runner.",
+  robots: { index: false, follow: false },
 };
 
 const PAPER = "#f4f0e6";

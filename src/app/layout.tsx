@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s · MADE SAiNT",
   },
   description:
-    "Founding Edition runners, made to order in Felgueiras, Portugal. The Private Wardrobe and the MS-TM01 Trail Mule.",
+    "Runners made to order in Felgueiras, Portugal. The Founding Edition is numbered and reserved before a pair is cut.",
   alternates: { canonical: "/" },
 };
 

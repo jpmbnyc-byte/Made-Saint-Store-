@@ -6,7 +6,7 @@ Public origin: [madesaint.store](https://madesaint.store). Point the Namecheap D
 
 | Route | What it is |
 | --- | --- |
-| `/` | Client homepage: Founding Edition, then the private wardrobe |
+| `/` | Branded opening: a full-frame editorial, then the Founding Edition and the private wardrobe |
 | `/shop` | Founding Edition pre-order storefront |
 | `/wardrobe` | Private wardrobe. Discover, compose, and commission. Same products; ready-to-wear, made-to-measure, or a technical review. Seasonal figures from $6,500 and annual figures from $20,000 are preliminary targets, not checkout prices. Only published runner prices are added into a look. |
 | `/wardrobe/study` | Internal cost sheet. Not linked, and disallowed in `robots.txt`. |

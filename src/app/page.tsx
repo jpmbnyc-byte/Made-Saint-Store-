@@ -1,101 +1,165 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight } from "lucide-react";
 import { PRODUCTS, shipWindow } from "@/lib/business";
-import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
+import { ShopFooter } from "@/components/shop/chrome";
+import { Mast } from "@/components/house/mast";
 
 export const metadata: Metadata = {
   title: { absolute: "MADE SAiNT" },
   description:
-    "Runners made to order in Felgueiras, Portugal. The Founding Edition is numbered and reserved before a pair is cut.",
+    "Made for the individual. A founding edition of runners, and a private wardrobe cut to the client, made to order in Felgueiras.",
   openGraph: {
     title: "MADE SAiNT",
-    description: "Made to order in Felgueiras. Three runners, numbered, reserved before they are cut.",
+    description: "Made for the individual. Footwear and a private wardrobe, cut to order in Felgueiras.",
     images: [{ url: "/hero/look1-runner-hero.webp", width: 1280, height: 720, alt: "MADE SAiNT Runner, Chalk" }],
   },
 };
 
+const POSTER = ["ms-runner-chalk-navy", "ms-runner-navy-intrecciato", "ms-runner-washed-denim"] as const;
+
 const short = (name: string) => name.replace("Runner, ", "");
 
 export default function Home() {
+  const byId = new Map(PRODUCTS.map((p) => [p.id, p]));
+  const poster = POSTER.map((id) => byId.get(id)).filter((p) => p != null);
   const launch = PRODUCTS.filter((p) => p.launch);
-  const next = PRODUCTS.filter((p) => !p.launch);
-  const chalk = launch.find((p) => p.id === "ms-runner-chalk-navy") ?? launch[0];
+  const from = Math.min(...launch.map((p) => p.usd));
 
   return (
-    <div className="min-h-screen bg-[#f6f4ef] text-[#1c1a17]">
-      <ShopHeader />
+    <div className="bg-[#f6f4ef] text-[#1c1a17]">
+      <Mast />
 
-      <section className="mx-auto grid max-w-[1440px] items-center gap-8 px-5 pb-4 pt-6 md:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] md:gap-12 md:px-10 md:pb-8 md:pt-10">
-        <div className="order-2 md:order-1">
-          <p className="text-[11px] tracking-[0.24em] text-[#1c1a17]/55 uppercase">Edition 001 · Felgueiras</p>
-          <h1 className="mt-4 font-serif text-[52px] leading-[0.92] tracking-[-0.02em] md:text-[86px]">
-            Made after
-            <br />
-            <em>you choose it.</em>
-          </h1>
-          <p className="mt-6 max-w-[28rem] text-[16px] leading-relaxed text-[#1c1a17]/75">
-            Three runners in woven calf, bouclé and washed denim, on our nub sole. Leather lined, numbered, and cut in Portugal
-            only once the run is reserved.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+      <section id="open" className="flex h-svh flex-col overflow-hidden">
+        <div className="grid min-h-0 flex-1 grid-cols-1 sm:grid-cols-3">
+          {poster.map((p, i) => (
             <Link
-              href="/shop#edition"
-              className="inline-flex items-center gap-3 bg-[#1c1a17] px-7 py-4 text-[11px] tracking-[0.2em] text-[#f6f4ef] uppercase transition hover:bg-[#1c1a17]/85"
+              key={p.id}
+              href={`/shop/${p.id}`}
+              className={`relative block h-full min-h-0 overflow-hidden bg-[#f3f0ea] ${i === 0 ? "" : "hidden sm:block"}`}
             >
-              Reserve a pair <ArrowRight className="size-3.5" />
-            </Link>
-            <p className="text-[12px] tracking-[0.04em] text-[#1c1a17]/55">From ${Math.min(...launch.map((p) => p.usd))} · ships {shipWindow()}</p>
-          </div>
-        </div>
-        <Link href={`/shop/${chalk.id}`} className="order-1 block bg-white md:order-2">
-          <Image
-            src="/hero/look1-runner-hero.webp"
-            alt="MADE SAiNT Runner in chalk bouclé and navy canvas"
-            width={1280}
-            height={720}
-            priority
-            className="h-auto w-full"
-          />
-        </Link>
-      </section>
-
-      <section id="edition" className="mx-auto max-w-[1440px] scroll-mt-28 px-5 py-16 md:px-10 md:py-24">
-        <div className="flex flex-wrap items-end justify-between gap-4 border-b border-[#1c1a17]/15 pb-5">
-          <div>
-            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">The Founding Edition</p>
-            <h2 className="mt-3 font-serif text-4xl md:text-5xl">Three colorways</h2>
-          </div>
-          <p className="max-w-sm text-sm leading-relaxed text-[#1c1a17]/65">
-            Open for reservation now. If a colorway is not confirmed, every reservation for it is refunded in full.
-          </p>
-        </div>
-        <div className="mt-8 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-          {launch.map((p) => (
-            <Link key={p.id} href={`/shop/${p.id}`} className="group block">
-              <div className="relative aspect-[4/5] overflow-hidden bg-white">
-                <Image
-                  src={p.image}
-                  alt={`MADE SAiNT ${p.name}`}
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition duration-700 group-hover:scale-[1.02]"
-                />
-              </div>
-              <div className="mt-4 flex items-baseline justify-between gap-3">
-                <h3 className="font-serif text-2xl">{short(p.name)}</h3>
-                <p className="text-sm tabular-nums">${p.usd}</p>
-              </div>
-              <p className="mt-1 text-[13px] text-[#1c1a17]/60">{p.line}</p>
+              <Image
+                src={p.image}
+                alt={`MADE SAiNT ${p.name}, overhead`}
+                fill
+                priority={i === 0}
+                sizes={i === 0 ? "(min-width: 640px) 34vw, 100vw" : "34vw"}
+                className="object-cover object-center"
+              />
             </Link>
           ))}
         </div>
+        <div className="bg-[#1c1a17] px-5 py-6 text-[#f6f4ef] sm:px-8 md:px-12 md:py-10">
+          <div className="mx-auto flex max-w-[1440px] flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-3xl">
+              <p className="text-[11px] tracking-[0.24em] text-[#f6f4ef]/55 uppercase">The house · Felgueiras</p>
+              <h1 className="mt-2 font-serif text-[56px] leading-[0.84] tracking-[-0.03em] sm:text-[80px] md:text-[104px]">
+                MADE
+                <br />
+                <em>SAiNT</em>
+              </h1>
+              <p className="mt-5 max-w-md text-[16px] leading-relaxed text-[#f6f4ef]/75">
+                Made for the individual. A founding edition of runners, and a private wardrobe developed around the person wearing it.
+              </p>
+            </div>
+            <div className="flex flex-col gap-6 md:items-end">
+              <div className="flex flex-wrap gap-3">
+                <Link href="#edition" className="border border-[#f6f4ef]/35 px-5 py-3 text-[11px] tracking-[0.18em] uppercase hover:bg-[#f6f4ef] hover:text-[#1c1a17]">
+                  The edition
+                </Link>
+                <Link href="#wardrobe" className="bg-[#f6f4ef] px-5 py-3 text-[11px] tracking-[0.18em] text-[#1c1a17] uppercase">
+                  The wardrobe
+                </Link>
+              </div>
+              <p className="text-[11px] tracking-[0.2em] text-[#f6f4ef]/45 uppercase">Scroll</p>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section id="atelier" className="scroll-mt-28 bg-[#1c1a17] text-[#f6f4ef]">
-        <div className="mx-auto grid max-w-[1440px] items-center gap-10 px-5 py-16 md:grid-cols-2 md:gap-16 md:px-10 md:py-24">
-          <div className="bg-[#241c19]">
+      <section id="edition" className="scroll-mt-20 border-t border-[#1c1a17]/10">
+        <div className="mx-auto grid min-h-svh max-w-[1440px] items-center gap-10 px-5 py-16 md:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] md:gap-16 md:px-12 md:py-24">
+          <div>
+            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Edition 001</p>
+            <h2 className="mt-4 font-serif text-[46px] leading-[0.92] md:text-[72px]">
+              Made after
+              <br />
+              <em>you choose it.</em>
+            </h2>
+            <p className="mt-6 max-w-md text-[16px] leading-relaxed text-[#1c1a17]/75">
+              Three runners in woven calf, bouclé and washed denim. Cut in Portugal only once the run is reserved. If a colorway is not confirmed, every reservation for it is refunded in full.
+            </p>
+            <ul className="mt-8 divide-y divide-[#1c1a17]/12 border-y border-[#1c1a17]/12">
+              {launch.map((p) => (
+                <li key={p.id}>
+                  <Link href={`/shop/${p.id}`} className="flex items-baseline justify-between gap-4 py-4">
+                    <span>
+                      <span className="block font-serif text-3xl">{short(p.name)}</span>
+                      <span className="text-[13px] text-[#1c1a17]/60">{p.line}</span>
+                    </span>
+                    <span className="text-sm tabular-nums">${p.usd}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <Link href="/shop#edition" className="bg-[#1c1a17] px-6 py-4 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase">
+                Reserve a pair
+              </Link>
+              <p className="text-[12px] text-[#1c1a17]/55">From ${from} · ships {shipWindow()}</p>
+            </div>
+          </div>
+          <Link href="/shop/ms-runner-chalk-navy" className="block bg-white">
+            <Image
+              src="/hero/look1-runner-hero.webp"
+              alt="MADE SAiNT Runner in chalk bouclé and navy canvas"
+              width={1280}
+              height={720}
+              className="h-auto w-full"
+            />
+          </Link>
+        </div>
+      </section>
+
+      <section id="wardrobe" data-theme="dark" className="scroll-mt-20 bg-[#1c1a17] text-[#f6f4ef]">
+        <div className="mx-auto grid min-h-svh max-w-[1440px] items-center gap-10 px-5 py-16 md:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] md:gap-14 md:px-12 md:py-20">
+          <div>
+            <p className="text-[11px] tracking-[0.22em] text-[#f6f4ef]/55 uppercase">The Private Wardrobe</p>
+            <h2 className="mt-4 font-serif text-[46px] leading-[0.92] md:text-[68px]">
+              Three annual
+              <br />
+              <em>collections.</em>
+            </h2>
+            <p className="mt-6 max-w-md text-[16px] leading-relaxed text-[#f6f4ef]/75">
+              One personal fit. The silhouettes stay the same whether a client buys one piece or commissions the year. Exceptional proportions change the pattern, not the design.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/wardrobe#discover" className="border border-[#f6f4ef]/35 px-5 py-3 text-[11px] tracking-[0.16em] uppercase hover:bg-[#f6f4ef] hover:text-[#1c1a17]">
+                Discover
+              </Link>
+              <Link href="/wardrobe#compose" className="border border-[#f6f4ef]/35 px-5 py-3 text-[11px] tracking-[0.16em] uppercase hover:bg-[#f6f4ef] hover:text-[#1c1a17]">
+                Compose
+              </Link>
+              <Link href="/wardrobe#commission" className="bg-[#f6f4ef] px-5 py-3 text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">
+                Commission
+              </Link>
+            </div>
+          </div>
+          <Link href="/wardrobe" className="block bg-[#f1eee8]">
+            <Image
+              src="/wardrobe/denim-pastel-knit.webp"
+              alt="MADE SAiNT washed denim and knit, three color stories"
+              width={1200}
+              height={900}
+              className="h-auto w-full"
+            />
+          </Link>
+        </div>
+      </section>
+
+      <section id="atelier" className="scroll-mt-20">
+        <div className="mx-auto grid max-w-[1440px] items-center gap-10 px-5 py-16 md:grid-cols-2 md:gap-16 md:px-12 md:py-24">
+          <div className="bg-white">
             <Image
               src="/hero/look3-runner-inverse.webp"
               alt="MADE SAiNT Runner in espresso calf suede"
@@ -105,23 +169,16 @@ export default function Home() {
             />
           </div>
           <div>
-            <p className="text-[11px] tracking-[0.22em] text-[#f6f4ef]/55 uppercase">The atelier</p>
-            <h2 className="mt-4 font-serif text-4xl leading-[1.05] md:text-6xl">
+            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">The atelier</p>
+            <h2 className="mt-4 font-serif text-[42px] leading-[0.95] md:text-[60px]">
               Felgueiras,
               <br />
               <em>northern Portugal.</em>
             </h2>
-            <div className="mt-6 max-w-md space-y-4 text-[15px] leading-relaxed text-[#f6f4ef]/75">
-              <p>
-                Each pair is cut, closed and lasted in the Felgueiras footwear cluster. Uppers are calf and woven textile. The
-                lining is calf. Edges are painted by hand.
-              </p>
-              <p>
-                We make in small numbered runs. Small enough that your founding number is on the card in the box. Large enough
-                that the price is the materials, not the scarcity.
-              </p>
-            </div>
-            <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-[#f6f4ef]/20 pt-6">
+            <p className="mt-6 max-w-md text-[16px] leading-relaxed text-[#1c1a17]/75">
+              Each pair is cut, closed and lasted in the footwear cluster. Uppers are calf and woven textile. The lining is calf. Edges are painted by hand. The founding number is on the card in the box.
+            </p>
+            <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-[#1c1a17]/15 pt-6">
               {[
                 ["Calf lined", "Inside and out"],
                 ["Numbered", "One card per pair"],
@@ -129,67 +186,14 @@ export default function Home() {
               ].map(([a, b]) => (
                 <div key={a}>
                   <dt className="font-serif text-xl md:text-2xl">{a}</dt>
-                  <dd className="mt-1 text-[12px] text-[#f6f4ef]/55">{b}</dd>
+                  <dd className="mt-1 text-[12px] text-[#1c1a17]/55">{b}</dd>
                 </div>
               ))}
             </dl>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-[1440px] px-5 py-16 md:px-10 md:py-24">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Edition 002</p>
-            <h2 className="mt-3 font-serif text-4xl md:text-5xl">On the list</h2>
-          </div>
-          <Link href="/shop#list" className="text-[11px] tracking-[0.18em] uppercase underline underline-offset-4">
-            Join before the run opens
-          </Link>
-        </div>
-        <div className="mt-8 grid gap-6 sm:grid-cols-3">
-          {next.map((p) => (
-            <Link key={p.id} href={`/shop/${p.id}`} className="group block">
-              <div className="relative aspect-[4/5] overflow-hidden bg-white">
-                <Image src={p.image} alt={`MADE SAiNT ${p.name}`} fill sizes="(min-width: 640px) 33vw, 100vw" className="object-cover" />
-              </div>
-              <div className="mt-3 flex items-baseline justify-between">
-                <h3 className="font-serif text-2xl">{short(p.name)}</h3>
-                <p className="text-[12px] text-[#1c1a17]/50">In development</p>
-              </div>
-              <p className="mt-1 text-[13px] text-[#1c1a17]/60">{p.line}</p>
+            <Link href="/shop#list" className="mt-8 inline-block text-[11px] tracking-[0.18em] uppercase underline underline-offset-4">
+              Three further colorways, on the list
             </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-t border-[#1c1a17]/10 bg-[#1c1a17] text-[#f6f4ef]">
-        <div className="mx-auto grid max-w-[1440px] items-center gap-10 px-5 py-16 md:grid-cols-2 md:px-10 md:py-20">
-          <div>
-            <p className="text-[11px] tracking-[0.22em] text-[#f6f4ef]/55 uppercase">The Private Wardrobe</p>
-            <h2 className="mt-4 font-serif text-4xl leading-[1.05] md:text-6xl">
-              Same silhouette.
-              <br />
-              <em>Your proportions.</em>
-            </h2>
-            <p className="mt-5 max-w-md text-[15px] leading-relaxed text-[#f6f4ef]/75">
-              Discover a piece, compose a look, or commission the year. Athletes and other clients with exceptional proportions are fitted inside this wardrobe, not sent to another one.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/wardrobe#discover" className="border border-[#f6f4ef]/40 px-5 py-3 text-[11px] tracking-[0.16em] uppercase hover:bg-[#f6f4ef] hover:text-[#1c1a17]">
-                Discover
-              </Link>
-              <Link href="/wardrobe#compose" className="border border-[#f6f4ef]/40 px-5 py-3 text-[11px] tracking-[0.16em] uppercase hover:bg-[#f6f4ef] hover:text-[#1c1a17]">
-                Compose
-              </Link>
-              <Link href="/wardrobe#commission" className="bg-[#f6f4ef] px-5 py-3 text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">
-                Commission
-              </Link>
-            </div>
           </div>
-          <Link href="/wardrobe" className="block bg-[#f1eee8]">
-            <Image src="/wardrobe/arrival-art-suit-blue.webp" alt="MADE SAiNT Arrival jacket" width={1200} height={1500} className="h-auto w-full" />
-          </Link>
         </div>
       </section>
 

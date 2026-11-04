@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { PRODUCTS, shipWindow } from "@/lib/business";
 import { ShopFooter } from "@/components/shop/chrome";
 import { Mast } from "@/components/house/mast";
+import { Lookbooks } from "@/components/house/lookbooks";
 import { OrderRule, orderWindowLine } from "@/components/shop/order-rule";
 
 export const metadata: Metadata = {
@@ -77,6 +78,10 @@ export default function Home() {
             Reserve a pair
           </Link>
         </div>
+      </section>
+
+      <section id="looks" className="scroll-mt-24 border-t border-[#1c1a17]/10">
+        <Lookbooks />
       </section>
 
       <section id="leather" className="scroll-mt-24 border-t border-[#1c1a17]/10 bg-[#f3efe8]">

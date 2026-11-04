@@ -13,6 +13,9 @@ export function Mast() {
             <Link href="#order" className="hover:text-[#1c1a17]">
               Order
             </Link>
+            <Link href="#looks" className="hover:text-[#1c1a17]">
+              Looks
+            </Link>
             <Link href="#leather" className="hover:text-[#1c1a17]">
               Leather
             </Link>

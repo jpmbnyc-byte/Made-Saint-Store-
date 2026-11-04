@@ -18,6 +18,8 @@ import {
   type FitInput,
   type LifestyleId,
 } from "@/lib/private-client";
+import { Lookbooks } from "@/components/house/lookbooks";
+import { lookForLifestyle } from "@/lib/looks";
 import { usd } from "@/lib/wardrobe";
 
 function PieceCard({ id, onAdapt }: { id: string; onAdapt?: () => void }) {
@@ -75,7 +77,10 @@ export function PrivateHouse() {
   const [asked, setAsked] = useState(false);
   const [lifestyleId, setLifestyleId] = useState<LifestyleId>("arrival");
   const [reply, setReply] = useState("");
-  const [selected, setSelected] = useState<string[]>([...LIFESTYLES[0].pieces]);
+  const [focusLookId, setFocusLookId] = useState<string | null>(null);
+  const opening = lookForLifestyle("arrival").pieces.map((piece) => piece.id);
+  const [roster, setRoster] = useState<string[]>(opening);
+  const [selected, setSelected] = useState<string[]>(opening);
   const [commitment, setCommitment] = useState<number | null>(null);
   const [fit, setFit] = useState<FitInput>(EMPTY_FIT);
   const [reviewed, setReviewed] = useState(false);
@@ -90,8 +95,11 @@ export function PrivateHouse() {
     setLifestyleId(next.lifestyleId);
     setReply(next.reply);
     setAsked(true);
-    const life = LIFESTYLES.find((l) => l.id === next.lifestyleId);
-    if (life) setSelected([...life.pieces]);
+    const look = lookForLifestyle(next.lifestyleId);
+    const ids = look.pieces.map((piece) => piece.id);
+    setFocusLookId(look.id);
+    setRoster(ids);
+    setSelected(ids);
   }
 
   function toggle(id: string) {
@@ -160,7 +168,7 @@ export function PrivateHouse() {
               <a href="#commission" className="bg-[#1c1a17] px-4 py-3 text-[#f6f4ef]">Commission a wardrobe</a>
             </div>
             <div className="mt-6 grid gap-6 sm:grid-cols-2">
-              {visiblePieces(lifestyle.pieces).map((p) => (
+              {visiblePieces(roster).map((p) => (
                 <PieceCard key={p.id} id={p.id} onAdapt={() => document.getElementById("commission")?.scrollIntoView({ behavior: "smooth" })} />
               ))}
             </div>
@@ -173,29 +181,19 @@ export function PrivateHouse() {
           <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Discover</p>
           <h2 className="mt-3 max-w-2xl font-serif text-4xl md:text-5xl">The same clothes. Two ways to have them made.</h2>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            A client with exceptional proportions is not sent to another collection. Height, shoulder, and thigh change the manufacturing pathway. They do not change the jacket.
+            Choose the occasion. The look lists what is in it. A founding pair can be reserved. The clothes are commissioned, and a proportion changes the pathway, not the jacket.
           </p>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {LIFESTYLES.map((l) => (
-              <button
-                key={l.id}
-                type="button"
-                onClick={() => {
-                  setLifestyleId(l.id);
-                  setSelected([...l.pieces]);
-                }}
-                className={`border p-4 text-left ${l.id === lifestyleId ? "border-[#1c1a17] bg-[#1c1a17] text-[#f6f4ef]" : "border-[#1c1a17]/15"}`}
-              >
-                <p className="text-[11px] tracking-[0.16em] uppercase">{l.n}</p>
-                <p className="mt-2 font-serif text-2xl leading-none">{l.name.replace("The ", "")}</p>
-                <p className={`mt-3 text-[13px] leading-relaxed ${l.id === lifestyleId ? "text-[#f6f4ef]/70" : "text-[#1c1a17]/60"}`}>{l.purpose}</p>
-              </button>
-            ))}
-          </div>
-          <div className="mt-10 grid items-start gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {visiblePieces(lifestyle.pieces).map((p) => (
-              <PieceCard key={p.id} id={p.id} onAdapt={() => document.getElementById("commission")?.scrollIntoView({ behavior: "smooth" })} />
-            ))}
+          <div className="mt-8">
+            <Lookbooks
+              heading={false}
+              focusLookId={focusLookId}
+              onLook={(look) => {
+                const ids = look.pieces.map((piece) => piece.id);
+                setLifestyleId(look.lifestyle);
+                setRoster(ids);
+                setSelected(ids);
+              }}
+            />
           </div>
         </div>
       </section>
@@ -206,7 +204,7 @@ export function PrivateHouse() {
             <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Compose · {lifestyle.name}</p>
             <h2 className="mt-3 font-serif text-4xl md:text-5xl">Build the look from approved pieces.</h2>
             <ul className="mt-8 divide-y divide-[#1c1a17]/12 border-y border-[#1c1a17]/12">
-              {visiblePieces(lifestyle.pieces).map((p) => {
+              {visiblePieces(roster).map((p) => {
                 const on = selected.includes(p.id);
                 const price = retailOf(p.id);
                 return (

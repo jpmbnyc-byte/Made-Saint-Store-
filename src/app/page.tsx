@@ -11,18 +11,24 @@ export const metadata: Metadata = {
     "Made for the individual. A founding edition of runners, and a private wardrobe cut to the client, made to order in Felgueiras.",
   openGraph: {
     title: "MADE SAiNT",
-    description: "Made for the individual. Footwear and a private wardrobe, cut to order in Felgueiras.",
-    images: [{ url: "/hero/look1-runner-hero.webp", width: 1280, height: 720, alt: "MADE SAiNT Runner, Chalk" }],
+    description: "A Saint cannot campaign or be elected, they can only be made.",
+    images: [
+      {
+        url: "/opening/leather.webp",
+        width: 1086,
+        height: 1448,
+        alt: "Navy leather runner. A Saint cannot campaign or be elected, they can only be made.",
+      },
+    ],
   },
 };
 
-const POSTER = ["ms-runner-chalk-navy", "ms-runner-navy-intrecciato", "ms-runner-washed-denim"] as const;
+const OPENING_ALT =
+  "Navy leather runner, worn with a navy knit and sand trousers. The line reads: A Saint cannot campaign or be elected, they can only be made.";
 
 const short = (name: string) => name.replace("Runner, ", "");
 
 export default function Home() {
-  const byId = new Map(PRODUCTS.map((p) => [p.id, p]));
-  const poster = POSTER.map((id) => byId.get(id)).filter((p) => p != null);
   const launch = PRODUCTS.filter((p) => p.launch);
   const from = Math.min(...launch.map((p) => p.usd));
 
@@ -30,48 +36,41 @@ export default function Home() {
     <div className="bg-[#f6f4ef] text-[#1c1a17]">
       <Mast />
 
-      <section id="open" className="flex h-svh flex-col overflow-hidden">
-        <div className="grid min-h-0 flex-1 grid-cols-1 sm:grid-cols-3">
-          {poster.map((p, i) => (
-            <Link
-              key={p.id}
-              href={`/shop/${p.id}`}
-              className={`relative block h-full min-h-0 overflow-hidden bg-[#f3f0ea] ${i === 0 ? "" : "hidden sm:block"}`}
-            >
-              <Image
-                src={p.image}
-                alt={`MADE SAiNT ${p.name}, overhead`}
-                fill
-                priority={i === 0}
-                sizes={i === 0 ? "(min-width: 640px) 34vw, 100vw" : "34vw"}
-                className="object-cover object-center"
-              />
-            </Link>
-          ))}
+      <section id="open" className="flex h-svh flex-col overflow-hidden bg-[#1c1a17]">
+        <div className="relative min-h-0 flex-1 bg-[#6b4e3c]">
+          <Image src="/opening/leather.webp" alt="" fill aria-hidden sizes="100vw" className="scale-110 object-cover blur-3xl" />
+          <Image
+            src="/opening/leather-tall.webp"
+            alt={OPENING_ALT}
+            fill
+            priority
+            sizes="100vw"
+            className="object-contain object-center md:hidden"
+          />
+          <Image
+            src="/opening/leather.webp"
+            alt={OPENING_ALT}
+            fill
+            priority
+            sizes="100vw"
+            className="hidden object-contain object-center md:block"
+          />
         </div>
-        <div className="bg-[#1c1a17] px-5 py-6 text-[#f6f4ef] sm:px-8 md:px-12 md:py-10">
-          <div className="mx-auto flex max-w-[1440px] flex-col gap-8 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-3xl">
+        <div className="bg-[#1c1a17] px-5 py-4 text-[#f6f4ef] sm:px-8 md:px-12">
+          <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-4">
+            <div>
               <p className="text-[11px] tracking-[0.24em] text-[#f6f4ef]/55 uppercase">The house · Felgueiras</p>
-              <h1 className="mt-2 font-serif text-[56px] leading-[0.84] tracking-[-0.03em] sm:text-[80px] md:text-[104px]">
-                MADE
-                <br />
-                <em>SAiNT</em>
+              <h1 className="font-serif text-[32px] leading-none sm:text-[40px]">
+                MADE <em>SAiNT</em>
               </h1>
-              <p className="mt-5 max-w-md text-[16px] leading-relaxed text-[#f6f4ef]/75">
-                Made for the individual. A founding edition of runners, and a private wardrobe developed around the person wearing it.
-              </p>
             </div>
-            <div className="flex flex-col gap-6 md:items-end">
-              <div className="flex flex-wrap gap-3">
-                <Link href="#edition" className="border border-[#f6f4ef]/35 px-5 py-3 text-[11px] tracking-[0.18em] uppercase hover:bg-[#f6f4ef] hover:text-[#1c1a17]">
-                  The edition
-                </Link>
-                <Link href="#wardrobe" className="bg-[#f6f4ef] px-5 py-3 text-[11px] tracking-[0.18em] text-[#1c1a17] uppercase">
-                  The wardrobe
-                </Link>
-              </div>
-              <p className="text-[11px] tracking-[0.2em] text-[#f6f4ef]/45 uppercase">Scroll</p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="#edition" className="border border-[#f6f4ef]/35 px-5 py-3 text-[11px] tracking-[0.18em] uppercase hover:bg-[#f6f4ef] hover:text-[#1c1a17]">
+                The edition
+              </Link>
+              <Link href="#wardrobe" className="bg-[#f6f4ef] px-5 py-3 text-[11px] tracking-[0.18em] text-[#1c1a17] uppercase">
+                The wardrobe
+              </Link>
             </div>
           </div>
         </div>

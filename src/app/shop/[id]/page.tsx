@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ChevronLeft } from "lucide-react";
 import { CAMPAIGN, PRODUCTS, SIZES, campaignStatus, fmtDate, productById, shipWindow, statusLine } from "@/lib/business";
+import { OrderRule } from "@/components/shop/order-rule";
 import { viewsFor } from "@/lib/catalog";
 import { withPublished } from "@/lib/atelier/publish";
 import { stripeEnabled } from "@/lib/stripe";
@@ -70,6 +71,15 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               </div>
             </div>
 
+            {product.launch && (
+              <div className="mt-8">
+                <p className="text-[11px] tracking-[0.16em] uppercase">How this reservation works</p>
+                <div className="mt-3">
+                  <OrderRule compact />
+                </div>
+              </div>
+            )}
+
             <div className="mt-8">
               {product.launch ? (
                 <ReserveForm
@@ -104,17 +114,6 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                   <p>Tongue wordmark printed MADE SAiNT, lowercase i. Calf lined. Nub-lug sole.</p>
                   <p className="text-[12px] tracking-[0.08em] text-[#1c1a17]/50 uppercase">Code {product.id}</p>
                 </div>
-              </details>
-              <details className="group py-4">
-                <summary className="flex cursor-pointer list-none items-center justify-between text-[13px] tracking-[0.14em] uppercase">
-                  Made to order
-                  <span className="text-lg leading-none text-[#1c1a17]/40 group-open:rotate-45">+</span>
-                </summary>
-                <p className="mt-4 text-sm leading-relaxed text-[#1c1a17]/75">
-                  {product.launch
-                    ? `Reservations close ${fmtDate(CAMPAIGN.closes)}. If ${CAMPAIGN.threshold} pairs are reserved, the run is cut in Felgueiras and ships ${shipWindow()}. If not, the reservation is refunded in full within five business days.`
-                    : "This colorway is not open for reservation. The list is offered the run before it opens."}
-                </p>
               </details>
               <details className="group py-4">
                 <summary className="flex cursor-pointer list-none items-center justify-between text-[13px] tracking-[0.14em] uppercase">

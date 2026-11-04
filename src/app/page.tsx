@@ -4,14 +4,15 @@ import type { Metadata } from "next";
 import { PRODUCTS, shipWindow } from "@/lib/business";
 import { ShopFooter } from "@/components/shop/chrome";
 import { Mast } from "@/components/house/mast";
+import { OrderRule, orderWindowLine } from "@/components/shop/order-rule";
 
 export const metadata: Metadata = {
   title: { absolute: "MADE SAiNT" },
   description:
-    "Made for the individual. A founding edition of runners, and a private wardrobe cut to the client, made to order in Felgueiras.",
+    "A founding colorway is cut only after it is reserved. If the run is not confirmed, every reservation is refunded in full.",
   openGraph: {
     title: "MADE Saint",
-    description: "Three all-leather runners. Navy, black, and butter.",
+    description: "Reserve a founding colorway. It is cut only if the run is confirmed.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "MADE Saint" }],
   },
   twitter: {
@@ -20,10 +21,10 @@ export const metadata: Metadata = {
   },
 };
 
-const RUNNERS = [
-  { src: "/opening/runner-navy.webp", name: "Navy", alt: "Full navy all-leather runner, three-quarter view" },
-  { src: "/opening/runner-black.webp", name: "Black", alt: "Full black all-leather runner, three-quarter view" },
-  { src: "/opening/runner-butter.webp", name: "Butter", alt: "Full butter all-leather runner, three-quarter view" },
+const LEATHER = [
+  { src: "/opening/runner-navy.webp", name: "Navy", alt: "Full navy all-leather runner" },
+  { src: "/opening/runner-black.webp", name: "Black", alt: "Full black all-leather runner" },
+  { src: "/opening/runner-butter.webp", name: "Butter", alt: "Full butter all-leather runner" },
 ] as const;
 
 const short = (name: string) => name.replace("Runner, ", "");
@@ -36,176 +37,88 @@ export default function Home() {
     <div className="bg-[#f6f4ef] text-[#1c1a17]">
       <Mast />
 
-      <section id="open" className="border-b border-[#1c1a17]/10 bg-[#f3efe8]">
-        <h1 className="sr-only">MADE Saint leather runners</h1>
-        <div className="grid grid-cols-1 md:h-[calc(100svh-4.25rem)] md:grid-cols-3">
-          {RUNNERS.map((runner, i) => (
-            <figure key={runner.name} className="flex min-h-[78svh] flex-col border-[#1c1a17]/10 md:min-h-0 md:border-l first:md:border-l-0">
-              <div className="relative min-h-0 flex-1">
-                <Image
-                  src={runner.src}
-                  alt={runner.alt}
-                  fill
-                  priority={i === 0}
-                  sizes="(min-width: 768px) 34vw, 100vw"
-                  className="object-contain object-center p-4 sm:p-8"
-                />
-              </div>
-              <figcaption className="px-5 pb-5 text-center text-[11px] tracking-[0.22em] uppercase">{runner.name}</figcaption>
-            </figure>
-          ))}
+      <section id="order" className="scroll-mt-24">
+        <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
+          <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Made to order · Felgueiras</p>
+          <h1 className="mt-4 max-w-3xl font-serif text-[44px] leading-[0.95] md:text-[68px]">
+            A pair is cut only after you reserve it.
+          </h1>
+          <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">{orderWindowLine()}</p>
+          <div className="mt-10">
+            <OrderRule />
+          </div>
         </div>
-      </section>
 
-      <section id="edition" className="scroll-mt-20 border-t border-[#1c1a17]/10">
-        <div className="mx-auto grid min-h-svh max-w-[1440px] items-center gap-10 px-5 py-16 md:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] md:gap-16 md:px-12 md:py-24">
-          <div>
-            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Edition 001</p>
-            <h2 className="mt-4 font-serif text-[46px] leading-[0.92] md:text-[72px]">
-              Made after
-              <br />
-              <em>you choose it.</em>
-            </h2>
-            <p className="mt-6 max-w-md text-[16px] leading-relaxed text-[#1c1a17]/75">
-              Three runners in woven calf, bouclé and washed denim. Cut in Portugal only once the run is reserved. If a colorway is not confirmed, every reservation for it is refunded in full.
-            </p>
-            <ul className="mt-8 divide-y divide-[#1c1a17]/12 border-y border-[#1c1a17]/12">
-              {launch.map((p) => (
-                <li key={p.id}>
-                  <Link href={`/shop/${p.id}`} className="flex items-baseline justify-between gap-4 py-4">
-                    <span>
-                      <span className="block font-serif text-3xl">{short(p.name)}</span>
-                      <span className="text-[13px] text-[#1c1a17]/60">{p.line}</span>
-                    </span>
+        <div className="mx-auto max-w-[1100px] px-5 pb-16 md:px-8 md:pb-24">
+          <div className="flex flex-wrap items-end justify-between gap-4 border-t border-[#1c1a17]/15 pt-8">
+            <div>
+              <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Open to reserve</p>
+              <h2 className="mt-2 font-serif text-4xl">Three founding colorways</h2>
+            </div>
+            <p className="text-[13px] text-[#1c1a17]/60">From ${from} · ships {shipWindow()}</p>
+          </div>
+          <ul className="mt-8 grid gap-8 sm:grid-cols-3">
+            {launch.map((p) => (
+              <li key={p.id}>
+                <Link href={`/shop/${p.id}`} className="block">
+                  <span className="relative block aspect-square bg-[#f3efe8]">
+                    <Image src={p.image} alt={p.name} fill sizes="(min-width: 640px) 30vw, 100vw" className="object-contain p-3" />
+                  </span>
+                  <span className="mt-3 flex items-baseline justify-between gap-3">
+                    <span className="font-serif text-2xl">{short(p.name)}</span>
                     <span className="text-sm tabular-nums">${p.usd}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <Link href="/shop#edition" className="bg-[#1c1a17] px-6 py-4 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase">
-                Reserve a pair
-              </Link>
-              <p className="text-[12px] text-[#1c1a17]/55">From ${from} · ships {shipWindow()}</p>
-            </div>
-          </div>
-          <Link href="/shop/ms-runner-chalk-navy" className="block bg-white">
-            <Image
-              src="/hero/look1-runner-hero.webp"
-              alt="MADE SAiNT Runner in chalk bouclé and navy canvas"
-              width={1280}
-              height={720}
-              className="h-auto w-full"
-            />
-          </Link>
-        </div>
-      </section>
-
-      <section id="line" className="scroll-mt-20 border-t border-[#1c1a17]/10">
-        <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-12 md:py-24">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div className="max-w-xl">
-              <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">The 2027 line</p>
-              <h2 className="mt-4 font-serif text-[46px] leading-[0.92] md:text-[68px]">
-                Seventy-five styles.
-                <br />
-                <em>Proposed, not checked out.</em>
-              </h2>
-            </div>
-            <Link href="/line" className="bg-[#1c1a17] px-6 py-4 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase">
-              Open the line
-            </Link>
-          </div>
-          <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3">
-            {[
-              ["/line/f23.webp", "Denim-trim duffel in butter yellow", "/line/r067"],
-              ["/line/f12.webp", "Suede lace mule", "/line/n015"],
-              ["/line/f06.webp", "Shirt-and-tie jersey", "/line/r010"],
-              ["/line/f33.webp", "Grouped-stripe suit on a course", "/line/r031"],
-              ["/line/f01.webp", "Arch script cap", "/line/r043"],
-              ["/line/f47.webp", "Wordmark neck under a sage jacket", "/line/n014"],
-            ].map(([src, alt, href]) => (
-              <Link key={src} href={href} className="block bg-[#f1eee8]">
-                <Image src={src} alt={alt} width={1024} height={1280} className="h-auto w-full" />
-              </Link>
+                  </span>
+                  <span className="mt-1 block text-[13px] text-[#1c1a17]/60">{p.line}</span>
+                </Link>
+              </li>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="wardrobe" data-theme="dark" className="scroll-mt-20 bg-[#1c1a17] text-[#f6f4ef]">
-        <div className="mx-auto grid min-h-svh max-w-[1440px] items-center gap-10 px-5 py-16 md:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] md:gap-14 md:px-12 md:py-20">
-          <div>
-            <p className="text-[11px] tracking-[0.22em] text-[#f6f4ef]/55 uppercase">The Private Wardrobe</p>
-            <h2 className="mt-4 font-serif text-[46px] leading-[0.92] md:text-[68px]">
-              Three annual
-              <br />
-              <em>collections.</em>
-            </h2>
-            <p className="mt-6 max-w-md text-[16px] leading-relaxed text-[#f6f4ef]/75">
-              One personal fit. The silhouettes stay the same whether a client buys one piece or commissions the year. Exceptional proportions change the pattern, not the design.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/wardrobe#discover" className="border border-[#f6f4ef]/35 px-5 py-3 text-[11px] tracking-[0.16em] uppercase hover:bg-[#f6f4ef] hover:text-[#1c1a17]">
-                Discover
-              </Link>
-              <Link href="/wardrobe#compose" className="border border-[#f6f4ef]/35 px-5 py-3 text-[11px] tracking-[0.16em] uppercase hover:bg-[#f6f4ef] hover:text-[#1c1a17]">
-                Compose
-              </Link>
-              <Link href="/wardrobe#commission" className="bg-[#f6f4ef] px-5 py-3 text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">
-                Commission
-              </Link>
-            </div>
-          </div>
-          <Link href="/line/r031" className="block bg-[#f1eee8]">
-            <Image
-              src="/line/f32.webp"
-              alt="Grouped-stripe jacket and trouser, photographed on a course"
-              width={1536}
-              height={1024}
-              className="h-auto w-full"
-            />
+          </ul>
+          <Link href="/shop#edition" className="mt-10 inline-block bg-[#1c1a17] px-6 py-4 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase">
+            Reserve a pair
           </Link>
         </div>
       </section>
 
-      <section id="atelier" className="scroll-mt-20">
-        <div className="mx-auto grid max-w-[1440px] items-center gap-10 px-5 py-16 md:grid-cols-2 md:gap-16 md:px-12 md:py-24">
-          <div className="bg-white">
-            <Image
-              src="/hero/look3-runner-inverse.webp"
-              alt="MADE SAiNT Runner in espresso calf suede"
-              width={1280}
-              height={720}
-              className="h-auto w-full"
-            />
-          </div>
-          <div>
-            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">The atelier</p>
-            <h2 className="mt-4 font-serif text-[42px] leading-[0.95] md:text-[60px]">
-              Felgueiras,
-              <br />
-              <em>northern Portugal.</em>
-            </h2>
-            <p className="mt-6 max-w-md text-[16px] leading-relaxed text-[#1c1a17]/75">
-              Each pair is cut, closed and lasted in the footwear cluster. Uppers are calf and woven textile. The lining is calf. Edges are painted by hand. The founding number is on the card in the box.
+      <section id="leather" className="scroll-mt-24 border-t border-[#1c1a17]/10 bg-[#f3efe8]">
+        <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Shown, not reserved</p>
+              <h2 className="mt-2 font-serif text-4xl">The leather runners</h2>
+            </div>
+            <p className="max-w-xs text-[13px] leading-relaxed text-[#1c1a17]/65">
+              Navy, black, and butter, each shown in full. These are not the founding colorways, and they are not open to reserve.
             </p>
-            <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-[#1c1a17]/15 pt-6">
-              {[
-                ["Calf lined", "Inside and out"],
-                ["Numbered", "One card per pair"],
-                ["Hand finished", "Edges painted"],
-              ].map(([a, b]) => (
-                <div key={a}>
-                  <dt className="font-serif text-xl md:text-2xl">{a}</dt>
-                  <dd className="mt-1 text-[12px] text-[#1c1a17]/55">{b}</dd>
-                </div>
-              ))}
-            </dl>
-            <Link href="/shop#list" className="mt-8 inline-block text-[11px] tracking-[0.18em] uppercase underline underline-offset-4">
-              Three further colorways, on the list
-            </Link>
           </div>
+          <ul className="mt-8 grid gap-6 sm:grid-cols-3">
+            {LEATHER.map((runner) => (
+              <li key={runner.name}>
+                <div className="relative aspect-[3/4] bg-[#f6f4ef]">
+                  <Image src={runner.src} alt={runner.alt} fill sizes="(min-width: 640px) 30vw, 100vw" className="object-contain" />
+                </div>
+                <p className="mt-3 text-center text-[11px] tracking-[0.2em] uppercase">{runner.name}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="border-t border-[#1c1a17]/10">
+        <div className="mx-auto grid max-w-[1100px] md:grid-cols-2">
+          <Link href="/line" className="block border-b border-[#1c1a17]/10 px-5 py-12 md:border-r md:border-b-0 md:px-8 md:py-16">
+            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Not a checkout</p>
+            <h2 className="mt-3 font-serif text-4xl">The 2027 line</h2>
+            <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-[#1c1a17]/70">
+              Proposed styles and list prices. Nothing on the line can be reserved.
+            </p>
+          </Link>
+          <Link href="/wardrobe" className="block px-5 py-12 md:px-8 md:py-16">
+            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Not a checkout</p>
+            <h2 className="mt-3 font-serif text-4xl">The private wardrobe</h2>
+            <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-[#1c1a17]/70">
+              One fit, commissioned. A seasonal figure is a planning target until a price is approved.
+            </p>
+          </Link>
         </div>
       </section>
 

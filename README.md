@@ -6,7 +6,7 @@ Public origin: [madesaint.store](https://madesaint.store). Point the Namecheap D
 
 | Route | What it is |
 | --- | --- |
-| `/` | Three full leather runners, then the Founding Edition, the 2027 line, and the private wardrobe |
+| `/` | The made-to-order rule, the three founding colorways that can be reserved, then the leather runners, which are shown and not open to reserve |
 | `/line` | 2027 line. Seventy-five proposed list prices and the 59 photographs from the October sheets. Not checkout prices. |
 | `/shop` | Founding Edition pre-order storefront |
 | `/wardrobe` | Private wardrobe. Discover, compose, and commission. Same products; ready-to-wear, made-to-measure, or a technical review. Seasonal figures from $6,500 and annual figures from $20,000 are preliminary targets, not checkout prices. Only published runner prices are added into a look. |

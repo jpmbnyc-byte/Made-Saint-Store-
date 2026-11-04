@@ -192,8 +192,8 @@ export const productById = (id: string) => PRODUCTS.find((p) => p.id === id);
 
 export function statusLine(now = new Date()) {
   const s = campaignStatus(now);
-  if (s === "upcoming") return `Private access · reserve before the public window opens ${fmtDate(CAMPAIGN.opens)}`;
-  if (s === "open") return `The Founding Edition · reservations close ${fmtDate(CAMPAIGN.closes)}`;
+  if (s === "upcoming") return `Reserve now · public window ${fmtDate(CAMPAIGN.opens)} to ${fmtDate(CAMPAIGN.closes)} · cut only at ${CAMPAIGN.threshold} pairs`;
+  if (s === "open") return `Reservations close ${fmtDate(CAMPAIGN.closes)} · a colorway is cut only at ${CAMPAIGN.threshold} pairs`;
   return "The founding window has closed · join the list for the next run";
 }
 

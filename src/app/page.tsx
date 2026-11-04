@@ -10,21 +10,21 @@ export const metadata: Metadata = {
   description:
     "Made for the individual. A founding edition of runners, and a private wardrobe cut to the client, made to order in Felgueiras.",
   openGraph: {
-    title: "MADE SAiNT",
-    description: "A Saint cannot campaign or be elected, they can only be made.",
-    images: [
-      {
-        url: "/opening/leather.webp",
-        width: 1086,
-        height: 1448,
-        alt: "Navy leather runner. A Saint cannot campaign or be elected, they can only be made.",
-      },
-    ],
+    title: "MADE Saint",
+    description: "Three all-leather runners. Navy, black, and butter.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "MADE Saint" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og.png"],
   },
 };
 
-const OPENING_ALT =
-  "Navy leather runner, worn with a navy knit and sand trousers. The line reads: A Saint cannot campaign or be elected, they can only be made.";
+const RUNNERS = [
+  { src: "/opening/runner-navy.webp", name: "Navy", alt: "Full navy all-leather runner, three-quarter view" },
+  { src: "/opening/runner-black.webp", name: "Black", alt: "Full black all-leather runner, three-quarter view" },
+  { src: "/opening/runner-butter.webp", name: "Butter", alt: "Full butter all-leather runner, three-quarter view" },
+] as const;
 
 const short = (name: string) => name.replace("Runner, ", "");
 
@@ -36,43 +36,24 @@ export default function Home() {
     <div className="bg-[#f6f4ef] text-[#1c1a17]">
       <Mast />
 
-      <section id="open" className="flex h-svh flex-col overflow-hidden bg-[#1c1a17]">
-        <div className="relative min-h-0 flex-1 bg-[#6b4e3c]">
-          <Image src="/opening/leather.webp" alt="" fill aria-hidden sizes="100vw" className="scale-110 object-cover blur-3xl" />
-          <Image
-            src="/opening/leather-tall.webp"
-            alt={OPENING_ALT}
-            fill
-            priority
-            sizes="100vw"
-            className="object-contain object-center md:hidden"
-          />
-          <Image
-            src="/opening/leather.webp"
-            alt={OPENING_ALT}
-            fill
-            priority
-            sizes="100vw"
-            className="hidden object-contain object-center md:block"
-          />
-        </div>
-        <div className="bg-[#1c1a17] px-5 py-4 text-[#f6f4ef] sm:px-8 md:px-12">
-          <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-4">
-            <div>
-              <p className="text-[11px] tracking-[0.24em] text-[#f6f4ef]/55 uppercase">The house · Felgueiras</p>
-              <h1 className="font-serif text-[32px] leading-none sm:text-[40px]">
-                MADE <em>SAiNT</em>
-              </h1>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Link href="#edition" className="border border-[#f6f4ef]/35 px-5 py-3 text-[11px] tracking-[0.18em] uppercase hover:bg-[#f6f4ef] hover:text-[#1c1a17]">
-                The edition
-              </Link>
-              <Link href="#wardrobe" className="bg-[#f6f4ef] px-5 py-3 text-[11px] tracking-[0.18em] text-[#1c1a17] uppercase">
-                The wardrobe
-              </Link>
-            </div>
-          </div>
+      <section id="open" className="border-b border-[#1c1a17]/10 bg-[#f3efe8]">
+        <h1 className="sr-only">MADE Saint leather runners</h1>
+        <div className="grid grid-cols-1 md:h-[calc(100svh-4.25rem)] md:grid-cols-3">
+          {RUNNERS.map((runner, i) => (
+            <figure key={runner.name} className="flex min-h-[78svh] flex-col border-[#1c1a17]/10 md:min-h-0 md:border-l first:md:border-l-0">
+              <div className="relative min-h-0 flex-1">
+                <Image
+                  src={runner.src}
+                  alt={runner.alt}
+                  fill
+                  priority={i === 0}
+                  sizes="(min-width: 768px) 34vw, 100vw"
+                  className="object-contain object-center p-4 sm:p-8"
+                />
+              </div>
+              <figcaption className="px-5 pb-5 text-center text-[11px] tracking-[0.22em] uppercase">{runner.name}</figcaption>
+            </figure>
+          ))}
         </div>
       </section>
 

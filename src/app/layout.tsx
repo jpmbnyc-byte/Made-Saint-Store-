@@ -29,6 +29,15 @@ export const metadata: Metadata = {
   description:
     "Runners made to order in Felgueiras, Portugal. The Founding Edition is numbered and reserved before a pair is cut.",
   alternates: { canonical: "/" },
+  openGraph: {
+    title: "MADE Saint",
+    description: "Runners made to order in Felgueiras, Portugal.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "MADE Saint" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({

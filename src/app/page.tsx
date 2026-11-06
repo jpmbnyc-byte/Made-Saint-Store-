@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { PRODUCTS } from "@/lib/business";
@@ -7,6 +6,7 @@ import { Mast } from "@/components/house/mast";
 import { HouseLooks } from "@/components/house/examples";
 import { Paths } from "@/components/house/paths";
 import { EditionSlider, LeatherSlider, ListRail } from "@/components/house/rails";
+import { HouseFilm } from "@/components/house/film";
 import { Fit, Questions, Tensions } from "@/components/house/terms";
 import { OrderRule, orderWindowLine } from "@/components/shop/order-rule";
 
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 const LEATHER = [
-  { src: "/opening/runner-navy.webp", name: "Navy", alt: "Full navy all-leather runner" },
+  { src: "/hero/leather-navy.webp", name: "Navy", alt: "Navy leather runner on plaster", frame: "object-center" },
   { src: "/opening/runner-black.webp", name: "Black", alt: "Full black all-leather runner" },
   { src: "/opening/runner-butter.webp", name: "Butter", alt: "Full butter all-leather runner" },
 ] as const;
@@ -49,17 +49,7 @@ export default function Home() {
               </h1>
               <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#41505b]">{orderWindowLine()}</p>
             </div>
-            <figure>
-              <Image
-                src="/hero/look1-runner-hero.webp"
-                alt="Runner, Chalk, three-quarter pair"
-                width={1280}
-                height={720}
-                priority
-                className="h-auto w-full"
-              />
-              <figcaption className="mt-3 text-[11px] tracking-[0.16em] text-[#8d7349] uppercase">Chalk · a founding colorway</figcaption>
-            </figure>
+            <HouseFilm />
           </div>
           <div className="mt-10 md:mt-14">
             <OrderRule />

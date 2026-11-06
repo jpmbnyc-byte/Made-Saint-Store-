@@ -753,4 +753,5 @@ th:first-child {
 
 @media (prefers-reduced-motion: reduce) {
   .ms-liquid { animation: none; }
+  .ms-film { display: none; }
 }

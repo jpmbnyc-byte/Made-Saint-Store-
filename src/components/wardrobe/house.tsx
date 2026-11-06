@@ -133,7 +133,7 @@ export function PrivateHouse() {
             </div>
           </div>
           <figure className="order-1 bg-[#f6f4ef] md:order-2">
-            <img src="/wardrobe/suit-saint-john-camel.webp" alt="Camel Saint John jacket and trouser, front and back" className="h-auto w-full" />
+            <img src="/hero/saint-john.webp" alt="Camel Saint John jacket and trouser, front and back, on paper" className="h-auto w-full" />
           </figure>
         </div>
         <div className="border-t border-[#f6f4ef]/15">

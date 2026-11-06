@@ -70,7 +70,7 @@ export function ListRail() {
 export function LeatherSlider({
   runners,
 }: {
-  runners: readonly { src: string; name: string; alt: string }[];
+  runners: readonly { src: string; name: string; alt: string; frame?: string }[];
 }) {
   const slider = useSlider(runners.length);
   const runner = runners[slider.index];
@@ -79,7 +79,7 @@ export function LeatherSlider({
   return (
     <div>
       <div {...slider.bind} className="relative mx-auto aspect-[4/5] max-w-md touch-pan-y overflow-hidden bg-[#e7e0d4]">
-        <Image src={runner.src} alt={runner.alt} fill sizes="(min-width: 768px) 28rem, 100vw" className="object-cover object-[center_62%]" />
+        <Image src={runner.src} alt={runner.alt} fill sizes="(min-width: 768px) 28rem, 100vw" className={`object-cover ${runner.frame ?? "object-[center_62%]"}`} />
       </div>
       <p className="mt-4 text-center font-serif text-3xl text-[#2a3746]">{runner.name}</p>
       <p className="mt-1 text-center text-[12px] tracking-[0.16em] text-[#41505b] uppercase">Shown, not reserved</p>

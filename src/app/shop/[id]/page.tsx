@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -82,14 +83,16 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
             <div className="mt-8">
               {product.launch ? (
-                <ReserveForm
-                  productId={product.id}
-                  priceUsd={product.usd}
-                  payments={stripeEnabled() ? "stripe" : "mock"}
-                  closed={closed}
-                  shipWindow={shipWindow()}
-                  sizes={SIZES}
-                />
+                <Suspense fallback={null}>
+                  <ReserveForm
+                    productId={product.id}
+                    priceUsd={product.usd}
+                    payments={stripeEnabled() ? "stripe" : "mock"}
+                    closed={closed}
+                    shipWindow={shipWindow()}
+                    sizes={SIZES}
+                  />
+                </Suspense>
               ) : (
                 <div className="border border-[#1c1a17]/15 p-5">
                   <p className="text-sm">In development for Edition 002. Join the list to be offered the run before it opens.</p>

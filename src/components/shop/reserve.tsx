@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2, Lock } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,7 +22,8 @@ export function ReserveForm({
   sizes: readonly string[];
 }) {
   const router = useRouter();
-  const [size, setSize] = useState<string | null>(null);
+  const requested = useSearchParams().get("size");
+  const [size, setSize] = useState<string | null>(requested && sizes.includes(requested) ? requested : null);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [busy, setBusy] = useState(false);

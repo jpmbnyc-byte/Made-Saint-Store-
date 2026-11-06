@@ -14,6 +14,7 @@ import {
   type Look,
   type OccasionId,
 } from "@/lib/looks";
+import { SliderControls } from "@/components/house/slider";
 import { usd } from "@/lib/wardrobe";
 
 export function Lookbooks({
@@ -53,14 +54,20 @@ export function Lookbooks({
     onLook?.(look);
   }
 
+  function stepLook(delta: number) {
+    const at = group.findIndex((look) => look.id === active.id);
+    const next = group[(at + delta + group.length) % group.length];
+    chooseLook(next);
+  }
+
   return (
     <div className={`mx-auto grid max-w-[1100px] items-start gap-8 px-5 md:grid-cols-[1.05fr_0.95fr] md:px-8 ${heading ? "py-14 md:py-20" : "py-4"}`}>
       <div>
         {heading && (
           <>
-            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Lookbooks</p>
-            <h2 className="mt-4 font-serif text-[40px] leading-[0.95] md:text-[52px]">Shop the day you are dressing for.</h2>
-            <p className="mt-4 max-w-md text-[16px] leading-relaxed text-[#1c1a17]/75">
+            <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Lookbooks</p>
+            <h2 className="mt-4 font-serif text-[40px] leading-[0.95] text-[#2a3746] md:text-[52px]">Shop the day you are dressing for.</h2>
+            <p className="mt-4 max-w-md text-[16px] leading-relaxed text-[#41505b]">
               Open a look. A founding pair can be reserved. The clothes are commissioned, and they are not added to that reservation.
             </p>
           </>
@@ -91,7 +98,7 @@ export function Lookbooks({
             return (
               <li key={look.id} className="w-24">
                 <button type="button" onClick={() => chooseLook(look)} aria-pressed={on} className="block w-full text-left">
-                  <span className={`relative block aspect-[3/4] bg-[#f3efe8] ${on ? "outline outline-1 outline-[#1c1a17]" : ""}`}>
+                  <span className={`relative block aspect-[3/4] bg-[#f7f4ef] ${on ? "outline outline-1 outline-[#c0a477]" : ""}`}>
                     <Image src={look.image} alt="" fill sizes="96px" className="object-contain" />
                   </span>
                   <span className="mt-2 block text-[10px] tracking-[0.14em] text-[#1c1a17]/50 uppercase">Look {String(index + 1).padStart(2, "0")}</span>
@@ -106,6 +113,14 @@ export function Lookbooks({
           <LookFigure look={active} />
         </div>
         <LookBill look={active} />
+        <SliderControls
+          index={Math.max(0, group.findIndex((look) => look.id === active.id))}
+          count={group.length}
+          onPrev={() => stepLook(-1)}
+          onNext={() => stepLook(1)}
+          onGo={(index) => chooseLook(group[index])}
+          label="Look"
+        />
       </div>
       <div className="sticky top-24 hidden md:block">
         <LookFigure look={active} />

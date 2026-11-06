@@ -5,7 +5,7 @@ export function Mast() {
   return (
     <header className="sticky top-0 z-40 border-b border-[#1c1a17]/10 bg-[#f6f4ef]/92 backdrop-blur">
       <div className="mx-auto flex max-w-[1440px] flex-col gap-2 px-4 py-3 sm:px-6">
-        <Link href="#open" className="self-center sm:hidden">
+        <Link href="#order" className="self-center sm:hidden">
           <Wordmark className="h-8 w-auto" />
         </Link>
         <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
@@ -26,7 +26,7 @@ export function Mast() {
               Private
             </Link>
           </nav>
-          <Link href="#open" className="hidden justify-self-center sm:block">
+          <Link href="#order" className="hidden justify-self-center sm:block">
             <Wordmark />
           </Link>
           <nav className="flex justify-end">

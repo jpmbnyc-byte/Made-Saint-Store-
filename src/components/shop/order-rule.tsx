@@ -57,7 +57,7 @@ export function OrderRule({
     <ol className="grid gap-8 md:grid-cols-3">
       {ORDER_STEPS.map((step) => (
         <li key={step.n} className={`border-t pt-4 ${rule}`}>
-          <p className={`font-serif text-3xl ${dark ? "text-[#f6f4ef]" : "text-[#1c1a17]"}`}>{step.n}</p>
+          <p className={`font-serif text-4xl italic ${dark ? "text-[#f6f4ef]" : "text-[#c0a477]"}`}>{step.n}</p>
           <p className={`mt-3 text-[12px] tracking-[0.16em] uppercase ${dark ? "text-[#f6f4ef]" : "text-[#1c1a17]"}`}>{step.title}</p>
           <p className={`mt-2 text-sm leading-relaxed ${muted}`}>{step.body}</p>
         </li>

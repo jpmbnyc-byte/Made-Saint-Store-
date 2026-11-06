@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { PRODUCTS } from "@/lib/business";
@@ -39,13 +40,28 @@ export default function Home() {
       <Mast />
 
       <section id="order" className="ms-liquid scroll-mt-24">
-        <div className="relative z-[1] mx-auto max-w-[1100px] px-5 py-16 md:px-8 md:py-24">
-          <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Made to order · Felgueiras</p>
-          <h1 className="mt-4 max-w-3xl font-serif text-[46px] leading-[0.92] text-[#2a3746] md:text-[76px]">
-            A pair is cut only after you reserve it.
-          </h1>
-          <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#41505b]">{orderWindowLine()}</p>
-          <div className="mt-10">
+        <div className="relative z-[1] mx-auto max-w-[1100px] px-5 py-12 md:px-8 md:py-20">
+          <div className="grid items-center gap-8 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:gap-12">
+            <div>
+              <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Made to order · Felgueiras</p>
+              <h1 className="mt-4 max-w-3xl font-serif text-[42px] leading-[0.92] text-[#2a3746] md:text-[68px]">
+                A pair is cut only after you reserve it.
+              </h1>
+              <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#41505b]">{orderWindowLine()}</p>
+            </div>
+            <figure>
+              <Image
+                src="/hero/look1-runner-hero.webp"
+                alt="Runner, Chalk, three-quarter pair"
+                width={1280}
+                height={720}
+                priority
+                className="h-auto w-full"
+              />
+              <figcaption className="mt-3 text-[11px] tracking-[0.16em] text-[#8d7349] uppercase">Chalk · a founding colorway</figcaption>
+            </figure>
+          </div>
+          <div className="mt-10 md:mt-14">
             <OrderRule />
           </div>
         </div>

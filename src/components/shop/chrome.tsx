@@ -8,21 +8,22 @@ export function ShopHeader({ status }: { status?: string }) {
         <div className="bg-[#1c1a17] px-4 py-2 text-center text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase">{status}</div>
       )}
       <div className="mx-auto flex max-w-[1320px] flex-col gap-2 px-4 py-3 sm:px-5 md:px-8">
-        <Link href="/" className="self-center sm:hidden">
+        <Link href="/" className="inline-flex h-11 items-center self-center sm:hidden">
           <Wordmark className="h-8 w-auto" />
         </Link>
-        <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 sm:gap-4">
-          <nav className="flex gap-3 text-[10px] tracking-[0.14em] text-[#1c1a17]/70 uppercase sm:gap-5 sm:text-[11px] sm:tracking-[0.16em]">
-            <Link href="/shop#edition" className="whitespace-nowrap hover:text-[#1c1a17]"><span className="hidden sm:inline">Founding </span>Edition</Link>
-            <Link href="/#looks" className="hover:text-[#1c1a17]">Looks</Link>
-            <Link href="/line" className="hover:text-[#1c1a17]">Line</Link>
-            <Link href="/wardrobe" className="hover:text-[#1c1a17]">Private</Link>
+        <div className="grid grid-cols-1 items-center sm:grid-cols-[1fr_auto_1fr] sm:gap-4">
+          <nav className="flex min-w-0 items-center justify-between gap-3 overflow-x-auto text-[10px] tracking-[0.14em] text-[#1c1a17]/70 uppercase [scrollbar-width:none] sm:justify-start sm:gap-5 sm:text-[11px] sm:tracking-[0.16em] [&::-webkit-scrollbar]:hidden">
+            <Link href="/shop#edition" className="inline-flex h-11 shrink-0 items-center whitespace-nowrap hover:text-[#1c1a17]"><span className="hidden sm:inline">Founding </span>Edition</Link>
+            <Link href="/#looks" className="inline-flex h-11 shrink-0 items-center hover:text-[#1c1a17]">Looks</Link>
+            <Link href="/line" className="inline-flex h-11 shrink-0 items-center hover:text-[#1c1a17]">Line</Link>
+            <Link href="/wardrobe" className="inline-flex h-11 shrink-0 items-center hover:text-[#1c1a17]">Private</Link>
+            <Link href="/shop#edition" className="inline-flex h-11 shrink-0 items-center hover:text-[#1c1a17] sm:hidden">Reserve</Link>
           </nav>
           <Link href="/" className="hidden justify-self-center sm:block">
             <Wordmark />
           </Link>
-          <nav className="flex justify-end gap-3 text-[10px] tracking-[0.14em] text-[#1c1a17]/70 uppercase sm:gap-5 sm:text-[11px] sm:tracking-[0.16em]">
-            <Link href="/shop#edition" className="whitespace-nowrap hover:text-[#1c1a17]">Reserve</Link>
+          <nav className="hidden justify-end sm:flex">
+            <Link href="/shop#edition" className="inline-flex h-11 items-center text-[11px] tracking-[0.16em] text-[#1c1a17]/70 uppercase hover:text-[#1c1a17]">Reserve</Link>
           </nav>
         </div>
       </div>
@@ -52,8 +53,8 @@ export function ShopFooter() {
           <Link href="/#looks" className="block hover:text-[#1c1a17]">Lookbooks</Link>
           <Link href="/line" className="block hover:text-[#1c1a17]">The 2027 line</Link>
           <Link href="/wardrobe" className="block hover:text-[#1c1a17]">The Private Wardrobe</Link>
-          <Link href="/#atelier" className="block hover:text-[#1c1a17]">The atelier</Link>
-          <Link href="/shop#how" className="block hover:text-[#1c1a17]">How a pair is made</Link>
+          <Link href="/#leather" className="block hover:text-[#1c1a17]">The leather runners</Link>
+          <Link href="/#order" className="block hover:text-[#1c1a17]">How a pair is made</Link>
           <Link href="/shop#faq" className="block hover:text-[#1c1a17]">Care and questions</Link>
         </div>
       </div>

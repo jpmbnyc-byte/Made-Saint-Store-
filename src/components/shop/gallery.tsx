@@ -10,7 +10,7 @@ export function ProductGallery({ views }: { views: CatalogView[] }) {
   return (
     <div>
       <div className="bg-[#f1eee8] lg:hidden">
-        <img src={current.src} alt={current.alt} className="aspect-[3/4] w-full object-contain" />
+        <img src={current.src} alt={current.alt} className="aspect-[2/3] w-full object-contain" />
         {views.length > 1 && (
           <div className="flex gap-2 overflow-x-auto px-4 py-3">
             {views.map((v, i) => (

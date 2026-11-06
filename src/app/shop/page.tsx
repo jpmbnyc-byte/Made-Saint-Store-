@@ -30,6 +30,19 @@ export default async function ShopPage() {
         <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/60 uppercase">Made to order · Felgueiras</p>
         <h1 className="mt-4 max-w-3xl font-serif text-[44px] leading-[0.95] md:text-[64px]">A pair is cut only after you reserve it.</h1>
         <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">{orderWindowLine()}</p>
+        <ul className="mt-8 grid grid-cols-3 gap-2 sm:gap-4">
+          {launch.map((p) => (
+            <li key={p.id}>
+              <Link href={`/shop/${p.id}`} className="block">
+                <span className="relative block aspect-[2/3] bg-[#f3efe8]">
+                  <Image src={p.image} alt={p.name} fill sizes="(min-width: 640px) 30vw, 33vw" className="object-contain" />
+                </span>
+                <span className="mt-2 block font-serif text-lg leading-none sm:text-2xl">{p.name.replace("Runner, ", "")}</span>
+                <span className="mt-1 block text-[12px] tabular-nums">${p.usd}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
         <div className="mt-10">
           <OrderRule />
         </div>
@@ -43,7 +56,7 @@ export default async function ShopPage() {
         <div className="mt-8 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
           {launch.map((p) => (
             <Link key={p.id} href={`/shop/${p.id}`} className="group block">
-              <div className="relative aspect-square overflow-hidden bg-[#f3efe8]">
+              <div className="relative aspect-[2/3] overflow-hidden bg-[#f3efe8]">
                 <Image src={p.image} alt={`MADE SAiNT ${p.name}`} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-contain p-3" />
               </div>
               <div className="mt-4 flex items-baseline justify-between gap-3">
@@ -73,7 +86,7 @@ export default async function ShopPage() {
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {next.map((p) => (
               <div key={p.id}>
-                <div className="relative aspect-square overflow-hidden bg-[#f3efe8]">
+                <div className="relative aspect-[2/3] overflow-hidden bg-[#f3efe8]">
                   <Image src={p.image} alt={`MADE SAiNT ${p.name}, in development`} fill sizes="(min-width: 640px) 33vw, 100vw" className="object-contain p-3" />
                 </div>
                 <div className="mt-3 flex items-baseline justify-between">

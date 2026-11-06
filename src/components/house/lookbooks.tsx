@@ -8,6 +8,7 @@ import {
   OCCASIONS,
   lookById,
   looksIn,
+  lookFrame,
   offerFor,
   reserveTotal,
   resolvePiece,
@@ -99,7 +100,7 @@ export function Lookbooks({
               <li key={look.id} className="w-24">
                 <button type="button" onClick={() => chooseLook(look)} aria-pressed={on} className="block w-full text-left">
                   <span className={`relative block aspect-[3/4] bg-[#f7f4ef] ${on ? "outline outline-1 outline-[#c0a477]" : ""}`}>
-                    <Image src={look.image} alt="" fill sizes="96px" className="object-contain" />
+                    <Image src={look.image} alt="" fill sizes="96px" className={lookFrame(look)} />
                   </span>
                   <span className="mt-2 block text-[10px] tracking-[0.14em] text-[#1c1a17]/50 uppercase">Look {String(index + 1).padStart(2, "0")}</span>
                   <span className={`mt-1 block font-serif text-base leading-none ${on ? "" : "text-[#1c1a17]/70"}`}>{look.name}</span>
@@ -132,7 +133,7 @@ export function Lookbooks({
 function LookFigure({ look }: { look: Look }) {
   return (
     <div className="relative aspect-[3/4] bg-[#f3efe8]">
-      <Image src={look.image} alt={look.alt} fill sizes="(min-width: 768px) 40vw, 100vw" className="object-contain" />
+      <Image src={look.image} alt={look.alt} fill sizes="(min-width: 768px) 40vw, 100vw" className={lookFrame(look)} />
     </div>
   );
 }

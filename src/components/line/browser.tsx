@@ -32,7 +32,7 @@ export function LineBrowser({ cards }: { cards: LineCard[] }) {
   });
 
   return (
-    <div>
+    <div className="min-w-0">
       <div className="flex flex-col gap-4 border-b border-[#1c1a17]/12 pb-5 md:flex-row md:items-end md:justify-between">
         <div className="flex flex-wrap gap-2">
           {TIERS.map((item) => (
@@ -50,16 +50,16 @@ export function LineBrowser({ cards }: { cards: LineCard[] }) {
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Name, code, color"
-          className="h-11 w-full border border-[#1c1a17]/20 bg-white px-3 text-sm md:w-64"
+          className="h-11 w-full border border-[#1c1a17]/20 bg-white px-3 text-base md:w-64"
         />
       </div>
-      <div className="mt-4 flex gap-2 overflow-x-auto pb-2">
+      <div className="mt-4 flex min-w-0 gap-2 overflow-x-auto pb-2">
         {categories.map((item) => (
           <button
             key={item}
             type="button"
             onClick={() => setCategory(item)}
-            className={`shrink-0 border-b px-1 py-2 text-[11px] tracking-[0.12em] uppercase ${category === item ? "border-[#1c1a17]" : "border-transparent text-[#1c1a17]/50"}`}
+            className={`inline-flex h-11 shrink-0 items-center border-b px-2 text-[11px] tracking-[0.12em] uppercase ${category === item ? "border-[#1c1a17]" : "border-transparent text-[#1c1a17]/50"}`}
           >
             {item}
           </button>
@@ -80,10 +80,8 @@ export function LineBrowser({ cards }: { cards: LineCard[] }) {
                 )}
               </div>
               <p className="mt-3 text-[11px] tracking-[0.14em] text-[#1c1a17]/45 uppercase">{card.tier} · {card.ref}</p>
-              <div className="mt-1 flex items-baseline justify-between gap-3">
-                <h2 className="font-serif text-2xl leading-none group-hover:underline">{card.name}</h2>
-                <p className="shrink-0 text-sm tabular-nums">{card.retail != null ? `$${card.retail.toLocaleString("en-US")}` : "Held"}</p>
-              </div>
+              <h2 className="mt-1 font-serif text-xl leading-tight group-hover:underline">{card.name}</h2>
+              <p className="mt-1 text-sm tabular-nums">{card.retail != null ? `$${card.retail.toLocaleString("en-US")}` : "Held"}</p>
               <p className="mt-1 text-[12px] text-[#1c1a17]/55">{card.status === "held" ? "No price until the record is reconciled" : "Proposed list price"}</p>
             </Link>
           </li>

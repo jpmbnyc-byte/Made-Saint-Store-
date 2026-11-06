@@ -31,7 +31,7 @@ export default function LinePage() {
   return (
     <div className="min-h-screen bg-[#f6f4ef] text-[#1c1a17]">
       <ShopHeader />
-      <main className="mx-auto max-w-[1440px] px-5 py-12 md:px-10 md:py-16">
+      <main className="mx-auto min-w-0 max-w-[1440px] px-5 py-12 md:px-10 md:py-16">
         <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">2027 collection · 29 October 2026</p>
         <h1 className="mt-3 max-w-3xl font-serif text-5xl leading-[0.92] md:text-7xl">The line, with the photographs we have.</h1>
         <p className="mt-6 max-w-2xl text-[16px] leading-relaxed text-[#1c1a17]/75">

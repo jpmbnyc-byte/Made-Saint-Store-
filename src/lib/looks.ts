@@ -26,6 +26,8 @@ export type Look = {
   alt: string;
   read: string;
   aside?: string;
+  /** A poster or a flat. Kept whole. A worn figure is cropped to the body. */
+  sheet?: boolean;
   pieces: LookPiece[];
 };
 
@@ -52,6 +54,7 @@ export const LOOKS: Look[] = [
     image: "/wardrobe/course-edit-campaign.webp",
     alt: "Three course suits on a green",
     read: "The course edit. One registered suit, shown with the rest of the sheet.",
+    sheet: true,
     aside: "The sheet shows three figures. The registered suit is the indigo pinstripe. The other two are the same edit, not separate reservations. Proposed prices stay on the line.",
     pieces: [{ id: "s03", role: "Suit", shown: true }],
   },
@@ -91,6 +94,7 @@ export const LOOKS: Look[] = [
     image: "/wardrobe/suit-saint-john-camel.webp",
     alt: "Camel Saint John jacket and trouser, front and back",
     read: "Camel tailoring for a formal appearance.",
+    sheet: true,
     pieces: [{ id: "s01", role: "Suit", shown: true }],
   },
   {
@@ -101,6 +105,7 @@ export const LOOKS: Look[] = [
     image: "/wardrobe/suit-saint-michael-olive.webp",
     alt: "Olive Saint Michael tailored suit",
     read: "Olive tailoring for the same kind of day.",
+    sheet: true,
     pieces: [{ id: "s02", role: "Suit", shown: true }],
   },
 ];
@@ -137,6 +142,11 @@ export function lookById(id: string) {
 
 export function lookForLifestyle(lifestyle: LifestyleId) {
   return LOOKS.find((look) => look.lifestyle === lifestyle) ?? LOOKS[0];
+}
+
+/** Worn figures lose their letterbox. A sheet stays whole, on a phone and on a desk. */
+export function lookFrame(look: Look) {
+  return look.sheet ? "object-contain" : "object-cover object-center";
 }
 
 export function resolvePiece(id: string) {

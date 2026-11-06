@@ -108,11 +108,11 @@ export function PrivateHouse() {
 
   return (
     <div>
-      <section className="bg-[#1c1a17] text-[#f6f4ef]">
-        <div className="mx-auto grid max-w-[1440px] items-end gap-10 px-5 py-16 md:grid-cols-[1.2fr_0.8fr] md:px-10 md:py-24">
-          <div>
+      <section className="overflow-x-clip bg-[#1c1a17] text-[#f6f4ef]">
+        <div className="mx-auto grid max-w-[1440px] items-center gap-8 px-5 py-12 md:grid-cols-[1.05fr_0.95fr] md:px-10 md:py-20">
+          <div className="order-2 md:order-1">
             <p className="text-[11px] tracking-[0.22em] text-[#f6f4ef]/55 uppercase">The Private Wardrobe</p>
-            <h1 className="mt-4 font-serif text-[52px] leading-[0.92] md:text-[84px]">
+            <h1 className="mt-4 font-serif text-[44px] leading-[0.92] md:text-[72px]">
               Three annual
               <br />
               <em>collections.</em>
@@ -126,14 +126,23 @@ export function PrivateHouse() {
                 ["#compose", "Compose"],
                 ["#commission", "Commission"],
               ].map(([href, label]) => (
-                <a key={href} href={href} className="border border-[#f6f4ef]/30 px-5 py-3 text-[11px] tracking-[0.18em] uppercase hover:bg-[#f6f4ef] hover:text-[#1c1a17]">
+                <a key={href} href={href} className="inline-flex h-12 items-center border border-[#f6f4ef]/30 px-5 text-[11px] tracking-[0.18em] uppercase hover:bg-[#f6f4ef] hover:text-[#1c1a17]">
                   {label}
                 </a>
               ))}
             </div>
           </div>
-          <div className="bg-[#f1eee8]">
-            <img src="/wardrobe/tonal-zip-system.webp" alt="MADE SAiNT tonal zip jacket, the same silhouette offered ready and made to measure" className="h-auto w-full" />
+          <figure className="order-1 bg-[#f6f4ef] md:order-2">
+            <img src="/wardrobe/suit-saint-john-camel.webp" alt="Camel Saint John jacket and trouser, front and back" className="h-auto w-full" />
+          </figure>
+        </div>
+        <div className="border-t border-[#f6f4ef]/15">
+          <div className="mx-auto max-w-[1440px] px-5 py-8 md:px-10">
+            <p className="text-[11px] tracking-[0.18em] text-[#f6f4ef]/55 uppercase">The tonal collection</p>
+            <div className="mt-4 w-full min-w-0 overflow-x-auto">
+              <img src="/wardrobe/tonal-zip-system.webp" alt="Seven tonal zip suits, with the color name under each" className="h-auto w-[920px] max-w-none md:w-full" />
+            </div>
+            <p className="mt-3 text-[12px] text-[#f6f4ef]/55 md:hidden">Slide sideways to read each color.</p>
           </div>
         </div>
       </section>
@@ -153,7 +162,7 @@ export function PrivateHouse() {
             className="w-full resize-none bg-transparent py-3 text-[16px] leading-relaxed outline-none"
           />
           <div className="flex justify-end pb-3">
-            <button type="submit" className="bg-[#1c1a17] px-6 py-3 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase">
+            <button type="submit" className="inline-flex h-12 w-full items-center justify-center bg-[#1c1a17] px-6 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase sm:w-auto">
               Assemble from the register
             </button>
           </div>

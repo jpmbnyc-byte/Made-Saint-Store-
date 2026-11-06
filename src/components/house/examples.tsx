@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { LOOKS, OCCASIONS, reserveTotal, type Look } from "@/lib/looks";
+import { LOOKS, OCCASIONS, lookFrame, reserveTotal, type Look } from "@/lib/looks";
 import { Lookbooks } from "@/components/house/lookbooks";
 import { CardRail } from "@/components/house/slider";
 
@@ -21,7 +21,7 @@ function LookCard({ look, onOpen }: { look: Look; onOpen: (id: string) => void }
       className="w-[78%] shrink-0 snap-start text-left sm:w-[46%] lg:w-[32%]"
     >
       <span className="relative block aspect-[3/4] overflow-hidden bg-[#f7f4ef]">
-        <Image src={look.image} alt={look.alt} fill sizes="(min-width: 1024px) 32vw, 78vw" className="object-cover" />
+        <Image src={look.image} alt={look.alt} fill sizes="(min-width: 1024px) 32vw, 78vw" className={lookFrame(look)} />
       </span>
       <span className="mt-3 block text-[11px] tracking-[0.16em] text-[#8d7349] uppercase">{room?.title}</span>
       <span className="mt-1 block font-serif text-3xl text-[#2a3746]">{look.name}</span>

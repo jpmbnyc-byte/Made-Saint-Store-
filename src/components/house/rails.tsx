@@ -13,12 +13,12 @@ export function EditionSlider({ products }: { products: Product[] }) {
   if (!product) return null;
 
   return (
-    <div>
-      <div className="grid items-center gap-8 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-12">
-        <div {...slider.bind} className="relative aspect-square touch-pan-y bg-[#f7f4ef]">
-          <Image src={product.image} alt={product.name} fill sizes="(min-width: 768px) 42vw, 100vw" className="object-contain p-6" priority={slider.index === 0} />
+    <div className="min-w-0">
+      <div className="grid min-w-0 items-center gap-8 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-12">
+        <div {...slider.bind} className="relative aspect-[2/3] min-w-0 touch-pan-y bg-[#f7f4ef]">
+          <Image src={product.image} alt={product.name} fill sizes="(min-width: 768px) 42vw, 100vw" className="object-contain" priority={slider.index === 0} />
         </div>
-        <div>
+        <div className="min-w-0">
           <p className="text-[11px] tracking-[0.2em] text-[#8d7349] uppercase">Open to reserve</p>
           <h2 className="mt-3 font-serif text-5xl leading-none text-[#2a3746] md:text-6xl">{short(product.name)}</h2>
           <p className="mt-4 text-[15px] leading-relaxed text-[#41505b]">{product.line}</p>
@@ -26,7 +26,7 @@ export function EditionSlider({ products }: { products: Product[] }) {
           <p className="mt-2 text-[13px] text-[#41505b]">Ships {shipWindow()} if the run is confirmed.</p>
           <div className="mt-6">
             <p className="text-[11px] tracking-[0.16em] text-[#41505b] uppercase">Size · US men&apos;s</p>
-            <div className="mt-3 flex gap-1.5 overflow-x-auto pb-1">
+            <div className="mt-3 flex min-w-0 gap-1.5 overflow-x-auto pb-1">
               {SIZES.map((size) => (
                 <Link
                   key={size}
@@ -55,7 +55,7 @@ export function ListRail() {
     <CardRail label="Colorway" count={waiting.length}>
       {waiting.map((product) => (
         <Link key={product.id} href="/shop#list" className="w-[78%] shrink-0 snap-start sm:w-[46%] lg:w-[32%]">
-          <span className="relative block aspect-square bg-[#f7f4ef]">
+          <span className="relative block aspect-[2/3] bg-[#f7f4ef]">
             <Image src={product.image} alt={product.name} fill sizes="(min-width: 1024px) 32vw, 78vw" className="object-contain p-6" />
           </span>
           <span className="mt-3 block text-[11px] tracking-[0.16em] text-[#8d7349] uppercase">Not open</span>
@@ -78,8 +78,8 @@ export function LeatherSlider({
 
   return (
     <div>
-      <div {...slider.bind} className="relative mx-auto aspect-[3/4] max-w-md touch-pan-y bg-[#f7f4ef]">
-        <Image src={runner.src} alt={runner.alt} fill sizes="(min-width: 768px) 28rem, 100vw" className="object-contain" />
+      <div {...slider.bind} className="relative mx-auto aspect-[4/5] max-w-md touch-pan-y overflow-hidden bg-[#e7e0d4]">
+        <Image src={runner.src} alt={runner.alt} fill sizes="(min-width: 768px) 28rem, 100vw" className="object-cover object-[center_62%]" />
       </div>
       <p className="mt-4 text-center font-serif text-3xl text-[#2a3746]">{runner.name}</p>
       <p className="mt-1 text-center text-[12px] tracking-[0.16em] text-[#41505b] uppercase">Shown, not reserved</p>

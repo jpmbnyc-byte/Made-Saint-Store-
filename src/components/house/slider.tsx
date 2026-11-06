@@ -76,11 +76,11 @@ export function CardRail({
 }) {
   const rail = useRail(count);
   return (
-    <div>
+    <div className="min-w-0">
       <div
         ref={rail.scroller}
         onScroll={rail.onScroll}
-        className="relative flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2"
+        className="relative flex min-w-0 snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2"
       >
         {children}
       </div>
@@ -123,10 +123,10 @@ export function SliderControls({
             />
           ))}
         </div>
-        <button type="button" onClick={onPrev} aria-label={`Previous ${label}`} className="grid size-10 place-items-center border border-[#41505b]/25 text-[#41505b] hover:border-[#c0a477]">
+        <button type="button" onClick={onPrev} aria-label={`Previous ${label}`} className="grid size-11 place-items-center border border-[#41505b]/25 text-[#41505b] hover:border-[#c0a477]">
           ‹
         </button>
-        <button type="button" onClick={onNext} aria-label={`Next ${label}`} className="grid size-10 place-items-center border border-[#41505b]/25 text-[#41505b] hover:border-[#c0a477]">
+        <button type="button" onClick={onNext} aria-label={`Next ${label}`} className="grid size-11 place-items-center border border-[#41505b]/25 text-[#41505b] hover:border-[#c0a477]">
           ›
         </button>
       </div>

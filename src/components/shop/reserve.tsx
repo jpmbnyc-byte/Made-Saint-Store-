@@ -63,11 +63,8 @@ export function ReserveForm({
   return (
     <form onSubmit={submit} className="space-y-6">
       <fieldset>
-        <div className="flex items-baseline justify-between">
-          <legend className="text-[11px] tracking-[0.16em] uppercase">Size · US men&apos;s</legend>
-          <span className="text-[12px] text-[#1c1a17]/55">Between sizes? Take the half size up.</span>
-        </div>
-        <div className="mt-3 grid grid-cols-6 gap-1.5">
+        <legend className="text-[11px] tracking-[0.16em] uppercase">Size · US men&apos;s</legend>
+        <div className="mt-3 grid grid-cols-4 gap-1.5 min-[380px]:grid-cols-6">
           {sizes.map((s) => (
             <button
               key={s}
@@ -82,6 +79,7 @@ export function ReserveForm({
             </button>
           ))}
         </div>
+        <p className="mt-2 text-[12px] text-[#1c1a17]/55">Between sizes, take the half size up.</p>
       </fieldset>
 
       <div className="grid gap-4 sm:grid-cols-2">

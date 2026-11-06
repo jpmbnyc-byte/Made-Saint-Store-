@@ -32,7 +32,7 @@ export default async function LineProductPage({ params }: { params: Promise<{ re
         <Link href="/line" className="inline-flex items-center gap-1 text-[11px] tracking-[0.16em] text-[#1c1a17]/55 uppercase">
           <ChevronLeft className="size-3.5" /> The 2027 line
         </Link>
-        <div className="mt-6 grid gap-10 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:gap-16">
+        <div className="mt-6 grid min-w-0 gap-10 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:gap-16">
           <div className="grid gap-3">
             {frames.length ? (
               frames.map((frame) => (

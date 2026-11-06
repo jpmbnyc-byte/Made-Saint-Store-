@@ -184,7 +184,7 @@ function LookBill({ look }: { look: Look }) {
                   {offer.kind === "commission" && (
                     <>
                       <p className="text-[11px] tracking-[0.14em] text-[#1c1a17]/55 uppercase">Not a checkout</p>
-                      <Link href="/wardrobe#commission" className="mt-2 inline-block text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">
+                      <Link href={`/wardrobe?look=${look.id}#commission`} className="mt-2 inline-block text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">
                         Commission
                       </Link>
                     </>
@@ -210,7 +210,7 @@ function LookBill({ look }: { look: Look }) {
           ) : (
             <>
               <p className="max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">Nothing in this look can be reserved. It is commissioned, one piece or the year.</p>
-              <Link href="/wardrobe#commission" className="mt-5 inline-block bg-[#1c1a17] px-6 py-4 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase">
+              <Link href={`/wardrobe?look=${look.id}#commission`} className="mt-5 inline-flex h-12 items-center bg-[#1c1a17] px-6 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase">
                 Commission the look
               </Link>
             </>

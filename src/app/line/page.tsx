@@ -45,7 +45,7 @@ export default function LinePage() {
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href="/shop#edition" className="border border-[#1c1a17] px-4 py-3 text-[11px] tracking-[0.16em] uppercase">Founding Edition</Link>
-          <Link href="/wardrobe#commission" className="bg-[#1c1a17] px-4 py-3 text-[11px] tracking-[0.16em] text-[#f6f4ef] uppercase">Commission</Link>
+          <Link href="/wardrobe#commission" className="inline-flex h-12 items-center bg-[#1c1a17] px-4 text-[11px] tracking-[0.16em] text-[#f6f4ef] uppercase">Commission</Link>
         </div>
 
         <section className="mt-14">

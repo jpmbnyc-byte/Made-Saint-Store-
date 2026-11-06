@@ -1,62 +1,26 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
   EMPTY_FIT,
   LIFESTYLES,
   OFFERINGS,
   PATHWAY_LABEL,
-  SEASONS,
-  allocation,
   fitReview,
   interpret,
-  pieceById,
-  retailOf,
-  shopHref,
   visiblePieces,
   type FitInput,
   type LifestyleId,
 } from "@/lib/private-client";
 import { Lookbooks } from "@/components/house/lookbooks";
-import { lookForLifestyle } from "@/lib/looks";
+import type { CommissionScope } from "@/lib/commission";
+import { lineByRef } from "@/lib/line";
+import { lookById, lookForLifestyle, offerFor } from "@/lib/looks";
 import { usd } from "@/lib/wardrobe";
 
-function PieceCard({ id, onAdapt }: { id: string; onAdapt?: () => void }) {
-  const piece = pieceById(id);
-  if (!piece) return null;
-  const price = retailOf(id);
-  const href = shopHref(id);
-  return (
-    <article className="flex flex-col">
-      <div className="relative aspect-[4/5] overflow-hidden bg-[#f1eee8]">
-        {piece.image ? (
-          <img src={piece.image} alt={piece.name} className="absolute inset-0 h-full w-full object-contain" />
-        ) : (
-          <div className="flex h-full items-end p-4">
-            <p className="text-[11px] tracking-[0.16em] text-[#1c1a17]/45 uppercase">Photograph pending</p>
-          </div>
-        )}
-      </div>
-      <div className="mt-3 flex items-baseline justify-between gap-3">
-        <h3 className="font-serif text-2xl leading-none">{piece.name}</h3>
-        <p className="text-sm tabular-nums">{price != null ? usd(price) : "Price pending"}</p>
-      </div>
-      <p className="mt-1 text-[13px] text-[#1c1a17]/60">{piece.material}</p>
-      <div className="mt-3 flex flex-wrap gap-3 text-[11px] tracking-[0.14em] uppercase">
-        {href && (
-          <Link href={href} className="border-b border-[#1c1a17] pb-0.5">
-            Purchase
-          </Link>
-        )}
-        {onAdapt && (
-          <button type="button" onClick={onAdapt} className="border-b border-[#1c1a17]/40 pb-0.5 text-[#1c1a17]/70">
-            Adapt to my measurements
-          </button>
-        )}
-      </div>
-    </article>
-  );
+function clothingIds(ids: readonly string[]) {
+  return ids.filter((id) => offerFor(id).kind === "commission");
 }
 
 const MEASURES: { key: keyof FitInput; label: string; unit: string }[] = [
@@ -73,33 +37,103 @@ const MEASURES: { key: keyof FitInput; label: string; unit: string }[] = [
 ];
 
 export function PrivateHouse() {
-  const [query, setQuery] = useState("I need clothing for travel and appearances during basketball season.");
+  const opening = lookForLifestyle("arrival").pieces.map((piece) => piece.id);
+  const [query, setQuery] = useState("");
   const [asked, setAsked] = useState(false);
   const [lifestyleId, setLifestyleId] = useState<LifestyleId>("arrival");
   const [reply, setReply] = useState("");
   const [focusLookId, setFocusLookId] = useState<string | null>(null);
-  const opening = lookForLifestyle("arrival").pieces.map((piece) => piece.id);
   const [roster, setRoster] = useState<string[]>(opening);
-  const [selected, setSelected] = useState<string[]>(opening);
-  const [commitment, setCommitment] = useState<number | null>(null);
+  const [selected, setSelected] = useState<string[]>(clothingIds(opening));
+  const [lineRef, setLineRef] = useState("");
+  const [scope, setScope] = useState<CommissionScope>("look");
   const [fit, setFit] = useState<FitInput>(EMPTY_FIT);
-  const [reviewed, setReviewed] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [note, setNote] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [sent, setSent] = useState<string | null>(null);
 
   const lifestyle = LIFESTYLES.find((l) => l.id === lifestyleId) ?? LIFESTYLES[0];
   const review = useMemo(() => fitReview(fit), [fit]);
-  const money = allocation(selected, commitment ?? 0);
+  const clothes = visiblePieces(selected);
+  const heldLine = lineByRef(lineRef);
+  const activeLook = focusLookId ? lookById(focusLookId) : roster.length ? lookForLifestyle(lifestyleId) : undefined;
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const look = lookById(params.get("look") ?? "");
+    const line = lineByRef(params.get("ref") ?? "");
+    if (line) setLineRef(line.ref);
+    if (look) {
+      const ids = look.pieces.map((piece) => piece.id);
+      setLifestyleId(look.lifestyle);
+      setFocusLookId(look.id);
+      setRoster(ids);
+      setSelected(clothingIds(ids));
+      return;
+    }
+    if (line) {
+      setRoster([]);
+      setSelected([]);
+      setScope("piece");
+    }
+  }, []);
+
+  function applyLook(ids: string[], nextLifestyle: LifestyleId, lookId: string) {
+    setLifestyleId(nextLifestyle);
+    setFocusLookId(lookId);
+    setRoster(ids);
+    setSelected(clothingIds(ids));
+    setScope((current) => {
+      if (current === "season" || current === "annual" || current === "expanded" || current === "atelier") return current;
+      return "look";
+    });
+  }
 
   function ask(e: React.FormEvent) {
     e.preventDefault();
     const next = interpret(query);
-    setLifestyleId(next.lifestyleId);
     setReply(next.reply);
     setAsked(true);
     const look = lookForLifestyle(next.lifestyleId);
-    const ids = look.pieces.map((piece) => piece.id);
-    setFocusLookId(look.id);
-    setRoster(ids);
-    setSelected(ids);
+    applyLook(look.pieces.map((piece) => piece.id), next.lifestyleId, look.id);
+    document.getElementById("compose")?.scrollIntoView({ behavior: "smooth" });
+  }
+
+  async function send(e: React.FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/commissions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          note,
+          scope,
+          lookId: activeLook?.id ?? "",
+          pieceIds: selected,
+          lineRef,
+          fit,
+        }),
+      });
+      const text = await res.text();
+      let json: { error?: string; id?: string } = {};
+      try {
+        json = JSON.parse(text) as typeof json;
+      } catch {
+        throw new Error("The commission could not be sent from this page. Nothing was saved.");
+      }
+      if (!res.ok || !json.id) throw new Error(json.error ?? "The commission could not be sent.");
+      setSent(json.id);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "The commission could not be sent.");
+      setBusy(false);
+    }
   }
 
   function toggle(id: string) {
@@ -159,11 +193,12 @@ export function PrivateHouse() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             rows={3}
-            className="w-full resize-none bg-transparent py-3 text-[16px] leading-relaxed outline-none"
+            placeholder="A flight, a public day, a suit."
+            className="w-full resize-none bg-transparent py-3 text-[16px] leading-relaxed outline-none placeholder:text-[#1c1a17]/35"
           />
           <div className="flex justify-end pb-3">
             <button type="submit" className="inline-flex h-12 w-full items-center justify-center bg-[#1c1a17] px-6 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase sm:w-auto">
-              Assemble from the register
+              Show a look
             </button>
           </div>
         </form>
@@ -171,16 +206,9 @@ export function PrivateHouse() {
           <div className="mt-8">
             <p className="text-[15px] leading-relaxed text-[#1c1a17]/75">{reply}</p>
             <p className="mt-4 text-[11px] tracking-[0.16em] uppercase">{lifestyle.name}</p>
-            <div className="mt-5 flex flex-wrap gap-3 text-[11px] tracking-[0.16em] uppercase">
-              <a href="#discover" className="border border-[#1c1a17] px-4 py-3">Purchase individually</a>
-              <a href="#compose" className="border border-[#1c1a17] px-4 py-3">Compose the look</a>
-              <a href="#commission" className="bg-[#1c1a17] px-4 py-3 text-[#f6f4ef]">Commission a wardrobe</a>
-            </div>
-            <div className="mt-6 grid gap-6 sm:grid-cols-2">
-              {visiblePieces(roster).map((p) => (
-                <PieceCard key={p.id} id={p.id} onAdapt={() => document.getElementById("commission")?.scrollIntoView({ behavior: "smooth" })} />
-              ))}
-            </div>
+            <a href="#compose" className="mt-5 inline-flex h-12 w-full items-center justify-center bg-[#1c1a17] px-5 text-[11px] tracking-[0.16em] text-[#f6f4ef] uppercase sm:w-auto">
+              Continue with this look
+            </a>
           </div>
         )}
       </section>
@@ -196,12 +224,7 @@ export function PrivateHouse() {
             <Lookbooks
               heading={false}
               focusLookId={focusLookId}
-              onLook={(look) => {
-                const ids = look.pieces.map((piece) => piece.id);
-                setLifestyleId(look.lifestyle);
-                setRoster(ids);
-                setSelected(ids);
-              }}
+              onLook={(look) => applyLook(look.pieces.map((piece) => piece.id), look.lifestyle, look.id)}
             />
           </div>
         </div>
@@ -210,21 +233,51 @@ export function PrivateHouse() {
       <section id="compose" className="scroll-mt-28 border-t border-[#1c1a17]/10 bg-[#f1eee8]">
         <div className="mx-auto grid max-w-[1440px] gap-12 px-5 py-16 md:px-10 lg:grid-cols-[1.3fr_0.7fr]">
           <div>
-            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Compose · {lifestyle.name}</p>
-            <h2 className="mt-3 font-serif text-4xl md:text-5xl">Build the look from approved pieces.</h2>
+            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">02 · Compose · {lifestyle.name}</p>
+            <h2 className="mt-3 font-serif text-4xl md:text-5xl">Choose what is made for you.</h2>
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
+              Checked pieces go into the commission. A founding pair is reserved on the shop, and it is not part of this request.
+            </p>
             <ul className="mt-8 divide-y divide-[#1c1a17]/12 border-y border-[#1c1a17]/12">
-              {visiblePieces(roster).map((p) => {
-                const on = selected.includes(p.id);
-                const price = retailOf(p.id);
-                return (
-                  <li key={p.id}>
-                    <label className="flex cursor-pointer items-center gap-4 py-4">
-                      <input type="checkbox" checked={on} onChange={() => toggle(p.id)} className="size-4 accent-[#1c1a17]" />
+              {heldLine && (
+                <li className="flex items-center gap-4 py-4">
+                  <span className="grid size-11 shrink-0 place-items-center border border-[#1c1a17] text-[11px]">In</span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-serif text-2xl">{heldLine.name}</span>
+                    <span className="text-[13px] text-[#1c1a17]/60">{heldLine.ref} · 2027 line · proposed, not a checkout</span>
+                  </span>
+                </li>
+              )}
+              {visiblePieces(roster).map((piece) => {
+                const offer = offerFor(piece.id);
+                if (offer.kind !== "commission") {
+                  return (
+                    <li key={piece.id} className="flex items-center gap-4 py-4">
                       <span className="min-w-0 flex-1">
-                        <span className="block font-serif text-2xl">{p.name}</span>
-                        <span className="text-[13px] text-[#1c1a17]/60">{p.material}</span>
+                        <span className="block font-serif text-2xl">{piece.name}</span>
+                        <span className="text-[13px] text-[#1c1a17]/60">
+                          {offer.kind === "reserve" ? "Founding pair · reserved separately" : "Next run · not in this commission"}
+                        </span>
                       </span>
-                      <span className="text-sm tabular-nums">{price != null ? usd(price) : "Pending"}</span>
+                      <span className="text-right">
+                        <span className="block text-sm tabular-nums">{usd(offer.usd)}</span>
+                        <Link href={offer.href} className="mt-1 inline-flex h-11 items-center text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">
+                          {offer.kind === "reserve" ? "Reserve" : "Join the list"}
+                        </Link>
+                      </span>
+                    </li>
+                  );
+                }
+                const on = selected.includes(piece.id);
+                return (
+                  <li key={piece.id}>
+                    <label className="flex min-h-11 cursor-pointer items-center gap-4 py-4">
+                      <input type="checkbox" checked={on} onChange={() => toggle(piece.id)} className="size-5 accent-[#1c1a17]" />
+                      <span className="min-w-0 flex-1">
+                        <span className="block font-serif text-2xl">{piece.name}</span>
+                        <span className="text-[13px] text-[#1c1a17]/60">{piece.material}</span>
+                      </span>
+                      <span className="text-[11px] tracking-[0.14em] text-[#1c1a17]/55 uppercase">Commission</span>
                     </label>
                   </li>
                 );
@@ -232,60 +285,19 @@ export function PrivateHouse() {
             </ul>
           </div>
           <aside className="h-fit border border-[#1c1a17]/15 bg-[#f6f4ef] p-6 lg:sticky lg:top-28">
-            <p className="text-[11px] tracking-[0.16em] uppercase">This look</p>
-            <p className="mt-3 font-serif text-4xl tabular-nums">{usd(money.approved)}</p>
-            <p className="mt-2 text-sm text-[#1c1a17]/65">
-              {money.pending === 0
-                ? "Every selected piece has a published price."
-                : `${money.pending} selected ${money.pending === 1 ? "piece has" : "pieces have"} no approved price, so ${money.pending === 1 ? "it is" : "they are"} not in this total.`}
+            <p className="text-[11px] tracking-[0.16em] uppercase">In this request</p>
+            <p className="mt-3 font-serif text-4xl tabular-nums">{clothes.length + (heldLine ? 1 : 0)}</p>
+            <p className="mt-2 text-sm leading-relaxed text-[#1c1a17]/65">
+              {clothes.length + (heldLine ? 1 : 0) === 1 ? "One piece to be made." : "Pieces to be made."} Nothing here is a checkout price.
             </p>
-            <div className="mt-6 space-y-2 text-sm">
-              <label className="flex items-start gap-3">
-                <input
-                  type="radio"
-                  name="commitment"
-                  checked={commitment === null}
-                  onChange={() => setCommitment(null)}
-                  className="mt-1 accent-[#1c1a17]"
-                />
-                <span>Purchase the look. No annual commitment.</span>
-              </label>
-              {OFFERINGS.filter((o) => "commitment" in o).map((o) => (
-                <label key={o.id} className="flex items-start gap-3">
-                  <input
-                    type="radio"
-                    name="commitment"
-                    checked={commitment === o.commitment}
-                    onChange={() => setCommitment(o.commitment)}
-                    className="mt-1 accent-[#1c1a17]"
-                  />
-                  <span>
-                    {o.name}. {o.investment}. Preliminary target.
-                  </span>
-                </label>
+            <ul className="mt-4 space-y-2 text-sm">
+              {heldLine && <li>{heldLine.ref} · {heldLine.name}</li>}
+              {clothes.map((piece) => (
+                <li key={piece.id}>{piece.name}</li>
               ))}
-            </div>
-            {commitment != null && (
-              <dl className="mt-6 space-y-2 border-t border-[#1c1a17]/15 pt-4 text-sm">
-                <div className="flex justify-between gap-4">
-                  <dt className="text-[#1c1a17]/60">Preliminary commitment</dt>
-                  <dd className="tabular-nums">{usd(commitment)}</dd>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <dt className="text-[#1c1a17]/60">Allocated, approved prices</dt>
-                  <dd className="tabular-nums">{usd(money.approved)}</dd>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <dt className="text-[#1c1a17]/60">Unpriced pieces</dt>
-                  <dd>{money.pending}</dd>
-                </div>
-              </dl>
-            )}
-            <p className="mt-4 text-[12px] leading-relaxed text-[#1c1a17]/55">
-              Taxes, shipping, fittings, and pattern development are quoted separately. A remaining balance is not shown while any selected price is pending.
-            </p>
-            <a href="#commission" className="mt-6 inline-block bg-[#1c1a17] px-5 py-3 text-[11px] tracking-[0.16em] text-[#f6f4ef] uppercase">
-              Review the fit
+            </ul>
+            <a href="#commission" className="mt-6 inline-flex h-12 w-full items-center justify-center bg-[#1c1a17] px-5 text-[11px] tracking-[0.16em] text-[#f6f4ef] uppercase">
+              Continue to the request
             </a>
           </aside>
         </div>
@@ -293,135 +305,170 @@ export function PrivateHouse() {
 
       <section id="commission" className="scroll-mt-28 border-t border-[#1c1a17]/10">
         <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-10">
-          <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Commission</p>
-          <h2 className="mt-3 max-w-3xl font-serif text-4xl md:text-5xl">One design. Individual proportions.</h2>
+          <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">03 · Commission</p>
+          <h2 className="mt-3 max-w-3xl font-serif text-4xl md:text-5xl">Send the commission.</h2>
           <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            The product stays the same. The pathway changes: a published size, an approved made-to-measure adjustment, or a technical review. Not every silhouette can be made for every body.
+            This writes a request. It does not take payment, and it does not reserve a founding pair. The year is still three collections, Arrival, Transit, and Occasion. A date can move. The silhouette does not.
           </p>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {SEASONS.map((s) => (
-              <article key={s.id} className="border border-[#1c1a17]/15 p-5">
-                <p className="text-[11px] tracking-[0.16em] uppercase">Collection {s.id}</p>
-                <h3 className="mt-2 font-serif text-3xl">{s.name}</h3>
-                <p className="mt-3 text-sm text-[#1c1a17]/70">{s.purpose}. {s.direction}.</p>
-              </article>
-            ))}
-          </div>
-          <p className="mt-4 max-w-2xl text-sm text-[#1c1a17]/60">An athlete’s calendar can move a delivery. The three collections stay. The dates do not have to.</p>
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {OFFERINGS.map((o) => (
-              <article key={o.id} className="border border-[#1c1a17]/12 p-5">
-                <h3 className="font-serif text-2xl">{o.name}</h3>
-                <p className="mt-2 text-sm">{o.investment}</p>
-                <p className="mt-3 text-[13px] leading-relaxed text-[#1c1a17]/65">{o.note}</p>
-                {o.preliminary && <p className="mt-3 text-[11px] tracking-[0.14em] uppercase text-[#1c1a17]/45">Preliminary target</p>}
-              </article>
-            ))}
-          </div>
+          <div className="mt-10 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+            <form onSubmit={send} className="order-2 space-y-8 lg:order-1">
+              {sent ? (
+                <div className="border border-[#1c1a17]/15 p-6">
+                  <p className="text-[11px] tracking-[0.16em] uppercase">Received · {sent}</p>
+                  <p className="mt-3 font-serif text-3xl">The request is with the house.</p>
+                  <p className="mt-3 max-w-lg text-sm leading-relaxed text-[#1c1a17]/70">
+                    We will write to {email}. Nothing was charged. A founding pair, if you want one, is reserved from the shop.
+                  </p>
+                  <Link href="/shop#edition" className="mt-6 inline-flex h-12 items-center border border-[#1c1a17] px-5 text-[11px] tracking-[0.16em] uppercase">
+                    Reserve a founding pair
+                  </Link>
+                </div>
+              ) : (
+                <>
+                  <fieldset className="space-y-3">
+                    <legend className="font-serif text-2xl">What this request covers</legend>
+                    {OFFERINGS.map((offer) => (
+                      <label key={offer.id} className="flex min-h-11 cursor-pointer items-center gap-3 border border-[#1c1a17]/12 px-3">
+                        <input
+                          type="radio"
+                          name="scope"
+                          checked={scope === offer.id}
+                          onChange={() => setScope(offer.id)}
+                          className="accent-[#1c1a17]"
+                        />
+                        <span className="text-sm">{offer.name}</span>
+                        <span className="ml-auto text-[12px] text-[#1c1a17]/55">{offer.investment}</span>
+                      </label>
+                    ))}
+                    <p className="text-sm leading-relaxed text-[#1c1a17]/70">{OFFERINGS.find((offer) => offer.id === scope)?.note}</p>
+                    {scope === "piece" && clothes.length > 1 && (
+                      <p className="text-sm text-[#1c1a17]/70">This scope is one piece. Uncheck the others, or choose Complete look.</p>
+                    )}
+                  </fieldset>
 
-          <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_0.8fr]">
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                setReviewed(true);
-              }}
-              className="space-y-6"
-            >
-              <div>
-                <h3 className="font-serif text-3xl">Fit profile</h3>
-                <p className="mt-2 max-w-lg text-sm leading-relaxed text-[#1c1a17]/65">
-                  Measurements describe the body. Preferences describe how the garment should sit. A photograph is not a measurement. This profile stays in the browser for this visit. A private account is not open.
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-                {MEASURES.map((m) => (
-                  <label key={m.key} className="block text-[11px] tracking-[0.12em] uppercase">
-                    {m.label}
-                    {m.unit ? ` · ${m.unit}` : ""}
-                    <input
-                      inputMode="decimal"
-                      value={fit[m.key]}
-                      onChange={(e) => setFit({ ...fit, [m.key]: e.target.value })}
-                      className="mt-1 h-11 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-sm normal-case tracking-normal"
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <label className="block text-[11px] tracking-[0.12em] uppercase">
+                      Name
+                      <input
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        autoComplete="name"
+                        className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal"
+                      />
+                    </label>
+                    <label className="block text-[11px] tracking-[0.12em] uppercase">
+                      Email
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        autoComplete="email"
+                        className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal"
+                      />
+                    </label>
+                  </div>
+                  <label className="block text-[11px] tracking-[0.12em] uppercase">
+                    Note
+                    <textarea
+                      value={note}
+                      onChange={(e) => setNote(e.target.value)}
+                      rows={3}
+                      className="mt-1 w-full border border-[#1c1a17]/20 bg-white/70 px-3 py-3 text-base normal-case tracking-normal"
                     />
                   </label>
-                ))}
-                <label className="block text-[11px] tracking-[0.12em] uppercase">
-                  Shoe width
-                  <select
-                    value={fit.width}
-                    onChange={(e) => setFit({ ...fit, width: e.target.value as FitInput["width"] })}
-                    className="mt-1 h-11 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-sm normal-case tracking-normal"
-                  >
-                    <option value="">Not given</option>
-                    <option value="standard">Standard</option>
-                    <option value="wide">Wide</option>
-                    <option value="extra-wide">Extra wide</option>
-                  </select>
-                </label>
-              </div>
-              <fieldset className="space-y-3">
-                <legend className="font-serif text-2xl">Fit preferences</legend>
-                <p className="max-w-lg text-sm text-[#1c1a17]/65">Kept apart from the measurements above. They do not change the pathway.</p>
-                <div className="grid grid-cols-2 gap-4">
-                  <label className="block text-[11px] tracking-[0.12em] uppercase">
-                    Shoulder
-                    <select
-                      value={fit.shoulderStyle}
-                      onChange={(e) => setFit({ ...fit, shoulderStyle: e.target.value as FitInput["shoulderStyle"] })}
-                      className="mt-1 h-11 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-sm normal-case tracking-normal"
-                    >
-                      <option value="">Not given</option>
-                      <option value="relaxed">Relaxed</option>
-                      <option value="structured">Structured</option>
-                    </select>
-                  </label>
-                  <label className="block text-[11px] tracking-[0.12em] uppercase">
-                    Ease
-                    <select
-                      value={fit.ease}
-                      onChange={(e) => setFit({ ...fit, ease: e.target.value as FitInput["ease"] })}
-                      className="mt-1 h-11 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-sm normal-case tracking-normal"
-                    >
-                      <option value="">Not given</option>
-                      <option value="close">Close</option>
-                      <option value="standard">Standard</option>
-                      <option value="generous">Generous</option>
-                    </select>
-                  </label>
-                </div>
-              </fieldset>
-              <button type="submit" className="bg-[#1c1a17] px-6 py-4 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase">
-                Ask for a pathway
-              </button>
+
+                  <details className="border-t border-[#1c1a17]/12">
+                    <summary className="flex min-h-12 cursor-pointer items-center font-serif text-2xl">Add measurements</summary>
+                    <p className="max-w-lg text-sm leading-relaxed text-[#1c1a17]/65">
+                      Optional. They describe the body. A photograph is not a measurement. The profile stays with this request. A private account is not open.
+                    </p>
+                    <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
+                      {MEASURES.map((m) => (
+                        <label key={m.key} className="block text-[11px] tracking-[0.12em] uppercase">
+                          {m.label}
+                          {m.unit ? ` · ${m.unit}` : ""}
+                          <input
+                            inputMode="decimal"
+                            value={fit[m.key]}
+                            onChange={(e) => setFit({ ...fit, [m.key]: e.target.value })}
+                            className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal"
+                          />
+                        </label>
+                      ))}
+                      <label className="block text-[11px] tracking-[0.12em] uppercase">
+                        Shoe width
+                        <select
+                          value={fit.width}
+                          onChange={(e) => setFit({ ...fit, width: e.target.value as FitInput["width"] })}
+                          className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal"
+                        >
+                          <option value="">Not given</option>
+                          <option value="standard">Standard</option>
+                          <option value="wide">Wide</option>
+                          <option value="extra-wide">Extra wide</option>
+                        </select>
+                      </label>
+                    </div>
+                    <div className="mt-4 grid grid-cols-2 gap-4">
+                      <label className="block text-[11px] tracking-[0.12em] uppercase">
+                        Shoulder
+                        <select
+                          value={fit.shoulderStyle}
+                          onChange={(e) => setFit({ ...fit, shoulderStyle: e.target.value as FitInput["shoulderStyle"] })}
+                          className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal"
+                        >
+                          <option value="">Not given</option>
+                          <option value="relaxed">Relaxed</option>
+                          <option value="structured">Structured</option>
+                        </select>
+                      </label>
+                      <label className="block text-[11px] tracking-[0.12em] uppercase">
+                        Ease
+                        <select
+                          value={fit.ease}
+                          onChange={(e) => setFit({ ...fit, ease: e.target.value as FitInput["ease"] })}
+                          className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal"
+                        >
+                          <option value="">Not given</option>
+                          <option value="close">Close</option>
+                          <option value="standard">Standard</option>
+                          <option value="generous">Generous</option>
+                        </select>
+                      </label>
+                    </div>
+                  </details>
+
+                  {error && <p className="text-sm">{error}</p>}
+                  <button type="submit" disabled={busy} className="inline-flex h-12 w-full items-center justify-center bg-[#1c1a17] px-6 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase disabled:opacity-60 sm:w-auto">
+                    {busy ? "Sending" : "Send the commission"}
+                  </button>
+                </>
+              )}
             </form>
 
-            <aside className="border border-[#1c1a17]/15 p-6">
-              <p className="text-[11px] tracking-[0.16em] uppercase">Fit architect</p>
-              {!reviewed && <p className="mt-4 text-sm leading-relaxed text-[#1c1a17]/70">Enter what you know, then ask. An empty form is not a standard size.</p>}
-              {reviewed && !review.measured && (
-                <p className="mt-4 text-sm leading-relaxed">No measurements yet. The pathway cannot be named.</p>
+            <aside className="order-1 h-fit border border-[#1c1a17]/15 p-6 lg:sticky lg:top-28 lg:order-2">
+              <p className="text-[11px] tracking-[0.16em] uppercase">This request</p>
+              <h3 className="mt-3 font-serif text-3xl">{clothes.length === 0 && heldLine ? heldLine.name : (activeLook?.name ?? "A commission")}</h3>
+              <ul className="mt-4 space-y-2 text-sm">
+                {heldLine && <li>{heldLine.ref} · {heldLine.name}</li>}
+                {clothes.map((piece) => (
+                  <li key={piece.id}>{piece.name}</li>
+                ))}
+                {clothes.length === 0 && !heldLine && <li className="text-[#1c1a17]/60">No piece selected yet.</li>}
+              </ul>
+              <p className="mt-4 text-sm text-[#1c1a17]/70">{OFFERINGS.find((offer) => offer.id === scope)?.name}</p>
+              <p className="mt-4 font-serif text-2xl">{review.measured ? PATHWAY_LABEL[review.pathway] : "Measurements not given"}</p>
+              {review.measured && (
+                <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-[#1c1a17]/70">
+                  {review.flags.map((flag) => (
+                    <li key={flag}>{flag}</li>
+                  ))}
+                </ul>
               )}
-              {reviewed && review.measured && (
-                <div className="mt-4">
-                  <p className="font-serif text-3xl">{PATHWAY_LABEL[review.pathway]}</p>
-                  <ul className="mt-4 space-y-3 text-sm leading-relaxed text-[#1c1a17]/75">
-                    {review.flags.map((f) => (
-                      <li key={f}>{f}</li>
-                    ))}
-                  </ul>
-                  {(fit.shoulderStyle || fit.ease) && (
-                    <p className="mt-4 text-[13px] leading-relaxed text-[#1c1a17]/70">
-                      Preferences noted{fit.shoulderStyle ? `: ${fit.shoulderStyle} shoulder` : ""}
-                      {fit.ease ? `${fit.shoulderStyle ? ", " : ": "}${fit.ease} ease` : ""}. They describe the sit of the garment, not the body.
-                    </p>
-                  )}
-                  <p className="mt-4 text-[13px] leading-relaxed text-[#1c1a17]/60">
-                    A person approves the pattern. Any extra charge is for development, cloth, or a last. It is not a charge for height or size.
-                  </p>
-                </div>
-              )}
+              <p className="mt-4 text-[13px] leading-relaxed text-[#1c1a17]/60">
+                A person approves the pattern. Any extra charge is for development, cloth, or a last. It is not a charge for height or size.
+              </p>
             </aside>
           </div>
         </div>

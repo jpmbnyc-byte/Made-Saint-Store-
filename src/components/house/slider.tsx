@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, type ReactNode } from "react";
 
 export function useSlider(count: number) {
   const [index, setIndex] = useState(0);
@@ -31,6 +31,62 @@ export function useSlider(count: number) {
     next: () => go(index + 1),
     bind,
   };
+}
+
+export function useRail(count: number) {
+  const scroller = useRef<HTMLDivElement>(null);
+  const [index, setIndex] = useState(0);
+
+  function go(next: number) {
+    const el = scroller.current;
+    if (!el || count <= 0) return;
+    const i = (next + count) % count;
+    const card = el.children[i] as HTMLElement | undefined;
+    if (card) el.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
+    setIndex(i);
+  }
+
+  function onScroll() {
+    const el = scroller.current;
+    if (!el) return;
+    const cards = [...el.children] as HTMLElement[];
+    let best = 0;
+    let bestDist = Infinity;
+    cards.forEach((card, i) => {
+      const dist = Math.abs(card.offsetLeft - el.scrollLeft);
+      if (dist < bestDist) {
+        best = i;
+        bestDist = dist;
+      }
+    });
+    setIndex(best);
+  }
+
+  return { scroller, index, go, onScroll, prev: () => go(index - 1), next: () => go(index + 1) };
+}
+
+export function CardRail({
+  label,
+  count,
+  children,
+}: {
+  label: string;
+  count: number;
+  children: ReactNode;
+}) {
+  const rail = useRail(count);
+  return (
+    <div>
+      <div
+        ref={rail.scroller}
+        onScroll={rail.onScroll}
+        className="relative flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2"
+      >
+        {children}
+      </div>
+      <SliderControls index={rail.index} count={count} onPrev={rail.prev} onNext={rail.next} onGo={rail.go} label={label} />
+    </div>
+  );
 }
 
 export function SliderControls({

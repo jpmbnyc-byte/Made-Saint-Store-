@@ -6,7 +6,7 @@ Public origin: [madesaint.store](https://madesaint.store). Point the Namecheap D
 
 | Route | What it is |
 | --- | --- |
-| `/` | The made-to-order rule on a silk ground, a slider of the three founding colorways, then a pair, a look, or the year. Lookbooks follow for business, the weekend, and an occasion. Only a founding pair can be reserved. The leather runners are a slider, shown and not open to reserve. |
+| `/` | The made-to-order rule on a silk ground, three conditions, a founding-colorway slider, then a pair, a look, or the year. Six example looks slide into the occasion lookbooks. Leather and the next three colorways are shown and not reserved. |
 | `/line` | 2027 line. Seventy-five proposed list prices and the 59 photographs from the October sheets. Not checkout prices. |
 | `/shop` | Founding Edition pre-order storefront |
 | `/wardrobe` | Private wardrobe. Discover, compose, and commission. Same products; ready-to-wear, made-to-measure, or a technical review. Seasonal figures from $6,500 and annual figures from $20,000 are preliminary targets, not checkout prices. Only published runner prices are added into a look. |

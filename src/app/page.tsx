@@ -3,9 +3,10 @@ import type { Metadata } from "next";
 import { PRODUCTS } from "@/lib/business";
 import { ShopFooter } from "@/components/shop/chrome";
 import { Mast } from "@/components/house/mast";
-import { Lookbooks } from "@/components/house/lookbooks";
+import { HouseLooks } from "@/components/house/examples";
 import { Paths } from "@/components/house/paths";
-import { EditionSlider, LeatherSlider } from "@/components/house/rails";
+import { EditionSlider, LeatherSlider, ListRail } from "@/components/house/rails";
+import { Fit, Questions, Tensions } from "@/components/house/terms";
 import { OrderRule, orderWindowLine } from "@/components/shop/order-rule";
 
 export const metadata: Metadata = {
@@ -50,7 +51,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="edition" className="scroll-mt-24">
+      <Tensions />
+
+      <section id="edition" className="scroll-mt-24 border-t border-[#41505b]/10">
         <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
           <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">The founding edition</p>
           <h2 className="mt-3 max-w-2xl font-serif text-5xl leading-[0.95] text-[#2a3746]">Three colorways. Slide to the pair.</h2>
@@ -60,7 +63,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-[#41505b]/10">
+      <section id="ways" className="scroll-mt-24 border-t border-[#41505b]/10">
         <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
           <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Three ways in</p>
           <h2 className="mt-3 max-w-2xl font-serif text-5xl leading-[0.95]">A pair, a look, or the year.</h2>
@@ -73,9 +76,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="looks" className="scroll-mt-24 border-t border-[#1c1a17]/10">
-        <Lookbooks />
-      </section>
+      <HouseLooks />
 
       <section id="leather" className="scroll-mt-24 border-t border-[#41505b]/10">
         <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
@@ -91,6 +92,22 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section className="border-t border-[#41505b]/10">
+        <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
+          <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">The list</p>
+          <h2 className="mt-3 max-w-2xl font-serif text-5xl leading-[0.95] text-[#2a3746]">Three more colorways. Not this run.</h2>
+          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#41505b]">
+            Espresso, Graphite, and Navy and Rust gather a note for the next run. They are not reserved with the founding edition.
+          </p>
+          <div className="mt-8">
+            <ListRail />
+          </div>
+        </div>
+      </section>
+
+      <Fit />
+      <Questions />
 
       <section className="border-t border-[#41505b]/10">
         <div className="mx-auto grid max-w-[1100px] md:grid-cols-2">

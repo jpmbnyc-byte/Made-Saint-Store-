@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { SIZES, shipWindow, type Product } from "@/lib/business";
-import { SliderControls, useSlider } from "@/components/house/slider";
+import { PRODUCTS, SIZES, shipWindow, type Product } from "@/lib/business";
+import { CardRail, SliderControls, useSlider } from "@/components/house/slider";
 
 const short = (name: string) => name.replace("Runner, ", "");
 
@@ -46,6 +46,24 @@ export function EditionSlider({ products }: { products: Product[] }) {
       </div>
       <SliderControls index={slider.index} count={products.length} onPrev={slider.prev} onNext={slider.next} onGo={slider.go} label="Colorway" />
     </div>
+  );
+}
+
+export function ListRail() {
+  const waiting = PRODUCTS.filter((product) => !product.launch);
+  return (
+    <CardRail label="Colorway" count={waiting.length}>
+      {waiting.map((product) => (
+        <Link key={product.id} href="/shop#list" className="w-[78%] shrink-0 snap-start sm:w-[46%] lg:w-[32%]">
+          <span className="relative block aspect-square bg-[#f7f4ef]">
+            <Image src={product.image} alt={product.name} fill sizes="(min-width: 1024px) 32vw, 78vw" className="object-contain p-6" />
+          </span>
+          <span className="mt-3 block text-[11px] tracking-[0.16em] text-[#8d7349] uppercase">Not open</span>
+          <span className="mt-1 block font-serif text-3xl text-[#2a3746]">{short(product.name)}</span>
+          <span className="mt-2 block text-[13px] leading-relaxed text-[#41505b]">{product.line}. Leave a note for the next run. This pair cannot be reserved.</span>
+        </Link>
+      ))}
+    </CardRail>
   );
 }
 

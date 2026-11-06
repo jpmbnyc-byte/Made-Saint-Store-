@@ -1,10 +1,42 @@
 import Link from "next/link";
+import { CAMPAIGN, fmtDate, shipWindow } from "@/lib/business";
 import { OFFERINGS } from "@/lib/private-client";
 
 const SHOWN = [
-  { id: "piece", href: "#edition", cta: "Reserve a pair", detail: "One founding colorway. The price on the slider is the price." },
-  { id: "look", href: "#looks", cta: "Open a look", detail: "The clothes are listed under the photograph. Only a founding pair is added." },
-  { id: "season", href: "/wardrobe#commission", cta: "Commission", detail: "A planning target until a price is approved. The annual wardrobe starts at $20,000." },
+  {
+    id: "piece",
+    href: "#edition",
+    cta: "Reserve a pair",
+    includes: [
+      "One founding colorway",
+      "US men's 7 to 12",
+      "The price on the card is the price",
+      `Cut only if ${CAMPAIGN.threshold} pairs are reserved by ${fmtDate(CAMPAIGN.closes)}`,
+      `Ships ${shipWindow()} if the run is confirmed`,
+    ],
+  },
+  {
+    id: "look",
+    href: "#looks",
+    cta: "Open a look",
+    includes: [
+      "The clothes listed under the photograph",
+      "Only a founding pair is added to the figure",
+      "A commission stays off that reservation",
+      "Business, the weekend, and an occasion",
+    ],
+  },
+  {
+    id: "season",
+    href: "/wardrobe#commission",
+    cta: "Commission",
+    includes: [
+      "One season, planned before a price is approved",
+      "An annual wardrobe, from $20,000",
+      "The figure is a planning target",
+      "Nothing here is added at checkout",
+    ],
+  },
 ] as const;
 
 export function Paths({ from }: { from: number }) {
@@ -19,7 +51,11 @@ export function Paths({ from }: { from: number }) {
             <p className="text-[11px] tracking-[0.18em] text-[#8d7349] uppercase">{offer.preliminary ? "Planning target" : "Priced"}</p>
             <h3 className="mt-3 font-serif text-4xl text-[#2a3746]">{offer.name}</h3>
             <p className="mt-4 font-serif text-3xl text-[#2a3746]">{price}</p>
-            <p className="mt-3 flex-1 text-[14px] leading-relaxed text-[#41505b]">{item.detail}</p>
+            <ul className="mt-5 flex-1 space-y-2 text-[14px] leading-relaxed text-[#41505b]">
+              {item.includes.map((line) => (
+                <li key={line} className="border-t border-[#c0a477]/40 pt-2">{line}</li>
+              ))}
+            </ul>
             <Link href={item.href} className="mt-6 text-[11px] tracking-[0.16em] text-[#2a3746] uppercase underline decoration-[#c0a477] underline-offset-4">
               {item.cta}
             </Link>

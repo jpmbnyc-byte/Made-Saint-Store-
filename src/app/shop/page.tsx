@@ -2,7 +2,8 @@ import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { CAMPAIGN, PRODUCTS, fmtDate, shipWindow, statusLine } from "@/lib/business";
+import { CAMPAIGN, PRODUCTS, shipWindow, statusLine } from "@/lib/business";
+import { QUESTIONS } from "@/lib/questions";
 import { OrderRule, orderWindowLine } from "@/components/shop/order-rule";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
 import { CancelledBanner, LiveProgress, LiveWaitlistCount } from "@/components/shop/live";
@@ -12,15 +13,6 @@ export const metadata: Metadata = {
   title: "The Founding Edition",
   description: "Three runners, made to order in Portugal. Numbered, reserved before they are made.",
 };
-
-const FAQ = [
-  { q: "What happens if a colorway does not reach its run?", a: `Every reservation for that colorway is refunded in full, to the original card, within five business days of ${fmtDate(CAMPAIGN.closes)}. Or you may move it to another colorway.` },
-  { q: "Why pre-order?", a: "Made-to-order means no overproduction, no end-of-season markdowns and no warehouse of unsold pairs. You get a pair made for you; we make only what is wanted." },
-  { q: "How do they fit?", a: "True to size for most. If you are between sizes, take the half size up. The leather lining relaxes slightly with wear. Size exchanges are free within 30 days of delivery." },
-  { q: "Can I cancel?", a: `Yes, for a full refund at any time before ${fmtDate(CAMPAIGN.closes)}, when the order goes to the workshop.` },
-  { q: "Will there be a sale?", a: "No. The price is the same for everyone, on the first day and the last." },
-  { q: "Caring for suede and woven leather", a: "Brush with a soft crepe or nylon brush after wear. Treat once with a suede protector before the first wear. Store in the dust bag, away from direct sun." },
-];
 
 export default async function ShopPage() {
   const launch = PRODUCTS.filter((p) => p.launch);
@@ -99,7 +91,7 @@ export default async function ShopPage() {
       <section id="faq" className="mx-auto max-w-[900px] scroll-mt-28 px-5 py-20 md:px-8">
         <h2 className="font-serif text-4xl md:text-5xl">Questions</h2>
         <div className="mt-8 divide-y divide-[#1c1a17]/12 border-y border-[#1c1a17]/12">
-          {FAQ.map((f) => (
+          {QUESTIONS.map((f) => (
             <details key={f.q} className="group py-5">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[15px]">
                 {f.q}

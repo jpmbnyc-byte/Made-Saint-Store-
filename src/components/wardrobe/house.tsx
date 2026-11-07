@@ -8,20 +8,11 @@ import type { CommissionScope } from "@/lib/commission";
 import { lineByRef } from "@/lib/line";
 import { lookById, lookForLifestyle, offerFor } from "@/lib/looks";
 import { usd } from "@/lib/wardrobe";
+import { TONAL_COLORS, TonalSlideshow } from "@/components/wardrobe/tonal";
 
 function clothingIds(ids: readonly string[]) {
   return ids.filter((id) => offerFor(id).kind === "commission");
 }
-
-const TONES = [
-  { name: "Carbon", detail: "Soft charcoal black", hex: "#2a2c30" },
-  { name: "Midnight", detail: "Deep navy", hex: "#1b2838" },
-  { name: "Indigo", detail: "Blue hour", hex: "#3d4e6b" },
-  { name: "Camel", detail: "Warm camel", hex: "#c4965a" },
-  { name: "Sand", detail: "Stone sand", hex: "#cbbba4" },
-  { name: "Ivory", detail: "Soft ivory", hex: "#e6ddd0" },
-  { name: "Olive", detail: "Muted olive", hex: "#6e7a58" },
-] as const;
 
 const EASES = [
   { id: "tailored", label: "Tailored", line: "Closer through the leg. Still room to sit." },
@@ -52,7 +43,6 @@ export function PrivateHouse() {
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState<string | null>(null);
 
-  const tone = TONES[toneAt];
   const ease = EASES.find((item) => item.id === easeId) ?? EASES[1];
   const lifestyle = LIFESTYLES.find((l) => l.id === lifestyleId) ?? LIFESTYLES[0];
   const clothes = visiblePieces(selected);
@@ -141,11 +131,25 @@ export function PrivateHouse() {
     }
   }
 
+  function writeTone(index: number, easeLabel?: string) {
+    const chosen = TONAL_COLORS[index] ?? TONAL_COLORS[0];
+    const colorLine = `Tonal color: ${chosen.name}.`;
+    const easeLine = easeLabel ? ` Trouser ease: ${easeLabel}.` : "";
+    setNote((current) => {
+      const without = current.replace(/Tonal color: [^.]+\./, "").replace(/Trouser ease: [^.]+\./, "").replace(/\s+/g, " ").trim();
+      return `${without}${without ? " " : ""}${colorLine}${easeLine}`.trim();
+    });
+  }
+
   function rememberFit() {
-    const tone = TONES[toneAt];
     const ease = EASES.find((item) => item.id === easeId) ?? EASES[1];
-    const line = `Tonal color: ${tone.name}. Trouser ease: ${ease.label}.`;
-    setNote((current) => (current.includes("Trouser ease:") ? current : current ? `${current} ${line}` : line));
+    writeTone(toneAt, ease.label);
+    document.getElementById("introduction")?.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function requestTone(index: number) {
+    setToneAt(index);
+    writeTone(index);
     document.getElementById("introduction")?.scrollIntoView({ behavior: "smooth" });
   }
 
@@ -155,68 +159,14 @@ export function PrivateHouse() {
 
   return (
     <div>
-      <section id="style" className="scroll-mt-28 overflow-x-clip bg-[#f3efe6] text-[#1c1a17]">
-        <div className="mx-auto grid max-w-[1440px] items-end gap-8 px-5 py-10 md:grid-cols-[minmax(0,0.9fr)_minmax(0,0.8fr)_minmax(0,0.7fr)] md:gap-6 md:px-10 md:py-14">
-          <div>
-            <p className="text-sm tracking-[0.18em] text-[#1c1a17]/55 uppercase">Silk-cashmere direction</p>
-            <h1 className="mt-4 max-w-md font-serif text-5xl leading-[0.95] md:text-7xl">Made for the everyday.</h1>
-            <p className="mt-4 font-serif text-2xl">The Tonal Collection</p>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-[#3c4650]">
-              For a professional athlete. The photograph is Carbon. It is a garment study, not a client, and not an endorsement.
-            </p>
-            <a href="#colors" className="mt-8 inline-flex h-12 items-center text-base underline decoration-[#1c1a17] underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1c1a17]">
-              Explore {tone.name}
-            </a>
+      <TonalSlideshow onIndex={setToneAt} onRequest={requestTone} />
+      <section className="border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
+        <div className="mx-auto max-w-[1440px] px-5 py-8 md:px-10">
+          <p className="text-sm text-[#1c1a17]/55">The seven colors, on one board</p>
+          <div className="mt-4 w-full min-w-0 overflow-x-auto">
+            <img src="/wardrobe/tonal-zip-system.webp" alt="Seven tonal zip suits, with the color name under each" className="h-auto w-[920px] max-w-none md:w-full" />
           </div>
-          <figure>
-            <img src="/editorial/tonal-carbon.webp" alt="Charcoal tonal jacket and trouser, worn, in a stone arcade" className="mx-auto h-auto w-full max-w-[360px]" />
-            <figcaption className="ms-caption max-w-sm text-sm leading-relaxed text-[#3c4650]">
-              {tone.name === "Carbon"
-                ? "Shown in Carbon. The shoes are not a founding runner."
-                : `This photograph is Carbon. ${tone.name} is a color on the board below, not another photograph.`}
-            </figcaption>
-          </figure>
-          <figure>
-            <img src="/editorial/saint-michael-back.webp" alt="Back of the olive Saint Michael jacket, with Saint Michael the Archangel" className="mx-auto h-auto w-full max-w-[320px]" />
-            <figcaption className="ms-caption max-w-xs text-sm leading-relaxed text-[#3c4650]">Saint Michael, the back. Olive, and a different study from the carbon suit beside it.</figcaption>
-          </figure>
-        </div>
-        <div id="colors" className="scroll-mt-28 border-t border-[#1c1a17]/10">
-          <div className="mx-auto flex max-w-[1440px] flex-col gap-4 px-5 py-4 md:flex-row md:items-center md:justify-between md:px-10">
-            <p className="text-sm text-[#1c1a17]">{tone.name} / {tone.detail}</p>
-            <div className="flex flex-wrap gap-1" role="tablist" aria-label="Tonal colors">
-              {TONES.map((item, index) => {
-                const on = index === toneAt;
-                return (
-                  <button
-                    key={item.name}
-                    type="button"
-                    role="tab"
-                    aria-selected={on}
-                    aria-label={item.name}
-                    onClick={() => setToneAt(index)}
-                    className={`inline-flex h-11 w-11 items-center justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1c1a17] ${on ? "ring-1 ring-[#1c1a17]" : ""}`}
-                  >
-                    <span className="block h-5 w-5 rounded-full border border-[#1c1a17]/20" style={{ background: item.hex }} />
-                  </button>
-                );
-              })}
-            </div>
-            <div className="flex items-center gap-2">
-              <button type="button" aria-label="Previous color" onClick={() => setToneAt((at) => (at + TONES.length - 1) % TONES.length)} className="inline-flex h-11 w-11 items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1c1a17]">←</button>
-              <span className="text-sm tabular-nums">{String(toneAt + 1).padStart(2, "0")} / {String(TONES.length).padStart(2, "0")}</span>
-              <button type="button" aria-label="Next color" onClick={() => setToneAt((at) => (at + 1) % TONES.length)} className="inline-flex h-11 w-11 items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1c1a17]">→</button>
-            </div>
-          </div>
-        </div>
-        <div className="border-t border-[#1c1a17]/10">
-          <div className="mx-auto max-w-[1440px] px-5 py-8 md:px-10">
-            <p className="text-sm text-[#1c1a17]/55">The seven colors, on one board</p>
-            <div className="mt-4 w-full min-w-0 overflow-x-auto">
-              <img src="/wardrobe/tonal-zip-system.webp" alt="Seven tonal zip suits, with the color name under each" className="h-auto w-[920px] max-w-none md:w-full" />
-            </div>
-            <p className="mt-3 text-sm text-[#3c4650]">A color study. Not a delivered wardrobe, and not seven finished suits.</p>
-          </div>
+          <p className="mt-3 text-sm text-[#3c4650]">A color study of the zip jacket. Not the collared set above, and not seven finished suits.</p>
         </div>
       </section>
 

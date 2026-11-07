@@ -13,7 +13,7 @@ Public origin: [madesaint.store](https://madesaint.store). Point the Namecheap D
 | `/wardrobe/study` | Internal cost sheet. Not linked, and disallowed in `robots.txt`. |
 | `/launch` | Pricing, unit economics, pre-order tracker, cash flow, size run, marketing plan, reservations |
 | `/studio` | Collection Studio |
-| `/brand` | M side mark: midfoot placement (9060 rules), tonal only, spec, colorways, vector |
+| `/brand` | The house wordmark: MADE in the block, Saint in the blackletter |
 | `/package` | MS-TM01 Trail Mule technical package |
 | `/admin/visual-atelier` | Internal image pipeline. Plans batches, calls OpenAI only when `OPENAI_API_KEY` is set, and holds every frame for approval. Not linked from the shop. |
 

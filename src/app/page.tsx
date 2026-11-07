@@ -27,9 +27,23 @@ export const metadata: Metadata = {
 };
 
 const LEATHER = [
-  { src: "/hero/leather-navy.webp", name: "Navy", alt: "Navy leather runner on plaster", frame: "object-center" },
-  { src: "/opening/runner-black.webp", name: "Black", alt: "Full black all-leather runner" },
-  { src: "/opening/runner-butter.webp", name: "Butter", alt: "Full butter all-leather runner" },
+  { src: "/opening/navy-wave.webp", name: "Navy", alt: "Navy leather runner, three-quarter, on plaster", note: "Shown, not reserved" },
+  { src: "/opening/navy-hand.webp", name: "Navy", alt: "Navy leather runner, held. A product study, not a client.", note: "Shown, not reserved" },
+  { src: "/opening/runner-black.webp", name: "Black", alt: "Full black all-leather runner", note: "Shown, not reserved" },
+  { src: "/opening/black-worn.webp", name: "Black", alt: "Black runner, worn, with a dog. Not a client, and not an endorsement.", note: "Shown, not reserved" },
+  { src: "/opening/black-hand.webp", name: "Black", alt: "Black leather runner, held. A product study, not a client.", note: "Shown, not reserved" },
+  { src: "/opening/runner-butter.webp", name: "Butter", alt: "Full butter all-leather runner", note: "Shown, not reserved" },
+  { src: "/opening/butter-worn.webp", name: "Butter", alt: "Butter runner, held with flowers. Not a client, and not an endorsement.", note: "Shown, not reserved" },
+  { src: "/opening/butter-hand.webp", name: "Butter", alt: "Butter leather runner, held. A product study, not a client.", note: "Shown, not reserved" },
+] as const;
+
+const MESH = [
+  { src: "/opening/mesh-rose.webp", name: "Rose mesh", alt: "Brown and rose mesh runner, three-quarter", note: "A study. Not on the list." },
+  { src: "/opening/mesh-rose-plinth.webp", name: "Rose mesh", alt: "Brown and rose mesh runner, with the sole behind it", note: "A study. Not on the list." },
+  { src: "/opening/mesh-rose-overhead.webp", name: "Rose mesh", alt: "Brown and rose mesh runners, overhead", note: "A study. Not on the list." },
+  { src: "/opening/mesh-rose-side.webp", name: "Rose mesh", alt: "Brown and rose mesh runner, side", note: "A study. Not on the list." },
+  { src: "/opening/mesh-rose-hand.webp", name: "Rose mesh", alt: "Brown and rose mesh runner, held. A product study, not a client.", note: "A study. Not on the list." },
+  { src: "/opening/mesh-earth-hand.webp", name: "Earth mesh", alt: "Brown mesh runner, held. A product study, not a client.", note: "A study. Not on the list." },
 ] as const;
 
 export default function Home() {
@@ -139,11 +153,20 @@ export default function Home() {
             <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Shown, not reserved</p>
             <h2 className="mt-3 font-serif text-5xl">The leather runners</h2>
             <p className="mt-4 text-[15px] leading-relaxed text-[#41505b]">
-              Navy, black, and butter, each shown in full. These are not the founding colorways, and they are not open to reserve.
+              Navy, black, and butter. These are not the founding colorways, and they are not open to reserve.
             </p>
           </div>
           <div className="mt-8">
-            <LeatherSlider runners={LEATHER} />
+            <LeatherSlider runners={LEATHER} label="Leather" />
+          </div>
+          <div className="mx-auto mt-16 max-w-xl text-center">
+            <h2 className="font-serif text-4xl">Mesh studies</h2>
+            <p className="mt-4 text-[15px] leading-relaxed text-[#41505b]">
+              Rose and earth. Not a founding colorway, not a listed price, and not open to reserve.
+            </p>
+          </div>
+          <div className="mt-8">
+            <LeatherSlider runners={MESH} label="Mesh" />
           </div>
         </div>
       </section>

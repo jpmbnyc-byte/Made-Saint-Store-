@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ChevronLeft } from "lucide-react";
-import { CAMPAIGN, PRODUCTS, RUNNER_1101, SIZES, campaignStatus, fmtDate, productById, shipWindow, statusLine } from "@/lib/business";
+import { CAMPAIGN, PRODUCTS, SIZES, campaignStatus, fmtDate, productById, shipWindow, statusLine } from "@/lib/business";
 import { OrderRule } from "@/components/shop/order-rule";
 import { viewsFor } from "@/lib/catalog";
 import { withPublished } from "@/lib/atelier/publish";
@@ -15,7 +15,7 @@ import { ReserveForm } from "@/components/shop/reserve";
 import { WaitlistForm } from "@/components/shop/waitlist";
 
 export function generateStaticParams() {
-  return [...PRODUCTS, ...RUNNER_1101].map((p) => ({ id: p.id }));
+  return PRODUCTS.map((p) => ({ id: p.id }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
@@ -30,11 +30,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   const product = productById(id);
   if (!product) notFound();
   const views = await withPublished(product.id, viewsFor(product));
-  const is1101 = product.family === "1101";
-  const allProducts = is1101 ? RUNNER_1101 : PRODUCTS;
-  const siblings = allProducts.filter((p) => p.launch === product.launch && p.id !== product.id);
-  const backHref = is1101 ? "/shop#1101" : "/shop#edition";
-  const backLabel = is1101 ? "The 1101 Runner" : "The Founding Edition";
+  const siblings = PRODUCTS.filter((p) => p.launch === product.launch && p.id !== product.id);
   const closed = campaignStatus() === "closed";
 
   return (
@@ -42,8 +38,8 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       <ShopHeader status={statusLine()} />
       <main className="mx-auto max-w-[1440px] px-0 py-0 md:px-8 md:py-8">
         <div className="px-5 pt-5 md:px-0 md:pt-0">
-          <Link href={backHref} className="inline-flex items-center gap-1 text-[11px] tracking-[0.16em] text-[#1c1a17]/60 uppercase hover:text-[#1c1a17]">
-            <ChevronLeft className="size-3.5" /> {backLabel}
+          <Link href="/shop#edition" className="inline-flex items-center gap-1 text-[11px] tracking-[0.16em] text-[#1c1a17]/60 uppercase hover:text-[#1c1a17]">
+            <ChevronLeft className="size-3.5" /> The Founding Edition
           </Link>
         </div>
 
@@ -51,7 +47,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           <ProductGallery views={views} />
 
           <div className="px-5 pb-12 lg:sticky lg:top-28 lg:self-start lg:px-0 lg:pb-0">
-            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">{is1101 ? "The 1101 Runner" : "The Runner · Edition 001"}</p>
+            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">The Runner · Edition 001</p>
             <h1 className="mt-3 font-serif text-4xl leading-none md:text-5xl">{short(product.name)}</h1>
             <p className="mt-4 text-lg tabular-nums">${product.usd}</p>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{product.line}. Made to order in Felgueiras.</p>

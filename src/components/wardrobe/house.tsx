@@ -150,8 +150,8 @@ export function PrivateHouse() {
             </div>
           </div>
           <figure className="order-1 bg-[#f6f4ef] md:order-2">
-            <img src="/hero/saint-john.webp" alt="Camel Saint John jacket and trouser, front and back, on paper" className="h-auto w-full" />
-            <figcaption className="px-4 py-3 text-[11px] tracking-[0.14em] text-[#1c1a17]/70 uppercase">Saint John, a garment study. Not a client, and not an endorsement.</figcaption>
+            <img src="/editorial/saint-john-worn.webp" alt="Camel Saint John jacket and trouser, worn, with a cap and a black backpack" className="h-auto w-full" />
+            <figcaption className="px-4 py-3 text-[11px] tracking-[0.14em] text-[#1c1a17]/70 uppercase">Saint John, worn. Not a client, and not an endorsement. The shoes are not a founding runner.</figcaption>
           </figure>
         </div>
         <div className="border-t border-[#f6f4ef]/15">

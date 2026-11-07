@@ -105,12 +105,12 @@ export function SliderControls({
   label: string;
 }) {
   return (
-    <div className="mt-4 flex items-center justify-between gap-4">
+    <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
       <p className="text-[11px] tracking-[0.16em] text-[#41505b] uppercase">
         {label} {String(index + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
       </p>
-      <div className="flex items-center gap-2">
-        <div className="mr-2 flex gap-1.5" role="tablist" aria-label={label}>
+      <div className="flex max-w-full flex-wrap items-center gap-2">
+        <div className="mr-2 flex flex-wrap gap-1.5" role="tablist" aria-label={label}>
           {Array.from({ length: count }, (_, i) => (
             <button
               key={i}

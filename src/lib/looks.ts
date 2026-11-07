@@ -28,6 +28,10 @@ export type Look = {
   aside?: string;
   /** A poster or a flat. Kept whole. A worn figure is cropped to the body. */
   sheet?: boolean;
+  /** Keep the whole figure, including the feet. */
+  whole?: boolean;
+  /** Left off the public grid when the only image is too small to show. The record stays. */
+  listed?: boolean;
   pieces: LookPiece[];
 };
 
@@ -37,9 +41,11 @@ export const LOOKS: Look[] = [
     occasion: "business",
     lifestyle: "arrival",
     name: "The Arrival",
-    image: "/wardrobe/arrival-trouser-look.webp",
-    alt: "Navy zip jacket and matching trouser, worn",
+    image: "/line/f35.webp",
+    alt: "Navy zip jacket, white layer, and matching trouser, worn full length",
     read: "A hotel, a public day, the hour before the room.",
+    whole: true,
+    aside: "The shoes in the photograph are brown mules. The chalk runner is an alternative, not the pair on the foot.",
     pieces: [
       { id: "p01", role: "Jacket", shown: true },
       { id: "p02", role: "Trouser", shown: true },
@@ -63,12 +69,12 @@ export const LOOKS: Look[] = [
     occasion: "weekend",
     lifestyle: "off-duty",
     name: "The Off-Duty",
-    image: "/wardrobe/look-knit-mauve.webp",
-    alt: "Black knit, mauve trouser, and a tan shoe",
-    read: "An ordinary day. Knit, a trouser, nothing scheduled.",
-    aside: "The trouser in the photograph is not a separate approved piece.",
+    image: "/line/f28.webp",
+    alt: "Washed denim jacket, yellow knit, jeans, and pale blue hikers",
+    read: "An ordinary day. Denim, a knit, nothing scheduled.",
+    whole: true,
+    aside: "The shoes in the photograph are pale blue hikers. An earlier board showed a tan shoe. The washed-denim runner is an alternative, not either of those shoes.",
     pieces: [
-      { id: "p08", role: "Knit", shown: true },
       { id: "rn06", role: "Footwear", shown: false },
     ],
   },
@@ -80,7 +86,8 @@ export const LOOKS: Look[] = [
     image: "/wardrobe/look-crushed-nylon.webp",
     alt: "Chore jacket, blue knit, charcoal trouser, and a trainer",
     read: "A flight, or a day spent between cities.",
-    aside: "The trainer in the photograph is not a founding colorway.",
+    listed: false,
+    aside: "The only photograph on this look is too small to show. The record stays.",
     pieces: [
       { id: "a02", role: "Trouser", shown: true },
       { id: "rn01", role: "Footwear", shown: false },
@@ -91,7 +98,7 @@ export const LOOKS: Look[] = [
     occasion: "occasion",
     lifestyle: "occasion",
     name: "Saint John",
-    image: "/wardrobe/suit-saint-john-camel.webp",
+    image: "/hero/saint-john.webp",
     alt: "Camel Saint John jacket and trouser, front and back",
     read: "Camel tailoring for a formal appearance.",
     sheet: true,
@@ -132,8 +139,10 @@ export function reserveTotal(look: Look) {
   }, 0);
 }
 
+export const listedLooks = () => LOOKS.filter((look) => look.listed !== false);
+
 export function looksIn(occasion: OccasionId) {
-  return LOOKS.filter((look) => look.occasion === occasion);
+  return listedLooks().filter((look) => look.occasion === occasion);
 }
 
 export function lookById(id: string) {
@@ -146,7 +155,7 @@ export function lookForLifestyle(lifestyle: LifestyleId) {
 
 /** Worn figures lose their letterbox. A sheet stays whole, on a phone and on a desk. */
 export function lookFrame(look: Look) {
-  return look.sheet ? "object-contain" : "object-cover object-center";
+  return look.sheet || look.whole ? "object-contain" : "object-cover object-center";
 }
 
 export function resolvePiece(id: string) {

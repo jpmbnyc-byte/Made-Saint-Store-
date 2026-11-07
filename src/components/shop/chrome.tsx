@@ -17,13 +17,13 @@ export function ShopHeader({ status }: { status?: string }) {
             <Link href="/#looks" className="inline-flex h-11 shrink-0 items-center hover:text-[#1c1a17]">Looks</Link>
             <Link href="/line" className="inline-flex h-11 shrink-0 items-center hover:text-[#1c1a17]">Line</Link>
             <Link href="/wardrobe" className="inline-flex h-11 shrink-0 items-center hover:text-[#1c1a17]">Private</Link>
-            <Link href="/shop#edition" className="inline-flex h-11 shrink-0 items-center hover:text-[#1c1a17] sm:hidden">Reserve</Link>
+            <Link href="/shop#edition" className="inline-flex h-11 shrink-0 items-center hover:text-[#1c1a17] sm:hidden">Pairs</Link>
           </nav>
           <Link href="/" className="hidden justify-self-center sm:block">
             <Wordmark />
           </Link>
           <nav className="hidden justify-end sm:flex">
-            <Link href="/shop#edition" className="inline-flex h-11 items-center text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">Reserve</Link>
+            <Link href="/shop#edition" className="inline-flex h-11 items-center text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">Pairs</Link>
           </nav>
         </div>
       </div>

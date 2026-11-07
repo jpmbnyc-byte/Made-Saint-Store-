@@ -6,7 +6,7 @@ const SHOWN = [
   {
     id: "piece",
     href: "#edition",
-    cta: "Reserve a pair",
+    cta: "Continue to the pairs",
     includes: [
       "One founding colorway",
       "US men's 7 to 12",

@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
-import { LINE, frameSrc, framesFor, lineByRef, usd } from "@/lib/line";
+import { LINE, frameSrc, lineByRef, usd } from "@/lib/line";
+import { largeFramesFor } from "@/lib/imagery";
 
 export function generateStaticParams() {
   return LINE.map((item) => ({ ref: item.ref.toLowerCase() }));
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ ref: stri
 export default async function LineProductPage({ params }: { params: Promise<{ ref: string }> }) {
   const product = lineByRef((await params).ref);
   if (!product) notFound();
-  const frames = framesFor(product.ref);
+  const frames = largeFramesFor(product.ref);
   const siblings = LINE.filter((item) => item.category === product.category && item.ref !== product.ref).slice(0, 4);
 
   return (
@@ -40,8 +41,8 @@ export default async function LineProductPage({ params }: { params: Promise<{ re
               ))
             ) : (
               <div className="flex min-h-[420px] items-end bg-[#f1eee8] p-6">
-                <p className="max-w-sm text-sm leading-relaxed text-[#1c1a17]/70">
-                  No photograph in this set matches {product.name}. Unassigned frames stay in the lookbook rather than standing in for this style.
+                <p className="max-w-sm text-base leading-relaxed text-[#1c1a17]/70">
+                  {product.name} stays on the record. No photograph linked to it is large enough to show.
                 </p>
               </div>
             )}
@@ -52,8 +53,8 @@ export default async function LineProductPage({ params }: { params: Promise<{ re
             <p className="mt-6 font-serif text-3xl">{product.retail != null ? usd(product.retail) : "Held"}</p>
             <p className="mt-2 max-w-md text-sm leading-relaxed text-[#1c1a17]/70">
               {product.status === "held"
-                ? "This record is an archive duplicate or an unresolved variant. It has no list price."
-                : "Proposed list price from the 29 October 2026 framework. It is not a checkout price, and it is not evidence of what a client will pay."}
+                ? "This record is held. It has no list price."
+                : "Proposed list price from the 29 October 2026 framework. It is not a price a client can pay on this page."}
             </p>
             <dl className="mt-8 space-y-4 border-t border-[#1c1a17]/12 pt-6 text-sm">
               <div>

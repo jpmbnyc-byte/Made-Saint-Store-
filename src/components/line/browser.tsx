@@ -40,7 +40,7 @@ export function LineBrowser({ cards }: { cards: LineCard[] }) {
               key={item}
               type="button"
               onClick={() => setTier(item)}
-              className={`border px-3 py-2 text-[11px] tracking-[0.14em] uppercase ${tier === item ? "border-[#1c1a17] bg-[#1c1a17] text-[#f6f4ef]" : "border-[#1c1a17]/20"}`}
+              className={`h-11 border px-3 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1c1a17] ${tier === item ? "border-[#1c1a17] bg-[#1c1a17] text-[#f6f4ef]" : "border-[#1c1a17]/20"}`}
             >
               {item === "All" ? "All tiers" : item}
             </button>
@@ -59,7 +59,7 @@ export function LineBrowser({ cards }: { cards: LineCard[] }) {
             key={item}
             type="button"
             onClick={() => setCategory(item)}
-            className={`inline-flex h-11 shrink-0 items-center border-b px-2 text-[11px] tracking-[0.12em] uppercase ${category === item ? "border-[#1c1a17]" : "border-transparent text-[#1c1a17]/50"}`}
+            className={`inline-flex h-11 shrink-0 items-center border-b px-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1c1a17] ${category === item ? "border-[#1c1a17] text-[#1c1a17]" : "border-transparent text-[#1c1a17]/60"}`}
           >
             {item}
           </button>
@@ -71,18 +71,12 @@ export function LineBrowser({ cards }: { cards: LineCard[] }) {
           <li key={card.ref}>
             <Link href={`/line/${card.ref.toLowerCase()}`} className="group block">
               <div className="relative aspect-[4/5] overflow-hidden bg-[#f1eee8]">
-                {card.image ? (
-                  <img src={card.image} alt={card.alt} className="absolute inset-0 h-full w-full object-contain" />
-                ) : (
-                  <div className="flex h-full items-end p-3">
-                    <p className="text-[11px] tracking-[0.14em] text-[#1c1a17]/45 uppercase">Photograph not assigned</p>
-                  </div>
-                )}
+                {card.image && <img src={card.image} alt={card.alt} className="absolute inset-0 h-full w-full object-contain" />}
               </div>
-              <p className="mt-3 text-[11px] tracking-[0.14em] text-[#1c1a17]/45 uppercase">{card.tier} · {card.ref}</p>
+              <p className="mt-3 text-sm text-[#1c1a17]/55">{card.tier} · {card.ref}</p>
               <h2 className="mt-1 font-serif text-xl leading-tight group-hover:underline">{card.name}</h2>
               <p className="mt-1 text-sm tabular-nums">{card.retail != null ? `$${card.retail.toLocaleString("en-US")}` : "Held"}</p>
-              <p className="mt-1 text-[12px] text-[#1c1a17]/55">{card.status === "held" ? "No price until the record is reconciled" : "Proposed list price"}</p>
+              <p className="mt-1 text-sm text-[#1c1a17]/60">Proposed list price</p>
             </Link>
           </li>
         ))}

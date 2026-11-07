@@ -68,8 +68,8 @@ export function Lookbooks({
           <>
             <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Lookbooks</p>
             <h2 className="mt-4 font-serif text-[40px] leading-[0.95] text-[#2a3746] md:text-[52px]">Shop the day you are dressing for.</h2>
-            <p className="mt-4 max-w-md text-[16px] leading-relaxed text-[#41505b]">
-              Open a look. A founding pair can be reserved. The clothes are commissioned, and they are not added to that reservation.
+            <p className="mt-4 max-w-md text-base leading-relaxed text-[#41505b]">
+              Open a look. A founding pair is listed on its own. The clothes are requested with the house.
             </p>
           </>
         )}
@@ -159,7 +159,7 @@ function LookBill({ look }: { look: Look }) {
                 <div>
                   <p className="text-[11px] tracking-[0.16em] text-[#1c1a17]/50 uppercase">
                     {entry.role}
-                    {!entry.shown && " · offered with the look"}
+                    {!entry.shown && " · alternative, not in the photograph"}
                   </p>
                   <p className="mt-1 font-serif text-2xl leading-none">{piece.name}</p>
                   <p className="mt-1 text-[13px] text-[#1c1a17]/60">{piece.material}</p>
@@ -168,8 +168,8 @@ function LookBill({ look }: { look: Look }) {
                   {offer.kind === "reserve" && (
                     <>
                       <p className="text-sm tabular-nums">{usd(offer.usd)}</p>
-                      <Link href={offer.href} className="mt-2 inline-block text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">
-                        Reserve
+                      <Link href={offer.href} className="mt-2 inline-block text-sm underline underline-offset-4">
+                        See the pair
                       </Link>
                     </>
                   )}
@@ -183,9 +183,9 @@ function LookBill({ look }: { look: Look }) {
                   )}
                   {offer.kind === "commission" && (
                     <>
-                      <p className="text-[11px] tracking-[0.14em] text-[#1c1a17]/55 uppercase">Not a checkout</p>
-                      <Link href={`/wardrobe?look=${look.id}#commission`} className="mt-2 inline-block text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">
-                        Commission
+                      <p className="text-sm text-[#1c1a17]/60">Requested with the house</p>
+                      <Link href={`/wardrobe?look=${look.id}#introduction`} className="mt-2 inline-block text-sm underline underline-offset-4">
+                        Introduce this piece
                       </Link>
                     </>
                   )}
@@ -198,20 +198,20 @@ function LookBill({ look }: { look: Look }) {
         <div className="mt-6">
           {total > 0 && reservable.length > 0 ? (
             <>
-              <p className="text-[11px] tracking-[0.16em] text-[#1c1a17]/55 uppercase">Open to reserve</p>
+              <p className="text-sm text-[#1c1a17]/55">Listed pair</p>
               <p className="mt-2 font-serif text-4xl tabular-nums">{usd(total)}</p>
-              <p className="mt-2 max-w-md text-[13px] leading-relaxed text-[#1c1a17]/65">
-                That figure is the founding {reservable.length === 1 ? "pair" : "pairs"} only. The clothes in this look are not part of the reservation.
+              <p className="mt-2 max-w-md text-sm leading-relaxed text-[#1c1a17]/65">
+                That figure is the founding {reservable.length === 1 ? "pair" : "pairs"} only. This page does not take payment.
               </p>
-              <Link href={reservable[0].offer.kind === "reserve" ? reservable[0].offer.href : "/shop#edition"} className="mt-5 inline-block bg-[#1c1a17] px-6 py-4 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase">
-                Reserve the pair
+              <Link href={reservable[0].offer.kind === "reserve" ? reservable[0].offer.href : "/shop#edition"} className="mt-5 inline-flex h-12 items-center bg-[#1c1a17] px-6 text-sm text-[#f6f4ef]">
+                Continue to the pair
               </Link>
             </>
           ) : (
             <>
-              <p className="max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">Nothing in this look can be reserved. It is commissioned, one piece or the year.</p>
-              <Link href={`/wardrobe?look=${look.id}#commission`} className="mt-5 inline-flex h-12 items-center bg-[#1c1a17] px-6 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase">
-                Commission the look
+              <p className="max-w-md text-base leading-relaxed text-[#1c1a17]/75">The clothes in this look are requested with the house.</p>
+              <Link href={`/wardrobe?look=${look.id}#introduction`} className="mt-5 inline-flex h-12 items-center bg-[#1c1a17] px-6 text-sm text-[#f6f4ef]">
+                Request an introduction
               </Link>
             </>
           )}

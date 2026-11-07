@@ -32,6 +32,7 @@ export function ConfirmedClient() {
   }
 
   const shown = product ?? productById("ms-runner-chalk-navy");
+  const paid = Boolean(params.get("session_id"));
 
   return (
     <div className="min-h-screen bg-[#f6f4ef] text-[#1c1a17]">
@@ -44,7 +45,7 @@ export function ConfirmedClient() {
             </div>
           )}
           <div>
-            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/60 uppercase">Reservation received</p>
+            <p className="text-sm text-[#1c1a17]/60">{paid ? "Reservation received" : "Request recorded"}</p>
             <h1 className="mt-4 font-serif text-5xl leading-[1.02] md:text-6xl">Thank you</h1>
             <dl className="mt-8 divide-y divide-[#1c1a17]/12 border-y border-[#1c1a17]/12 text-sm">
               {[
@@ -61,8 +62,9 @@ export function ConfirmedClient() {
               ))}
             </dl>
             <p className="mt-6 text-sm leading-relaxed text-[#1c1a17]/70">
-              We will write when the run is confirmed and again from the bench in Felgueiras. If the run is not confirmed, your
-              payment is returned in full.
+              {paid
+                ? "We will write when the run is confirmed and again from the bench in Felgueiras. If the run is not confirmed, the payment is returned in full."
+                : "No payment was taken. The 120-pair rule and its refund are written for a paid reservation. While payments are not connected, there is no charge to return."}
             </p>
             <Link href="/shop" className="mt-8 inline-block border-b border-[#1c1a17] pb-1 text-[11px] tracking-[0.18em] uppercase">
               Return to the edition

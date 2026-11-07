@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { LOOKS, OCCASIONS, lookFrame, reserveTotal, type Look } from "@/lib/looks";
+import { OCCASIONS, listedLooks, lookFrame, reserveTotal, type Look } from "@/lib/looks";
 import { Lookbooks } from "@/components/house/lookbooks";
 import { CardRail } from "@/components/house/slider";
 
@@ -26,7 +26,7 @@ function LookCard({ look, onOpen }: { look: Look; onOpen: (id: string) => void }
       <span className="mt-3 block text-[11px] tracking-[0.16em] text-[#8d7349] uppercase">{room?.title}</span>
       <span className="mt-1 block font-serif text-3xl text-[#2a3746]">{look.name}</span>
       <span className="mt-2 block text-[13px] leading-relaxed text-[#41505b]">
-        {pair > 0 ? `Founding pair on this look, $${pair}. The clothes stay commissioned.` : "The clothes are commissioned. No founding pair is on this look."}
+        {pair > 0 ? `A founding pair is listed at $${pair}. The clothes are requested with the house.` : "The clothes are requested with the house."}
       </span>
     </button>
   );
@@ -40,13 +40,13 @@ export function HouseLooks() {
       <section id="examples" className="scroll-mt-24 border-t border-[#41505b]/10">
         <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
           <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Examples</p>
-          <h2 className="mt-3 max-w-2xl font-serif text-5xl leading-[0.95] text-[#2a3746]">Six days. Open the one you are dressing for.</h2>
-          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#41505b]">
-            Each look is one day. Slide across them, then open the clothes. A founding pair can be reserved. The rest of the look is commissioned.
+          <h2 className="mt-3 max-w-2xl font-serif text-5xl leading-[0.95] text-[#2a3746]">Open the day you are dressing for.</h2>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-[#41505b]">
+            A look with a photograph large enough to show. A founding pair, when one is listed, is separate from the clothes.
           </p>
           <div className="mt-8">
-            <CardRail label="Look" count={LOOKS.length}>
-              {LOOKS.map((look) => (
+            <CardRail label="Look" count={listedLooks().length}>
+              {listedLooks().map((look) => (
                 <LookCard key={look.id} look={look} onOpen={setFocus} />
               ))}
             </CardRail>

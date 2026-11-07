@@ -50,6 +50,7 @@ export function PrivateHouse() {
       setFocusLookId(look.id);
       setRoster(ids);
       setSelected(clothingIds(ids));
+      setNote((current) => current || `${look.name}. ${look.read}`);
       return;
     }
     if (line) {

@@ -485,6 +485,14 @@ figcaption,
   text-transform: uppercase;
 }
 
+figcaption.ms-caption {
+  margin: 0.75rem 0 0;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.875rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
 .sheet h3 {
   margin: 0 0 0.35rem;
   font-family: var(--font-serif), Georgia, serif;
@@ -754,4 +762,23 @@ th:first-child {
 @media (prefers-reduced-motion: reduce) {
   .ms-liquid { animation: none; }
   .ms-film { display: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ms-rise {
+    animation: ms-rise 0.7s ease both;
+  }
+  .ms-photo {
+    animation: ms-photo 0.45s ease both;
+  }
+}
+
+@keyframes ms-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes ms-photo {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

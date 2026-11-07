@@ -39,8 +39,9 @@ export function EditionSlider({ products }: { products: Product[] }) {
             </div>
             <p className="mt-2 text-[12px] text-[#41505b]">Between sizes, take the half size up. The size is waiting on the reservation.</p>
           </div>
-          <Link href={`/shop/${product.id}`} className="mt-6 inline-block bg-[#2a3746] px-6 py-4 text-[11px] tracking-[0.18em] text-[#f2eee8] uppercase">
-            Reserve this pair
+          <p className="mt-6 text-sm text-[#41505b]">The price above is the listed price. This page does not take payment.</p>
+          <Link href={`/shop/${product.id}`} className="mt-4 inline-flex h-12 items-center bg-[#2a3746] px-6 text-sm text-[#f2eee8]">
+            Continue to this pair
           </Link>
         </div>
       </div>

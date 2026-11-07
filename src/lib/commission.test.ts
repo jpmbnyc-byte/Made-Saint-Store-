@@ -32,6 +32,26 @@ test("a commission without a name, a piece, or a note is refused", () => {
   assert.equal(noted.ok, true);
 });
 
+test("an introduction can name the person and the days without choosing a package", () => {
+  const parsed = parseCommission({
+    name: "Alex",
+    email: "alex@example.com",
+    note: "Travel weeks and a formal appearance.",
+    role: "representative",
+    timing: "season",
+    budget: "undisclosed",
+    pieceIds: [],
+    lookId: "",
+    lineRef: "",
+    fit: EMPTY_FIT,
+  });
+  assert.equal(parsed.ok, true);
+  if (!parsed.ok) return;
+  assert.equal(parsed.value.scope, "look");
+  assert.equal(parsed.value.role, "representative");
+  assert.equal(parsed.value.budget, "undisclosed");
+});
+
 test("a line style can be commissioned without a wardrobe piece", () => {
   const parsed = parseCommission({ ...base, lookId: "", pieceIds: [], lineRef: "R020" });
   assert.equal(parsed.ok, true);

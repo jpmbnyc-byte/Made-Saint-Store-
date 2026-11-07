@@ -1,18 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import {
-  EMPTY_FIT,
-  LIFESTYLES,
-  OFFERINGS,
-  PATHWAY_LABEL,
-  fitReview,
-  interpret,
-  visiblePieces,
-  type FitInput,
-  type LifestyleId,
-} from "@/lib/private-client";
+import { LIFESTYLES, interpret, visiblePieces, type LifestyleId } from "@/lib/private-client";
 import { Lookbooks } from "@/components/house/lookbooks";
 import type { CommissionScope } from "@/lib/commission";
 import { lineByRef } from "@/lib/line";
@@ -22,19 +12,6 @@ import { usd } from "@/lib/wardrobe";
 function clothingIds(ids: readonly string[]) {
   return ids.filter((id) => offerFor(id).kind === "commission");
 }
-
-const MEASURES: { key: keyof FitInput; label: string; unit: string }[] = [
-  { key: "height", label: "Height", unit: "cm" },
-  { key: "chest", label: "Chest", unit: "cm" },
-  { key: "shoulder", label: "Shoulder", unit: "cm" },
-  { key: "sleeve", label: "Sleeve", unit: "cm" },
-  { key: "bicep", label: "Bicep", unit: "cm" },
-  { key: "waist", label: "Waist", unit: "cm" },
-  { key: "hip", label: "Hip", unit: "cm" },
-  { key: "thigh", label: "Thigh", unit: "cm" },
-  { key: "inseam", label: "Inseam", unit: "cm" },
-  { key: "shoe", label: "Shoe, US", unit: "" },
-];
 
 export function PrivateHouse() {
   const opening = lookForLifestyle("arrival").pieces.map((piece) => piece.id);
@@ -47,16 +24,17 @@ export function PrivateHouse() {
   const [selected, setSelected] = useState<string[]>(clothingIds(opening));
   const [lineRef, setLineRef] = useState("");
   const [scope, setScope] = useState<CommissionScope>("look");
-  const [fit, setFit] = useState<FitInput>(EMPTY_FIT);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [note, setNote] = useState("");
+  const [role, setRole] = useState<"" | "athlete" | "representative">("");
+  const [timing, setTiming] = useState<"" | "season" | "year" | "undecided">("");
+  const [budget, setBudget] = useState<"" | "undisclosed" | "seasonal" | "annual" | "expanded" | "quoted">("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState<string | null>(null);
 
   const lifestyle = LIFESTYLES.find((l) => l.id === lifestyleId) ?? LIFESTYLES[0];
-  const review = useMemo(() => fitReview(fit), [fit]);
   const clothes = visiblePieces(selected);
   const heldLine = lineByRef(lineRef);
   const activeLook = focusLookId ? lookById(focusLookId) : roster.length ? lookForLifestyle(lifestyleId) : undefined;
@@ -97,6 +75,7 @@ export function PrivateHouse() {
     const next = interpret(query);
     setReply(next.reply);
     setAsked(true);
+    setNote((current) => current || query.trim());
     const look = lookForLifestyle(next.lifestyleId);
     applyLook(look.pieces.map((piece) => piece.id), next.lifestyleId, look.id);
     document.getElementById("compose")?.scrollIntoView({ behavior: "smooth" });
@@ -104,8 +83,11 @@ export function PrivateHouse() {
 
   async function send(e: React.FormEvent) {
     e.preventDefault();
-    setBusy(true);
     setError(null);
+    if (!role) return setError("Say whether you are the athlete or a representative.");
+    if (!timing) return setError("Say when you need the wardrobe.");
+    if (!note.trim() && selected.length === 0 && !lineRef) return setError("Say what you are dressing for.");
+    setBusy(true);
     try {
       const res = await fetch("/api/commissions", {
         method: "POST",
@@ -114,11 +96,13 @@ export function PrivateHouse() {
           name,
           email,
           note,
+          role,
+          timing,
+          budget,
           scope,
           lookId: activeLook?.id ?? "",
           pieceIds: selected,
           lineRef,
-          fit,
         }),
       });
       const text = await res.text();
@@ -145,29 +129,28 @@ export function PrivateHouse() {
       <section className="overflow-x-clip bg-[#1c1a17] text-[#f6f4ef]">
         <div className="mx-auto grid max-w-[1440px] items-center gap-8 px-5 py-12 md:grid-cols-[1.05fr_0.95fr] md:px-10 md:py-20">
           <div className="order-2 md:order-1">
-            <p className="text-[11px] tracking-[0.22em] text-[#f6f4ef]/55 uppercase">The Private Wardrobe</p>
-            <h1 className="mt-4 font-serif text-[44px] leading-[0.92] md:text-[72px]">
-              Three annual
-              <br />
-              <em>collections.</em>
+            <p className="text-[11px] tracking-[0.22em] text-[#f6f4ef]/55 uppercase">Private wardrobe</p>
+            <h1 className="mt-4 font-serif text-[44px] leading-[0.92] md:text-[68px]">
+              Personal wardrobes for professional athletes.
             </h1>
             <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-[#f6f4ef]/75">
-              One personal fit. A wardrobe that evolves with you. The silhouettes stay the same whether the client buys one piece or commissions the year. Exceptional proportions change the pattern, not the design.
+              Fewer clothing decisions. One fit, carried across travel, a public day, time off, and a formal hour. A named person coordinates the conversation, the fitting, and the making.
+            </p>
+            <p className="mt-4 max-w-xl text-[14px] leading-relaxed text-[#f6f4ef]/60">
+              The first conversation can be virtual. A fitting is physical, and it is arranged. There is no salon to walk into, and this page does not take payment.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              {[
-                ["#discover", "Discover"],
-                ["#compose", "Compose"],
-                ["#commission", "Commission"],
-              ].map(([href, label]) => (
-                <a key={href} href={href} className="inline-flex h-12 items-center border border-[#f6f4ef]/30 px-5 text-[11px] tracking-[0.18em] uppercase hover:bg-[#f6f4ef] hover:text-[#1c1a17]">
-                  {label}
-                </a>
-              ))}
+              <a href="#introduction" className="inline-flex h-12 items-center bg-[#f6f4ef] px-5 text-[11px] tracking-[0.18em] text-[#1c1a17] uppercase">
+                Request a private introduction
+              </a>
+              <a href="#discover" className="inline-flex h-12 items-center border border-[#f6f4ef]/30 px-5 text-[11px] tracking-[0.18em] uppercase hover:bg-[#f6f4ef] hover:text-[#1c1a17]">
+                See the clothes
+              </a>
             </div>
           </div>
           <figure className="order-1 bg-[#f6f4ef] md:order-2">
             <img src="/hero/saint-john.webp" alt="Camel Saint John jacket and trouser, front and back, on paper" className="h-auto w-full" />
+            <figcaption className="px-4 py-3 text-[11px] tracking-[0.14em] text-[#1c1a17]/70 uppercase">Saint John, a garment study. Not a client, and not an endorsement.</figcaption>
           </figure>
         </div>
         <div className="border-t border-[#f6f4ef]/15">
@@ -176,8 +159,65 @@ export function PrivateHouse() {
             <div className="mt-4 w-full min-w-0 overflow-x-auto">
               <img src="/wardrobe/tonal-zip-system.webp" alt="Seven tonal zip suits, with the color name under each" className="h-auto w-[920px] max-w-none md:w-full" />
             </div>
-            <p className="mt-3 text-[12px] text-[#f6f4ef]/55 md:hidden">Slide sideways to read each color.</p>
+            <p className="mt-3 text-[12px] text-[#f6f4ef]/55">A color study. Not a delivered wardrobe, and not a client.</p>
           </div>
+        </div>
+      </section>
+
+      <section className="border-t border-[#1c1a17]/10">
+        <div className="mx-auto grid max-w-[1100px] gap-12 px-5 py-16 md:grid-cols-2 md:px-8 md:py-20">
+          <div>
+            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">What a client receives</p>
+            <h2 className="mt-3 font-serif text-4xl md:text-5xl">One wardrobe, not three launches.</h2>
+            <ul className="mt-6 space-y-3 text-[15px] leading-relaxed text-[#1c1a17]/75">
+              {[
+                "A conversation about the days you actually dress for.",
+                "Arrival, off-duty, and occasion, coordinated as one wardrobe.",
+                "A fit record, kept only with your consent.",
+                "A written scope: clothes, price, date, and who corrects a mistake.",
+                "Updates from one person, not a queue.",
+                "Founding runners, if you want them, reserved on their own page.",
+              ].map((line) => (
+                <li key={line} className="border-t border-[#1c1a17]/12 pt-3">{line}</li>
+              ))}
+            </ul>
+            <p className="mt-4 text-[13px] leading-relaxed text-[#1c1a17]/55">
+              The number of garments is set in that scope. It is not published here as a package.
+            </p>
+          </div>
+          <div>
+            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">The journey</p>
+            <ol className="mt-6 space-y-4">
+              {[
+                ["01", "Conversation", "By video or phone. Remote."],
+                ["02", "Fitting", "Samples you can handle. Physical, and only when one is arranged."],
+                ["03", "Approval", "Looks, cloth, itemized prices, and dates. Nothing is cut before you approve it."],
+                ["04", "Making", "A named person writes when the date moves."],
+                ["05", "Delivery and care", "A fit review after you have worn the clothes, then a way to write back."],
+              ].map(([n, title, body]) => (
+                <li key={n} className="grid grid-cols-[auto_1fr] gap-4 border-t border-[#1c1a17]/12 pt-4">
+                  <span className="font-serif text-2xl text-[#8d7349] italic">{n}</span>
+                  <span>
+                    <span className="block font-serif text-2xl">{title}</span>
+                    <span className="mt-1 block text-[14px] leading-relaxed text-[#1c1a17]/70">{body}</span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-[#1c1a17]/10">
+        <div className="mx-auto max-w-[760px] px-5 py-16 md:px-8 md:py-20">
+          <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">The house</p>
+          <h2 className="mt-3 font-serif text-4xl md:text-5xl">Once sinner. Made Saint.</h2>
+          <p className="mt-5 text-[16px] leading-relaxed text-[#1c1a17]/75">
+            The line is the founder&apos;s, for grace and a life changed. A purchase does not confer moral or spiritual standing. Sacred pictures on a garment are part of that design, and they are labeled as studies until a production photograph exists.
+          </p>
+          <p className="mt-4 text-[16px] leading-relaxed text-[#1c1a17]/75">
+            The house keeps a Christian name and welcomes a client of any belief. The longer account of grace, renewal, humility, and responsibility is his to write. It is not published here in his place.
+          </p>
         </div>
       </section>
 
@@ -296,19 +336,20 @@ export function PrivateHouse() {
                 <li key={piece.id}>{piece.name}</li>
               ))}
             </ul>
-            <a href="#commission" className="mt-6 inline-flex h-12 w-full items-center justify-center bg-[#1c1a17] px-5 text-[11px] tracking-[0.16em] text-[#f6f4ef] uppercase">
-              Continue to the request
+            <a href="#introduction" className="mt-6 inline-flex h-12 w-full items-center justify-center bg-[#1c1a17] px-5 text-[11px] tracking-[0.16em] text-[#f6f4ef] uppercase">
+              Continue to the introduction
             </a>
           </aside>
         </div>
       </section>
 
-      <section id="commission" className="scroll-mt-28 border-t border-[#1c1a17]/10">
+      <div id="commission" className="scroll-mt-28" />
+      <section id="introduction" className="scroll-mt-28 border-t border-[#1c1a17]/10">
         <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-10">
-          <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">03 · Commission</p>
-          <h2 className="mt-3 max-w-3xl font-serif text-4xl md:text-5xl">Send the commission.</h2>
+          <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Private introduction</p>
+          <h2 className="mt-3 max-w-3xl font-serif text-4xl md:text-5xl">Tell the house who you are dressing.</h2>
           <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            This writes a request. It does not take payment, and it does not reserve a founding pair. The year is still three collections, Arrival, Transit, and Occasion. A date can move. The silhouette does not.
+            This writes an introduction. It does not take payment, confirm an appointment, or reserve a founding pair. The house writes back to the email you give. A response time is not promised. Measurements are taken with a person after this, not on this form.
           </p>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
@@ -318,7 +359,7 @@ export function PrivateHouse() {
                   <p className="text-[11px] tracking-[0.16em] uppercase">Received · {sent}</p>
                   <p className="mt-3 font-serif text-3xl">The request is with the house.</p>
                   <p className="mt-3 max-w-lg text-sm leading-relaxed text-[#1c1a17]/70">
-                    We will write to {email}. Nothing was charged. A founding pair, if you want one, is reserved from the shop.
+                    The house will write to {email}. This is not an appointment, and nothing was charged. A founding pair, if you want one, is reserved from the shop.
                   </p>
                   <Link href="/shop#edition" className="mt-6 inline-flex h-12 items-center border border-[#1c1a17] px-5 text-[11px] tracking-[0.16em] uppercase">
                     Reserve a founding pair
@@ -326,25 +367,21 @@ export function PrivateHouse() {
                 </div>
               ) : (
                 <>
-                  <fieldset className="space-y-3">
-                    <legend className="font-serif text-2xl">What this request covers</legend>
-                    {OFFERINGS.map((offer) => (
-                      <label key={offer.id} className="flex min-h-11 cursor-pointer items-center gap-3 border border-[#1c1a17]/12 px-3">
-                        <input
-                          type="radio"
-                          name="scope"
-                          checked={scope === offer.id}
-                          onChange={() => setScope(offer.id)}
-                          className="accent-[#1c1a17]"
-                        />
-                        <span className="text-sm">{offer.name}</span>
-                        <span className="ml-auto text-[12px] text-[#1c1a17]/55">{offer.investment}</span>
-                      </label>
-                    ))}
-                    <p className="text-sm leading-relaxed text-[#1c1a17]/70">{OFFERINGS.find((offer) => offer.id === scope)?.note}</p>
-                    {scope === "piece" && clothes.length > 1 && (
-                      <p className="text-sm text-[#1c1a17]/70">This scope is one piece. Uncheck the others, or choose Complete look.</p>
-                    )}
+                  <fieldset>
+                    <legend className="font-serif text-2xl">Who is writing</legend>
+                    <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                      {(
+                        [
+                          ["athlete", "The athlete"],
+                          ["representative", "A representative"],
+                        ] as const
+                      ).map(([value, label]) => (
+                        <label key={value} className="flex min-h-12 cursor-pointer items-center gap-3 border border-[#1c1a17]/12 px-3">
+                          <input type="radio" name="role" checked={role === value} onChange={() => setRole(value)} className="accent-[#1c1a17]" />
+                          <span className="text-sm">{label}</span>
+                        </label>
+                      ))}
+                    </div>
                   </fieldset>
 
                   <div className="grid gap-4 sm:grid-cols-2">
@@ -369,79 +406,41 @@ export function PrivateHouse() {
                     </label>
                   </div>
                   <label className="block text-[11px] tracking-[0.12em] uppercase">
-                    Note
+                    What are you dressing for?
                     <textarea
                       value={note}
                       onChange={(e) => setNote(e.target.value)}
-                      rows={3}
-                      className="mt-1 w-full border border-[#1c1a17]/20 bg-white/70 px-3 py-3 text-base normal-case tracking-normal"
+                      rows={4}
+                      placeholder="Travel weeks, a public day, time off, a formal hour."
+                      className="mt-1 w-full border border-[#1c1a17]/20 bg-white/70 px-3 py-3 text-base normal-case tracking-normal placeholder:text-[#1c1a17]/35"
                     />
                   </label>
-
-                  <details className="border-t border-[#1c1a17]/12">
-                    <summary className="flex min-h-12 cursor-pointer items-center font-serif text-2xl">Add measurements</summary>
-                    <p className="max-w-lg text-sm leading-relaxed text-[#1c1a17]/65">
-                      Optional. They describe the body. A photograph is not a measurement. The profile stays with this request. A private account is not open.
-                    </p>
-                    <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
-                      {MEASURES.map((m) => (
-                        <label key={m.key} className="block text-[11px] tracking-[0.12em] uppercase">
-                          {m.label}
-                          {m.unit ? ` · ${m.unit}` : ""}
-                          <input
-                            inputMode="decimal"
-                            value={fit[m.key]}
-                            onChange={(e) => setFit({ ...fit, [m.key]: e.target.value })}
-                            className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal"
-                          />
-                        </label>
-                      ))}
-                      <label className="block text-[11px] tracking-[0.12em] uppercase">
-                        Shoe width
-                        <select
-                          value={fit.width}
-                          onChange={(e) => setFit({ ...fit, width: e.target.value as FitInput["width"] })}
-                          className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal"
-                        >
-                          <option value="">Not given</option>
-                          <option value="standard">Standard</option>
-                          <option value="wide">Wide</option>
-                          <option value="extra-wide">Extra wide</option>
-                        </select>
-                      </label>
-                    </div>
-                    <div className="mt-4 grid grid-cols-2 gap-4">
-                      <label className="block text-[11px] tracking-[0.12em] uppercase">
-                        Shoulder
-                        <select
-                          value={fit.shoulderStyle}
-                          onChange={(e) => setFit({ ...fit, shoulderStyle: e.target.value as FitInput["shoulderStyle"] })}
-                          className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal"
-                        >
-                          <option value="">Not given</option>
-                          <option value="relaxed">Relaxed</option>
-                          <option value="structured">Structured</option>
-                        </select>
-                      </label>
-                      <label className="block text-[11px] tracking-[0.12em] uppercase">
-                        Ease
-                        <select
-                          value={fit.ease}
-                          onChange={(e) => setFit({ ...fit, ease: e.target.value as FitInput["ease"] })}
-                          className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal"
-                        >
-                          <option value="">Not given</option>
-                          <option value="close">Close</option>
-                          <option value="standard">Standard</option>
-                          <option value="generous">Generous</option>
-                        </select>
-                      </label>
-                    </div>
-                  </details>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <label className="block text-[11px] tracking-[0.12em] uppercase">
+                      Timing
+                      <select value={timing} onChange={(e) => setTiming(e.target.value as typeof timing)} className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal">
+                        <option value="">Choose</option>
+                        <option value="season">This season</option>
+                        <option value="year">This year</option>
+                        <option value="undecided">Not decided</option>
+                      </select>
+                    </label>
+                    <label className="block text-[11px] tracking-[0.12em] uppercase">
+                      Budget, if you want to say
+                      <select value={budget} onChange={(e) => setBudget(e.target.value as typeof budget)} className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal">
+                        <option value="">Not given</option>
+                        <option value="undisclosed">Prefer not to say</option>
+                        <option value="seasonal">Near the seasonal figure</option>
+                        <option value="annual">Near the annual figure</option>
+                        <option value="expanded">Near the expanded figure</option>
+                        <option value="quoted">Ask for a quotation</option>
+                      </select>
+                    </label>
+                  </div>
 
                   {error && <p className="text-sm">{error}</p>}
                   <button type="submit" disabled={busy} className="inline-flex h-12 w-full items-center justify-center bg-[#1c1a17] px-6 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase disabled:opacity-60 sm:w-auto">
-                    {busy ? "Sending" : "Send the commission"}
+                    {busy ? "Sending" : "Send the introduction"}
                   </button>
                 </>
               )}
@@ -457,17 +456,11 @@ export function PrivateHouse() {
                 ))}
                 {clothes.length === 0 && !heldLine && <li className="text-[#1c1a17]/60">No piece selected yet.</li>}
               </ul>
-              <p className="mt-4 text-sm text-[#1c1a17]/70">{OFFERINGS.find((offer) => offer.id === scope)?.name}</p>
-              <p className="mt-4 font-serif text-2xl">{review.measured ? PATHWAY_LABEL[review.pathway] : "Measurements not given"}</p>
-              {review.measured && (
-                <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-[#1c1a17]/70">
-                  {review.flags.map((flag) => (
-                    <li key={flag}>{flag}</li>
-                  ))}
-                </ul>
-              )}
+              <p className="mt-4 text-[13px] leading-relaxed text-[#1c1a17]/70">
+                Planning figures, not a choice on this form and not a checkout: seasonal from $6,500, annual from $20,000, expanded from $35,000, atelier quoted. Inclusions are published only after they are costed.
+              </p>
               <p className="mt-4 text-[13px] leading-relaxed text-[#1c1a17]/60">
-                A person approves the pattern. Any extra charge is for development, cloth, or a last. It is not a charge for height or size.
+                Arrival, off-duty, and occasion are contexts in one wardrobe. A date can move. The silhouette does not.
               </p>
             </aside>
           </div>

@@ -28,8 +28,8 @@ const SHOWN = [
   },
   {
     id: "season",
-    href: "/wardrobe#commission",
-    cta: "Commission",
+    href: "/wardrobe#introduction",
+    cta: "Request an introduction",
     includes: [
       "One season, planned before a price is approved",
       "An annual wardrobe, from $20,000",

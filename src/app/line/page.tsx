@@ -40,7 +40,7 @@ export default function LinePage() {
           {shown.length} styles are shown, from ${low.toLocaleString("en-US")} to ${high.toLocaleString("en-US")}.
           A proposed price is a list price. Cloth, color, and construction stay design intentions until a sample is approved.{" "}
           {hidden} records stay in the data without a public card, because the photograph is missing, too small, or the price is held.
-          The founding runners stay on the shop.
+          The founding runners stay on the shop. A photographed style can be read by anyone it fits. The private wardrobe remains a service for an athlete.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href="/shop#edition" className="border border-[#1c1a17] px-4 py-3 text-[11px] tracking-[0.16em] uppercase">Founding Edition</Link>

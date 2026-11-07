@@ -51,6 +51,11 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <h1 className="mt-3 font-serif text-4xl leading-none md:text-5xl">{short(product.name)}</h1>
             <p className="mt-4 text-lg tabular-nums">${product.usd}</p>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{product.line}. Made to order in Felgueiras.</p>
+            {product.launch && (
+              <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">
+                US men&apos;s 7 through 12. Anyone that size fits can request this pair. It does not open a wardrobe.
+              </p>
+            )}
 
             <div className="mt-8">
               <p className="text-[11px] tracking-[0.16em] uppercase">Colorway</p>

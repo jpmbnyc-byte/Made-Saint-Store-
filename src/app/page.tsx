@@ -69,6 +69,32 @@ export default function Home() {
 
       <Chapters />
 
+      <section id="begin" className="scroll-mt-24 border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
+        <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-8 md:py-24">
+          <p className="text-sm text-[#B03236]">Where to begin</p>
+          <h2 className="mt-3 max-w-2xl font-serif text-4xl leading-[1.02] text-[#1c1a17] md:text-6xl">Start from the day, or from one pair.</h2>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-[#3c4650]">
+            The wardrobe is a service for a professional athlete. A founding pair can be requested by anyone it fits, in US men&apos;s 7 through 12. One route does not require the other.
+          </p>
+          <ul className="mt-10 grid gap-px bg-[#1c1a17]/10 sm:grid-cols-2">
+            {[
+              ["A changing schedule", "Arrival is the working day. One person coordinates the dates.", "#arrival", "See Arrival"],
+              ["One look to repeat", "Everyday is a day with nothing scheduled. Saint John is one worn look.", "#saint-john", "See Saint John"],
+              ["A new setting", "Keep Arrival, and add an occasion when the day asks for a suit. Name the days in the introduction.", "/wardrobe?look=arrival#introduction", "Name the days"],
+              ["A single pair", "The founding runner is reserved on its own. US men's 7 through 12. Other sizes are not offered.", "/shop#edition", "Continue to the pairs"],
+            ].map(([title, body, href, action]) => (
+              <li key={title} className="bg-[#f6f4ef] p-6 md:p-8">
+                <h3 className="font-serif text-3xl leading-none text-[#1c1a17]">{title}</h3>
+                <p className="mt-4 max-w-sm text-sm leading-relaxed text-[#3c4650]">{body}</p>
+                <Link href={href} className="mt-6 inline-flex h-12 items-center text-sm text-[#1c1a17] underline decoration-[#B03236] underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1c1a17]">
+                  {action}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section id="service" className="scroll-mt-24 border-t border-[#f6f4ef]/10 bg-[#1c1a17] text-[#f6f4ef]">
         <div className="mx-auto grid max-w-[1100px] gap-12 px-5 py-16 md:grid-cols-[0.9fr_1.1fr] md:px-8 md:py-24">
           <div>

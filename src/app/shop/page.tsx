@@ -30,6 +30,9 @@ export default async function ShopPage() {
         <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/60 uppercase">Made to order · Felgueiras</p>
         <h1 className="mt-4 max-w-3xl font-serif text-[44px] leading-[0.95] md:text-[64px]">A pair is cut only after you reserve it.</h1>
         <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">{orderWindowLine()}</p>
+        <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
+          Anyone the size fits can request a pair, in US men&apos;s 7 through 12. Other sizes are not offered. A pair does not open a wardrobe.
+        </p>
         <ul className="mt-8 grid grid-cols-3 gap-2 sm:gap-4">
           {launch.map((p) => (
             <li key={p.id}>

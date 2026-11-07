@@ -9,9 +9,7 @@ import { STORIES } from "@/lib/stories";
 const STORY_WORDS: [RegExp, string][] = [
   [/\b(navy\s+)?intrecciato\b/, "navy-intrecciato"],
   [/\b(espresso|oxblood)\b/, "espresso-oxblood"],
-  [/\bgraphite\b/, "graphite-tonal"],
   [/\bchalk\b/, "chalk-navy"],
-  [/\b(navy\s+weave|weave\s*\/?\s*rust|rust\s+canvas)\b/, "navy-weave-rust"],
   [/\b(washed\s+)?denim\b/, "washed-denim"],
 ];
 

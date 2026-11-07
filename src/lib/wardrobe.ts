@@ -302,23 +302,11 @@ export const PIECES: WardrobePiece[] = [
     tier: "signature", image: "/stories/espresso-oxblood.webp", klass: "E",
   },
   {
-    id: "rn03", code: "MS-RN-03", name: "Lifestyle Runner — Graphite", category: "footwear",
-    palettes: ["after-dark"], chips: [{ name: "Graphite", hex: "#4a4a4e" }],
-    material: "Embossed calf suede, tonal",
-    tier: "signature", image: "/stories/graphite-tonal.webp", klass: "E",
-  },
-  {
     id: "rn04", code: "MS-RN-04", name: "Lifestyle Runner — Chalk", category: "footwear",
     palettes: ["blue-hour"], chips: [{ name: "Ivory", hex: "#e6ddd0" }, { name: "Midnight", hex: "#1b2838" }],
     material: "Bouclé suede, navy canvas",
     tier: "signature", image: "/stories/chalk-navy.webp", klass: "E",
     note: "Locked studio colorway. Founding Edition pre-order at $595.",
-  },
-  {
-    id: "rn05", code: "MS-RN-05", name: "Lifestyle Runner — Navy and Rust", category: "footwear",
-    palettes: ["earth-sky"], chips: [{ name: "Midnight", hex: "#2c323d" }, { name: "Rust", hex: "#8a4a28" }],
-    material: "Woven calf, rust canvas",
-    tier: "atelier", image: "/stories/navy-weave-rust.webp", klass: "E",
   },
   {
     id: "rn06", code: "MS-RN-06", name: "Lifestyle Runner — Washed Denim", category: "footwear",

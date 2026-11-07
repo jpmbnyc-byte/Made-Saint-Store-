@@ -48,8 +48,6 @@ export const PRODUCTS: Product[] = [
   { id: "ms-runner-chalk-navy", storyId: "chalk-navy", name: "Runner, Chalk", line: "Bouclé suede, navy canvas", usd: 595, image: "/stories/chalk-navy.webp", launch: true, materials: ["Bouclé-finish suede", "Cotton canvas windows", "Calf leather lining", "Nub-lug rubber sole"], costUsd: 0 },
   { id: "ms-runner-washed-denim", storyId: "washed-denim", name: "Runner, Washed Denim", line: "Two-tone selvedge-style denim", usd: 545, image: "/stories/washed-denim.webp", launch: true, materials: ["Washed cotton denim", "Raw indigo denim windows", "Calf leather lining", "Nub-lug rubber sole"], costUsd: 0 },
   { id: "ms-runner-espresso", storyId: "espresso-oxblood", name: "Runner, Espresso", line: "Calf suede, oxblood lining", usd: 545, image: "/stories/espresso-oxblood.webp", launch: false, materials: ["Calf suede", "Technical mesh", "Oxblood terry lining", "Nub-lug rubber sole"], costUsd: 0 },
-  { id: "ms-runner-graphite", storyId: "graphite-tonal", name: "Runner, Graphite", line: "Embossed suede, tonal", usd: 595, image: "/stories/graphite-tonal.webp", launch: false, materials: ["Embossed calf suede", "Technical mesh", "Calf leather lining", "Nub-lug rubber sole"], costUsd: 0 },
-  { id: "ms-runner-navy-rust", storyId: "navy-weave-rust", name: "Runner, Navy and Rust", line: "Woven calf, rust canvas", usd: 695, image: "/stories/navy-weave-rust.webp", launch: false, materials: ["Woven calf leather", "Cotton canvas windows", "Calf leather lining", "Nub-lug rubber sole"], costUsd: 0 },
 ];
 
 /** US men's sizes the MEES nub sole covers (EU 39–46), with a typical men's size curve. */

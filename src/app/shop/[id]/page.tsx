@@ -113,7 +113,6 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                   <span className="text-lg leading-none text-[#1c1a17]/40 group-open:rotate-45">+</span>
                 </summary>
                 <div className="mt-4 space-y-3 text-sm leading-relaxed text-[#1c1a17]/75">
-                  <p>The three-peak wave is molded on the mesh of both quarters, lateral and medial, and matches the overhead photograph.</p>
                   <ul className="space-y-1.5">
                     {product.materials.map((m) => (
                       <li key={m}>{m}</li>

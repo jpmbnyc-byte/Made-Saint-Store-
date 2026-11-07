@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CONCEPT_PALETTE, assignRoles, buildCollection } from "@/lib/collection";
@@ -7,8 +6,8 @@ import { RunnerFlat, type RunnerVariant } from "@/components/flats/runner";
 import { MARK_PLACEMENTS, tonalMark, type MarkPlacementId } from "@/components/flats/mark";
 
 export const metadata: Metadata = {
-  title: "MADE SAiNT · wave side mark",
-  description: "Placement study and specification for the molded TPU wave on both quarter panels of the runner.",
+  title: "MADE SAiNT · wordmark",
+  description: "The house mark is the wordmark: MADE in the block, Saint in the blackletter.",
   robots: { index: false, follow: false },
 };
 
@@ -80,7 +79,7 @@ export default function BrandPage() {
         <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-3 px-4 py-3">
           <div>
             <p className="font-serif text-2xl leading-none">MADE SAiNT</p>
-            <p className="mt-1 font-mono text-[11px] tracking-[0.14em] text-[#22201d]/60 uppercase">M side mark · placement study</p>
+            <p className="mt-1 font-mono text-[11px] tracking-[0.14em] text-[#22201d]/60 uppercase">Wordmark</p>
           </div>
           <nav className="flex flex-wrap gap-4 font-mono text-[11px] tracking-[0.1em] text-[#22201d]/60 uppercase">
             <Link href="/studio" className="hover:text-[#22201d]">Studio</Link>
@@ -94,18 +93,13 @@ export default function BrandPage() {
         <section className="grid items-center gap-6 rounded-xl border border-[#22201d]/15 bg-[#fbf8f2] p-5 md:grid-cols-[320px_1fr]">
           <div className="rounded-lg bg-[#1c1a17] p-6 text-[#b9bbbd]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/brand/m-mark.svg" alt="MADE SAiNT M mark" className="w-full invert" />
+            <img src="/brand/wordmark.png" alt="MADE Saint" className="w-full" />
           </div>
           <div>
-            <h1 className="font-serif text-4xl leading-none">The M</h1>
+            <h1 className="font-serif text-4xl leading-none">The wordmark</h1>
             <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-[#22201d]/75">
-              A long three-peak zig-zag wave in molded TPU, not a letter M and not a stitched channel. It sits on the quarter mesh
-              of both the lateral and the medial, peaks toward the laces, tonal to the overlay, keylined a step darker. Placement
-              follows the 9060 midfoot rules; the wave is our own.
+              MADE in the block, Saint in the blackletter. This is the mark on the house.
             </p>
-            <a href="/brand/m-mark.svg" download className="mt-4 inline-block font-mono text-[11px] tracking-[0.1em] uppercase underline underline-offset-4">
-              Download vector
-            </a>
           </div>
         </section>
 
@@ -196,14 +190,6 @@ export default function BrandPage() {
           </div>
         </section>
 
-        <section>
-          <h2 className="font-serif text-3xl">Renders, tonal</h2>
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            {["/hero/look1-runner-hero.webp", "/hero/look3-runner-inverse.webp", "/hero/look2-mule-tonal.webp"].map((f) => (
-              <Image key={f} src={f} alt="Tonal M render" width={1280} height={720} className="w-full rounded-xl" />
-            ))}
-          </div>
-        </section>
       </main>
     </div>
   );

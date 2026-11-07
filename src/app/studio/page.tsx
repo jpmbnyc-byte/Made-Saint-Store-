@@ -171,7 +171,7 @@ export default function Studio() {
               Trail Mule package
             </Link>
             <Link href="/brand" className="px-2 font-mono text-[11px] uppercase tracking-[0.1em] text-[#22201d]/60 hover:text-[#22201d]">
-              M mark
+              Wordmark
             </Link>
             <Link href="/launch" className="px-2 font-mono text-[11px] uppercase tracking-[0.1em] text-[#22201d]/60 hover:text-[#22201d]">
               Launch plan

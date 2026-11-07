@@ -56,20 +56,9 @@ function runner(id: string): AtelierProduct {
     tier: "founding",
     material,
     materialStatus: "verified",
-    silhouette: "Lifestyle runner. The approved photographs are the construction record, including the three-peak wave on both quarters.",
+    silhouette: "Lifestyle runner. The overhead photograph is the construction record.",
     fit: "Not a body measurement. Standard size run is on the product page.",
-    references: [
-      { id: `${p.id}-overhead`, src: p.image, role: "overhead pair" },
-      ...(p.id === "ms-runner-espresso"
-        ? [{ id: `${p.id}-threequarter`, src: "/hero/look3-runner-inverse.webp", role: "three-quarter pair" }]
-        : []),
-      ...(p.id === "ms-runner-chalk-navy"
-        ? [
-            { id: `${p.id}-threequarter`, src: "/hero/look1-runner-hero.webp", role: "three-quarter pair" },
-            { id: `${p.id}-detail`, src: "/catalog/ms-runner-chalk-navy/detail.webp", role: "quarter detail" },
-          ]
-        : []),
-    ],
+    references: [{ id: `${p.id}-overhead`, src: p.image, role: "overhead pair" }],
     colorways: [{ id: slug(p.name.replace("Runner, ", "")), name: p.name.replace("Runner, ", ""), hex: null, status: "approved" }],
     retailUsd: p.usd,
     priceStatus: "approved",

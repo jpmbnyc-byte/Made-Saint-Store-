@@ -200,9 +200,9 @@ export default function Home() {
       <section className="border-t border-[#41505b]/10">
         <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
           <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">The list</p>
-          <h2 className="mt-3 max-w-2xl font-serif text-5xl leading-[0.95] text-[#2a3746]">Three more colorways. Not this run.</h2>
+          <h2 className="mt-3 max-w-2xl font-serif text-5xl leading-[0.95] text-[#2a3746]">One more colorway. Not this run.</h2>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#41505b]">
-            Espresso, Graphite, and Navy and Rust gather a note for the next run. They are not reserved with the founding edition.
+            Espresso gathers a note for the next run. It cannot be reserved with the founding edition.
           </p>
           <div className="mt-8">
             <ListRail />

@@ -5,18 +5,14 @@ import { PIECES, type WardrobePiece } from "@/lib/wardrobe";
 const APPROVED: Record<string, number> = {
   rn01: 695,
   rn02: 545,
-  rn03: 595,
   rn04: 595,
-  rn05: 695,
   rn06: 545,
 };
 
 const SHOP: Record<string, string> = {
   rn01: "/shop/ms-runner-navy-intrecciato",
   rn02: "/shop/ms-runner-espresso",
-  rn03: "/shop/ms-runner-graphite",
   rn04: "/shop/ms-runner-chalk-navy",
-  rn05: "/shop/ms-runner-navy-rust",
   rn06: "/shop/ms-runner-washed-denim",
 };
 

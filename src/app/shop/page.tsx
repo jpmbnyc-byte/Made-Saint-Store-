@@ -60,7 +60,7 @@ export default async function ShopPage() {
           {launch.map((p) => (
             <Link key={p.id} href={`/shop/${p.id}`} className="group block">
               <div className="relative aspect-[2/3] overflow-hidden bg-[#f3efe8]">
-                <Image src={p.image} alt={`MADE SAiNT ${p.name}`} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-contain p-3" />
+                <Image src={p.image} alt={`MADE SAiNT ${p.name}`} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-contain" />
               </div>
               <div className="mt-4 flex items-baseline justify-between gap-3">
                 <h3 className="font-serif text-2xl">{p.name.replace("Runner, ", "")}</h3>
@@ -90,7 +90,7 @@ export default async function ShopPage() {
             {next.map((p) => (
               <div key={p.id}>
                 <div className="relative aspect-[2/3] overflow-hidden bg-[#f3efe8]">
-                  <Image src={p.image} alt={`MADE SAiNT ${p.name}, in development`} fill sizes="(min-width: 640px) 33vw, 100vw" className="object-contain p-3" />
+                  <Image src={p.image} alt={`MADE SAiNT ${p.name}, in development`} fill sizes="(min-width: 640px) 33vw, 100vw" className="object-contain" />
                 </div>
                 <div className="mt-3 flex items-baseline justify-between">
                   <h3 className="font-serif text-xl">{p.name.replace("Runner, ", "")}</h3>

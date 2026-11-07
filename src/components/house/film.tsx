@@ -6,8 +6,8 @@ export function HouseFilm() {
       <Image
         src="/stories/chalk-navy.webp"
         alt="Runner, Chalk, overhead"
-        width={720}
-        height={1080}
+        width={1080}
+        height={1440}
         priority
         className="mx-auto h-auto w-full max-w-[420px]"
       />

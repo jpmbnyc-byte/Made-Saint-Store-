@@ -17,7 +17,14 @@ const overhead = (p: Product): CatalogView => ({
   alt: `${p.name}, overhead`,
 });
 
-const EXTRA: Record<string, CatalogView[]> = {};
+const EXTRA: Record<string, CatalogView[]> = {
+  "ms-runner-chalk-navy": [
+    { id: "threequarter", src: "/stories/chalk-threequarter.webp", label: "Three-quarter", alt: "Runner, Chalk, three-quarter" },
+  ],
+  "ms-runner-washed-denim": [
+    { id: "threequarter", src: "/stories/washed-denim-threequarter.webp", label: "Three-quarter", alt: "Runner, Washed Denim, three-quarter" },
+  ],
+};
 
 /** Overhead first, so both sides of the mark are the image a client meets. */
 export function viewsFor(product: Product): CatalogView[] {

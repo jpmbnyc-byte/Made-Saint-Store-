@@ -308,7 +308,7 @@ export default function Studio() {
               const chips = [...new Set(Object.values(st.parts).map((p) => p.hex))].slice(0, 6);
               return (
                 <div key={st.id} className={`overflow-hidden rounded-lg border bg-white/60 ${active.length ? "border-[#22201d]" : "border-[#22201d]/10"}`}>
-                  <Image src={st.image} alt={st.name} width={360} height={540} unoptimized className="aspect-[2/3] w-full bg-[#ece9e4] object-cover" />
+                  <Image src={st.image} alt={st.name} width={360} height={540} unoptimized className="aspect-[2/3] w-full bg-[#ece9e4] object-contain" />
                   <div className="space-y-2 p-2.5">
                     <p className="text-[13px] font-medium leading-tight">{st.name}</p>
                     <div className="flex">

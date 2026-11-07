@@ -88,6 +88,23 @@ const CHAPTERS: Chapter[] = [
     ],
     inquiry: "/wardrobe?look=saint-john#introduction",
   },
+  {
+    id: "saint-michael",
+    kicker: "Saint Michael",
+    title: "The same sheet, in olive.",
+    body: "An olive jacket and trouser, shown as a study on the same paper and board. The back carries Saint Michael the Archangel. This is not a client, and it is not a production photograph.",
+    ground: "bg-[#eef1ea]",
+    views: [
+      { id: "set", label: "The set", src: "/hero/saint-michael.webp", alt: "Olive Saint Michael jacket and trouser, front and back, on paper", fit: "contain" },
+      { id: "front", label: "Front", src: "/editorial/saint-michael-front.webp", alt: "Front of the olive Saint Michael jacket", fit: "contain" },
+      { id: "back", label: "Back", src: "/editorial/saint-michael-back.webp", alt: "Back of the olive Saint Michael jacket with the sacred artwork", fit: "contain" },
+    ],
+    rows: [
+      { role: "Jacket", name: "Saint Michael jacket", note: "Front, and the artwork on the back." },
+      { role: "Trouser", name: "Matching trouser", note: "Shown with the jacket on the full sheet." },
+    ],
+    inquiry: "/wardrobe?look=saint-michael#introduction",
+  },
 ];
 
 export function Chapters() {

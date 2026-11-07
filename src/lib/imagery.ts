@@ -86,6 +86,9 @@ export const EDITORIAL_HEROES = [
   { src: "/hero/saint-john.webp", width: 1856, height: 2304 },
   { src: "/editorial/saint-john-front.webp", width: 928, height: 1198 },
   { src: "/editorial/saint-john-back.webp", width: 928, height: 1198 },
+  { src: "/hero/saint-michael.webp", width: 1792, height: 2400 },
+  { src: "/editorial/saint-michael-front.webp", width: 896, height: 1248 },
+  { src: "/editorial/saint-michael-back.webp", width: 896, height: 1248 },
   { src: "/stories/chalk-navy.webp", width: 720, height: 1080 },
   { src: "/stories/washed-denim.webp", width: 720, height: 1080 },
 ] as const;
@@ -162,6 +165,18 @@ export const UNRESOLVED: ImageAssignment[] = [
     status: "study",
     confidence: "high",
     note: "Garment study, front and back on one sheet. The front and back files are crops of that sheet, not enlarged thumbnails. Not a client and not a production photograph.",
+  },
+  {
+    id: "s02",
+    name: "Saint Michael",
+    primary: "/hero/saint-michael.webp",
+    alternates: ["/editorial/saint-michael-front.webp", "/editorial/saint-michael-back.webp"],
+    lifestyle: ["/wardrobe/suit-saint-michael-olive.webp"],
+    width: 1792,
+    height: 2400,
+    status: "study",
+    confidence: "high",
+    note: "Garment study reframed to the same paper-and-board sheet as Saint John. Olive cloth, chest script, and the Saint Michael the Archangel artwork are kept. The front and back files are crops of that sheet. The older 1200 by 900 board stays on the piece record. Not a client and not a production photograph.",
   },
   {
     id: "transit-image",

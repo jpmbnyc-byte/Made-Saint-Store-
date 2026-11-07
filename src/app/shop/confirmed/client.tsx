@@ -40,8 +40,8 @@ export function ConfirmedClient() {
       <main className="mx-auto max-w-[1000px] px-5 py-16 md:px-8">
         <div className="grid items-center gap-12 md:grid-cols-[1fr_1fr]">
           {shown && (
-            <div className="relative aspect-[4/5] overflow-hidden bg-[#ebebeb]">
-              <Image src={shown.image} alt={shown.name} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
+            <div className="relative aspect-[2/3] overflow-hidden bg-[#ebebeb]">
+              <Image src={shown.image} alt={shown.name} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-contain" />
             </div>
           )}
           <div>

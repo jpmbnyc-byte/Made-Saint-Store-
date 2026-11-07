@@ -90,8 +90,8 @@ export const EDITORIAL_HEROES = [
   { src: "/hero/saint-michael.webp", width: 1792, height: 2400 },
   { src: "/editorial/saint-michael-front.webp", width: 896, height: 1248 },
   { src: "/editorial/saint-michael-back.webp", width: 896, height: 1248 },
-  { src: "/stories/chalk-navy.webp", width: 720, height: 1080 },
-  { src: "/stories/washed-denim.webp", width: 720, height: 1080 },
+  { src: "/stories/chalk-navy.webp", width: 1080, height: 1440 },
+  { src: "/stories/washed-denim.webp", width: 1080, height: 1440 },
 ] as const;
 
 export const UNRESOLVED: ImageAssignment[] = [
@@ -113,8 +113,8 @@ export const UNRESOLVED: ImageAssignment[] = [
     primary: "/stories/chalk-navy.webp",
     alternates: [],
     lifestyle: ["/line/f35.webp"],
-    width: 720,
-    height: 1080,
+    width: 1080,
+    height: 1440,
     status: "product-render",
     confidence: "high",
     note: "The chalk runner is not the brown mule in the Arrival photograph. It is offered as an alternative.",
@@ -125,8 +125,8 @@ export const UNRESOLVED: ImageAssignment[] = [
     primary: "/stories/washed-denim.webp",
     alternates: [],
     lifestyle: ["/line/f28.webp", "/wardrobe/look-knit-mauve.webp"],
-    width: 720,
-    height: 1080,
+    width: 1080,
+    height: 1440,
     status: "product-render",
     confidence: "high",
     note: "The Off-Duty photograph shows a pale blue hiker. An earlier board showed a tan shoe. Neither is the washed-denim runner. The runner stays an alternative.",

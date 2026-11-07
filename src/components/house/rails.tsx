@@ -57,7 +57,7 @@ export function ListRail() {
       {waiting.map((product) => (
         <Link key={product.id} href="/shop#list" className="w-[78%] shrink-0 snap-start sm:w-[46%] lg:w-[32%]">
           <span className="relative block aspect-[2/3] bg-[#f7f4ef]">
-            <Image src={product.image} alt={product.name} fill sizes="(min-width: 1024px) 32vw, 78vw" className="object-contain p-6" />
+            <Image src={product.image} alt={product.name} fill sizes="(min-width: 1024px) 32vw, 78vw" className="object-contain" />
           </span>
           <span className="mt-3 block text-[11px] tracking-[0.16em] text-[#8d7349] uppercase">Not open</span>
           <span className="mt-1 block font-serif text-3xl text-[#2a3746]">{short(product.name)}</span>

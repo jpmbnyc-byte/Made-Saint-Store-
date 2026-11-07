@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { CAMPAIGN, PRODUCTS, shipWindow, statusLine } from "@/lib/business";
+import { CAMPAIGN, PRODUCTS, RUNNER_1101, shipWindow, statusLine } from "@/lib/business";
 import { QUESTIONS } from "@/lib/questions";
 import { OrderRule, orderWindowLine } from "@/components/shop/order-rule";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
@@ -10,13 +10,15 @@ import { CancelledBanner, LiveProgress, LiveWaitlistCount } from "@/components/s
 import { WaitlistForm } from "@/components/shop/waitlist";
 
 export const metadata: Metadata = {
-  title: "The Founding Edition",
-  description: "Three runners, made to order in Portugal. Numbered, reserved before they are made.",
+  title: "Shop · MADE SAiNT",
+  description: "The 1101 Runner and the Founding Edition. Made to order in Portugal.",
 };
 
 export default async function ShopPage() {
   const launch = PRODUCTS.filter((p) => p.launch);
   const next = PRODUCTS.filter((p) => !p.launch);
+  const launch1101 = RUNNER_1101.filter((p) => p.launch);
+  const next1101 = RUNNER_1101.filter((p) => !p.launch);
 
   return (
     <div className="min-h-screen bg-[#f6f4ef] text-[#1c1a17]">
@@ -48,6 +50,69 @@ export default async function ShopPage() {
         </ul>
         <div className="mt-10">
           <OrderRule />
+        </div>
+      </section>
+
+      {/* 1101 Runner — hero feature */}
+      <section id="1101" className="scroll-mt-28 border-t border-[#1c1a17]/10 bg-[#1c1a17] text-[#f6f4ef]">
+        <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-8 md:py-20">
+          <p className="text-[11px] tracking-[0.22em] text-[#f6f4ef]/50 uppercase">New · MADE SAiNT</p>
+          <h2 className="mt-4 max-w-2xl font-serif text-[44px] leading-[0.95] md:text-[64px]">The 1101 Runner</h2>
+          <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#f6f4ef]/70">
+            Five colorways. Pebbled and smooth leather, chunky nub-lug sole, gunmetal and tone hardware. Made to order.
+          </p>
+
+          {/* launch colorways */}
+          <div className="mt-10 grid gap-5 sm:grid-cols-3">
+            {launch1101.map((p) => (
+              <Link key={p.id} href={`/shop/${p.id}`} className="group block">
+                <div className="relative aspect-square overflow-hidden bg-[#2a2824]">
+                  <Image
+                    src={p.image}
+                    alt={`MADE SAiNT ${p.name}`}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="mt-4 flex items-baseline justify-between gap-3">
+                  <h3 className="font-serif text-2xl">{p.name.replace("1101 Runner, ", "")}</h3>
+                  <p className="text-sm tabular-nums">${p.usd}</p>
+                </div>
+                <p className="mt-1 text-[13px] text-[#f6f4ef]/55">{p.line}</p>
+              </Link>
+            ))}
+          </div>
+
+          {/* waitlist colorways */}
+          {next1101.length > 0 && (
+            <div className="mt-14 border-t border-[#f6f4ef]/10 pt-10">
+              <p className="text-[11px] tracking-[0.18em] text-[#f6f4ef]/45 uppercase">In development</p>
+              <div className="mt-6 grid gap-5 sm:grid-cols-2">
+                {next1101.map((p) => (
+                  <div key={p.id}>
+                    <div className="relative aspect-[4/3] overflow-hidden bg-[#2a2824]">
+                      <Image
+                        src={p.image}
+                        alt={`MADE SAiNT ${p.name}, in development`}
+                        fill
+                        sizes="(min-width: 640px) 50vw, 100vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="mt-3 flex items-baseline justify-between">
+                      <h3 className="font-serif text-xl">{p.name.replace("1101 Runner, ", "")}</h3>
+                      <LiveWaitlistCount productId={p.id} />
+                    </div>
+                    <p className="mt-1 text-[13px] text-[#f6f4ef]/55">{p.line}</p>
+                    <div className="mt-3">
+                      <WaitlistForm productId={p.id} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

@@ -37,6 +37,8 @@ export type Product = {
   launch: boolean;
   materials: string[];
   costUsd: number;
+  /** Product family identifier, used to group runners on the shop. */
+  family?: string;
 };
 
 /**
@@ -50,6 +52,65 @@ export const PRODUCTS: Product[] = [
   { id: "ms-runner-espresso", storyId: "espresso-oxblood", name: "Runner, Espresso", line: "Calf suede, oxblood lining", usd: 545, image: "/stories/espresso-oxblood.webp", launch: false, materials: ["Calf suede", "Technical mesh", "Oxblood terry lining", "Nub-lug rubber sole"], costUsd: 0 },
   { id: "ms-runner-graphite", storyId: "graphite-tonal", name: "Runner, Graphite", line: "Embossed suede, tonal", usd: 595, image: "/stories/graphite-tonal.webp", launch: false, materials: ["Embossed calf suede", "Technical mesh", "Calf leather lining", "Nub-lug rubber sole"], costUsd: 0 },
   { id: "ms-runner-navy-rust", storyId: "navy-weave-rust", name: "Runner, Navy and Rust", line: "Woven calf, rust canvas", usd: 695, image: "/stories/navy-weave-rust.webp", launch: false, materials: ["Woven calf leather", "Cotton canvas windows", "Calf leather lining", "Nub-lug rubber sole"], costUsd: 0 },
+];
+
+/** The 1101 Runner — five colorways in full photography. */
+export const RUNNER_1101: Product[] = [
+  {
+    id: "ms-1101-black",
+    name: "1101 Runner, Black",
+    line: "Pebbled leather, gunmetal sole",
+    usd: 695,
+    image: "/1101/black-overhead.jpg",
+    launch: true,
+    family: "1101",
+    materials: ["Pebbled calf-texture upper", "Gunmetal TPU overlays", "Reflective wave appliqué", "Rope lace loop pull", "Chunky nub-lug rubber sole"],
+    costUsd: 0,
+  },
+  {
+    id: "ms-1101-navy",
+    name: "1101 Runner, Navy",
+    line: "Smooth leather, sand overlays",
+    usd: 695,
+    image: "/1101/navy-overhead.jpg",
+    launch: true,
+    family: "1101",
+    materials: ["Smooth navy leather", "Sand-cream TPU overlays", "Wave appliqué", "Rope lace loop pull", "Two-tone rubber sole"],
+    costUsd: 0,
+  },
+  {
+    id: "ms-1101-teal",
+    name: "1101 Runner, Teal",
+    line: "Smooth leather, ecru overlays",
+    usd: 695,
+    image: "/1101/teal-overhead.jpg",
+    launch: true,
+    family: "1101",
+    materials: ["Smooth teal leather", "Ecru TPU overlays", "Wave appliqué", "Rope lace loop pull", "Two-tone rubber sole"],
+    costUsd: 0,
+  },
+  {
+    id: "ms-1101-espresso",
+    name: "1101 Runner, Espresso",
+    line: "Mesh upper, dusty rose panels",
+    usd: 645,
+    image: "/1101/espresso-overhead.jpg",
+    launch: false,
+    family: "1101",
+    materials: ["Espresso nubuck overlays", "Dusty rose technical mesh", "Silver TPU wave", "Rope lace loop pull", "Blush and black rubber sole"],
+    costUsd: 0,
+  },
+  {
+    id: "ms-1101-mocha",
+    name: "1101 Runner, Mocha",
+    line: "Mesh upper, bronze sole",
+    usd: 645,
+    image: "/1101/mocha-overhead.jpg",
+    launch: false,
+    family: "1101",
+    materials: ["Dark mocha nubuck overlays", "Honeycomb technical mesh", "Silver TPU wave", "Rope lace loop pull", "Bronze metallic rubber sole"],
+    costUsd: 0,
+  },
 ];
 
 /** US men's sizes the MEES nub sole covers (EU 39–46), with a typical men's size curve. */
@@ -188,7 +249,7 @@ export function campaignStatus(now = new Date(), c: Campaign = CAMPAIGN): Campai
   return "open";
 }
 
-export const productById = (id: string) => PRODUCTS.find((p) => p.id === id);
+export const productById = (id: string) => [...PRODUCTS, ...RUNNER_1101].find((p) => p.id === id);
 
 export function statusLine(now = new Date()) {
   const s = campaignStatus(now);

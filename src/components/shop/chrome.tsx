@@ -13,17 +13,18 @@ export function ShopHeader({ status }: { status?: string }) {
         </Link>
         <div className="grid grid-cols-1 items-center sm:grid-cols-[1fr_auto_1fr] sm:gap-4">
           <nav className="flex min-w-0 items-center justify-between gap-3 overflow-x-auto text-[11px] tracking-[0.12em] text-[#1c1a17] uppercase [scrollbar-width:none] sm:justify-start sm:gap-5 sm:tracking-[0.14em] [&::-webkit-scrollbar]:hidden">
+            <Link href="/shop#1101" className="inline-flex h-11 shrink-0 items-center whitespace-nowrap hover:text-[#1c1a17]">1101 Runner</Link>
             <Link href="/shop#edition" className="inline-flex h-11 shrink-0 items-center whitespace-nowrap hover:text-[#1c1a17]"><span className="hidden sm:inline">Founding </span>Edition</Link>
             <Link href="/#looks" className="inline-flex h-11 shrink-0 items-center hover:text-[#1c1a17]">Looks</Link>
             <Link href="/line" className="inline-flex h-11 shrink-0 items-center hover:text-[#1c1a17]">Line</Link>
             <Link href="/wardrobe" className="inline-flex h-11 shrink-0 items-center hover:text-[#1c1a17]">Private</Link>
-            <Link href="/shop#edition" className="inline-flex h-11 shrink-0 items-center hover:text-[#1c1a17] sm:hidden">Pairs</Link>
+            <Link href="/shop#1101" className="inline-flex h-11 shrink-0 items-center hover:text-[#1c1a17] sm:hidden">Pairs</Link>
           </nav>
           <Link href="/" className="hidden justify-self-center sm:block">
             <Wordmark />
           </Link>
           <nav className="hidden justify-end sm:flex">
-            <Link href="/shop#edition" className="inline-flex h-11 items-center text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">Pairs</Link>
+            <Link href="/shop#1101" className="inline-flex h-11 items-center text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">Pairs</Link>
           </nav>
         </div>
       </div>
@@ -49,6 +50,7 @@ export function ShopFooter() {
         </div>
         <div className="space-y-2 text-sm text-[#1c1a17]/70">
           <p className="text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">House</p>
+          <Link href="/shop#1101" className="block hover:text-[#1c1a17]">The 1101 Runner</Link>
           <Link href="/shop#edition" className="block hover:text-[#1c1a17]">The Founding Edition</Link>
           <Link href="/#looks" className="block hover:text-[#1c1a17]">Lookbooks</Link>
           <Link href="/line" className="block hover:text-[#1c1a17]">The 2027 line</Link>

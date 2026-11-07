@@ -4,7 +4,7 @@ import { PrivateHouse } from "@/components/wardrobe/house";
 
 export const metadata: Metadata = {
   title: "The Private Wardrobe",
-  description: "Personal wardrobes for professional athletes. A private introduction, then a fitting arranged with a person.",
+  description: "A tonal wardrobe for a professional athlete. A fit preference, then a fitting arranged with a person.",
 };
 
 export default function WardrobePage() {

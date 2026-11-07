@@ -13,6 +13,22 @@ function clothingIds(ids: readonly string[]) {
   return ids.filter((id) => offerFor(id).kind === "commission");
 }
 
+const TONES = [
+  { name: "Carbon", detail: "Soft charcoal black", hex: "#2a2c30" },
+  { name: "Midnight", detail: "Deep navy", hex: "#1b2838" },
+  { name: "Indigo", detail: "Blue hour", hex: "#3d4e6b" },
+  { name: "Camel", detail: "Warm camel", hex: "#c4965a" },
+  { name: "Sand", detail: "Stone sand", hex: "#cbbba4" },
+  { name: "Ivory", detail: "Soft ivory", hex: "#e6ddd0" },
+  { name: "Olive", detail: "Muted olive", hex: "#6e7a58" },
+] as const;
+
+const EASES = [
+  { id: "tailored", label: "Tailored", line: "Closer through the leg. Still room to sit." },
+  { id: "easy", label: "Easy", line: "A little room to move. A clean, tapered line." },
+  { id: "relaxed", label: "Relaxed", line: "More room through the thigh. The hem stays clean." },
+] as const;
+
 export function PrivateHouse() {
   const opening = lookForLifestyle("arrival").pieces.map((piece) => piece.id);
   const [query, setQuery] = useState("");
@@ -30,10 +46,14 @@ export function PrivateHouse() {
   const [role, setRole] = useState<"" | "athlete" | "representative">("");
   const [timing, setTiming] = useState<"" | "season" | "year" | "undecided">("");
   const [budget, setBudget] = useState<"" | "undisclosed" | "seasonal" | "annual" | "expanded" | "quoted">("");
+  const [toneAt, setToneAt] = useState(0);
+  const [easeId, setEaseId] = useState<(typeof EASES)[number]["id"]>("easy");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState<string | null>(null);
 
+  const tone = TONES[toneAt];
+  const ease = EASES.find((item) => item.id === easeId) ?? EASES[1];
   const lifestyle = LIFESTYLES.find((l) => l.id === lifestyleId) ?? LIFESTYLES[0];
   const clothes = visiblePieces(selected);
   const heldLine = lineByRef(lineRef);
@@ -121,46 +141,81 @@ export function PrivateHouse() {
     }
   }
 
+  function rememberFit() {
+    const tone = TONES[toneAt];
+    const ease = EASES.find((item) => item.id === easeId) ?? EASES[1];
+    const line = `Tonal color: ${tone.name}. Trouser ease: ${ease.label}.`;
+    setNote((current) => (current.includes("Trouser ease:") ? current : current ? `${current} ${line}` : line));
+    document.getElementById("introduction")?.scrollIntoView({ behavior: "smooth" });
+  }
+
   function toggle(id: string) {
     setSelected((cur) => (cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id]));
   }
 
   return (
     <div>
-      <section className="overflow-x-clip bg-[#1c1a17] text-[#f6f4ef]">
-        <div className="mx-auto grid max-w-[1440px] items-center gap-8 px-5 py-12 md:grid-cols-[1.05fr_0.95fr] md:px-10 md:py-20">
-          <div className="order-2 md:order-1">
-            <p className="text-[11px] tracking-[0.22em] text-[#f6f4ef]/55 uppercase">Private wardrobe</p>
-            <h1 className="mt-4 font-serif text-[44px] leading-[0.92] md:text-[68px]">
-              Personal wardrobes for professional athletes.
-            </h1>
-            <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-[#f6f4ef]/75">
-              Fewer clothing decisions. One fit, carried across travel, a public day, time off, and a formal hour. A named person coordinates the conversation, the fitting, and the making.
+      <section id="style" className="scroll-mt-28 overflow-x-clip bg-[#f3efe6] text-[#1c1a17]">
+        <div className="mx-auto grid max-w-[1440px] items-end gap-8 px-5 py-10 md:grid-cols-[minmax(0,0.9fr)_minmax(0,0.8fr)_minmax(0,0.7fr)] md:gap-6 md:px-10 md:py-14">
+          <div>
+            <p className="text-sm tracking-[0.18em] text-[#1c1a17]/55 uppercase">Silk-cashmere direction</p>
+            <h1 className="mt-4 max-w-md font-serif text-5xl leading-[0.95] md:text-7xl">Made for the everyday.</h1>
+            <p className="mt-4 font-serif text-2xl">The Tonal Collection</p>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-[#3c4650]">
+              For a professional athlete. The photograph is Carbon. It is a garment study, not a client, and not an endorsement.
             </p>
-            <p className="mt-4 max-w-xl text-[14px] leading-relaxed text-[#f6f4ef]/60">
-              The first conversation can be virtual. A fitting is physical, and it is arranged. There is no salon to walk into, and this page does not take payment.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#introduction" className="inline-flex h-12 items-center bg-[#f6f4ef] px-5 text-[11px] tracking-[0.18em] text-[#1c1a17] uppercase">
-                Request a private introduction
-              </a>
-              <a href="#discover" className="inline-flex h-12 items-center border border-[#f6f4ef]/30 px-5 text-[11px] tracking-[0.18em] uppercase hover:bg-[#f6f4ef] hover:text-[#1c1a17]">
-                See the clothes
-              </a>
-            </div>
+            <a href="#colors" className="mt-8 inline-flex h-12 items-center text-base underline decoration-[#1c1a17] underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1c1a17]">
+              Explore {tone.name}
+            </a>
           </div>
-          <figure className="order-1 bg-[#f6f4ef] md:order-2">
-            <img src="/editorial/saint-john-worn.webp" alt="Camel Saint John jacket and trouser, worn, with a cap and a black backpack" className="h-auto w-full" />
-            <figcaption className="px-4 py-3 text-[11px] tracking-[0.14em] text-[#1c1a17]/70 uppercase">Saint John, worn. Not a client, and not an endorsement. The shoes are not a founding runner.</figcaption>
+          <figure>
+            <img src="/editorial/tonal-carbon.webp" alt="Charcoal tonal jacket and trouser, worn, in a stone arcade" className="mx-auto h-auto w-full max-w-[360px]" />
+            <figcaption className="ms-caption max-w-sm text-sm leading-relaxed text-[#3c4650]">
+              {tone.name === "Carbon"
+                ? "Shown in Carbon. The shoes are not a founding runner."
+                : `This photograph is Carbon. ${tone.name} is a color on the board below, not another photograph.`}
+            </figcaption>
+          </figure>
+          <figure>
+            <img src="/editorial/saint-michael-back.webp" alt="Back of the olive Saint Michael jacket, with Saint Michael the Archangel" className="mx-auto h-auto w-full max-w-[320px]" />
+            <figcaption className="ms-caption max-w-xs text-sm leading-relaxed text-[#3c4650]">Saint Michael, the back. Olive, and a different study from the carbon suit beside it.</figcaption>
           </figure>
         </div>
-        <div className="border-t border-[#f6f4ef]/15">
+        <div id="colors" className="scroll-mt-28 border-t border-[#1c1a17]/10">
+          <div className="mx-auto flex max-w-[1440px] flex-col gap-4 px-5 py-4 md:flex-row md:items-center md:justify-between md:px-10">
+            <p className="text-sm text-[#1c1a17]">{tone.name} / {tone.detail}</p>
+            <div className="flex flex-wrap gap-1" role="tablist" aria-label="Tonal colors">
+              {TONES.map((item, index) => {
+                const on = index === toneAt;
+                return (
+                  <button
+                    key={item.name}
+                    type="button"
+                    role="tab"
+                    aria-selected={on}
+                    aria-label={item.name}
+                    onClick={() => setToneAt(index)}
+                    className={`inline-flex h-11 w-11 items-center justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1c1a17] ${on ? "ring-1 ring-[#1c1a17]" : ""}`}
+                  >
+                    <span className="block h-5 w-5 rounded-full border border-[#1c1a17]/20" style={{ background: item.hex }} />
+                  </button>
+                );
+              })}
+            </div>
+            <div className="flex items-center gap-2">
+              <button type="button" aria-label="Previous color" onClick={() => setToneAt((at) => (at + TONES.length - 1) % TONES.length)} className="inline-flex h-11 w-11 items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1c1a17]">←</button>
+              <span className="text-sm tabular-nums">{String(toneAt + 1).padStart(2, "0")} / {String(TONES.length).padStart(2, "0")}</span>
+              <button type="button" aria-label="Next color" onClick={() => setToneAt((at) => (at + 1) % TONES.length)} className="inline-flex h-11 w-11 items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1c1a17]">→</button>
+            </div>
+          </div>
+        </div>
+        <div className="border-t border-[#1c1a17]/10">
           <div className="mx-auto max-w-[1440px] px-5 py-8 md:px-10">
-            <p className="text-[11px] tracking-[0.18em] text-[#f6f4ef]/55 uppercase">The tonal collection</p>
+            <p className="text-sm text-[#1c1a17]/55">The seven colors, on one board</p>
             <div className="mt-4 w-full min-w-0 overflow-x-auto">
               <img src="/wardrobe/tonal-zip-system.webp" alt="Seven tonal zip suits, with the color name under each" className="h-auto w-[920px] max-w-none md:w-full" />
             </div>
-            <p className="mt-3 text-[12px] text-[#f6f4ef]/55">A color study. Not a delivered wardrobe, and not a client.</p>
+            <p className="mt-3 text-sm text-[#3c4650]">A color study. Not a delivered wardrobe, and not seven finished suits.</p>
           </div>
         </div>
       </section>
@@ -341,6 +396,63 @@ export function PrivateHouse() {
               Continue to the introduction
             </a>
           </aside>
+        </div>
+      </section>
+
+      <section id="fit" className="scroll-mt-28 bg-[#1c1a17] text-[#f6f4ef]">
+        <div className="mx-auto grid max-w-[1100px] items-center gap-8 px-5 py-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] md:px-8 md:py-16">
+          <div>
+            <p className="text-sm text-[#f6f4ef]/70">
+              <a href="#style" className="underline decoration-[#f6f4ef]/40 underline-offset-4">Style</a>
+              <span className="px-2 text-[#f6f4ef]/35">—</span>
+              <span className="underline decoration-[#f6f4ef] underline-offset-4">Fit</span>
+              <span className="px-2 text-[#f6f4ef]/35">—</span>
+              <span>Measure</span>
+              <span className="px-2 text-[#f6f4ef]/35">—</span>
+              <a href="#introduction" className="underline decoration-[#f6f4ef]/40 underline-offset-4">Review</a>
+            </p>
+            <p className="mt-8 text-sm tracking-[0.16em] text-[#f6f4ef]/55 uppercase">Guided fit</p>
+            <h2 className="mt-3 font-serif text-5xl leading-[0.95] md:text-7xl">Find your ease.</h2>
+            <p className="mt-5 max-w-sm text-base leading-relaxed text-[#f6f4ef]/80">A conversation can be virtual. A fitting is physical, and it is arranged.</p>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-[#f6f4ef]/60">Measurements are taken with a person. They are not entered here.</p>
+          </div>
+          <div className="grid grid-cols-2 items-end gap-3">
+            <figure>
+              <img src="/editorial/fit-ease.webp" alt="Camel jacket, ivory layer, and charcoal trouser, worn as a fit reference" className="h-auto w-full" />
+              <figcaption className="ms-caption text-sm text-[#f6f4ef]/60">Worn. Not a client. The shoes are not a founding runner.</figcaption>
+            </figure>
+            <figure>
+              <img src="/editorial/saint-michael-back.webp" alt="Back of the olive Saint Michael jacket, with Saint Michael the Archangel" className="h-auto w-full" />
+              <figcaption className="ms-caption text-sm text-[#f6f4ef]/60">Saint Michael, the back. Kept with the worn photograph.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+      <section className="border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
+        <div className="mx-auto max-w-[720px] px-5 py-14 md:py-20">
+          <h2 className="font-serif text-4xl leading-none md:text-5xl">How should your trousers feel?</h2>
+          <div className="mt-8 grid grid-cols-3 gap-2" role="tablist" aria-label="Trouser ease">
+            {EASES.map((item) => {
+              const on = item.id === ease.id;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={on}
+                  onClick={() => setEaseId(item.id)}
+                  className={`h-14 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1c1a17] ${on ? "bg-[#1c1a17] text-[#f6f4ef]" : "border border-[#1c1a17]/20 bg-transparent text-[#1c1a17]"}`}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
+          <p className="mt-5 text-base text-[#3c4650]">{ease.line} A preference for the conversation, not a measurement.</p>
+          <button type="button" onClick={rememberFit} className="mt-8 inline-flex h-14 w-full items-center justify-center bg-[#1c1a17] px-6 text-sm tracking-[0.14em] text-[#f6f4ef] uppercase focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]">
+            Continue to the introduction
+          </button>
+          <a href="#introduction" className="mt-5 block text-center text-sm underline underline-offset-4">Let a specialist guide me</a>
         </div>
       </section>
 

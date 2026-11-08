@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { LEAD_TIME, PRODUCTS, SIZES } from "@/lib/business";
+import { LEAD_TIME, PRODUCTS, SERIES_PLATE, SIZES } from "@/lib/business";
 
 const short = (name: string) => name.replace("Runner, ", "");
 
@@ -49,7 +49,7 @@ export const RUNNER_COLORWAY_VIEWS: Record<
 };
 
 export function RunnerChapter() {
-  const launch = PRODUCTS.filter((p) => p.launch);
+  const launch = PRODUCTS.filter((p) => p.launch && p.series === "0929");
   const [activeId, setActiveId] = useState("ms-runner-chalk-navy");
   const product = launch.find((p) => p.id === activeId) ?? launch[0];
   const view = product ? RUNNER_COLORWAY_VIEWS[product.id] : null;
@@ -144,9 +144,7 @@ export function RunnerChapter() {
 
         {/* Copy panel — Bible voice: short, emotionally direct, precise */}
         <div>
-          <p className="text-[11px] tracking-[0.28em] text-[#B03236] uppercase">
-            0929
-          </p>
+          <img src={SERIES_PLATE["0929"].src} alt={SERIES_PLATE["0929"].alt} className="h-16 w-auto max-w-full object-contain object-left sm:h-20" />
 
           {/* Headline: product name, large and serif — no decoration */}
           <h2

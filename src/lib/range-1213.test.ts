@@ -1,19 +1,17 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { RANGE_1213 } from "./range-1213";
+import { PRODUCTS, SERIES_PLATE, productsIn } from "./business";
 
-test("the 1213 runner is seven colorways with no shared photographs", () => {
-  assert.equal(RANGE_1213.length, 7);
-  const primaries = RANGE_1213.map((colorway) => colorway.image);
-  assert.equal(new Set(primaries).size, 7);
-  const sacred = RANGE_1213.find((colorway) => colorway.slug === "sacred-light");
-  assert.ok(sacred);
-  assert.equal(sacred.views.length, 6);
-  for (const colorway of RANGE_1213) {
-    assert.equal("usd" in colorway, false);
-    for (const view of colorway.views) {
-      assert.equal(view.src.includes("0929"), false);
-      assert.equal(view.src.includes("navy-ivory"), false);
-    }
-  }
+test("the runner series use the name plates and Bogner-range prices", () => {
+  assert.equal(productsIn("0929").length, 3);
+  assert.equal(productsIn("1101").length, 6);
+  assert.equal(productsIn("1223").length, 1);
+  for (const product of productsIn("0929")) assert.equal(product.usd, 490);
+  for (const product of [...productsIn("1101"), ...productsIn("1223")]) assert.equal(product.usd, 550);
+  assert.equal(SERIES_PLATE["0929"].src.endsWith("name-0929.webp"), true);
+  assert.equal(SERIES_PLATE["1101"].src.endsWith("name-1101.webp"), true);
+  assert.equal(SERIES_PLATE["1223"].src.endsWith("name-1223.webp"), true);
+  const sacred = PRODUCTS.find((product) => product.id === "ms-runner-1223-sacred-light");
+  assert.equal(sacred?.series, "1223");
+  assert.equal(sacred?.name.includes("Sacred Light"), true);
 });

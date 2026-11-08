@@ -44,11 +44,23 @@ const EXTRA: Record<string, CatalogView[]> = {
     { id: "detail", src: "/runners/indigo-detail.webp", label: "Detail", alt: "MADE SAiNT 0929 Runner — Washed / Indigo, wave and sole" },
     { id: "study", src: "/runners/indigo-worn.webp", label: "Worn", alt: `MADE SAiNT 0929 Runner — Washed / Indigo. ${worn}` },
   ],
+  "ms-runner-1223-sacred-light": [
+    { id: "threequarter", src: "/runners/1213/sacred-light.webp", label: "Three-quarter", alt: "MADE SAiNT 1223 Runner — Sacred Light, three-quarter" },
+    { id: "reverse", src: "/runners/1213/sacred-light-profile.webp", label: "Profile", alt: "MADE SAiNT 1223 Runner — Sacred Light, profile" },
+    { id: "product", src: "/runners/1213/sacred-light-overhead.webp", label: "Overhead", alt: "MADE SAiNT 1223 Runner — Sacred Light, overhead" },
+    { id: "reverse", src: "/runners/1213/sacred-light-rear.webp", label: "Rear", alt: "MADE SAiNT 1223 Runner — Sacred Light, rear" },
+    { id: "study", src: "/runners/1213/sacred-light-worn-plum.webp", label: "Worn, plum", alt: `MADE SAiNT 1223 Runner — Sacred Light, worn with a plum bag. ${worn}` },
+    { id: "study", src: "/runners/1213/sacred-light-worn-butter.webp", label: "Worn, butter", alt: `MADE SAiNT 1223 Runner — Sacred Light, worn with a butter bag. ${worn}` },
+  ],
 };
 
 /** Overhead first, so both sides of the mark are the image a client meets. */
 export function viewsFor(product: Product): CatalogView[] {
-  return [overhead(product), ...(EXTRA[product.id] ?? [])];
+  const extra = EXTRA[product.id] ?? [];
+  if (product.series !== "0929") {
+    return extra.length ? extra : [{ id: "threequarter", src: product.image, label: "Three-quarter", alt: `${product.name}, three-quarter` }];
+  }
+  return [overhead(product), ...extra];
 }
 
 export function viewsById(id: string): CatalogView[] {

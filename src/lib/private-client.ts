@@ -3,10 +3,10 @@ import { PIECES, type WardrobePiece } from "@/lib/wardrobe";
 
 /** Published selling prices. Anything else stays pending. */
 const APPROVED: Record<string, number> = {
-  rn01: 695,
-  rn02: 545,
-  rn04: 595,
-  rn06: 545,
+  rn01: 490,
+  rn02: 490,
+  rn04: 490,
+  rn06: 490,
 };
 
 const SHOP: Record<string, string> = {

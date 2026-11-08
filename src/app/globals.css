@@ -948,8 +948,8 @@ th:first-child {
   outline-offset: 5px;
 }
 .ms-tonal .hero {
-  height: calc(100svh - 200px);
-  min-height: 520px;
+  height: min(520px, 52svh);
+  min-height: 360px;
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -1282,9 +1282,9 @@ th:first-child {
     position: relative;
     inset: auto;
     width: 100%;
-    height: calc(100svh - 430px);
-    min-height: 280px;
-    max-height: 520px;
+    height: 30svh;
+    min-height: 180px;
+    max-height: 240px;
   }
   .ms-tonal .editorial-photo { object-position: 59% center; }
   .ms-tonal .editorial-copy {

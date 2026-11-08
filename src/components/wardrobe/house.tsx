@@ -2,12 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { LIFESTYLES, interpret, visiblePieces, type LifestyleId } from "@/lib/private-client";
-import { Lookbooks } from "@/components/house/lookbooks";
+import { LIFESTYLES, visiblePieces, type LifestyleId } from "@/lib/private-client";
 import type { CommissionScope } from "@/lib/commission";
 import { lineByRef } from "@/lib/line";
 import { lookById, lookForLifestyle, offerFor } from "@/lib/looks";
-import { usd } from "@/lib/wardrobe";
 import { TONAL_COLORS, TonalSlideshow } from "@/components/wardrobe/tonal";
 
 function clothingIds(ids: readonly string[]) {
@@ -20,15 +18,62 @@ const EASES = [
   { id: "relaxed", label: "Relaxed", line: "More room through the thigh. The hem stays clean." },
 ] as const;
 
+const SHOULDERS = [
+  { id: "structured", label: "Structured", line: "A cleaner line through the shoulder." },
+  { id: "relaxed", label: "Relaxed", line: "More room through the shoulder." },
+] as const;
+
+/** Starting sets follow the days a client dresses for. They are not client profiles. */
+const STARTS = [
+  {
+    id: "schedule",
+    name: "Changing days",
+    line: "Travel and a public day, in one set you can repeat.",
+    image: "/line/f35.webp",
+    alt: "Navy zip jacket, white layer, and matching trouser, worn full length",
+    lookId: "arrival",
+    lifestyle: "arrival" as const,
+    pieces: ["p01", "p02"],
+  },
+  {
+    id: "repeat",
+    name: "One look",
+    line: "One tailored look, worn again instead of rebuilt.",
+    image: "/editorial/saint-john-worn.webp",
+    alt: "Camel Saint John jacket and trouser, worn, with a cap and a black backpack",
+    lookId: "saint-john",
+    lifestyle: "occasion" as const,
+    pieces: ["s01"],
+  },
+  {
+    id: "settings",
+    name: "Across settings",
+    line: "The public day and a formal hour, as one capsule you can adjust.",
+    image: "/line/f34.webp",
+    alt: "The navy set, standing on a course",
+    frame: "object-center",
+    lookId: "arrival",
+    lifestyle: "arrival" as const,
+    pieces: ["p01", "p02", "s01", "s02"],
+  },
+  {
+    id: "everyday",
+    name: "Ordinary days",
+    line: "Denim, a knit, and a trouser. Exact pieces, not a whole wardrobe.",
+    image: "/line/f28.webp",
+    alt: "Washed denim jacket, yellow knit, jeans, and pale blue hikers",
+    lookId: "off-duty",
+    lifestyle: "off-duty" as const,
+    pieces: ["p09", "p08", "p07"],
+  },
+] as const;
+
 export function PrivateHouse() {
-  const opening = lookForLifestyle("arrival").pieces.map((piece) => piece.id);
-  const [query, setQuery] = useState("");
-  const [asked, setAsked] = useState(false);
   const [lifestyleId, setLifestyleId] = useState<LifestyleId>("arrival");
-  const [reply, setReply] = useState("");
+  const [startId, setStartId] = useState("");
   const [focusLookId, setFocusLookId] = useState<string | null>(null);
-  const [roster, setRoster] = useState<string[]>(opening);
-  const [selected, setSelected] = useState<string[]>(clothingIds(opening));
+  const [roster, setRoster] = useState<string[]>([]);
+  const [selected, setSelected] = useState<string[]>([]);
   const [lineRef, setLineRef] = useState("");
   const [scope, setScope] = useState<CommissionScope>("look");
   const [name, setName] = useState("");
@@ -39,11 +84,13 @@ export function PrivateHouse() {
   const [budget, setBudget] = useState<"" | "undisclosed" | "seasonal" | "annual" | "expanded" | "quoted">("");
   const [toneAt, setToneAt] = useState(0);
   const [easeId, setEaseId] = useState<(typeof EASES)[number]["id"]>("easy");
+  const [shoulderId, setShoulderId] = useState<(typeof SHOULDERS)[number]["id"]>("structured");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState<string | null>(null);
 
   const ease = EASES.find((item) => item.id === easeId) ?? EASES[1];
+  const shoulder = SHOULDERS.find((item) => item.id === shoulderId) ?? SHOULDERS[0];
   const lifestyle = LIFESTYLES.find((l) => l.id === lifestyleId) ?? LIFESTYLES[0];
   const clothes = visiblePieces(selected);
   const heldLine = lineByRef(lineRef);
@@ -56,6 +103,9 @@ export function PrivateHouse() {
     if (line) setLineRef(line.ref);
     if (look) {
       const ids = look.pieces.map((piece) => piece.id);
+      const clothing = clothingIds(ids);
+      const match = STARTS.find((start) => start.lookId === look.id && start.pieces.length === clothing.length && start.pieces.every((id) => clothing.includes(id)));
+      setStartId(match?.id ?? "");
       setLifestyleId(look.lifestyle);
       setFocusLookId(look.id);
       setRoster(ids);
@@ -81,15 +131,14 @@ export function PrivateHouse() {
     });
   }
 
-  function ask(e: React.FormEvent) {
-    e.preventDefault();
-    const next = interpret(query);
-    setReply(next.reply);
-    setAsked(true);
-    setNote((current) => current || query.trim());
-    const look = lookForLifestyle(next.lifestyleId);
-    applyLook(look.pieces.map((piece) => piece.id), next.lifestyleId, look.id);
-    document.getElementById("compose")?.scrollIntoView({ behavior: "smooth" });
+  function applyStart(start: (typeof STARTS)[number]) {
+    setStartId(start.id);
+    applyLook([...start.pieces], start.lifestyle, start.lookId);
+    setNote((current) => {
+      const without = current.replace(/Starting set: [^.]+\.(\s[^.]+\.)?/, "").replace(/\s+/g, " ").trim();
+      return `Starting set: ${start.name}. ${start.line}${without ? ` ${without}` : ""}`;
+    });
+    document.getElementById("pieces")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
   async function send(e: React.FormEvent) {
@@ -131,25 +180,30 @@ export function PrivateHouse() {
     }
   }
 
-  function writeTone(index: number, easeLabel?: string) {
+  function writeTone(index: number, easeLabel?: string, shoulderLabel?: string) {
     const chosen = TONAL_COLORS[index] ?? TONAL_COLORS[0];
     const colorLine = `Tonal color: ${chosen.name}.`;
     const easeLine = easeLabel ? ` Trouser ease: ${easeLabel}.` : "";
+    const shoulderLine = shoulderLabel ? ` Shoulder: ${shoulderLabel}.` : "";
     setNote((current) => {
-      const without = current.replace(/Tonal color: [^.]+\./, "").replace(/Trouser ease: [^.]+\./, "").replace(/\s+/g, " ").trim();
-      return `${without}${without ? " " : ""}${colorLine}${easeLine}`.trim();
+      const without = current
+        .replace(/Tonal color: [^.]+\./, "")
+        .replace(/Trouser ease: [^.]+\./, "")
+        .replace(/Shoulder: [^.]+\./, "")
+        .replace(/\s+/g, " ")
+        .trim();
+      return `${without}${without ? " " : ""}${colorLine}${easeLine}${shoulderLine}`.trim();
     });
   }
 
   function rememberFit() {
-    const ease = EASES.find((item) => item.id === easeId) ?? EASES[1];
-    writeTone(toneAt, ease.label);
-    document.getElementById("introduction")?.scrollIntoView({ behavior: "smooth" });
+    writeTone(toneAt, ease.label, shoulder.label);
+    document.getElementById("introduction")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
   function requestTone(index: number) {
     setToneAt(index);
-    writeTone(index);
+    writeTone(index, ease.label, shoulder.label);
     document.getElementById("introduction")?.scrollIntoView({ behavior: "smooth" });
   }
 
@@ -159,134 +213,54 @@ export function PrivateHouse() {
 
   return (
     <div>
-      <TonalSlideshow onIndex={setToneAt} onRequest={requestTone} />
-      <section className="border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
-        <div className="mx-auto max-w-[1440px] px-5 py-8 md:px-10">
-          <p className="text-sm text-[#1c1a17]/55">The seven colors, on one board</p>
-          <div className="mt-4 w-full min-w-0 overflow-x-auto">
-            <img src="/wardrobe/tonal-zip-system.webp" alt="Seven tonal zip suits, with the color name under each" className="h-auto w-[920px] max-w-none md:w-full" />
-          </div>
-          <p className="mt-3 text-sm text-[#3c4650]">A color study of the zip jacket. Not the collared set above, and not seven finished suits.</p>
-        </div>
-      </section>
-
-      <section className="border-t border-[#1c1a17]/10">
-        <div className="mx-auto grid max-w-[1100px] gap-12 px-5 py-16 md:grid-cols-2 md:px-8 md:py-20">
-          <div>
-            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">What a client receives</p>
-            <h2 className="mt-3 font-serif text-4xl md:text-5xl">One wardrobe, not three launches.</h2>
-            <ul className="mt-6 space-y-3 text-[15px] leading-relaxed text-[#1c1a17]/75">
-              {[
-                "A conversation about the days you actually dress for.",
-                "Arrival, off-duty, and occasion, coordinated as one wardrobe.",
-                "A fit record, kept only with your consent.",
-                "A written scope: clothes, price, date, and who corrects a mistake.",
-                "Updates from one person, not a queue.",
-                "Founding runners, if you want them, reserved on their own page.",
-              ].map((line) => (
-                <li key={line} className="border-t border-[#1c1a17]/12 pt-3">{line}</li>
-              ))}
-            </ul>
-            <p className="mt-4 text-[13px] leading-relaxed text-[#1c1a17]/55">
-              The number of garments is set in that scope. It is not published here as a package.
-            </p>
-          </div>
-          <div>
-            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">The journey</p>
-            <ol className="mt-6 space-y-4">
-              {[
-                ["01", "Conversation", "By video or phone. Remote."],
-                ["02", "Fitting", "Samples you can handle. Physical, and only when one is arranged."],
-                ["03", "Approval", "Looks, cloth, itemized prices, and dates. Nothing is cut before you approve it."],
-                ["04", "Making", "A named person writes when the date moves."],
-                ["05", "Delivery and care", "A fit review after you have worn the clothes, then a way to write back."],
-              ].map(([n, title, body]) => (
-                <li key={n} className="grid grid-cols-[auto_1fr] gap-4 border-t border-[#1c1a17]/12 pt-4">
-                  <span className="font-serif text-2xl text-[#8d7349] italic">{n}</span>
-                  <span>
-                    <span className="block font-serif text-2xl">{title}</span>
-                    <span className="mt-1 block text-[14px] leading-relaxed text-[#1c1a17]/70">{body}</span>
-                  </span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-[#1c1a17]/10">
-        <div className="mx-auto max-w-[760px] px-5 py-16 md:px-8 md:py-20">
-          <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">The house</p>
-          <h2 className="mt-3 font-serif text-4xl md:text-5xl">Once sinner. Made Saint.</h2>
-          <p className="mt-5 text-[16px] leading-relaxed text-[#1c1a17]/75">
-            The line is the founder&apos;s, for grace and a life changed. A purchase does not confer moral or spiritual standing. Sacred pictures on a garment are part of that design, and they are labeled as studies until a production photograph exists.
-          </p>
-          <p className="mt-4 text-[16px] leading-relaxed text-[#1c1a17]/75">
-            The house keeps a Christian name and welcomes a client of any belief. The longer account of grace, renewal, humility, and responsibility is his to write. It is not published here in his place.
-          </p>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-[900px] px-5 py-16 md:px-8">
-        <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Concierge</p>
-        <h2 className="mt-3 font-serif text-4xl md:text-5xl">What are you dressing for?</h2>
-        <form onSubmit={ask} className="mt-8 border-b border-[#1c1a17]">
-          <label htmlFor="intent" className="sr-only">
-            What are you dressing for?
-          </label>
-          <textarea
-            id="intent"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            rows={3}
-            placeholder="A flight, a public day, a suit."
-            className="w-full resize-none bg-transparent py-3 text-[16px] leading-relaxed outline-none placeholder:text-[#1c1a17]/35"
-          />
-          <div className="flex justify-end pb-3">
-            <button type="submit" className="inline-flex h-12 w-full items-center justify-center bg-[#1c1a17] px-6 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase sm:w-auto">
-              Show a look
-            </button>
-          </div>
-        </form>
-        {asked && (
-          <div className="mt-8">
-            <p className="text-[15px] leading-relaxed text-[#1c1a17]/75">{reply}</p>
-            <p className="mt-4 text-[11px] tracking-[0.16em] uppercase">{lifestyle.name}</p>
-            <a href="#compose" className="mt-5 inline-flex h-12 w-full items-center justify-center bg-[#1c1a17] px-5 text-[11px] tracking-[0.16em] text-[#f6f4ef] uppercase sm:w-auto">
-              Continue with this look
-            </a>
-          </div>
-        )}
-      </section>
-
-      <section id="discover" className="scroll-mt-28 border-t border-[#1c1a17]/10">
-        <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-10">
-          <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Discover</p>
-          <h2 className="mt-3 max-w-2xl font-serif text-4xl md:text-5xl">The same clothes. Two ways to have them made.</h2>
+      <section id="build" className="scroll-mt-28">
+        <div className="mx-auto max-w-[1100px] px-5 py-10 md:px-8 md:py-12">
+          <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Start here</p>
+          <h2 className="mt-3 max-w-2xl font-serif text-4xl leading-[0.95] md:text-5xl">Choose a set and adjust it.</h2>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            Choose the occasion. The look lists what is in it. A founding pair can be reserved. The clothes are commissioned, and a proportion changes the pathway, not the jacket.
+            Four ways into the wardrobe, from the days you dress for. A conversation can follow. It is not the first step. A fitting stays physical, and it is arranged.
           </p>
-          <div className="mt-8">
-            <Lookbooks
-              heading={false}
-              focusLookId={focusLookId}
-              onLook={(look) => applyLook(look.pieces.map((piece) => piece.id), look.lifestyle, look.id)}
-            />
+          <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+            {STARTS.map((start) => {
+              const on = start.id === startId;
+              return (
+                <button
+                  key={start.id}
+                  type="button"
+                  aria-pressed={on}
+                  onClick={() => applyStart(start)}
+                  className={`text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1c1a17] ${on ? "ring-2 ring-[#1c1a17]" : ""}`}
+                >
+                  <span className="block bg-[#e7e0d4]">
+                    <img src={start.image} alt={start.alt} className={`h-40 w-full object-cover sm:aspect-[4/5] sm:h-auto ${"frame" in start ? start.frame : "object-top"}`} />
+                  </span>
+                  <span className="mt-2 block font-serif text-2xl">{start.name}</span>
+                  <span className="mt-1 block text-sm leading-snug text-[#1c1a17]/70">{start.line}</span>
+                </button>
+              );
+            })}
           </div>
+          <p className="mt-5 text-sm text-[#1c1a17]/65">
+            A single pair does not open a wardrobe.{" "}
+            <Link href="/shop#edition" className="underline underline-offset-4">
+              Request one founding pair
+            </Link>
+            , in US men&apos;s 7 through 12.
+          </p>
         </div>
       </section>
 
-      <section id="compose" className="scroll-mt-28 border-t border-[#1c1a17]/10 bg-[#f1eee8]">
-        <div className="mx-auto grid max-w-[1440px] gap-12 px-5 py-16 md:px-10 lg:grid-cols-[1.3fr_0.7fr]">
+      <section id="pieces" className="scroll-mt-28 border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
+        <div className="mx-auto grid max-w-[1100px] gap-10 px-5 py-10 md:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
           <div>
-            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">02 · Compose · {lifestyle.name}</p>
-            <h2 className="mt-3 font-serif text-4xl md:text-5xl">Choose what is made for you.</h2>
-            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-              Checked pieces go into the commission. A founding pair is reserved on the shop, and it is not part of this request.
+            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">{roster.length ? `Adjust · ${lifestyle.name}` : "Adjust"}</p>
+            <h2 className="mt-3 font-serif text-4xl">Keep what you want made.</h2>
+            <p className="mt-3 text-[15px] leading-relaxed text-[#1c1a17]/70">
+              {startId ? "Uncheck a piece to leave it out. A founding pair is reserved on the shop, not in this request." : "Choose a starting set above. The pieces appear here."}
             </p>
-            <ul className="mt-8 divide-y divide-[#1c1a17]/12 border-y border-[#1c1a17]/12">
+            <ul className="mt-6 divide-y divide-[#1c1a17]/12 border-y border-[#1c1a17]/12">
               {heldLine && (
-                <li className="flex items-center gap-4 py-4">
+                <li className="flex items-center gap-4 py-3">
                   <span className="grid size-11 shrink-0 place-items-center border border-[#1c1a17] text-[11px]">In</span>
                   <span className="min-w-0 flex-1">
                     <span className="block font-serif text-2xl">{heldLine.name}</span>
@@ -294,125 +268,92 @@ export function PrivateHouse() {
                   </span>
                 </li>
               )}
+              {visiblePieces(roster).length === 0 && !heldLine && <li className="py-4 text-sm text-[#1c1a17]/60">No piece selected yet.</li>}
               {visiblePieces(roster).map((piece) => {
                 const offer = offerFor(piece.id);
                 if (offer.kind !== "commission") {
                   return (
-                    <li key={piece.id} className="flex items-center gap-4 py-4">
+                    <li key={piece.id} className="flex items-center gap-4 py-3">
                       <span className="min-w-0 flex-1">
                         <span className="block font-serif text-2xl">{piece.name}</span>
                         <span className="text-[13px] text-[#1c1a17]/60">
                           {offer.kind === "reserve" ? "Founding pair · reserved separately" : "Next run · not in this commission"}
                         </span>
                       </span>
-                      <span className="text-right">
-                        <span className="block text-sm tabular-nums">{usd(offer.usd)}</span>
-                        <Link href={offer.href} className="mt-1 inline-flex h-11 items-center text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">
-                          {offer.kind === "reserve" ? "Reserve" : "Join the list"}
-                        </Link>
-                      </span>
+                      <Link href={offer.href} className="inline-flex h-11 items-center text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">
+                        {offer.kind === "reserve" ? "Reserve" : "Join the list"}
+                      </Link>
                     </li>
                   );
                 }
                 const on = selected.includes(piece.id);
                 return (
                   <li key={piece.id}>
-                    <label className="flex min-h-11 cursor-pointer items-center gap-4 py-4">
+                    <label className="flex min-h-11 cursor-pointer items-center gap-4 py-3">
                       <input type="checkbox" checked={on} onChange={() => toggle(piece.id)} className="size-5 accent-[#1c1a17]" />
                       <span className="min-w-0 flex-1">
                         <span className="block font-serif text-2xl">{piece.name}</span>
                         <span className="text-[13px] text-[#1c1a17]/60">{piece.material}</span>
                       </span>
-                      <span className="text-[11px] tracking-[0.14em] text-[#1c1a17]/55 uppercase">Commission</span>
                     </label>
                   </li>
                 );
               })}
             </ul>
           </div>
-          <aside className="h-fit border border-[#1c1a17]/15 bg-[#f6f4ef] p-6 lg:sticky lg:top-28">
-            <p className="text-[11px] tracking-[0.16em] uppercase">In this request</p>
-            <p className="mt-3 font-serif text-4xl tabular-nums">{clothes.length + (heldLine ? 1 : 0)}</p>
-            <p className="mt-2 text-sm leading-relaxed text-[#1c1a17]/65">
-              {clothes.length + (heldLine ? 1 : 0) === 1 ? "One piece to be made." : "Pieces to be made."} Nothing here is a checkout price.
-            </p>
-            <ul className="mt-4 space-y-2 text-sm">
-              {heldLine && <li>{heldLine.ref} · {heldLine.name}</li>}
-              {clothes.map((piece) => (
-                <li key={piece.id}>{piece.name}</li>
-              ))}
-            </ul>
-            <a href="#introduction" className="mt-6 inline-flex h-12 w-full items-center justify-center bg-[#1c1a17] px-5 text-[11px] tracking-[0.16em] text-[#f6f4ef] uppercase">
-              Continue to the introduction
-            </a>
-          </aside>
+
+          <div id="fit" className="scroll-mt-28 border border-[#1c1a17]/15 bg-[#1c1a17] p-4 text-[#f6f4ef] md:p-5">
+            <p className="text-[11px] tracking-[0.16em] text-[#f6f4ef]/55 uppercase">Virtual fit</p>
+            <h2 className="mt-2 font-serif text-4xl">Find your ease.</h2>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              <figure className="bg-[#2a2824]">
+                <img src="/editorial/fit-ease.webp" alt="Camel jacket, ivory layer, and charcoal trouser, worn as a fit reference" className="h-56 w-full object-contain md:h-64" />
+                <figcaption className="ms-caption px-2 pb-2 text-xs text-[#f6f4ef]/70">Worn. Not a client. The shoes are not a founding runner.</figcaption>
+              </figure>
+              <figure className="bg-[#2a2824]">
+                <img src="/editorial/saint-michael-back.webp" alt="Back of the olive Saint Michael jacket, with Saint Michael the Archangel" className="h-56 w-full object-contain md:h-64" />
+                <figcaption className="ms-caption px-2 pb-2 text-xs text-[#f6f4ef]/70">Saint Michael, the back. A different study from the worn photograph.</figcaption>
+              </figure>
+            </div>
+            <p className="mt-4 text-sm leading-relaxed text-[#f6f4ef]/75">A conversation can be virtual. A fitting is physical, and it is arranged. Measurements are taken with a person. They are not entered here.</p>
+            <p className="mt-5 text-sm text-[#f6f4ef]/80">How should the shoulder feel?</p>
+            <div className="mt-2 grid grid-cols-2 gap-2" role="tablist" aria-label="Shoulder">
+              {SHOULDERS.map((item) => {
+                const on = item.id === shoulder.id;
+                return (
+                  <button key={item.id} type="button" role="tab" aria-selected={on} onClick={() => setShoulderId(item.id)} className={`h-12 text-sm ${on ? "bg-[#f6f4ef] text-[#1c1a17]" : "border border-[#f6f4ef]/30 text-[#f6f4ef]"}`}>
+                    {item.label}
+                  </button>
+                );
+              })}
+            </div>
+            <p className="mt-5 text-sm text-[#f6f4ef]/80">How should the trousers feel?</p>
+            <div className="mt-2 grid grid-cols-3 gap-2" role="tablist" aria-label="Trouser ease">
+              {EASES.map((item) => {
+                const on = item.id === ease.id;
+                return (
+                  <button key={item.id} type="button" role="tab" aria-selected={on} onClick={() => setEaseId(item.id)} className={`h-12 text-sm ${on ? "bg-[#f6f4ef] text-[#1c1a17]" : "border border-[#f6f4ef]/30 text-[#f6f4ef]"}`}>
+                    {item.label}
+                  </button>
+                );
+              })}
+            </div>
+            <p className="mt-4 text-sm leading-relaxed text-[#f6f4ef]/75">{shoulder.line} {ease.line} A preference for the conversation, not a measurement.</p>
+            <button type="button" onClick={rememberFit} className="mt-5 inline-flex h-12 w-full items-center justify-center bg-[#f6f4ef] px-5 text-sm tracking-[0.12em] text-[#1c1a17] uppercase">
+              Carry this into the introduction
+            </button>
+          </div>
         </div>
       </section>
 
-      <section id="fit" className="scroll-mt-28 bg-[#1c1a17] text-[#f6f4ef]">
-        <div className="mx-auto grid max-w-[1100px] items-center gap-8 px-5 py-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] md:px-8 md:py-16">
-          <div>
-            <p className="text-sm text-[#f6f4ef]/70">
-              <a href="#style" className="underline decoration-[#f6f4ef]/40 underline-offset-4">Style</a>
-              <span className="px-2 text-[#f6f4ef]/35">—</span>
-              <span className="underline decoration-[#f6f4ef] underline-offset-4">Fit</span>
-              <span className="px-2 text-[#f6f4ef]/35">—</span>
-              <span>Measure</span>
-              <span className="px-2 text-[#f6f4ef]/35">—</span>
-              <a href="#introduction" className="underline decoration-[#f6f4ef]/40 underline-offset-4">Review</a>
-            </p>
-            <p className="mt-8 text-sm tracking-[0.16em] text-[#f6f4ef]/55 uppercase">Guided fit</p>
-            <h2 className="mt-3 font-serif text-5xl leading-[0.95] md:text-7xl">Find your ease.</h2>
-            <p className="mt-5 max-w-sm text-base leading-relaxed text-[#f6f4ef]/80">A conversation can be virtual. A fitting is physical, and it is arranged.</p>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-[#f6f4ef]/60">Measurements are taken with a person. They are not entered here.</p>
-          </div>
-          <div className="grid grid-cols-2 items-end gap-3">
-            <figure>
-              <img src="/editorial/fit-ease.webp" alt="Camel jacket, ivory layer, and charcoal trouser, worn as a fit reference" className="h-auto w-full" />
-              <figcaption className="ms-caption text-sm text-[#f6f4ef]/60">Worn. Not a client. The shoes are not a founding runner.</figcaption>
-            </figure>
-            <figure>
-              <img src="/editorial/saint-michael-back.webp" alt="Back of the olive Saint Michael jacket, with Saint Michael the Archangel" className="h-auto w-full" />
-              <figcaption className="ms-caption text-sm text-[#f6f4ef]/60">Saint Michael, the back. Kept with the worn photograph.</figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-      <section className="border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
-        <div className="mx-auto max-w-[720px] px-5 py-14 md:py-20">
-          <h2 className="font-serif text-4xl leading-none md:text-5xl">How should your trousers feel?</h2>
-          <div className="mt-8 grid grid-cols-3 gap-2" role="tablist" aria-label="Trouser ease">
-            {EASES.map((item) => {
-              const on = item.id === ease.id;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={on}
-                  onClick={() => setEaseId(item.id)}
-                  className={`h-14 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1c1a17] ${on ? "bg-[#1c1a17] text-[#f6f4ef]" : "border border-[#1c1a17]/20 bg-transparent text-[#1c1a17]"}`}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
-          </div>
-          <p className="mt-5 text-base text-[#3c4650]">{ease.line} A preference for the conversation, not a measurement.</p>
-          <button type="button" onClick={rememberFit} className="mt-8 inline-flex h-14 w-full items-center justify-center bg-[#1c1a17] px-6 text-sm tracking-[0.14em] text-[#f6f4ef] uppercase focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]">
-            Continue to the introduction
-          </button>
-          <a href="#introduction" className="mt-5 block text-center text-sm underline underline-offset-4">Let a specialist guide me</a>
-        </div>
-      </section>
-
+      <TonalSlideshow onIndex={setToneAt} onRequest={requestTone} />
       <div id="commission" className="scroll-mt-28" />
       <section id="introduction" className="scroll-mt-28 border-t border-[#1c1a17]/10">
         <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-10">
           <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Private introduction</p>
-          <h2 className="mt-3 max-w-3xl font-serif text-4xl md:text-5xl">Tell the house who you are dressing.</h2>
+          <h2 className="mt-3 max-w-3xl font-serif text-4xl md:text-5xl">Send the set you built.</h2>
           <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            This writes an introduction. It does not take payment, confirm an appointment, or reserve a founding pair. The house writes back to the email you give. A response time is not promised. Measurements are taken with a person after this, not on this form.
+            This writes the set, the fit preference, and who is writing. It does not take payment, confirm an appointment, or reserve a founding pair. The house writes back to the email you give. A response time is not promised. Measurements are taken with a person after this, not on this form. Once sinner. Made Saint. The line is the founder&apos;s, for grace and a changed life. A purchase does not confer moral or spiritual standing.
           </p>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">

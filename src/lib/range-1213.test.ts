@@ -3,8 +3,8 @@ import test from "node:test";
 import { PRODUCTS, SERIES_PLATE, productsIn } from "./business";
 
 test("the runner series use the name plates and Bogner-range prices", () => {
-  assert.equal(productsIn("0929").length, 3);
-  assert.equal(productsIn("1101").length, 6);
+  assert.equal(productsIn("0929").length, 9);
+  assert.equal(productsIn("1101").length, 12);
   assert.equal(productsIn("1223").length, 1);
   for (const product of productsIn("0929")) assert.equal(product.usd, 490);
   for (const product of [...productsIn("1101"), ...productsIn("1223")]) assert.equal(product.usd, 550);

@@ -16,24 +16,23 @@ const NAV_RIGHT = [
 export function Mast() {
   return (
     <header className="ms-nav-glass sticky top-0 z-40">
-      <div className="mx-auto flex max-w-[1440px] flex-col gap-2 px-4 py-3 sm:px-6">
-        {/* Mobile: wordmark top-centre */}
-        <Link href="/" className="inline-flex h-11 items-center self-center sm:hidden">
-          <Wordmark className="h-8 w-auto" />
+      <div className="mx-auto flex max-w-[1440px] items-center gap-1 px-3 py-1.5 sm:grid sm:grid-cols-[1fr_auto_1fr] sm:gap-3 sm:px-6 sm:py-3">
+        <Link href="/" className="inline-flex h-11 shrink-0 items-center sm:hidden" aria-label="MADE SAiNT — home">
+          <Wordmark className="h-6 w-auto" />
         </Link>
 
-        {/* Desktop: left nav | wordmark | right nav */}
-        <div className="grid grid-cols-1 items-center gap-1 sm:grid-cols-[1fr_auto_1fr] sm:gap-3">
+        {/* Desktop: left nav | wordmark | right nav. On a phone the wordmark shares one row with the links. */}
+        <div className="contents">
           {/* Left nav */}
           <nav
             aria-label="Primary navigation"
-            className="flex min-w-0 gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-2"
+            className="flex min-w-0 flex-1 gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:flex-none sm:gap-2"
           >
             {NAV_LEFT.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
-                className="inline-flex h-11 shrink-0 items-center px-3 text-[11px] tracking-[0.14em] text-[#1c1a17] uppercase transition-opacity hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B03236]"
+                className="inline-flex h-11 shrink-0 items-center px-2 text-[11px] tracking-[0.08em] text-[#1c1a17] uppercase transition-opacity hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B03236] sm:px-3 sm:tracking-[0.14em]"
               >
                 {label}
               </Link>
@@ -54,7 +53,7 @@ export function Mast() {
               <Link
                 key={href}
                 href={href}
-                className="inline-flex h-11 shrink-0 items-center px-3 text-[11px] tracking-[0.14em] text-[#1c1a17] uppercase transition-opacity hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B03236]"
+                className="inline-flex h-11 shrink-0 items-center px-2 text-[11px] tracking-[0.08em] text-[#1c1a17] uppercase transition-opacity hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B03236] sm:px-3 sm:tracking-[0.14em]"
               >
                 {label}
               </Link>

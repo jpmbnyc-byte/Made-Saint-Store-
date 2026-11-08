@@ -20,6 +20,7 @@ type Slide = {
   imageMobile: string;
   imageAlt: string;
   imagePosition?: string;
+  imageOpacity?: number;
   bg: string;
   textTone: "light" | "dark";
   accentColor: string;
@@ -28,19 +29,20 @@ type Slide = {
 const SLIDES: Slide[] = [
   {
     id: "runner-1101",
-    label: "1101",
-    eyebrow: "INAUGURAL SERIES",
-    title: "1101",
-    body: "A life becoming.",
-    primaryHref: "/shop",
+    label: "0929",
+    eyebrow: "0929 RUNNER",
+    title: "0929",
+    body: "MADE SAiNT 0929 Runner — Navy / Ivory.",
+    primaryHref: "/shop/ms-runner-chalk-navy",
     primaryLabel: "Request this pair",
     secondaryHref: "/wardrobe",
     secondaryLabel: "Private Wardrobe",
-    image: "/hero/chalk-wide.webp",
-    imageMobile: "/hero/chalk-tall.webp",
-    imageAlt: "MADE SAiNT 1101 founding runner, Chalk · Navy — limestone plinth, three-quarter",
-    imagePosition: "object-center",
-    bg: "#1a2232",
+    image: "/hero/navy-ivory.webp",
+    imageMobile: "/hero/navy-ivory.webp",
+    imageAlt: "MADE SAiNT 0929 Runner — Navy / Ivory, with the MADE SAINT tongue mark, on limestone",
+    imagePosition: "object-contain object-center",
+    imageOpacity: 1,
+    bg: "#cbb8a4",
     textTone: "light",
     accentColor: "#B03236",
   },
@@ -58,7 +60,7 @@ const SLIDES: Slide[] = [
     image: "/editorial/saint-john-worn.webp",
     imageMobile: "/editorial/saint-john-worn.webp",
     imageAlt: "MADE SAiNT Saint John The Forerunner — camel wool jacket and trouser, worn editorial against limestone columns",
-    imagePosition: "object-top",
+    imagePosition: "object-cover object-top",
     bg: "#2a3030",
     textTone: "light",
     accentColor: "#c0a477",
@@ -154,7 +156,7 @@ export function EditorialHero() {
         {SLIDES.map((s, i) => (
           <div
             key={s.id}
-            className="ms-slide"
+            className={`ms-slide${s.imagePosition?.includes("contain") ? " ms-slide-contain" : ""}`}
             style={{
               opacity: i === active ? 1 : 0,
               zIndex: i === active ? 1 : 0,
@@ -179,9 +181,9 @@ export function EditorialHero() {
               alt={s.imageAlt}
               fill
               sizes="100vw"
-              className={`object-cover ${s.imagePosition ?? "object-center"}`}
+              className={s.imagePosition ?? "object-cover object-center"}
               priority={i === 0}
-              style={{ opacity: 0.72 }}
+              style={{ opacity: s.imageOpacity ?? 0.72 }}
             />
             {/* Gradient overlay — ensures text legibility */}
             <div

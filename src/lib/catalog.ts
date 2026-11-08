@@ -19,10 +19,11 @@ const overhead = (p: Product): CatalogView => ({
 
 const EXTRA: Record<string, CatalogView[]> = {
   "ms-runner-chalk-navy": [
-    { id: "threequarter", src: "/stories/chalk-threequarter.webp", label: "Three-quarter", alt: "Runner, Chalk, three-quarter" },
+    { id: "threequarter", src: "/stories/chalk-threequarter.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, three-quarter" },
+    { id: "hero", src: "/hero/navy-ivory.webp", label: "On limestone", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, with the MADE SAINT tongue mark" },
   ],
   "ms-runner-washed-denim": [
-    { id: "threequarter", src: "/stories/washed-denim-threequarter.webp", label: "Three-quarter", alt: "Runner, Washed Denim, three-quarter" },
+    { id: "threequarter", src: "/stories/washed-denim-threequarter.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Washed / Indigo, three-quarter" },
   ],
 };
 

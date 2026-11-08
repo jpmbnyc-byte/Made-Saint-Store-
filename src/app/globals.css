@@ -833,6 +833,14 @@ th:first-child {
   opacity: 0;
   z-index: 0;
 }
+@media (max-width: 767px) {
+  .ms-slide-contain img {
+    object-fit: contain !important;
+    object-position: center top !important;
+    height: 52% !important;
+    bottom: auto !important;
+  }
+}
 
 /* Editorial dark surface */
 .ms-dark {

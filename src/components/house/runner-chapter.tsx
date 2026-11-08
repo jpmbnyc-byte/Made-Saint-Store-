@@ -20,23 +20,28 @@ export const RUNNER_COLORWAY_VIEWS: Record<
   { primary: string; primaryAlt: string; secondary?: string; secondaryAlt?: string; label: string }
 > = {
   "ms-runner-chalk-navy": {
-    primary: "/stories/chalk-threequarter.webp",
-    primaryAlt: "Chalk founding runner — three-quarter view, bouclé suede upper",
+    primary: "/hero/navy-ivory.webp",
+    primaryAlt: "MADE SAiNT 0929 Runner — Navy / Ivory, with the MADE SAINT tongue mark, on limestone",
     secondary: "/stories/chalk-navy.webp",
-    secondaryAlt: "Chalk founding runner — lateral product view",
-    label: "Chalk",
+    secondaryAlt: "MADE SAiNT 0929 Runner — Navy / Ivory, overhead",
+    label: "Navy / Ivory",
   },
   "ms-runner-navy-intrecciato": {
     primary: "/stories/navy-intrecciato.webp",
-    primaryAlt: "Navy Intrecciato founding runner — woven calf leather, three-quarter view",
-    label: "Navy Intrecciato",
+    primaryAlt: "MADE SAiNT 0929 Runner — Navy / Sand, woven calf, three-quarter view",
+    label: "Navy / Sand",
   },
   "ms-runner-washed-denim": {
     primary: "/stories/washed-denim-threequarter.webp",
-    primaryAlt: "Washed Denim founding runner — selvedge-style denim, three-quarter view",
+    primaryAlt: "MADE SAiNT 0929 Runner — Washed / Indigo, three-quarter view",
     secondary: "/stories/washed-denim.webp",
-    secondaryAlt: "Washed Denim founding runner — lateral product view",
-    label: "Washed Denim",
+    secondaryAlt: "MADE SAiNT 0929 Runner — Washed / Indigo, overhead",
+    label: "Washed / Indigo",
+  },
+  "ms-runner-espresso": {
+    primary: "/stories/espresso-oxblood.webp",
+    primaryAlt: "MADE SAiNT 0929 Runner — Espresso / Oxblood, overhead",
+    label: "Espresso / Oxblood",
   },
   // New colorways — add when founder uploads assets:
   // "ms-runner-[id]": {
@@ -48,7 +53,7 @@ export const RUNNER_COLORWAY_VIEWS: Record<
 
 export function RunnerChapter() {
   const launch = PRODUCTS.filter((p) => p.launch);
-  const [activeId, setActiveId] = useState(launch[0]?.id ?? "");
+  const [activeId, setActiveId] = useState("ms-runner-chalk-navy");
   const product = launch.find((p) => p.id === activeId) ?? launch[0];
   const view = product ? RUNNER_COLORWAY_VIEWS[product.id] : null;
 
@@ -150,7 +155,7 @@ export function RunnerChapter() {
           <h2
             id="runner-heading"
             className="mt-4 font-serif leading-[0.93] text-[#1c1a17]"
-            style={{ fontSize: "clamp(44px, 5.5vw, 76px)", letterSpacing: "-0.035em" }}
+            style={{ fontSize: "clamp(28px, 3.4vw, 52px)", letterSpacing: "-0.03em" }}
           >
             {short(product.name)}
           </h2>
@@ -216,7 +221,7 @@ export function RunnerChapter() {
 
           {/* No-payment note — per Bible: honest, no exaggerated claims */}
           <p className="mt-5 text-[12px] leading-relaxed text-[#1c1a17]/40">
-            No payment today. A pair is cut only after the run is confirmed.
+            Made to order. Ready in {LEAD_TIME}. No payment is taken until checkout is connected.
           </p>
         </div>
       </div>

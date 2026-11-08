@@ -41,13 +41,13 @@ const CHAPTERS: Chapter[] = [
     views: [
       { id: "look", label: "Full look", src: "/line/f35.webp", alt: "Navy zip jacket, white layer, and matching trouser, worn full length", fit: "contain" },
       { id: "wide", label: "The day", src: "/line/f34.webp", alt: "The same navy set, standing on a course", fit: "contain" },
-      { id: "runner", label: "Alternative runner", src: "/stories/chalk-navy.webp", alt: "Chalk and navy founding runner, a product photograph", fit: "contain" },
+      { id: "runner", label: "Alternative runner", src: "/stories/chalk-navy.webp", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, overhead", fit: "contain" },
     ],
     rows: [
       { role: "Jacket", name: "Arrival zip jacket", note: "The navy jacket in the photograph. Commissioned, not reserved." },
       { role: "Layer", name: "White layer", note: "Visible under the jacket. It is not a separate piece on the register." },
       { role: "Trouser", name: "Arrival trouser", note: "Cut to match the jacket in the photograph." },
-      { role: "Runner", name: "Chalk", note: "An alternative. Not the brown mule in the photograph.", href: "/shop/ms-runner-chalk-navy", action: "See the pair" },
+      { role: "Runner", name: "Navy / Ivory", note: "An alternative. Not the brown mule in the photograph.", href: "/shop/ms-runner-chalk-navy", action: "See the pair" },
     ],
     inquiry: "/wardrobe?look=arrival#introduction",
   },

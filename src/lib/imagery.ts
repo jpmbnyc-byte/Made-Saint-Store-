@@ -110,7 +110,7 @@ export const UNRESOLVED: ImageAssignment[] = [
   },
   {
     id: "rn04-in-arrival",
-    name: "Runner, Chalk",
+    name: "MADE SAiNT 0929 Runner — Navy / Ivory",
     primary: "/stories/chalk-navy.webp",
     alternates: [],
     lifestyle: ["/line/f35.webp"],
@@ -122,7 +122,7 @@ export const UNRESOLVED: ImageAssignment[] = [
   },
   {
     id: "rn06-in-off-duty",
-    name: "Runner, Washed Denim",
+    name: "MADE SAiNT 0929 Runner — Washed / Indigo",
     primary: "/stories/washed-denim.webp",
     alternates: [],
     lifestyle: ["/line/f28.webp", "/wardrobe/look-knit-mauve.webp"],

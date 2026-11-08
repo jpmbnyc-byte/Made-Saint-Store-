@@ -410,7 +410,7 @@ export function LaunchDashboard({
               <thead>
                 <tr className={`${label} border-b border-[#22201d]/15 text-right`}>
                   <th className="py-2 text-left font-normal">US</th><th className="font-normal">Curve</th>
-                  {launch.map((p) => <th key={p.id} className="font-normal">{p.name.replace("Runner, ", "").split(" ")[0]}</th>)}
+                  {launch.map((p) => <th key={p.id} className="font-normal">{p.name.split("—").pop()?.trim() ?? p.name}</th>)}
                 </tr>
               </thead>
               <tbody className="text-right">

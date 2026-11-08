@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function WardrobePage() {
   return (
-    <div className="min-h-screen bg-[#f6f4ef] text-[#1c1a17]">
+    <div className="min-h-screen bg-[#f5f0e8] text-[#1c1a17]">
       <ShopHeader />
       <PrivateHouse />
       <ShopFooter />

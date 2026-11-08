@@ -733,10 +733,27 @@ th:first-child {
   }
 }
 
+/* ── Liquid editorial design system ───────────────────────────────────── */
+
+:root {
+  --ms-ivory: #f5f0e8;
+  --ms-limestone: #ede6d8;
+  --ms-parchment: #f2eee8;
+  --ms-midnight: #1a2232;
+  --ms-ink: #1c1a17;
+  --ms-dusk: #2a3746;
+  --ms-slate: #41505b;
+  --ms-mist: #8d9aaa;
+  --ms-gold: #8d7349;
+  --ms-red: #B03236;
+  --ms-cream: #f6f4ef;
+}
+
+/* Liquid pool background */
 .ms-liquid {
   position: relative;
   isolation: isolate;
-  background-color: #f2eee8;
+  background-color: var(--ms-parchment);
   background-image: url("/brand/liquid.svg");
   background-size: 140% 140%;
   background-position: 0% 40%;
@@ -759,17 +776,90 @@ th:first-child {
   to { background-position: 100% 70%; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .ms-liquid { animation: none; }
-  .ms-film { display: none; }
+/* Grain overlay — apply to any surface */
+.ms-grain {
+  position: relative;
+}
+.ms-grain::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.09;
+  mix-blend-mode: multiply;
+  background-image: url("/brand/grain.svg");
+  background-size: 180px 180px;
+  z-index: 1;
 }
 
+/* Warm limestone surface with slow ambient light */
+.ms-stone {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--ms-limestone);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 15% 20%, rgba(255, 248, 230, 0.55), transparent 65%),
+    radial-gradient(ellipse 60% 50% at 85% 75%, rgba(210, 190, 160, 0.3), transparent 55%);
+}
+
+/* Smoked-glass nav */
+.ms-nav-glass {
+  background: rgba(245, 240, 232, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(28, 26, 23, 0.08);
+}
+
+/* Resin image frame — gentle rounded clip with inner shadow */
+.ms-resin {
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(28, 26, 23, 0.06), 0 2px 20px rgba(28, 26, 23, 0.07);
+}
+
+/* Hero slide crossfade */
+.ms-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 650ms ease;
+  will-change: opacity;
+}
+.ms-slide.ms-slide-active {
+  opacity: 1;
+  z-index: 1;
+}
+.ms-slide.ms-slide-prev {
+  opacity: 0;
+  z-index: 0;
+}
+
+/* Editorial dark surface */
+.ms-dark {
+  background-color: var(--ms-midnight);
+  color: var(--ms-cream);
+}
+
+/* Brushed-metal highlight on a button */
+.ms-metal {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(0, 0, 0, 0.04) 100%
+  );
+}
+
+/* Soft image reveal */
 @media (prefers-reduced-motion: no-preference) {
   .ms-rise {
     animation: ms-rise 0.7s ease both;
   }
   .ms-photo {
     animation: ms-photo 0.45s ease both;
+  }
+  .ms-reveal {
+    animation: ms-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 }
 
@@ -781,6 +871,57 @@ th:first-child {
 @keyframes ms-photo {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@keyframes ms-reveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Ambient light pool — purely decorative, behind content */
+.ms-light-pool {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(80px);
+  mix-blend-mode: screen;
+  opacity: 0.45;
+  animation: ms-pool-drift 22s ease-in-out infinite alternate;
+}
+
+@keyframes ms-pool-drift {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(3%, 2%) scale(1.06); }
+}
+
+/* Film strip — hidden in reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .ms-liquid { animation: none; }
+  .ms-light-pool { animation: none; }
+  .ms-film { display: none; }
+  .ms-slide { transition: none; }
+}
+
+/* Chapter grid helpers */
+.ms-chapter {
+  display: grid;
+  align-items: center;
+  gap: 3rem;
+}
+@media (min-width: 768px) {
+  .ms-chapter {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 4rem;
+  }
+  .ms-chapter.ms-chapter-flip {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  }
+  .ms-chapter.ms-chapter-flip > :first-child {
+    order: 2;
+  }
+  .ms-chapter.ms-chapter-flip > :last-child {
+    order: 1;
+  }
 }
 
 /* Tonal collection. Scoped so the house buttons, type, and heroes stay as they are. */

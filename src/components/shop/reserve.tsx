@@ -101,12 +101,12 @@ export function ReserveForm({
         className="flex h-14 w-full items-center justify-center gap-3 bg-[#1c1a17] text-[11px] tracking-[0.2em] text-[#f6f4ef] uppercase transition hover:bg-[#1c1a17]/85 disabled:opacity-60"
       >
         {busy ? <Loader2 className="size-4 animate-spin" /> : payments === "stripe" ? <Lock className="size-3.5" /> : null}
-        {payments === "stripe" ? `Reserve and pay $${priceUsd}` : `Record this request · $${priceUsd}`}
+        {payments === "stripe" ? `Reserve this pair · $${priceUsd}` : `Request this pair · no payment today`}
       </button>
       <p className="text-center text-sm leading-relaxed text-[#1c1a17]/70">
         {payments === "stripe"
           ? `Secure checkout by Stripe. Ships ${shipWindow}. Fully refunded if the run is not confirmed.`
-          : `No payment is taken. Your name, size, and email are recorded against this colorway at the listed price. The 120-pair rule and its refund are written for a paid reservation. While payments are not connected, nothing is charged and there is nothing to refund. Ships ${shipWindow} if a run is confirmed.`}
+          : `No payment is taken today. Your name, size, and email are recorded as a nonbinding request at the listed price of $${priceUsd}. Ships ${shipWindow} if the run is confirmed.`}
       </p>
     </form>
   );

@@ -3,6 +3,7 @@ import { Wordmark } from "@/components/house/wordmark";
 
 const NAV_LEFT = [
   { href: "/shop", label: "0929" },
+  { href: "/shop#1213", label: "1213" },
   { href: "/wardrobe", label: "Private Wardrobe" },
 ];
 

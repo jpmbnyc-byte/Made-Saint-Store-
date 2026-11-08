@@ -3,6 +3,7 @@ import { ShopFooter } from "@/components/shop/chrome";
 import { Mast } from "@/components/house/mast";
 import { EditorialHero } from "@/components/house/editorial-hero";
 import { RunnerChapter } from "@/components/house/runner-chapter";
+import { Range1213 } from "@/components/house/range-1213";
 import { WardrobeChapter } from "@/components/house/wardrobe-chapter";
 import { CastEditorial } from "@/components/house/cast-editorial";
 import { HouseLooks } from "@/components/house/examples";
@@ -13,10 +14,10 @@ import { OrderRule } from "@/components/shop/order-rule";
 
 export const metadata: Metadata = {
   title: { absolute: "MADE SAiNT" },
-  description: "Once sinner. Made Saint. The 0929 runner and a private wardrobe, made to order.",
+  description: "Once sinner. Made Saint. The 0929 and 1213 runners, and a private wardrobe, made to order.",
   openGraph: {
     title: "MADE SAiNT",
-    description: "Once sinner. Made Saint. The 0929 runner and a private wardrobe.",
+    description: "Once sinner. Made Saint. The 0929 and 1213 runners, and a private wardrobe.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "MADE SAiNT" }],
   },
   twitter: {
@@ -35,6 +36,7 @@ export default function Home() {
 
       {/* 02 — Featured product: 1101 runner */}
       <RunnerChapter />
+      <Range1213 />
 
       {/* Reservation rule — inline, brief */}
       <section className="border-t border-[#1c1a17]/10 bg-[#f5f0e8]">

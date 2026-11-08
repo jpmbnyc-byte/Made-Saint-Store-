@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { LEAD_TIME, PRODUCTS, statusLine } from "@/lib/business";
+import { RANGE_1213, colorName } from "@/lib/range-1213";
 import { QUESTIONS } from "@/lib/questions";
 import { OrderRule, orderWindowLine } from "@/components/shop/order-rule";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
@@ -10,7 +11,7 @@ import { CancelledBanner } from "@/components/shop/live";
 
 export const metadata: Metadata = {
   title: "0929",
-  description: "Three 0929 runners, made to order. Ready in 4 to 6 weeks.",
+  description: "The 0929 runners, made to order, and the 1213 runner, with no price listed.",
 };
 
 export default async function ShopPage() {
@@ -67,6 +68,28 @@ export default async function ShopPage() {
               <p className="mt-3 text-[12px] tracking-[0.12em] text-[#8d7349] uppercase">Available · made to order · {LEAD_TIME}</p>
             </Link>
           ))}
+        </div>
+      </section>
+
+      <section id="1213" className="border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
+        <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-8">
+          <p className="text-[11px] tracking-[0.28em] text-[#B03236] uppercase">1213</p>
+          <h2 className="mt-4 font-serif text-4xl md:text-5xl">A second runner.</h2>
+          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
+            Seven colorways on a sculpted sole. Separate from the 0929. Six colorways have one view. Sacred Light also has a profile, an overhead, a rear, and two worn studies. A price is not listed. Materials are not confirmed.
+          </p>
+          <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3">
+            {RANGE_1213.map((colorway) => (
+              <Link key={colorway.slug} href={`/shop/1213/${colorway.slug}`} className="block">
+                <span className="relative block aspect-square bg-[#f3efe8]">
+                  <Image src={colorway.image} alt={colorway.name} fill sizes="(min-width: 640px) 30vw, 50vw" className="object-contain" />
+                </span>
+                <span className="mt-3 block font-serif text-xl leading-tight">{colorName(colorway.name)}</span>
+                <span className="mt-1 block text-[12px] text-[#1c1a17]/60">{colorway.palette}</span>
+                <span className="mt-2 block text-[12px] tracking-[0.12em] text-[#8d7349] uppercase">Request · no price listed</span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

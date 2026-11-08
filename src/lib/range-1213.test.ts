@@ -11,6 +11,10 @@ test("the runner series use the name plates and Bogner-range prices", () => {
   assert.equal(SERIES_PLATE["0929"].src.endsWith("name-0929.webp"), true);
   assert.equal(SERIES_PLATE["1101"].src.endsWith("name-1101.webp"), true);
   assert.equal(SERIES_PLATE["1223"].src.endsWith("name-1223.webp"), true);
+  const espresso = PRODUCTS.find((product) => product.id === "ms-runner-1101-espresso");
+  assert.equal(espresso?.materials.includes("29 Gris Medio mesh"), true);
+  assert.equal(espresso?.materials.includes("Five eyelet pairs"), true);
+  assert.match(espresso?.notice ?? "", /fit/i);
   const sacred = PRODUCTS.find((product) => product.id === "ms-runner-1223-sacred-light");
   assert.equal(sacred?.series, "1223");
   assert.equal(sacred?.name.includes("Sacred Light"), true);

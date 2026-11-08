@@ -13,7 +13,7 @@ export function Range1213() {
       <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
         <SeriesPlate series="1101" className="h-16 w-auto max-w-full object-contain object-left sm:h-20" />
         <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-          Six colorways on a sculpted sole. $550. Separate from the 0929.
+          Six colorways. Leather and 29 Gris Medio mesh. $550. A sample and a measured fit are still pending.
         </p>
         <ul className="mt-8 flex min-w-0 gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {sculpted.map((product) => (

@@ -76,7 +76,7 @@ export default async function ShopPage() {
         <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-8">
           <SeriesPlate series="1101" className="h-16 w-auto max-w-full object-contain object-left sm:h-20" />
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            Six colorways on a sculpted sole. $550. One view each. Materials are not confirmed. Made to order. Ready in {LEAD_TIME}.
+            Six colorways. Leather and 29 Gris Medio mesh. $550. Design intent is locked. A sample and tooling are still pending, and a measured fit is not certified. Made to order. Ready in {LEAD_TIME}.
           </p>
           <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3">
             {sculpted.map((p) => (

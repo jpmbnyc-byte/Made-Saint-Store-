@@ -7,114 +7,185 @@ import { PRODUCTS, SIZES, shipWindow } from "@/lib/business";
 
 const short = (name: string) => name.replace("Runner, ", "");
 
-const RUNNER_VIEWS = [
-  { src: "/stories/chalk-threequarter.webp", alt: "Chalk founding runner, three-quarter view", label: "Chalk" },
-  { src: "/stories/navy-intrecciato.webp", alt: "Navy Intrecciato founding runner", label: "Navy Intrecciato" },
-  { src: "/stories/washed-denim.webp", alt: "Washed Denim founding runner", label: "Washed Denim" },
-];
+/**
+ * Colorway map — links product IDs to verified image assets.
+ * Add new colorways here when assets are confirmed by the founder.
+ * Each colorway needs: a lateral or three-quarter view as the primary image,
+ * and an optional on-model or overhead secondary.
+ *
+ * PENDING: New colorways to be assigned when founder uploads assets.
+ */
+export const RUNNER_COLORWAY_VIEWS: Record<
+  string,
+  { primary: string; primaryAlt: string; secondary?: string; secondaryAlt?: string; label: string }
+> = {
+  "ms-runner-chalk-navy": {
+    primary: "/stories/chalk-threequarter.webp",
+    primaryAlt: "Chalk founding runner — three-quarter view, bouclé suede upper",
+    secondary: "/stories/chalk-navy.webp",
+    secondaryAlt: "Chalk founding runner — lateral product view",
+    label: "Chalk",
+  },
+  "ms-runner-navy-intrecciato": {
+    primary: "/stories/navy-intrecciato.webp",
+    primaryAlt: "Navy Intrecciato founding runner — woven calf leather, three-quarter view",
+    label: "Navy Intrecciato",
+  },
+  "ms-runner-washed-denim": {
+    primary: "/stories/washed-denim-threequarter.webp",
+    primaryAlt: "Washed Denim founding runner — selvedge-style denim, three-quarter view",
+    secondary: "/stories/washed-denim.webp",
+    secondaryAlt: "Washed Denim founding runner — lateral product view",
+    label: "Washed Denim",
+  },
+  // New colorways — add when founder uploads assets:
+  // "ms-runner-[id]": {
+  //   primary: "/stories/[id].webp",
+  //   primaryAlt: "...",
+  //   label: "...",
+  // },
+};
 
 export function RunnerChapter() {
   const launch = PRODUCTS.filter((p) => p.launch);
-  const [active, setActive] = useState(0);
-  const product = launch[active];
-  const view = RUNNER_VIEWS[active];
+  const [activeId, setActiveId] = useState(launch[0]?.id ?? "");
+  const product = launch.find((p) => p.id === activeId) ?? launch[0];
+  const view = product ? RUNNER_COLORWAY_VIEWS[product.id] : null;
 
   if (!product || !view) return null;
 
   return (
     <section
       id="runner-1101"
-      className="scroll-mt-24 ms-stone ms-grain border-t border-[#1c1a17]/08"
+      className="relative scroll-mt-24 border-t border-[#1c1a17]/08 bg-[#f5f0e8]"
       aria-labelledby="runner-heading"
     >
-      {/* Ambient light */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div
-          className="ms-light-pool"
-          style={{
-            width: "50vw",
-            height: "50vw",
-            background: "radial-gradient(circle, rgba(240,220,180,0.22), transparent 70%)",
-            top: "10%",
-            right: "5%",
-          }}
-        />
-      </div>
+      {/* Warm limestone ambient surface */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 60% at 80% 15%, rgba(240,220,180,0.28), transparent 60%), " +
+            "radial-gradient(ellipse 50% 40% at 10% 80%, rgba(210,195,160,0.18), transparent 55%)",
+        }}
+      />
+      {/* Grain */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: "url('/brand/grain.svg')",
+          backgroundSize: "180px 180px",
+          opacity: 0.08,
+          mixBlendMode: "multiply",
+        }}
+      />
 
-      <div className="relative mx-auto max-w-[1200px] items-center gap-10 px-5 py-16 md:py-24 lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16 lg:px-8">
+      <div className="relative mx-auto max-w-[1200px] px-5 py-16 md:py-24 lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center lg:gap-16 lg:px-8">
+
         {/* Image panel */}
         <div className="relative mb-10 lg:mb-0">
-          <div className="ms-resin relative aspect-[3/4] overflow-hidden bg-[#ede6d8]">
-            {RUNNER_VIEWS.map((v, i) => (
-              <Image
-                key={v.src}
-                src={v.src}
-                alt={v.alt}
-                fill
-                sizes="(min-width: 1024px) 55vw, 100vw"
-                className="object-contain"
-                priority={i === 0}
-                style={{
-                  opacity: i === active ? 1 : 0,
-                  transition: "opacity 500ms ease",
-                  position: "absolute",
-                  inset: 0,
-                }}
-              />
-            ))}
+          <div
+            className="ms-resin relative overflow-hidden bg-[#ede6d8]"
+            style={{ aspectRatio: "3/4" }}
+          >
+            {/* Primary image */}
+            {launch.map((p) => {
+              const v = RUNNER_COLORWAY_VIEWS[p.id];
+              if (!v) return null;
+              return (
+                <Image
+                  key={p.id}
+                  src={v.primary}
+                  alt={v.primaryAlt}
+                  fill
+                  sizes="(min-width: 1024px) 55vw, 100vw"
+                  className="object-contain"
+                  priority={p.id === launch[0]?.id}
+                  style={{
+                    opacity: p.id === activeId ? 1 : 0,
+                    transition: "opacity 480ms ease",
+                    position: "absolute",
+                    inset: 0,
+                  }}
+                />
+              );
+            })}
           </div>
 
           {/* Colorway selectors */}
-          <div className="mt-4 flex gap-2" role="tablist" aria-label="Colorway">
-            {RUNNER_VIEWS.map((v, i) => (
-              <button
-                key={v.src}
-                type="button"
-                role="tab"
-                aria-selected={i === active}
-                onClick={() => setActive(i)}
-                className="h-10 border px-3 text-[11px] tracking-[0.14em] uppercase transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1c1a17]"
-                style={{
-                  borderColor: i === active ? "#1c1a17" : "rgba(28,26,23,0.20)",
-                  background: i === active ? "#1c1a17" : "transparent",
-                  color: i === active ? "#f5f0e8" : "#1c1a17",
-                }}
-              >
-                {v.label}
-              </button>
-            ))}
+          <div className="mt-4 flex flex-wrap gap-2" role="tablist" aria-label="1101 colorway">
+            {launch.map((p) => {
+              const v = RUNNER_COLORWAY_VIEWS[p.id];
+              const isActive = p.id === activeId;
+              return (
+                <button
+                  key={p.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setActiveId(p.id)}
+                  className="h-10 border px-4 text-[11px] tracking-[0.14em] uppercase transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1c1a17]"
+                  style={{
+                    borderColor: isActive ? "#1c1a17" : "rgba(28,26,23,0.20)",
+                    background: isActive ? "#1c1a17" : "transparent",
+                    color: isActive ? "#f5f0e8" : "#1c1a17",
+                  }}
+                >
+                  {v?.label ?? short(p.name)}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* Copy panel */}
+        {/* Copy panel — Bible voice: short, emotionally direct, precise */}
         <div>
-          <p className="text-[11px] tracking-[0.28em] text-[#B03236] uppercase">1101 · Inaugural Series</p>
+          <p className="text-[11px] tracking-[0.28em] text-[#B03236] uppercase">
+            1101 · Inaugural Series
+          </p>
+
+          {/* Headline: product name, large and serif — no decoration */}
           <h2
             id="runner-heading"
             className="mt-4 font-serif leading-[0.93] text-[#1c1a17]"
-            style={{ fontSize: "clamp(48px, 5.5vw, 80px)", letterSpacing: "-0.035em" }}
+            style={{ fontSize: "clamp(44px, 5.5vw, 76px)", letterSpacing: "-0.035em" }}
           >
             {short(product.name)}
           </h2>
-          <p className="mt-5 text-[16px] leading-relaxed text-[#41505b]">{product.line}.</p>
-          <p className="mt-2 font-serif text-4xl tabular-nums text-[#2a3746]">${product.usd}</p>
-          <p className="mt-2 text-[13px] text-[#8d7349]">
-            Ships {shipWindow()} if the run is confirmed.
+
+          {/* Line — precise material description per Bible §04 */}
+          <p className="mt-5 text-[16px] leading-relaxed text-[#41505b]">
+            {product.line}.
           </p>
 
-          {/* Materials */}
-          <ul className="mt-6 space-y-2 border-t border-[#1c1a17]/10 pt-6">
+          {/* Price — clear, tabular, no commentary */}
+          <p className="mt-3 font-serif text-[36px] tabular-nums leading-none text-[#1c1a17]">
+            ${product.usd}
+          </p>
+          <p className="mt-1.5 text-[13px] text-[#8d7349]">
+            Ships {shipWindow()} · run confirmed at 120 pairs.
+          </p>
+
+          {/* Materials — verified per Bible §04 "precise product language" */}
+          <ul className="mt-7 space-y-2.5 border-t border-[#1c1a17]/10 pt-6">
             {product.materials.map((m) => (
-              <li key={m} className="flex gap-2 text-[14px] text-[#41505b]">
-                <span className="mt-[0.4em] block size-1 shrink-0 rounded-full bg-[#B03236]" aria-hidden="true" />
+              <li key={m} className="flex items-start gap-2.5 text-[14px] text-[#41505b]">
+                <span
+                  className="mt-[0.45em] block size-1 shrink-0 rounded-full bg-[#B03236]"
+                  aria-hidden="true"
+                />
                 {m}
               </li>
             ))}
           </ul>
 
-          {/* Size preview */}
-          <div className="mt-8">
-            <p className="text-[11px] tracking-[0.16em] text-[#1c1a17]/55 uppercase">US Men&apos;s</p>
+          {/* Size — simple, legible, no ambiguity */}
+          <div className="mt-7">
+            <p className="text-[11px] tracking-[0.16em] text-[#1c1a17]/55 uppercase">
+              US Men&apos;s 7 – 12
+            </p>
             <div className="mt-3 flex flex-wrap gap-1.5">
               {SIZES.map((size) => (
                 <span
@@ -125,16 +196,15 @@ export function RunnerChapter() {
                 </span>
               ))}
             </div>
-            <p className="mt-2 text-[12px] text-[#1c1a17]/50">Select your exact size on the product page. Between sizes, take the half size up.</p>
           </div>
 
-          {/* CTA */}
+          {/* CTAs */}
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href={`/shop/${product.id}`}
               className="inline-flex h-12 items-center bg-[#1c1a17] px-6 text-[12px] tracking-[0.18em] text-[#f5f0e8] uppercase transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
             >
-              Explore 1101
+              Request this pair
             </Link>
             <Link
               href="/shop"
@@ -144,8 +214,9 @@ export function RunnerChapter() {
             </Link>
           </div>
 
-          <p className="mt-5 text-[12px] leading-relaxed text-[#1c1a17]/45">
-            No payment today. A pair is cut only after the run is confirmed. US men&apos;s 7 through 12 only.
+          {/* No-payment note — per Bible: honest, no exaggerated claims */}
+          <p className="mt-5 text-[12px] leading-relaxed text-[#1c1a17]/40">
+            No payment today. A pair is cut only after the run is confirmed.
           </p>
         </div>
       </div>

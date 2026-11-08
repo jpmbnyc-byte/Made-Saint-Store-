@@ -2,20 +2,37 @@ import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { LEAD_TIME, PRODUCTS, statusLine } from "@/lib/business";
-import { RANGE_1213, colorName } from "@/lib/range-1213";
+import { LEAD_TIME, productsIn, statusLine, type Product } from "@/lib/business";
 import { QUESTIONS } from "@/lib/questions";
 import { OrderRule, orderWindowLine } from "@/components/shop/order-rule";
+import { SeriesPlate } from "@/components/shop/series-plate";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
 import { CancelledBanner } from "@/components/shop/live";
 
+const colorOf = (name: string) => name.split("—").pop()?.trim() ?? name;
+
+function Listing({ product, frame }: { product: Product; frame: string }) {
+  return (
+    <Link href={`/shop/${product.id}`} className="block">
+      <span className={`relative block bg-[#f3efe8] ${frame}`}>
+        <Image src={product.image} alt={product.name} fill sizes="(min-width: 1024px) 30vw, 50vw" className="object-contain" />
+      </span>
+      <SeriesPlate series={product.series} className="mt-3 h-12 w-auto max-w-full object-contain object-left" />
+      <span className="mt-2 block font-serif text-2xl leading-none">{colorOf(product.name)}</span>
+      <span className="mt-2 block text-sm tabular-nums">${product.usd}</span>
+    </Link>
+  );
+}
+
 export const metadata: Metadata = {
   title: "0929",
-  description: "The 0929 runners, made to order, and the 1213 runner, with no price listed.",
+  description: "The 0929, 1101, and 1223 runners, made to order. $490 and $550.",
 };
 
 export default async function ShopPage() {
-  const launch = PRODUCTS.filter((p) => p.launch);
+  const founding = productsIn("0929");
+  const sculpted = productsIn("1101");
+  const sacred = productsIn("1223");
   return (
     <div className="min-h-screen bg-[#f5f0e8] text-[#1c1a17]">
       <ShopHeader status={statusLine()} />
@@ -25,22 +42,16 @@ export default async function ShopPage() {
       </Suspense>
 
       <section id="order" className="mx-auto max-w-[1100px] scroll-mt-28 px-5 py-12 md:px-8 md:py-16">
-        <p className="text-[11px] tracking-[0.28em] text-[#B03236] uppercase">0929 · Made to order</p>
+        <SeriesPlate series="0929" className="h-16 w-auto max-w-full object-contain object-left sm:h-20" />
         <h1 className="mt-4 max-w-3xl font-serif text-[44px] leading-[0.95] text-[#1c1a17] md:text-[64px]">A pair, made for you.</h1>
         <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">{orderWindowLine()}</p>
         <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
           Anyone the size fits can request a pair, in US men&apos;s 7 through 12. Other sizes are not offered. A pair does not open a wardrobe.
         </p>
-        <ul className="mt-8 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4">
-          {launch.map((p) => (
+        <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
+          {founding.map((p) => (
             <li key={p.id}>
-              <Link href={`/shop/${p.id}`} className="block">
-                <span className="relative block aspect-[2/3] bg-[#f3efe8]">
-                  <Image src={p.image} alt={p.name} fill sizes="(min-width: 640px) 30vw, 33vw" className="object-contain" />
-                </span>
-                <span className="mt-2 block font-serif text-lg leading-none sm:text-2xl">{p.name.replace("Runner, ", "")}</span>
-                <span className="mt-1 block text-[12px] tabular-nums">${p.usd}</span>
-              </Link>
+              <Listing product={p} frame="aspect-[2/3]" />
             </li>
           ))}
         </ul>
@@ -49,45 +60,41 @@ export default async function ShopPage() {
         </div>
       </section>
 
-      <section id="edition" className="mx-auto max-w-[1100px] scroll-mt-28 px-5 pb-14 md:px-8">
-        <div className="flex flex-wrap items-end justify-between gap-4 border-t border-[#1c1a17]/15 pt-8">
+      <section id="0929" className="mx-auto max-w-[1100px] scroll-mt-28 px-5 pb-14 md:px-8">
+        <div id="edition" className="flex scroll-mt-28 flex-wrap items-end justify-between gap-4 border-t border-[#1c1a17]/15 pt-8">
           <h2 className="font-serif text-4xl">Available now</h2>
-          <p className="text-[13px] text-[#1c1a17]/60">From ${Math.min(...launch.map((p) => p.usd))} · ready in {LEAD_TIME}</p>
+          <p className="text-[13px] text-[#1c1a17]/60">$490 · ready in {LEAD_TIME}</p>
         </div>
         <div className="mt-8 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-          {launch.map((p) => (
-            <Link key={p.id} href={`/shop/${p.id}`} className="group block">
-              <div className="relative aspect-[2/3] overflow-hidden bg-[#f3efe8]">
-                <Image src={p.image} alt={`MADE SAiNT ${p.name}`} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-contain" />
-              </div>
-              <div className="mt-4 flex items-baseline justify-between gap-3">
-                <h3 className="font-serif text-2xl">{p.name.replace("Runner, ", "")}</h3>
-                <p className="text-sm tabular-nums">${p.usd}</p>
-              </div>
-              <p className="mt-1 text-[13px] text-[#1c1a17]/60">The Runner · {p.line}</p>
-              <p className="mt-3 text-[12px] tracking-[0.12em] text-[#8d7349] uppercase">Available · made to order · {LEAD_TIME}</p>
-            </Link>
+          {founding.map((p) => (
+            <Listing key={p.id} product={p} frame="aspect-[2/3]" />
           ))}
         </div>
       </section>
 
-      <section id="1213" className="border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
+      <section id="1101" className="border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
         <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-8">
-          <p className="text-[11px] tracking-[0.28em] text-[#B03236] uppercase">1213</p>
-          <h2 className="mt-4 font-serif text-4xl md:text-5xl">A second runner.</h2>
+          <SeriesPlate series="1101" className="h-16 w-auto max-w-full object-contain object-left sm:h-20" />
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            Seven colorways on a sculpted sole. Separate from the 0929. Six colorways have one view. Sacred Light also has a profile, an overhead, a rear, and two worn studies. A price is not listed. Materials are not confirmed.
+            Six colorways. Leather and 29 Gris Medio mesh. $550. Design intent is locked. A sample and tooling are still pending, and a measured fit is not certified. Made to order. Ready in {LEAD_TIME}.
           </p>
           <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3">
-            {RANGE_1213.map((colorway) => (
-              <Link key={colorway.slug} href={`/shop/1213/${colorway.slug}`} className="block">
-                <span className="relative block aspect-square bg-[#f3efe8]">
-                  <Image src={colorway.image} alt={colorway.name} fill sizes="(min-width: 640px) 30vw, 50vw" className="object-contain" />
-                </span>
-                <span className="mt-3 block font-serif text-xl leading-tight">{colorName(colorway.name)}</span>
-                <span className="mt-1 block text-[12px] text-[#1c1a17]/60">{colorway.palette}</span>
-                <span className="mt-2 block text-[12px] tracking-[0.12em] text-[#8d7349] uppercase">Request · no price listed</span>
-              </Link>
+            {sculpted.map((p) => (
+              <Listing key={p.id} product={p} frame="aspect-square" />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="1223" className="border-t border-[#1c1a17]/10">
+        <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-8">
+          <SeriesPlate series="1223" className="h-16 w-auto max-w-full object-contain object-left sm:h-20" />
+          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
+            Sacred Light. Deep plum and pale gold. $550. A profile, an overhead, a rear, and two worn studies. Materials are not confirmed.
+          </p>
+          <div className="mt-10 max-w-sm">
+            {sacred.map((p) => (
+              <Listing key={p.id} product={p} frame="aspect-square" />
             ))}
           </div>
         </div>

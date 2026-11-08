@@ -301,7 +301,7 @@ export const PIECES: WardrobePiece[] = [
     palettes: ["blue-hour"], chips: [{ name: "Midnight", hex: "#2c323d" }, { name: "Sand", hex: "#b4a387" }],
     material: "Woven calf, sand mesh, nub-lug sole",
     tier: "signature", image: "/runners/navy-sand-overhead.webp", klass: "E",
-    note: "0929 colorway. Navy / Sand. $695.",
+    note: "0929 colorway. Navy / Sand. $490.",
   },
   {
     id: "rn02", code: "MS-RN-02", name: "MADE SAiNT 0929 Runner — Espresso / Oxblood", category: "footwear",
@@ -315,14 +315,14 @@ export const PIECES: WardrobePiece[] = [
     palettes: ["blue-hour"], chips: [{ name: "Ivory", hex: "#e6ddd0" }, { name: "Midnight", hex: "#1b2838" }],
     material: "Bouclé suede, navy canvas",
     tier: "signature", image: "/runners/navy-ivory-overhead.webp", klass: "E",
-    note: "0929 colorway. Navy / Ivory. $595.",
+    note: "0929 colorway. Navy / Ivory. $490.",
   },
   {
     id: "rn06", code: "MS-RN-06", name: "MADE SAiNT 0929 Runner — Washed / Indigo", category: "footwear",
     palettes: ["blue-hour"], chips: [{ name: "Mineral Blue", hex: "#93a8b9" }, { name: "Midnight", hex: "#1b2838" }],
     material: "Two-tone selvedge-style denim",
     tier: "signature", image: "/runners/indigo-overhead.webp", klass: "E",
-    note: "0929 colorway. Washed / Indigo. $545.",
+    note: "0929 colorway. Washed / Indigo. $490.",
   },
   {
     id: "a01", code: "MS-A01", name: "Denim-Trim Duffel", category: "accessories",

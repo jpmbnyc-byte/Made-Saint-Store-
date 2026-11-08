@@ -26,6 +26,15 @@ export const LUXURY_SPEC = [
 ];
 export const LUXURY_UPCHARGE = LUXURY_SPEC.reduce((s, x) => s + x.eur, 0);
 
+export type SeriesId = "0929" | "1101" | "1223";
+
+/** The founder's series plates. Each listing uses the plate that names it. */
+export const SERIES_PLATE: Record<SeriesId, { src: string; alt: string }> = {
+  "0929": { src: "/brand/name-0929.webp", alt: "MADE Saint 0929 v1" },
+  "1101": { src: "/brand/name-1101.webp", alt: "MADE Saint 1101 v1" },
+  "1223": { src: "/brand/name-1223.webp", alt: "MADE Saint 1223 v1" },
+};
+
 export type Product = {
   id: string;
   storyId?: string;
@@ -33,22 +42,47 @@ export type Product = {
   line: string;
   usd: number;
   image: string;
-  /** Launch colorways open for pre-order now; the rest gather a waitlist. */
+  series: SeriesId;
+  /** Founding 0929 colorways. The private run counts these, not the later series. */
   launch: boolean;
   materials: string[];
   costUsd: number;
+  notice?: string;
 };
+
+/** Bogner Cortina, leather and mesh, is $490. The 0929 is that kind of runner. */
+const PRICE_MESH = 490;
+/** Bogner Bucharest, the top sneaker in the published list, is $550. The sculpted sole sits there. */
+const PRICE_SCULPTED = 550;
 
 /**
  * Price ladder. The base runner sits just above Bogner's top full-price sneaker and well under
  * Cucinelli's mesh runner; construction, not color, moves the price.
  */
-export const PRODUCTS: Product[] = [
-  { id: "ms-runner-chalk-navy", storyId: "chalk-navy", name: "MADE SAiNT 0929 Runner — Navy / Ivory", line: "Ivory suede, navy mesh", usd: 595, image: "/runners/navy-ivory-overhead.webp", launch: true, materials: ["Ivory suede overlays", "Navy mesh", "Nub-lug rubber sole"], costUsd: 0 },
-  { id: "ms-runner-navy-intrecciato", storyId: "navy-intrecciato", name: "MADE SAiNT 0929 Runner — Navy / Sand", line: "Navy overlays, sand mesh", usd: 695, image: "/runners/navy-sand-overhead.webp", launch: true, materials: ["Navy mesh and suede overlays", "Sand mesh windows", "Nub-lug rubber sole"], costUsd: 0 },
-  { id: "ms-runner-washed-denim", storyId: "washed-denim", name: "MADE SAiNT 0929 Runner — Washed / Indigo", line: "Blue suede, navy mesh", usd: 545, image: "/runners/indigo-overhead.webp", launch: true, materials: ["Blue suede overlays", "Navy mesh", "Light blue laces", "Nub-lug rubber sole"], costUsd: 0 },
-  { id: "ms-runner-espresso", storyId: "espresso-oxblood", name: "MADE SAiNT 0929 Runner — Espresso / Oxblood", line: "Espresso suede, oxblood lining", usd: 545, image: "/stories/espresso-oxblood.webp", launch: false, materials: ["Espresso suede", "Technical mesh", "Oxblood terry lining", "Nub-lug rubber sole"], costUsd: 0 },
+const CONSTRUCTION_1101 = [
+  "Leather side panels, smooth",
+  "29 Gris Medio mesh",
+  "Five eyelet pairs",
+  "Low rear and a plain tongue back",
+  "Brushed sole faces, piano-black rails, matte black traction rubber",
 ];
+const NOTICE_1101 = "Design intent is locked. A sample and tooling are still pending. The photographs do not certify the lining, the tooling, or the fit.";
+
+export const PRODUCTS: Product[] = [
+  { id: "ms-runner-chalk-navy", storyId: "chalk-navy", series: "0929", name: "MADE SAiNT 0929 Runner — Navy / Ivory", line: "Ivory suede, navy mesh", usd: PRICE_MESH, image: "/runners/navy-ivory-overhead.webp", launch: true, materials: ["Ivory suede overlays", "Navy mesh", "Nub-lug rubber sole"], costUsd: 0 },
+  { id: "ms-runner-navy-intrecciato", storyId: "navy-intrecciato", series: "0929", name: "MADE SAiNT 0929 Runner — Navy / Sand", line: "Navy overlays, sand mesh", usd: PRICE_MESH, image: "/runners/navy-sand-overhead.webp", launch: true, materials: ["Navy mesh and suede overlays", "Sand mesh windows", "Nub-lug rubber sole"], costUsd: 0 },
+  { id: "ms-runner-washed-denim", storyId: "washed-denim", series: "0929", name: "MADE SAiNT 0929 Runner — Washed / Indigo", line: "Blue suede, navy mesh", usd: PRICE_MESH, image: "/runners/indigo-overhead.webp", launch: true, materials: ["Blue suede overlays", "Navy mesh", "Light blue laces", "Nub-lug rubber sole"], costUsd: 0 },
+  { id: "ms-runner-espresso", storyId: "espresso-oxblood", series: "0929", name: "MADE SAiNT 0929 Runner — Espresso / Oxblood", line: "Espresso suede, oxblood lining", usd: PRICE_MESH, image: "/stories/espresso-oxblood.webp", launch: false, materials: ["Espresso suede", "Technical mesh", "Oxblood terry lining", "Nub-lug rubber sole"], costUsd: 0 },
+  { id: "ms-runner-1101-espresso", series: "1101", name: "MADE SAiNT 1101 Runner — Espresso", line: "Deep chocolate leather, taupe accents, and cream laces", usd: PRICE_SCULPTED, image: "/runners/1213/espresso.webp", launch: true, materials: ["Deep chocolate leather", "Taupe accents", "Cream laces", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
+  { id: "ms-runner-1101-olive", series: "1101", name: "MADE SAiNT 1101 Runner — Olive", line: "Olive leather, sage overlays, and an ivory signature", usd: PRICE_SCULPTED, image: "/runners/1213/olive.webp", launch: true, materials: ["Olive leather", "Sage overlays", "Ivory signature", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
+  { id: "ms-runner-1101-mineral-blue", series: "1101", name: "MADE SAiNT 1101 Runner — Mineral Blue", line: "Mineral blue leather, a pale signature, and a muted red heel accent", usd: PRICE_SCULPTED, image: "/runners/1213/mineral-blue.webp", launch: true, materials: ["Mineral blue leather", "Pale signature", "Muted red heel accent", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
+  { id: "ms-runner-1101-midnight", series: "1101", name: "MADE SAiNT 1101 Runner — Midnight", line: "Deep navy leather and pale blue panels", usd: PRICE_SCULPTED, image: "/runners/1213/midnight.webp", launch: true, materials: ["Deep navy leather", "Pale blue panels", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
+  { id: "ms-runner-1101-chestnut", series: "1101", name: "MADE SAiNT 1101 Runner — Chestnut", line: "Chestnut leather and dark chocolate panels", usd: PRICE_SCULPTED, image: "/runners/1213/chestnut.webp", launch: true, materials: ["Chestnut leather", "Dark chocolate panels", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
+  { id: "ms-runner-1101-graphite", series: "1101", name: "MADE SAiNT 1101 Runner — Graphite", line: "Graphite overlays and pewter accents", usd: PRICE_SCULPTED, image: "/runners/1213/graphite.webp", launch: true, materials: ["Graphite overlays", "Pewter accents", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
+  { id: "ms-runner-1223-sacred-light", series: "1223", name: "MADE SAiNT 1223 Runner — Sacred Light", line: "Deep plum and pale gold, with a sculpted ivory sole. An angel is printed on the insole", usd: PRICE_SCULPTED, image: "/runners/1213/sacred-light.webp", launch: true, materials: ["Deep plum upper", "Pale gold signature", "Ivory sole", "Angel printed on the insole"], costUsd: 0, notice: "Materials are not confirmed." },
+];
+
+export const productsIn = (series: SeriesId) => PRODUCTS.filter((product) => product.launch && product.series === series);
 
 /** Customer-facing make time. A requested pair is started for that person. */
 export const LEAD_TIME = "4 to 6 weeks";
@@ -160,7 +194,7 @@ export type UnitEconomics = {
  * (one MEES design plus sampling round each), which is conservative: MEES quotes per style.
  */
 export function launchEconomics(pairsPerColorway: number, a: Assumptions = DEFAULT_ASSUMPTIONS): UnitEconomics[] {
-  const launch = PRODUCTS.filter((p) => p.launch);
+  const launch = PRODUCTS.filter((p) => p.launch && p.series === "0929");
   const results = buildCollection(
     assignRoles(CONCEPT_PALETTE),
     launch.map((p) => ({ style: "runner" as const, recipe: "hero" as const, story: p.storyId })),

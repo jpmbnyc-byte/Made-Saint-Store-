@@ -14,10 +14,10 @@ import { OrderRule } from "@/components/shop/order-rule";
 
 export const metadata: Metadata = {
   title: { absolute: "MADE SAiNT" },
-  description: "Once sinner. Made Saint. The 0929 and 1213 runners, and a private wardrobe, made to order.",
+  description: "Once sinner. Made Saint. The 0929, 1101, and 1223 runners, and a private wardrobe, made to order.",
   openGraph: {
     title: "MADE SAiNT",
-    description: "Once sinner. Made Saint. The 0929 and 1213 runners, and a private wardrobe.",
+    description: "Once sinner. Made Saint. The 0929, 1101, and 1223 runners, and a private wardrobe.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "MADE SAiNT" }],
   },
   twitter: {

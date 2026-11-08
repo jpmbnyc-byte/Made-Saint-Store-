@@ -12,7 +12,7 @@ import { DEFAULT_ASSUMPTIONS, eur, pct, usd } from "@/lib/costing";
 import type { Reservation, Tally } from "@/lib/preorders";
 import type { FundingId } from "@/lib/business";
 
-const LAUNCH = PRODUCTS.filter((p) => p.launch);
+const LAUNCH = PRODUCTS.filter((p) => p.launch && p.series === "0929");
 const a = DEFAULT_ASSUMPTIONS;
 const card = "rounded-xl border border-[#22201d]/15 bg-[#fbf8f2] p-4 md:p-5";
 const label = "font-mono text-[10px] uppercase tracking-[0.12em] text-[#22201d]/55";
@@ -173,7 +173,7 @@ export function LaunchDashboard({
               <span key={p.id} className="absolute -top-[7px] size-[15px] -translate-x-1/2 rounded-full bg-[#9a3b2c]" style={{ left: x(p.usd) }} title={`${p.name} $${p.usd}`} />
             ))}
             <span className="absolute -top-8 left-0 font-mono text-[10px] text-[#8a6a43] uppercase">Bogner $339–550</span>
-            <span className="absolute -top-8 left-1/2 -translate-x-1/2 font-mono text-[10px] text-[#9a3b2c] uppercase">MADE SAiNT $545–695</span>
+            <span className="absolute -top-8 left-1/2 -translate-x-1/2 font-mono text-[10px] text-[#9a3b2c] uppercase">MADE SAiNT $490–550</span>
             <span className="absolute -top-8 right-0 text-right font-mono text-[10px] uppercase">Cucinelli $795–1,400</span>
           </div>
           <div className="min-w-0 overflow-x-auto">
@@ -264,7 +264,7 @@ export function LaunchDashboard({
               <li className="flex justify-between py-2 font-medium"><span>Per pair</span><span className="tabular-nums">{eur(LUXURY_UPCHARGE)}</span></li>
             </ul>
             <div className="mt-4 rounded-lg bg-[#9a3b2c]/8 p-3 text-[12px] leading-relaxed">
-              Navy Intrecciato is priced as a hand-woven calf upper. MEES&apos;s library has woven-effect embossed leathers (MEES-020, MEES-021), not true intrecciato. Ask MEES to quote real woven calf before the window opens; if they cannot, sell it as woven-embossed calf at $595.
+              Navy Intrecciato is priced as a hand-woven calf upper. MEES&apos;s library has woven-effect embossed leathers (MEES-020, MEES-021), not true intrecciato. Ask MEES to quote real woven calf before the window opens; if they cannot, the listed price stays $490, with the other 0929 runners.
             </div>
           </div>
         </section>

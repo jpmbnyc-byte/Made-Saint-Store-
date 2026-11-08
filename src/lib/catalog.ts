@@ -44,6 +44,28 @@ const EXTRA: Record<string, CatalogView[]> = {
     { id: "detail", src: "/runners/indigo-detail.webp", label: "Detail", alt: "MADE SAiNT 0929 Runner — Washed / Indigo, wave and sole" },
     { id: "study", src: "/runners/indigo-worn.webp", label: "Worn", alt: `MADE SAiNT 0929 Runner — Washed / Indigo. ${worn}` },
   ],
+  "ms-runner-1101-butter": [
+    { id: "threequarter", src: "/runners/1213/1101-butter-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Butter, the pair" },
+  ],
+  "ms-runner-1101-teal": [
+    { id: "threequarter", src: "/runners/1213/1101-teal-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Teal, the pair" },
+  ],
+  "ms-runner-1101-navy": [
+    { id: "threequarter", src: "/runners/1213/1101-navy-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Navy, the pair" },
+    { id: "reverse", src: "/runners/1213/1101-navy-lateral.webp", label: "Lateral", alt: "MADE SAiNT 1101 Runner — Navy, lateral" },
+  ],
+  "ms-runner-1101-bronze": [
+    { id: "threequarter", src: "/runners/1213/1101-bronze-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Bronze, the pair" },
+    { id: "reverse", src: "/runners/1213/1101-bronze-lateral.webp", label: "Lateral", alt: "MADE SAiNT 1101 Runner — Bronze, lateral" },
+  ],
+  "ms-runner-1101-blush": [
+    { id: "threequarter", src: "/runners/1213/1101-blush-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Blush, the pair" },
+    { id: "reverse", src: "/runners/1213/1101-blush-lateral.webp", label: "Lateral", alt: "MADE SAiNT 1101 Runner — Blush, lateral" },
+  ],
+  "ms-runner-1101-onyx": [
+    { id: "threequarter", src: "/runners/1213/1101-onyx-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Onyx, the pair" },
+    { id: "reverse", src: "/runners/1213/1101-onyx-lateral.webp", label: "Lateral", alt: "MADE SAiNT 1101 Runner — Onyx, lateral" },
+  ],
   "ms-runner-1223-sacred-light": [
     { id: "threequarter", src: "/runners/1213/sacred-light.webp", label: "Three-quarter", alt: "MADE SAiNT 1223 Runner — Sacred Light, three-quarter" },
     { id: "reverse", src: "/runners/1213/sacred-light-profile.webp", label: "Profile", alt: "MADE SAiNT 1223 Runner — Sacred Light, profile" },

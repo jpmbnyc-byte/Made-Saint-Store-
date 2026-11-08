@@ -17,7 +17,7 @@ function Listing({ product, frame }: { product: Product; frame: string }) {
       <span className={`relative block bg-[#f3efe8] ${frame}`}>
         <Image src={product.image} alt={product.name} fill sizes="(min-width: 1024px) 30vw, 50vw" className="object-contain" />
       </span>
-      <SeriesPlate series={product.series} className="mt-3 h-12 w-auto max-w-full object-contain object-left" />
+      <SeriesPlate series={product.series} size="sm" className="mt-3" />
       <span className="mt-2 block font-serif text-2xl leading-none">{colorOf(product.name)}</span>
       <span className="mt-2 block text-sm tabular-nums">${product.usd}</span>
     </Link>
@@ -42,7 +42,7 @@ export default async function ShopPage() {
       </Suspense>
 
       <section id="order" className="mx-auto max-w-[1100px] scroll-mt-28 px-5 py-12 md:px-8 md:py-16">
-        <SeriesPlate series="0929" className="h-16 w-auto max-w-full object-contain object-left sm:h-20" />
+        <SeriesPlate series="0929" size="md" />
         <h1 className="mt-4 max-w-3xl font-serif text-[44px] leading-[0.95] text-[#1c1a17] md:text-[64px]">A pair, made for you.</h1>
         <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">{orderWindowLine()}</p>
         <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
@@ -74,9 +74,9 @@ export default async function ShopPage() {
 
       <section id="1101" className="border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
         <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-8">
-          <SeriesPlate series="1101" className="h-16 w-auto max-w-full object-contain object-left sm:h-20" />
+          <SeriesPlate series="1101" size="md" />
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            Six colorways. Leather and 29 Gris Medio mesh. $550. Design intent is locked. A sample and tooling are still pending, and a measured fit is not certified. Made to order. Ready in {LEAD_TIME}.
+            Leather and 29 Gris Medio mesh. $550. Design intent is locked. A sample and tooling are still pending, and a measured fit is not certified. Made to order. Ready in {LEAD_TIME}.
           </p>
           <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3">
             {sculpted.map((p) => (
@@ -88,7 +88,7 @@ export default async function ShopPage() {
 
       <section id="1223" className="border-t border-[#1c1a17]/10">
         <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-8">
-          <SeriesPlate series="1223" className="h-16 w-auto max-w-full object-contain object-left sm:h-20" />
+          <SeriesPlate series="1223" size="md" />
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
             Sacred Light. Deep plum and pale gold. $550. A profile, an overhead, a rear, and two worn studies. Materials are not confirmed.
           </p>

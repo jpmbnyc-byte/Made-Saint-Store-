@@ -910,6 +910,57 @@ th:first-child {
   .ms-slide { transition: none; }
 }
 
+/* ── Hero campaign animations ─────────────────────────────────────────── */
+@keyframes ms-hero-img-settle {
+  from { opacity: 0; transform: scale(1.018); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes ms-hero-text-rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ms-hero-atmosphere {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(2%, -1.5%, 0) scale(1.05); }
+}
+
+.ms-hero-img-settle {
+  animation: ms-hero-img-settle 1.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ms-hero-text-rise {
+  animation: ms-hero-text-rise 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ms-hero-atmosphere {
+  position: absolute;
+  inset: -12%;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 42% 38% at 18% 28%, rgba(255, 246, 228, 0.55), transparent 68%),
+    radial-gradient(ellipse 36% 42% at 78% 72%, rgba(176, 50, 54, 0.07), transparent 64%),
+    radial-gradient(ellipse 48% 36% at 62% 12%, rgba(255, 255, 255, 0.28), transparent 62%);
+  mix-blend-mode: soft-light;
+  animation: ms-hero-atmosphere 22s ease-in-out infinite alternate;
+}
+
+@media (min-width: 768px) {
+  .ms-hero-stone-fade {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 18%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 18%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-hero-img-settle,
+  .ms-hero-text-rise,
+  .ms-hero-atmosphere {
+    animation: none;
+  }
+}
+
 /* Chapter grid helpers */
 .ms-chapter {
   display: grid;

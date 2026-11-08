@@ -36,6 +36,24 @@ const EXTRA: Record<string, CatalogView[]> = {
     { id: "detail", src: "/runners/navy-sand-detail.webp", label: "Detail", alt: "MADE SAiNT 0929 Runner — Navy / Sand, wave and sole" },
     { id: "study", src: "/runners/navy-sand-worn.webp", label: "Worn", alt: `MADE SAiNT 0929 Runner — Navy / Sand. ${worn}` },
   ],
+  "ms-runner-0929-sage": [
+    { id: "threequarter", src: "/runners/0929-sage.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Sage, three-quarter" },
+  ],
+  "ms-runner-0929-chambray": [
+    { id: "threequarter", src: "/runners/0929-chambray.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Chambray, three-quarter" },
+  ],
+  "ms-runner-0929-chestnut": [
+    { id: "threequarter", src: "/runners/0929-chestnut.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Chestnut, three-quarter" },
+  ],
+  "ms-runner-0929-carbon": [
+    { id: "threequarter", src: "/runners/0929-carbon.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Carbon, three-quarter" },
+  ],
+  "ms-runner-0929-slate": [
+    { id: "threequarter", src: "/runners/0929-slate.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Slate, three-quarter" },
+  ],
+  "ms-runner-0929-dune": [
+    { id: "threequarter", src: "/runners/0929-dune.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Dune, three-quarter" },
+  ],
   "ms-runner-washed-denim": [
     { id: "threequarter", src: "/runners/indigo-pair.webp", label: "Pair", alt: "MADE SAiNT 0929 Runner — Washed / Indigo, the pair" },
     { id: "reverse", src: "/runners/indigo-lateral.webp", label: "Lateral", alt: "MADE SAiNT 0929 Runner — Washed / Indigo, lateral" },
@@ -79,10 +97,10 @@ const EXTRA: Record<string, CatalogView[]> = {
 /** Overhead first, so both sides of the mark are the image a client meets. */
 export function viewsFor(product: Product): CatalogView[] {
   const extra = EXTRA[product.id] ?? [];
-  if (product.series !== "0929") {
-    return extra.length ? extra : [{ id: "threequarter", src: product.image, label: "Three-quarter", alt: `${product.name}, three-quarter` }];
-  }
-  return [overhead(product), ...extra];
+  if (extra.some((view) => view.src === product.image)) return extra;
+  if (extra.length) return product.series === "0929" ? [overhead(product), ...extra] : extra;
+  if (product.series === "0929") return [overhead(product)];
+  return [{ id: "threequarter", src: product.image, label: "Three-quarter", alt: `${product.name}, three-quarter` }];
 }
 
 export function viewsById(id: string): CatalogView[] {

@@ -11,9 +11,9 @@ export function Range1213() {
   return (
     <section className="border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
       <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
-        <SeriesPlate series="1101" className="h-16 w-auto max-w-full object-contain object-left sm:h-20" />
+        <SeriesPlate series="1101" size="md" />
         <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-          Six colorways. Leather and 29 Gris Medio mesh. $550. A sample and a measured fit are still pending.
+          Leather and 29 Gris Medio mesh. $550. A sample and a measured fit are still pending.
         </p>
         <ul className="mt-8 flex min-w-0 gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {sculpted.map((product) => (
@@ -28,7 +28,7 @@ export function Range1213() {
           ))}
         </ul>
         <div className="mt-12 grid items-center gap-8 border-t border-[#1c1a17]/10 pt-12 sm:grid-cols-[220px_1fr]">
-          <SeriesPlate series="1223" className="h-16 w-auto max-w-full object-contain object-left" />
+          <SeriesPlate series="1223" size="md" />
           {sacred.map((product) => (
             <Link key={product.id} href={`/shop/${product.id}`} className="flex items-center gap-4">
               <span className="relative block size-28 shrink-0 bg-[#f3efe8]">

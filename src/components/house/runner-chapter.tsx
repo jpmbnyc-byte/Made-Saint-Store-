@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { LEAD_TIME, PRODUCTS, SERIES_PLATE, SIZES } from "@/lib/business";
+import { LEAD_TIME, PRODUCTS, SIZES } from "@/lib/business";
+import { SeriesPlate } from "@/components/shop/series-plate";
 
 const short = (name: string) => name.replace("Runner, ", "");
 
@@ -40,12 +41,36 @@ export const RUNNER_COLORWAY_VIEWS: Record<
     secondaryAlt: "MADE SAiNT 0929 Runner — Washed / Indigo, overhead",
     label: "Washed / Indigo",
   },
-  // New colorways — add when founder uploads assets:
-  // "ms-runner-[id]": {
-  //   primary: "/stories/[id].webp",
-  //   primaryAlt: "...",
-  //   label: "...",
-  // },
+  "ms-runner-0929-sage": {
+    primary: "/runners/0929-sage.webp",
+    primaryAlt: "MADE SAiNT 0929 Runner — Sage, three-quarter",
+    label: "Sage",
+  },
+  "ms-runner-0929-chambray": {
+    primary: "/runners/0929-chambray.webp",
+    primaryAlt: "MADE SAiNT 0929 Runner — Chambray, three-quarter",
+    label: "Chambray",
+  },
+  "ms-runner-0929-chestnut": {
+    primary: "/runners/0929-chestnut.webp",
+    primaryAlt: "MADE SAiNT 0929 Runner — Chestnut, three-quarter",
+    label: "Chestnut",
+  },
+  "ms-runner-0929-carbon": {
+    primary: "/runners/0929-carbon.webp",
+    primaryAlt: "MADE SAiNT 0929 Runner — Carbon, three-quarter",
+    label: "Carbon",
+  },
+  "ms-runner-0929-slate": {
+    primary: "/runners/0929-slate.webp",
+    primaryAlt: "MADE SAiNT 0929 Runner — Slate, three-quarter",
+    label: "Slate",
+  },
+  "ms-runner-0929-dune": {
+    primary: "/runners/0929-dune.webp",
+    primaryAlt: "MADE SAiNT 0929 Runner — Dune, three-quarter",
+    label: "Dune",
+  },
 };
 
 export function RunnerChapter() {
@@ -144,7 +169,7 @@ export function RunnerChapter() {
 
         {/* Copy panel — Bible voice: short, emotionally direct, precise */}
         <div>
-          <img src={SERIES_PLATE["0929"].src} alt={SERIES_PLATE["0929"].alt} className="h-16 w-auto max-w-full object-contain object-left sm:h-20" />
+          <SeriesPlate series="0929" size="md" />
 
           {/* Headline: product name, large and serif — no decoration */}
           <h2

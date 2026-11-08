@@ -47,7 +47,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           <ProductGallery views={views} />
 
           <div className="min-w-0 px-5 pb-12 lg:sticky lg:top-28 lg:self-start lg:px-0 lg:pb-0">
-            <SeriesPlate series={product.series} className="h-20 w-auto max-w-full object-contain object-left sm:h-24" />
+            <SeriesPlate series={product.series} size="lg" />
             <h1 className="mt-4 font-serif text-4xl leading-none md:text-5xl">{color(product.name)}</h1>
             <p className="mt-4 text-lg tabular-nums">${product.usd}</p>
             {product.notice && <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">{product.notice}</p>}

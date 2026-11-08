@@ -9,66 +9,54 @@ type Slide = {
   id: string;
   label: string;
   eyebrow: string;
-  title: string;
-  titleItalic?: string;
+  title: [string, string];
   body: string;
+  caption?: string;
   primaryHref: string;
   primaryLabel: string;
   secondaryHref?: string;
   secondaryLabel?: string;
   image: string;
-  imageMobile: string;
   imageAlt: string;
-  imagePosition?: string;
-  imageOpacity?: number;
-  bg: string;
-  textTone: "light" | "dark";
-  accentColor: string;
+  fit: "contain" | "cover";
+  tone: "stone" | "ink";
 };
 
 const SLIDES: Slide[] = [
   {
-    id: "runner-1101",
+    id: "runner-0929",
     label: "0929",
-    eyebrow: "0929 RUNNER",
-    title: "0929",
-    body: "MADE SAiNT 0929 Runner — Navy / Ivory.",
+    eyebrow: "Once sinner. Made Saint.",
+    title: ["You are", "what you become."],
+    body: "A wardrobe for the person you’re becoming.",
+    caption: "0929 v1 — Navy / Ivory",
     primaryHref: "/shop/ms-runner-chalk-navy",
-    primaryLabel: "Request this pair",
+    primaryLabel: "Discover 0929",
     secondaryHref: "/wardrobe",
     secondaryLabel: "Private Wardrobe",
     image: "/hero/navy-ivory.webp",
-    imageMobile: "/hero/navy-ivory.webp",
     imageAlt: "MADE SAiNT 0929 Runner — Navy / Ivory, with the MADE SAINT tongue mark, on limestone",
-    imagePosition: "object-contain object-center",
-    imageOpacity: 1,
-    bg: "#cbb8a4",
-    textTone: "light",
-    accentColor: "#B03236",
+    fit: "contain",
+    tone: "stone",
   },
   {
     id: "private-wardrobe",
     label: "Private Wardrobe",
-    eyebrow: "PRIVATE WARDROBE",
-    title: "A wardrobe,",
-    titleItalic: "considered around you.",
+    eyebrow: "Private Wardrobe",
+    title: ["A wardrobe,", "considered around you."],
     body: "One person coordinates the days. Made to order, ready in 4 to 6 weeks. A fitting is remote, and it is not held in person.",
     primaryHref: "/wardrobe",
     primaryLabel: "Discover",
     secondaryHref: "/wardrobe#introduction",
     secondaryLabel: "Request an introduction",
     image: "/editorial/saint-john-worn.webp",
-    imageMobile: "/editorial/saint-john-worn.webp",
     imageAlt: "MADE SAiNT Saint John The Forerunner — camel wool jacket and trouser, worn editorial against limestone columns",
-    imagePosition: "object-cover object-top",
-    bg: "#2a3030",
-    textTone: "light",
-    accentColor: "#c0a477",
+    fit: "cover",
+    tone: "ink",
   },
 ];
 
 const AUTOPLAY_MS = 8000;
-const CROSSFADE_MS = 650;
 
 export function EditorialHero() {
   const [active, setActive] = useState(0);
@@ -112,14 +100,14 @@ export function EditorialHero() {
     setActive((p) => (p + 1) % SLIDES.length);
   }, []);
 
-  /* Autoplay timer */
   useEffect(() => {
     if (!playing || reducedMotion) return;
     timerRef.current = setTimeout(() => advance(), AUTOPLAY_MS);
-    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
   }, [playing, reducedMotion, active, advance]);
 
-  /* Pause when hidden */
   useEffect(() => {
     const handleVisibility = () => {
       if (document.hidden) setPlaying(false);
@@ -128,12 +116,13 @@ export function EditorialHero() {
     return () => document.removeEventListener("visibilitychange", handleVisibility);
   }, []);
 
-  /* Intersection observer — pause when off screen */
   useEffect(() => {
     const el = heroRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => { if (!entry.isIntersecting) setPlaying(false); },
+      ([entry]) => {
+        if (!entry.isIntersecting) setPlaying(false);
+      },
       { threshold: 0.1 },
     );
     observer.observe(el);
@@ -141,197 +130,180 @@ export function EditorialHero() {
   }, []);
 
   const slide = SLIDES[active];
+  const stone = slide.tone === "stone";
+  const ink = stone ? "#1c1a17" : "#f5f0e8";
+  const muted = stone ? "rgba(28,26,23,0.72)" : "rgba(245,240,232,0.78)";
+
   return (
     <section
       ref={heroRef}
       aria-label="Featured editorial"
+      aria-roledescription="carousel"
       className="relative overflow-hidden"
-      style={{ minHeight: "min(90svh, 900px)", backgroundColor: slide.bg }}
+      style={{ backgroundColor: stone ? "#d4c3b2" : "#1a2232" }}
       onMouseEnter={() => setPlaying(false)}
-      onMouseLeave={() => { if (!manualRef.current && !reducedMotion) setPlaying(true); }}
+      onMouseLeave={() => {
+        if (!manualRef.current && !reducedMotion) setPlaying(true);
+      }}
       onFocus={() => setPlaying(false)}
     >
-      {/* Background images — crossfade */}
-      <div className="absolute inset-0 z-0" aria-hidden="true">
-        {SLIDES.map((s, i) => (
-          <div
-            key={s.id}
-            className={`ms-slide${s.imagePosition?.includes("contain") ? " ms-slide-contain" : ""}`}
-            style={{
-              opacity: i === active ? 1 : 0,
-              zIndex: i === active ? 1 : 0,
-              transition: reducedMotion ? "none" : `opacity ${CROSSFADE_MS}ms ease`,
-            }}
-          >
-            {/* Light pool — decorative */}
-            {i === active && (
-              <div
-                className="ms-light-pool"
-                style={{
-                  width: "60vw",
-                  height: "60vw",
-                  background: "radial-gradient(circle, rgba(255,248,220,0.18), transparent 70%)",
-                  top: "-10%",
-                  left: "-5%",
-                }}
-              />
-            )}
-            <Image
-              src={s.image}
-              alt={s.imageAlt}
-              fill
-              sizes="100vw"
-              className={s.imagePosition ?? "object-cover object-center"}
-              priority={i === 0}
-              style={{ opacity: s.imageOpacity ?? 0.72 }}
-            />
-            {/* Gradient overlay — ensures text legibility */}
+      <div className="md:grid md:min-h-[min(88svh,840px)] md:grid-cols-[minmax(300px,0.86fr)_minmax(0,1.14fr)] md:items-stretch">
+        <div
+          className={`relative order-1 w-full overflow-hidden md:order-2 md:h-full md:aspect-auto ${stone ? "aspect-[1024/571] ms-hero-stone-fade" : "aspect-square"}`}
+        >
+          {SLIDES.map((s, i) => (
             <div
+              key={s.id}
+              className="absolute inset-0"
+              style={{
+                opacity: i === active ? 1 : 0,
+                transition: reducedMotion ? "none" : "opacity 650ms ease",
+              }}
+              aria-hidden={i !== active}
+            >
+              <Image
+                key={`${s.id}-${i === active ? "on" : "off"}`}
+                src={s.image}
+                alt={i === active ? s.imageAlt : ""}
+                fill
+                priority={i === 0}
+                sizes="100vw"
+                className={`${s.fit === "contain" ? "object-contain object-center" : "object-cover object-[center_20%]"} ${i === active ? "ms-hero-img-settle" : ""}`}
+              />
+            </div>
+          ))}
+          <div className="ms-hero-atmosphere" aria-hidden="true" />
+          {!stone && (
+            <div
+              aria-hidden="true"
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(to right, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.42) 50%, rgba(0,0,0,0.12) 100%)",
+                  "linear-gradient(to top, rgba(26,34,50,0.92) 0%, rgba(26,34,50,0.28) 42%, rgba(26,34,50,0.12) 100%)",
               }}
             />
-          </div>
-        ))}
-      </div>
+          )}
+        </div>
 
-      {/* Grain overlay */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-[2]"
-        style={{ backgroundImage: "url('/brand/grain.svg')", backgroundSize: "180px 180px", opacity: 0.07 }}
-      />
-
-      {/* Content */}
-      <div className="relative z-[3] flex h-full min-h-[inherit] flex-col">
-        {/* Main editorial content */}
-        <div className="flex flex-1 items-end px-6 pb-20 pt-24 md:items-center md:px-16 md:pb-32 md:pt-32 lg:px-24">
-          <div className="max-w-[520px]">
-            {/* Eyebrow */}
+        <div
+          key={slide.id}
+          id={`slide-${slide.id}`}
+          role="tabpanel"
+          aria-label={slide.label}
+          className="relative z-[3] order-2 px-5 pb-8 pt-7 md:order-1 md:flex md:items-center md:px-12 md:py-16 lg:px-16"
+        >
+          <div className="max-w-[34rem]">
             <p
-              className="text-[11px] tracking-[0.32em] uppercase"
-              style={{ color: slide.accentColor }}
+              className="ms-hero-text-rise flex items-center gap-3 text-[11px] tracking-[0.28em] uppercase"
+              style={{ color: ink, animationDelay: "40ms" }}
             >
+              <span aria-hidden="true" className="inline-block h-px w-6" style={{ background: "#B03236" }} />
               {slide.eyebrow}
             </p>
 
-            {/* Title */}
             <h1
-              className="mt-4 font-serif leading-[0.93]"
-              style={{
-                color: "#f5f0e8",
-                fontSize: "clamp(60px, 8vw, 112px)",
-                letterSpacing: "-0.04em",
-              }}
+              className="mt-4 font-serif leading-[0.9] tracking-[-0.045em]"
+              style={{ color: ink, fontSize: "clamp(52px, 7.4vw, 104px)" }}
             >
-              {slide.title}
-              {slide.titleItalic && (
-                <span className="block italic">{slide.titleItalic}</span>
-              )}
+              <span className="ms-hero-text-rise block" style={{ animationDelay: "120ms" }}>
+                {slide.title[0]}
+              </span>
+              <span className="ms-hero-text-rise block" style={{ animationDelay: "240ms" }}>
+                {slide.title[1]}
+              </span>
             </h1>
 
-            {/* Body */}
             <p
-              className="mt-5 max-w-sm text-[16px] leading-relaxed"
-              style={{ color: "rgba(245, 240, 232, 0.80)" }}
+              className="ms-hero-text-rise mt-5 max-w-sm text-[16px] leading-relaxed md:text-[17px]"
+              style={{ color: muted, animationDelay: "380ms" }}
             >
               {slide.body}
             </p>
 
-            {/* Actions */}
-            <div className="mt-8 flex flex-wrap gap-3">
+            {slide.caption && (
+              <p
+                className="ms-hero-text-rise mt-4 text-[12px] tracking-[0.16em] uppercase"
+                style={{ color: muted, animationDelay: "480ms" }}
+              >
+                {slide.caption}
+              </p>
+            )}
+
+            <div className="ms-hero-text-rise mt-7 flex flex-wrap items-center gap-3" style={{ animationDelay: "560ms" }}>
               <Link
                 href={slide.primaryHref}
-                className="inline-flex h-12 items-center bg-[#f5f0e8] px-6 text-[12px] tracking-[0.18em] text-[#1c1a17] uppercase transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
+                className="inline-flex h-12 items-center px-6 text-[12px] tracking-[0.16em] uppercase transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
+                style={{
+                  background: stone ? "#1c1a17" : "#f5f0e8",
+                  color: stone ? "#f5f0e8" : "#1c1a17",
+                }}
               >
                 {slide.primaryLabel}
               </Link>
               {slide.secondaryHref && slide.secondaryLabel && (
                 <Link
                   href={slide.secondaryHref}
-                  className="inline-flex h-12 items-center border border-[rgba(245,240,232,0.40)] px-6 text-[12px] tracking-[0.18em] text-[#f5f0e8] uppercase transition-opacity hover:border-[rgba(245,240,232,0.70)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#f5f0e8]"
+                  className="inline-flex h-12 items-center px-3 text-[12px] tracking-[0.14em] uppercase underline decoration-1 underline-offset-[6px] transition-opacity hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
+                  style={{ color: muted }}
                 >
                   {slide.secondaryLabel}
                 </Link>
               )}
             </div>
+
+            <div className="mt-8 flex items-center gap-1" role="tablist" aria-label="Editorial slide navigation">
+              {SLIDES.map((s, i) => (
+                <button
+                  key={s.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={i === active}
+                  aria-controls={`slide-${s.id}`}
+                  onClick={() => go(i)}
+                  className="inline-flex h-11 items-center px-3 text-[11px] tracking-[0.16em] uppercase focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B03236]"
+                  style={{
+                    color: i === active ? ink : muted,
+                    boxShadow: i === active ? "inset 0 -1px 0 #B03236" : undefined,
+                  }}
+                >
+                  {s.label}
+                </button>
+              ))}
+              <button
+                type="button"
+                onClick={prev}
+                aria-label="Previous slide"
+                className="grid h-11 w-11 place-items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B03236]"
+                style={{ color: muted }}
+              >
+                <ChevronLeft className="size-4" />
+              </button>
+              <button
+                type="button"
+                onClick={next}
+                aria-label="Next slide"
+                className="grid h-11 w-11 place-items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B03236]"
+                style={{ color: muted }}
+              >
+                <ChevronRight className="size-4" />
+              </button>
+              {!reducedMotion && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    manualRef.current = false;
+                    setPlaying((p) => !p);
+                  }}
+                  aria-label={playing ? "Pause slideshow" : "Play slideshow"}
+                  className="grid h-11 w-11 place-items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B03236]"
+                  style={{ color: muted }}
+                >
+                  {playing ? <Pause className="size-3.5" /> : <Play className="size-3.5" />}
+                </button>
+              )}
+            </div>
           </div>
         </div>
-
-        {/* Controls dock */}
-        <div
-          className="relative z-[4] flex items-center justify-between gap-4 px-6 py-5 md:px-16 lg:px-24"
-          style={{
-            background: "rgba(26, 34, 50, 0.72)",
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
-            borderTop: "1px solid rgba(245, 240, 232, 0.10)",
-          }}
-        >
-          {/* Slide selectors — labelled buttons */}
-          <div className="flex items-center gap-1" role="tablist" aria-label="Editorial slide navigation">
-            {SLIDES.map((s, i) => (
-              <button
-                key={s.id}
-                role="tab"
-                aria-selected={i === active}
-                aria-controls={`slide-${s.id}`}
-                onClick={() => go(i)}
-                className="relative h-10 px-4 text-[11px] tracking-[0.18em] uppercase transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f5f0e8]"
-                style={{
-                  color: i === active ? "#f5f0e8" : "rgba(245, 240, 232, 0.50)",
-                  borderBottom: i === active ? "1px solid #B03236" : "1px solid transparent",
-                }}
-              >
-                {s.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Prev / Next */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={prev}
-              aria-label="Previous slide"
-              className="grid h-10 w-10 place-items-center text-[rgba(245,240,232,0.60)] transition-colors hover:text-[#f5f0e8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f5f0e8]"
-            >
-              <ChevronLeft className="size-5" />
-            </button>
-            <button
-              onClick={next}
-              aria-label="Next slide"
-              className="grid h-10 w-10 place-items-center text-[rgba(245,240,232,0.60)] transition-colors hover:text-[#f5f0e8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f5f0e8]"
-            >
-              <ChevronRight className="size-5" />
-            </button>
-
-            {/* Play / Pause — only shown when autoplay is available */}
-            {!reducedMotion && (
-              <button
-                onClick={() => {
-                  manualRef.current = false;
-                  setPlaying((p) => !p);
-                }}
-                aria-label={playing ? "Pause slideshow" : "Play slideshow"}
-                className="grid h-10 w-10 place-items-center text-[rgba(245,240,232,0.60)] transition-colors hover:text-[#f5f0e8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f5f0e8]"
-              >
-                {playing ? <Pause className="size-4" /> : <Play className="size-4" />}
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Hidden live region — does NOT announce automatic changes */}
-      <div
-        aria-live="polite"
-        aria-atomic="true"
-        className="sr-only"
-        id={`slide-${slide.id}`}
-      >
-        {/* Only populated on explicit user navigation, not autoplay — controlled by aria-selected */}
       </div>
     </section>
   );

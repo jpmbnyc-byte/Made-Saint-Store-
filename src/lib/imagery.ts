@@ -81,6 +81,7 @@ export const EDITORIAL_HEROES = [
   { src: "/line/f34.webp", width: 1536, height: 1024 },
   { src: "/line/f35.webp", width: 1024, height: 1536 },
   { src: "/line/f28.webp", width: 1024, height: 1536 },
+  { src: "/line/f50.webp", width: 1024, height: 1536 },
   { src: "/line/f10.webp", width: 1254, height: 1254 },
   { src: "/line/f09.webp", width: 1086, height: 1448 },
   { src: "/hero/saint-john.webp", width: 1856, height: 2304 },

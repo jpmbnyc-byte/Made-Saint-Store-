@@ -79,6 +79,22 @@ export const LOOKS: Look[] = [
     ],
   },
   {
+    id: "rose",
+    occasion: "weekend",
+    lifestyle: "off-duty",
+    name: "The Rose Set",
+    image: "/line/f50.webp",
+    alt: "Dusty rose zip blouson and trouser, worn over a petrol teal turtleneck",
+    read: "A dusty rose blouson, the matching trouser, and a petrol teal turtleneck.",
+    whole: true,
+    aside: "A worn study, not a client. The shoes are not a founding runner. The product sheets are reconstructions, not physical samples. Cloth is unconfirmed, and no price is listed.",
+    pieces: [
+      { id: "p06", role: "Blouson", shown: true },
+      { id: "p07", role: "Trouser", shown: true },
+      { id: "p13", role: "Turtleneck", shown: true },
+    ],
+  },
+  {
     id: "transit",
     occasion: "weekend",
     lifestyle: "transit",

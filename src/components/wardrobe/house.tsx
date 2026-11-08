@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { LIFESTYLES, visiblePieces, type LifestyleId } from "@/lib/private-client";
+import { visiblePieces, type LifestyleId } from "@/lib/private-client";
 import type { CommissionScope } from "@/lib/commission";
 import { lineByRef } from "@/lib/line";
 import { lookById, lookForLifestyle, offerFor } from "@/lib/looks";
@@ -66,6 +66,22 @@ const STARTS = [
     lifestyle: "off-duty" as const,
     pieces: ["p09", "p08", "p07"],
   },
+  {
+    id: "rose",
+    name: "Rose set",
+    line: "Dusty rose blouson and trouser, with a petrol teal turtleneck. Proposed, not approved.",
+    image: "/line/f50.webp",
+    alt: "Dusty rose zip blouson and trouser, worn over a petrol teal turtleneck. Not a client. The shoes are not a founding runner.",
+    lookId: "rose",
+    lifestyle: "off-duty" as const,
+    pieces: ["p06", "p07", "p13"],
+  },
+] as const;
+
+const ROSE_SHEETS = [
+  { src: "/wardrobe/blouson-rose-sheet.webp", alt: "Dusty rose zip blouson, front and back, a proposed sample sheet" },
+  { src: "/wardrobe/trouser-rose-sheet.webp", alt: "Dusty rose tailored trouser, front and back, a proposed sample sheet" },
+  { src: "/wardrobe/turtleneck-teal-sheet.webp", alt: "Petrol teal turtleneck, front and back, with a red MADE Saint study at the neck" },
 ] as const;
 
 export function PrivateHouse() {
@@ -91,7 +107,6 @@ export function PrivateHouse() {
 
   const ease = EASES.find((item) => item.id === easeId) ?? EASES[1];
   const shoulder = SHOULDERS.find((item) => item.id === shoulderId) ?? SHOULDERS[0];
-  const lifestyle = LIFESTYLES.find((l) => l.id === lifestyleId) ?? LIFESTYLES[0];
   const clothes = visiblePieces(selected);
   const heldLine = lineByRef(lineRef);
   const activeLook = focusLookId ? lookById(focusLookId) : roster.length ? lookForLifestyle(lifestyleId) : undefined;
@@ -218,9 +233,9 @@ export function PrivateHouse() {
           <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Start here</p>
           <h2 className="mt-3 max-w-2xl font-serif text-4xl leading-[0.95] md:text-5xl">Choose a set and adjust it.</h2>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            Four ways into the wardrobe, from the days you dress for. A conversation can follow. It is not the first step. A fitting stays physical, and it is arranged.
+            Start from the day, or from the rose sample. A conversation can follow. It is not the first step. A fitting stays physical, and it is arranged.
           </p>
-          <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+          <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
             {STARTS.map((start) => {
               const on = start.id === startId;
               return (
@@ -253,11 +268,23 @@ export function PrivateHouse() {
       <section id="pieces" className="scroll-mt-28 border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
         <div className="mx-auto grid max-w-[1100px] gap-10 px-5 py-10 md:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
           <div>
-            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">{roster.length ? `Adjust · ${lifestyle.name}` : "Adjust"}</p>
+            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">{startId ? `Adjust · ${STARTS.find((start) => start.id === startId)?.name}` : "Adjust"}</p>
             <h2 className="mt-3 font-serif text-4xl">Keep what you want made.</h2>
             <p className="mt-3 text-[15px] leading-relaxed text-[#1c1a17]/70">
               {startId ? "Uncheck a piece to leave it out. A founding pair is reserved on the shop, not in this request." : "Choose a starting set above. The pieces appear here."}
             </p>
+            {startId === "rose" && (
+              <div className="mt-6">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                  {ROSE_SHEETS.map((sheet) => (
+                    <img key={sheet.src} src={sheet.src} alt={sheet.alt} className="h-auto w-full bg-white object-contain" />
+                  ))}
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-[#1c1a17]/65">
+                  Sample sheets. Reconstructions, not physical samples. Proposed, not approved. Cloth is unconfirmed, and no price is listed. The measures in the pack are not shown here.
+                </p>
+              </div>
+            )}
             <ul className="mt-6 divide-y divide-[#1c1a17]/12 border-y border-[#1c1a17]/12">
               {heldLine && (
                 <li className="flex items-center gap-4 py-3">

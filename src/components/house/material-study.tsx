@@ -2,10 +2,16 @@ import Image from "next/image";
 
 const MATERIALS = [
   {
-    src: "/opening/navy-wave.webp",
-    alt: "Navy leather runner surface — woven calf leather, three-quarter, against plaster",
-    label: "Woven calf",
-    note: "Navy Intrecciato",
+    src: "/hero/leather-navy.webp",
+    alt: "MADE SAiNT navy full-grain leather runner — lateral hero view against limestone plaster",
+    label: "Full-grain leather",
+    note: "Navy · Leather",
+  },
+  {
+    src: "/opening/butter-hand.webp",
+    alt: "Butter leather runner held in hand — panel construction and colour detail",
+    label: "Butter leather",
+    note: "Hand study",
   },
   {
     src: "/opening/mesh-rose-plinth.webp",
@@ -14,14 +20,8 @@ const MATERIALS = [
     note: "Study",
   },
   {
-    src: "/opening/runner-butter.webp",
-    alt: "Butter leather runner — full lateral view showing clean panel seams",
-    label: "Full-grain leather",
-    note: "Leather study",
-  },
-  {
     src: "/opening/mesh-rose-overhead.webp",
-    alt: "Rose and brown mesh runners overhead — lateral and overhead compositional view",
+    alt: "Rose and brown mesh runners overhead — compositional view of the sole and upper",
     label: "Overhead composition",
     note: "Mesh study",
   },

@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { CAMPAIGN, fmtDate } from "@/lib/business";
+import { LEAD_TIME } from "@/lib/business";
 import { QUESTIONS } from "@/lib/questions";
 
 const TENSIONS = [
   {
     n: "01",
     title: "A picture is not a pair",
-    body: `A colorway is cut only after it is reserved. Below ${CAMPAIGN.threshold} pairs by ${fmtDate(CAMPAIGN.closes)}, every reservation for it is refunded.`,
+    body: `A pair is made to order and is ready in ${LEAD_TIME}.`,
   },
   {
     n: "02",
@@ -21,14 +21,14 @@ const TENSIONS = [
 ] as const;
 
 const FOR = [
-  "You can wait for the run to confirm before the pair is cut.",
+  "You can wait 4 to 6 weeks for a pair made for you.",
   "You want the published price, the same on the first day and the last.",
   "You are dressing a day. The clothes around the pair are commissioned.",
 ] as const;
 
 const NOT_FOR = [
-  "You need a pair shipped this month.",
-  "You want the leather runners. They are shown, and they are not reserved.",
+  "You need a pair shipped this week.",
+  "You want a listed price on a leather study. Those can be requested, and a price is not listed.",
   "You want to check out the 2027 line, or to treat a seasonal figure as a price.",
 ] as const;
 

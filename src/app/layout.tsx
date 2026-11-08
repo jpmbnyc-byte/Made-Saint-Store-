@@ -27,11 +27,11 @@ export const metadata: Metadata = {
     template: "%s · MADE SAiNT",
   },
   description:
-    "Runners made to order in Felgueiras, Portugal. The Founding Edition is numbered and reserved before a pair is cut.",
+    "Made to order. Ready in 4 to 6 weeks. A fitting is remote, and it is not held in person.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "MADE Saint",
-    description: "Runners made to order in Felgueiras, Portugal.",
+    description: "Made to order. Ready in 4 to 6 weeks.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "MADE Saint" }],
   },
   twitter: {

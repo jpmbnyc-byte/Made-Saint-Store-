@@ -59,6 +59,21 @@ test("a line style can be commissioned without a wardrobe piece", () => {
   assert.equal(parsed.value.lineRef, "R020");
 });
 
+test("a remote fitting consultation is optional and unpriced", () => {
+  const off = parseCommission(base);
+  assert.equal(off.ok, true);
+  if (!off.ok) return;
+  assert.equal(off.value.remoteFitting, false);
+  const on = parseCommission({ ...base, remoteFitting: true });
+  assert.equal(on.ok, true);
+  if (!on.ok) return;
+  assert.equal(on.value.remoteFitting, true);
+  const junk = parseCommission({ ...base, remoteFitting: "yes" });
+  assert.equal(junk.ok, true);
+  if (!junk.ok) return;
+  assert.equal(junk.value.remoteFitting, false);
+});
+
 test("measurements name a pathway and an empty profile does not", () => {
   assert.equal(reviewCommission(EMPTY_FIT).pathway, "not-given");
   assert.equal(reviewCommission({ ...EMPTY_FIT, height: "198", sleeve: "71" }).pathway, "technical-review");

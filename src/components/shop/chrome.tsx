@@ -39,7 +39,7 @@ export function ShopFooter() {
         <div>
           <p className="font-serif text-3xl text-[#1c1a17]">MADE SAiNT</p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-[#1c1a17]/65">
-            Made to order in Felgueiras, Portugal. We make what has been reserved, and nothing more.
+            Made to order. Ready in 4 to 6 weeks. A fitting is remote, and it is not held in person.
           </p>
         </div>
         <div className="space-y-2 text-sm">

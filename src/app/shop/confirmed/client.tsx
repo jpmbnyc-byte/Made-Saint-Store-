@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { CAMPAIGN, fmtDate, productById, shipWindow } from "@/lib/business";
+import { LEAD_TIME, productById } from "@/lib/business";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
 
 export function ConfirmedClient() {
@@ -52,8 +52,8 @@ export function ConfirmedClient() {
                 ["Colorway", shown?.name ?? "Founding Edition"],
                 ["Size", size ? `US ${size}` : "As selected"],
                 ["Reference", id || "We will confirm by email"],
-                ["Run confirmed when", `${CAMPAIGN.threshold} pairs are reserved, by ${fmtDate(CAMPAIGN.closes)}`],
-                ["Ships", shipWindow()],
+                ["Made", "To order"],
+                ["Ready in", LEAD_TIME],
               ].map(([k, v]) => (
                 <div key={k} className="flex justify-between gap-6 py-3">
                   <dt className="text-[#1c1a17]/55">{k}</dt>
@@ -63,8 +63,8 @@ export function ConfirmedClient() {
             </dl>
             <p className="mt-6 text-sm leading-relaxed text-[#1c1a17]/70">
               {paid
-                ? "We will write when the run is confirmed and again from the bench in Felgueiras. If the run is not confirmed, the payment is returned in full."
-                : "No payment was taken. The 120-pair rule and its refund are written for a paid reservation. While payments are not connected, there is no charge to return."}
+                ? `The pair is made to order and is ready in ${LEAD_TIME}. The house writes when it leaves.`
+                : "No payment was taken. The request is recorded at the listed price. Checkout is not connected on this page, so there is no charge to return."}
             </p>
             <Link href="/shop" className="mt-8 inline-block border-b border-[#1c1a17] pb-1 text-[11px] tracking-[0.18em] uppercase">
               Return to the edition

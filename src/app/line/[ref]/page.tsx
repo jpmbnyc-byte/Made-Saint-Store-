@@ -54,7 +54,7 @@ export default async function LineProductPage({ params }: { params: Promise<{ re
             <p className="mt-2 max-w-md text-sm leading-relaxed text-[#1c1a17]/70">
               {product.status === "held"
                 ? "This record is held. It has no list price."
-                : "Proposed list price from the 29 October 2026 framework. It is not a price a client can pay on this page."}
+                : "Available to request. Made to order, ready in 4 to 6 weeks. The figure is a proposed list price from the 29 October 2026 framework. It is not a price a client can pay on this page."}
             </p>
             <dl className="mt-8 space-y-4 border-t border-[#1c1a17]/12 pt-6 text-sm">
               <div>
@@ -82,7 +82,7 @@ export default async function LineProductPage({ params }: { params: Promise<{ re
               </p>
             )}
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href={`/wardrobe?ref=${product.ref}#commission`} className="inline-flex h-12 items-center bg-[#1c1a17] px-5 text-[11px] tracking-[0.16em] text-[#f6f4ef] uppercase">Commission</Link>
+              <Link href={`/wardrobe?ref=${product.ref}#introduction`} className="inline-flex h-12 items-center bg-[#1c1a17] px-5 text-[11px] tracking-[0.16em] text-[#f6f4ef] uppercase">Request this style</Link>
               <Link href="/shop#edition" className="border border-[#1c1a17] px-5 py-3 text-[11px] tracking-[0.16em] uppercase">Founding runners</Link>
             </div>
           </div>

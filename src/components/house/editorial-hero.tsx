@@ -50,7 +50,7 @@ const SLIDES: Slide[] = [
     eyebrow: "PRIVATE WARDROBE",
     title: "A wardrobe,",
     titleItalic: "considered around you.",
-    body: "One person coordinates the days. A conversation is remote. A fitting is arranged.",
+    body: "One person coordinates the days. Made to order, ready in 4 to 6 weeks. A fitting is remote, and it is not held in person.",
     primaryHref: "/wardrobe",
     primaryLabel: "Discover",
     secondaryHref: "/wardrobe#introduction",

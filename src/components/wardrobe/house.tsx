@@ -6,10 +6,39 @@ import { visiblePieces, type LifestyleId } from "@/lib/private-client";
 import type { CommissionScope } from "@/lib/commission";
 import { lineByRef } from "@/lib/line";
 import { lookById, lookForLifestyle, offerFor } from "@/lib/looks";
+import { PIECES, type WardrobePiece } from "@/lib/wardrobe";
 import { TONAL_COLORS, TonalSlideshow } from "@/components/wardrobe/tonal";
+
+const CATALOG = PIECES.filter((piece) => Boolean(piece.image));
 
 function clothingIds(ids: readonly string[]) {
   return ids.filter((id) => offerFor(id).kind === "commission");
+}
+
+function AlternateCard({ piece, onAdd }: { piece: WardrobePiece; onAdd: () => void }) {
+  const offer = offerFor(piece.id);
+  const study = /reconstruction/i.test(piece.note ?? "");
+  return (
+    <div className="flex flex-col border border-[#1c1a17]/10 bg-white">
+      <img src={piece.image} alt={piece.name} className="h-36 w-full bg-[#e7e0d4] object-contain" />
+      <div className="flex flex-1 flex-col p-2">
+        <p className="font-serif text-lg leading-tight">{piece.name}</p>
+        <p className="mt-1 text-[12px] leading-snug text-[#1c1a17]/60">
+          {study ? "Study. Not a physical sample. " : ""}
+          {offer.kind === "commission" ? "Available · made to order, 4 to 6 weeks" : `Available · $${offer.usd} · made to order`}
+        </p>
+        {offer.kind === "commission" ? (
+          <button type="button" onClick={onAdd} className="mt-2 h-10 text-left text-[11px] tracking-[0.12em] uppercase underline underline-offset-4">
+            Add
+          </button>
+        ) : (
+          <Link href={offer.href} className="mt-2 inline-flex h-10 items-center text-[11px] tracking-[0.12em] uppercase underline underline-offset-4">
+            Request this pair
+          </Link>
+        )}
+      </div>
+    </div>
+  );
 }
 
 const EASES = [
@@ -104,6 +133,7 @@ export function PrivateHouse() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState<string | null>(null);
+  const [remoteFitting, setRemoteFitting] = useState(false);
 
   const ease = EASES.find((item) => item.id === easeId) ?? EASES[1];
   const shoulder = SHOULDERS.find((item) => item.id === shoulderId) ?? SHOULDERS[0];
@@ -178,6 +208,7 @@ export function PrivateHouse() {
           lookId: activeLook?.id ?? "",
           pieceIds: selected,
           lineRef,
+          remoteFitting,
         }),
       });
       const text = await res.text();
@@ -226,6 +257,15 @@ export function PrivateHouse() {
     setSelected((cur) => (cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id]));
   }
 
+  function addPiece(id: string) {
+    setRoster((cur) => (cur.includes(id) ? cur : [...cur, id]));
+    if (offerFor(id).kind === "commission") {
+      setSelected((cur) => (cur.includes(id) ? cur : [...cur, id]));
+    }
+  }
+
+  const alternates = CATALOG.filter((piece) => !roster.includes(piece.id));
+
   return (
     <div>
       <section id="build" className="scroll-mt-28">
@@ -233,7 +273,7 @@ export function PrivateHouse() {
           <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Start here</p>
           <h2 className="mt-3 max-w-2xl font-serif text-4xl leading-[0.95] md:text-5xl">Choose a set and adjust it.</h2>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            Start from the day, or from the rose sample. A conversation can follow. It is not the first step. A fitting stays physical, and it is arranged.
+            Start from the day, or from the rose sample. Every piece with a photograph is available. Made to order, ready in 4 to 6 weeks. A fitting is remote. It is not held in person.
           </p>
           <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
             {STARTS.map((start) => {
@@ -271,7 +311,9 @@ export function PrivateHouse() {
             <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">{startId ? `Adjust · ${STARTS.find((start) => start.id === startId)?.name}` : "Adjust"}</p>
             <h2 className="mt-3 font-serif text-4xl">Keep what you want made.</h2>
             <p className="mt-3 text-[15px] leading-relaxed text-[#1c1a17]/70">
-              {startId ? "Uncheck a piece to leave it out. A founding pair is reserved on the shop, not in this request." : "Choose a starting set above. The pieces appear here."}
+              {startId
+                ? "Uncheck a piece to leave it out. The photographs below are recommended alternates, from pieces that already have an image."
+                : "The pieces with photographs are listed below. Choose a starting set, or add any of them. Made to order, ready in 4 to 6 weeks."}
             </p>
             {startId === "rose" && (
               <div className="mt-6">
@@ -295,20 +337,19 @@ export function PrivateHouse() {
                   </span>
                 </li>
               )}
-              {visiblePieces(roster).length === 0 && !heldLine && <li className="py-4 text-sm text-[#1c1a17]/60">No piece selected yet.</li>}
+              {visiblePieces(roster).length === 0 && !heldLine && <li className="py-4 text-sm text-[#1c1a17]/60">Nothing kept yet. Add a piece from the photographs below.</li>}
               {visiblePieces(roster).map((piece) => {
                 const offer = offerFor(piece.id);
                 if (offer.kind !== "commission") {
                   return (
                     <li key={piece.id} className="flex items-center gap-4 py-3">
+                      {piece.image && <img src={piece.image} alt="" className="size-14 shrink-0 bg-[#e7e0d4] object-contain" />}
                       <span className="min-w-0 flex-1">
                         <span className="block font-serif text-2xl">{piece.name}</span>
-                        <span className="text-[13px] text-[#1c1a17]/60">
-                          {offer.kind === "reserve" ? "Founding pair · reserved separately" : "Next run · not in this commission"}
-                        </span>
+                        <span className="text-[13px] text-[#1c1a17]/60">Available · made to order, 4 to 6 weeks · ${offer.usd}</span>
                       </span>
                       <Link href={offer.href} className="inline-flex h-11 items-center text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">
-                        {offer.kind === "reserve" ? "Reserve" : "Join the list"}
+                        Request this pair
                       </Link>
                     </li>
                   );
@@ -318,15 +359,28 @@ export function PrivateHouse() {
                   <li key={piece.id}>
                     <label className="flex min-h-11 cursor-pointer items-center gap-4 py-3">
                       <input type="checkbox" checked={on} onChange={() => toggle(piece.id)} className="size-5 accent-[#1c1a17]" />
+                      {piece.image && <img src={piece.image} alt="" className="size-14 shrink-0 bg-[#e7e0d4] object-contain" />}
                       <span className="min-w-0 flex-1">
                         <span className="block font-serif text-2xl">{piece.name}</span>
-                        <span className="text-[13px] text-[#1c1a17]/60">{piece.material}</span>
+                        <span className="text-[13px] text-[#1c1a17]/60">Available · made to order, 4 to 6 weeks</span>
                       </span>
                     </label>
                   </li>
                 );
               })}
             </ul>
+            <div className="mt-8">
+              <p className="text-[11px] tracking-[0.16em] text-[#8d7349] uppercase">{startId ? "Recommended alternates" : "Available now"}</p>
+              {alternates.length === 0 ? (
+                <p className="mt-3 text-sm text-[#1c1a17]/60">Every photographed piece is in the list above.</p>
+              ) : (
+                <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                  {alternates.map((piece) => (
+                    <AlternateCard key={piece.id} piece={piece} onAdd={() => addPiece(piece.id)} />
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           <div id="fit" className="scroll-mt-28 border border-[#1c1a17]/15 bg-[#1c1a17] p-4 text-[#f6f4ef] md:p-5">
@@ -342,7 +396,7 @@ export function PrivateHouse() {
                 <figcaption className="ms-caption px-2 pb-2 text-xs text-[#f6f4ef]/70">Saint Michael, the back. A different study from the worn photograph.</figcaption>
               </figure>
             </div>
-            <p className="mt-4 text-sm leading-relaxed text-[#f6f4ef]/75">A conversation can be virtual. A fitting is physical, and it is arranged. Measurements are taken with a person. They are not entered here.</p>
+            <p className="mt-4 text-sm leading-relaxed text-[#f6f4ef]/75">The fitting is remote. It is not held in person. Measurements are not entered here. A remote fitting consultation can be added with the introduction. It has no listed price.</p>
             <p className="mt-5 text-sm text-[#f6f4ef]/80">How should the shoulder feel?</p>
             <div className="mt-2 grid grid-cols-2 gap-2" role="tablist" aria-label="Shoulder">
               {SHOULDERS.map((item) => {
@@ -380,7 +434,7 @@ export function PrivateHouse() {
           <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Private introduction</p>
           <h2 className="mt-3 max-w-3xl font-serif text-4xl md:text-5xl">Send the set you built.</h2>
           <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            This writes the set, the fit preference, and who is writing. It does not take payment, confirm an appointment, or reserve a founding pair. The house writes back to the email you give. A response time is not promised. Measurements are taken with a person after this, not on this form. Once sinner. Made Saint. The line is the founder&apos;s, for grace and a changed life. A purchase does not confer moral or spiritual standing.
+            This writes the set, the fit preference, and who is writing. It does not take payment, confirm an appointment, or reserve a founding pair. The house writes back to the email you give. A response time is not promised. The fitting is remote. It is not held in person. Measurements are not entered on this form. Once sinner. Made Saint. The line is the founder&apos;s, for grace and a changed life. A purchase does not confer moral or spiritual standing.
           </p>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
@@ -390,7 +444,9 @@ export function PrivateHouse() {
                   <p className="text-[11px] tracking-[0.16em] uppercase">Received · {sent}</p>
                   <p className="mt-3 font-serif text-3xl">The request is with the house.</p>
                   <p className="mt-3 max-w-lg text-sm leading-relaxed text-[#1c1a17]/70">
-                    The house will write to {email}. This is not an appointment, and nothing was charged. A founding pair, if you want one, is reserved from the shop.
+                    The house will write to {email}. This is not an appointment, and nothing was charged.
+                    {remoteFitting ? " A remote fitting consultation is part of this request. It is not booked on a calendar, and it has no listed price." : ""}
+                    {" "}A founding pair, if you want one, is requested from the shop.
                   </p>
                   <Link href="/shop#edition" className="mt-6 inline-flex h-12 items-center border border-[#1c1a17] px-5 text-[11px] tracking-[0.16em] uppercase">
                     Reserve a founding pair
@@ -468,6 +524,14 @@ export function PrivateHouse() {
                       </select>
                     </label>
                   </div>
+
+                  <label className="flex cursor-pointer items-start gap-3 border border-[#1c1a17]/15 p-4">
+                    <input type="checkbox" checked={remoteFitting} onChange={(e) => setRemoteFitting(e.target.checked)} className="mt-1 size-5 accent-[#1c1a17]" />
+                    <span>
+                      <span className="block font-serif text-2xl">Add a remote fitting consultation</span>
+                      <span className="mt-1 block text-sm leading-relaxed text-[#1c1a17]/70">Optional. The fitting is remote, and it is not held in person. This asks the house to include that conversation. It is not a measurement, it is not an appointment, and it has no listed price.</span>
+                    </span>
+                  </label>
 
                   {error && <p className="text-sm">{error}</p>}
                   <button type="submit" disabled={busy} className="inline-flex h-12 w-full items-center justify-center bg-[#1c1a17] px-6 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase disabled:opacity-60 sm:w-auto">

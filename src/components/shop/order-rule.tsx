@@ -1,35 +1,28 @@
-import { CAMPAIGN, campaignStatus, fmtDate, shipWindow } from "@/lib/business";
+import { LEAD_TIME } from "@/lib/business";
 
 export const ORDER_STEPS = [
   {
     n: "1",
     when: "Now",
     title: "Choose",
-    body: "Pick one founding colorway and a size. The reservation is placed today.",
+    body: "Pick a colorway and a size. The pair is available now.",
   },
   {
     n: "2",
-    when: `By ${fmtDate(CAMPAIGN.closes)}`,
-    title: "Confirm",
-    body: `That colorway is cut only if ${CAMPAIGN.threshold} pairs are reserved by ${fmtDate(CAMPAIGN.closes)}. Below that, every reservation for it is refunded in full.`,
+    when: "Made to order",
+    title: "Make",
+    body: "The pair is started for you. A fitting, if you add one, is a remote consultation. It is not held in person.",
   },
   {
     n: "3",
-    when: shipWindow(),
-    title: "Make",
-    body: `A confirmed run is cut in Felgueiras and ships ${shipWindow()}.`,
+    when: LEAD_TIME,
+    title: "Ready",
+    body: `Made to order. Ready in ${LEAD_TIME}.`,
   },
 ] as const;
 
-export function orderWindowLine(now = new Date()) {
-  const status = campaignStatus(now);
-  if (status === "upcoming") {
-    return `You may reserve now. The public window opens ${fmtDate(CAMPAIGN.opens)} and closes ${fmtDate(CAMPAIGN.closes)}.`;
-  }
-  if (status === "open") {
-    return `Reservations close ${fmtDate(CAMPAIGN.closes)}.`;
-  }
-  return "The founding window has closed. The list is open for the next run.";
+export function orderWindowLine() {
+  return `Made to order. Ready in ${LEAD_TIME}.`;
 }
 
 export function OrderRule({

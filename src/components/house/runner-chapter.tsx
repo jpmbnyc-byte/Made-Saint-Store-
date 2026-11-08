@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { PRODUCTS, SIZES, shipWindow } from "@/lib/business";
+import { LEAD_TIME, PRODUCTS, SIZES } from "@/lib/business";
 
 const short = (name: string) => name.replace("Runner, ", "");
 
@@ -165,7 +165,7 @@ export function RunnerChapter() {
             ${product.usd}
           </p>
           <p className="mt-1.5 text-[13px] text-[#8d7349]">
-            Ships {shipWindow()} · run confirmed at 120 pairs.
+            Available · made to order · ready in {LEAD_TIME}.
           </p>
 
           {/* Materials — verified per Bible §04 "precise product language" */}

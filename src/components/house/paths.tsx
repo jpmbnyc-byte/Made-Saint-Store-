@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CAMPAIGN, fmtDate, shipWindow } from "@/lib/business";
+import { LEAD_TIME } from "@/lib/business";
 import { OFFERINGS } from "@/lib/private-client";
 
 const SHOWN = [
@@ -11,8 +11,8 @@ const SHOWN = [
       "One founding colorway",
       "US men's 7 to 12",
       "The price on the card is the price",
-      `Cut only if ${CAMPAIGN.threshold} pairs are reserved by ${fmtDate(CAMPAIGN.closes)}`,
-      `Ships ${shipWindow()} if the run is confirmed`,
+      "Available now",
+      `Made to order. Ready in ${LEAD_TIME}`,
     ],
   },
   {

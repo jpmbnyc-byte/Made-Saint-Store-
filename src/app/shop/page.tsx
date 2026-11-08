@@ -2,16 +2,16 @@ import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { CAMPAIGN, PRODUCTS, shipWindow, statusLine } from "@/lib/business";
+import { LEAD_TIME, PRODUCTS, statusLine } from "@/lib/business";
 import { QUESTIONS } from "@/lib/questions";
 import { OrderRule, orderWindowLine } from "@/components/shop/order-rule";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
-import { CancelledBanner, LiveProgress, LiveWaitlistCount } from "@/components/shop/live";
+import { CancelledBanner, LiveWaitlistCount } from "@/components/shop/live";
 import { WaitlistForm } from "@/components/shop/waitlist";
 
 export const metadata: Metadata = {
   title: "The Founding Edition",
-  description: "Three runners, made to order in Portugal. Numbered, reserved before they are made.",
+  description: "Four runners, made to order. Ready in 4 to 6 weeks.",
 };
 
 export default async function ShopPage() {
@@ -26,13 +26,13 @@ export default async function ShopPage() {
       </Suspense>
 
       <section id="order" className="mx-auto max-w-[1100px] scroll-mt-28 px-5 py-12 md:px-8 md:py-16">
-        <p className="text-[11px] tracking-[0.28em] text-[#B03236] uppercase">1101 · Inaugural Series · Made to order in Felgueiras</p>
-        <h1 className="mt-4 max-w-3xl font-serif text-[44px] leading-[0.95] text-[#1c1a17] md:text-[64px]">A pair is cut only after you reserve it.</h1>
+        <p className="text-[11px] tracking-[0.28em] text-[#B03236] uppercase">1101 · Inaugural Series · Made to order</p>
+        <h1 className="mt-4 max-w-3xl font-serif text-[44px] leading-[0.95] text-[#1c1a17] md:text-[64px]">A pair, made for you.</h1>
         <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">{orderWindowLine()}</p>
         <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
           Anyone the size fits can request a pair, in US men&apos;s 7 through 12. Other sizes are not offered. A pair does not open a wardrobe.
         </p>
-        <ul className="mt-8 grid grid-cols-3 gap-2 sm:gap-4">
+        <ul className="mt-8 grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-4">
           {launch.map((p) => (
             <li key={p.id}>
               <Link href={`/shop/${p.id}`} className="block">
@@ -52,10 +52,10 @@ export default async function ShopPage() {
 
       <section id="edition" className="mx-auto max-w-[1100px] scroll-mt-28 px-5 pb-14 md:px-8">
         <div className="flex flex-wrap items-end justify-between gap-4 border-t border-[#1c1a17]/15 pt-8">
-          <h2 className="font-serif text-4xl">Three founding colorways</h2>
-          <p className="text-[13px] text-[#1c1a17]/60">From ${Math.min(...launch.map((p) => p.usd))} · ships {shipWindow()}</p>
+          <h2 className="font-serif text-4xl">Available now</h2>
+          <p className="text-[13px] text-[#1c1a17]/60">From ${Math.min(...launch.map((p) => p.usd))} · ready in {LEAD_TIME}</p>
         </div>
-        <div className="mt-8 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {launch.map((p) => (
             <Link key={p.id} href={`/shop/${p.id}`} className="group block">
               <div className="relative aspect-[2/3] overflow-hidden bg-[#f3efe8]">
@@ -66,15 +66,13 @@ export default async function ShopPage() {
                 <p className="text-sm tabular-nums">${p.usd}</p>
               </div>
               <p className="mt-1 text-[13px] text-[#1c1a17]/60">The Runner · {p.line}</p>
-              <div className="mt-4">
-                <LiveProgress productId={p.id} of={CAMPAIGN.threshold} />
-              </div>
+              <p className="mt-3 text-[12px] tracking-[0.12em] text-[#8d7349] uppercase">Available · made to order · {LEAD_TIME}</p>
             </Link>
           ))}
         </div>
       </section>
 
-      <section id="list" className="scroll-mt-28 border-y border-[#1c1a17]/10 bg-[#efece5]">
+      {next.length > 0 && <section id="list" className="scroll-mt-28 border-y border-[#1c1a17]/10 bg-[#efece5]">
         <div className="mx-auto max-w-[1320px] px-5 py-20 md:px-8">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -101,7 +99,7 @@ export default async function ShopPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section>}
 
       <section id="faq" className="mx-auto max-w-[900px] scroll-mt-28 px-5 py-20 md:px-8">
         <h2 className="font-serif text-4xl md:text-5xl">Questions</h2>

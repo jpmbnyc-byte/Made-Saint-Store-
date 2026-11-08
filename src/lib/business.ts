@@ -47,8 +47,11 @@ export const PRODUCTS: Product[] = [
   { id: "ms-runner-navy-intrecciato", storyId: "navy-intrecciato", name: "Runner, Navy Intrecciato", line: "Woven calf, sand mesh", usd: 695, image: "/stories/navy-intrecciato.webp", launch: true, materials: ["Woven calf leather", "Smooth calf eyestay and tongue", "Perforated technical mesh", "Calf leather lining", "Nub-lug rubber sole"], costUsd: 0 },
   { id: "ms-runner-chalk-navy", storyId: "chalk-navy", name: "Runner, Chalk", line: "Bouclé suede, navy canvas", usd: 595, image: "/stories/chalk-navy.webp", launch: true, materials: ["Bouclé-finish suede", "Cotton canvas windows", "Calf leather lining", "Nub-lug rubber sole"], costUsd: 0 },
   { id: "ms-runner-washed-denim", storyId: "washed-denim", name: "Runner, Washed Denim", line: "Two-tone selvedge-style denim", usd: 545, image: "/stories/washed-denim.webp", launch: true, materials: ["Washed cotton denim", "Raw indigo denim windows", "Calf leather lining", "Nub-lug rubber sole"], costUsd: 0 },
-  { id: "ms-runner-espresso", storyId: "espresso-oxblood", name: "Runner, Espresso", line: "Calf suede, oxblood lining", usd: 545, image: "/stories/espresso-oxblood.webp", launch: false, materials: ["Calf suede", "Technical mesh", "Oxblood terry lining", "Nub-lug rubber sole"], costUsd: 0 },
+  { id: "ms-runner-espresso", storyId: "espresso-oxblood", name: "Runner, Espresso", line: "Calf suede, oxblood lining", usd: 545, image: "/stories/espresso-oxblood.webp", launch: true, materials: ["Calf suede", "Technical mesh", "Oxblood terry lining", "Nub-lug rubber sole"], costUsd: 0 },
 ];
+
+/** Customer-facing make time. A requested pair is started for that person. */
+export const LEAD_TIME = "4 to 6 weeks";
 
 /** US men's sizes the MEES nub sole covers (EU 39–46), with a typical men's size curve. */
 export const SIZES = ["7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12"] as const;
@@ -188,11 +191,8 @@ export function campaignStatus(now = new Date(), c: Campaign = CAMPAIGN): Campai
 
 export const productById = (id: string) => PRODUCTS.find((p) => p.id === id);
 
-export function statusLine(now = new Date()) {
-  const s = campaignStatus(now);
-  if (s === "upcoming") return `Reserve now · public window ${fmtDate(CAMPAIGN.opens)} to ${fmtDate(CAMPAIGN.closes)} · cut only at ${CAMPAIGN.threshold} pairs`;
-  if (s === "open") return `Reservations close ${fmtDate(CAMPAIGN.closes)} · a colorway is cut only at ${CAMPAIGN.threshold} pairs`;
-  return "The founding window has closed · join the list for the next run";
+export function statusLine() {
+  return `Made to order · ready in ${LEAD_TIME}`;
 }
 
 export type FundingId = "owner" | "lean" | "render" | "crowd";

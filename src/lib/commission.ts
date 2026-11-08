@@ -25,6 +25,8 @@ export type CommissionDraft = {
   role: (typeof INTRODUCTION_ROLES)[number];
   timing: (typeof INTRODUCTION_TIMINGS)[number];
   budget: (typeof INTRODUCTION_BUDGETS)[number];
+  /** Optional add-on. No price. The fitting is remote, and it is not booked as an appointment. */
+  remoteFitting: boolean;
 };
 
 export type CommissionReview = {
@@ -43,6 +45,7 @@ export function parseCommission(raw: unknown): { ok: true; value: CommissionDraf
   const role = typeof body.role === "string" ? body.role : "";
   const timing = typeof body.timing === "string" ? body.timing : "";
   const budget = typeof body.budget === "string" ? body.budget : "";
+  const remoteFitting = body.remoteFitting === true;
   const lookId = typeof body.lookId === "string" ? body.lookId.trim().slice(0, 40) : "";
   const lineRef = typeof body.lineRef === "string" ? body.lineRef.trim().slice(0, 12) : "";
   const pieceIds = Array.isArray(body.pieceIds) ? body.pieceIds.filter((id): id is string => typeof id === "string").slice(0, 12) : [];
@@ -90,6 +93,7 @@ export function parseCommission(raw: unknown): { ok: true; value: CommissionDraf
       role: role as CommissionDraft["role"],
       timing: timing as CommissionDraft["timing"],
       budget: budget as CommissionDraft["budget"],
+      remoteFitting,
     },
   };
 }

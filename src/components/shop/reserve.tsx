@@ -5,20 +5,17 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2, Lock } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { LEAD_TIME } from "@/lib/business";
 
 export function ReserveForm({
   productId,
   priceUsd,
   payments,
-  closed,
-  shipWindow,
   sizes,
 }: {
   productId: string;
   priceUsd: number;
   payments: "stripe" | "mock";
-  closed: boolean;
-  shipWindow: string;
   sizes: readonly string[];
 }) {
   const router = useRouter();
@@ -54,10 +51,6 @@ export function ReserveForm({
       setError(err instanceof Error ? err.message : "Something went wrong.");
       setBusy(false);
     }
-  }
-
-  if (closed) {
-    return <p className="border border-[#1c1a17]/15 px-4 py-4 text-sm">The founding window has closed. Join the list below for the next run.</p>;
   }
 
   return (
@@ -101,12 +94,12 @@ export function ReserveForm({
         className="flex h-14 w-full items-center justify-center gap-3 bg-[#1c1a17] text-[11px] tracking-[0.2em] text-[#f6f4ef] uppercase transition hover:bg-[#1c1a17]/85 disabled:opacity-60"
       >
         {busy ? <Loader2 className="size-4 animate-spin" /> : payments === "stripe" ? <Lock className="size-3.5" /> : null}
-        {payments === "stripe" ? `Reserve this pair · $${priceUsd}` : `Request this pair · no payment today`}
+        {payments === "stripe" ? `Order this pair · $${priceUsd}` : `Request this pair · no payment today`}
       </button>
       <p className="text-center text-sm leading-relaxed text-[#1c1a17]/70">
         {payments === "stripe"
-          ? `Secure checkout by Stripe. Ships ${shipWindow}. Fully refunded if the run is not confirmed.`
-          : `No payment is taken today. Your name, size, and email are recorded as a nonbinding request at the listed price of $${priceUsd}. Ships ${shipWindow} if the run is confirmed.`}
+          ? `Secure checkout by Stripe. Made to order. Ready in ${LEAD_TIME}.`
+          : `No payment is taken today. Your name, size, and email are recorded as a request at the listed price of $${priceUsd}. Made to order. Ready in ${LEAD_TIME}.`}
       </p>
     </form>
   );

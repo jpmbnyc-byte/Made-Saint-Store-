@@ -18,7 +18,7 @@ test("a look can be reserved only for a founding pair", () => {
   assert.equal(reserveTotal(LOOKS.find((look) => look.id === "course")!), 0);
   assert.equal(reserveTotal(LOOKS.find((look) => look.id === "saint-john")!), 0);
 
-  assert.equal(offerFor("rn02").kind, "waitlist");
+  assert.equal(offerFor("rn02").kind, "reserve");
   assert.equal(offerFor("p01").kind, "commission");
   assert.equal(LOOKS.reduce((sum, look) => sum + reserveTotal(look), 0), 595 + 545 + 695);
 });

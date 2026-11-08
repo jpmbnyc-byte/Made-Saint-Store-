@@ -38,7 +38,7 @@ export default function LinePage() {
         <h1 className="mt-3 max-w-3xl font-serif text-5xl leading-[0.92] md:text-7xl">The line, where a photograph can carry it.</h1>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#1c1a17]/75">
           {shown.length} styles are shown, from ${low.toLocaleString("en-US")} to ${high.toLocaleString("en-US")}.
-          A proposed price is a list price. Cloth, color, and construction stay design intentions until a sample is approved.{" "}
+          A style with a photograph can be requested now. Made to order, ready in 4 to 6 weeks. A proposed price is a list price, not a checkout. Cloth, color, and construction stay design intentions until a sample is approved.{" "}
           {hidden} records stay in the data without a public card, because the photograph is missing, too small, or the price is held.
           The founding runners stay on the shop. A photographed style can be read by anyone it fits. The private wardrobe remains a service for an athlete.
         </p>

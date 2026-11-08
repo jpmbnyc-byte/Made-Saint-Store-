@@ -81,7 +81,7 @@ export function MaterialStudy() {
         </div>
 
         <p className="mt-8 text-[12px] leading-relaxed text-[#1c1a17]/45">
-          Leather studies are shown, not reserved. The founding colorways are Chalk, Navy Intrecciato, and Washed Denim.
+          Leather studies can be requested. Made to order, ready in 4 to 6 weeks. A price is not listed. The priced colorways are Chalk, Navy Intrecciato, Washed Denim, and Espresso.
         </p>
       </div>
     </section>

@@ -1,11 +1,11 @@
-import { CAMPAIGN, fmtDate } from "@/lib/business";
+import { LEAD_TIME } from "@/lib/business";
 
 export const QUESTIONS = [
-  { q: "What happens if a colorway does not reach its run?", a: `Every reservation for that colorway is refunded in full, to the original card, within five business days of ${fmtDate(CAMPAIGN.closes)}. Or you may move it to another colorway.` },
-  { q: "Why reserve before the pair is cut?", a: "Made-to-order means no overproduction, no end-of-season markdowns and no warehouse of unsold pairs. You get a pair made for you; we make only what is wanted." },
-  { q: "How do they fit?", a: "True to size for most. If you are between sizes, take the half size up. The leather lining relaxes slightly with wear. Size exchanges are free within 30 days of delivery." },
-  { q: "Can I cancel?", a: `Yes, for a full refund at any time before ${fmtDate(CAMPAIGN.closes)}, when the order goes to the workshop.` },
+  { q: "How long does a pair take?", a: `Made to order. Ready in ${LEAD_TIME}.` },
+  { q: "Why made to order?", a: "A pair is started for you. The house does not keep a warehouse of unsold pairs, and it does not mark a pair down at the end of a season." },
+  { q: "How do they fit?", a: "True to size for most. If you are between sizes, take the half size up. The leather lining relaxes slightly with wear. A fitting is not held in person. A remote fitting consultation can be added to a wardrobe request. Size exchanges are free within 30 days of delivery." },
+  { q: "Can I cancel?", a: "A request can be withdrawn before the pair is started. A paid checkout follows the terms shown there." },
   { q: "Will there be a sale?", a: "No. The price is the same for everyone, on the first day and the last." },
-  { q: "Can I reserve the leather runners or the 2027 line?", a: "No. The leather runners are shown. The 2027 line is a list of proposed styles and proposed prices. Neither is a checkout." },
+  { q: "Can I request the leather runners or the 2027 line?", a: "The priced runners on the shop are available now. Leather studies can be requested, made to order, and a price is not listed. The 2027 line can be requested with a wardrobe. Those proposed prices are not a checkout." },
   { q: "Caring for suede and woven leather", a: "Brush with a soft crepe or nylon brush after wear. Treat once with a suede protector before the first wear. Store in the dust bag, away from direct sun." },
 ] as const;

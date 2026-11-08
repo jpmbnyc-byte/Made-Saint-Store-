@@ -42,7 +42,7 @@ export function WardrobeChapter() {
             <em className="italic">considered around you.</em>
           </h2>
           <p className="mt-5 max-w-lg text-[16px] leading-relaxed text-[#f5f0e8]/75">
-            One person coordinates the days. A conversation is remote. A fitting is physical, and it is arranged.
+            One person coordinates the days. Made to order, ready in 4 to 6 weeks. A fitting is remote. It is not held in person.
           </p>
         </div>
 
@@ -116,7 +116,7 @@ export function WardrobeChapter() {
             </div>
 
             <p className="mt-6 text-[12px] leading-relaxed text-[#f5f0e8]/40">
-              No payment in this form. The house writes back after reviewing your introduction.
+              No payment in this form. A remote fitting consultation can be added. The house writes back after reviewing your introduction. A response time is not promised.
             </p>
           </div>
         </div>

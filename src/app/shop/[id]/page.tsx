@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ChevronLeft } from "lucide-react";
-import { CAMPAIGN, PRODUCTS, SIZES, campaignStatus, fmtDate, productById, shipWindow, statusLine } from "@/lib/business";
+import { PRODUCTS, SIZES, productById, statusLine } from "@/lib/business";
 import { OrderRule } from "@/components/shop/order-rule";
 import { viewsFor } from "@/lib/catalog";
 import { withPublished } from "@/lib/atelier/publish";
@@ -30,8 +30,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   const product = productById(id);
   if (!product) notFound();
   const views = await withPublished(product.id, viewsFor(product));
-  const siblings = PRODUCTS.filter((p) => p.launch === product.launch && p.id !== product.id);
-  const closed = campaignStatus() === "closed";
+  const siblings = PRODUCTS.filter((p) => p.launch && p.id !== product.id);
 
   return (
     <div className="min-h-screen bg-[#f5f0e8] text-[#1c1a17]">
@@ -50,7 +49,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <p className="text-[11px] tracking-[0.22em] text-[#B03236] uppercase">1101 · Inaugural Series</p>
             <h1 className="mt-3 font-serif text-4xl leading-none md:text-5xl">{short(product.name)}</h1>
             <p className="mt-4 text-lg tabular-nums">${product.usd}</p>
-            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{product.line}. Made to order in Felgueiras.</p>
+            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{product.line}. Made to order. Ready in 4 to 6 weeks.</p>
             {product.launch && (
               <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">
                 US men&apos;s 7 through 12. Anyone that size fits can request this pair. It does not open a wardrobe.
@@ -79,7 +78,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
             {product.launch && (
               <div className="mt-8">
-                <p className="text-[11px] tracking-[0.16em] uppercase">How this reservation works</p>
+                <p className="text-[11px] tracking-[0.16em] uppercase">How this pair is made</p>
                 <div className="mt-3">
                   <OrderRule compact />
                 </div>
@@ -93,8 +92,6 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                     productId={product.id}
                     priceUsd={product.usd}
                     payments={stripeEnabled() ? "stripe" : "mock"}
-                    closed={closed}
-                    shipWindow={shipWindow()}
                     sizes={SIZES}
                   />
                 </Suspense>
@@ -137,7 +134,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                   <span className="text-lg leading-none text-[#1c1a17]/40 group-open:rotate-45">+</span>
                 </summary>
                 <p className="mt-4 text-sm leading-relaxed text-[#1c1a17]/75">
-                  Free insured shipping in the US. In the box: rigid box, tissue, cotton dust bag, spare laces, and a card with the founding number. Cancel for a full refund any time before {fmtDate(CAMPAIGN.closes)}.
+                  Free insured shipping in the US. In the box: rigid box, tissue, cotton dust bag, spare laces, and a card. A request can be withdrawn before the pair is started. A paid checkout follows the terms shown there.
                 </p>
               </details>
             </div>

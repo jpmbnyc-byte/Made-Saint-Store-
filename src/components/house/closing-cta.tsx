@@ -20,7 +20,7 @@ export function ClosingCta() {
               made for you.
             </h2>
             <p className="mt-5 max-w-sm flex-1 text-[15px] leading-relaxed text-[#41505b]">
-              Three colorways. Made to order in Felgueiras. No payment today — a pair is cut only after the run is confirmed.
+              Four colorways, available now. Made to order. Ready in 4 to 6 weeks. No payment is taken until checkout is connected.
             </p>
             <div className="mt-8">
               <Link
@@ -44,7 +44,7 @@ export function ClosingCta() {
               <em className="italic">wardrobe.</em>
             </h2>
             <p className="mt-5 max-w-sm flex-1 text-[15px] leading-relaxed text-[#41505b]">
-              A conversation about the days you actually dress for. A fitting arranged. One person coordinates everything.
+              Choose a set, keep the pieces you want, and add a remote fitting consultation if you want one. The fitting is not held in person.
             </p>
             <div className="mt-8">
               <Link

@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { CAMPAIGN, SIZES, campaignStatus, productById, shipWindow } from "@/lib/business";
+import { CAMPAIGN, LEAD_TIME, SIZES, campaignStatus, productById } from "@/lib/business";
 import { createReservation, listReservations, tally, updateReservation } from "@/lib/preorders";
 import { createCheckout, stripeEnabled } from "@/lib/stripe";
 import { isAdmin } from "@/lib/admin";
@@ -35,7 +35,6 @@ export async function POST(req: NextRequest) {
   }
 
   if (!SIZES.includes(input.size as (typeof SIZES)[number])) return NextResponse.json({ error: "Choose a size." }, { status: 400 });
-  if (campaignStatus() === "closed") return NextResponse.json({ error: "The founding window has closed. Join the list for the next run." }, { status: 409 });
 
   const amountUsd = product.usd * CAMPAIGN.depositShare;
 
@@ -50,7 +49,7 @@ export async function POST(req: NextRequest) {
     const session = await createCheckout({
       reservationId: r.id,
       name: `MADE SAiNT ${product.name}, US ${input.size}`,
-      description: `Founding pre-order. Made to order in Portugal, ships ${shipWindow()}. Fully refunded if the run does not reach ${CAMPAIGN.threshold} pairs.`,
+      description: `Made to order. Ready in ${LEAD_TIME}.`,
       amountUsd,
       image: base + product.image,
       email,

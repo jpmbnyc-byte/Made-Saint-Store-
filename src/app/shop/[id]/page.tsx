@@ -34,7 +34,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   const closed = campaignStatus() === "closed";
 
   return (
-    <div className="min-h-screen bg-[#f6f4ef] text-[#1c1a17]">
+    <div className="min-h-screen bg-[#f5f0e8] text-[#1c1a17]">
       <ShopHeader status={statusLine()} />
       <main className="mx-auto max-w-[1440px] px-0 py-0 md:px-8 md:py-8">
         <div className="px-5 pt-5 md:px-0 md:pt-0">
@@ -47,7 +47,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           <ProductGallery views={views} />
 
           <div className="px-5 pb-12 lg:sticky lg:top-28 lg:self-start lg:px-0 lg:pb-0">
-            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">The Runner · Edition 001</p>
+            <p className="text-[11px] tracking-[0.22em] text-[#B03236] uppercase">1101 · Inaugural Series</p>
             <h1 className="mt-3 font-serif text-4xl leading-none md:text-5xl">{short(product.name)}</h1>
             <p className="mt-4 text-lg tabular-nums">${product.usd}</p>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{product.line}. Made to order in Felgueiras.</p>

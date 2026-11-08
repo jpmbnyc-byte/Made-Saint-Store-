@@ -1,24 +1,23 @@
-import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
-import { PRODUCTS } from "@/lib/business";
 import { ShopFooter } from "@/components/shop/chrome";
 import { Mast } from "@/components/house/mast";
+import { EditorialHero } from "@/components/house/editorial-hero";
+import { RunnerChapter } from "@/components/house/runner-chapter";
+import { WardrobeChapter } from "@/components/house/wardrobe-chapter";
 import { HouseLooks } from "@/components/house/examples";
-import { Chapters } from "@/components/house/chapters";
-import { EditionSlider, LeatherSlider, ListRail } from "@/components/house/rails";
-import { HouseFilm } from "@/components/house/film";
-import { Fit, Questions, Tensions } from "@/components/house/terms";
-import { OrderRule, orderWindowLine } from "@/components/shop/order-rule";
+import { MaterialStudy } from "@/components/house/material-study";
+import { TheHouse } from "@/components/house/the-house";
+import { ClosingCta } from "@/components/house/closing-cta";
+import { OrderRule } from "@/components/shop/order-rule";
 
 export const metadata: Metadata = {
   title: { absolute: "MADE SAiNT" },
   description:
-    "Personal wardrobes for professional athletes. The founding runners are a separate reservation.",
+    "1101 — the inaugural runner. Made to order in Felgueiras. Private Wardrobe for a considered life.",
   openGraph: {
-    title: "MADE Saint",
-    description: "A personal wardrobe, and a founding runner reserved on its own.",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "MADE Saint" }],
+    title: "MADE SAiNT",
+    description: "1101. A life becoming. The inaugural runner and a private wardrobe, from MADE SAiNT.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "MADE SAiNT" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -26,211 +25,41 @@ export const metadata: Metadata = {
   },
 };
 
-const LEATHER = [
-  { src: "/opening/navy-wave.webp", name: "Navy", alt: "Navy leather runner, three-quarter, on plaster", note: "Shown, not reserved" },
-  { src: "/opening/navy-hand.webp", name: "Navy", alt: "Navy leather runner, held. A product study, not a client.", note: "Shown, not reserved" },
-  { src: "/opening/runner-black.webp", name: "Black", alt: "Full black all-leather runner", note: "Shown, not reserved" },
-  { src: "/opening/black-worn.webp", name: "Black", alt: "Black runner, worn, with a dog. Not a client, and not an endorsement.", note: "Shown, not reserved" },
-  { src: "/opening/black-hand.webp", name: "Black", alt: "Black leather runner, held. A product study, not a client.", note: "Shown, not reserved" },
-  { src: "/opening/runner-butter.webp", name: "Butter", alt: "Full butter all-leather runner", note: "Shown, not reserved" },
-  { src: "/opening/butter-worn.webp", name: "Butter", alt: "Butter runner, held with flowers. Not a client, and not an endorsement.", note: "Shown, not reserved" },
-  { src: "/opening/butter-hand.webp", name: "Butter", alt: "Butter leather runner, held. A product study, not a client.", note: "Shown, not reserved" },
-] as const;
-
-const MESH = [
-  { src: "/opening/mesh-rose.webp", name: "Rose mesh", alt: "Brown and rose mesh runner, three-quarter", note: "A study. Not on the list." },
-  { src: "/opening/mesh-rose-plinth.webp", name: "Rose mesh", alt: "Brown and rose mesh runner, with the sole behind it", note: "A study. Not on the list." },
-  { src: "/opening/mesh-rose-overhead.webp", name: "Rose mesh", alt: "Brown and rose mesh runners, overhead", note: "A study. Not on the list." },
-  { src: "/opening/mesh-rose-side.webp", name: "Rose mesh", alt: "Brown and rose mesh runner, side", note: "A study. Not on the list." },
-  { src: "/opening/mesh-rose-hand.webp", name: "Rose mesh", alt: "Brown and rose mesh runner, held. A product study, not a client.", note: "A study. Not on the list." },
-  { src: "/opening/mesh-earth-hand.webp", name: "Earth mesh", alt: "Brown mesh runner, held. A product study, not a client.", note: "A study. Not on the list." },
-] as const;
-
 export default function Home() {
-  const launch = PRODUCTS.filter((p) => p.launch);
-
   return (
-    <div className="bg-[#f2eee8] text-[#2a3746]">
+    <div className="bg-[#f5f0e8] text-[#1c1a17]">
       <Mast />
 
-      <section id="wardrobe" className="scroll-mt-24 border-b border-[#1c1a17]/10 bg-[#f6f1ea]">
-        <div className="mx-auto grid max-w-[1200px] items-center gap-8 px-5 py-10 md:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] md:gap-12 md:px-8 md:py-16">
-          <div>
-            <p className="text-sm text-[#B03236]">Private wardrobe</p>
-            <h1 className="ms-rise mt-3 max-w-xl font-serif text-[44px] leading-[0.96] text-[#1c1a17] md:text-[68px]">
-              Personal wardrobes for professional athletes.
-            </h1>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-[#3c4650]">
-              One fit, and one person, for travel, a public day, time off, and a formal hour. The conversation can be virtual. A fitting is physical, and it is arranged.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#arrival" className="inline-flex h-12 items-center bg-[#1c1a17] px-5 text-sm text-[#f6f4ef] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]">
-                Explore the wardrobe
-              </a>
-              <Link href="/wardrobe#introduction" className="inline-flex h-12 items-center border border-[#1c1a17]/30 px-5 text-sm text-[#1c1a17] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1c1a17]">
-                Request a private introduction
-              </Link>
-            </div>
-          </div>
-          <figure>
-            <div className="relative aspect-[2/3] bg-[#ebe4d8]">
-              <Image src="/line/f24.webp" alt="Full-length denim jacket with a Saint Gabriel study, khaki trouser, and a pale blue hiker" fill priority sizes="(min-width: 768px) 48vw, 100vw" className="ms-photo object-cover object-top" />
-            </div>
-            <figcaption className="ms-caption text-[#3c4650]">A lifestyle photograph. Not a client, and not an endorsement. The shoe is not a founding runner.</figcaption>
-          </figure>
-        </div>
-      </section>
+      {/* A — Editorial hero slideshow */}
+      <EditorialHero />
 
-      <Chapters />
+      {/* B — 1101 product chapter */}
+      <RunnerChapter />
 
-      <section id="begin" className="scroll-mt-24 border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
-        <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-8 md:py-24">
-          <p className="text-sm text-[#B03236]">Where to begin</p>
-          <h2 className="mt-3 max-w-2xl font-serif text-4xl leading-[1.02] text-[#1c1a17] md:text-6xl">Start from the day, or from one pair.</h2>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-[#3c4650]">
-            The wardrobe is a service for a professional athlete. A founding pair can be requested by anyone it fits, in US men&apos;s 7 through 12. One route does not require the other.
+      {/* B.5 — Reservation rule (brief inline) */}
+      <section className="border-t border-[#1c1a17]/10 bg-[#f5f0e8]">
+        <div className="mx-auto max-w-[1100px] px-5 py-10 md:px-8 md:py-14">
+          <p className="mb-5 text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">
+            Founding runners · how a pair is made
           </p>
-          <ul className="mt-10 grid gap-px bg-[#1c1a17]/10 sm:grid-cols-2">
-            {[
-              ["A changing schedule", "Arrival is the working day. One person coordinates the dates.", "#arrival", "See Arrival"],
-              ["One look to repeat", "Everyday is a day with nothing scheduled. Saint John is one worn look.", "#saint-john", "See Saint John"],
-              ["A new setting", "Keep Arrival, and add an occasion when the day asks for a suit. Name the days in the introduction.", "/wardrobe?look=arrival#introduction", "Name the days"],
-              ["A single pair", "The founding runner is reserved on its own. US men's 7 through 12. Other sizes are not offered.", "/shop#edition", "Continue to the pairs"],
-            ].map(([title, body, href, action]) => (
-              <li key={title} className="bg-[#f6f4ef] p-6 md:p-8">
-                <h3 className="font-serif text-3xl leading-none text-[#1c1a17]">{title}</h3>
-                <p className="mt-4 max-w-sm text-sm leading-relaxed text-[#3c4650]">{body}</p>
-                <Link href={href} className="mt-6 inline-flex h-12 items-center text-sm text-[#1c1a17] underline decoration-[#B03236] underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1c1a17]">
-                  {action}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <OrderRule />
         </div>
       </section>
 
-      <section id="service" className="scroll-mt-24 border-t border-[#f6f4ef]/10 bg-[#1c1a17] text-[#f6f4ef]">
-        <div className="mx-auto grid max-w-[1100px] gap-12 px-5 py-16 md:grid-cols-[0.9fr_1.1fr] md:px-8 md:py-24">
-          <div>
-            <p className="text-sm text-[#e7c3c4]">Private wardrobe</p>
-            <h2 className="mt-3 font-serif text-4xl leading-[1.02] md:text-6xl">Once sinner. Made Saint.</h2>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-[#f6f4ef]/80">
-              The line is the founder&apos;s, for grace and a life changed. A purchase does not confer moral or spiritual standing. The house keeps a Christian name and welcomes a client of any belief.
-            </p>
-            <Link href="/wardrobe#introduction" className="mt-8 inline-flex h-12 items-center bg-[#f6f4ef] px-5 text-sm text-[#1c1a17]">
-              Request a private introduction
-            </Link>
-          </div>
-          <ol className="space-y-4">
-            {[
-              ["Conversation", "By video or phone."],
-              ["Fitting", "Physical, and only when one is arranged."],
-              ["Approval", "Looks, cloth, prices, and dates, before anything is cut."],
-              ["Making", "A named person writes when a date moves."],
-              ["Delivery and care", "A fit review after the clothes have been worn."],
-            ].map(([title, line], index) => (
-              <li key={title} className="grid grid-cols-[auto_1fr] gap-4 border-t border-[#f6f4ef]/15 pt-4">
-                <span className="font-serif text-2xl text-[#e7c3c4] italic">{String(index + 1).padStart(2, "0")}</span>
-                <span>
-                  <span className="block font-serif text-2xl">{title}</span>
-                  <span className="mt-1 block text-sm leading-relaxed text-[#f6f4ef]/70">{line}</span>
-                </span>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      {/* C — Private Wardrobe chapter */}
+      <WardrobeChapter />
 
-      <section id="order" className="ms-liquid scroll-mt-24">
-        <div className="relative z-[1] mx-auto max-w-[1100px] px-5 py-12 md:px-8 md:py-20">
-          <div className="grid items-center gap-8 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:gap-12">
-            <div>
-              <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Founding runners · a separate reservation</p>
-              <h2 className="mt-4 max-w-3xl font-serif text-[42px] leading-[0.92] text-[#2a3746] md:text-[60px]">
-                A pair is cut only after you reserve it.
-              </h2>
-              <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#41505b]">{orderWindowLine()}</p>
-            </div>
-            <HouseFilm />
-          </div>
-          <div className="mt-10 md:mt-14">
-            <OrderRule />
-          </div>
-        </div>
-      </section>
-
-      <Tensions />
-
-      <section id="edition" className="scroll-mt-24 border-t border-[#41505b]/10">
-        <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
-          <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">The founding edition</p>
-          <h2 className="mt-3 max-w-2xl font-serif text-5xl leading-[0.95] text-[#2a3746]">Three colorways. Slide to the pair.</h2>
-          <div className="mt-10">
-            <EditionSlider products={launch} />
-          </div>
-        </div>
-      </section>
-
+      {/* D — Styled worlds (looks) */}
       <HouseLooks />
 
-      <section id="leather" className="scroll-mt-24 border-t border-[#41505b]/10">
-        <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
-          <div className="mx-auto max-w-xl text-center">
-            <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Shown, not reserved</p>
-            <h2 className="mt-3 font-serif text-5xl">The leather runners</h2>
-            <p className="mt-4 text-[15px] leading-relaxed text-[#41505b]">
-              Navy, black, and butter. These are not the founding colorways, and they are not open to reserve.
-            </p>
-          </div>
-          <div className="mt-8">
-            <LeatherSlider runners={LEATHER} label="Leather" />
-          </div>
-          <div className="mx-auto mt-16 max-w-xl text-center">
-            <h2 className="font-serif text-4xl">Mesh studies</h2>
-            <p className="mt-4 text-[15px] leading-relaxed text-[#41505b]">
-              Rose and earth. Not a founding colorway, not a listed price, and not open to reserve.
-            </p>
-          </div>
-          <div className="mt-8">
-            <LeatherSlider runners={MESH} label="Mesh" />
-          </div>
-        </div>
-      </section>
+      {/* E — Material in close-up */}
+      <MaterialStudy />
 
-      <section className="border-t border-[#41505b]/10">
-        <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
-          <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">The list</p>
-          <h2 className="mt-3 max-w-2xl font-serif text-5xl leading-[0.95] text-[#2a3746]">One more colorway. Not this run.</h2>
-          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#41505b]">
-            Espresso gathers a note for the next run. It cannot be reserved with the founding edition.
-          </p>
-          <div className="mt-8">
-            <ListRail />
-          </div>
-        </div>
-      </section>
+      {/* F — The House */}
+      <TheHouse />
 
-      <Fit />
-      <Questions />
-
-      <section className="border-t border-[#41505b]/10">
-        <div className="mx-auto grid max-w-[1100px] md:grid-cols-2">
-          <Link href="/line" className="block border-b border-[#41505b]/10 px-5 py-12 md:border-r md:border-b-0 md:px-8 md:py-16">
-            <p className="text-sm text-[#8d7349]">2027 line</p>
-            <h2 className="mt-3 font-serif text-4xl">Styles with a photograph.</h2>
-            <p className="mt-4 max-w-sm text-base leading-relaxed text-[#41505b]">
-              Proposed list prices. A style without a large photograph stays on the record and off this grid.
-            </p>
-          </Link>
-          <Link href="/wardrobe" className="block px-5 py-12 md:px-8 md:py-16">
-            <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">For an athlete</p>
-            <h2 className="mt-3 font-serif text-4xl">The private wardrobe</h2>
-            <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-[#41505b]">
-              A private introduction. A fitting is arranged. A seasonal figure is a planning target, not a checkout price.
-            </p>
-          </Link>
-        </div>
-      </section>
+      {/* G — Closing choice */}
+      <ClosingCta />
 
       <ShopFooter />
     </div>

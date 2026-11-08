@@ -18,7 +18,7 @@ export default async function ShopPage() {
   const launch = PRODUCTS.filter((p) => p.launch);
   const next = PRODUCTS.filter((p) => !p.launch);
   return (
-    <div className="min-h-screen bg-[#f6f4ef] text-[#1c1a17]">
+    <div className="min-h-screen bg-[#f5f0e8] text-[#1c1a17]">
       <ShopHeader status={statusLine()} />
 
       <Suspense fallback={null}>
@@ -26,8 +26,8 @@ export default async function ShopPage() {
       </Suspense>
 
       <section id="order" className="mx-auto max-w-[1100px] scroll-mt-28 px-5 py-12 md:px-8 md:py-16">
-        <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/60 uppercase">Made to order · Felgueiras</p>
-        <h1 className="mt-4 max-w-3xl font-serif text-[44px] leading-[0.95] md:text-[64px]">A pair is cut only after you reserve it.</h1>
+        <p className="text-[11px] tracking-[0.28em] text-[#B03236] uppercase">1101 · Inaugural Series · Made to order in Felgueiras</p>
+        <h1 className="mt-4 max-w-3xl font-serif text-[44px] leading-[0.95] text-[#1c1a17] md:text-[64px]">A pair is cut only after you reserve it.</h1>
         <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">{orderWindowLine()}</p>
         <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
           Anyone the size fits can request a pair, in US men&apos;s 7 through 12. Other sizes are not offered. A pair does not open a wardrobe.

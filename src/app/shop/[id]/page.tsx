@@ -12,23 +12,23 @@ import { stripeEnabled } from "@/lib/stripe";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
 import { ProductGallery } from "@/components/shop/gallery";
 import { ReserveForm } from "@/components/shop/reserve";
-import { WaitlistForm } from "@/components/shop/waitlist";
 
 export function generateStaticParams() {
-  return PRODUCTS.map((p) => ({ id: p.id }));
+  return PRODUCTS.filter((p) => p.launch).map((p) => ({ id: p.id }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const p = productById((await params).id);
-  return { title: p ? p.name : "The Founding Edition" };
+  return { title: p?.launch ? p.name : "0929" };
 }
 
 const short = (name: string) => name.replace("Runner, ", "");
+const color = (name: string) => name.split("—").pop()?.trim() || short(name);
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const product = productById(id);
-  if (!product) notFound();
+  if (!product?.launch) notFound();
   const views = await withPublished(product.id, viewsFor(product));
   const siblings = PRODUCTS.filter((p) => p.launch && p.id !== product.id);
 
@@ -38,15 +38,15 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       <main className="mx-auto max-w-[1440px] px-0 py-0 md:px-8 md:py-8">
         <div className="px-5 pt-5 md:px-0 md:pt-0">
           <Link href="/shop#edition" className="inline-flex items-center gap-1 text-[11px] tracking-[0.16em] text-[#1c1a17]/60 uppercase hover:text-[#1c1a17]">
-            <ChevronLeft className="size-3.5" /> The Founding Edition
+            <ChevronLeft className="size-3.5" /> 0929
           </Link>
         </div>
 
-        <div className="mt-4 grid items-start gap-8 lg:mt-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)] lg:gap-14">
+        <div className="mt-4 grid min-w-0 items-start gap-8 lg:mt-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)] lg:gap-14">
           <ProductGallery views={views} />
 
-          <div className="px-5 pb-12 lg:sticky lg:top-28 lg:self-start lg:px-0 lg:pb-0">
-            <p className="text-[11px] tracking-[0.22em] text-[#B03236] uppercase">1101 · Inaugural Series</p>
+          <div className="min-w-0 px-5 pb-12 lg:sticky lg:top-28 lg:self-start lg:px-0 lg:pb-0">
+            <p className="text-[11px] tracking-[0.22em] text-[#B03236] uppercase">0929</p>
             <h1 className="mt-3 font-serif text-4xl leading-none md:text-5xl">{short(product.name)}</h1>
             <p className="mt-4 text-lg tabular-nums">${product.usd}</p>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{product.line}. Made to order. Ready in 4 to 6 weeks.</p>
@@ -58,19 +58,19 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
             <div className="mt-8">
               <p className="text-[11px] tracking-[0.16em] uppercase">Colorway</p>
-              <div className="mt-3 flex gap-3 overflow-x-auto">
-                <Link href={`/shop/${product.id}`} aria-current="page" className="w-16 shrink-0 ring-1 ring-[#1c1a17]">
+              <div className="mt-3 flex min-w-0 gap-3 overflow-x-auto">
+                <Link href={`/shop/${product.id}`} aria-current="page" className="w-16 min-w-16 shrink-0 overflow-hidden ring-1 ring-[#1c1a17]">
                   <span className="relative block aspect-square bg-[#f1eee8]">
                     <Image src={product.image} alt="" fill sizes="64px" className="object-contain" />
                   </span>
-                  <span className="mt-1 block text-center text-[10px] tracking-[0.08em] uppercase">{short(product.name)}</span>
+                  <span className="mt-1 block truncate text-center text-[10px] tracking-[0.08em] uppercase">{color(product.name)}</span>
                 </Link>
                 {siblings.map((p) => (
-                  <Link key={p.id} href={`/shop/${p.id}`} className="w-16 shrink-0 opacity-80 hover:opacity-100">
+                  <Link key={p.id} href={`/shop/${p.id}`} className="w-16 min-w-16 shrink-0 overflow-hidden opacity-80 hover:opacity-100">
                     <span className="relative block aspect-square bg-[#f1eee8]">
                       <Image src={p.image} alt="" fill sizes="64px" className="object-contain" />
                     </span>
-                    <span className="mt-1 block text-center text-[10px] tracking-[0.08em] uppercase">{short(p.name)}</span>
+                    <span className="mt-1 block truncate text-center text-[10px] tracking-[0.08em] uppercase">{color(p.name)}</span>
                   </Link>
                 ))}
               </div>
@@ -86,21 +86,14 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             )}
 
             <div className="mt-8">
-              {product.launch ? (
-                <Suspense fallback={null}>
-                  <ReserveForm
-                    productId={product.id}
-                    priceUsd={product.usd}
-                    payments={stripeEnabled() ? "stripe" : "mock"}
-                    sizes={SIZES}
-                  />
-                </Suspense>
-              ) : (
-                <div className="border border-[#1c1a17]/15 p-5">
-                  <p className="text-sm">In development for Edition 002. Join the list to be offered the run before it opens.</p>
-                  <WaitlistForm productId={product.id} />
-                </div>
-              )}
+              <Suspense fallback={null}>
+                <ReserveForm
+                  productId={product.id}
+                  priceUsd={product.usd}
+                  payments={stripeEnabled() ? "stripe" : "mock"}
+                  sizes={SIZES}
+                />
+              </Suspense>
             </div>
 
             <div className="mt-10 divide-y divide-[#1c1a17]/12 border-y border-[#1c1a17]/12">

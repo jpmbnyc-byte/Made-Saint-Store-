@@ -17,13 +17,32 @@ const overhead = (p: Product): CatalogView => ({
   alt: `${p.name}, overhead`,
 });
 
+const worn = "Worn study. Not a client.";
+
 const EXTRA: Record<string, CatalogView[]> = {
   "ms-runner-chalk-navy": [
-    { id: "threequarter", src: "/stories/chalk-threequarter.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, three-quarter" },
+    { id: "threequarter", src: "/runners/navy-ivory-pair.webp", label: "Pair", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, the pair" },
+    { id: "threequarter", src: "/runners/navy-ivory-threequarter.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, three-quarter" },
+    { id: "reverse", src: "/runners/navy-ivory-lateral.webp", label: "Lateral", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, lateral" },
+    { id: "reverse", src: "/runners/navy-ivory-medial.webp", label: "Medial", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, medial" },
+    { id: "reverse", src: "/runners/navy-ivory-rear.webp", label: "Rear", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, rear" },
+    { id: "detail", src: "/runners/navy-ivory-detail.webp", label: "Detail", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, wave and sole" },
+    { id: "study", src: "/runners/navy-ivory-worn.webp", label: "Worn", alt: `MADE SAiNT 0929 Runner — Navy / Ivory. ${worn}` },
     { id: "hero", src: "/hero/navy-ivory.webp", label: "On limestone", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, with the MADE SAINT tongue mark" },
   ],
+  "ms-runner-navy-intrecciato": [
+    { id: "threequarter", src: "/runners/navy-sand-lateral.webp", label: "Lateral", alt: "MADE SAiNT 0929 Runner — Navy / Sand, lateral" },
+    { id: "reverse", src: "/runners/navy-sand-medial.webp", label: "Medial", alt: "MADE SAiNT 0929 Runner — Navy / Sand, medial" },
+    { id: "detail", src: "/runners/navy-sand-detail.webp", label: "Detail", alt: "MADE SAiNT 0929 Runner — Navy / Sand, wave and sole" },
+    { id: "study", src: "/runners/navy-sand-worn.webp", label: "Worn", alt: `MADE SAiNT 0929 Runner — Navy / Sand. ${worn}` },
+  ],
   "ms-runner-washed-denim": [
-    { id: "threequarter", src: "/stories/washed-denim-threequarter.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Washed / Indigo, three-quarter" },
+    { id: "threequarter", src: "/runners/indigo-pair.webp", label: "Pair", alt: "MADE SAiNT 0929 Runner — Washed / Indigo, the pair" },
+    { id: "reverse", src: "/runners/indigo-lateral.webp", label: "Lateral", alt: "MADE SAiNT 0929 Runner — Washed / Indigo, lateral" },
+    { id: "reverse", src: "/runners/indigo-medial.webp", label: "Medial", alt: "MADE SAiNT 0929 Runner — Washed / Indigo, medial" },
+    { id: "reverse", src: "/runners/indigo-rear.webp", label: "Rear", alt: "MADE SAiNT 0929 Runner — Washed / Indigo, rear" },
+    { id: "detail", src: "/runners/indigo-detail.webp", label: "Detail", alt: "MADE SAiNT 0929 Runner — Washed / Indigo, wave and sole" },
+    { id: "study", src: "/runners/indigo-worn.webp", label: "Worn", alt: `MADE SAiNT 0929 Runner — Washed / Indigo. ${worn}` },
   ],
 };
 

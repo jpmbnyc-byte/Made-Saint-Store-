@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Wordmark } from "@/components/house/wordmark";
 
 const NAV_LEFT = [
-  { href: "/shop", label: "1101" },
+  { href: "/shop", label: "0929" },
   { href: "/wardrobe", label: "Private Wardrobe" },
 ];
 

@@ -9,7 +9,7 @@ import { lookById, lookForLifestyle, offerFor } from "@/lib/looks";
 import { PIECES, type WardrobePiece } from "@/lib/wardrobe";
 import { TONAL_COLORS, TonalSlideshow } from "@/components/wardrobe/tonal";
 
-const CATALOG = PIECES.filter((piece) => Boolean(piece.image));
+const CATALOG = PIECES.filter((piece) => Boolean(piece.image) && offerFor(piece.id).kind !== "waitlist");
 
 function clothingIds(ids: readonly string[]) {
   return ids.filter((id) => offerFor(id).kind === "commission");

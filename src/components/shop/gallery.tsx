@@ -8,11 +8,11 @@ export function ProductGallery({ views }: { views: CatalogView[] }) {
   const current = views[active] ?? views[0];
 
   return (
-    <div>
+    <div className="min-w-0">
       <div className="bg-[#f1eee8] lg:hidden">
         <img src={current.src} alt={current.alt} className="aspect-[2/3] w-full object-contain" />
         {views.length > 1 && (
-          <div className="flex gap-2 overflow-x-auto px-4 py-3">
+          <div className="flex min-w-0 gap-2 overflow-x-auto px-4 py-3">
             {views.map((v, i) => (
               <button
                 key={v.src}

@@ -43,7 +43,7 @@ export default function LinePage() {
           The founding runners stay on the shop. A photographed style can be read by anyone it fits. The private wardrobe remains a service for an athlete.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="/shop#edition" className="border border-[#1c1a17] px-4 py-3 text-[11px] tracking-[0.16em] uppercase">Founding Edition</Link>
+          <Link href="/shop#edition" className="border border-[#1c1a17] px-4 py-3 text-[11px] tracking-[0.16em] uppercase">0929</Link>
           <Link href="/wardrobe#commission" className="inline-flex h-12 items-center bg-[#1c1a17] px-4 text-[11px] tracking-[0.16em] text-[#f6f4ef] uppercase">Commission</Link>
         </div>
 

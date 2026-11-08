@@ -20,28 +20,25 @@ export const RUNNER_COLORWAY_VIEWS: Record<
   { primary: string; primaryAlt: string; secondary?: string; secondaryAlt?: string; label: string }
 > = {
   "ms-runner-chalk-navy": {
-    primary: "/hero/navy-ivory.webp",
-    primaryAlt: "MADE SAiNT 0929 Runner — Navy / Ivory, with the MADE SAINT tongue mark, on limestone",
-    secondary: "/stories/chalk-navy.webp",
+    primary: "/runners/navy-ivory-pair.webp",
+    primaryAlt: "MADE SAiNT 0929 Runner — Navy / Ivory, the pair",
+    secondary: "/runners/navy-ivory-overhead.webp",
     secondaryAlt: "MADE SAiNT 0929 Runner — Navy / Ivory, overhead",
     label: "Navy / Ivory",
   },
   "ms-runner-navy-intrecciato": {
-    primary: "/stories/navy-intrecciato.webp",
-    primaryAlt: "MADE SAiNT 0929 Runner — Navy / Sand, woven calf, three-quarter view",
+    primary: "/runners/navy-sand-lateral.webp",
+    primaryAlt: "MADE SAiNT 0929 Runner — Navy / Sand, lateral",
+    secondary: "/runners/navy-sand-overhead.webp",
+    secondaryAlt: "MADE SAiNT 0929 Runner — Navy / Sand, overhead",
     label: "Navy / Sand",
   },
   "ms-runner-washed-denim": {
-    primary: "/stories/washed-denim-threequarter.webp",
-    primaryAlt: "MADE SAiNT 0929 Runner — Washed / Indigo, three-quarter view",
-    secondary: "/stories/washed-denim.webp",
+    primary: "/runners/indigo-pair.webp",
+    primaryAlt: "MADE SAiNT 0929 Runner — Washed / Indigo, the pair",
+    secondary: "/runners/indigo-overhead.webp",
     secondaryAlt: "MADE SAiNT 0929 Runner — Washed / Indigo, overhead",
     label: "Washed / Indigo",
-  },
-  "ms-runner-espresso": {
-    primary: "/stories/espresso-oxblood.webp",
-    primaryAlt: "MADE SAiNT 0929 Runner — Espresso / Oxblood, overhead",
-    label: "Espresso / Oxblood",
   },
   // New colorways — add when founder uploads assets:
   // "ms-runner-[id]": {
@@ -120,7 +117,7 @@ export function RunnerChapter() {
           </div>
 
           {/* Colorway selectors */}
-          <div className="mt-4 flex flex-wrap gap-2" role="tablist" aria-label="1101 colorway">
+          <div className="mt-4 flex flex-wrap gap-2" role="tablist" aria-label="0929 colorway">
             {launch.map((p) => {
               const v = RUNNER_COLORWAY_VIEWS[p.id];
               const isActive = p.id === activeId;
@@ -148,7 +145,7 @@ export function RunnerChapter() {
         {/* Copy panel — Bible voice: short, emotionally direct, precise */}
         <div>
           <p className="text-[11px] tracking-[0.28em] text-[#B03236] uppercase">
-            1101 · Inaugural Series
+            0929
           </p>
 
           {/* Headline: product name, large and serif — no decoration */}

@@ -10,7 +10,7 @@ export function ClosingCta() {
         <div className="grid gap-px bg-[#1c1a17]/10 md:grid-cols-2">
           {/* 1101 path */}
           <div className="flex flex-col bg-[#f5f0e8] p-8 md:p-12">
-            <p className="text-[11px] tracking-[0.28em] text-[#B03236] uppercase">1101</p>
+            <p className="text-[11px] tracking-[0.28em] text-[#B03236] uppercase">0929</p>
             <h2
               className="mt-4 font-serif text-[#1c1a17]"
               style={{ fontSize: "clamp(32px, 3.5vw, 48px)", letterSpacing: "-0.03em", lineHeight: 0.98 }}
@@ -20,14 +20,14 @@ export function ClosingCta() {
               made for you.
             </h2>
             <p className="mt-5 max-w-sm flex-1 text-[15px] leading-relaxed text-[#41505b]">
-              Four colorways, available now. Made to order. Ready in 4 to 6 weeks. No payment is taken until checkout is connected.
+              Three colorways, available now. Made to order. Ready in 4 to 6 weeks. No payment is taken until checkout is connected.
             </p>
             <div className="mt-8">
               <Link
                 href="/shop"
                 className="inline-flex h-12 items-center bg-[#1c1a17] px-6 text-[12px] tracking-[0.18em] text-[#f5f0e8] uppercase transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
               >
-                Explore 1101
+                Explore 0929
               </Link>
             </div>
           </div>

@@ -83,7 +83,7 @@ export default async function LineProductPage({ params }: { params: Promise<{ re
             )}
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href={`/wardrobe?ref=${product.ref}#introduction`} className="inline-flex h-12 items-center bg-[#1c1a17] px-5 text-[11px] tracking-[0.16em] text-[#f6f4ef] uppercase">Request this style</Link>
-              <Link href="/shop#edition" className="border border-[#1c1a17] px-5 py-3 text-[11px] tracking-[0.16em] uppercase">Founding runners</Link>
+              <Link href="/shop#edition" className="border border-[#1c1a17] px-5 py-3 text-[11px] tracking-[0.16em] uppercase">0929</Link>
             </div>
           </div>
         </div>

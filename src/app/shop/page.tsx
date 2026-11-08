@@ -6,17 +6,15 @@ import { LEAD_TIME, PRODUCTS, statusLine } from "@/lib/business";
 import { QUESTIONS } from "@/lib/questions";
 import { OrderRule, orderWindowLine } from "@/components/shop/order-rule";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
-import { CancelledBanner, LiveWaitlistCount } from "@/components/shop/live";
-import { WaitlistForm } from "@/components/shop/waitlist";
+import { CancelledBanner } from "@/components/shop/live";
 
 export const metadata: Metadata = {
-  title: "The Founding Edition",
-  description: "Four runners, made to order. Ready in 4 to 6 weeks.",
+  title: "0929",
+  description: "Three 0929 runners, made to order. Ready in 4 to 6 weeks.",
 };
 
 export default async function ShopPage() {
   const launch = PRODUCTS.filter((p) => p.launch);
-  const next = PRODUCTS.filter((p) => !p.launch);
   return (
     <div className="min-h-screen bg-[#f5f0e8] text-[#1c1a17]">
       <ShopHeader status={statusLine()} />
@@ -26,13 +24,13 @@ export default async function ShopPage() {
       </Suspense>
 
       <section id="order" className="mx-auto max-w-[1100px] scroll-mt-28 px-5 py-12 md:px-8 md:py-16">
-        <p className="text-[11px] tracking-[0.28em] text-[#B03236] uppercase">1101 · Inaugural Series · Made to order</p>
+        <p className="text-[11px] tracking-[0.28em] text-[#B03236] uppercase">0929 · Made to order</p>
         <h1 className="mt-4 max-w-3xl font-serif text-[44px] leading-[0.95] text-[#1c1a17] md:text-[64px]">A pair, made for you.</h1>
         <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">{orderWindowLine()}</p>
         <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
           Anyone the size fits can request a pair, in US men&apos;s 7 through 12. Other sizes are not offered. A pair does not open a wardrobe.
         </p>
-        <ul className="mt-8 grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-4">
+        <ul className="mt-8 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4">
           {launch.map((p) => (
             <li key={p.id}>
               <Link href={`/shop/${p.id}`} className="block">
@@ -55,7 +53,7 @@ export default async function ShopPage() {
           <h2 className="font-serif text-4xl">Available now</h2>
           <p className="text-[13px] text-[#1c1a17]/60">From ${Math.min(...launch.map((p) => p.usd))} · ready in {LEAD_TIME}</p>
         </div>
-        <div className="mt-8 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
           {launch.map((p) => (
             <Link key={p.id} href={`/shop/${p.id}`} className="group block">
               <div className="relative aspect-[2/3] overflow-hidden bg-[#f3efe8]">
@@ -71,35 +69,6 @@ export default async function ShopPage() {
           ))}
         </div>
       </section>
-
-      {next.length > 0 && <section id="list" className="scroll-mt-28 border-y border-[#1c1a17]/10 bg-[#efece5]">
-        <div className="mx-auto max-w-[1320px] px-5 py-20 md:px-8">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/60 uppercase">Edition 002, in development</p>
-              <h2 className="mt-4 font-serif text-4xl md:text-5xl">The List</h2>
-            </div>
-            <p className="max-w-sm text-sm text-[#1c1a17]/65">
-              These cannot be reserved. Leave an email and you are offered the run before it opens.
-            </p>
-          </div>
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            {next.map((p) => (
-              <div key={p.id}>
-                <div className="relative aspect-[2/3] overflow-hidden bg-[#f3efe8]">
-                  <Image src={p.image} alt={`MADE SAiNT ${p.name}, in development`} fill sizes="(min-width: 640px) 33vw, 100vw" className="object-contain" />
-                </div>
-                <div className="mt-3 flex items-baseline justify-between">
-                  <h3 className="font-serif text-xl">{p.name.replace("Runner, ", "")}</h3>
-                  <LiveWaitlistCount productId={p.id} />
-                </div>
-                <p className="mt-1 text-[13px] text-[#1c1a17]/60">{p.line}</p>
-                <WaitlistForm productId={p.id} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>}
 
       <section id="faq" className="mx-auto max-w-[900px] scroll-mt-28 px-5 py-20 md:px-8">
         <h2 className="font-serif text-4xl md:text-5xl">Questions</h2>

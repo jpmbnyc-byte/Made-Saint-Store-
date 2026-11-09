@@ -13,9 +13,9 @@ export function ShopHeader({ status }: { status?: string }) {
         </Link>
         <div className="grid grid-cols-1 items-center sm:grid-cols-[1fr_auto_1fr] sm:gap-4">
           <nav aria-label="Primary navigation" className="flex min-w-0 items-center justify-between gap-1 overflow-x-auto text-[11px] tracking-[0.14em] text-[#1c1a17] uppercase [scrollbar-width:none] sm:justify-start sm:gap-2 [&::-webkit-scrollbar]:hidden">
-            <Link href="/shop#0929" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">0929</Link>
             <Link href="/shop#1101" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">1101</Link>
-            <Link href="/shop#1223" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">1223</Link>
+            <Link href="/shop#1213" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">1213</Link>
+            <Link href="/shop#0929" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">0929</Link>
             <Link href="/wardrobe" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">Private Wardrobe</Link>
             <Link href="/#looks" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">Looks</Link>
             <Link href="/brand" className="hidden h-11 shrink-0 items-center px-2 hover:opacity-70 sm:inline-flex">The House</Link>
@@ -45,10 +45,10 @@ export function ShopFooter() {
           </p>
         </div>
         <div className="space-y-2 text-sm">
-          <p className="text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">0929</p>
-          <Link href="/shop#0929" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">The 0929 runners</Link>
+          <p className="text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">1101</p>
           <Link href="/shop#1101" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">The 1101 runner</Link>
-          <Link href="/shop#1223" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">The 1223 runner</Link>
+          <Link href="/shop#1213" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">The 1213 runner</Link>
+          <Link href="/shop#0929" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">The 0929 runners</Link>
           <Link href="/shop#edition" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">All colorways</Link>
           <Link href="/shop#faq" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Care &amp; questions</Link>
         </div>

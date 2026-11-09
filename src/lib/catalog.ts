@@ -36,24 +36,6 @@ const EXTRA: Record<string, CatalogView[]> = {
     { id: "detail", src: "/runners/navy-sand-detail.webp", label: "Detail", alt: "MADE SAiNT 0929 Runner — Navy / Sand, wave and sole" },
     { id: "study", src: "/runners/navy-sand-worn.webp", label: "Worn", alt: `MADE SAiNT 0929 Runner — Navy / Sand. ${worn}` },
   ],
-  "ms-runner-0929-sage": [
-    { id: "threequarter", src: "/runners/0929-sage.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Sage, three-quarter" },
-  ],
-  "ms-runner-0929-chambray": [
-    { id: "threequarter", src: "/runners/0929-chambray.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Chambray, three-quarter" },
-  ],
-  "ms-runner-0929-chestnut": [
-    { id: "threequarter", src: "/runners/0929-chestnut.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Chestnut, three-quarter" },
-  ],
-  "ms-runner-0929-carbon": [
-    { id: "threequarter", src: "/runners/0929-carbon.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Carbon, three-quarter" },
-  ],
-  "ms-runner-0929-slate": [
-    { id: "threequarter", src: "/runners/0929-slate.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Slate, three-quarter" },
-  ],
-  "ms-runner-0929-dune": [
-    { id: "threequarter", src: "/runners/0929-dune.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Dune, three-quarter" },
-  ],
   "ms-runner-washed-denim": [
     { id: "threequarter", src: "/runners/indigo-pair.webp", label: "Pair", alt: "MADE SAiNT 0929 Runner — Washed / Indigo, the pair" },
     { id: "reverse", src: "/runners/indigo-lateral.webp", label: "Lateral", alt: "MADE SAiNT 0929 Runner — Washed / Indigo, lateral" },
@@ -84,13 +66,13 @@ const EXTRA: Record<string, CatalogView[]> = {
     { id: "threequarter", src: "/runners/1213/1101-onyx-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Onyx, the pair" },
     { id: "reverse", src: "/runners/1213/1101-onyx-lateral.webp", label: "Lateral", alt: "MADE SAiNT 1101 Runner — Onyx, lateral" },
   ],
-  "ms-runner-1223-sacred-light": [
-    { id: "threequarter", src: "/runners/1213/sacred-light.webp", label: "Three-quarter", alt: "MADE SAiNT 1223 Runner — Sacred Light, three-quarter" },
-    { id: "reverse", src: "/runners/1213/sacred-light-profile.webp", label: "Profile", alt: "MADE SAiNT 1223 Runner — Sacred Light, profile" },
-    { id: "product", src: "/runners/1213/sacred-light-overhead.webp", label: "Overhead", alt: "MADE SAiNT 1223 Runner — Sacred Light, overhead" },
-    { id: "reverse", src: "/runners/1213/sacred-light-rear.webp", label: "Rear", alt: "MADE SAiNT 1223 Runner — Sacred Light, rear" },
-    { id: "study", src: "/runners/1213/sacred-light-worn-plum.webp", label: "Worn, plum", alt: `MADE SAiNT 1223 Runner — Sacred Light, worn with a plum bag. ${worn}` },
-    { id: "study", src: "/runners/1213/sacred-light-worn-butter.webp", label: "Worn, butter", alt: `MADE SAiNT 1223 Runner — Sacred Light, worn with a butter bag. ${worn}` },
+  "ms-runner-1213-sacred-light": [
+    { id: "threequarter", src: "/runners/1213/sacred-light.webp", label: "Three-quarter", alt: "MADE SAiNT 1213 Runner — Sacred Light, three-quarter" },
+    { id: "reverse", src: "/runners/1213/sacred-light-profile.webp", label: "Profile", alt: "MADE SAiNT 1213 Runner — Sacred Light, profile" },
+    { id: "product", src: "/runners/1213/sacred-light-overhead.webp", label: "Overhead", alt: "MADE SAiNT 1213 Runner — Sacred Light, overhead" },
+    { id: "reverse", src: "/runners/1213/sacred-light-rear.webp", label: "Rear", alt: "MADE SAiNT 1213 Runner — Sacred Light, rear" },
+    { id: "study", src: "/runners/1213/sacred-light-worn-plum.webp", label: "Worn, plum", alt: `MADE SAiNT 1213 Runner — Sacred Light, worn with a plum bag. ${worn}` },
+    { id: "study", src: "/runners/1213/sacred-light-worn-butter.webp", label: "Worn, butter", alt: `MADE SAiNT 1213 Runner — Sacred Light, worn with a butter bag. ${worn}` },
   ],
 };
 

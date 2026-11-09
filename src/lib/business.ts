@@ -26,13 +26,16 @@ export const LUXURY_SPEC = [
 ];
 export const LUXURY_UPCHARGE = LUXURY_SPEC.reduce((s, x) => s + x.eur, 0);
 
-export type SeriesId = "0929" | "1101" | "1223";
+export type SeriesId = "1101" | "1213" | "0929";
+
+/** Shop, navigation, and homepage order. 1101 leads, at the top price. */
+export const SERIES_ORDER: SeriesId[] = ["1101", "1213", "0929"];
 
 /** The founder's series plates. Each listing uses the plate that names it. */
 export const SERIES_PLATE: Record<SeriesId, { src: string; alt: string }> = {
-  "0929": { src: "/brand/name-0929.webp", alt: "MADE Saint 0929 v1" },
   "1101": { src: "/brand/name-1101.webp", alt: "MADE Saint 1101 v1" },
-  "1223": { src: "/brand/name-1223.webp", alt: "MADE Saint 1223 v1" },
+  "1213": { src: "/brand/name-1223.webp", alt: "MADE Saint 1213 v1" },
+  "0929": { src: "/brand/name-0929.webp", alt: "MADE Saint 0929 v1" },
 };
 
 export type Product = {
@@ -52,8 +55,12 @@ export type Product = {
 
 /** Bogner Cortina, leather and mesh, is $490. The 0929 is that kind of runner. */
 const PRICE_MESH = 490;
-/** Bogner Bucharest, the top sneaker in the published list, is $550. The sculpted sole sits there. */
-const PRICE_SCULPTED = 550;
+/** Bogner Bucharest, the top sneaker in the published list, is $550. */
+const PRICE_TOP = 550;
+/** The 1213 sculpted sole sits at that Bogner price. */
+const PRICE_SCULPTED = PRICE_TOP;
+/** 1101 is listed first. It shares the confirmed top price, Bogner Bucharest at $550. */
+const PRICE_1101 = PRICE_TOP;
 
 /**
  * Price ladder. The base runner sits just above Bogner's top full-price sneaker and well under
@@ -72,26 +79,20 @@ export const PRODUCTS: Product[] = [
   { id: "ms-runner-chalk-navy", storyId: "chalk-navy", series: "0929", name: "MADE SAiNT 0929 Runner — Navy / Ivory", line: "Ivory suede, navy mesh", usd: PRICE_MESH, image: "/runners/navy-ivory-overhead.webp", launch: true, materials: ["Ivory suede overlays", "Navy mesh", "Nub-lug rubber sole"], costUsd: 0 },
   { id: "ms-runner-navy-intrecciato", storyId: "navy-intrecciato", series: "0929", name: "MADE SAiNT 0929 Runner — Navy / Sand", line: "Navy overlays, sand mesh", usd: PRICE_MESH, image: "/runners/navy-sand-overhead.webp", launch: true, materials: ["Navy mesh and suede overlays", "Sand mesh windows", "Nub-lug rubber sole"], costUsd: 0 },
   { id: "ms-runner-washed-denim", storyId: "washed-denim", series: "0929", name: "MADE SAiNT 0929 Runner — Washed / Indigo", line: "Blue suede, navy mesh", usd: PRICE_MESH, image: "/runners/indigo-overhead.webp", launch: true, materials: ["Blue suede overlays", "Navy mesh", "Light blue laces", "Nub-lug rubber sole"], costUsd: 0 },
-  { id: "ms-runner-0929-sage", series: "0929", name: "MADE SAiNT 0929 Runner — Sage", line: "Sage suede, olive mesh, and an ivory wave", usd: PRICE_MESH, image: "/runners/0929-sage.webp", launch: true, materials: ["Sage suede overlays", "Olive mesh", "Ivory wave", "Gum lug sole"], costUsd: 0 },
-  { id: "ms-runner-0929-chambray", series: "0929", name: "MADE SAiNT 0929 Runner — Chambray", line: "Navy suede and powder-blue panels", usd: PRICE_MESH, image: "/runners/0929-chambray.webp", launch: true, materials: ["Navy suede overlays", "Powder-blue panels", "Cream midsole", "Gum lug sole"], costUsd: 0 },
-  { id: "ms-runner-0929-chestnut", series: "0929", name: "MADE SAiNT 0929 Runner — Chestnut", line: "Chestnut suede and dark brown panels", usd: PRICE_MESH, image: "/runners/0929-chestnut.webp", launch: true, materials: ["Chestnut suede overlays", "Dark brown panels", "Cream laces", "Charcoal lug sole"], costUsd: 0 },
-  { id: "ms-runner-0929-carbon", series: "0929", name: "MADE SAiNT 0929 Runner — Carbon", line: "Charcoal suede, black mesh, and a pewter wave", usd: PRICE_MESH, image: "/runners/0929-carbon.webp", launch: true, materials: ["Charcoal suede overlays", "Black mesh", "Pewter wave", "Charcoal lug sole"], costUsd: 0 },
-  { id: "ms-runner-0929-slate", series: "0929", name: "MADE SAiNT 0929 Runner — Slate", line: "Slate suede, pale blue panels, and an ivory wave", usd: PRICE_MESH, image: "/runners/0929-slate.webp", launch: true, materials: ["Slate suede overlays", "Pale blue panels", "Ivory wave", "Cream midsole", "Gum lug sole"], costUsd: 0 },
-  { id: "ms-runner-0929-dune", series: "0929", name: "MADE SAiNT 0929 Runner — Dune", line: "Dark brown suede, a taupe wave, and a sand midsole", usd: PRICE_MESH, image: "/runners/0929-dune.webp", launch: true, materials: ["Dark brown suede", "Taupe wave", "Sand midsole", "Gum lug sole"], costUsd: 0 },
   { id: "ms-runner-espresso", storyId: "espresso-oxblood", series: "0929", name: "MADE SAiNT 0929 Runner — Espresso / Oxblood", line: "Espresso suede, oxblood lining", usd: PRICE_MESH, image: "/stories/espresso-oxblood.webp", launch: false, materials: ["Espresso suede", "Technical mesh", "Oxblood terry lining", "Nub-lug rubber sole"], costUsd: 0 },
-  { id: "ms-runner-1101-espresso", series: "1101", name: "MADE SAiNT 1101 Runner — Espresso", line: "Deep chocolate leather, taupe accents, and cream laces", usd: PRICE_SCULPTED, image: "/runners/1213/espresso.webp", launch: true, materials: ["Deep chocolate leather", "Taupe accents", "Cream laces", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
-  { id: "ms-runner-1101-olive", series: "1101", name: "MADE SAiNT 1101 Runner — Olive", line: "Olive leather, sage overlays, and an ivory signature", usd: PRICE_SCULPTED, image: "/runners/1213/olive.webp", launch: true, materials: ["Olive leather", "Sage overlays", "Ivory signature", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
-  { id: "ms-runner-1101-mineral-blue", series: "1101", name: "MADE SAiNT 1101 Runner — Mineral Blue", line: "Mineral blue leather, a pale signature, and a muted red heel accent", usd: PRICE_SCULPTED, image: "/runners/1213/mineral-blue.webp", launch: true, materials: ["Mineral blue leather", "Pale signature", "Muted red heel accent", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
-  { id: "ms-runner-1101-midnight", series: "1101", name: "MADE SAiNT 1101 Runner — Midnight", line: "Deep navy leather and pale blue panels", usd: PRICE_SCULPTED, image: "/runners/1213/midnight.webp", launch: true, materials: ["Deep navy leather", "Pale blue panels", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
-  { id: "ms-runner-1101-chestnut", series: "1101", name: "MADE SAiNT 1101 Runner — Chestnut", line: "Chestnut leather and dark chocolate panels", usd: PRICE_SCULPTED, image: "/runners/1213/chestnut.webp", launch: true, materials: ["Chestnut leather", "Dark chocolate panels", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
-  { id: "ms-runner-1101-graphite", series: "1101", name: "MADE SAiNT 1101 Runner — Graphite", line: "Graphite overlays and pewter accents", usd: PRICE_SCULPTED, image: "/runners/1213/graphite.webp", launch: true, materials: ["Graphite overlays", "Pewter accents", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
-  { id: "ms-runner-1101-butter", series: "1101", name: "MADE SAiNT 1101 Runner — Butter", line: "Warm yellow leather and ivory wave panels", usd: PRICE_SCULPTED, image: "/runners/1213/1101-butter-pair.webp", launch: true, materials: ["Warm yellow leather", "Ivory wave panels", "Braided laces", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
-  { id: "ms-runner-1101-teal", series: "1101", name: "MADE SAiNT 1101 Runner — Teal", line: "Deep teal leather and ivory wave panels", usd: PRICE_SCULPTED, image: "/runners/1213/1101-teal-pair.webp", launch: true, materials: ["Deep teal leather", "Ivory wave panels", "Braided laces", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
-  { id: "ms-runner-1101-navy", series: "1101", name: "MADE SAiNT 1101 Runner — Navy", line: "Navy leather and cream wave panels", usd: PRICE_SCULPTED, image: "/runners/1213/1101-navy-pair.webp", launch: true, materials: ["Navy leather", "Cream wave panels", "Braided laces", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
-  { id: "ms-runner-1101-bronze", series: "1101", name: "MADE SAiNT 1101 Runner — Bronze", line: "Dark chocolate leather with bronze open-mesh panels", usd: PRICE_SCULPTED, image: "/runners/1213/1101-bronze-pair.webp", launch: true, materials: ["Dark chocolate leather", "Bronze open-mesh panels", "Cream laces", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
-  { id: "ms-runner-1101-blush", series: "1101", name: "MADE SAiNT 1101 Runner — Blush", line: "Dark chocolate leather with blush open-mesh panels", usd: PRICE_SCULPTED, image: "/runners/1213/1101-blush-pair.webp", launch: true, materials: ["Dark chocolate leather", "Blush open-mesh panels", "Cream laces", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
-  { id: "ms-runner-1101-onyx", series: "1101", name: "MADE SAiNT 1101 Runner — Onyx", line: "Onyx leather and gunmetal wave panels", usd: PRICE_SCULPTED, image: "/runners/1213/1101-onyx-pair.webp", launch: true, materials: ["Onyx leather", "Gunmetal wave panels", "Braided laces", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
-  { id: "ms-runner-1223-sacred-light", series: "1223", name: "MADE SAiNT 1223 Runner — Sacred Light", line: "Deep plum and pale gold, with a sculpted ivory sole. An angel is printed on the insole", usd: PRICE_SCULPTED, image: "/runners/1213/sacred-light.webp", launch: true, materials: ["Deep plum upper", "Pale gold signature", "Ivory sole", "Angel printed on the insole"], costUsd: 0, notice: "Materials are not confirmed." },
+  { id: "ms-runner-1101-butter", series: "1101", name: "MADE SAiNT 1101 Runner — Butter", line: "Warm yellow leather and ivory wave panels", usd: PRICE_1101, image: "/runners/1213/1101-butter-pair.webp", launch: true, materials: ["Warm yellow leather", "Ivory wave panels", "Braided laces", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
+  { id: "ms-runner-1101-teal", series: "1101", name: "MADE SAiNT 1101 Runner — Teal", line: "Deep teal leather and ivory wave panels", usd: PRICE_1101, image: "/runners/1213/1101-teal-pair.webp", launch: true, materials: ["Deep teal leather", "Ivory wave panels", "Braided laces", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
+  { id: "ms-runner-1101-navy", series: "1101", name: "MADE SAiNT 1101 Runner — Navy", line: "Navy leather and cream wave panels", usd: PRICE_1101, image: "/runners/1213/1101-navy-pair.webp", launch: true, materials: ["Navy leather", "Cream wave panels", "Braided laces", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
+  { id: "ms-runner-1101-bronze", series: "1101", name: "MADE SAiNT 1101 Runner — Bronze", line: "Dark chocolate leather with bronze open-mesh panels", usd: PRICE_1101, image: "/runners/1213/1101-bronze-pair.webp", launch: true, materials: ["Dark chocolate leather", "Bronze open-mesh panels", "Cream laces", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
+  { id: "ms-runner-1101-blush", series: "1101", name: "MADE SAiNT 1101 Runner — Blush", line: "Dark chocolate leather with blush open-mesh panels", usd: PRICE_1101, image: "/runners/1213/1101-blush-pair.webp", launch: true, materials: ["Dark chocolate leather", "Blush open-mesh panels", "Cream laces", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
+  { id: "ms-runner-1101-onyx", series: "1101", name: "MADE SAiNT 1101 Runner — Onyx", line: "Onyx leather and gunmetal wave panels", usd: PRICE_1101, image: "/runners/1213/1101-onyx-pair.webp", launch: true, materials: ["Onyx leather", "Gunmetal wave panels", "Braided laces", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
+  { id: "ms-runner-1213-espresso", series: "1213", name: "MADE SAiNT 1213 Runner — Espresso", line: "Deep chocolate leather, taupe accents, and cream laces", usd: PRICE_SCULPTED, image: "/runners/1213/espresso.webp", launch: true, materials: ["Deep chocolate leather", "Taupe accents", "Cream laces", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
+  { id: "ms-runner-1213-olive", series: "1213", name: "MADE SAiNT 1213 Runner — Olive", line: "Olive leather, sage overlays, and an ivory signature", usd: PRICE_SCULPTED, image: "/runners/1213/olive.webp", launch: true, materials: ["Olive leather", "Sage overlays", "Ivory signature", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
+  { id: "ms-runner-1213-mineral-blue", series: "1213", name: "MADE SAiNT 1213 Runner — Mineral Blue", line: "Mineral blue leather, a pale signature, and a muted red heel accent", usd: PRICE_SCULPTED, image: "/runners/1213/mineral-blue.webp", launch: true, materials: ["Mineral blue leather", "Pale signature", "Muted red heel accent", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
+  { id: "ms-runner-1213-midnight", series: "1213", name: "MADE SAiNT 1213 Runner — Midnight", line: "Deep navy leather and pale blue panels", usd: PRICE_SCULPTED, image: "/runners/1213/midnight.webp", launch: true, materials: ["Deep navy leather", "Pale blue panels", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
+  { id: "ms-runner-1213-chestnut", series: "1213", name: "MADE SAiNT 1213 Runner — Chestnut", line: "Chestnut leather and dark chocolate panels", usd: PRICE_SCULPTED, image: "/runners/1213/chestnut.webp", launch: true, materials: ["Chestnut leather", "Dark chocolate panels", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
+  { id: "ms-runner-1213-sacred-light", series: "1213", name: "MADE SAiNT 1213 Runner — Sacred Light", line: "Deep plum and pale gold, with a sculpted ivory sole. An angel is printed on the insole", usd: PRICE_SCULPTED, image: "/runners/1213/sacred-light.webp", launch: true, materials: ["Deep plum upper", "Pale gold signature", "Ivory sole", "Angel printed on the insole"], costUsd: 0, notice: "Materials are not confirmed." },
+  { id: "ms-runner-1213-graphite", series: "1213", name: "MADE SAiNT 1213 Runner — Graphite", line: "Graphite overlays and pewter accents", usd: PRICE_SCULPTED, image: "/runners/1213/graphite.webp", launch: true, materials: ["Graphite overlays", "Pewter accents", ...CONSTRUCTION_1101], costUsd: 0, notice: NOTICE_1101 },
 ];
 
 export const productsIn = (series: SeriesId) => PRODUCTS.filter((product) => product.launch && product.series === series);

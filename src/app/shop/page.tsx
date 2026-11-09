@@ -25,14 +25,14 @@ function Listing({ product, frame }: { product: Product; frame: string }) {
 }
 
 export const metadata: Metadata = {
-  title: "0929",
-  description: "The 0929, 1101, and 1223 runners, made to order. $490 and $550.",
+  title: "1101",
+  description: "The 1101, 1213, and 0929 runners, made to order. $550 and $490.",
 };
 
 export default async function ShopPage() {
+  const lead = productsIn("1101");
+  const sculpted = productsIn("1213");
   const founding = productsIn("0929");
-  const sculpted = productsIn("1101");
-  const sacred = productsIn("1223");
   return (
     <div className="min-h-screen bg-[#f5f0e8] text-[#1c1a17]">
       <ShopHeader status={statusLine()} />
@@ -41,9 +41,39 @@ export default async function ShopPage() {
         <CancelledBanner />
       </Suspense>
 
+      <section id="1101" className="mx-auto max-w-[1100px] scroll-mt-28 px-5 py-12 md:px-8 md:py-16">
+        <SeriesPlate series="1101" size="md" />
+        <h1 className="mt-4 max-w-3xl font-serif text-[44px] leading-[0.95] text-[#1c1a17] md:text-[64px]">The lead runner.</h1>
+        <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">$550. Listed first. Made to order. Ready in {LEAD_TIME}.</p>
+        <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
+          Leather and 29 Gris Medio mesh. Design intent is locked. A sample and tooling are still pending, and a measured fit is not certified.
+        </p>
+        <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
+          {lead.map((p) => (
+            <li key={p.id}>
+              <Listing product={p} frame="aspect-square" />
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section id="1213" className="border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
+        <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-8">
+          <SeriesPlate series="1213" size="md" />
+          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
+            Seven colorways. Espresso, Olive, Mineral Blue, Midnight, Chestnut, Sacred Light, and Graphite. $550. A sample and a measured fit are still pending. Sacred Light’s materials are not confirmed.
+          </p>
+          <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3">
+            {sculpted.map((p) => (
+              <Listing key={p.id} product={p} frame="aspect-square" />
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="order" className="mx-auto max-w-[1100px] scroll-mt-28 px-5 py-12 md:px-8 md:py-16">
         <SeriesPlate series="0929" size="md" />
-        <h1 className="mt-4 max-w-3xl font-serif text-[44px] leading-[0.95] text-[#1c1a17] md:text-[64px]">A pair, made for you.</h1>
+        <h2 className="mt-4 max-w-3xl font-serif text-[44px] leading-[0.95] text-[#1c1a17] md:text-[64px]">A pair, made for you.</h2>
         <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">{orderWindowLine()}</p>
         <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
           Anyone the size fits can request a pair, in US men&apos;s 7 through 12. Other sizes are not offered. A pair does not open a wardrobe.
@@ -69,34 +99,6 @@ export default async function ShopPage() {
           {founding.map((p) => (
             <Listing key={p.id} product={p} frame="aspect-[2/3]" />
           ))}
-        </div>
-      </section>
-
-      <section id="1101" className="border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
-        <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-8">
-          <SeriesPlate series="1101" size="md" />
-          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            Leather and 29 Gris Medio mesh. $550. Design intent is locked. A sample and tooling are still pending, and a measured fit is not certified. Made to order. Ready in {LEAD_TIME}.
-          </p>
-          <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3">
-            {sculpted.map((p) => (
-              <Listing key={p.id} product={p} frame="aspect-square" />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="1223" className="border-t border-[#1c1a17]/10">
-        <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-8">
-          <SeriesPlate series="1223" size="md" />
-          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            Sacred Light. Deep plum and pale gold. $550. A profile, an overhead, a rear, and two worn studies. Materials are not confirmed.
-          </p>
-          <div className="mt-10 max-w-sm">
-            {sacred.map((p) => (
-              <Listing key={p.id} product={p} frame="aspect-square" />
-            ))}
-          </div>
         </div>
       </section>
 

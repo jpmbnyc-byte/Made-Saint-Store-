@@ -41,36 +41,6 @@ export const RUNNER_COLORWAY_VIEWS: Record<
     secondaryAlt: "MADE SAiNT 0929 Runner — Washed / Indigo, overhead",
     label: "Washed / Indigo",
   },
-  "ms-runner-0929-sage": {
-    primary: "/runners/0929-sage.webp",
-    primaryAlt: "MADE SAiNT 0929 Runner — Sage, three-quarter",
-    label: "Sage",
-  },
-  "ms-runner-0929-chambray": {
-    primary: "/runners/0929-chambray.webp",
-    primaryAlt: "MADE SAiNT 0929 Runner — Chambray, three-quarter",
-    label: "Chambray",
-  },
-  "ms-runner-0929-chestnut": {
-    primary: "/runners/0929-chestnut.webp",
-    primaryAlt: "MADE SAiNT 0929 Runner — Chestnut, three-quarter",
-    label: "Chestnut",
-  },
-  "ms-runner-0929-carbon": {
-    primary: "/runners/0929-carbon.webp",
-    primaryAlt: "MADE SAiNT 0929 Runner — Carbon, three-quarter",
-    label: "Carbon",
-  },
-  "ms-runner-0929-slate": {
-    primary: "/runners/0929-slate.webp",
-    primaryAlt: "MADE SAiNT 0929 Runner — Slate, three-quarter",
-    label: "Slate",
-  },
-  "ms-runner-0929-dune": {
-    primary: "/runners/0929-dune.webp",
-    primaryAlt: "MADE SAiNT 0929 Runner — Dune, three-quarter",
-    label: "Dune",
-  },
 };
 
 export function RunnerChapter() {

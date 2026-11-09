@@ -14,10 +14,10 @@ import { OrderRule } from "@/components/shop/order-rule";
 
 export const metadata: Metadata = {
   title: { absolute: "MADE SAiNT" },
-  description: "Once sinner. Made Saint. The 0929, 1101, and 1223 runners, and a private wardrobe, made to order.",
+  description: "Once sinner. Made Saint. The 1101, 1213, and 0929 runners, and a private wardrobe, made to order.",
   openGraph: {
     title: "MADE SAiNT",
-    description: "Once sinner. Made Saint. The 0929, 1101, and 1223 runners, and a private wardrobe.",
+    description: "Once sinner. Made Saint. The 1101, 1213, and 0929 runners, and a private wardrobe.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "MADE SAiNT" }],
   },
   twitter: {
@@ -34,9 +34,11 @@ export default function Home() {
       {/* 01 — Collection hero (1101 + Private Wardrobe) */}
       <EditorialHero />
 
-      {/* 02 — Featured product: 1101 runner */}
-      <RunnerChapter />
+      {/* 02 — 1101 leads, then the seven 1213 colorways */}
       <Range1213 />
+
+      {/* 03 — 0929 runner */}
+      <RunnerChapter />
 
       {/* Reservation rule — inline, brief */}
       <section className="border-t border-[#1c1a17]/10 bg-[#f5f0e8]">

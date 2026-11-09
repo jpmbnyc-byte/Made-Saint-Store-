@@ -9,8 +9,14 @@ const nextConfig: NextConfig = {
     : {
         async redirects() {
           return [
-            { source: "/shop/1213/sacred-light", destination: "/shop/ms-runner-1223-sacred-light", permanent: true },
-            { source: "/shop/1213/:slug", destination: "/shop/ms-runner-1101-:slug", permanent: true },
+            { source: "/shop/1213/:slug", destination: "/shop/ms-runner-1213-:slug", permanent: true },
+            { source: "/shop/ms-runner-1223-sacred-light", destination: "/shop/ms-runner-1213-sacred-light", permanent: true },
+            { source: "/shop/ms-runner-1101-espresso", destination: "/shop/ms-runner-1213-espresso", permanent: true },
+            { source: "/shop/ms-runner-1101-olive", destination: "/shop/ms-runner-1213-olive", permanent: true },
+            { source: "/shop/ms-runner-1101-mineral-blue", destination: "/shop/ms-runner-1213-mineral-blue", permanent: true },
+            { source: "/shop/ms-runner-1101-midnight", destination: "/shop/ms-runner-1213-midnight", permanent: true },
+            { source: "/shop/ms-runner-1101-chestnut", destination: "/shop/ms-runner-1213-chestnut", permanent: true },
+            { source: "/shop/ms-runner-1101-graphite", destination: "/shop/ms-runner-1213-graphite", permanent: true },
           ];
         },
       }),

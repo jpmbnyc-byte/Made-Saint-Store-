@@ -54,9 +54,9 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{product.line}. Made to order. Ready in 4 to 6 weeks.</p>
             {product.launch && (
               <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">
-                {product.series === "1101"
-                  ? "US men's 7 through 12 can be requested. A measured fit is not certified. A pair does not open a wardrobe."
-                  : "US men's 7 through 12. Anyone that size fits can request this pair. It does not open a wardrobe."}
+                {product.series === "0929"
+                  ? "US men's 7 through 12. Anyone that size fits can request this pair. It does not open a wardrobe."
+                  : "US men's 7 through 12 can be requested. A measured fit is not certified. A pair does not open a wardrobe."}
               </p>
             )}
 
@@ -115,9 +115,9 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                   <p>
                     {product.series === "0929"
                       ? "Tongue wordmark printed MADE SAiNT, lowercase i. Calf lined. Nub-lug sole."
-                      : product.series === "1101"
-                        ? "Leather and 29 Gris Medio mesh. Five eyelet pairs. A photograph does not certify the lining, the tooling, or the fit."
-                        : "Tongue wordmark printed MADE SAiNT. The sole is sculpted. Materials are not confirmed."}
+                      : product.id === "ms-runner-1213-sacred-light"
+                        ? "Tongue wordmark printed MADE SAiNT. The sole is sculpted. Materials are not confirmed."
+                        : "Leather and 29 Gris Medio mesh. Five eyelet pairs. A photograph does not certify the lining, the tooling, or the fit."}
                   </p>
                   <p className="text-[12px] tracking-[0.08em] text-[#1c1a17]/50 uppercase">Code {product.id}</p>
                 </div>
@@ -143,7 +143,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             </div>
           </div>
         </div>
-        {product.id === "ms-runner-1223-sacred-light" && (
+        {product.id === "ms-runner-1213-sacred-light" && (
           <section className="mx-auto mt-16 max-w-[1100px] border-t border-[#1c1a17]/10 px-5 pt-10 md:px-0">
             <h2 className="font-serif text-3xl">Shown beside the pair</h2>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#1c1a17]/65">

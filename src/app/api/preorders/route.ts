@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { CAMPAIGN, LEAD_TIME, SIZES, campaignStatus, productById } from "@/lib/business";
+import { CAMPAIGN, SIZES, campaignStatus, offerLine, productById } from "@/lib/business";
 import { createReservation, listReservations, tally, updateReservation } from "@/lib/preorders";
 import { createCheckout, stripeEnabled } from "@/lib/stripe";
 import { isAdmin } from "@/lib/admin";
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     const session = await createCheckout({
       reservationId: r.id,
       name: `MADE SAiNT ${product.name}, US ${input.size}`,
-      description: `Made to order. Ready in ${LEAD_TIME}.`,
+      description: offerLine(product.series),
       amountUsd,
       image: base + product.image,
       email,

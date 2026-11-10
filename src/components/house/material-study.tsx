@@ -81,7 +81,7 @@ export function MaterialStudy() {
         </div>
 
         <p className="mt-8 text-[12px] leading-relaxed text-[#1c1a17]/45">
-          Leather studies can be requested. Made to order, ready in 4 to 6 weeks. A price is not listed. The priced colorways are Navy / Ivory, Navy / Sand, and Washed / Indigo.
+          Leather studies can be requested. A price is not listed, and a ship date is not promised. The priced colorways are Navy / Ivory, Navy / Sand, and Washed / Indigo.
         </p>
       </div>
     </section>

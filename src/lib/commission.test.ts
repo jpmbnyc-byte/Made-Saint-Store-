@@ -37,7 +37,7 @@ test("an introduction can name the person and the days without choosing a packag
     name: "Alex",
     email: "alex@example.com",
     note: "Travel weeks and a formal appearance.",
-    role: "representative",
+    role: "client",
     timing: "season",
     budget: "undisclosed",
     pieceIds: [],
@@ -48,8 +48,12 @@ test("an introduction can name the person and the days without choosing a packag
   assert.equal(parsed.ok, true);
   if (!parsed.ok) return;
   assert.equal(parsed.value.scope, "look");
-  assert.equal(parsed.value.role, "representative");
+  assert.equal(parsed.value.role, "client");
   assert.equal(parsed.value.budget, "undisclosed");
+  const earlier = parseCommission({ ...base, role: "representative" });
+  assert.equal(earlier.ok, true);
+  if (!earlier.ok) return;
+  assert.equal(earlier.value.role, "client");
 });
 
 test("a line style can be commissioned without a wardrobe piece", () => {

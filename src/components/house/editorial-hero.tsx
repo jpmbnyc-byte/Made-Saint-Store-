@@ -15,46 +15,32 @@ type Slide = {
 
 const SLIDES: Slide[] = [
   {
-    id: "teal",
-    label: "Teal",
-    caption: "Teal track, colonnade",
-    image: "/hero/campaign/teal.webp",
-    imageAlt: "A man in a teal track suit with a copper stripe and teal runners, walking a limestone colonnade",
+    id: "terrace",
+    label: "Terrace",
+    caption: "Ivory knit, navy trouser",
+    image: "/world/hero.webp",
+    imageAlt: "A man in an ivory knit and navy trousers, standing full length on a stone terrace above the water",
   },
   {
-    id: "washed",
-    label: "Washed",
-    caption: "Washed tee, butter runner",
-    image: "/hero/campaign/washed.webp",
-    imageAlt: "A woman in a washed blue tee, black trousers, and butter runners, standing against limestone",
+    id: "walk",
+    label: "The walk",
+    caption: "Two friends, full length",
+    image: "/world/walk.webp",
+    imageAlt: "A woman in a navy suit and a man in an ivory knit walking and talking on a masonry street",
   },
   {
-    id: "rose",
-    label: "Rose",
-    caption: "Rose track",
-    image: "/hero/campaign/rose.webp",
-    imageAlt: "A woman in a rose track suit over a teal roll neck, with brown runners, walking a limestone colonnade",
+    id: "table",
+    label: "The table",
+    caption: "A shared table",
+    image: "/world/gathering.webp",
+    imageAlt: "Four adults talking at a shaded garden table",
   },
   {
-    id: "camel",
-    label: "Camel",
-    caption: "Camel, on the steps",
-    image: "/hero/campaign/camel.webp",
-    imageAlt: "A man in a camel jacket and trouser with butter runners, standing on limestone steps",
-  },
-  {
-    id: "butter",
-    label: "Butter",
-    caption: "Butter collar",
-    image: "/hero/campaign/butter.webp",
-    imageAlt: "A man in a butter sweatshirt and black trousers with brown runners, walking a limestone colonnade",
-  },
-  {
-    id: "olive",
-    label: "Olive",
-    caption: "Olive, Saint Michael",
-    image: "/hero/campaign/olive.webp",
-    imageAlt: "A woman in an olive jacket with a Saint Michael back panel and teal runners, in a limestone colonnade",
+    id: "water",
+    label: "The water",
+    caption: "Morning water",
+    image: "/world/coast.webp",
+    imageAlt: "A quiet shore, pale sand, clear water, and a green headland",
   },
 ];
 
@@ -161,7 +147,7 @@ export function EditorialHero() {
     >
       <div className="mx-auto w-full max-w-[1480px] md:grid md:grid-cols-[minmax(260px,0.72fr)_minmax(0,1.28fr)] md:items-start md:gap-x-8 md:px-8 md:py-8 lg:gap-x-12 lg:px-12 lg:py-10">
         <div
-          className="relative aspect-[3/2] w-full touch-pan-y overflow-hidden bg-[#e7e1d6] md:col-start-2 md:row-start-1"
+          className="relative aspect-[16/9] w-full touch-pan-y overflow-hidden bg-[#e7e1d6] md:col-start-2 md:row-start-1"
           onPointerDown={onPointerDown}
           onPointerUp={onPointerUp}
         >
@@ -268,13 +254,16 @@ export function EditorialHero() {
           <p className="ms-hero-text-rise mt-4 text-[12px] tracking-[0.16em] text-[#1c1a17]/70 uppercase" style={{ animationDelay: "400ms" }}>
             {slide.caption}
           </p>
+          <p className="mt-2 max-w-sm text-[13px] leading-relaxed text-[#1c1a17]/55">
+            Campaign frames. Not a finished location shoot.
+          </p>
 
           <div className="ms-hero-text-rise mt-6 flex flex-wrap items-center gap-3" style={{ animationDelay: "480ms" }}>
             <Link
               href="/shop#1101"
               className="inline-flex h-12 items-center bg-[#1c1a17] px-6 text-[12px] tracking-[0.16em] text-[#f5f0e8] uppercase transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
             >
-              Discover the range
+              Explore 1101
             </Link>
             <Link
               href="/wardrobe"

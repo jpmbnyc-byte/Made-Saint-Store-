@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ChevronLeft } from "lucide-react";
-import { PRODUCTS, SIZES, productById, statusLine } from "@/lib/business";
+import { PRODUCTS, SIZES, offerLine, productById, statusLine } from "@/lib/business";
 import { SeriesPlate } from "@/components/shop/series-plate";
 import { OrderRule } from "@/components/shop/order-rule";
 import { viewsFor } from "@/lib/catalog";
@@ -51,12 +51,10 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <h1 className="mt-4 font-serif text-4xl leading-none md:text-5xl">{color(product.name)}</h1>
             <p className="mt-4 text-lg tabular-nums">${product.usd}</p>
             {product.notice && <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">{product.notice}</p>}
-            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{product.line}. Made to order. Ready in 4 to 6 weeks.</p>
+            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{product.line}. {offerLine(product.series)}</p>
             {product.launch && (
               <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">
-                {product.series === "0929"
-                  ? "US men's 7 through 12. Anyone that size fits can request this pair. It does not open a wardrobe."
-                  : "US men's 7 through 12 can be requested. A measured fit is not certified. A pair does not open a wardrobe."}
+                US men&apos;s 7 through 12. Anyone that size fits can request this pair. It does not open a wardrobe.
               </p>
             )}
 
@@ -116,8 +114,8 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                     {product.series === "0929"
                       ? "Tongue wordmark printed MADE SAiNT, lowercase i. Calf lined. Nub-lug sole."
                       : product.id === "ms-runner-1213-sacred-light"
-                        ? "Tongue wordmark printed MADE SAiNT. The sole is sculpted. Materials are not confirmed."
-                        : "Leather and 29 Gris Medio mesh. Five eyelet pairs. A photograph does not certify the lining, the tooling, or the fit."}
+                        ? "Tongue wordmark printed MADE SAiNT. The sole is sculpted. An angel is printed on the insole."
+                        : "Leather and 29 Gris Medio mesh. Five eyelet pairs. Tongue wordmark printed MADE SAiNT."}
                   </p>
                   <p className="text-[12px] tracking-[0.08em] text-[#1c1a17]/50 uppercase">Code {product.id}</p>
                 </div>

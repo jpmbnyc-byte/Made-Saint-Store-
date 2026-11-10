@@ -1,12 +1,11 @@
 import Link from "next/link";
-import { LEAD_TIME } from "@/lib/business";
 import { QUESTIONS } from "@/lib/questions";
 
 const TENSIONS = [
   {
     n: "01",
     title: "A picture is not a pair",
-    body: `A pair is made to order and is ready in ${LEAD_TIME}.`,
+    body: "Every runner is live and made to order. Ready in 4 to 6 weeks.",
   },
   {
     n: "02",
@@ -21,7 +20,7 @@ const TENSIONS = [
 ] as const;
 
 const FOR = [
-  "You can wait 4 to 6 weeks for a pair made for you.",
+  "You can wait 4 to 6 weeks for a 0929 pair made for you.",
   "You want the published price, the same on the first day and the last.",
   "You are dressing a day. The clothes around the pair are commissioned.",
 ] as const;

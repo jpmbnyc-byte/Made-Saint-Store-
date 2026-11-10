@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { productsIn } from "@/lib/business";
+import { offerLine, productsIn } from "@/lib/business";
 import { SeriesPlate } from "@/components/shop/series-plate";
 
 const colorOf = (name: string) => name.split("—").pop()?.trim() ?? name;
@@ -31,13 +31,13 @@ export function Range1213() {
       <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
         <SeriesPlate series="1101" size="md" />
         <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-          Listed first. $550. Leather and 29 Gris Medio mesh. A sample and a measured fit are still pending.
+          Listed first. $550. Leather and 29 Gris Medio mesh. Live. {offerLine("1101")}
         </p>
         <Rail ids={lead} />
         <div className="mt-12 border-t border-[#1c1a17]/10 pt-12">
           <SeriesPlate series="1213" size="md" />
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            Seven colorways. Espresso, Olive, Mineral Blue, Midnight, Chestnut, Sacred Light, and Graphite. $550.
+            Seven colorways. Espresso, Olive, Mineral Blue, Midnight, Chestnut, Sacred Light, and Graphite. $550. {offerLine("1213")}
           </p>
           <Rail ids={sculpted} />
         </div>

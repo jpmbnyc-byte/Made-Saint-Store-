@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2, Lock } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { LEAD_TIME } from "@/lib/business";
+import { offerLine, productById } from "@/lib/business";
 
 export function ReserveForm({
   productId,
@@ -98,8 +98,8 @@ export function ReserveForm({
       </button>
       <p className="text-center text-sm leading-relaxed text-[#1c1a17]/70">
         {payments === "stripe"
-          ? `Secure checkout by Stripe. Made to order. Ready in ${LEAD_TIME}.`
-          : `No payment is taken today. Your name, size, and email are recorded as a request at the listed price of $${priceUsd}. Made to order. Ready in ${LEAD_TIME}.`}
+          ? `Secure checkout by Stripe. ${offerLine(productById(productId)?.series ?? "0929")}`
+          : `No payment is taken today. Your name, size, and email are recorded as a request at the listed price of $${priceUsd}. ${offerLine(productById(productId)?.series ?? "0929")}`}
       </p>
     </form>
   );

@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/studio", "/launch", "/brand", "/package", "/wardrobe/study", "/admin", "/api"],
+      disallow: ["/studio", "/launch", "/package", "/wardrobe/study", "/admin", "/api"],
     },
     host: PRODUCTION_ORIGIN,
   };

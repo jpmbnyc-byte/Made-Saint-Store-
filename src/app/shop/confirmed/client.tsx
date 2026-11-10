@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { LEAD_TIME, productById } from "@/lib/business";
+import { offerLine, productById } from "@/lib/business";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
 
 export function ConfirmedClient() {
@@ -53,7 +53,7 @@ export function ConfirmedClient() {
                 ["Size", size ? `US ${size}` : "As selected"],
                 ["Reference", id || "We will confirm by email"],
                 ["Made", "To order"],
-                ["Ready in", LEAD_TIME],
+                ["Status", shown ? offerLine(shown.series) : "Recorded"],
               ].map(([k, v]) => (
                 <div key={k} className="flex justify-between gap-6 py-3">
                   <dt className="text-[#1c1a17]/55">{k}</dt>
@@ -63,7 +63,7 @@ export function ConfirmedClient() {
             </dl>
             <p className="mt-6 text-sm leading-relaxed text-[#1c1a17]/70">
               {paid
-                ? `The pair is made to order and is ready in ${LEAD_TIME}. The house writes when it leaves.`
+                ? `${shown ? offerLine(shown.series) : "The request is recorded."} The house writes when it leaves.`
                 : "No payment was taken. The request is recorded at the listed price. Checkout is not connected on this page, so there is no charge to return."}
             </p>
             <Link href="/shop" className="mt-8 inline-block border-b border-[#1c1a17] pb-1 text-[11px] tracking-[0.18em] uppercase">

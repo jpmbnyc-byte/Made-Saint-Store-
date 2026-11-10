@@ -2,7 +2,6 @@ User-Agent: *
 Allow: /
 Disallow: /studio
 Disallow: /launch
-Disallow: /brand
 Disallow: /package
 Disallow: /wardrobe/study
 Disallow: /admin

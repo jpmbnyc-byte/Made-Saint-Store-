@@ -4,6 +4,9 @@ import { useCallback, useEffect, useRef, useState, type PointerEvent } from "rea
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import { CampaignBanner } from "@/components/house/campaign-banner";
+import { lookBySlug, customerStatus } from "@/lib/line-shop";
+import { lineByRef } from "@/lib/line";
 
 type Slide = {
   id: string;
@@ -50,6 +53,20 @@ const SLIDES: Slide[] = [
 ];
 
 const AUTOPLAY_MS = 7000;
+
+function chipPrice(ref: string) {
+  const product = lineByRef(ref);
+  const status = product ? customerStatus(product) : null;
+  return status?.price ?? undefined;
+}
+
+const MILOT_CHIPS = [
+  { href: "/line/looks/solene", label: "Jersey", price: chipPrice("R010") },
+  { href: "/line/looks/sage", label: "Sage", price: chipPrice("N014") },
+  { href: "/line/looks/forerunner", label: "Saint John", price: chipPrice("R035") },
+  { href: "/line/looks/olive", label: "Olive mule", price: chipPrice("R046") },
+  { href: "/line/r067", label: "Duffel", price: chipPrice("R067") },
+];
 
 export function EditorialHero() {
   const [active, setActive] = useState(0);
@@ -138,10 +155,33 @@ export function EditorialHero() {
     go(active + (dx < 0 ? 1 : -1));
   }
 
+  const look = lookBySlug(slide.id);
+  const lookPrice = look?.pieces
+    .map((item) => {
+      const product = lineByRef(item.ref);
+      return product ? customerStatus(product).price : null;
+    })
+    .filter(Boolean)
+    .join(" · ");
+
   return (
+    <>
+    <CampaignBanner
+      src="/world/milot.webp"
+      alt="Cast 003 standing in the ruins at Milot, a campaign study of Sans-Souci"
+      kicker="Milot · campaign study"
+      title="You are what you become."
+      body="The group in the ruins of Sans-Souci. A campaign study of the north, not a location shoot and not a house there."
+      chips={MILOT_CHIPS}
+      primary={{ href: "/line/lookbook", label: "Shop the looks" }}
+      secondary={{ href: "/shop#1101", label: "Shop 1101" }}
+      priority
+      tall
+      heading="h1"
+    />
     <section
       ref={heroRef}
-      aria-label="Campaign"
+      aria-label="Campaign looks"
       aria-roledescription="carousel"
       className="bg-[#f3eee6]"
       onMouseEnter={() => setPlaying(false)}
@@ -240,35 +280,31 @@ export function EditorialHero() {
             Once sinner. Made Saint.
           </p>
 
-          <h1
+          <h2
             className="mt-4 font-serif leading-[0.92] tracking-[-0.045em] text-[#1c1a17]"
-            style={{ fontSize: "clamp(40px, 5vw, 84px)" }}
+            style={{ fontSize: "clamp(32px, 3.6vw, 56px)" }}
           >
             <span className="ms-hero-text-rise block" style={{ animationDelay: "120ms" }}>
-              You are
+              {slide.caption}
             </span>
-            <span className="ms-hero-text-rise block" style={{ animationDelay: "220ms" }}>
-              what you become.
-            </span>
-          </h1>
+          </h2>
 
           <p className="ms-hero-text-rise mt-4 max-w-sm text-[16px] leading-relaxed text-[#1c1a17]/75 md:text-[17px]" style={{ animationDelay: "320ms" }}>
-            A wardrobe for the person you’re becoming.
+            The collection, worn. Open a look to shop the mapped pieces. Garments stay proposed prices.
           </p>
 
-          <p className="ms-hero-text-rise mt-4 text-[12px] tracking-[0.16em] text-[#1c1a17]/70 uppercase" style={{ animationDelay: "400ms" }}>
-            {slide.caption}
-          </p>
-          <p className="mt-2 max-w-sm text-[13px] leading-relaxed text-[#1c1a17]/55">
-            The collection, worn. Not a photograph of a place.
-          </p>
+          {lookPrice && (
+            <p className="ms-hero-text-rise mt-4 text-[12px] tracking-[0.16em] text-[#1c1a17]/70 uppercase" style={{ animationDelay: "400ms" }}>
+              {lookPrice} · proposed
+            </p>
+          )}
 
           <div className="ms-hero-text-rise mt-6 flex flex-wrap items-center gap-3" style={{ animationDelay: "480ms" }}>
             <Link
               href={slide.href}
               className="inline-flex h-12 items-center bg-[#1c1a17] px-6 text-[12px] tracking-[0.16em] text-[#f5f0e8] uppercase transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
             >
-              See the look
+              Shop the look
             </Link>
             <Link
               href="/wardrobe"
@@ -284,5 +320,6 @@ export function EditorialHero() {
         {announcement}
       </div>
     </section>
+    </>
   );
 }

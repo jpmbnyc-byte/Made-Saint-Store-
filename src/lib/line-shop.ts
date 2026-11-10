@@ -37,8 +37,8 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     image: "/collection/solene.webp",
     alt: "Solène in the printed jersey over a white shirt, navy tie, and black trousers",
     frames: [],
-    pieces: [],
-    styling: ["A season look. The jersey print is not mapped to a listed product on this photograph."],
+    pieces: [piece("R010", "Jersey")],
+    styling: ["The shirt, the tie, and the trousers are styling. They are not included with the jersey."],
   },
   {
     slug: "sage",
@@ -48,8 +48,8 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     image: "/collection/sage.webp",
     alt: "Ren in a sage fleece set, pale yellow turtleneck, and a yellow barrel bag, walking stairs",
     frames: [],
-    pieces: [],
-    styling: ["A season look. Not a listed price. The bag and the shoes are in the photograph and are not a founding runner."],
+    pieces: [piece("N014", "Turtleneck"), piece("R067", "Duffel")],
+    styling: ["The sage set is not a listed product. The shoes in the photograph are not a founding runner."],
   },
   {
     slug: "olive",
@@ -59,8 +59,8 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     image: "/collection/olive.webp",
     alt: "Lucien in an olive zip set and olive mules, seated at a boathouse",
     frames: [],
-    pieces: [],
-    styling: ["A season look. Not a listed price. Enquire to have it made."],
+    pieces: [piece("R046", "Mule")],
+    styling: ["The olive zip set is not a listed product. Enquire to have it made."],
   },
   {
     slug: "forerunner",
@@ -70,8 +70,8 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     image: "/collection/forerunner.webp",
     alt: "Inès in the camel Saint John jacket, the back print facing the camera",
     frames: [],
-    pieces: [],
-    styling: ["A season look. The jacket artwork is not mapped to a listed product on this photograph."],
+    pieces: [piece("R035", "Jacket")],
+    styling: ["The back print is artwork on this photograph. It is not a separate product."],
   },
   {
     slug: "duffel",
@@ -81,8 +81,8 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     image: "/collection/duffel.webp",
     alt: "Inès in a black zip jacket with a yellow denim-trim duffel",
     frames: [],
-    pieces: [],
-    styling: ["A season look. The bag in the photograph is not a checkout price on this look."],
+    pieces: [piece("R067", "Duffel")],
+    styling: ["The black jacket is not a listed product on this look."],
   },
   {
     slug: "jersey",
@@ -147,8 +147,8 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     image: "/collection/amara.webp",
     alt: "Amara in the printed jersey, tie, blue suede shorts, and cream socks",
     frames: [],
-    pieces: [],
-    styling: ["A season look. The shorts and the jersey are not a listed product on this photograph."],
+    pieces: [piece("R010", "Jersey")],
+    styling: ["The shorts and the socks are styling. They are not included with the jersey."],
   },
   {
     slug: "cobalt",
@@ -183,16 +183,16 @@ export const looksForRef = (ref: string) => COLLECTION_LOOKS.filter((look) => lo
 export type EditorialBlock =
   | { kind: "look"; slug: string; wide?: boolean }
   | { kind: "product"; ref: string; frame: number; wide?: boolean }
-  | { kind: "still"; src: string; alt: string; wide?: boolean };
+  | { kind: "still"; src: string; alt: string; wide?: boolean; href?: string; name?: string; price?: string; cta?: string };
 
 export const FEATURED: EditorialBlock[] = [
   { kind: "look", slug: "solene" },
   { kind: "look", slug: "sage" },
   { kind: "look", slug: "olive", wide: true },
   { kind: "look", slug: "forerunner" },
-  { kind: "still", src: "/collection/tee-black.webp", alt: "Black acid-wash oversized t-shirt with a red MADE SAiNT collar mark" },
-  { kind: "still", src: "/collection/tee-butter.webp", alt: "Butter acid-wash oversized t-shirt with a red MADE SAiNT collar mark" },
-  { kind: "still", src: "/collection/tee-denim.webp", alt: "Blue denim acid-wash oversized t-shirt with a red MADE SAiNT collar mark" },
+  { kind: "still", src: "/collection/tee-black.webp", alt: "Black acid-wash oversized t-shirt with a red MADE SAiNT collar mark", href: "/wardrobe#introduction", name: "Acid-wash tee, black", cta: "Enquire" },
+  { kind: "still", src: "/collection/tee-butter.webp", alt: "Butter acid-wash oversized t-shirt with a red MADE SAiNT collar mark", href: "/wardrobe#introduction", name: "Acid-wash tee, butter", cta: "Enquire" },
+  { kind: "still", src: "/collection/tee-denim.webp", alt: "Blue denim acid-wash oversized t-shirt with a red MADE SAiNT collar mark", href: "/wardrobe#introduction", name: "Acid-wash tee, denim", cta: "Enquire" },
   { kind: "look", slug: "duffel" },
   { kind: "product", ref: "N015", frame: 12 },
   { kind: "product", ref: "R067", frame: 27, wide: true },
@@ -201,13 +201,15 @@ export const FEATURED: EditorialBlock[] = [
 ];
 
 export const CAMPAIGN_BLOCKS: EditorialBlock[] = [
+  { kind: "still", src: "/world/milot.webp", alt: "Cast 003 in the ruins at Milot, a campaign study of Sans-Souci", wide: true, href: "/line/lookbook", name: "Milot, campaign study", cta: "Shop the looks" },
   { kind: "look", slug: "solene", wide: true },
   { kind: "look", slug: "sage" },
   { kind: "look", slug: "olive", wide: true },
   { kind: "look", slug: "forerunner" },
   { kind: "look", slug: "duffel" },
-  { kind: "still", src: "/collection/tee-black.webp", alt: "Black acid-wash oversized t-shirt with a red MADE SAiNT collar mark" },
-  { kind: "still", src: "/runners/navy-ivory-worn.webp", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, worn on foot", wide: true },
+  { kind: "still", src: "/collection/tee-black.webp", alt: "Black acid-wash oversized t-shirt with a red MADE SAiNT collar mark", href: "/wardrobe#introduction", name: "Acid-wash tee, black", cta: "Enquire" },
+  { kind: "still", src: "/runners/navy-ivory-worn.webp", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, worn on foot", wide: true, href: "/shop/ms-runner-chalk-navy", name: "0929 Runner — Navy / Ivory", price: "$490" },
+  { kind: "still", src: "/world/coastline.webp", alt: "MADE SAiNT product branding on the north coast, a campaign study", wide: true, href: "/shop#1101", name: "Coastline, campaign study", cta: "Shop the runners" },
   { kind: "look", slug: "jersey" },
   { kind: "look", slug: "day", wide: true },
   { kind: "look", slug: "rose" },

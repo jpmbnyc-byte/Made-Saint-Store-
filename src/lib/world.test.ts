@@ -26,7 +26,9 @@ test("research references stay out of the site and campaign frames are marked as
     assert.equal(asset.path.startsWith("/"), false);
   }
   const campaign = ASSET_MANIFEST.filter((asset) => asset.path.startsWith("/world/"));
-  assert.equal(campaign.length, 5);
+  assert.equal(campaign.length, 7);
+  assert.ok(campaign.some((asset) => asset.path === "/world/milot.webp"));
+  assert.ok(campaign.some((asset) => asset.path === "/world/coastline.webp"));
   for (const asset of campaign) {
     assert.equal(asset.deployable, true);
     assert.equal(asset.representation, "concept");

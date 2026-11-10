@@ -93,6 +93,8 @@ export const EDITORIAL_HEROES = [
   { src: "/editorial/saint-michael-back.webp", width: 896, height: 1248 },
   { src: "/stories/chalk-navy.webp", width: 1080, height: 1440 },
   { src: "/stories/washed-denim.webp", width: 1080, height: 1440 },
+  { src: "/world/milot.webp", width: 3168, height: 1344 },
+  { src: "/world/coastline.webp", width: 3168, height: 1344 },
 ] as const;
 
 export const UNRESOLVED: ImageAssignment[] = [

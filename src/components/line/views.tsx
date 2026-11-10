@@ -33,9 +33,21 @@ export function BlockList({ blocks, hero }: { blocks: typeof FEATURED; hero: "fe
     <div className="space-y-16 md:space-y-24">
       {blocks.map((block, index) => {
         if (block.kind === "still") {
+          const frame = <Frame src={block.src} alt={block.alt} wide={block.wide ?? hero === "campaign"} priority={index === 0} />;
           return (
             <figure key={`${block.src}-${index}`} className="text-center">
-              <Frame src={block.src} alt={block.alt} wide={block.wide ?? hero === "campaign"} priority={index === 0} />
+              {block.href ? <Link href={block.href}>{frame}</Link> : frame}
+              {(block.name || block.price || block.cta) && (
+                <figcaption className="mt-3 text-[13px]">
+                  {block.href && block.name ? (
+                    <Link href={block.href} className="underline underline-offset-4">{block.name}</Link>
+                  ) : (
+                    block.name && <span>{block.name}</span>
+                  )}
+                  {block.price && <span className="mt-1 block text-[#111]/60">{block.price}</span>}
+                  {block.cta && !block.price && <span className="mt-1 block text-[#111]/60">{block.cta}</span>}
+                </figcaption>
+              )}
             </figure>
           );
         }

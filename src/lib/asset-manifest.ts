@@ -28,7 +28,7 @@ export const ASSET_MANIFEST: AssetRecord[] = [
     subjectConsentStatus: "original cast, not a person from a location shoot",
     productIds: [],
     representation: "concept",
-    alt: "Lucien in a cobalt zip jacket and speckled trousers, campaign frame",
+    alt: "Lucien in an olive zip set and olive mules, campaign frame",
   },
   {
     id: "world-courtyard",
@@ -41,7 +41,7 @@ export const ASSET_MANIFEST: AssetRecord[] = [
     subjectConsentStatus: "original cast, not a person from a location shoot",
     productIds: [],
     representation: "concept",
-    alt: "Lucien in the camel Saint John jacket and trouser, campaign frame",
+    alt: "Inès in the camel Saint John jacket, campaign frame",
   },
   {
     id: "world-coast",
@@ -54,7 +54,7 @@ export const ASSET_MANIFEST: AssetRecord[] = [
     subjectConsentStatus: "original cast, not a person from a location shoot",
     productIds: [],
     representation: "concept",
-    alt: "Amara in a beige jacket, printed jersey, shorts, and a brown backpack, campaign frame",
+    alt: "Solène in the printed jersey over a white shirt and black trousers, campaign frame",
   },
   {
     id: "world-walk",
@@ -67,7 +67,7 @@ export const ASSET_MANIFEST: AssetRecord[] = [
     subjectConsentStatus: "original cast, not a person from a location shoot",
     productIds: [],
     representation: "concept",
-    alt: "Ren in the grouped-stripe jacket and trousers, campaign frame",
+    alt: "Ren in a sage fleece set, campaign frame",
   },
   {
     id: "world-gathering",
@@ -80,7 +80,7 @@ export const ASSET_MANIFEST: AssetRecord[] = [
     subjectConsentStatus: "original cast, not a person from a location shoot",
     productIds: [],
     representation: "concept",
-    alt: "Inès in a dusty rose zip set over a petrol teal turtleneck, campaign frame",
+    alt: "Inès in a black zip jacket, campaign frame",
   },
   ...[
     ["ref-01-cathedral", "reference_only/01-cathedral.jpg"],

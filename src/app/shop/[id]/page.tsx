@@ -13,6 +13,7 @@ import { stripeEnabled } from "@/lib/stripe";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
 import { ProductGallery } from "@/components/shop/gallery";
 import { ReserveForm } from "@/components/shop/reserve";
+import { SaveRunner } from "@/components/shop/save-runner";
 
 export function generateStaticParams() {
   return PRODUCTS.filter((p) => p.launch).map((p) => ({ id: p.id }));
@@ -96,6 +97,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                   sizes={SIZES}
                 />
               </Suspense>
+              {product.launch && <SaveRunner productId={product.id} color={product.line} />}
             </div>
 
             <div className="mt-10 divide-y divide-[#1c1a17]/12 border-y border-[#1c1a17]/12">

@@ -16,6 +16,7 @@ export function ShopHeader({ status }: { status?: string }) {
             <Link href="/shop#1101" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">1101</Link>
             <Link href="/shop#1213" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">1213</Link>
             <Link href="/shop#0929" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">0929</Link>
+            <Link href="/line" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">The Line</Link>
             <Link href="/wardrobe" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">Private Wardrobe</Link>
             <Link href="/#looks" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">Looks</Link>
             <Link href="/brand" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">The House</Link>

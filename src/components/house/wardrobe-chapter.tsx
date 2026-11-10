@@ -72,7 +72,7 @@ export function WardrobeChapter() {
               <div className="ms-resin relative aspect-square overflow-hidden bg-[#2a3030]">
                 <Image
                   src="/collection/sage.webp"
-                  alt="Ren in a sage fleece set, pale yellow turtleneck, and a yellow barrel bag"
+                  alt="Ren in a sage fleece set, pale yellow turtleneck, and a yellow barrel bag, walking stairs"
                   fill
                   sizes="(min-width: 768px) 12vw, 25vw"
                   className="object-contain"

@@ -13,6 +13,10 @@ test("published looks only list pieces already named on the frames", () => {
   }
   assert.ok(COLLECTION_LOOKS.some((look) => look.slug === "velvet" && look.pieces.length === 0));
   assert.ok(COLLECTION_LOOKS.some((look) => look.slug === "amara" && look.pieces.length === 0));
+  assert.ok(COLLECTION_LOOKS.some((look) => look.slug === "olive" && look.pieces.length === 0));
+  assert.ok(COLLECTION_LOOKS.some((look) => look.slug === "forerunner" && look.pieces.length === 0));
+  assert.equal(COLLECTION_LOOKS[0]?.slug, "solene");
+  assert.equal(COLLECTION_LOOKS[1]?.slug, "sage");
 });
 
 test("styling-only frames are not assigned a product", () => {

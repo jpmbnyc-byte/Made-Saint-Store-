@@ -3,15 +3,15 @@ import Link from "next/link";
 
 const FRAMES = [
   {
-    src: "/collection/velvet.webp",
-    alt: "Lucien in a forest velvet zip jacket and matching trousers",
-    caption: "Lucien, velvet",
+    src: "/collection/solene.webp",
+    alt: "Solène in the printed jersey over a white shirt, navy tie, and black trousers",
+    caption: "Solène, jersey",
     note: "A season look. Not a listed price.",
-    href: "/line/looks/velvet",
+    href: "/line/looks/solene",
   },
   {
     src: "/collection/sage.webp",
-    alt: "Ren in a sage fleece set, pale yellow turtleneck, and a yellow barrel bag",
+    alt: "Ren in a sage fleece set, pale yellow turtleneck, and a yellow barrel bag, walking stairs",
     caption: "Ren, sage",
     note: "A season look. Not a listed price.",
     href: "/line/looks/sage",

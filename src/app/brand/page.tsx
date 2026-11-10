@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Mast } from "@/components/house/mast";
 import { ShopFooter } from "@/components/shop/chrome";
+import { Pledge } from "@/components/house/pledge";
 import { offerLine } from "@/lib/business";
 
 export const metadata: Metadata = {
@@ -46,15 +47,14 @@ export default function BrandPage() {
               </p>
               <h2 className="pt-4 font-serif text-4xl text-[#1c1a17]">The pairs</h2>
               <p>
-                The 1101 leads, at $550. {offerLine("1101")} The 1213 is the sculpted-sole runner, also $550, in seven colorways. {offerLine("1213")} Sacred Light’s materials are not confirmed. The 0929 is the studded-sole runner, at $490. {offerLine("0929")}
+                The 1101 leads, at $550. The 1213 is the sculpted-sole runner, also $550, in seven colorways. The 0929 is the studded-sole runner, at $490. Every colorway is live. {offerLine("1101")}
               </p>
               <p>
                 Brush suede with a soft crepe or nylon brush after wear. Treat it once before the first wear. Store a pair in the dust bag, away from direct sun.
               </p>
-              <h2 className="pt-4 font-serif text-4xl text-[#1c1a17]">A contribution</h2>
-              <p>
-                An annual contribution is part of the direction. No recipient, rate, or partnership is published until it is agreed.
-              </p>
+              <div className="pt-6">
+                <Pledge />
+              </div>
             </div>
           </div>
         </section>

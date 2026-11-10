@@ -54,9 +54,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{product.line}. {offerLine(product.series)}</p>
             {product.launch && (
               <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">
-                {product.series === "0929"
-                  ? "US men's 7 through 12. Anyone that size fits can request this pair. It does not open a wardrobe."
-                  : "US men's 7 through 12 can be requested. A measured fit is not certified. A pair does not open a wardrobe."}
+                US men&apos;s 7 through 12. Anyone that size fits can request this pair. It does not open a wardrobe.
               </p>
             )}
 
@@ -80,7 +78,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               </div>
             </div>
 
-            {product.launch && product.series === "0929" && (
+            {product.launch && (
               <div className="mt-8">
                 <p className="text-[11px] tracking-[0.16em] uppercase">How this pair is made</p>
                 <div className="mt-3">
@@ -116,8 +114,8 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                     {product.series === "0929"
                       ? "Tongue wordmark printed MADE SAiNT, lowercase i. Calf lined. Nub-lug sole."
                       : product.id === "ms-runner-1213-sacred-light"
-                        ? "Tongue wordmark printed MADE SAiNT. The sole is sculpted. Materials are not confirmed."
-                        : "Leather and 29 Gris Medio mesh. Five eyelet pairs. A photograph does not certify the lining, the tooling, or the fit."}
+                        ? "Tongue wordmark printed MADE SAiNT. The sole is sculpted. An angel is printed on the insole."
+                        : "Leather and 29 Gris Medio mesh. Five eyelet pairs. Tongue wordmark printed MADE SAiNT."}
                   </p>
                   <p className="text-[12px] tracking-[0.08em] text-[#1c1a17]/50 uppercase">Code {product.id}</p>
                 </div>

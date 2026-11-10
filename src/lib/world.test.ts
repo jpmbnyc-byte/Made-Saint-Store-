@@ -4,11 +4,12 @@ import { ASSET_MANIFEST } from "@/lib/asset-manifest";
 import { offerLine } from "@/lib/business";
 import { IMPACT } from "@/lib/impact";
 
-test("the contribution stays unpublished until a rate and a permission exist", () => {
-  assert.equal(IMPACT.publishEnabled, false);
-  assert.equal(IMPACT.nameLogoPermission, false);
-  assert.equal(IMPACT.rateOrAmount, null);
-  assert.equal(IMPACT.relationshipStatus, "proposed");
+test("the pledge names a rate and stays a promise until a year is reported", () => {
+  assert.equal(IMPACT.publishEnabled, true);
+  assert.equal(IMPACT.nameLogoPermission, true);
+  assert.equal(IMPACT.rateOrAmount, "5% of annual net profits");
+  assert.equal(IMPACT.relationshipStatus, "pledged");
+  assert.equal(IMPACT.verifiedReportUrl, null);
 });
 
 test("research references stay out of the site and campaign frames are marked as concept", () => {
@@ -28,10 +29,8 @@ test("research references stay out of the site and campaign frames are marked as
   }
 });
 
-test("only the 0929 promises a make time", () => {
-  assert.match(offerLine("0929"), /Ready in 4 to 6 weeks/);
-  assert.match(offerLine("1101"), /ship date is not promised/);
-  assert.match(offerLine("1213"), /ship date is not promised/);
-  assert.doesNotMatch(offerLine("1101"), /4 to 6 weeks/);
-  assert.doesNotMatch(offerLine("1213"), /4 to 6 weeks/);
+test("every runner is live on the same make time", () => {
+  for (const series of ["1101", "1213", "0929"] as const) {
+    assert.match(offerLine(series), /Made to order\. Ready in 4 to 6 weeks/);
+  }
 });

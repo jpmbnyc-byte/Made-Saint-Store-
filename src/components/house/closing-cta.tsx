@@ -18,7 +18,7 @@ export function ClosingCta() {
               The lead runner.
             </h2>
             <p className="mt-5 max-w-sm flex-1 text-[15px] leading-relaxed text-[#41505b]">
-              $550. A sample and tooling are still pending. A request records interest at the listed price. A ship date is not promised.
+              $550. Live and made to order. Ready in 4 to 6 weeks.
             </p>
             <div className="mt-8">
               <Link

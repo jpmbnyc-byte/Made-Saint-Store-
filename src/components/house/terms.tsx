@@ -5,7 +5,7 @@ const TENSIONS = [
   {
     n: "01",
     title: "A picture is not a pair",
-    body: "The 0929 is made to order and ready in 4 to 6 weeks. The 1101 and the 1213 are studies. A ship date is not promised.",
+    body: "Every runner is live and made to order. Ready in 4 to 6 weeks.",
   },
   {
     n: "02",

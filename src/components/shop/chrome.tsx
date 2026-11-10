@@ -41,7 +41,7 @@ export function ShopFooter() {
         <div>
           <p className="font-serif text-3xl text-[#1c1a17]">MADE SAiNT</p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-[#1c1a17]/65">
-            The 0929 is made to order, ready in 4 to 6 weeks. The 1101 and the 1213 are studies. A fitting, if you add one, is remote.
+            Every runner is live and made to order, ready in 4 to 6 weeks. A fitting, if you add one, is remote.
           </p>
         </div>
         <div className="space-y-2 text-sm">

@@ -5,7 +5,6 @@ import { EditorialHero } from "@/components/house/editorial-hero";
 import { RunnerChapter } from "@/components/house/runner-chapter";
 import { Range1213 } from "@/components/house/range-1213";
 import { WardrobeChapter } from "@/components/house/wardrobe-chapter";
-import { CastEditorial } from "@/components/house/cast-editorial";
 import { HouseLooks } from "@/components/house/examples";
 import { MaterialStudy } from "@/components/house/material-study";
 import { TheHouse } from "@/components/house/the-house";
@@ -50,13 +49,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 03 — Private Wardrobe: in-the-moment editorial */}
+      {/* 04 — Private Wardrobe */}
       <WardrobeChapter />
 
-      {/* 04 — Campaign 001 cast: cinematic editorial */}
-      <CastEditorial />
-
-      {/* 05 — Styled looks (collection grid equivalent) */}
+      {/* 05 — Styled looks */}
       <HouseLooks />
 
       {/* Material in close-up */}

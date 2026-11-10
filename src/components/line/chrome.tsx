@@ -10,7 +10,7 @@ const VIEWS = [
   { href: "/line/campaign", id: "campaign", label: "Campaign" },
 ] as const;
 
-export function CollectionChrome({ view }: { view: "featured" | "lookbook" | "campaign" | "look" | "product" }) {
+export function CollectionChrome({ view }: { view: "featured" | "lookbook" | "campaign" | "look" | "product" | "account" }) {
   const closet = useCloset();
   const bag = useBag();
   return (
@@ -25,7 +25,7 @@ export function CollectionChrome({ view }: { view: "featured" | "lookbook" | "ca
           <Link href="/bag" className="inline-flex h-11 items-center px-2">Bag {bag.data.items.reduce((sum, item) => sum + item.qty, 0)}</Link>
         </nav>
       </div>
-      {view !== "look" && (
+      {view !== "look" && view !== "account" && (
         <div className="px-4 pt-10 pb-8 text-center md:pt-16 md:pb-10">
           {view === "product" ? (
             <p className="text-[12px] tracking-[0.28em] uppercase">The 2027 line</p>

@@ -16,6 +16,11 @@ export const IMPACT = {
   nameLogoPermission: true,
 } as const;
 
+export const FOUNDER = {
+  name: "Jean Pierre Bobo",
+  role: "Founder",
+} as const;
+
 export const PLEDGE = {
   line: "A future still being made.",
   promise: "Every child deserves nourishment, an education, and room to become.",

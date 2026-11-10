@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function ClosetPage() {
   return (
     <div className="min-h-screen bg-[#f7f7f5] text-[#111]">
-      <CollectionChrome view="product" />
+      <CollectionChrome view="account" />
       <ClosetWorkspace />
     </div>
   );

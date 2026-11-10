@@ -11,6 +11,7 @@ const NAV_LEFT = [
 
 const NAV_RIGHT = [
   { href: "/#looks", label: "Looks" },
+  { href: "/closet", label: "Closet" },
   { href: "/brand", label: "The House" },
 ];
 

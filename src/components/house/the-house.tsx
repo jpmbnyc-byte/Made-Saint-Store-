@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Pledge } from "@/components/house/pledge";
+import { FOUNDER } from "@/lib/impact";
 
 export function TheHouse() {
   return (
@@ -13,13 +14,13 @@ export function TheHouse() {
         <figure className="mx-auto w-full max-w-[340px]">
           <Image
             src="/house/founder.webp"
-            alt="The founder, in low light"
+            alt={`${FOUNDER.name}, ${FOUNDER.role.toLowerCase()}, in low light`}
             width={1400}
             height={1875}
             className="h-auto w-full border border-[#1c1a17]/20"
           />
           <figcaption className="ms-caption mt-3 text-center text-[12px] tracking-[0.14em] text-[#1c1a17]/55 uppercase">
-            The founder
+            {FOUNDER.name}
           </figcaption>
         </figure>
         <div>
@@ -34,7 +35,7 @@ export function TheHouse() {
             <em className="italic">Made Saint.</em>
           </h2>
           <p className="mt-7 max-w-lg text-[16px] leading-relaxed text-[#41505b]">
-            The line is the founder&apos;s, for grace and a life changed. A purchase does not confer moral or spiritual standing. The house keeps a Christian name and welcomes a client of any belief.
+            The line is {FOUNDER.name}&apos;s, for grace and a life changed. A purchase does not confer moral or spiritual standing. The house keeps a Christian name and welcomes a client of any belief.
           </p>
           <div className="mt-8">
             <Pledge />

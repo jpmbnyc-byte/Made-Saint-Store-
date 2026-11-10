@@ -24,7 +24,13 @@ export function ShopHeader({ status }: { status?: string }) {
           <Link href="/" className="hidden justify-self-center sm:block" aria-label="MADE SAiNT — home">
             <Wordmark />
           </Link>
-          <nav aria-label="Secondary navigation" className="hidden justify-end sm:flex">
+          <nav aria-label="Secondary navigation" className="hidden items-center justify-end gap-2 sm:flex">
+            <Link href="/closet" className="inline-flex h-11 items-center px-2 text-[11px] tracking-[0.14em] uppercase hover:opacity-70">
+              My Closet
+            </Link>
+            <Link href="/bag" className="inline-flex h-11 items-center px-2 text-[11px] tracking-[0.14em] uppercase hover:opacity-70">
+              Bag
+            </Link>
             <Link href="/wardrobe#introduction" className="inline-flex h-11 items-center bg-[#1c1a17] px-4 text-[11px] tracking-[0.14em] text-[#f5f0e8] uppercase hover:opacity-80">
               Introduction
             </Link>
@@ -58,6 +64,9 @@ export function ShopFooter() {
           <Link href="/wardrobe" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Discover</Link>
           <Link href="/wardrobe#introduction" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Request an introduction</Link>
           <Link href="/#looks" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Looks</Link>
+          <Link href="/line/lookbook" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Lookbook</Link>
+          <Link href="/closet" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">My Closet</Link>
+          <Link href="/bag" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Bag</Link>
         </div>
         <div className="space-y-2 text-sm">
           <p className="text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">The House</p>

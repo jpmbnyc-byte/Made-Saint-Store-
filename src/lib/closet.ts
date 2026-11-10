@@ -76,6 +76,14 @@ export function writeBag(store: Store, data: BagData) {
   store.setItem(BAG_KEY, JSON.stringify(data));
 }
 
+export function hasPiece(
+  data: ClosetData,
+  input: Pick<PieceSelection, "productRef" | "color" | "size" | "lookId">,
+) {
+  const key = pieceKey(input);
+  return data.pieces.some((piece) => pieceKey(piece) === key);
+}
+
 export function addPiece(
   data: ClosetData,
   input: Omit<PieceSelection, "qty" | "groupIds" | "createdAt" | "updatedAt"> & { groupId?: string },
@@ -137,9 +145,20 @@ export function renameGroup(data: ClosetData, id: string, name: string): ClosetD
   return { ...data, groups: data.groups.map((group) => (group.id === id ? { ...group, name: name.slice(0, 60) } : group)) };
 }
 
-export function createGroup(data: ClosetData, name: string, now: string): ClosetData {
-  const id = `group-${now}`;
-  return { ...data, groups: [...data.groups, { id, name: name.slice(0, 60) || "A wardrobe", lookId: "", createdAt: now }] };
+export function createGroup(data: ClosetData, name: string, now: string, selected: PieceSelection[] = []): ClosetData {
+  const trimmed = name.trim().slice(0, 60);
+  if (!trimmed) return data;
+  const id = `group-${now}-${data.groups.length + 1}`;
+  const keys = new Set(selected.map((piece) => pieceKey(piece)));
+  return {
+    ...data,
+    groups: [...data.groups, { id, name: trimmed, lookId: "", createdAt: now }],
+    pieces: data.pieces.map((piece) =>
+      keys.has(pieceKey(piece)) && !piece.groupIds.includes(id)
+        ? { ...piece, groupIds: [...piece.groupIds, id], updatedAt: now }
+        : piece,
+    ),
+  };
 }
 
 export function setPieceSize(data: ClosetData, productRef: string, color: string, fromSize: string, lookId: string, size: string, now: string): ClosetData {

@@ -98,6 +98,22 @@ export default async function LineProductPage({ params }: { params: Promise<{ re
           </div>
         </div>
 
+        {looks.length > 0 && (
+          <section className="mt-16 border-t border-[#111]/10 pt-10">
+            <h2 className="text-[11px] tracking-[0.18em] uppercase">Worn in</h2>
+            <ul className="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {looks.map((look) => (
+                <li key={look.slug}>
+                  <Link href={`/line/looks/${look.slug}`}>
+                    <img src={look.image} alt={look.alt} className="aspect-[4/5] w-full max-w-sm bg-[#f3f3f1] object-contain" />
+                    <span className="mt-3 block text-[15px] underline underline-offset-4">Look {look.number} · {look.title}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         {companions.length > 0 && (
           <section className="mt-16 border-t border-[#111]/10 pt-10">
             <h2 className="text-[11px] tracking-[0.18em] uppercase">Complete the look</h2>

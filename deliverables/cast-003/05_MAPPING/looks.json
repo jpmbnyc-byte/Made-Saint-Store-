@@ -1,0 +1,105 @@
+{
+  "folder": "MadeSaint SS 27 Fall",
+  "driveFolderId": "146EZS7n_hV2UD90KljUqux8x_GHX251e",
+  "fileCount": 92,
+  "duplicateNames": ["DDEA61D8-082F-431F-A09D-BC44D411E989.png", "IMG_8799.PNG"],
+  "note": "Product IDs are unresolved unless a frame was matched to an existing catalog record by construction, not by filename. No prices or checkout links are inferred.",
+  "looks": [
+    {
+      "id": "LOOK-001",
+      "cast": "SOLENE",
+      "rationale": "Lead campaign face. Signature jersey over a shirt.",
+      "garments": ["blue bird-print jersey", "white collared shirt", "black trousers"],
+      "styling": [],
+      "sources": ["4FB434F7-7C1A-4CEA-A886-204200643A9B.png"],
+      "driveIds": ["1UhENmMnOkURsWe2JTHzoSdDCIsGb9vRp"],
+      "productIds": [],
+      "backDocumented": false,
+      "status": "rendered-draft"
+    },
+    {
+      "id": "LOOK-002",
+      "cast": "AMARA",
+      "rationale": "Athletic silhouette. Same jersey family with shorts, assigned to a woman because the pieces are not gendered.",
+      "garments": ["blue bird-print jersey", "white shirt", "denim shorts", "white socks", "blue runners"],
+      "sources": ["2AA8AFEA-C2B0-476E-A883-A9F4B5EFF89D.png", "8DBF5EC8-91C5-417D-BA2C-F2E720824152.png"],
+      "driveIds": ["1ctx8vpSlKqGJZbfsmUtf_XfoABoyxeh6", "1kUxEkCQm5pMVVXw7PCzhHOnhH85Po6u5"],
+      "productIds": [],
+      "backDocumented": false,
+      "status": "mapped-not-rendered"
+    },
+    {
+      "id": "LOOK-003",
+      "cast": "INES",
+      "rationale": "Fluid tracksuit on a fuller silhouette.",
+      "garments": ["dusty rose quarter-zip jacket", "matching trousers", "light runners"],
+      "sources": ["A1981645-F57C-4AA8-BBFE-18D3605C741F.png"],
+      "driveIds": ["1k-uGYIk0_b9y79PKLxg8og2_XQQye69A"],
+      "productIds": [],
+      "backDocumented": false,
+      "status": "rendered-draft"
+    },
+    {
+      "id": "LOOK-004",
+      "cast": "LUCIEN",
+      "rationale": "Signature menswear tracksuit. Back view exists.",
+      "garments": ["forest green velvet zip jacket", "matching trousers", "off-white runners"],
+      "sources": ["FB3E9002-6394-4B95-9CCE-91BF50F7E756.png", "2377BD13-6820-4669-A848-2F4B7E7C61E5.png", "5D30DB0A-2026-462E-AC58-4B86F7F47977.png", "BA1E2A57-0693-4008-9B08-E0B74A509725.png"],
+      "driveIds": ["1tQq_albADi2oUy9SaYwrLOQTWVhaxXSv", "1bJH4fYCEmiSdtcSvgNiFJHOODFrJoa17", "1x8SGSufNVrjuC7C_V0cfXQwx9-Egq4pY", "1KH2EIrWHk_41RwiIoIppyEIZ2HPJtnLG"],
+      "productIds": [],
+      "backDocumented": true,
+      "status": "rendered-draft"
+    },
+    {
+      "id": "LOOK-005",
+      "cast": "REN",
+      "rationale": "Clean technical set.",
+      "garments": ["sage quarter-zip set", "yellow duffel", "yellow shoes"],
+      "sources": ["2D76C06F-4237-436E-B61C-9D7EEC6352BE.png", "IMG_8354.PNG"],
+      "driveIds": ["1X3uf9XtoWjrOyotKaDn1-Y10CY0Hb_Xf", "1510YSUqLxUyluQAi9JpijsTcF50fRGkn"],
+      "productIds": [],
+      "backDocumented": false,
+      "status": "mapped-not-rendered"
+    },
+    {
+      "id": "LOOK-006",
+      "cast": "MALIK",
+      "rationale": "Tall athlete wardrobe. Poster type is not part of the garment.",
+      "garments": ["yellow polo cardigan", "cream trousers", "yellow runners", "basketball"],
+      "sources": ["5AF35C20-5403-4798-A9EE-94D09645C478.png"],
+      "driveIds": ["16dxO6jdQjeDKrkoAeFcBNbkCnmfPThmx"],
+      "productIds": [],
+      "backDocumented": false,
+      "status": "mapped-not-rendered"
+    },
+    {
+      "id": "LOOK-007",
+      "cast": "INES",
+      "rationale": "Knit and a printed back that is documented.",
+      "garments": ["camel fleece jacket with back print", "camel trousers"],
+      "sources": ["FDE6096F-5F57-4BD0-AFCF-AEE6F1615349.png", "IMG_9102.JPG"],
+      "driveIds": ["1F3kZPwJUilULBFuJlIBGx7ehARC85-RB", "1QeNFA8levoiviQmvB82cMD-Mc0egAMhN"],
+      "productIds": [],
+      "backDocumented": true,
+      "status": "mapped-not-rendered"
+    },
+    {
+      "id": "LOOK-008",
+      "cast": "SOLENE",
+      "rationale": "Leather and a bag. Crop does not show footwear.",
+      "garments": ["black zip jacket", "yellow and blue barrel bag"],
+      "sources": ["F675B157-8DC4-4B05-9908-779E463AC8CB.png"],
+      "driveIds": ["1iun23dbzaXpD4e0JrUAJJ3WJjkNsIE1f"],
+      "productIds": [],
+      "unresolved": "Footwear is not in the crop, so a full-length lookbook is blocked until shoes are shown.",
+      "backDocumented": false,
+      "status": "mapped-not-rendered"
+    }
+  ],
+  "productStillsNotLooks": "Runner colorways, mule, backpacks, tee flats, and trouser flats are construction references, not outfits.",
+  "blocked": [
+    "Neck-only turtleneck crops (IMG_8850, IMG_8851, IMG_8866, IMG_8867, IMG_8868) do not show a full outfit.",
+    "Group photographs (stairs pair, street trio) are not a single identity look.",
+    "Poster layouts contain typography that must not be recreated as part of the garment."
+  ]
+}

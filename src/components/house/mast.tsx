@@ -5,6 +5,7 @@ const NAV_LEFT = [
   { href: "/shop#1101", label: "1101" },
   { href: "/shop#1213", label: "1213" },
   { href: "/shop#0929", label: "0929" },
+  { href: "/line", label: "The Line" },
   { href: "/wardrobe", label: "Private Wardrobe" },
 ];
 

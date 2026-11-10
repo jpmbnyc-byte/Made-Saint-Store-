@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ChevronLeft } from "lucide-react";
-import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
-import { LINE, frameSrc, lineByRef, usd } from "@/lib/line";
-import { largeFramesFor } from "@/lib/imagery";
+import { CollectionChrome } from "@/components/line/chrome";
+import { ProductActions } from "@/components/line/product-actions";
+import { customerStatus, looksForRef } from "@/lib/line-shop";
+import { LINE, frameSrc, lineByRef } from "@/lib/line";
+import { FRAME_PX, largeFramesFor } from "@/lib/imagery";
 
 export function generateStaticParams() {
   return LINE.map((item) => ({ ref: item.ref.toLowerCase() }));
@@ -12,10 +13,11 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ ref: string }> }): Promise<Metadata> {
   const product = lineByRef((await params).ref);
+  const status = product ? customerStatus(product) : null;
   return {
     title: product ? product.name : "The 2027 line",
-    description: product
-      ? `${product.name}. ${product.retail != null ? `Proposed list price ${usd(product.retail)}.` : "Held, no list price."} Not a checkout price.`
+    description: product && status?.price
+      ? `${product.name}. Proposed list price ${status.price}. Not a checkout price.`
       : "The 2027 line",
   };
 }
@@ -24,88 +26,100 @@ export default async function LineProductPage({ params }: { params: Promise<{ re
   const product = lineByRef((await params).ref);
   if (!product) notFound();
   const frames = largeFramesFor(product.ref);
-  const siblings = LINE.filter((item) => item.category === product.category && item.ref !== product.ref).slice(0, 4);
+  const status = customerStatus(product);
+  const looks = looksForRef(product.ref);
+  const companions = looks.flatMap((look) => look.pieces.filter((item) => item.ref !== product.ref).map((item) => ({ ...item, look })));
 
   return (
-    <div className="min-h-screen bg-[#f6f4ef] text-[#1c1a17]">
-      <ShopHeader />
-      <main className="mx-auto max-w-[1440px] px-5 py-8 md:px-10 md:py-12">
-        <Link href="/line" className="inline-flex items-center gap-1 text-[11px] tracking-[0.16em] text-[#1c1a17]/55 uppercase">
-          <ChevronLeft className="size-3.5" /> The 2027 line
-        </Link>
-        <div className="mt-6 grid min-w-0 gap-10 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:gap-16">
-          <div className="grid gap-3">
-            {frames.length ? (
-              frames.map((frame) => (
-                <img key={frame.n} src={frameSrc(frame.n)} alt={frame.alt} className="w-full bg-[#f1eee8]" />
-              ))
-            ) : (
-              <div className="flex min-h-[420px] items-end bg-[#f1eee8] p-6">
-                <p className="max-w-sm text-base leading-relaxed text-[#1c1a17]/70">
-                  {product.name} stays on the record. No photograph linked to it is large enough to show.
-                </p>
-              </div>
-            )}
+    <div className="min-h-screen bg-[#f7f7f5] text-[#111]">
+      <CollectionChrome view="product" />
+      <main className="mx-auto max-w-[1440px] px-4 pb-20 md:px-8">
+        <div className="grid min-w-0 gap-10 md:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.7fr)] md:gap-16">
+          <div className="grid gap-4">
+            {frames.map((frame, index) => {
+              const size = FRAME_PX[frame.n];
+              return (
+                <img
+                  key={frame.n}
+                  src={frameSrc(frame.n)}
+                  alt={frame.alt}
+                  width={size?.[0]}
+                  height={size?.[1]}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  className="w-full bg-[#f3f3f1] object-contain"
+                />
+              );
+            })}
           </div>
           <div>
-            <p className="text-[11px] tracking-[0.18em] text-[#1c1a17]/50 uppercase">{product.tier} · {product.category} · {product.ref}</p>
-            <h1 className="mt-3 font-serif text-5xl leading-[0.95] md:text-6xl">{product.name}</h1>
-            <p className="mt-6 font-serif text-3xl">{product.retail != null ? usd(product.retail) : "Held"}</p>
-            <p className="mt-2 max-w-md text-sm leading-relaxed text-[#1c1a17]/70">
-              {product.status === "held"
-                ? "This record is held. It has no list price."
-                : "Available to request. The figure is a proposed list price from the 29 October 2026 framework. It is not a price a client can pay on this page. A ship date is not promised while cloth and construction are still design intentions."}
-            </p>
-            <dl className="mt-8 space-y-4 border-t border-[#1c1a17]/12 pt-6 text-sm">
+            <p className="text-[11px] tracking-[0.18em] uppercase text-[#111]/50">{product.category}</p>
+            <h1 className="mt-3 text-2xl tracking-tight md:text-3xl">{product.name}</h1>
+            <p className="mt-5 text-lg">{status.price ?? "Not offered"}</p>
+            <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#111]/70">{status.detail}</p>
+            <p className="mt-3 text-[13px]">{status.label}</p>
+            <dl className="mt-8 space-y-4 border-t border-[#111]/10 pt-6 text-sm">
               <div>
-                <dt className="text-[11px] tracking-[0.14em] uppercase text-[#1c1a17]/45">Colorways on the record</dt>
+                <dt className="text-[11px] tracking-[0.14em] uppercase text-[#111]/45">Color</dt>
                 <dd className="mt-1">{product.colors}</dd>
               </div>
               <div>
-                <dt className="text-[11px] tracking-[0.14em] uppercase text-[#1c1a17]/45">Material story</dt>
+                <dt className="text-[11px] tracking-[0.14em] uppercase text-[#111]/45">Material</dt>
                 <dd className="mt-1 leading-relaxed">{product.material}</dd>
+              </div>
+              <div>
+                <dt className="text-[11px] tracking-[0.14em] uppercase text-[#111]/45">Fit</dt>
+                <dd className="mt-1 leading-relaxed">A size guide is not published for this style. The size preference is for the enquiry.</dd>
+              </div>
+              <div>
+                <dt className="text-[11px] tracking-[0.14em] uppercase text-[#111]/45">Delivery</dt>
+                <dd className="mt-1 leading-relaxed">No ship date is set. The runner lead time does not apply to this garment.</dd>
+              </div>
+              <div>
+                <dt className="text-[11px] tracking-[0.14em] uppercase text-[#111]/45">Returns</dt>
+                <dd className="mt-1 leading-relaxed">A return term is not published, because this style is not for sale.</dd>
               </div>
             </dl>
             {product.ref === "N015" && (
-              <p className="mt-6 text-sm leading-relaxed text-[#1c1a17]/70">
-                The photographs show a suede lace mule, including a D-ring and a brown upper. The written colorways are stone, midnight, and espresso. Brown is shown as the espresso study. The D-ring is in the photograph and is not yet written into this style&apos;s specification.
+              <p className="mt-6 text-sm leading-relaxed text-[#111]/70">
+                The photographs show a suede lace mule, including a D-ring and a brown upper. The written colorways are stone, midnight, and espresso. Brown is the espresso study. The D-ring is in the photograph and is not in the written specification.
               </p>
             )}
             {product.ref === "N001" && (
-              <p className="mt-6 text-sm leading-relaxed text-[#1c1a17]/70">
-                This plum and ivory runner is not one of the Founding Edition colorways. Those pairs, and their published prices, stay on the shop.
+              <p className="mt-6 text-sm leading-relaxed text-[#111]/70">
+                This plum and ivory runner is not a Founding Edition colorway. Those pairs, and their prices, stay on the shop.
               </p>
             )}
             {product.ref === "N014" && (
-              <p className="mt-6 text-sm leading-relaxed text-[#1c1a17]/70">
+              <p className="mt-6 text-sm leading-relaxed text-[#111]/70">
                 The frames show a wordmark neck under another jacket. Cashmere is the target fiber and is not certified by these photographs.
               </p>
             )}
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href={`/wardrobe?ref=${product.ref}#introduction`} className="inline-flex h-12 items-center bg-[#1c1a17] px-5 text-[11px] tracking-[0.16em] text-[#f6f4ef] uppercase">Request this style</Link>
-              <Link href="/shop#edition" className="border border-[#1c1a17] px-5 py-3 text-[11px] tracking-[0.16em] uppercase">0929</Link>
-            </div>
+            <ProductActions refId={product.ref} name={product.name} color={product.colors} />
           </div>
         </div>
 
-        {siblings.length > 0 && (
-          <section className="mt-16 border-t border-[#1c1a17]/12 pt-10">
-            <h2 className="font-serif text-3xl">Also in {product.category}</h2>
-            <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {siblings.map((item) => (
-                <li key={item.ref}>
-                  <Link href={`/line/${item.ref.toLowerCase()}`} className="block border border-[#1c1a17]/10 p-4 hover:border-[#1c1a17]">
-                    <p className="text-[11px] tracking-[0.14em] uppercase text-[#1c1a17]/45">{item.ref}</p>
-                    <p className="mt-2 font-serif text-2xl">{item.name}</p>
-                    <p className="mt-2 text-sm">{item.retail != null ? usd(item.retail) : "Held"}</p>
-                  </Link>
-                </li>
-              ))}
+        {companions.length > 0 && (
+          <section className="mt-16 border-t border-[#111]/10 pt-10">
+            <h2 className="text-[11px] tracking-[0.18em] uppercase">Complete the look</h2>
+            <ul className="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {companions.map((item) => {
+                const other = lineByRef(item.ref);
+                const offer = other ? customerStatus(other) : null;
+                return (
+                  <li key={`${item.look.slug}-${item.ref}`}>
+                    <Link href={`/line/${item.ref.toLowerCase()}`}>
+                      <img src={item.look.image} alt={item.look.alt} className="aspect-[4/5] w-full max-w-sm bg-[#f3f3f1] object-contain" />
+                      <span className="mt-3 block text-[15px] underline underline-offset-4">{other?.name}</span>
+                    </Link>
+                    <p className="mt-1 text-[13px] text-[#111]/60">{item.color}{offer?.price ? ` · ${offer.price}` : ""}</p>
+                    <Link href={`/line/looks/${item.look.slug}`} className="mt-2 inline-flex h-11 items-center text-[11px] tracking-[0.14em] uppercase">Look {item.look.number}</Link>
+                  </li>
+                );
+              })}
             </ul>
           </section>
         )}
       </main>
-      <ShopFooter />
     </div>
   );
 }

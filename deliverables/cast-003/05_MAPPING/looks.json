@@ -21,12 +21,13 @@
       "id": "LOOK-002",
       "cast": "AMARA",
       "rationale": "Athletic silhouette. Same jersey family with shorts, assigned to a woman because the pieces are not gendered.",
-      "garments": ["blue bird-print jersey", "white shirt", "denim shorts", "white socks", "blue runners"],
+      "garments": ["blue bird-print jersey", "white shirt", "navy tie", "blue suede drawstring shorts", "cream ribbed socks", "blue runners"],
       "sources": ["2AA8AFEA-C2B0-476E-A883-A9F4B5EFF89D.png", "8DBF5EC8-91C5-417D-BA2C-F2E720824152.png"],
       "driveIds": ["1ctx8vpSlKqGJZbfsmUtf_XfoABoyxeh6", "1kUxEkCQm5pMVVXw7PCzhHOnhH85Po6u5"],
       "productIds": [],
       "backDocumented": false,
-      "status": "mapped-not-rendered"
+      "status": "rendered-draft",
+      "unresolved": "Jersey print and runner construction are approximate. The tie is in this source."
     },
     {
       "id": "LOOK-003",
@@ -54,23 +55,25 @@
       "id": "LOOK-005",
       "cast": "REN",
       "rationale": "Clean technical set.",
-      "garments": ["sage quarter-zip set", "yellow duffel", "yellow shoes"],
+      "garments": ["sage fleece zip jacket", "pale yellow turtleneck", "sage trousers", "yellow barrel duffel with navy ends", "yellow and white runners"],
       "sources": ["2D76C06F-4237-436E-B61C-9D7EEC6352BE.png", "IMG_8354.PNG"],
       "driveIds": ["1X3uf9XtoWjrOyotKaDn1-Y10CY0Hb_Xf", "1510YSUqLxUyluQAi9JpijsTcF50fRGkn"],
       "productIds": [],
       "backDocumented": false,
-      "status": "mapped-not-rendered"
+      "status": "rendered-draft",
+      "unresolved": "First pass inverted the duffel to navy. v02 keeps a yellow body and navy ends. The runners are not the source wave construction."
     },
     {
       "id": "LOOK-006",
       "cast": "MALIK",
       "rationale": "Tall athlete wardrobe. Poster type is not part of the garment.",
-      "garments": ["yellow polo cardigan", "cream trousers", "yellow runners", "basketball"],
+      "garments": ["yellow knit polo cardigan", "white tee", "cream trousers with yellow side stripe", "cream socks", "yellow runners", "basketball"],
       "sources": ["5AF35C20-5403-4798-A9EE-94D09645C478.png"],
       "driveIds": ["16dxO6jdQjeDKrkoAeFcBNbkCnmfPThmx"],
       "productIds": [],
       "backDocumented": false,
-      "status": "mapped-not-rendered"
+      "status": "rendered-draft",
+      "unresolved": "Poster typography was excluded. Chest crest and runner construction are not verified. Clean-shaven high fade kept; the source face had a beard."
     },
     {
       "id": "LOOK-007",

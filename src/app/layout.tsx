@@ -27,11 +27,11 @@ export const metadata: Metadata = {
     template: "%s · MADE SAiNT",
   },
   description:
-    "Made to order. Ready in 4 to 6 weeks. A fitting is remote, and it is not held in person.",
+    "Once sinner. Made Saint. The 1101 leads. The house is set in Cap-Haïtien and the north of Haiti.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "MADE Saint",
-    description: "Made to order. Ready in 4 to 6 weeks.",
+    description: "Once sinner. Made Saint. The 1101 leads.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "MADE Saint" }],
   },
   twitter: {

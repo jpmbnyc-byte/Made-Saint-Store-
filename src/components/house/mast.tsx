@@ -37,6 +37,12 @@ export function Mast() {
                 {label}
               </Link>
             ))}
+            <Link href="/brand" className="inline-flex h-11 shrink-0 items-center px-2 text-[11px] tracking-[0.08em] text-[#1c1a17] uppercase sm:hidden">
+              The House
+            </Link>
+            <Link href="/wardrobe#introduction" className="inline-flex h-11 shrink-0 items-center px-2 text-[11px] tracking-[0.08em] text-[#1c1a17] uppercase sm:hidden">
+              Introduction
+            </Link>
           </nav>
 
           {/* Wordmark — desktop only */}

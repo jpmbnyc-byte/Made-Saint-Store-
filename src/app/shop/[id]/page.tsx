@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ChevronLeft } from "lucide-react";
-import { PRODUCTS, SIZES, productById, statusLine } from "@/lib/business";
+import { PRODUCTS, SIZES, offerLine, productById, statusLine } from "@/lib/business";
 import { SeriesPlate } from "@/components/shop/series-plate";
 import { OrderRule } from "@/components/shop/order-rule";
 import { viewsFor } from "@/lib/catalog";
@@ -51,7 +51,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <h1 className="mt-4 font-serif text-4xl leading-none md:text-5xl">{color(product.name)}</h1>
             <p className="mt-4 text-lg tabular-nums">${product.usd}</p>
             {product.notice && <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">{product.notice}</p>}
-            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{product.line}. Made to order. Ready in 4 to 6 weeks.</p>
+            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{product.line}. {offerLine(product.series)}</p>
             {product.launch && (
               <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">
                 {product.series === "0929"
@@ -80,7 +80,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               </div>
             </div>
 
-            {product.launch && (
+            {product.launch && product.series === "0929" && (
               <div className="mt-8">
                 <p className="text-[11px] tracking-[0.16em] uppercase">How this pair is made</p>
                 <div className="mt-3">

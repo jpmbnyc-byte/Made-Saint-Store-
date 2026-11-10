@@ -25,7 +25,7 @@ function AlternateCard({ piece, onAdd }: { piece: WardrobePiece; onAdd: () => vo
         <p className="font-serif text-lg leading-tight">{piece.name}</p>
         <p className="mt-1 text-[12px] leading-snug text-[#1c1a17]/60">
           {study ? "Study. Not a physical sample. " : ""}
-          {offer.kind === "commission" ? "Available · made to order, 4 to 6 weeks" : `Available · $${offer.usd} · made to order`}
+          {offer.kind === "commission" ? "Available to request" : `Available · $${offer.usd} · made to order`}
         </p>
         {offer.kind === "commission" ? (
           <button type="button" onClick={onAdd} className="mt-2 h-10 text-left text-[11px] tracking-[0.12em] uppercase underline underline-offset-4">
@@ -124,7 +124,7 @@ export function PrivateHouse() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [note, setNote] = useState("");
-  const [role, setRole] = useState<"" | "athlete" | "representative">("");
+  const [role, setRole] = useState<"" | "myself" | "client">("");
   const [timing, setTiming] = useState<"" | "season" | "year" | "undecided">("");
   const [budget, setBudget] = useState<"" | "undisclosed" | "seasonal" | "annual" | "expanded" | "quoted">("");
   const [toneAt, setToneAt] = useState(0);
@@ -189,7 +189,7 @@ export function PrivateHouse() {
   async function send(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-    if (!role) return setError("Say whether you are the athlete or a representative.");
+    if (!role) return setError("Say whether this is for yourself or for a client.");
     if (!timing) return setError("Say when you need the wardrobe.");
     if (!note.trim() && selected.length === 0 && !lineRef) return setError("Say what you are dressing for.");
     setBusy(true);
@@ -273,7 +273,7 @@ export function PrivateHouse() {
           <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Start here</p>
           <h2 className="mt-3 max-w-2xl font-serif text-4xl leading-[0.95] md:text-5xl">Choose a set and adjust it.</h2>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            Start from the day, or from the rose sample. Every piece with a photograph is available. Made to order, ready in 4 to 6 weeks. A fitting is remote. It is not held in person.
+            Start from the day, or from the rose sample. Every piece with a photograph can be requested. A fitting, if you add one, is remote. It is not held in person.
           </p>
           <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
             {STARTS.map((start) => {
@@ -313,7 +313,7 @@ export function PrivateHouse() {
             <p className="mt-3 text-[15px] leading-relaxed text-[#1c1a17]/70">
               {startId
                 ? "Uncheck a piece to leave it out. The photographs below are recommended alternates, from pieces that already have an image."
-                : "The pieces with photographs are listed below. Choose a starting set, or add any of them. Made to order, ready in 4 to 6 weeks."}
+                : "The pieces with photographs are listed below. Choose a starting set, or add any of them."}
             </p>
             {startId === "rose" && (
               <div className="mt-6">
@@ -346,7 +346,7 @@ export function PrivateHouse() {
                       {piece.image && <img src={piece.image} alt="" className="size-14 shrink-0 bg-[#e7e0d4] object-contain" />}
                       <span className="min-w-0 flex-1">
                         <span className="block font-serif text-2xl">{piece.name}</span>
-                        <span className="text-[13px] text-[#1c1a17]/60">Available · made to order, 4 to 6 weeks · ${offer.usd}</span>
+                        <span className="text-[13px] text-[#1c1a17]/60">Available · ${offer.usd} · made to order</span>
                       </span>
                       <Link href={offer.href} className="inline-flex h-11 items-center text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">
                         Request this pair
@@ -362,7 +362,7 @@ export function PrivateHouse() {
                       {piece.image && <img src={piece.image} alt="" className="size-14 shrink-0 bg-[#e7e0d4] object-contain" />}
                       <span className="min-w-0 flex-1">
                         <span className="block font-serif text-2xl">{piece.name}</span>
-                        <span className="text-[13px] text-[#1c1a17]/60">Available · made to order, 4 to 6 weeks</span>
+                        <span className="text-[13px] text-[#1c1a17]/60">Available to request</span>
                       </span>
                     </label>
                   </li>
@@ -434,7 +434,7 @@ export function PrivateHouse() {
           <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Private introduction</p>
           <h2 className="mt-3 max-w-3xl font-serif text-4xl md:text-5xl">Send the set you built.</h2>
           <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            This writes the set, the fit preference, and who is writing. It does not take payment, confirm an appointment, or reserve a founding pair. The house writes back to the email you give. A response time is not promised. The fitting is remote. It is not held in person. Measurements are not entered on this form. Once sinner. Made Saint. The line is the founder&apos;s, for grace and a changed life. A purchase does not confer moral or spiritual standing.
+            This writes the set and who is writing. No payment is taken. A fitting, if you add one, is remote, and it is not an appointment. The house writes back to the email you give. A response time is not promised.
           </p>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
@@ -459,8 +459,8 @@ export function PrivateHouse() {
                     <div className="mt-3 grid gap-2 sm:grid-cols-2">
                       {(
                         [
-                          ["athlete", "The athlete"],
-                          ["representative", "A representative"],
+                          ["myself", "Myself"],
+                          ["client", "On behalf of a client"],
                         ] as const
                       ).map(([value, label]) => (
                         <label key={value} className="flex min-h-12 cursor-pointer items-center gap-3 border border-[#1c1a17]/12 px-3">
@@ -517,9 +517,6 @@ export function PrivateHouse() {
                       <select value={budget} onChange={(e) => setBudget(e.target.value as typeof budget)} className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal">
                         <option value="">Not given</option>
                         <option value="undisclosed">Prefer not to say</option>
-                        <option value="seasonal">Near the seasonal figure</option>
-                        <option value="annual">Near the annual figure</option>
-                        <option value="expanded">Near the expanded figure</option>
                         <option value="quoted">Ask for a quotation</option>
                       </select>
                     </label>

@@ -4,7 +4,7 @@ import { PrivateHouse } from "@/components/wardrobe/house";
 
 export const metadata: Metadata = {
   title: "The Private Wardrobe",
-  description: "Choose a starting set, adjust the pieces, and add a remote fitting consultation if you want one. Made to order, ready in 4 to 6 weeks.",
+  description: "Choose a starting set, adjust the pieces, and add a remote fitting consultation if you want one.",
 };
 
 export default function WardrobePage() {

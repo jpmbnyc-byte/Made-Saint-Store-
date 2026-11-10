@@ -238,8 +238,14 @@ export function campaignStatus(now = new Date(), c: Campaign = CAMPAIGN): Campai
 
 export const productById = (id: string) => PRODUCTS.find((p) => p.id === id);
 
+/** 0929 is the only series with a confirmed make time. 1101 and 1213 are still studies. */
+export function offerLine(series: SeriesId) {
+  if (series === "0929") return `Made to order. Ready in ${LEAD_TIME}.`;
+  return "A sample and tooling are still pending. A request records interest at the listed price. A ship date is not promised.";
+}
+
 export function statusLine() {
-  return `Made to order · ready in ${LEAD_TIME}`;
+  return "0929 made to order · 1101 and 1213 are studies";
 }
 
 export type FundingId = "owner" | "lean" | "render" | "crowd";

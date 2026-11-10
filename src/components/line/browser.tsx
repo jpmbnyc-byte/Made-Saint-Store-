@@ -76,7 +76,7 @@ export function LineBrowser({ cards }: { cards: LineCard[] }) {
               <p className="mt-3 text-sm text-[#1c1a17]/55">{card.tier} · {card.ref}</p>
               <h2 className="mt-1 font-serif text-xl leading-tight group-hover:underline">{card.name}</h2>
               <p className="mt-1 text-sm tabular-nums">{card.retail != null ? `$${card.retail.toLocaleString("en-US")}` : "Held"}</p>
-              <p className="mt-1 text-sm text-[#1c1a17]/60">Available to request · made to order, 4 to 6 weeks. The figure is a proposed list price, not a checkout.</p>
+              <p className="mt-1 text-sm text-[#1c1a17]/60">Available to request. The figure is a proposed list price, not a checkout. A ship date is not promised.</p>
             </Link>
           </li>
         ))}

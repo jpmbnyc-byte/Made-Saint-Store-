@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { LEAD_TIME } from "@/lib/business";
 import { OFFERINGS } from "@/lib/private-client";
 
 const SHOWN = [
@@ -12,7 +11,7 @@ const SHOWN = [
       "US men's 7 to 12",
       "The price on the card is the price",
       "Available now",
-      `Made to order. Ready in ${LEAD_TIME}`,
+      "The 0929 is made to order. Ready in 4 to 6 weeks.",
     ],
   },
   {

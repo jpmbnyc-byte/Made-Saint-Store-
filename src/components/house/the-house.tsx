@@ -35,16 +35,13 @@ export function TheHouse() {
             The line is the founder&apos;s, for grace and a life changed. A purchase does not confer moral or spiritual standing. The house keeps a Christian name and welcomes a client of any belief.
           </p>
           <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-[#1c1a17]/70">
-            Clothes and pairs are made to order and are ready in 4 to 6 weeks. A fitting is not held in person. A remote fitting consultation can be added to a wardrobe request. It has no listed price, and it is not an appointment on a calendar.
-          </p>
-          <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-[#1c1a17]/55">
-            A request is recorded. Payment is taken only when checkout is connected. The house writes back to the email you give. A response time is not promised. Sacred pictures on a garment are part of the design, and they are labelled as studies until a production photograph exists. The longer account is his to write.
+            The 0929 is made to order and ready in 4 to 6 weeks. The 1101 and the 1213 are studies, and a ship date is not promised. A fitting, if you add one, is remote. It is not held in person, and it has no listed price.
           </p>
           <Link
             href="/brand"
             className="mt-10 inline-flex h-12 items-center border border-[#1c1a17]/30 px-6 text-[12px] tracking-[0.18em] text-[#1c1a17] uppercase transition-opacity hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1c1a17]"
           >
-            The wordmark
+            Read the house
           </Link>
         </div>
       </div>

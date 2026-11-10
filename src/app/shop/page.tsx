@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { LEAD_TIME, productsIn, statusLine, type Product } from "@/lib/business";
+import { LEAD_TIME, offerLine, productsIn, statusLine, type Product } from "@/lib/business";
 import { QUESTIONS } from "@/lib/questions";
 import { OrderRule, orderWindowLine } from "@/components/shop/order-rule";
 import { SeriesPlate } from "@/components/shop/series-plate";
@@ -44,9 +44,9 @@ export default async function ShopPage() {
       <section id="1101" className="mx-auto max-w-[1100px] scroll-mt-28 px-5 py-12 md:px-8 md:py-16">
         <SeriesPlate series="1101" size="md" />
         <h1 className="mt-4 max-w-3xl font-serif text-[44px] leading-[0.95] text-[#1c1a17] md:text-[64px]">The lead runner.</h1>
-        <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">$550. Listed first. Made to order. Ready in {LEAD_TIME}.</p>
+        <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">$550. Listed first. {offerLine("1101")}</p>
         <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-          Leather and 29 Gris Medio mesh. Design intent is locked. A sample and tooling are still pending, and a measured fit is not certified.
+          Leather and 29 Gris Medio mesh. Design intent is locked. The photographs do not certify the lining, the tooling, or the fit.
         </p>
         <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
           {lead.map((p) => (
@@ -61,7 +61,7 @@ export default async function ShopPage() {
         <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-8">
           <SeriesPlate series="1213" size="md" />
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            Seven colorways. Espresso, Olive, Mineral Blue, Midnight, Chestnut, Sacred Light, and Graphite. $550. A sample and a measured fit are still pending. Sacred Light’s materials are not confirmed.
+            Seven colorways. Espresso, Olive, Mineral Blue, Midnight, Chestnut, Sacred Light, and Graphite. $550. {offerLine("1213")} Sacred Light’s materials are not confirmed.
           </p>
           <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3">
             {sculpted.map((p) => (

@@ -18,7 +18,7 @@ export function ShopHeader({ status }: { status?: string }) {
             <Link href="/shop#0929" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">0929</Link>
             <Link href="/wardrobe" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">Private Wardrobe</Link>
             <Link href="/#looks" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">Looks</Link>
-            <Link href="/brand" className="hidden h-11 shrink-0 items-center px-2 hover:opacity-70 sm:inline-flex">The House</Link>
+            <Link href="/brand" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">The House</Link>
           </nav>
           <Link href="/" className="hidden justify-self-center sm:block" aria-label="MADE SAiNT — home">
             <Wordmark />
@@ -41,7 +41,7 @@ export function ShopFooter() {
         <div>
           <p className="font-serif text-3xl text-[#1c1a17]">MADE SAiNT</p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-[#1c1a17]/65">
-            Made to order. Ready in 4 to 6 weeks. A fitting is remote, and it is not held in person.
+            The 0929 is made to order, ready in 4 to 6 weeks. The 1101 and the 1213 are studies. A fitting, if you add one, is remote.
           </p>
         </div>
         <div className="space-y-2 text-sm">

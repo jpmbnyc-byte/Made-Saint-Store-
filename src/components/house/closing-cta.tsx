@@ -10,24 +10,22 @@ export function ClosingCta() {
         <div className="grid gap-px bg-[#1c1a17]/10 md:grid-cols-2">
           {/* 1101 path */}
           <div className="flex flex-col bg-[#f5f0e8] p-8 md:p-12">
-            <p className="text-[11px] tracking-[0.28em] text-[#B03236] uppercase">0929</p>
+            <p className="text-[11px] tracking-[0.28em] text-[#B03236] uppercase">1101</p>
             <h2
               className="mt-4 font-serif text-[#1c1a17]"
               style={{ fontSize: "clamp(32px, 3.5vw, 48px)", letterSpacing: "-0.03em", lineHeight: 0.98 }}
             >
-              A founding pair,
-              <br />
-              made for you.
+              The lead runner.
             </h2>
             <p className="mt-5 max-w-sm flex-1 text-[15px] leading-relaxed text-[#41505b]">
-              Three colorways, available now. Made to order. Ready in 4 to 6 weeks. No payment is taken until checkout is connected.
+              $550. A sample and tooling are still pending. A request records interest at the listed price. A ship date is not promised.
             </p>
             <div className="mt-8">
               <Link
-                href="/shop"
+                href="/shop#1101"
                 className="inline-flex h-12 items-center bg-[#1c1a17] px-6 text-[12px] tracking-[0.18em] text-[#f5f0e8] uppercase transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
               >
-                Explore 0929
+                Explore 1101
               </Link>
             </div>
           </div>

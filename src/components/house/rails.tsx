@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { LEAD_TIME, PRODUCTS, SIZES, type Product } from "@/lib/business";
+import { PRODUCTS, SIZES, offerLine, type Product } from "@/lib/business";
 import { CardRail, SliderControls, useSlider } from "@/components/house/slider";
 
 const short = (name: string) => name.replace("Runner, ", "");
@@ -23,7 +23,7 @@ export function EditionSlider({ products }: { products: Product[] }) {
           <h2 className="mt-3 font-serif text-5xl leading-none text-[#2a3746] md:text-6xl">{short(product.name)}</h2>
           <p className="mt-4 text-[15px] leading-relaxed text-[#41505b]">{product.line}</p>
           <p className="mt-5 font-serif text-4xl tabular-nums text-[#2a3746]">${product.usd}</p>
-          <p className="mt-2 text-[13px] text-[#41505b]">Available · made to order · ready in {LEAD_TIME}.</p>
+          <p className="mt-2 text-[13px] text-[#41505b]">{offerLine(product.series)}</p>
           <div className="mt-6">
             <p className="text-[11px] tracking-[0.16em] text-[#41505b] uppercase">Size · US men&apos;s</p>
             <div className="mt-3 flex min-w-0 gap-1.5 overflow-x-auto pb-1">
@@ -61,7 +61,7 @@ export function ListRail() {
           </span>
           <span className="mt-3 block text-[11px] tracking-[0.16em] text-[#8d7349] uppercase">Available</span>
           <span className="mt-1 block font-serif text-3xl text-[#2a3746]">{short(product.name)}</span>
-          <span className="mt-2 block text-[13px] leading-relaxed text-[#41505b]">{product.line}. Made to order. Ready in {LEAD_TIME}.</span>
+          <span className="mt-2 block text-[13px] leading-relaxed text-[#41505b]">{product.line}. {offerLine(product.series)}</span>
         </Link>
       ))}
     </CardRail>

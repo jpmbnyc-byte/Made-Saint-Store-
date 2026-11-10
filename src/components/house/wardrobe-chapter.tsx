@@ -42,7 +42,7 @@ export function WardrobeChapter() {
             <em className="italic">considered around you.</em>
           </h2>
           <p className="mt-5 max-w-lg text-[16px] leading-relaxed text-[#f5f0e8]/75">
-            One person coordinates the days. Made to order, ready in 4 to 6 weeks. A fitting is remote. It is not held in person.
+            One person coordinates the days. A fitting, if you add one, is remote. It is not held in person.
           </p>
         </div>
 

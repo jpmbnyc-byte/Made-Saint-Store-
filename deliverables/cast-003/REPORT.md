@@ -5,12 +5,15 @@ The Drive folder `MadeSaint SS 27 Fall` (92 images, no subfolders) was opened an
 ## Rendered
 
 - LOOK-001 Solène, blue bird-print jersey, white shirt, black trousers. Source recreation and a campaign ledge. The first pass added a necktie; the kept version does not.
+- LOOK-002 Amara, the same jersey family with a navy tie, blue suede shorts, cream socks, and blue runners. Full-length lookbook.
 - LOOK-003 Inès, dusty rose tracksuit. Walking campaign frame and a full-length lookbook.
 - LOOK-004 Lucien, forest-green velvet tracksuit. Full-length lookbook with the mustache. The clean-shaven first pass was rejected.
+- LOOK-005 Ren, sage fleece set, pale yellow turtleneck, yellow barrel bag with navy ends. The navy-bag first pass was rejected.
+- LOOK-006 Malik, yellow knit polo, cream trousers with a yellow stripe, and a basketball. Poster type was left out. He stays clean-shaven.
 
 ## Not rendered
 
-Amara’s jersey-and-shorts, Ren’s sage set, Malik’s yellow cardigan, Inès’s camel back-print set, and the remaining full outfits are mapped in `05_MAPPING/looks.json` and were not generated in this pass. Neck crops, group photographs, and poster typography were not turned into looks. Reverse views stay blocked where the back is not in the folder, including LOOK-001 and LOOK-003. LOOK-004 has a back reference and still has no reverse frame.
+Inès’s camel back-print set, Solène’s black jacket and barrel bag, and the remaining full outfits (blue chore coat, cream tracksuit, olive flight suit, taupe velvet, and the other standing figures on the contact sheets) are mapped or noted and were not generated. Neck crops and group photographs were not turned into looks. Reverse views stay blocked where the back is not in the folder. LOOK-004 and LOOK-007 have back references and still have no reverse frame. Source recreations and campaign frames are still open for LOOK-002, LOOK-005, and LOOK-006.
 
 ## Unresolved
 

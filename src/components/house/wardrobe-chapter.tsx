@@ -52,30 +52,30 @@ export function WardrobeChapter() {
           <div className="grid grid-cols-2 gap-3">
             <div className="ms-resin relative aspect-[2/3] overflow-hidden bg-[#2a3030]">
               <Image
-                src="/wardrobe/arrival-trouser-look.webp"
-                alt="Arrival look — full-length trouser set, editorial photograph"
+                src="/line/f35.webp"
+                alt="Malik in a navy zip jacket, white layer, and matching trouser, worn full length"
                 fill
                 sizes="(min-width: 768px) 25vw, 50vw"
-                className="object-cover object-top"
+                className="object-contain"
               />
             </div>
             <div className="mt-8 grid gap-3">
               <div className="ms-resin relative aspect-square overflow-hidden bg-[#2a3030]">
                 <Image
                   src="/wardrobe/blouson-black-zip.webp"
-                  alt="Black zip blouson, wardrobe study"
+                  alt="Black zip blouson, front and back, a product sheet"
                   fill
                   sizes="(min-width: 768px) 12vw, 25vw"
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
               <div className="ms-resin relative aspect-square overflow-hidden bg-[#2a3030]">
                 <Image
-                  src="/wardrobe/look-knit-mauve.webp"
-                  alt="Mauve knit look, wardrobe editorial"
+                  src="/collection/sage.webp"
+                  alt="Ren in a sage fleece set, pale yellow turtleneck, and a yellow barrel bag"
                   fill
                   sizes="(min-width: 768px) 12vw, 25vw"
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
             </div>

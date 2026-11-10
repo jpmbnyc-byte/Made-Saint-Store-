@@ -40,7 +40,7 @@ const CHAPTERS: Chapter[] = [
     ground: "bg-[#f2eee8]",
     views: [
       { id: "look", label: "Full look", src: "/line/f35.webp", alt: "Navy zip jacket, white layer, and matching trouser, worn full length", fit: "contain" },
-      { id: "wide", label: "The day", src: "/line/f34.webp", alt: "The same navy set, standing on a course", fit: "contain" },
+      { id: "wide", label: "The day", src: "/line/f35.webp", alt: "Malik in a navy zip jacket, white layer, and matching trouser, worn full length", fit: "contain" },
       { id: "runner", label: "Alternative runner", src: "/stories/chalk-navy.webp", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, overhead", fit: "contain" },
     ],
     rows: [

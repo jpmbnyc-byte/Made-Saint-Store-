@@ -205,7 +205,7 @@ export function CampaignView() {
         <p className="mb-10 text-center text-[12px] tracking-[0.22em] uppercase">Campaign 001 / Once sinner. Made Saint.</p>
         <BlockList blocks={CAMPAIGN_BLOCKS} hero="campaign" />
         <p className="mx-auto mt-16 max-w-md text-center text-[13px] leading-relaxed text-[#111]/70">
-          These frames are the campaign. A shoppable look lists only the pieces already mapped to that photograph.
+          These frames are the collection, worn. A shoppable look lists only the pieces already mapped to that photograph.
         </p>
       </main>
     </div>

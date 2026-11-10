@@ -28,7 +28,7 @@ export const ASSET_MANIFEST: AssetRecord[] = [
     subjectConsentStatus: "original cast, not a person from a location shoot",
     productIds: [],
     representation: "concept",
-    alt: "Solène in an ivory knit and navy trousers, standing full length on a stone terrace, campaign frame",
+    alt: "Lucien in a cobalt zip jacket and speckled trousers, campaign frame",
   },
   {
     id: "world-courtyard",
@@ -38,10 +38,10 @@ export const ASSET_MANIFEST: AssetRecord[] = [
     rightsStatus: "commissioned for the house",
     deployable: true,
     location: CAMPAIGN,
-    subjectConsentStatus: "no person",
+    subjectConsentStatus: "original cast, not a person from a location shoot",
     productIds: [],
     representation: "concept",
-    alt: "A shaded masonry courtyard in morning light, campaign frame",
+    alt: "Lucien in the camel Saint John jacket and trouser, campaign frame",
   },
   {
     id: "world-coast",
@@ -51,10 +51,10 @@ export const ASSET_MANIFEST: AssetRecord[] = [
     rightsStatus: "commissioned for the house",
     deployable: true,
     location: CAMPAIGN,
-    subjectConsentStatus: "no person",
+    subjectConsentStatus: "original cast, not a person from a location shoot",
     productIds: [],
     representation: "concept",
-    alt: "Blue water and a green headland in early light, campaign frame",
+    alt: "Amara in a beige jacket, printed jersey, shorts, and a brown backpack, campaign frame",
   },
   {
     id: "world-walk",
@@ -67,7 +67,7 @@ export const ASSET_MANIFEST: AssetRecord[] = [
     subjectConsentStatus: "original cast, not a person from a location shoot",
     productIds: [],
     representation: "concept",
-    alt: "Inès in a navy suit and Lucien in an ivory knit, walking a masonry street, campaign frame",
+    alt: "Ren in the grouped-stripe jacket and trousers, campaign frame",
   },
   {
     id: "world-gathering",
@@ -80,7 +80,7 @@ export const ASSET_MANIFEST: AssetRecord[] = [
     subjectConsentStatus: "original cast, not a person from a location shoot",
     productIds: [],
     representation: "concept",
-    alt: "Amara, Malik, Ren, and Solène talking at a shaded garden table, campaign frame",
+    alt: "Inès in a dusty rose zip set over a petrol teal turtleneck, campaign frame",
   },
   ...[
     ["ref-01-cathedral", "reference_only/01-cathedral.jpg"],

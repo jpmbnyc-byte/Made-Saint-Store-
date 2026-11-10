@@ -78,8 +78,8 @@ const STARTS = [
     id: "settings",
     name: "Across settings",
     line: "The public day and a formal hour, as one capsule you can adjust.",
-    image: "/line/f34.webp",
-    alt: "The navy set, standing on a course",
+    image: "/line/f35.webp",
+    alt: "Malik in a navy zip jacket, white layer, and matching trouser, worn full length",
     frame: "object-center",
     lookId: "arrival",
     lifestyle: "arrival" as const,
@@ -388,8 +388,8 @@ export function PrivateHouse() {
             <h2 className="mt-2 font-serif text-4xl">Find your ease.</h2>
             <div className="mt-4 grid grid-cols-2 gap-3">
               <figure className="bg-[#2a2824]">
-                <img src="/editorial/fit-ease.webp" alt="Camel jacket, ivory layer, and charcoal trouser, worn as a fit reference" className="h-56 w-full object-contain md:h-64" />
-                <figcaption className="ms-caption px-2 pb-2 text-xs text-[#f6f4ef]/70">Worn. Not a client. The shoes are not a founding runner.</figcaption>
+                <img src="/editorial/saint-john-worn.webp" alt="Lucien in the camel Saint John jacket and trouser, worn as a fit reference" className="h-56 w-full object-contain md:h-64" />
+                <figcaption className="ms-caption px-2 pb-2 text-xs text-[#f6f4ef]/70">Lucien, in Saint John. Worn. Not a client. The shoes are not a founding runner.</figcaption>
               </figure>
               <figure className="bg-[#2a2824]">
                 <img src="/editorial/saint-michael-back.webp" alt="Back of the olive Saint Michael jacket, with Saint Michael the Archangel" className="h-56 w-full object-contain md:h-64" />

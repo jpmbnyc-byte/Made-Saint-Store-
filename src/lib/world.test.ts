@@ -2,7 +2,12 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { ASSET_MANIFEST } from "@/lib/asset-manifest";
 import { offerLine } from "@/lib/business";
-import { IMPACT } from "@/lib/impact";
+import { FOUNDER, IMPACT } from "@/lib/impact";
+
+test("the house names the founder", () => {
+  assert.equal(FOUNDER.name, "Jean Pierre Bobo");
+  assert.equal(FOUNDER.role, "Founder");
+});
 
 test("the pledge names a rate and stays a promise until a year is reported", () => {
   assert.equal(IMPACT.publishEnabled, true);

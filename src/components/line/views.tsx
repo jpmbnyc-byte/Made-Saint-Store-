@@ -151,6 +151,10 @@ export function LookbookView() {
   const closet = useCloset();
   const [note, setNote] = useState("");
   function save(look: CollectionLook) {
+    if (closet.data.groups.some((group) => group.lookId === look.slug)) {
+      setNote(`${look.title} is already in My Closet.`);
+      return;
+    }
     closet.commit(saveLook(closet.data, { slug: look.slug, title: look.title, pieces: look.pieces.map((item) => ({ ref: item.ref, color: item.color })) }, new Date().toISOString()));
     setNote(`${look.title} is in My Closet.`);
   }

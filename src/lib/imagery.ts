@@ -21,7 +21,7 @@ export const FRAME_PX: Record<number, [number, number]> = {
 };
 
 /** Frames that are large on disk but are crops, composites, or known low-resolution panels. */
-const HELD_BACK = new Set([34, 45, 46, 47, 48, 49, 54]);
+const HELD_BACK = new Set([31, 34, 45, 46, 47, 48, 49, 51, 53, 54]);
 
 export const MIN_EDGE = 800;
 

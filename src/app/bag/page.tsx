@@ -13,7 +13,7 @@ export default function BagPage() {
   const subtotal = rows.reduce((sum, row) => sum + (row.product?.usd ?? 0) * row.item.qty, 0);
   return (
     <div className="min-h-screen bg-[#f7f7f5] text-[#111]">
-      <CollectionChrome view="product" />
+      <CollectionChrome view="account" />
       <main className="mx-auto max-w-[720px] px-5 py-10">
         <h1 className="text-[12px] tracking-[0.22em] uppercase">Bag</h1>
         <p className="mt-4 text-[14px] leading-relaxed text-[#111]/70">A pair is requested on its own page. This bag does not take payment, and it does not confirm an order.</p>

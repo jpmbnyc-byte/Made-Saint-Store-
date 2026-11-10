@@ -37,7 +37,7 @@ const SLIDES: Slide[] = [
     caption: "Inès, dusty rose",
     image: "/line/f50.webp",
     imageAlt: "Inès in a dusty rose zip set over a petrol teal turtleneck",
-    href: "/#looks",
+    href: "/line/looks/rose",
   },
   {
     id: "arrival",
@@ -45,7 +45,7 @@ const SLIDES: Slide[] = [
     caption: "Malik, navy set",
     image: "/line/f35.webp",
     imageAlt: "Malik in a navy zip jacket and matching trousers, full length",
-    href: "/#looks",
+    href: "/line/looks/arrival",
   },
 ];
 

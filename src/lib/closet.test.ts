@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { addPiece, addToBag, createGroup, decideBag, emptyBag, emptyCloset, loadCloset, readJson, removePiece, restorePiece, saveLook, type Store } from "./closet";
+import { addPiece, addToBag, createGroup, decideBag, emptyBag, emptyCloset, hasPiece, loadCloset, readJson, removePiece, restorePiece, saveLook, type Store } from "./closet";
 
 function memory(): Store {
   const map = new Map<string, string>();
@@ -42,6 +42,19 @@ test("a wardrobe group can be created beside a saved look", () => {
   const data = createGroup(saveLook(emptyCloset(), { slug: "stripe", title: "Grouped stripe", pieces: [] }, "t1"), "Travel week", "t2");
   assert.equal(data.groups.length, 2);
   assert.equal(data.groups[1]?.name, "Travel week");
+});
+
+test("creating a group names it, attaches selected pieces, and refuses a blank name", () => {
+  const withPiece = addPiece(emptyCloset(), { productRef: "R027", kind: "line", color: "Cobalt", size: "M", lookId: "" }, "t1");
+  const blank = createGroup(withPiece, "   ", "t2", withPiece.pieces);
+  assert.equal(blank.groups.length, 0);
+  const named = createGroup(withPiece, "Travel week", "t2", withPiece.pieces);
+  assert.equal(named.groups.length, 1);
+  assert.equal(named.groups[0]?.id, "group-t2-1");
+  assert.deepEqual(named.pieces[0]?.groupIds, ["group-t2-1"]);
+  const second = createGroup(named, "Evening", "t2", []);
+  assert.equal(second.groups[1]?.id, "group-t2-2");
+  assert.equal(hasPiece(named, { productRef: "R027", color: "Cobalt", size: "M", lookId: "" }), true);
 });
 
 test("only a launched runner with a size can enter the bag, and a retry does not duplicate", () => {

@@ -73,9 +73,77 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     pieces: [piece("R041", "Shorts"), piece("N013", "Backpack")],
     styling: ["The patterned shirt is styling. It is not a MADE SAiNT product on this look."],
   },
+  {
+    slug: "rose",
+    number: "05",
+    title: "Dusty rose",
+    use: "Everyday",
+    image: frameSrc(50),
+    alt: "Inès in a dusty rose zip set over a petrol teal turtleneck",
+    frames: [50].map((n) => FRAMES.find((frame) => frame.n === n)!),
+    pieces: [],
+    styling: ["A season look. The garments in the photograph are not a listed product, and they are not a checkout price."],
+  },
+  {
+    slug: "arrival",
+    number: "06",
+    title: "Arrival",
+    use: "Tailoring",
+    image: frameSrc(35),
+    alt: "Malik in a navy zip jacket, white layer, and matching trouser, worn full length",
+    frames: [35].map((n) => FRAMES.find((frame) => frame.n === n)!),
+    pieces: [],
+    styling: ["A season look. The navy set is not a listed product on this photograph. The shoes are brown mules, not a founding runner."],
+  },
+  {
+    slug: "velvet",
+    number: "07",
+    title: "Velvet",
+    use: "Leisure",
+    image: "/collection/velvet.webp",
+    alt: "Lucien in a forest velvet zip jacket and matching trousers",
+    frames: [],
+    pieces: [],
+    styling: ["A season look. Not a listed price. Enquire to have it made."],
+  },
+  {
+    slug: "sage",
+    number: "08",
+    title: "Sage",
+    use: "Leisure",
+    image: "/collection/sage.webp",
+    alt: "Ren in a sage fleece set, pale yellow turtleneck, and a yellow barrel bag",
+    frames: [],
+    pieces: [],
+    styling: ["A season look. Not a listed price. The bag and the shoes are in the photograph and are not a founding runner."],
+  },
+  {
+    slug: "solene",
+    number: "09",
+    title: "Solène jersey",
+    use: "Everyday",
+    image: "/collection/solene.webp",
+    alt: "Solène in the printed jersey over a white shirt and black trousers",
+    frames: [],
+    pieces: [],
+    styling: ["A season look. The jersey print is not mapped to a listed product on this photograph."],
+  },
+  {
+    slug: "amara",
+    number: "10",
+    title: "Amara jersey",
+    use: "Leisure",
+    image: "/collection/amara.webp",
+    alt: "Amara in the printed jersey, tie, blue suede shorts, and cream socks",
+    frames: [],
+    pieces: [],
+    styling: ["A season look. The shorts and the jersey are not a listed product on this photograph."],
+  },
 ];
 
 export const lookBySlug = (slug: string) => COLLECTION_LOOKS.find((look) => look.slug === slug);
+
+export const lookImage = (look: CollectionLook, frame = look.frames[0]) => (frame?.n ? frameSrc(frame.n) : look.image);
 
 export const looksForRef = (ref: string) => COLLECTION_LOOKS.filter((look) => look.pieces.some((item) => item.ref === ref));
 
@@ -87,10 +155,12 @@ export type EditorialBlock =
 export const FEATURED: EditorialBlock[] = [
   { kind: "look", slug: "cobalt" },
   { kind: "look", slug: "stripe" },
+  { kind: "look", slug: "rose" },
   { kind: "product", ref: "N015", frame: 12 },
   { kind: "product", ref: "R067", frame: 27, wide: true },
   { kind: "look", slug: "jersey" },
   { kind: "look", slug: "day" },
+  { kind: "look", slug: "velvet" },
   { kind: "product", ref: "R043", frame: 1 },
 ];
 
@@ -99,8 +169,13 @@ export const CAMPAIGN_BLOCKS: EditorialBlock[] = [
   { kind: "look", slug: "stripe" },
   { kind: "look", slug: "jersey" },
   { kind: "look", slug: "day", wide: true },
+  { kind: "look", slug: "rose" },
+  { kind: "look", slug: "arrival" },
+  { kind: "look", slug: "velvet" },
+  { kind: "look", slug: "sage" },
+  { kind: "look", slug: "solene", wide: true },
+  { kind: "look", slug: "amara" },
   { kind: "product", ref: "R067", frame: 27, wide: true },
-  { kind: "product", ref: "N015", frame: 12 },
 ];
 
 export function customerStatus(product: LineProduct) {

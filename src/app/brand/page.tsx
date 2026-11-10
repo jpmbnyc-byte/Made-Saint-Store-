@@ -5,6 +5,7 @@ import { Mast } from "@/components/house/mast";
 import { ShopFooter } from "@/components/shop/chrome";
 import { Pledge } from "@/components/house/pledge";
 import { offerLine } from "@/lib/business";
+import { FOUNDER } from "@/lib/impact";
 
 export const metadata: Metadata = {
   title: "The House",
@@ -24,7 +25,7 @@ export default function BrandPage() {
             <em className="italic">Made Saint.</em>
           </h1>
           <p className="mt-8 max-w-xl text-[17px] leading-relaxed">
-            The line is the founder’s, for grace and a life changed. A purchase does not confer moral or spiritual standing. The house keeps a Christian name and welcomes a client of any belief.
+            The line is {FOUNDER.name}&apos;s, for grace and a life changed. A purchase does not confer moral or spiritual standing. The house keeps a Christian name and welcomes a client of any belief.
           </p>
         </section>
 

@@ -39,11 +39,11 @@ export default function BrandPage() {
                 The house is set in Cap-Haïtien and the north of Haiti. The city, the shore at Cormier, and Milot are the places it returns to. Milot is neighboring historic ground. It is not the city, and it is not a house the brand owns. No property has been chosen.
               </p>
               <p>
-                The frames on this site are the campaign. They are not a record of a finished shoot, and they are not photographs of the cathedral, a palace, or the Citadelle.
+                The photographs are the collection, worn by the cast, or the product itself. They are not pictures of the city, the shore at Cormier, or Milot, and they are not photographs of the cathedral, a palace, or the Citadelle.
               </p>
               <h2 className="pt-4 font-serif text-4xl text-[#1c1a17]">The people</h2>
               <p>
-                The campaign is an original cast of adults. They are dressed for ordinary days: a walk, a table, a terrace. They are not presented as a finished location shoot.
+                Amara, Solène, Inès, Lucien, Ren, and Malik wear the collection. A shoppable look lists only the pieces already mapped to that photograph. A season look that is not priced stays a look.
               </p>
               <h2 className="pt-4 font-serif text-4xl text-[#1c1a17]">The pairs</h2>
               <p>

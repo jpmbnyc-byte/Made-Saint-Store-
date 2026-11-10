@@ -1,23 +1,27 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const FRAMES = [
   {
-    src: "/world/courtyard.webp",
-    title: "The city",
-    alt: "A shaded masonry courtyard in morning light, campaign frame",
-    caption: "A campaign frame for the city the house is set in. Not a named address.",
+    src: "/line/f30.webp",
+    title: "A day out",
+    alt: "Amara in a beige jacket, printed jersey, shorts, and a brown backpack",
+    caption: "Amara, in the day look. The city is not pictured.",
+    href: "/line/looks/day",
   },
   {
-    src: "/world/coast.webp",
-    title: "The coast",
-    alt: "Blue water and a green headland in early light, campaign frame",
-    caption: "The house returns to the shore at Cormier. This frame is the campaign’s water, not a photograph of a named beach.",
+    src: "/line/f25.webp",
+    title: "The jersey",
+    alt: "Ren in the printed jersey, shirt, tie, and chinos",
+    caption: "Ren, in the printed jersey. The coast is not pictured.",
+    href: "/line/looks/jersey",
   },
   {
-    src: "/world/hero.webp",
-    title: "The north",
-    alt: "Solène on a stone terrace above the water, campaign frame",
-    caption: "Milot is neighboring historic ground. It is not pictured here as a monument, and it is not a property the house owns.",
+    src: "/editorial/saint-john-worn.webp",
+    title: "Saint John",
+    alt: "Lucien in the camel Saint John jacket and trouser, with a cap and a black backpack",
+    caption: "Lucien, in Saint John. Milot is not pictured.",
+    href: "/wardrobe",
   },
 ] as const;
 
@@ -30,14 +34,16 @@ export function PlaceChapter() {
           Cap-Haïtien, and the north.
         </h2>
         <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">
-          The house is set in Cap-Haïtien and the north of Haiti. The city, the coast, and Milot are the places it returns to. Milot is neighboring historic ground. It is not the city, and no house has been chosen. These frames are the campaign. They are not a finished location shoot.
+          The house is set in Cap-Haïtien and the north of Haiti. Milot is neighboring historic ground, and no house has been chosen. The photographs here are the collection on the cast. They are not pictures of the city, the coast, or Milot.
         </p>
         <ul className="mt-10 grid gap-8 md:grid-cols-3">
           {FRAMES.map((frame) => (
             <li key={frame.title}>
-              <span className="relative block aspect-[4/3] bg-[#e7e1d6]">
-                <Image src={frame.src} alt={frame.alt} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
-              </span>
+              <Link href={frame.href} className="block bg-[#e7e1d6]">
+                <span className="relative block aspect-[2/3]">
+                  <Image src={frame.src} alt={frame.alt} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-contain" />
+                </span>
+              </Link>
               <p className="mt-3 text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">{frame.title}</p>
               <p className="mt-2 text-[14px] leading-relaxed text-[#1c1a17]/70">{frame.caption}</p>
             </li>

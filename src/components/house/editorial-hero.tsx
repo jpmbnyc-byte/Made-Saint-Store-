@@ -11,36 +11,41 @@ type Slide = {
   caption: string;
   image: string;
   imageAlt: string;
+  href: string;
 };
 
 const SLIDES: Slide[] = [
   {
-    id: "terrace",
-    label: "Terrace",
-    caption: "Solène, ivory knit",
-    image: "/world/hero.webp",
-    imageAlt: "Solène in an ivory knit and navy trousers, standing full length on a stone terrace, campaign frame",
+    id: "cobalt",
+    label: "Cobalt",
+    caption: "Lucien, cobalt jacket",
+    image: "/line/f37.webp",
+    imageAlt: "Lucien in a cobalt zip jacket and speckled trousers, full length",
+    href: "/line/looks/cobalt",
   },
   {
-    id: "walk",
-    label: "The walk",
-    caption: "Inès and Lucien",
-    image: "/world/walk.webp",
-    imageAlt: "Inès in a navy suit and Lucien in an ivory knit, walking a masonry street, campaign frame",
+    id: "stripe",
+    label: "Stripe",
+    caption: "Ren, grouped stripe",
+    image: "/line/f33.webp",
+    imageAlt: "Ren in the grouped-stripe jacket and trousers, full length",
+    href: "/line/looks/stripe",
   },
   {
-    id: "table",
-    label: "The table",
-    caption: "Amara, Malik, Ren, Solène",
-    image: "/world/gathering.webp",
-    imageAlt: "Amara, Malik, Ren, and Solène talking at a shaded garden table, campaign frame",
+    id: "rose",
+    label: "Rose",
+    caption: "Inès, dusty rose",
+    image: "/line/f50.webp",
+    imageAlt: "Inès in a dusty rose zip set over a petrol teal turtleneck",
+    href: "/#looks",
   },
   {
-    id: "water",
-    label: "The water",
-    caption: "Morning water",
-    image: "/world/coast.webp",
-    imageAlt: "A quiet shore, pale sand, clear water, and a green headland",
+    id: "arrival",
+    label: "Arrival",
+    caption: "Malik, navy set",
+    image: "/line/f35.webp",
+    imageAlt: "Malik in a navy zip jacket and matching trousers, full length",
+    href: "/#looks",
   },
 ];
 
@@ -255,15 +260,15 @@ export function EditorialHero() {
             {slide.caption}
           </p>
           <p className="mt-2 max-w-sm text-[13px] leading-relaxed text-[#1c1a17]/55">
-            Campaign frames. Not a finished location shoot.
+            The collection, worn. Not a photograph of a place.
           </p>
 
           <div className="ms-hero-text-rise mt-6 flex flex-wrap items-center gap-3" style={{ animationDelay: "480ms" }}>
             <Link
-              href="/shop#1101"
+              href={slide.href}
               className="inline-flex h-12 items-center bg-[#1c1a17] px-6 text-[12px] tracking-[0.16em] text-[#f5f0e8] uppercase transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
             >
-              Explore 1101
+              See the look
             </Link>
             <Link
               href="/wardrobe"

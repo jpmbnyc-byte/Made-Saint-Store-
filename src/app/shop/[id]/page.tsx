@@ -143,28 +143,6 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             </div>
           </div>
         </div>
-        {product.id === "ms-runner-1213-sacred-light" && (
-          <section className="mx-auto mt-16 max-w-[1100px] border-t border-[#1c1a17]/10 px-5 pt-10 md:px-0">
-            <h2 className="font-serif text-3xl">Shown beside the pair</h2>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#1c1a17]/65">
-              These are styling references. They are not included with the runner, and they are not for sale.
-            </p>
-            <div className="mt-8 grid gap-8 sm:grid-cols-2">
-              <figure>
-                <div className="relative aspect-[4/5] bg-[#f1eee8]">
-                  <Image src="/runners/1213/shoulder-bag-plum.webp" alt="A plum shoulder bag, shown as a styling reference" fill sizes="(min-width: 640px) 40vw, 100vw" className="object-contain" />
-                </div>
-                <figcaption className="ms-caption mt-3 text-[12px] normal-case tracking-normal text-[#1c1a17]/65">A plum shoulder bag. A styling reference. Not included with the pair, and not for sale.</figcaption>
-              </figure>
-              <figure>
-                <div className="relative aspect-[4/5] bg-[#f1eee8]">
-                  <Image src="/runners/1213/tongue-wallet.webp" alt="A lace-on tongue wallet shown beside the Sacred Light runner" fill sizes="(min-width: 640px) 40vw, 100vw" className="object-contain" />
-                </div>
-                <figcaption className="ms-caption mt-3 text-[12px] normal-case tracking-normal text-[#1c1a17]/65">A lace-on tongue wallet, shown beside the runner. Not included, and not for sale.</figcaption>
-              </figure>
-            </div>
-          </section>
-        )}
       </main>
       <ShopFooter />
     </div>

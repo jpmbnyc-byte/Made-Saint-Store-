@@ -95,14 +95,12 @@ export const FEATURED: EditorialBlock[] = [
 ];
 
 export const CAMPAIGN_BLOCKS: EditorialBlock[] = [
-  { kind: "still", src: "/world/hero.webp", alt: "Solène in an ivory knit and navy trousers on a stone terrace, campaign frame", wide: true },
-  { kind: "look", slug: "cobalt" },
-  { kind: "still", src: "/world/walk.webp", alt: "Inès and Lucien walking a masonry street, campaign frame", wide: true },
+  { kind: "look", slug: "cobalt", wide: true },
   { kind: "look", slug: "stripe" },
-  { kind: "still", src: "/world/gathering.webp", alt: "Amara, Malik, Ren, and Solène at a shaded table, campaign frame", wide: true },
-  { kind: "product", ref: "R067", frame: 27, wide: true },
   { kind: "look", slug: "jersey" },
-  { kind: "still", src: "/world/coast.webp", alt: "Morning water and a green headland, campaign frame", wide: true },
+  { kind: "look", slug: "day", wide: true },
+  { kind: "product", ref: "R067", frame: 27, wide: true },
+  { kind: "product", ref: "N015", frame: 12 },
 ];
 
 export function customerStatus(product: LineProduct) {

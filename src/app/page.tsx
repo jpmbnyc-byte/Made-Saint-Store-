@@ -31,7 +31,7 @@ export default function Home() {
     <div className="bg-[#f5f0e8] text-[#1c1a17]">
       <Mast />
 
-      {/* 01 — Collection hero (1101 + Private Wardrobe) */}
+      {/* 01 — Campaign slider */}
       <EditorialHero />
 
       {/* 02 — 1101 leads, then the seven 1213 colorways */}

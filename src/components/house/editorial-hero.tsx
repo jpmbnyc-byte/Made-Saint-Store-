@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type PointerEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
@@ -8,63 +8,67 @@ import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 type Slide = {
   id: string;
   label: string;
-  eyebrow: string;
-  title: [string, string];
-  body: string;
-  caption?: string;
-  primaryHref: string;
-  primaryLabel: string;
-  secondaryHref?: string;
-  secondaryLabel?: string;
+  caption: string;
   image: string;
   imageAlt: string;
-  fit: "contain" | "cover";
-  tone: "stone" | "ink";
 };
 
 const SLIDES: Slide[] = [
   {
-    id: "runner-0929",
-    label: "0929",
-    eyebrow: "Once sinner. Made Saint.",
-    title: ["You are", "what you become."],
-    body: "A wardrobe for the person you’re becoming.",
-    caption: "0929 v1 — Navy / Ivory",
-    primaryHref: "/shop/ms-runner-chalk-navy",
-    primaryLabel: "Discover 0929",
-    secondaryHref: "/wardrobe",
-    secondaryLabel: "Private Wardrobe",
-    image: "/hero/navy-ivory.webp",
-    imageAlt: "MADE SAiNT 0929 Runner — Navy / Ivory, with the MADE SAINT tongue mark, on limestone",
-    fit: "contain",
-    tone: "stone",
+    id: "teal",
+    label: "Teal",
+    caption: "Teal track, colonnade",
+    image: "/hero/campaign/teal.webp",
+    imageAlt: "A man in a teal track suit with a copper stripe and teal runners, walking a limestone colonnade",
   },
   {
-    id: "private-wardrobe",
-    label: "Private Wardrobe",
-    eyebrow: "Private Wardrobe",
-    title: ["A wardrobe,", "considered around you."],
-    body: "One person coordinates the days. Made to order, ready in 4 to 6 weeks. A fitting is remote, and it is not held in person.",
-    primaryHref: "/wardrobe",
-    primaryLabel: "Discover",
-    secondaryHref: "/wardrobe#introduction",
-    secondaryLabel: "Request an introduction",
-    image: "/editorial/saint-john-worn.webp",
-    imageAlt: "MADE SAiNT Saint John The Forerunner — camel wool jacket and trouser, worn editorial against limestone columns",
-    fit: "cover",
-    tone: "ink",
+    id: "washed",
+    label: "Washed",
+    caption: "Washed tee, butter runner",
+    image: "/hero/campaign/washed.webp",
+    imageAlt: "A woman in a washed blue tee, black trousers, and butter runners, standing against limestone",
+  },
+  {
+    id: "rose",
+    label: "Rose",
+    caption: "Rose track",
+    image: "/hero/campaign/rose.webp",
+    imageAlt: "A woman in a rose track suit over a teal roll neck, with brown runners, walking a limestone colonnade",
+  },
+  {
+    id: "camel",
+    label: "Camel",
+    caption: "Camel, on the steps",
+    image: "/hero/campaign/camel.webp",
+    imageAlt: "A man in a camel jacket and trouser with butter runners, standing on limestone steps",
+  },
+  {
+    id: "butter",
+    label: "Butter",
+    caption: "Butter collar",
+    image: "/hero/campaign/butter.webp",
+    imageAlt: "A man in a butter sweatshirt and black trousers with brown runners, walking a limestone colonnade",
+  },
+  {
+    id: "olive",
+    label: "Olive",
+    caption: "Olive, Saint Michael",
+    image: "/hero/campaign/olive.webp",
+    imageAlt: "A woman in an olive jacket with a Saint Michael back panel and teal runners, in a limestone colonnade",
   },
 ];
 
-const AUTOPLAY_MS = 8000;
+const AUTOPLAY_MS = 7000;
 
 export function EditorialHero() {
   const [active, setActive] = useState(0);
   const [playing, setPlaying] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [announcement, setAnnouncement] = useState("");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const manualRef = useRef(false);
   const heroRef = useRef<HTMLElement>(null);
+  const drag = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -78,27 +82,25 @@ export function EditorialHero() {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
+  const announce = useCallback((index: number) => {
+    const slide = SLIDES[index];
+    setAnnouncement(`${slide.label}. ${slide.caption}. Slide ${index + 1} of ${SLIDES.length}.`);
+  }, []);
+
   const advance = useCallback(() => {
     setActive((prev) => (prev + 1) % SLIDES.length);
   }, []);
 
-  const go = useCallback((index: number) => {
-    manualRef.current = true;
-    setPlaying(false);
-    setActive(index);
-  }, []);
-
-  const prev = useCallback(() => {
-    manualRef.current = true;
-    setPlaying(false);
-    setActive((p) => (p - 1 + SLIDES.length) % SLIDES.length);
-  }, []);
-
-  const next = useCallback(() => {
-    manualRef.current = true;
-    setPlaying(false);
-    setActive((p) => (p + 1) % SLIDES.length);
-  }, []);
+  const go = useCallback(
+    (index: number) => {
+      const next = (index + SLIDES.length) % SLIDES.length;
+      manualRef.current = true;
+      setPlaying(false);
+      setActive(next);
+      announce(next);
+    },
+    [announce],
+  );
 
   useEffect(() => {
     if (!playing || reducedMotion) return;
@@ -130,26 +132,38 @@ export function EditorialHero() {
   }, []);
 
   const slide = SLIDES[active];
-  const stone = slide.tone === "stone";
-  const ink = stone ? "#1c1a17" : "#f5f0e8";
-  const muted = stone ? "rgba(28,26,23,0.72)" : "rgba(245,240,232,0.78)";
+
+  function onPointerDown(event: PointerEvent) {
+    drag.current = { x: event.clientX, y: event.clientY };
+  }
+
+  function onPointerUp(event: PointerEvent) {
+    const start = drag.current;
+    drag.current = null;
+    if (!start) return;
+    const dx = event.clientX - start.x;
+    const dy = event.clientY - start.y;
+    if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy)) return;
+    go(active + (dx < 0 ? 1 : -1));
+  }
 
   return (
     <section
       ref={heroRef}
-      aria-label="Featured editorial"
+      aria-label="Campaign"
       aria-roledescription="carousel"
-      className="relative overflow-hidden"
-      style={{ backgroundColor: stone ? "#d4c3b2" : "#1a2232" }}
+      className="bg-[#f3eee6]"
       onMouseEnter={() => setPlaying(false)}
       onMouseLeave={() => {
         if (!manualRef.current && !reducedMotion) setPlaying(true);
       }}
       onFocus={() => setPlaying(false)}
     >
-      <div className="md:grid md:min-h-[min(88svh,840px)] md:grid-cols-[minmax(300px,0.86fr)_minmax(0,1.14fr)] md:items-stretch">
+      <div className="mx-auto w-full max-w-[1480px] md:grid md:grid-cols-[minmax(260px,0.72fr)_minmax(0,1.28fr)] md:items-center md:gap-8 md:px-8 md:py-8 lg:gap-12 lg:px-12 lg:py-10">
         <div
-          className={`relative order-1 w-full overflow-hidden md:order-2 md:h-full md:aspect-auto ${stone ? "aspect-[1024/571] ms-hero-stone-fade" : "aspect-square"}`}
+          className="relative aspect-[3/2] w-full touch-pan-y overflow-hidden bg-[#e7e1d6] md:order-2"
+          onPointerDown={onPointerDown}
+          onPointerUp={onPointerUp}
         >
           {SLIDES.map((s, i) => (
             <div
@@ -162,27 +176,15 @@ export function EditorialHero() {
               aria-hidden={i !== active}
             >
               <Image
-                key={`${s.id}-${i === active ? "on" : "off"}`}
                 src={s.image}
                 alt={i === active ? s.imageAlt : ""}
                 fill
                 priority={i === 0}
-                sizes="100vw"
-                className={`${s.fit === "contain" ? "object-contain object-center" : "object-cover object-[center_20%]"} ${i === active ? "ms-hero-img-settle" : ""}`}
+                sizes="(min-width: 768px) 58vw, 100vw"
+                className={`object-contain object-center ${i === active && !reducedMotion ? "ms-hero-img-settle" : ""}`}
               />
             </div>
           ))}
-          <div className="ms-hero-atmosphere" aria-hidden="true" />
-          {!stone && (
-            <div
-              aria-hidden="true"
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(to top, rgba(26,34,50,0.92) 0%, rgba(26,34,50,0.28) 42%, rgba(26,34,50,0.12) 100%)",
-              }}
-            />
-          )}
         </div>
 
         <div
@@ -190,120 +192,102 @@ export function EditorialHero() {
           id={`slide-${slide.id}`}
           role="tabpanel"
           aria-label={slide.label}
-          className="relative z-[3] order-2 px-5 pb-8 pt-7 md:order-1 md:flex md:items-center md:px-12 md:py-16 lg:px-16"
+          className="px-5 pb-8 pt-6 md:px-2 md:py-4 lg:px-4"
         >
-          <div className="max-w-[34rem]">
-            <p
-              className="ms-hero-text-rise flex items-center gap-3 text-[11px] tracking-[0.28em] uppercase"
-              style={{ color: ink, animationDelay: "40ms" }}
+          <p className="ms-hero-text-rise flex items-center gap-3 text-[11px] tracking-[0.28em] text-[#1c1a17] uppercase" style={{ animationDelay: "40ms" }}>
+            <span aria-hidden="true" className="inline-block h-px w-6 bg-[#B03236]" />
+            Once sinner. Made Saint.
+          </p>
+
+          <h1
+            className="mt-4 font-serif leading-[0.92] tracking-[-0.045em] text-[#1c1a17]"
+            style={{ fontSize: "clamp(40px, 5vw, 84px)" }}
+          >
+            <span className="ms-hero-text-rise block" style={{ animationDelay: "120ms" }}>
+              You are
+            </span>
+            <span className="ms-hero-text-rise block" style={{ animationDelay: "220ms" }}>
+              what you become.
+            </span>
+          </h1>
+
+          <p className="ms-hero-text-rise mt-4 max-w-sm text-[16px] leading-relaxed text-[#1c1a17]/75 md:text-[17px]" style={{ animationDelay: "320ms" }}>
+            A wardrobe for the person you’re becoming.
+          </p>
+
+          <p className="ms-hero-text-rise mt-4 text-[12px] tracking-[0.16em] text-[#1c1a17]/70 uppercase" style={{ animationDelay: "400ms" }}>
+            {slide.caption}
+          </p>
+
+          <div className="ms-hero-text-rise mt-6 flex flex-wrap items-center gap-3" style={{ animationDelay: "480ms" }}>
+            <Link
+              href="/shop#1101"
+              className="inline-flex h-12 items-center bg-[#1c1a17] px-6 text-[12px] tracking-[0.16em] text-[#f5f0e8] uppercase transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
             >
-              <span aria-hidden="true" className="inline-block h-px w-6" style={{ background: "#B03236" }} />
-              {slide.eyebrow}
-            </p>
-
-            <h1
-              className="mt-4 font-serif leading-[0.9] tracking-[-0.045em]"
-              style={{ color: ink, fontSize: "clamp(52px, 7.4vw, 104px)" }}
+              Discover the range
+            </Link>
+            <Link
+              href="/wardrobe"
+              className="inline-flex h-12 items-center px-3 text-[12px] tracking-[0.14em] text-[#1c1a17]/70 uppercase underline decoration-1 underline-offset-[6px] transition-opacity hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
             >
-              <span className="ms-hero-text-rise block" style={{ animationDelay: "120ms" }}>
-                {slide.title[0]}
-              </span>
-              <span className="ms-hero-text-rise block" style={{ animationDelay: "240ms" }}>
-                {slide.title[1]}
-              </span>
-            </h1>
+              Private Wardrobe
+            </Link>
+          </div>
 
-            <p
-              className="ms-hero-text-rise mt-5 max-w-sm text-[16px] leading-relaxed md:text-[17px]"
-              style={{ color: muted, animationDelay: "380ms" }}
-            >
-              {slide.body}
-            </p>
-
-            {slide.caption && (
-              <p
-                className="ms-hero-text-rise mt-4 text-[12px] tracking-[0.16em] uppercase"
-                style={{ color: muted, animationDelay: "480ms" }}
-              >
-                {slide.caption}
-              </p>
-            )}
-
-            <div className="ms-hero-text-rise mt-7 flex flex-wrap items-center gap-3" style={{ animationDelay: "560ms" }}>
-              <Link
-                href={slide.primaryHref}
-                className="inline-flex h-12 items-center px-6 text-[12px] tracking-[0.16em] uppercase transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
+          <div className="mt-6 flex items-center gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="tablist" aria-label="Campaign slides">
+            {SLIDES.map((s, i) => (
+              <button
+                key={s.id}
+                type="button"
+                role="tab"
+                aria-selected={i === active}
+                aria-controls={`slide-${s.id}`}
+                aria-label={s.label}
+                onClick={() => go(i)}
+                className="inline-flex h-11 shrink-0 items-center px-2.5 text-[11px] tracking-[0.14em] uppercase focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B03236] sm:px-3"
                 style={{
-                  background: stone ? "#1c1a17" : "#f5f0e8",
-                  color: stone ? "#f5f0e8" : "#1c1a17",
+                  color: i === active ? "#1c1a17" : "rgba(28,26,23,0.45)",
+                  boxShadow: i === active ? "inset 0 -1px 0 #B03236" : undefined,
                 }}
               >
-                {slide.primaryLabel}
-              </Link>
-              {slide.secondaryHref && slide.secondaryLabel && (
-                <Link
-                  href={slide.secondaryHref}
-                  className="inline-flex h-12 items-center px-3 text-[12px] tracking-[0.14em] uppercase underline decoration-1 underline-offset-[6px] transition-opacity hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
-                  style={{ color: muted }}
-                >
-                  {slide.secondaryLabel}
-                </Link>
-              )}
-            </div>
-
-            <div className="mt-8 flex items-center gap-1" role="tablist" aria-label="Editorial slide navigation">
-              {SLIDES.map((s, i) => (
-                <button
-                  key={s.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={i === active}
-                  aria-controls={`slide-${s.id}`}
-                  onClick={() => go(i)}
-                  className="inline-flex h-11 items-center px-3 text-[11px] tracking-[0.16em] uppercase focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B03236]"
-                  style={{
-                    color: i === active ? ink : muted,
-                    boxShadow: i === active ? "inset 0 -1px 0 #B03236" : undefined,
-                  }}
-                >
-                  {s.label}
-                </button>
-              ))}
+                {String(i + 1).padStart(2, "0")}
+              </button>
+            ))}
+            <button
+              type="button"
+              onClick={() => go(active - 1)}
+              aria-label="Previous campaign"
+              className="grid h-11 w-11 shrink-0 place-items-center text-[#1c1a17]/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B03236]"
+            >
+              <ChevronLeft className="size-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => go(active + 1)}
+              aria-label="Next campaign"
+              className="grid h-11 w-11 shrink-0 place-items-center text-[#1c1a17]/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B03236]"
+            >
+              <ChevronRight className="size-4" />
+            </button>
+            {!reducedMotion && (
               <button
                 type="button"
-                onClick={prev}
-                aria-label="Previous slide"
-                className="grid h-11 w-11 place-items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B03236]"
-                style={{ color: muted }}
+                onClick={() => {
+                  manualRef.current = false;
+                  setPlaying((p) => !p);
+                }}
+                aria-label={playing ? "Pause slideshow" : "Play slideshow"}
+                className="grid h-11 w-11 shrink-0 place-items-center text-[#1c1a17]/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B03236]"
               >
-                <ChevronLeft className="size-4" />
+                {playing ? <Pause className="size-3.5" /> : <Play className="size-3.5" />}
               </button>
-              <button
-                type="button"
-                onClick={next}
-                aria-label="Next slide"
-                className="grid h-11 w-11 place-items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B03236]"
-                style={{ color: muted }}
-              >
-                <ChevronRight className="size-4" />
-              </button>
-              {!reducedMotion && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    manualRef.current = false;
-                    setPlaying((p) => !p);
-                  }}
-                  aria-label={playing ? "Pause slideshow" : "Play slideshow"}
-                  className="grid h-11 w-11 place-items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B03236]"
-                  style={{ color: muted }}
-                >
-                  {playing ? <Pause className="size-3.5" /> : <Play className="size-3.5" />}
-                </button>
-              )}
-            </div>
+            )}
           </div>
         </div>
+      </div>
+
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
+        {announcement}
       </div>
     </section>
   );

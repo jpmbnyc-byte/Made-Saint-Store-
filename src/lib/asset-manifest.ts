@@ -28,7 +28,7 @@ export const ASSET_MANIFEST: AssetRecord[] = [
     subjectConsentStatus: "original cast, not a person from a location shoot",
     productIds: [],
     representation: "concept",
-    alt: "A man in an ivory knit and navy trousers, standing full length on a stone terrace above the water",
+    alt: "Solène in an ivory knit and navy trousers, standing full length on a stone terrace, campaign frame",
   },
   {
     id: "world-courtyard",
@@ -67,7 +67,7 @@ export const ASSET_MANIFEST: AssetRecord[] = [
     subjectConsentStatus: "original cast, not a person from a location shoot",
     productIds: [],
     representation: "concept",
-    alt: "Two people walking a masonry street, full length, campaign frame",
+    alt: "Inès in a navy suit and Lucien in an ivory knit, walking a masonry street, campaign frame",
   },
   {
     id: "world-gathering",
@@ -80,7 +80,7 @@ export const ASSET_MANIFEST: AssetRecord[] = [
     subjectConsentStatus: "original cast, not a person from a location shoot",
     productIds: [],
     representation: "concept",
-    alt: "Four adults talking at a shaded table, campaign frame",
+    alt: "Amara, Malik, Ren, and Solène talking at a shaded garden table, campaign frame",
   },
   ...[
     ["ref-01-cathedral", "reference_only/01-cathedral.jpg"],

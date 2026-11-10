@@ -3,12 +3,12 @@ import Image from "next/image";
 const FRAMES = [
   {
     src: "/world/walk.webp",
-    alt: "Two people walking a masonry street, full length, campaign frame",
+    alt: "Inès in a navy suit and Lucien in an ivory knit, walking a masonry street, campaign frame",
     caption: "A walk",
   },
   {
     src: "/world/gathering.webp",
-    alt: "Four adults talking at a shaded table, campaign frame",
+    alt: "Amara, Malik, Ren, and Solène talking at a shaded garden table, campaign frame",
     caption: "A table",
   },
 ] as const;

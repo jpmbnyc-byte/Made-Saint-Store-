@@ -69,7 +69,7 @@ const STARTS = [
     name: "One look",
     line: "One tailored look, worn again instead of rebuilt.",
     image: "/editorial/saint-john-worn.webp",
-    alt: "Camel Saint John jacket and trouser, worn, with a cap and a black backpack",
+    alt: "Lucien in the camel Saint John jacket and trouser, with a cap and a black backpack",
     lookId: "saint-john",
     lifestyle: "occasion" as const,
     pieces: ["s01"],

@@ -78,7 +78,7 @@ const CHAPTERS: Chapter[] = [
     body: "A photograph of the camel jacket and trouser, worn full length. The sheet carries Saint John the Forerunner on the back. The cap, the backpack, and the shoes are in the photograph. The shoes are not a founding runner, and the backpack is not a listed piece. This is not a client, and it is not a production photograph.",
     ground: "bg-[#f6f1ea]",
     views: [
-      { id: "worn", label: "Worn", src: "/editorial/saint-john-worn.webp", alt: "Camel Saint John jacket and trouser, worn, with a cap and a black backpack", fit: "contain" },
+      { id: "worn", label: "Worn", src: "/editorial/saint-john-worn.webp", alt: "Lucien in the camel Saint John jacket and trouser, with a cap and a black backpack", fit: "contain" },
       { id: "set", label: "The set", src: "/hero/saint-john.webp", alt: "Camel Saint John jacket and trouser, front and back, on paper", fit: "contain" },
       { id: "front", label: "Front", src: "/editorial/saint-john-front.webp", alt: "Front of the camel Saint John jacket", fit: "contain" },
       { id: "back", label: "Back", src: "/editorial/saint-john-back.webp", alt: "Back of the camel Saint John jacket with the sacred artwork", fit: "contain" },

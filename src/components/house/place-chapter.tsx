@@ -16,7 +16,7 @@ const FRAMES = [
   {
     src: "/world/hero.webp",
     title: "The north",
-    alt: "Stone, shade, and water from a terrace, campaign frame",
+    alt: "Solène on a stone terrace above the water, campaign frame",
     caption: "Milot is neighboring historic ground. It is not pictured here as a monument, and it is not a property the house owns.",
   },
 ] as const;

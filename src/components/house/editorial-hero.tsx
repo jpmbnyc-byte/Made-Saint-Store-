@@ -159,9 +159,9 @@ export function EditorialHero() {
       }}
       onFocus={() => setPlaying(false)}
     >
-      <div className="mx-auto w-full max-w-[1480px] md:grid md:grid-cols-[minmax(260px,0.72fr)_minmax(0,1.28fr)] md:items-center md:gap-8 md:px-8 md:py-8 lg:gap-12 lg:px-12 lg:py-10">
+      <div className="mx-auto w-full max-w-[1480px] md:grid md:grid-cols-[minmax(260px,0.72fr)_minmax(0,1.28fr)] md:items-start md:gap-x-8 md:px-8 md:py-8 lg:gap-x-12 lg:px-12 lg:py-10">
         <div
-          className="relative aspect-[3/2] w-full touch-pan-y overflow-hidden bg-[#e7e1d6] md:order-2"
+          className="relative aspect-[3/2] w-full touch-pan-y overflow-hidden bg-[#e7e1d6] md:col-start-2 md:row-start-1"
           onPointerDown={onPointerDown}
           onPointerUp={onPointerUp}
         >
@@ -185,6 +185,56 @@ export function EditorialHero() {
               />
             </div>
           ))}
+          <div className="absolute bottom-2 left-2 z-10 flex bg-[#f5f0e8]/90">
+            <button
+              type="button"
+              onClick={() => go(active - 1)}
+              aria-label="Previous campaign"
+              className="grid h-11 w-11 place-items-center text-[#1c1a17] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B03236]"
+            >
+              <ChevronLeft className="size-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => go(active + 1)}
+              aria-label="Next campaign"
+              className="grid h-11 w-11 place-items-center text-[#1c1a17] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B03236]"
+            >
+              <ChevronRight className="size-4" />
+            </button>
+            {!reducedMotion && (
+              <button
+                type="button"
+                onClick={() => {
+                  manualRef.current = false;
+                  setPlaying((p) => !p);
+                }}
+                aria-label={playing ? "Pause slideshow" : "Play slideshow"}
+                className="grid h-11 w-11 place-items-center text-[#1c1a17] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B03236]"
+              >
+                {playing ? <Pause className="size-3.5" /> : <Play className="size-3.5" />}
+              </button>
+            )}
+          </div>
+        </div>
+
+        <div className="px-3 py-2 md:col-start-2 md:row-start-2 md:px-0 md:pt-3">
+          <div className="flex gap-1" role="tablist" aria-label="Campaign slides">
+            {SLIDES.map((s, i) => (
+              <button
+                key={s.id}
+                type="button"
+                role="tab"
+                aria-selected={i === active}
+                aria-controls={`slide-${s.id}`}
+                aria-label={s.label}
+                onClick={() => go(i)}
+                className={`relative h-12 min-w-0 flex-1 overflow-hidden bg-[#e7e1d6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B03236] ${i === active ? "ring-2 ring-[#B03236] ring-inset" : "opacity-60"}`}
+              >
+                <Image src={s.image} alt="" fill sizes="72px" className="object-cover object-[center_30%]" />
+              </button>
+            ))}
+          </div>
         </div>
 
         <div
@@ -192,7 +242,7 @@ export function EditorialHero() {
           id={`slide-${slide.id}`}
           role="tabpanel"
           aria-label={slide.label}
-          className="px-5 pb-8 pt-6 md:px-2 md:py-4 lg:px-4"
+          className="px-5 pb-8 pt-3 md:col-start-1 md:row-start-1 md:row-span-2 md:self-center md:px-2 md:py-4 lg:px-4"
         >
           <p className="ms-hero-text-rise flex items-center gap-3 text-[11px] tracking-[0.28em] text-[#1c1a17] uppercase" style={{ animationDelay: "40ms" }}>
             <span aria-hidden="true" className="inline-block h-px w-6 bg-[#B03236]" />
@@ -232,56 +282,6 @@ export function EditorialHero() {
             >
               Private Wardrobe
             </Link>
-          </div>
-
-          <div className="mt-6 flex items-center gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="tablist" aria-label="Campaign slides">
-            {SLIDES.map((s, i) => (
-              <button
-                key={s.id}
-                type="button"
-                role="tab"
-                aria-selected={i === active}
-                aria-controls={`slide-${s.id}`}
-                aria-label={s.label}
-                onClick={() => go(i)}
-                className="inline-flex h-11 shrink-0 items-center px-2.5 text-[11px] tracking-[0.14em] uppercase focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B03236] sm:px-3"
-                style={{
-                  color: i === active ? "#1c1a17" : "rgba(28,26,23,0.45)",
-                  boxShadow: i === active ? "inset 0 -1px 0 #B03236" : undefined,
-                }}
-              >
-                {String(i + 1).padStart(2, "0")}
-              </button>
-            ))}
-            <button
-              type="button"
-              onClick={() => go(active - 1)}
-              aria-label="Previous campaign"
-              className="grid h-11 w-11 shrink-0 place-items-center text-[#1c1a17]/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B03236]"
-            >
-              <ChevronLeft className="size-4" />
-            </button>
-            <button
-              type="button"
-              onClick={() => go(active + 1)}
-              aria-label="Next campaign"
-              className="grid h-11 w-11 shrink-0 place-items-center text-[#1c1a17]/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B03236]"
-            >
-              <ChevronRight className="size-4" />
-            </button>
-            {!reducedMotion && (
-              <button
-                type="button"
-                onClick={() => {
-                  manualRef.current = false;
-                  setPlaying((p) => !p);
-                }}
-                aria-label={playing ? "Pause slideshow" : "Play slideshow"}
-                className="grid h-11 w-11 shrink-0 place-items-center text-[#1c1a17]/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B03236]"
-              >
-                {playing ? <Pause className="size-3.5" /> : <Play className="size-3.5" />}
-              </button>
-            )}
           </div>
         </div>
       </div>

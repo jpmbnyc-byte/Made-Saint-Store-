@@ -87,7 +87,7 @@ export function LookStage({ slug }: { slug: string }) {
                     <div className="min-w-0 flex-1">
                       <Link href={`/line/${item.ref.toLowerCase()}`} className="text-[15px] underline underline-offset-4">{product?.name ?? item.role}</Link>
                       <p className="mt-1 text-[12px] text-[#1c1a17]/60">{item.color}</p>
-                      <p className="mt-1 text-[12px]">{status?.price ? `${status.price} · proposed` : "Enquire"}</p>
+                      <p className="mt-1 text-[12px]">{status?.price ?? "Enquire"}</p>
                       <div className="mt-2 flex flex-wrap gap-3">
                         <button
                           type="button"
@@ -114,7 +114,7 @@ export function LookStage({ slug }: { slug: string }) {
             </ul>
           ) : (
             <p className="ms-note mt-8">
-              This look is not a listed product. Saving it keeps the photograph in My Closet. An enquiry does not start a checkout.
+              Save the photograph to My Closet. Enquire with the house to have the look made.
             </p>
           )}
           {(look.offers ?? []).length > 0 && (
@@ -137,7 +137,7 @@ export function LookStage({ slug }: { slug: string }) {
             </ul>
           )}
           {look.styling.map((line) => (
-            <p key={line} className="ms-note mt-4">{look.pieces.length ? `Styling item. ${line}` : line}</p>
+            <p key={line} className="ms-note mt-4">{line}</p>
           ))}
           <div className="mt-6 flex flex-wrap gap-3">
             <button
@@ -164,7 +164,7 @@ export function LookStage({ slug }: { slug: string }) {
             </Link>
             <Link href="/closet" className="ms-link px-2">My Closet</Link>
           </div>
-          <p className="ms-note mt-4">Saving does not reserve stock or lock a price. Mapped garments stay enquiries. Runners are requested from the shop.</p>
+          <p className="ms-note mt-4">Saving does not reserve stock. Garments are made through an enquiry. Runners are requested from the shop.</p>
           <p className="sr-only" aria-live="polite">{note}</p>
           {note && <p className="mt-3 text-sm">{note}</p>}
           {look.frames.length > 1 && (

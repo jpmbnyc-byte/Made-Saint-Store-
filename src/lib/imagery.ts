@@ -18,6 +18,7 @@ export const FRAME_PX: Record<number, [number, number]> = {
   46: [461, 503], 47: [574, 1024], 48: [461, 516], 49: [338, 681], 50: [1024, 1536],
   51: [1024, 1536], 52: [1024, 1536], 53: [1024, 1536], 54: [1024, 1536], 55: [1024, 1536],
   56: [1024, 1536], 57: [1024, 1536], 58: [1024, 1536], 59: [1024, 1536],
+  60: [1536, 1024],
 };
 
 /** Frames that are large on disk but are crops, composites, or known low-resolution panels. */

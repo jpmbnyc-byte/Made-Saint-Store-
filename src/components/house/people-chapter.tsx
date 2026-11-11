@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { COLLECTION_LOOKS, lookPriceLine } from "@/lib/line-shop";
 
-const FEATURED_LOOKS = ["solene", "sage", "olive", "forerunner", "duffel", "amara"];
+const FEATURED_LOOKS = ["solene", "amara", "forerunner", "sage", "olive", "malik"];
 
 export function PeopleChapter() {
   const looks = FEATURED_LOOKS.map((slug) => COLLECTION_LOOKS.find((look) => look.slug === slug)).filter(
@@ -17,7 +17,7 @@ export function PeopleChapter() {
           The same people return.
         </h2>
         <p className="ms-lede mt-5 max-w-xl">
-          Amara, Solène, Inès, Lucien, Ren, and Malik wear the collection. Open a look to shop the mapped pieces. Garment prices stay proposed. Runners are requested from the shop.
+          Amara, Solène, Inès, Lucien, Ren, and Malik wear the collection. Open a look to shop the mapped pieces. Garments are made through an enquiry. Runners are requested from the shop.
         </p>
         <ul className="mt-10 grid grid-cols-2 gap-x-3 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 md:gap-x-8 md:gap-y-10">
           {looks.map((look) => {

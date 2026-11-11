@@ -189,7 +189,7 @@ export type BagDecision =
 /** Runners with a size can be requested through the existing pair page. Line styles cannot. */
 export function decideBag(input: { productRef: string; kind: "line" | "runner"; size: string; launch: boolean }): BagDecision {
   if (input.kind !== "runner" || !input.launch) {
-    return { ok: false, productRef: input.productRef, reason: "Development preview — available to enquire. This style is not a checkout item." };
+    return { ok: false, productRef: input.productRef, reason: "This style is made through an enquiry. It is not a checkout item." };
   }
   if (!input.size) return { ok: false, productRef: input.productRef, reason: "Choose a size before purchase." };
   return { ok: true, productId: input.productRef, size: input.size, qty: 1 };

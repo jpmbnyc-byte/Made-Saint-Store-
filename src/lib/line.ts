@@ -171,6 +171,7 @@ export const FRAMES: Frame[] = [
   { n: 57, alt: "Black jacket, technical trouser, and a yellow crossbody, front", refs: [] },
   { n: 58, alt: "Mauve jacket and trouser with a yellow crossbody", refs: [] },
   { n: 59, alt: "Mauve jacket and trouser with a yellow crossbody, three-quarter", refs: [] },
+  { n: 60, alt: "MADE SAiNT Trail Mule technical pack, powder blue fog grid", refs: ["R046"] },
 ];
 
 export const frameSrc = (n: number) => `/line/f${String(n).padStart(2, "0")}.webp`;

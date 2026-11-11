@@ -71,7 +71,7 @@ const SLIDES: Slide[] = [
     label: "Rust",
     caption: "Inès, rust cord",
     image: "/collection/rust.webp",
-    imageAlt: "Inès walking in a rust corduroy zip set over a teal turtleneck, with bronze 1101 runners",
+    imageAlt: "Inès walking in a rust cord zip jacket and matching trousers, with blush 1101 runners, in the limestone arcade",
     href: "/line/looks/rust",
   },
   {
@@ -313,7 +313,7 @@ export function EditorialHero() {
           </h2>
 
           <p className="ms-lede ms-hero-text-rise mt-4 max-w-sm" style={{ animationDelay: "320ms" }}>
-            The collection, worn. Open a look to shop the mapped pieces. Garments stay proposed prices.
+            The collection, worn. Open a look to shop the mapped pieces. Garments are made through an enquiry.
           </p>
 
           {lookPrice && (

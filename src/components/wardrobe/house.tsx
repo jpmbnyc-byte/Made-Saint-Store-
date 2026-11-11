@@ -323,7 +323,7 @@ export function PrivateHouse() {
                   ))}
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-[#1c1a17]/65">
-                  Sample sheets. Reconstructions, not physical samples. Proposed, not approved. Cloth is unconfirmed, and no price is listed. The measures in the pack are not shown here.
+                  Sample sheets of the look. Enquire with the house to have it made.
                 </p>
               </div>
             )}
@@ -333,7 +333,7 @@ export function PrivateHouse() {
                   <span className="grid size-11 shrink-0 place-items-center border border-[#1c1a17] text-[11px]">In</span>
                   <span className="min-w-0 flex-1">
                     <span className="block font-serif text-2xl">{heldLine.name}</span>
-                    <span className="text-[13px] text-[#1c1a17]/60">{heldLine.ref} · 2027 line · proposed, not a checkout</span>
+                    <span className="text-[13px] text-[#1c1a17]/60">{heldLine.ref} · 2027 line · enquire</span>
                   </span>
                 </li>
               )}

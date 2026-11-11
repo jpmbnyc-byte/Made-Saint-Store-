@@ -11,7 +11,7 @@ export function CourtyardChapter() {
           The arcade, worn.
         </h2>
         <p className="ms-lede mt-5 max-w-xl">
-          Cast 003 in the limestone arcade. Open a look to shop the mapped pieces. Garment prices stay proposed. Founding runners on the foot are requested from the shop.
+          Cast 003 in the limestone arcade. Open a look to shop the mapped pieces. Garments are made through an enquiry. Founding runners on the foot are requested from the shop.
         </p>
         <ul className="mt-10 grid grid-cols-2 gap-x-3 gap-y-8 md:grid-cols-3 md:gap-x-6 md:gap-y-10">
           {COURTYARD_LOOKS.map((look) => {

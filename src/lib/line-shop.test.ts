@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { CAMPAIGN_BLOCKS, COLLECTION_LOOKS, FEATURED, catalogDiagnostics, customerStatus, lineAssetManifest } from "./line-shop";
+import { CAMPAIGN_BLOCKS, COLLECTION_LOOKS, FEATURED, catalogDiagnostics, customerMaterial, customerName, customerStatus, lineAssetManifest, publishedLooks } from "./line-shop";
 import { lineByRef } from "./line";
+import { listedLine } from "./imagery";
 
 test("published looks only list pieces already named on the frames", () => {
   const cobalt = COLLECTION_LOOKS.find((look) => look.slug === "cobalt");
@@ -22,8 +23,14 @@ test("published looks only list pieces already named on the frames", () => {
   assert.equal(COLLECTION_LOOKS[1]?.slug, "sage");
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "parachute")?.pieces.map((item) => item.ref), ["R010"]);
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "olive-wool")?.pieces.map((item) => item.ref), ["R046"]);
-  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "rust")?.pieces.map((item) => item.ref), ["N014"]);
-  assert.equal(COLLECTION_LOOKS.find((look) => look.slug === "camel")?.pieces.length, 0);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "rust")?.pieces.map((item) => item.ref), []);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "camel")?.pieces.map((item) => item.ref), ["N005", "N006"]);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "midnight")?.pieces.map((item) => item.ref), ["N005", "N006"]);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "onyx")?.pieces.map((item) => item.ref), ["N005", "N006"]);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "mauve-nylon")?.pieces.map((item) => item.ref), ["N003"]);
+  assert.equal(COLLECTION_LOOKS.find((look) => look.slug === "jersey")?.listed, false);
+  assert.ok(COLLECTION_LOOKS.some((look) => look.slug === "malik"));
+  assert.equal(publishedLooks().some((look) => look.slug === "jersey"), false);
   const courtyard = COLLECTION_LOOKS.filter((look) => look.series === "courtyard");
   assert.equal(courtyard.length, 11);
   for (const look of courtyard) {
@@ -46,13 +53,21 @@ test("styling-only frames are not assigned a product", () => {
   }
 });
 
-test("a proposed garment price stays an enquiry", () => {
+test("a garment price stays an enquiry", () => {
   const product = lineByRef("R027");
   assert.ok(product);
   const status = customerStatus(product);
   assert.equal(status.buyable, false);
   assert.match(status.label, /enquire/i);
   assert.match(status.detail, /not a checkout price/i);
+  assert.equal(status.label.includes("Development"), false);
+  const n001 = lineByRef("N001");
+  assert.ok(n001);
+  assert.equal(/goatskin/i.test(customerMaterial(n001)), false);
+  assert.equal(/goatskin/i.test(customerName(n001)), false);
+  const mule = lineByRef("R046");
+  assert.ok(mule);
+  assert.equal(listedLine(mule), true);
 });
 
 test("catalog diagnostics count hidden records without publishing them as shopper copy", () => {
@@ -76,4 +91,10 @@ test("editorial stills stay shoppable without inventing a tee sku", () => {
     assert.equal(still.href, "/wardrobe#introduction");
     assert.equal(still.cta, "Enquire");
   }
+  const mule = stills.find((still) => still.src.includes("trail-mule"));
+  assert.equal(mule?.href, "/line/r046");
+  assert.equal(mule?.price, "$450");
+  const grids = [...FEATURED, ...CAMPAIGN_BLOCKS].filter((block) => block.kind === "look");
+  assert.equal(grids.some((block) => block.slug === "jersey"), false);
+  assert.ok(grids.some((block) => block.slug === "malik"));
 });

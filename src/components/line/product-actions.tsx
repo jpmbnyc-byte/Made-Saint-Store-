@@ -45,7 +45,7 @@ export function ProductActions({ refId, name, color }: { refId: string; name: st
           My Closet
         </Link>
       </div>
-      <p className="text-[13px] text-[#111]/70">Add to Bag is not available. Development preview — available to enquire.</p>
+      <p className="text-[13px] text-[#111]/70">This style is made through an enquiry.</p>
       <p className="sr-only" aria-live="polite">{note}</p>
       {note && <p className="text-sm">{note}</p>}
       {closet.warning && <p className="text-sm">{closet.warning}</p>}

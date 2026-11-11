@@ -44,6 +44,7 @@ export const LOOKS: Look[] = [
     image: "/line/f35.webp",
     alt: "Malik in a navy zip jacket, white layer, and matching trouser, worn full length",
     read: "A hotel, a public day, the hour before the room.",
+    listed: false,
     whole: true,
     aside: "The shoes in the photograph are brown mules. The chalk runner is an alternative, not the pair on the foot.",
     pieces: [
@@ -86,6 +87,7 @@ export const LOOKS: Look[] = [
     image: "/line/f50.webp",
     alt: "Inès in a dusty rose zip blouson and trouser, worn over a petrol teal turtleneck",
     read: "A dusty rose blouson, the matching trouser, and a petrol teal turtleneck.",
+    listed: false,
     whole: true,
     aside: "A worn study, not a client. The shoes are not a founding runner. The product sheets are reconstructions, not physical samples. Cloth is unconfirmed, and no price is listed.",
     pieces: [

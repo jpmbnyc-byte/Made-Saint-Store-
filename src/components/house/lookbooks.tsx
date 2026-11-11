@@ -148,7 +148,6 @@ function LookBill({ look }: { look: Look }) {
         <p className="text-[11px] tracking-[0.18em] text-[#1c1a17]/55 uppercase">This look</p>
         <h3 className="mt-2 font-serif text-4xl">{look.name}</h3>
         <p className="mt-3 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{look.read}</p>
-        {look.aside && <p className="mt-3 max-w-md text-[13px] leading-relaxed text-[#1c1a17]/60">{look.aside}</p>}
 
         <ul className="mt-8 divide-y divide-[#1c1a17]/12 border-y border-[#1c1a17]/12">
           {look.pieces.map((entry) => {

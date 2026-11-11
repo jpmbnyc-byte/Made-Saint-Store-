@@ -30,17 +30,22 @@ export type CollectionLook = {
   styling: string[];
   series?: "courtyard";
   offers?: LookOffer[];
+  /** Left off public grids when the look repeats another photograph of the same pieces. */
+  listed?: boolean;
 };
 
-const piece = (ref: string, role: string): LookPiece => {
+const piece = (ref: string, role: string, color?: string): LookPiece => {
   const product = lineByRef(ref);
+  if (color && product?.colors.toLowerCase().includes(color.toLowerCase())) {
+    return { ref, role, color };
+  }
   return { ref, role, color: product?.colors ?? "Color not confirmed" };
 };
 
-const runnerOffer = (id: string, name: string): LookOffer => ({
+const runnerOffer = (id: string, name: string, price = "$550"): LookOffer => ({
   href: `/shop/${id}`,
   name,
-  price: "$550",
+  price,
   detail: "Made to order. Ready in 4 to 6 weeks.",
   kind: "runner",
 });
@@ -49,7 +54,7 @@ const enquireOffer = (name: string): LookOffer => ({
   href: "/wardrobe#introduction",
   name,
   price: "Enquire",
-  detail: "Not a listed product. Enquire to have it made.",
+  detail: "Made to order. Enquire with the house.",
   kind: "enquire",
 });
 
@@ -75,7 +80,7 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     alt: "Ren in a sage fleece set, pale yellow turtleneck, and a yellow barrel bag, walking stairs",
     frames: [],
     pieces: [piece("N014", "Turtleneck"), piece("R067", "Duffel")],
-    styling: ["The sage set is not a listed product. The shoes in the photograph are not a founding runner."],
+    styling: ["The sage fleece set is made to order. The shoes in the photograph are not a founding runner."],
   },
   {
     slug: "olive",
@@ -86,7 +91,7 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     alt: "Lucien in an olive zip set and olive mules, seated at a boathouse",
     frames: [],
     pieces: [piece("R046", "Mule")],
-    styling: ["The olive zip set is not a listed product. Enquire to have it made."],
+    styling: ["The olive zip set is made to order."],
   },
   {
     slug: "forerunner",
@@ -108,7 +113,7 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     alt: "Inès in a black zip jacket with a yellow denim-trim duffel",
     frames: [],
     pieces: [piece("R067", "Duffel")],
-    styling: ["The black jacket is not a listed product on this look."],
+    styling: ["The black jacket is made to order."],
   },
   {
     slug: "jersey",
@@ -119,7 +124,8 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     alt: "Ren in the printed jersey, shirt, tie, and chinos",
     frames: [25, 6, 7].map((n) => FRAMES.find((frame) => frame.n === n)!),
     pieces: [piece("R010", "Jersey")],
-    styling: ["The shirt, the tie, and the chinos are styling. They are not included with the jersey."],
+    styling: ["The shirt, the tie, and the chinos complete the photograph. They are not included with the jersey."],
+    listed: false,
   },
   {
     slug: "day",
@@ -141,7 +147,7 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     alt: "Inès in a dusty rose zip set over a petrol teal turtleneck",
     frames: [50].map((n) => FRAMES.find((frame) => frame.n === n)!),
     pieces: [],
-    styling: ["A season look. The garments in the photograph are not a listed product, and they are not a checkout price."],
+    styling: ["The dusty rose set is made to order."],
   },
   {
     slug: "arrival",
@@ -152,7 +158,7 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     alt: "Malik in a navy zip jacket, white layer, and matching trouser, worn full length",
     frames: [35].map((n) => FRAMES.find((frame) => frame.n === n)!),
     pieces: [],
-    styling: ["A season look. The navy set is not a listed product on this photograph. The shoes are brown mules, not a founding runner."],
+    styling: ["The navy set is made to order. The shoes are brown mules, not a founding runner."],
   },
   {
     slug: "velvet",
@@ -163,7 +169,7 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     alt: "Lucien in a forest velvet zip jacket and matching trousers",
     frames: [],
     pieces: [],
-    styling: ["A season look. Not a listed price. Enquire to have it made."],
+    styling: ["Forest velvet, made to order."],
   },
   {
     slug: "amara",
@@ -207,7 +213,7 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     alt: "Ren in a taupe velour zip set with yellow piping, in the limestone arcade",
     frames: [],
     pieces: [],
-    styling: ["The velour set is not a listed product. The cream and yellow shoes in the photograph are not a founding runner."],
+    styling: ["The velour set is made to order. The cream and yellow shoes in the photograph are not a founding runner."],
     series: "courtyard",
     offers: [enquireOffer("Stone velour set")],
   },
@@ -219,10 +225,10 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     image: "/collection/midnight.webp",
     alt: "Malik in a navy zip jacket and matching trouser, with a grey and red runner, in the limestone arcade",
     frames: [],
-    pieces: [],
-    styling: ["The navy set is not a listed product. The shoes in the photograph are not a founding runner."],
+    pieces: [piece("N005", "Jacket", "Midnight"), piece("N006", "Trouser", "Midnight")],
+    styling: ["The shoes in the photograph are not a founding runner."],
     series: "courtyard",
-    offers: [enquireOffer("Midnight zip set")],
+    offers: [enquireOffer("Midnight Arrival set")],
   },
   {
     slug: "camel",
@@ -232,10 +238,10 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     image: "/collection/camel.webp",
     alt: "Solène in a camel zip jacket and matching trouser, with bronze 1101 runners, in the limestone arcade",
     frames: [],
-    pieces: [],
-    styling: ["The camel zip set is not the Saint John jacket. Enquire to have it made."],
+    pieces: [piece("N005", "Jacket", "Camel"), piece("N006", "Trouser", "Camel")],
+    styling: [],
     series: "courtyard",
-    offers: [enquireOffer("Camel zip set"), runnerOffer("ms-runner-1101-bronze", "1101 Runner — Bronze")],
+    offers: [runnerOffer("ms-runner-1101-bronze", "1101 Runner — Bronze")],
   },
   {
     slug: "parachute",
@@ -259,7 +265,7 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     alt: "Solène in a forest velvet zip jacket and matching trousers, with teal 1101 runners, in the limestone arcade",
     frames: [],
     pieces: [],
-    styling: ["A season look. Not a listed price. Enquire to have it made."],
+    styling: ["Forest velvet, made to order."],
     series: "courtyard",
     offers: [enquireOffer("Forest velvet set"), runnerOffer("ms-runner-1101-teal", "1101 Runner — Teal")],
   },
@@ -272,7 +278,7 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     alt: "Lucien in an olive wool zip jacket and matching trouser, with plum-sole trail mules, in the limestone arcade",
     frames: [],
     pieces: [piece("R046", "Mule")],
-    styling: ["The olive wool set is not a listed product. Enquire to have it made."],
+    styling: ["The olive wool set is made to order."],
     series: "courtyard",
     offers: [enquireOffer("Olive wool set")],
   },
@@ -284,10 +290,10 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     image: "/collection/onyx.webp",
     alt: "Malik in a navy zip jacket and matching trouser, with onyx 1101 runners, in the limestone arcade",
     frames: [],
-    pieces: [],
-    styling: ["The navy set is not a listed product. Enquire to have it made."],
+    pieces: [piece("N005", "Jacket", "Midnight"), piece("N006", "Trouser", "Midnight")],
+    styling: [],
     series: "courtyard",
-    offers: [enquireOffer("Navy zip set"), runnerOffer("ms-runner-1101-onyx", "1101 Runner — Onyx")],
+    offers: [runnerOffer("ms-runner-1101-onyx", "1101 Runner — Onyx")],
   },
   {
     slug: "butter-tee",
@@ -298,7 +304,7 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     alt: "Lucien in a butter acid-wash oversized t-shirt, navy trousers, and butter 1101 runners",
     frames: [],
     pieces: [],
-    styling: ["The acid-wash tee is not a listed SKU. Enquire to have it made. The navy trousers are styling."],
+    styling: ["Acid-wash cotton with a red gothic MADE Saint mark at the inner collar. The navy trousers complete the photograph."],
     series: "courtyard",
     offers: [enquireOffer("Acid-wash tee, butter"), runnerOffer("ms-runner-1101-butter", "1101 Runner — Butter")],
   },
@@ -311,7 +317,7 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     alt: "Ren in a denim acid-wash oversized t-shirt, navy trousers, and blush 1101 runners",
     frames: [],
     pieces: [],
-    styling: ["The acid-wash tee is not a listed SKU. Enquire to have it made. The navy trousers are styling."],
+    styling: ["Acid-wash cotton with a red gothic MADE Saint mark at the inner collar. The navy trousers complete the photograph."],
     series: "courtyard",
     offers: [enquireOffer("Acid-wash tee, denim"), runnerOffer("ms-runner-1101-blush", "1101 Runner — Blush")],
   },
@@ -324,7 +330,7 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     alt: "Amara in a black acid-wash oversized t-shirt, navy trousers, and onyx 1101 runners",
     frames: [],
     pieces: [],
-    styling: ["The acid-wash tee is not a listed SKU. Enquire to have it made. The navy trousers are styling."],
+    styling: ["Acid-wash cotton with a red gothic MADE Saint mark at the inner collar. The navy trousers complete the photograph."],
     series: "courtyard",
     offers: [enquireOffer("Acid-wash tee, black"), runnerOffer("ms-runner-1101-onyx", "1101 Runner — Onyx")],
   },
@@ -334,29 +340,54 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     title: "Rust cord",
     use: "Leisure",
     image: "/collection/rust.webp",
-    alt: "Inès walking in a rust corduroy zip set over a teal turtleneck, with bronze 1101 runners",
+    alt: "Inès walking in a rust cord zip jacket and matching trousers, with blush 1101 runners, in the limestone arcade",
     frames: [],
-    pieces: [piece("N014", "Turtleneck")],
-    styling: ["The rust corduroy set is not a listed product. Enquire to have it made."],
+    pieces: [],
+    styling: ["The rust cord set is made to order."],
     series: "courtyard",
-    offers: [runnerOffer("ms-runner-1101-bronze", "1101 Runner — Bronze")],
+    offers: [enquireOffer("Rust cord set"), runnerOffer("ms-runner-1101-blush", "1101 Runner — Blush")],
+  },
+  {
+    slug: "malik",
+    number: "25",
+    title: "Malik rugby",
+    use: "Everyday",
+    image: "/collection/malik.webp",
+    alt: "Malik in a butter knit polo, cream joggers, and butter 1101 runners, holding a basketball",
+    frames: [],
+    pieces: [],
+    styling: ["The knit polo and the trouser are made to order."],
+    offers: [enquireOffer("Butter knit polo"), runnerOffer("ms-runner-1101-butter", "1101 Runner — Butter")],
+  },
+  {
+    slug: "mauve-nylon",
+    number: "26",
+    title: "Mauve nylon",
+    use: "Everyday",
+    image: "/collection/mauve-nylon.webp",
+    alt: "Mauve crushed-nylon trousers with the navy and ivory 0929 runner",
+    frames: [],
+    pieces: [piece("N003", "Trouser", "Mauve")],
+    styling: [],
+    offers: [runnerOffer("ms-runner-chalk-navy", "0929 Runner — Navy / Ivory", "$490")],
   },
 ];
 
 export const lookBySlug = (slug: string) => COLLECTION_LOOKS.find((look) => look.slug === slug);
 
+export const publishedLooks = () => COLLECTION_LOOKS.filter((look) => look.listed !== false);
+
 export const COURTYARD_LOOKS = COLLECTION_LOOKS.filter((look) => look.series === "courtyard");
 
 export function lookPriceLine(look: CollectionLook) {
-  const proposed = look.pieces
+  const garments = look.pieces
     .map((item) => {
       const product = lineByRef(item.ref);
       return product ? customerStatus(product).price : null;
     })
-    .filter((price): price is string => Boolean(price))
-    .map((price) => `${price} · proposed`);
+    .filter((price): price is string => Boolean(price));
   const runners = (look.offers ?? []).filter((offer) => offer.kind === "runner").map((offer) => offer.price);
-  const parts = [...proposed, ...runners];
+  const parts = [...garments, ...runners];
   return parts.length ? parts.join(" · ") : null;
 }
 
@@ -380,23 +411,26 @@ export const FEATURED: EditorialBlock[] = [
   { kind: "look", slug: "sage" },
   { kind: "look", slug: "olive", wide: true },
   { kind: "look", slug: "forerunner" },
+  { kind: "look", slug: "malik" },
   { kind: "look", slug: "butter-tee" },
   { kind: "look", slug: "denim-tee" },
   { kind: "look", slug: "black-tee" },
   { kind: "still", src: "/collection/tee-black.webp", alt: "Black acid-wash oversized t-shirt with a red MADE SAiNT collar mark", href: "/wardrobe#introduction", name: "Acid-wash tee, black", cta: "Enquire" },
   { kind: "still", src: "/collection/tee-butter.webp", alt: "Butter acid-wash oversized t-shirt with a red MADE SAiNT collar mark", href: "/wardrobe#introduction", name: "Acid-wash tee, butter", cta: "Enquire" },
   { kind: "still", src: "/collection/tee-denim.webp", alt: "Blue denim acid-wash oversized t-shirt with a red MADE SAiNT collar mark", href: "/wardrobe#introduction", name: "Acid-wash tee, denim", cta: "Enquire" },
+  { kind: "still", src: "/collection/trail-mule.webp", alt: "MADE SAiNT Trail Mule technical pack, powder blue fog grid", href: "/line/r046", name: "Trail Mule", price: "$450", cta: "Enquire" },
   { kind: "look", slug: "duffel" },
   { kind: "look", slug: "midnight" },
   { kind: "look", slug: "onyx" },
+  { kind: "look", slug: "mauve-nylon" },
+  { kind: "look", slug: "amara" },
   { kind: "product", ref: "N015", frame: 12 },
   { kind: "product", ref: "R067", frame: 27, wide: true },
-  { kind: "look", slug: "jersey" },
-  { kind: "look", slug: "velvet" },
 ];
 
 export const CAMPAIGN_BLOCKS: EditorialBlock[] = [
   { kind: "still", src: "/world/milot.webp", alt: "Cast 003 in the ruins at Milot, a campaign study of Sans-Souci", wide: true, href: "/line/lookbook", name: "Milot, campaign study", cta: "Shop the looks" },
+  { kind: "still", src: "/collection/solene-campaign.webp", alt: "Solène in the printed jersey on the hill above the north coast, a campaign study", wide: true, href: "/line/looks/solene", name: "Solène, north coast", cta: "Shop the look" },
   { kind: "look", slug: "camel", wide: true },
   { kind: "look", slug: "parachute" },
   { kind: "look", slug: "rust" },
@@ -407,16 +441,20 @@ export const CAMPAIGN_BLOCKS: EditorialBlock[] = [
   { kind: "look", slug: "sage" },
   { kind: "look", slug: "olive", wide: true },
   { kind: "look", slug: "forerunner" },
+  { kind: "look", slug: "malik" },
   { kind: "look", slug: "duffel" },
   { kind: "look", slug: "butter-tee" },
   { kind: "look", slug: "denim-tee" },
   { kind: "look", slug: "black-tee" },
   { kind: "still", src: "/collection/tee-black.webp", alt: "Black acid-wash oversized t-shirt with a red MADE SAiNT collar mark", href: "/wardrobe#introduction", name: "Acid-wash tee, black", cta: "Enquire" },
+  { kind: "still", src: "/collection/trail-mule.webp", alt: "MADE SAiNT Trail Mule technical pack, powder blue fog grid", wide: true, href: "/line/r046", name: "Trail Mule", price: "$450", cta: "Enquire" },
   { kind: "still", src: "/runners/navy-ivory-worn.webp", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, worn on foot", wide: true, href: "/shop/ms-runner-chalk-navy", name: "0929 Runner — Navy / Ivory", price: "$490" },
   { kind: "still", src: "/world/coastline.webp", alt: "MADE SAiNT product branding on the north coast, a campaign study", wide: true, href: "/shop#1101", name: "Coastline, campaign study", cta: "Shop the runners" },
+  { kind: "still", src: "/collection/malik-coast.webp", alt: "Malik at the north coast at dusk, in a mauve overshirt with a yellow suede sling", href: "/line/lookbook", name: "Malik, north coast", cta: "Shop the looks" },
+  { kind: "still", src: "/collection/ines-campaign.webp", alt: "Inès in a rust cord set, walking the limestone arcade", wide: true, href: "/line/looks/rust", name: "Inès, limestone arcade", cta: "Shop the look" },
   { kind: "look", slug: "midnight" },
   { kind: "look", slug: "onyx" },
-  { kind: "look", slug: "jersey" },
+  { kind: "look", slug: "mauve-nylon" },
   { kind: "look", slug: "day", wide: true },
   { kind: "look", slug: "rose" },
   { kind: "look", slug: "arrival" },
@@ -431,10 +469,46 @@ export function customerStatus(product: LineProduct) {
   }
   return {
     buyable: false as const,
-    label: "Development preview — available to enquire",
+    label: "Enquire",
     price: usd(product.retail),
-    detail: "The figure is a proposed list price. It is not a checkout price. Cloth and construction stay intentions until a sample is approved. A ship date is not set for this garment.",
+    detail: "A list price for the enquiry. This is not a checkout price. Size and cloth are confirmed with the house before an order.",
   };
+}
+
+const OWNER_CLAUSE =
+  /TBC|proposed|mill-certified|pending|Design brief|not selected|not approved|not confirmed|unverified|to reconcile|No separate|No down|inspiration, not the sourced|not established|under consideration|placeholder/i;
+
+export function customerName(product: LineProduct) {
+  return product.name.replace(/Goatskin\s+/gi, "").replace(/\s{2,}/g, " ").trim();
+}
+
+export function customerColors(product: LineProduct) {
+  const raw = product.colors.trim();
+  if (!raw || /^TBC$/i.test(raw)) return "On enquiry";
+  const cleaned = raw
+    .replace(/\bTBC\b/gi, "")
+    .replace(/;\s*further city variants.*/i, "")
+    .replace(/;\s*city variants.*/i, "")
+    .replace(/;\s*other colors.*/i, "")
+    .replace(/;\s*;/g, ";")
+    .replace(/;\s*$/g, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+  return cleaned || "On enquiry";
+}
+
+export function customerMaterial(product: LineProduct) {
+  const parts = product.material.split(/[.;]/).map((part) => part.trim()).filter(Boolean);
+  const kept = parts.filter((part) => !OWNER_CLAUSE.test(part));
+  const text = kept
+    .join(". ")
+    .replace(/\bGoatskin\s+/gi, "")
+    .replace(/\b\d+%\s+/g, "")
+    .replace(/\b\d+\s*oz\.?\s*/gi, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/[;:,.]\s*$/g, "")
+    .trim();
+  return text || "Cloth is confirmed with the house.";
 }
 
 export const listedProducts = () => LINE.filter(listedLine);

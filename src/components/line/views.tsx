@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { CAMPAIGN_BLOCKS, COLLECTION_LOOKS, FEATURED, customerStatus, listedProducts, lookBySlug, type CollectionLook, type UseCase } from "@/lib/line-shop";
+import { CAMPAIGN_BLOCKS, FEATURED, customerName, customerStatus, listedProducts, lookBySlug, publishedLooks, type CollectionLook, type UseCase } from "@/lib/line-shop";
 import { FRAMES, frameSrc, lineByRef } from "@/lib/line";
 import { primaryFrame } from "@/lib/imagery";
 import { CollectionChrome } from "@/components/line/chrome";
@@ -72,8 +72,8 @@ export function BlockList({ blocks, hero }: { blocks: typeof FEATURED; hero: "fe
               <Frame src={frameSrc(block.frame)} alt={FRAMES.find((frame) => frame.n === block.frame)?.alt ?? product.name} wide={block.wide} />
             </Link>
             <figcaption className="mt-3 text-[13px]">
-              <Link href={`/line/${product.ref.toLowerCase()}`} className="underline underline-offset-4">{product.name}</Link>
-              {status.price && <span className="mt-1 block text-[#1c1a17]/60">{status.price} · proposed</span>}
+              <Link href={`/line/${product.ref.toLowerCase()}`} className="underline underline-offset-4">{customerName(product)}</Link>
+              {status.price && <span className="mt-1 block text-[#1c1a17]/60">{status.price}</span>}
             </figcaption>
           </figure>
         );
@@ -126,10 +126,9 @@ export function FeaturedView() {
           <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 lg:grid-cols-4">
             {shown.map((item) => {
               const status = customerStatus(item);
-              const frame = item && status;
               return (
                 <li key={item.ref}>
-                  <ProductCard refId={item.ref} name={item.name} price={frame.price} />
+                  <ProductCard refId={item.ref} name={customerName(item)} price={status.price} />
                 </li>
               );
             })}
@@ -159,7 +158,7 @@ function firstFrame(ref: string) {
 
 export function LookbookView() {
   const [useCase, setUseCase] = useState<UseCase | "All">("All");
-  const looks = COLLECTION_LOOKS.filter((look) => useCase === "All" || look.use === useCase);
+  const looks = publishedLooks().filter((look) => useCase === "All" || look.use === useCase);
   const closet = useCloset();
   const [note, setNote] = useState("");
   function save(look: CollectionLook) {

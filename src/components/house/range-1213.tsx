@@ -14,7 +14,7 @@ function Rail({ ids }: { ids: ReturnType<typeof productsIn> }) {
             <span className="relative block aspect-square bg-[#f3efe8]">
               <Image src={product.image} alt={product.name} fill sizes="176px" className="object-contain" />
             </span>
-            <span className="mt-2 block text-[12px] tracking-[0.08em] uppercase">{colorOf(product.name)}</span>
+            <span className="ms-meta mt-2 block">{colorOf(product.name)}</span>
             <span className="mt-1 block text-[12px] tabular-nums">${product.usd}</span>
           </Link>
         </li>
@@ -30,13 +30,13 @@ export function Range1213() {
     <section className="border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
       <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
         <SeriesPlate series="1101" size="md" />
-        <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
+        <p className="ms-lede mt-4 max-w-xl">
           Listed first. $550. Leather and 29 Gris Medio mesh. Live. {offerLine("1101")}
         </p>
         <Rail ids={lead} />
         <div className="mt-12 border-t border-[#1c1a17]/10 pt-12">
           <SeriesPlate series="1213" size="md" />
-          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
+          <p className="ms-lede mt-4 max-w-xl">
             Seven colorways. Espresso, Olive, Mineral Blue, Midnight, Chestnut, Sacred Light, and Graphite. $550. {offerLine("1213")}
           </p>
           <Rail ids={sculpted} />

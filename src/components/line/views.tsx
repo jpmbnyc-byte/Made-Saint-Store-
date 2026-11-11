@@ -22,7 +22,7 @@ function Frame({ src, alt, wide, priority = false }: { src: string; alt: string;
 
 function ShopLook({ slug }: { slug: string }) {
   return (
-    <Link href={`/line/looks/${slug}`} className="mt-3 inline-flex h-11 items-center text-[11px] tracking-[0.18em] uppercase underline underline-offset-4">
+    <Link href={`/line/looks/${slug}`} className="ms-link mt-3">
       Shop the look
     </Link>
   );
@@ -44,8 +44,8 @@ export function BlockList({ blocks, hero }: { blocks: typeof FEATURED; hero: "fe
                   ) : (
                     block.name && <span>{block.name}</span>
                   )}
-                  {block.price && <span className="mt-1 block text-[#111]/60">{block.price}</span>}
-                  {block.cta && !block.price && <span className="mt-1 block text-[#111]/60">{block.cta}</span>}
+                  {block.price && <span className="mt-1 block text-[#1c1a17]/60">{block.price}</span>}
+                  {block.cta && !block.price && <span className="mt-1 block text-[#1c1a17]/60">{block.cta}</span>}
                 </figcaption>
               )}
             </figure>
@@ -73,7 +73,7 @@ export function BlockList({ blocks, hero }: { blocks: typeof FEATURED; hero: "fe
             </Link>
             <figcaption className="mt-3 text-[13px]">
               <Link href={`/line/${product.ref.toLowerCase()}`} className="underline underline-offset-4">{product.name}</Link>
-              {status.price && <span className="mt-1 block text-[#111]/60">{status.price} · proposed</span>}
+              {status.price && <span className="mt-1 block text-[#1c1a17]/60">{status.price} · proposed</span>}
             </figcaption>
           </figure>
         );
@@ -97,11 +97,11 @@ export function FeaturedView() {
   });
 
   return (
-    <div className="min-h-screen bg-[#f7f7f5] text-[#111]">
+    <div className="min-h-screen bg-[#f5f0e8] text-[#1c1a17]">
       <CollectionChrome view="featured" />
       <main className="mx-auto max-w-[1440px] px-4 pb-20 md:px-8">
         <BlockList blocks={FEATURED} hero="featured" />
-        <section className="mx-auto mt-20 max-w-[1100px] border-t border-[#111]/15 pt-10">
+        <section className="mx-auto mt-20 max-w-[1100px] border-t border-[#1c1a17]/15 pt-10">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <label className="block text-[11px] tracking-[0.16em] uppercase">
               Search the line
@@ -109,18 +109,18 @@ export function FeaturedView() {
                 id="line-search"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                className="mt-2 h-11 w-full border border-[#111]/20 bg-white px-3 text-base normal-case tracking-normal md:w-72"
+                className="mt-2 h-11 w-full border border-[#1c1a17]/20 bg-white px-3 text-base normal-case tracking-normal md:w-72"
               />
             </label>
             <div className="flex flex-wrap gap-2">
               {["All", "CORE", "VELOCITY", "GRAIL"].map((item) => (
-                <button key={item} type="button" aria-pressed={tier === item} onClick={() => setTier(item)} className={`h-11 px-3 text-[11px] tracking-[0.14em] uppercase ${tier === item ? "border-b border-[#111]" : "text-[#111]/60"}`}>{item}</button>
+                <button key={item} type="button" aria-pressed={tier === item} onClick={() => setTier(item)} className={`h-11 px-3 text-[11px] tracking-[0.14em] uppercase ${tier === item ? "border-b border-[#1c1a17]" : "text-[#1c1a17]/60"}`}>{item}</button>
               ))}
             </div>
           </div>
           <div className="mt-4 flex gap-2 overflow-x-auto pb-2">
             {categories.map((item) => (
-              <button key={item} type="button" aria-pressed={category === item} onClick={() => setCategory(item)} className={`h-11 shrink-0 px-2 text-[11px] tracking-[0.12em] uppercase ${category === item ? "text-[#111]" : "text-[#111]/50"}`}>{item}</button>
+              <button key={item} type="button" aria-pressed={category === item} onClick={() => setCategory(item)} className={`h-11 shrink-0 px-2 text-[11px] tracking-[0.12em] uppercase ${category === item ? "text-[#1c1a17]" : "text-[#1c1a17]/50"}`}>{item}</button>
             ))}
           </div>
           <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 lg:grid-cols-4">
@@ -148,7 +148,7 @@ function ProductCard({ refId, name, price }: { refId: string; name: string; pric
     <Link href={`/line/${refId.toLowerCase()}`} className="block">
       {frame ? <img src={frameSrc(frame)} alt={name} className="aspect-[4/5] w-full bg-[#f3f3f1] object-contain" /> : <span className="block aspect-[4/5] bg-[#f3f3f1]" />}
       <span className="mt-3 block text-[13px]">{name}</span>
-      {price && <span className="mt-1 block text-[12px] text-[#111]/60">{price}</span>}
+      {price && <span className="mt-1 block text-[12px] text-[#1c1a17]/60">{price}</span>}
     </Link>
   );
 }
@@ -171,12 +171,12 @@ export function LookbookView() {
     setNote(`${look.title} is in My Closet.`);
   }
   return (
-    <div className="min-h-screen bg-[#f7f7f5] text-[#111]">
+    <div className="min-h-screen bg-[#f5f0e8] text-[#1c1a17]">
       <CollectionChrome view="lookbook" />
       <main className="mx-auto max-w-[1100px] px-4 pb-20 md:px-8">
         <div className="mb-10 flex flex-wrap justify-center gap-2">
           {(["All", "Tailoring", "Everyday", "Leisure"] as const).map((item) => (
-            <button key={item} type="button" aria-pressed={useCase === item} onClick={() => setUseCase(item)} className={`h-11 px-3 text-[11px] tracking-[0.14em] uppercase ${useCase === item ? "border-b border-[#111]" : "text-[#111]/55"}`}>{item}</button>
+            <button key={item} type="button" aria-pressed={useCase === item} onClick={() => setUseCase(item)} className={`h-11 px-3 text-[11px] tracking-[0.14em] uppercase ${useCase === item ? "border-b border-[#1c1a17]" : "text-[#1c1a17]/55"}`}>{item}</button>
           ))}
         </div>
         {looks[0] && (
@@ -204,10 +204,10 @@ function LookCard({ look, onSave }: { look: CollectionLook; onSave: () => void }
       <Link href={`/line/looks/${look.slug}`}>
         <img src={look.image} alt={look.alt} className="mx-auto w-full bg-[#f3f3f1] object-contain" />
       </Link>
-      <p className="mt-4 text-[11px] tracking-[0.2em] uppercase">Look {look.number}</p>
+      <p className="ms-meta mt-4">Look {look.number}</p>
       <div className="mt-2 flex justify-center gap-4">
-        <Link href={`/line/looks/${look.slug}`} className="inline-flex h-11 items-center text-[11px] tracking-[0.16em] uppercase underline underline-offset-4">Shop the look</Link>
-        <button type="button" className="inline-flex h-11 items-center text-[11px] tracking-[0.16em] uppercase" onClick={onSave}>Save look</button>
+        <Link href={`/line/looks/${look.slug}`} className="ms-link">Shop the look</Link>
+        <button type="button" className="ms-link no-underline" onClick={onSave}>Save look</button>
       </div>
     </>
   );
@@ -215,12 +215,12 @@ function LookCard({ look, onSave }: { look: CollectionLook; onSave: () => void }
 
 export function CampaignView() {
   return (
-    <div className="min-h-screen bg-[#f7f7f5] text-[#111]">
+    <div className="min-h-screen bg-[#f5f0e8] text-[#1c1a17]">
       <CollectionChrome view="campaign" />
       <main className="mx-auto max-w-[1440px] px-4 pb-20 md:px-8">
-        <p className="mb-10 text-center text-[12px] tracking-[0.22em] uppercase">Campaign 001 / Once sinner. Made Saint.</p>
+        <p className="ms-kicker mb-10 text-center text-[#1c1a17]">Campaign 001 / Once sinner. Made Saint.</p>
         <BlockList blocks={CAMPAIGN_BLOCKS} hero="campaign" />
-        <p className="mx-auto mt-16 max-w-md text-center text-[13px] leading-relaxed text-[#111]/70">
+        <p className="mx-auto mt-16 max-w-md text-center text-[13px] leading-relaxed text-[#1c1a17]/70">
           These frames are the collection, worn. A shoppable look lists only the pieces already mapped to that photograph.
         </p>
       </main>

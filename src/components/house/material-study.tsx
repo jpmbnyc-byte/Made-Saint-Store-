@@ -36,17 +36,13 @@ export function MaterialStudy() {
     >
       <div className="mx-auto max-w-[1200px] px-5 py-16 md:py-24 md:px-8">
         <div className="mb-12 max-w-xl">
-          <p className="text-[11px] tracking-[0.28em] text-[#8d7349] uppercase">Surface & construction</p>
-          <h2
-            id="material-heading"
-            className="mt-4 font-serif leading-[0.95] text-[#1c1a17]"
-            style={{ fontSize: "clamp(36px, 4vw, 56px)", letterSpacing: "-0.03em" }}
-          >
+          <p className="ms-kicker">Surface & construction</p>
+          <h2 id="material-heading" className="ms-display mt-4">
             What your hands
             <br />
             will tell you first.
           </h2>
-          <p className="mt-5 text-[16px] leading-relaxed text-[#41505b]">
+          <p className="ms-lede mt-5">
             Woven calf, bouclé suede, perforated mesh, and nub-lug rubber. Each panel is chosen for feel, not effect.
           </p>
         </div>

@@ -48,14 +48,14 @@ export function Paths({ from }: { from: number }) {
         return (
           <article key={item.id} className="flex flex-col border border-[#c0a477]/70 bg-[#f7f4ef]/80 p-6">
             <p className="text-[11px] tracking-[0.18em] text-[#8d7349] uppercase">{offer.preliminary ? "Planning target" : "Priced"}</p>
-            <h3 className="mt-3 font-serif text-4xl text-[#2a3746]">{offer.name}</h3>
-            <p className="mt-4 font-serif text-3xl text-[#2a3746]">{price}</p>
+            <h3 className="mt-3 font-serif text-4xl text-[#1c1a17]">{offer.name}</h3>
+            <p className="mt-4 font-serif text-3xl text-[#1c1a17]">{price}</p>
             <ul className="mt-5 flex-1 space-y-2 text-[14px] leading-relaxed text-[#41505b]">
               {item.includes.map((line) => (
                 <li key={line} className="border-t border-[#c0a477]/40 pt-2">{line}</li>
               ))}
             </ul>
-            <Link href={item.href} className="mt-6 text-[11px] tracking-[0.16em] text-[#2a3746] uppercase underline decoration-[#c0a477] underline-offset-4">
+            <Link href={item.href} className="mt-6 text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase underline decoration-[#c0a477] underline-offset-4">
               {item.cta}
             </Link>
           </article>

@@ -19,10 +19,10 @@ export function EditionSlider({ products }: { products: Product[] }) {
           <Image src={product.image} alt={product.name} fill sizes="(min-width: 768px) 42vw, 100vw" className="object-contain" priority={slider.index === 0} />
         </div>
         <div className="min-w-0">
-          <p className="text-[11px] tracking-[0.2em] text-[#8d7349] uppercase">Open to reserve</p>
-          <h2 className="mt-3 font-serif text-5xl leading-none text-[#2a3746] md:text-6xl">{short(product.name)}</h2>
-          <p className="mt-4 text-[15px] leading-relaxed text-[#41505b]">{product.line}</p>
-          <p className="mt-5 font-serif text-4xl tabular-nums text-[#2a3746]">${product.usd}</p>
+          <p className="ms-kicker">Open to reserve</p>
+          <h2 className="ms-display mt-3">{short(product.name)}</h2>
+          <p className="ms-lede mt-4">{product.line}</p>
+          <p className="ms-title mt-5 tabular-nums">${product.usd}</p>
           <p className="mt-2 text-[13px] text-[#41505b]">{offerLine(product.series)}</p>
           <div className="mt-6">
             <p className="text-[11px] tracking-[0.16em] text-[#41505b] uppercase">Size · US men&apos;s</p>
@@ -31,7 +31,7 @@ export function EditionSlider({ products }: { products: Product[] }) {
                 <Link
                   key={size}
                   href={`/shop/${product.id}?size=${size}`}
-                  className="grid h-11 w-12 shrink-0 place-items-center border border-[#41505b]/20 text-sm tabular-nums text-[#2a3746] hover:border-[#c0a477]"
+                  className="grid h-11 w-12 shrink-0 place-items-center border border-[#41505b]/20 text-sm tabular-nums text-[#1c1a17] hover:border-[#c0a477]"
                 >
                   {size}
                 </Link>
@@ -60,7 +60,7 @@ export function ListRail() {
             <Image src={product.image} alt={product.name} fill sizes="(min-width: 1024px) 32vw, 78vw" className="object-contain" />
           </span>
           <span className="mt-3 block text-[11px] tracking-[0.16em] text-[#8d7349] uppercase">Available</span>
-          <span className="mt-1 block font-serif text-3xl text-[#2a3746]">{short(product.name)}</span>
+          <span className="mt-1 block font-serif text-3xl text-[#1c1a17]">{short(product.name)}</span>
           <span className="mt-2 block text-[13px] leading-relaxed text-[#41505b]">{product.line}. {offerLine(product.series)}</span>
         </Link>
       ))}
@@ -84,7 +84,7 @@ export function LeatherSlider({
       <div {...slider.bind} className="relative mx-auto aspect-[4/5] max-w-md touch-pan-y overflow-hidden bg-[#e7e0d4]">
         <Image src={runner.src} alt={runner.alt} fill sizes="(min-width: 768px) 28rem, 100vw" className="object-contain" />
       </div>
-      <p className="mt-4 text-center font-serif text-3xl text-[#2a3746]">{runner.name}</p>
+      <p className="mt-4 text-center font-serif text-3xl text-[#1c1a17]">{runner.name}</p>
       <p className="mt-1 text-center text-sm text-[#41505b]">{runner.note}</p>
       <SliderControls index={slider.index} count={runners.length} onPrev={slider.prev} onNext={slider.next} onGo={slider.go} label={label} />
     </div>

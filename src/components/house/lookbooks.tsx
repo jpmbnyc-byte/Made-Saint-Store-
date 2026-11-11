@@ -66,9 +66,9 @@ export function Lookbooks({
       <div>
         {heading && (
           <>
-            <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Lookbooks</p>
-            <h2 className="mt-4 font-serif text-[40px] leading-[0.95] text-[#2a3746] md:text-[52px]">Shop the day you are dressing for.</h2>
-            <p className="mt-4 max-w-md text-base leading-relaxed text-[#41505b]">
+            <p className="ms-kicker">Lookbooks</p>
+            <h2 className="ms-display mt-4">Shop the day you are dressing for.</h2>
+            <p className="ms-lede mt-4 max-w-md">
               Open a look. A founding pair is listed on its own. The clothes are requested with the house.
             </p>
           </>

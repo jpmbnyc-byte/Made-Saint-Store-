@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     "Once sinner. Made Saint. The 1101 leads. The house is set in Cap-Haïtien and the north of Haiti.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "MADE Saint",
+    title: "MADE SAiNT",
     description: "Once sinner. Made Saint. The 1101 leads.",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "MADE Saint" }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "MADE SAiNT" }],
   },
   twitter: {
     card: "summary_large_image",

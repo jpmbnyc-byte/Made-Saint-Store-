@@ -38,7 +38,7 @@ export function Tensions() {
         {TENSIONS.map((item) => (
           <article key={item.n}>
             <p className="font-serif text-3xl text-[#c0a477] italic">{item.n}</p>
-            <h2 className="mt-3 font-serif text-3xl text-[#2a3746]">{item.title}</h2>
+            <h2 className="mt-3 font-serif text-3xl text-[#1c1a17]">{item.title}</h2>
             <p className="mt-3 text-[15px] leading-relaxed text-[#41505b]">{item.body}</p>
           </article>
         ))}
@@ -51,8 +51,8 @@ export function Fit() {
   return (
     <section id="fit" className="scroll-mt-24 border-t border-[#41505b]/10">
       <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
-        <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">The reservation</p>
-        <h2 className="mt-3 max-w-2xl font-serif text-5xl leading-[0.95] text-[#2a3746]">Who this is for.</h2>
+        <p className="ms-kicker">The reservation</p>
+        <h2 className="ms-display mt-3 max-w-2xl">Who this is for.</h2>
         <div className="mt-10 grid gap-10 md:grid-cols-2">
           <div>
             <h3 className="text-[11px] tracking-[0.16em] text-[#8d7349] uppercase">For</h3>
@@ -80,12 +80,12 @@ export function Questions() {
   return (
     <section id="questions" className="scroll-mt-24 border-t border-[#41505b]/10">
       <div className="mx-auto max-w-[800px] px-5 py-14 md:px-8 md:py-20">
-        <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Before you reserve</p>
-        <h2 className="mt-3 font-serif text-5xl text-[#2a3746]">Questions</h2>
+        <p className="ms-kicker">Before you reserve</p>
+        <h2 className="ms-display mt-3">Questions</h2>
         <div className="mt-8 divide-y divide-[#41505b]/15 border-y border-[#41505b]/15">
           {QUESTIONS.map((item) => (
             <details key={item.q} className="group py-5">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[15px] text-[#2a3746]">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[15px] text-[#1c1a17]">
                 {item.q}
                 <span className="text-xl leading-none text-[#c0a477] transition group-open:rotate-45">+</span>
               </summary>

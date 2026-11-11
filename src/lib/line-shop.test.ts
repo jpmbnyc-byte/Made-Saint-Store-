@@ -20,6 +20,24 @@ test("published looks only list pieces already named on the frames", () => {
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "amara")?.pieces.map((item) => item.ref), ["R010"]);
   assert.equal(COLLECTION_LOOKS[0]?.slug, "solene");
   assert.equal(COLLECTION_LOOKS[1]?.slug, "sage");
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "parachute")?.pieces.map((item) => item.ref), ["R010"]);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "olive-wool")?.pieces.map((item) => item.ref), ["R046"]);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "rust")?.pieces.map((item) => item.ref), ["N014"]);
+  assert.equal(COLLECTION_LOOKS.find((look) => look.slug === "camel")?.pieces.length, 0);
+  const courtyard = COLLECTION_LOOKS.filter((look) => look.series === "courtyard");
+  assert.equal(courtyard.length, 11);
+  for (const look of courtyard) {
+    assert.ok(look.image.startsWith("/collection/"), look.slug);
+    for (const offer of look.offers ?? []) {
+      if (offer.kind === "runner") {
+        assert.match(offer.href, /^\/shop\/ms-runner-/);
+        assert.equal(offer.price, "$550");
+      } else {
+        assert.equal(offer.href, "/wardrobe#introduction");
+        assert.equal(offer.price, "Enquire");
+      }
+    }
+  }
 });
 
 test("styling-only frames are not assigned a product", () => {

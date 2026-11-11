@@ -32,20 +32,17 @@ export function ClosingCta() {
           <div className="grid gap-px bg-[#1c1a17]/10 md:grid-cols-2">
             {/* 1101 path */}
             <div className="flex flex-col bg-[#f5f0e8] p-8 md:p-12">
-              <p className="text-[11px] tracking-[0.28em] text-[#B03236] uppercase">1101</p>
-              <h2
-                className="mt-4 font-serif text-[#1c1a17]"
-                style={{ fontSize: "clamp(32px, 3.5vw, 48px)", letterSpacing: "-0.03em", lineHeight: 0.98 }}
-              >
+              <p className="ms-kicker text-[#B03236]">1101</p>
+              <h2 className="ms-title mt-4">
                 The lead runner.
               </h2>
-              <p className="mt-5 max-w-sm flex-1 text-[15px] leading-relaxed text-[#41505b]">
+              <p className="ms-lede mt-5 max-w-sm flex-1">
                 $550. Live and made to order. Ready in 4 to 6 weeks.
               </p>
               <div className="mt-8">
                 <Link
                   href="/shop#1101"
-                  className="inline-flex h-12 items-center bg-[#1c1a17] px-6 text-[12px] tracking-[0.18em] text-[#f5f0e8] uppercase transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
+                  className="ms-cta bg-[#1c1a17] text-[#f5f0e8] transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
                 >
                   Explore 1101
                 </Link>
@@ -54,22 +51,19 @@ export function ClosingCta() {
 
             {/* Private Wardrobe path */}
             <div className="flex flex-col bg-[#ede6d8] p-8 md:p-12">
-              <p className="text-[11px] tracking-[0.28em] text-[#8d7349] uppercase">Private Wardrobe</p>
-              <h2
-                className="mt-4 font-serif text-[#1c1a17]"
-                style={{ fontSize: "clamp(32px, 3.5vw, 48px)", letterSpacing: "-0.03em", lineHeight: 0.98 }}
-              >
+              <p className="ms-kicker">Private Wardrobe</p>
+              <h2 className="ms-title mt-4">
                 Begin your
                 <br />
                 <em className="italic">wardrobe.</em>
               </h2>
-              <p className="mt-5 max-w-sm flex-1 text-[15px] leading-relaxed text-[#41505b]">
+              <p className="ms-lede mt-5 max-w-sm flex-1">
                 Choose a set, keep the pieces you want, and add a remote fitting consultation if you want one. The fitting is not held in person.
               </p>
               <div className="mt-8">
                 <Link
                   href="/wardrobe#introduction"
-                  className="inline-flex h-12 items-center bg-[#1c1a17] px-6 text-[12px] tracking-[0.18em] text-[#f5f0e8] uppercase transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8d7349]"
+                  className="ms-cta bg-[#1c1a17] text-[#f5f0e8] transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8d7349]"
                 >
                   Begin your wardrobe
                 </Link>

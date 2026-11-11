@@ -30,18 +30,14 @@ export function WardrobeChapter() {
 
       <div className="relative mx-auto max-w-[1200px] px-5 py-16 md:py-24 md:px-8">
         {/* Header */}
-        <div className="max-w-2xl">
-          <p className="text-[11px] tracking-[0.28em] text-[#c0a477] uppercase">Private Wardrobe</p>
-          <h2
-            id="wardrobe-heading"
-            className="mt-4 font-serif text-[#f5f0e8]"
-            style={{ fontSize: "clamp(44px, 5vw, 76px)", letterSpacing: "-0.035em", lineHeight: 0.93 }}
-          >
+        <div className="ms-on-dark max-w-2xl">
+          <p className="ms-kicker text-[#c0a477]">Private Wardrobe</p>
+          <h2 id="wardrobe-heading" className="ms-display mt-4">
             A wardrobe,
             <br />
             <em className="italic">considered around you.</em>
           </h2>
-          <p className="mt-5 max-w-lg text-[16px] leading-relaxed text-[#f5f0e8]/75">
+          <p className="ms-lede mt-5 max-w-lg">
             One person coordinates the days. A fitting, if you add one, is remote. It is not held in person.
           </p>
         </div>
@@ -102,13 +98,13 @@ export function WardrobeChapter() {
             <div className="mt-10 flex flex-wrap gap-3">
               <Link
                 href="/wardrobe"
-                className="inline-flex h-12 items-center bg-[#f5f0e8] px-6 text-[12px] tracking-[0.18em] text-[#1c1a17] uppercase transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c0a477]"
+                className="ms-cta bg-[#f5f0e8] text-[#1c1a17] transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c0a477]"
               >
                 Discover Private Wardrobe
               </Link>
               <Link
                 href="/wardrobe#introduction"
-                className="inline-flex h-12 items-center border px-6 text-[12px] tracking-[0.18em] text-[#f5f0e8] uppercase transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#f5f0e8]"
+                className="ms-cta border text-[#f5f0e8] transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#f5f0e8]"
                 style={{ borderColor: "rgba(245, 240, 232, 0.35)" }}
               >
                 Request an introduction

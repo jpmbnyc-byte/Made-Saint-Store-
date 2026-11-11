@@ -142,16 +142,12 @@ export function RunnerChapter() {
           <SeriesPlate series="0929" size="md" />
 
           {/* Headline: product name, large and serif — no decoration */}
-          <h2
-            id="runner-heading"
-            className="mt-4 font-serif leading-[0.93] text-[#1c1a17]"
-            style={{ fontSize: "clamp(28px, 3.4vw, 52px)", letterSpacing: "-0.03em" }}
-          >
+          <h2 id="runner-heading" className="ms-title mt-4">
             {short(product.name)}
           </h2>
 
           {/* Line — precise material description per Bible §04 */}
-          <p className="mt-5 text-[16px] leading-relaxed text-[#41505b]">
+          <p className="ms-lede mt-5">
             {product.line}.
           </p>
 
@@ -185,7 +181,7 @@ export function RunnerChapter() {
               {SIZES.map((size) => (
                 <span
                   key={size}
-                  className="grid h-9 w-11 place-items-center border border-[#1c1a17]/15 text-[12px] tabular-nums text-[#2a3746]"
+                  className="grid h-9 w-11 place-items-center border border-[#1c1a17]/15 text-[12px] tabular-nums text-[#1c1a17]"
                 >
                   {size}
                 </span>

@@ -32,11 +32,11 @@ export function PlaceChapter() {
   return (
     <section id="place" className="border-t border-[#1c1a17]/10 bg-[#f4f0e7]" aria-labelledby="place-heading">
       <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
-        <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">The place</p>
-        <h2 id="place-heading" className="mt-3 max-w-2xl font-serif text-5xl leading-[0.95] text-[#1c1a17]">
+        <p className="ms-kicker">The place</p>
+        <h2 id="place-heading" className="ms-display mt-3 max-w-2xl">
           Cap-Haïtien, and the north.
         </h2>
-        <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">
+        <p className="ms-lede mt-5 max-w-xl">
           The house is set in Cap-Haïtien and the north of Haiti. Milot is neighboring historic ground, and no house has been chosen. The wide frames are campaign studies of Sans-Souci and the north coast. They are not documentary photographs of a site, and they are not a claim of a factory there.
         </p>
         <ul className="mt-10 grid gap-8">
@@ -47,8 +47,8 @@ export function PlaceChapter() {
                   <Image src={frame.src} alt={frame.alt} fill sizes="(min-width: 768px) 1100px, 100vw" className="object-cover" />
                 </span>
               </Link>
-              <p className="mt-3 text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">{frame.title}</p>
-              <p className="mt-2 text-[14px] leading-relaxed text-[#1c1a17]/70">{frame.caption}</p>
+              <p className="ms-meta mt-3">{frame.title}</p>
+              <p className="ms-note mt-2">{frame.caption}</p>
             </li>
           ))}
         </ul>

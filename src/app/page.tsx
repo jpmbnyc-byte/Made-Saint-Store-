@@ -10,6 +10,7 @@ import { Range1213 } from "@/components/house/range-1213";
 import { WardrobeChapter } from "@/components/house/wardrobe-chapter";
 import { HouseLooks } from "@/components/house/examples";
 import { MaterialStudy } from "@/components/house/material-study";
+import { HouseEye } from "@/components/house/house-eye";
 import { TheHouse } from "@/components/house/the-house";
 import { ClosingCta } from "@/components/house/closing-cta";
 import { OrderRule } from "@/components/shop/order-rule";
@@ -66,8 +67,11 @@ export default function Home() {
       {/* 07 — Styled looks */}
       <HouseLooks />
 
-      {/* Material in close-up */}
+      {/* Material in close-up — underlit construction crops */}
       <MaterialStudy />
+
+      {/* Sitewide photographic doctrine */}
+      <HouseEye />
 
       {/* 06 — The House / brand statement */}
       <TheHouse />

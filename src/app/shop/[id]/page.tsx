@@ -67,6 +67,13 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             {product.notice && <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">{product.notice}</p>}
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{product.line}. {offerLine(product.series)}</p>
             <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">{statusCopy.line}</p>
+            <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">
+              Photographed underlit on a dark ground. Detail crops are construction tests — shoulder, stitch, sole — not decoration.{" "}
+              <Link href="/#house-eye" className="underline underline-offset-4">
+                The house eye
+              </Link>
+              .
+            </p>
             {product.launch && (
               <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">
                 US men&apos;s 7 through 12. Anyone that size fits can request this pair. It does not open a wardrobe.

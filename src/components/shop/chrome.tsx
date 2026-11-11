@@ -57,7 +57,7 @@ export function ShopFooter() {
         <div>
           <p className="font-serif text-3xl text-[#1c1a17]">MADE SAiNT</p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-[#1c1a17]/65">
-            Every runner is live and made to order, ready in 4 to 6 weeks. Clothes beyond a pair are planned through the Private Wardrobe. A fitting, if you add one, is remote.
+            Every runner is live and made to order, ready in 4 to 6 weeks. We photograph underlit so the cloth and the stitch hold. Clothes beyond a pair are planned through the Private Wardrobe.
           </p>
         </div>
         <div className="space-y-2 text-sm">

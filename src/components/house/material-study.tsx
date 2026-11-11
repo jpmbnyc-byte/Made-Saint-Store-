@@ -1,29 +1,34 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const MATERIALS = [
   {
     src: "/hero/leather-navy.webp",
     alt: "MADE SAiNT navy full-grain leather runner — lateral hero view against limestone plaster",
     label: "Full-grain leather",
-    note: "Navy · Leather",
+    note: "Underlit · Navy",
+    crop: "object-[center_35%] scale-[1.15]",
   },
   {
     src: "/opening/butter-hand.webp",
     alt: "Butter leather runner held in hand — panel construction and colour detail",
     label: "Butter leather",
-    note: "Hand study",
+    note: "Hand crop",
+    crop: "object-[center_40%] scale-[1.4]",
   },
   {
     src: "/opening/mesh-rose-plinth.webp",
     alt: "Rose mesh runner beside its sole — perforated mesh panel detail",
     label: "Perforated mesh",
-    note: "Study",
+    note: "Study crop",
+    crop: "object-[center_60%] scale-[1.35]",
   },
   {
-    src: "/opening/mesh-rose-overhead.webp",
-    alt: "Rose and brown mesh runners overhead — compositional view of the sole and upper",
-    label: "Overhead composition",
-    note: "Mesh study",
+    src: "/runners/navy-ivory-detail.webp",
+    alt: "Navy / Ivory runner — wave and sole as a construction detail",
+    label: "Wave & sole",
+    note: "Detail crop",
+    crop: "object-center scale-[1.25]",
   },
 ];
 
@@ -34,7 +39,7 @@ export function MaterialStudy() {
       className="scroll-mt-24 border-t border-[#1c1a17]/10 bg-[#f5f0e8]"
       aria-labelledby="material-heading"
     >
-      <div className="mx-auto max-w-[1200px] px-5 py-16 md:py-24 md:px-8">
+      <div className="mx-auto max-w-[1200px] px-5 py-16 md:px-8 md:py-24">
         <div className="mb-12 max-w-xl">
           <p className="ms-kicker">Surface & construction</p>
           <h2 id="material-heading" className="ms-display mt-4">
@@ -43,16 +48,15 @@ export function MaterialStudy() {
             will tell you first.
           </h2>
           <p className="ms-lede mt-5">
-            Woven calf, bouclé suede, perforated mesh, and nub-lug rubber. Each panel is chosen for feel, not effect.
+            Underlit frames and tight crops. Woven calf, bouclé suede, perforated mesh, and nub-lug rubber — each panel is chosen for feel, then tested in the photograph.
           </p>
         </div>
 
-        {/* Asymmetric material grid */}
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5">
           {MATERIALS.map((m, i) => (
             <figure key={m.src} className={i === 0 ? "col-span-2 row-span-2 md:col-span-2" : ""}>
               <div
-                className="ms-resin relative overflow-hidden bg-[#ede6d8]"
+                className="ms-underlit relative overflow-hidden"
                 style={{ aspectRatio: i === 0 ? "1 / 1" : "3 / 4" }}
               >
                 <Image
@@ -64,7 +68,7 @@ export function MaterialStudy() {
                       ? "(min-width: 768px) 50vw, 100vw"
                       : "(min-width: 768px) 25vw, 50vw"
                   }
-                  className="object-cover"
+                  className={`ms-detail-crop object-cover ${m.crop}`}
                   loading="lazy"
                 />
               </div>
@@ -76,9 +80,14 @@ export function MaterialStudy() {
           ))}
         </div>
 
-        <p className="mt-8 text-[12px] leading-relaxed text-[#1c1a17]/45">
-          Leather studies can be requested. A price is not listed, and a ship date is not promised. The priced colorways are Navy / Ivory, Navy / Sand, and Washed / Indigo.
-        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+          <p className="max-w-xl text-[12px] leading-relaxed text-[#1c1a17]/45">
+            Leather studies can be requested. A price is not listed, and a ship date is not promised. The priced colorways are Navy / Ivory, Navy / Sand, and Washed / Indigo.
+          </p>
+          <Link href="/#house-eye" className="ms-link text-[#1c1a17]">
+            The house eye
+          </Link>
+        </div>
       </div>
     </section>
   );

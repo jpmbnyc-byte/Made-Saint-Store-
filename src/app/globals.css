@@ -911,6 +911,60 @@ th:first-child {
   box-shadow: inset 0 0 0 1px rgba(28, 26, 23, 0.06), 0 2px 20px rgba(28, 26, 23, 0.07);
 }
 
+/*
+ * House eye — deliberately underlit product wells.
+ * Dark matte ground + side falloff so cloth and stitch read before the room does.
+ */
+.ms-underlit {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 90% at 78% 28%, rgba(90, 78, 62, 0.28), transparent 58%),
+    radial-gradient(ellipse 55% 70% at 18% 80%, rgba(20, 24, 30, 0.9), transparent 60%),
+    #171a20;
+}
+.ms-underlit::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(90deg, rgba(8, 9, 12, 0.55) 0%, transparent 42%, transparent 62%, rgba(8, 9, 12, 0.35) 100%),
+    linear-gradient(180deg, transparent 45%, rgba(8, 9, 12, 0.45) 100%);
+  mix-blend-mode: multiply;
+}
+.ms-underlit > img,
+.ms-underlit > span img,
+.ms-underlit .ms-detail-crop {
+  filter: brightness(0.86) contrast(1.12) saturate(0.92);
+  transition: filter 500ms ease, transform 700ms ease;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ms-underlit:hover > img,
+  .ms-underlit:hover > span img,
+  .ms-underlit:hover .ms-detail-crop {
+    filter: brightness(0.92) contrast(1.08) saturate(0.96);
+  }
+}
+
+/* Creative detail crop — tight object position, slight scale for construction tests */
+.ms-detail-crop {
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* Gallery well used on shop PDPs — cream page, underlit photograph */
+.ms-gallery-well {
+  background:
+    radial-gradient(ellipse 65% 80% at 70% 30%, rgba(70, 62, 50, 0.22), transparent 55%),
+    #1a1d24;
+}
+.ms-gallery-well img {
+  filter: brightness(0.9) contrast(1.1) saturate(0.94);
+}
+
 /* Hero slide crossfade */
 .ms-slide {
   position: absolute;

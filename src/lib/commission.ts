@@ -9,11 +9,12 @@ export type CommissionScope = (typeof COMMISSION_SCOPES)[number];
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const FIT_KEYS = Object.keys(EMPTY_FIT) as (keyof FitInput)[];
 
-export const INTRODUCTION_ROLES = ["", "myself", "client"] as const;
+/** Who is writing. Wearer approves style; stylist may shortlist; payer approves spend; assistant manages logistics. */
+export const INTRODUCTION_ROLES = ["", "wearer", "stylist", "payer", "assistant"] as const;
 
 function normalizeRole(role: string) {
-  if (role === "athlete") return "myself";
-  if (role === "representative") return "client";
+  if (role === "athlete" || role === "myself") return "wearer";
+  if (role === "representative" || role === "client") return "stylist";
   return role;
 }
 export const INTRODUCTION_TIMINGS = ["", "season", "year", "undecided"] as const;
@@ -23,6 +24,10 @@ export type CommissionDraft = {
   name: string;
   email: string;
   note: string;
+  /** Up to five upcoming dressing settings, in the client's words. */
+  settings: string;
+  /** Desired dates or windows for the clothes, if known. */
+  desiredDates: string;
   scope: CommissionScope;
   lookId: string;
   pieceIds: string[];
@@ -33,6 +38,8 @@ export type CommissionDraft = {
   budget: (typeof INTRODUCTION_BUDGETS)[number];
   /** Optional add-on. No price. The fitting is remote, and it is not booked as an appointment. */
   remoteFitting: boolean;
+  /** Consent to discuss photography and public association only with the house. */
+  privacyConsent: boolean;
 };
 
 export type CommissionReview = {
@@ -47,11 +54,14 @@ export function parseCommission(raw: unknown): { ok: true; value: CommissionDraf
   const name = typeof body.name === "string" ? body.name.trim().slice(0, 80) : "";
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase().slice(0, 160) : "";
   const note = typeof body.note === "string" ? body.note.trim().slice(0, 600) : "";
+  const settings = typeof body.settings === "string" ? body.settings.trim().slice(0, 600) : "";
+  const desiredDates = typeof body.desiredDates === "string" ? body.desiredDates.trim().slice(0, 200) : "";
   const scope = typeof body.scope === "string" && body.scope ? body.scope : "look";
   const role = normalizeRole(typeof body.role === "string" ? body.role : "");
   const timing = typeof body.timing === "string" ? body.timing : "";
   const budget = typeof body.budget === "string" ? body.budget : "";
   const remoteFitting = body.remoteFitting === true;
+  const privacyConsent = body.privacyConsent === true;
   const lookId = typeof body.lookId === "string" ? body.lookId.trim().slice(0, 40) : "";
   const lineRef = typeof body.lineRef === "string" ? body.lineRef.trim().slice(0, 12) : "";
   const pieceIds = Array.isArray(body.pieceIds) ? body.pieceIds.filter((id): id is string => typeof id === "string").slice(0, 12) : [];
@@ -59,7 +69,9 @@ export function parseCommission(raw: unknown): { ok: true; value: CommissionDraf
   if (!name) return { ok: false, error: "Enter your name." };
   if (!EMAIL.test(email)) return { ok: false, error: "Enter a valid email address." };
   if (!COMMISSION_SCOPES.includes(scope as CommissionScope)) return { ok: false, error: "Choose what you are commissioning." };
-  if (!INTRODUCTION_ROLES.includes(role as (typeof INTRODUCTION_ROLES)[number])) return { ok: false, error: "Say whether this is for yourself or for a client." };
+  if (!INTRODUCTION_ROLES.includes(role as (typeof INTRODUCTION_ROLES)[number])) {
+    return { ok: false, error: "Say whether you are the wearer, a stylist, a payer, or an assistant." };
+  }
   if (!INTRODUCTION_TIMINGS.includes(timing as (typeof INTRODUCTION_TIMINGS)[number])) return { ok: false, error: "Say when you need the wardrobe." };
   if (!INTRODUCTION_BUDGETS.includes(budget as (typeof INTRODUCTION_BUDGETS)[number])) return { ok: false, error: "That budget range is not one the house uses." };
   if (lookId && !lookById(lookId)) return { ok: false, error: "That look is not in the house." };
@@ -67,7 +79,12 @@ export function parseCommission(raw: unknown): { ok: true; value: CommissionDraf
   for (const id of pieceIds) {
     if (!pieceById(id)) return { ok: false, error: "That piece is not in the register." };
   }
-  if (pieceIds.length === 0 && !lineRef && !note) return { ok: false, error: "Name what you want made, or add a note." };
+  if (pieceIds.length === 0 && !lineRef && !note && !settings) {
+    return { ok: false, error: "Name what you want made, the days you dress for, or add a note." };
+  }
+  if (!privacyConsent) {
+    return { ok: false, error: "Confirm that photography and public association stay under the wearer's control." };
+  }
 
   const fit = { ...EMPTY_FIT };
   const given = body.fit && typeof body.fit === "object" ? (body.fit as Record<string, unknown>) : {};
@@ -91,6 +108,8 @@ export function parseCommission(raw: unknown): { ok: true; value: CommissionDraf
       name,
       email,
       note,
+      settings,
+      desiredDates,
       scope: scope as CommissionScope,
       lookId,
       pieceIds,
@@ -100,6 +119,7 @@ export function parseCommission(raw: unknown): { ok: true; value: CommissionDraf
       timing: timing as CommissionDraft["timing"],
       budget: budget as CommissionDraft["budget"],
       remoteFitting,
+      privacyConsent,
     },
   };
 }

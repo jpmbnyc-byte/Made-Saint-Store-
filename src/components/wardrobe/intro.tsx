@@ -5,7 +5,7 @@ const PATH = [
   {
     n: "01",
     title: "Choose a starting set",
-    body: "Pick the days you dress for — travel, one look, ordinary days, or a sample set. The photographs are the clothes that can be requested.",
+    body: "Begin with one look or a small capsule for the days you dress. The photographs are clothes that can be requested — each marked study, proposed, or pending.",
   },
   {
     n: "02",
@@ -15,18 +15,39 @@ const PATH = [
   {
     n: "03",
     title: "Send an introduction",
-    body: "No payment is taken here. The house reads the set and writes to the email you give. A remote fitting consultation can be added; it is not held in person.",
+    body: "No payment is taken here. Name the settings and dates you know. The house reads the set, writes back, and owns corrections once a scope is agreed. A remote fitting can be added; it is not held in person.",
+  },
+] as const;
+
+const LADDER = [
+  {
+    href: "#build",
+    label: "Start with one look",
+    line: "A complete combination you can adjust.",
+    primary: true,
+  },
+  {
+    href: "#build",
+    label: "Plan a small capsule",
+    line: "Travel, appearance, or ordinary days — narrowly scoped.",
+    primary: false,
+  },
+  {
+    href: "#introduction",
+    label: "Send an introduction",
+    line: "After you know the set. Annual planning comes later.",
+    primary: false,
   },
 ] as const;
 
 const DISTINCT = [
   {
     title: "What this is",
-    body: "A private commission path for the same house silhouettes — a look, a season, or a year — planned with one person before cloth is cut.",
+    body: "A private commission path for the same house silhouettes — one look or a capsule first, planned with one person before cloth is cut.",
   },
   {
     title: "What this is not",
-    body: "Not a second shop cart. Not a membership checkout. Founding runners are reserved on the shop; this page only requests clothes and a conversation.",
+    body: "Not a second shop cart. Not a membership checkout. Founding runners are requested on the shop. Seasonal and annual figures are planning targets only after a first scope is proven.",
   },
 ] as const;
 
@@ -56,30 +77,31 @@ export function WardrobeIntro() {
             <em className="italic">planned before they are cut.</em>
           </h1>
           <p className="ms-lede mt-5 max-w-xl">
-            Discover a starting set, compose the pieces, and commission the house. Seasonal figures from $6,500 and annual figures from $20,000 are planning targets — not a price at checkout.
+            Start with one look or a small capsule. Discover, compose, then introduce yourself to the house. No payment on this page. An annual wardrobe is discussed only after fit, wear, and delivery are proven.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#build"
-              className="ms-cta bg-[#f5f0e8] text-[#1c1a17] transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c0a477]"
-            >
-              Start with a set
-            </a>
-            <a
-              href="#how-it-works"
-              className="ms-cta border text-[#f5f0e8] transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#f5f0e8]"
-              style={{ borderColor: "rgba(245, 240, 232, 0.35)" }}
-            >
-              How it works
-            </a>
-            <Link
-              href="/shop#edition"
-              className="ms-cta border text-[#f5f0e8]/70 transition-opacity hover:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#f5f0e8]"
-              style={{ borderColor: "rgba(245, 240, 232, 0.2)" }}
-            >
-              Reserve a founding pair instead
-            </Link>
+          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            {LADDER.map((step) => (
+              <a
+                key={step.label}
+                href={step.href}
+                className={`block border px-4 py-4 transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c0a477] ${
+                  step.primary ? "border-transparent bg-[#f5f0e8] text-[#1c1a17]" : "border-[#f5f0e8]/30 text-[#f5f0e8]"
+                }`}
+              >
+                <span className="block text-[11px] tracking-[0.16em] uppercase">{step.label}</span>
+                <span className={`mt-2 block text-sm leading-snug ${step.primary ? "text-[#1c1a17]/70" : "text-[#f5f0e8]/65"}`}>
+                  {step.line}
+                </span>
+              </a>
+            ))}
           </div>
+          <p className="mt-5 text-[13px] leading-relaxed text-[#f5f0e8]/55">
+            Prefer a founding pair only?{" "}
+            <Link href="/shop#edition" className="underline underline-offset-4">
+              Request one on the shop
+            </Link>
+            . That path does not open a wardrobe.
+          </p>
         </div>
 
         <figure className="ms-resin relative aspect-[4/5] overflow-hidden bg-[#2a3030] md:aspect-[5/6]">
@@ -92,7 +114,7 @@ export function WardrobeIntro() {
             className="object-contain"
           />
           <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1a2232]/90 to-transparent px-4 pb-4 pt-16 text-[12px] leading-relaxed text-[#f5f0e8]/70">
-            Arrival set. A starting point you adjust — not a finished order.
+            Arrival set. A study worn as a starting point — not a finished order, not a hand sample.
           </figcaption>
         </figure>
       </div>

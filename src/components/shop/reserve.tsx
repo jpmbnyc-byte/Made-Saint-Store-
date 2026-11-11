@@ -88,18 +88,36 @@ export function ReserveForm({
 
       {error && <p className="text-[13px] text-[#9a2a1f]">{error}</p>}
 
+      <div className="border border-[#1c1a17]/15 px-4 py-3 text-sm leading-relaxed text-[#1c1a17]/75">
+        {payments === "stripe" ? (
+          <>
+            <p className="text-[11px] tracking-[0.14em] text-[#1c1a17] uppercase">Paid reservation · Stripe</p>
+            <p className="mt-2">
+              Checkout charges the listed price of ${priceUsd}. Payment confirms the reservation. You may withdraw before the pair is started; paid checkout follows the terms shown there.
+            </p>
+          </>
+        ) : (
+          <>
+            <p className="text-[11px] tracking-[0.14em] text-[#1c1a17] uppercase">Unpaid request · not a charge</p>
+            <p className="mt-2">
+              No card is taken today. This records your name, size, and email as a request at the listed price of ${priceUsd}. It is not a paid reservation and not a Private Wardrobe introduction.
+            </p>
+          </>
+        )}
+      </div>
+
       <button
         type="submit"
         disabled={busy}
         className="flex h-14 w-full items-center justify-center gap-3 bg-[#1c1a17] text-[11px] tracking-[0.2em] text-[#f6f4ef] uppercase transition hover:bg-[#1c1a17]/85 disabled:opacity-60"
       >
         {busy ? <Loader2 className="size-4 animate-spin" /> : payments === "stripe" ? <Lock className="size-3.5" /> : null}
-        {payments === "stripe" ? `Order this pair · $${priceUsd}` : `Request this pair · no payment today`}
+        {payments === "stripe" ? `Pay to reserve · $${priceUsd}` : `Request this pair · unpaid`}
       </button>
       <p className="text-center text-sm leading-relaxed text-[#1c1a17]/70">
         {payments === "stripe"
           ? `Secure checkout by Stripe. ${offerLine(productById(productId)?.series ?? "0929")}`
-          : `No payment is taken today. Your name, size, and email are recorded as a request at the listed price of $${priceUsd}. ${offerLine(productById(productId)?.series ?? "0929")}`}
+          : `Checkout is not connected on this page. ${offerLine(productById(productId)?.series ?? "0929")}`}
       </p>
     </form>
   );

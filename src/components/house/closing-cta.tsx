@@ -58,7 +58,7 @@ export function ClosingCta() {
                 <em className="italic">wardrobe.</em>
               </h2>
               <p className="ms-lede mt-5 max-w-sm flex-1">
-                Discover what a private wardrobe is, choose a starting set, keep the pieces you want, then introduce yourself to the house. No cart. No payment on the form.
+                Start with one look or a small capsule, then introduce yourself to the house. No cart. No payment on the form. An annual plan comes later.
               </p>
               <div className="mt-8">
                 <Link

@@ -11,9 +11,11 @@ import { viewsFor } from "@/lib/catalog";
 import { withPublished } from "@/lib/atelier/publish";
 import { stripeEnabled } from "@/lib/stripe";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
+import { StatusMark } from "@/components/house/status-mark";
 import { ProductGallery } from "@/components/shop/gallery";
 import { ReserveForm } from "@/components/shop/reserve";
 import { SaveRunner } from "@/components/shop/save-runner";
+import { runnerImageStatus, runnerStatusCopy } from "@/lib/image-status";
 
 export function generateStaticParams() {
   return PRODUCTS.filter((p) => p.launch).map((p) => ({ id: p.id }));
@@ -33,6 +35,8 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   if (!product?.launch) notFound();
   const views = await withPublished(product.id, viewsFor(product));
   const siblings = PRODUCTS.filter((p) => p.launch && p.series === product.series && p.id !== product.id);
+  const imageStatus = runnerImageStatus();
+  const statusCopy = runnerStatusCopy();
 
   return (
     <div className="min-h-screen bg-[#f5f0e8] text-[#1c1a17]">
@@ -45,14 +49,24 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         </div>
 
         <div className="mt-4 grid min-w-0 items-start gap-8 lg:mt-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)] lg:gap-14">
-          <ProductGallery views={views} />
+          <div className="relative min-w-0">
+            <StatusMark status={imageStatus} className="absolute left-4 top-4 z-10 md:left-3 md:top-3" />
+            <ProductGallery views={views} />
+          </div>
 
           <div className="min-w-0 px-5 pb-12 lg:sticky lg:top-28 lg:self-start lg:px-0 lg:pb-0">
             <SeriesPlate series={product.series} size="lg" />
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center bg-[#1c1a17] px-2 py-1 text-[10px] tracking-[0.14em] text-[#f5f0e8] uppercase">
+                {statusCopy.mark}
+              </span>
+              <StatusMark status={imageStatus} />
+            </div>
             <h1 className="mt-4 font-serif text-4xl leading-none md:text-5xl">{color(product.name)}</h1>
             <p className="mt-4 text-lg tabular-nums">${product.usd}</p>
             {product.notice && <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">{product.notice}</p>}
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{product.line}. {offerLine(product.series)}</p>
+            <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">{statusCopy.line}</p>
             {product.launch && (
               <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">
                 US men&apos;s 7 through 12. Anyone that size fits can request this pair. It does not open a wardrobe.
@@ -133,12 +147,20 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               </details>
               <details className="group py-4">
                 <summary className="flex cursor-pointer list-none items-center justify-between text-[13px] tracking-[0.14em] uppercase">
-                  Shipping and returns
+                  Shipping, withdrawal, and corrections
                   <span className="text-lg leading-none text-[#1c1a17]/40 group-open:rotate-45">+</span>
                 </summary>
-                <p className="mt-4 text-sm leading-relaxed text-[#1c1a17]/75">
-                  Free insured shipping in the US. In the box: rigid box, tissue, cotton dust bag, spare laces, and a card. A request can be withdrawn before the pair is started. A paid checkout follows the terms shown there.
-                </p>
+                <div className="mt-4 space-y-3 text-sm leading-relaxed text-[#1c1a17]/75">
+                  <p>
+                    Free insured shipping in the US. In the box: rigid box, tissue, cotton dust bag, spare laces, and a card.
+                  </p>
+                  <p>
+                    An unpaid request records your interest only. A paid Stripe reservation charges the listed price. Either may be withdrawn before the pair is started; paid checkout follows the terms shown there.
+                  </p>
+                  <p>
+                    Size exchanges are free within 30 days of delivery. Make corrections after an agreed order stay with the house. This page is not a Private Wardrobe introduction.
+                  </p>
+                </div>
               </details>
             </div>
           </div>

@@ -2,12 +2,30 @@ import Image from "next/image";
 import Link from "next/link";
 
 const STEPS = [
-  ["01", "Discover", "Open a starting set for the days you dress — travel, one look, ordinary days, or a sample."],
+  ["01", "Discover", "Open a starting set for the days you dress — one look or a small capsule."],
   ["02", "Compose", "Keep the pieces you want made. Prefer a shoulder and a trouser ease for the conversation."],
-  ["03", "Introduce", "Send the set to the house. No payment. A remote fitting can be added; it is not held in person."],
-  ["04", "Approve", "Looks, cloth, prices, and dates — before anything is cut."],
+  ["03", "Introduce", "Send settings and dates. No payment. A remote fitting can be added; it is not held in person."],
+  ["04", "Approve", "Looks, cloth, prices, and dates — before anything is cut. Corrections stay with the house."],
   ["05", "Make & deliver", "A named person writes when a date moves. A fit review follows after the clothes have been worn."],
 ];
+
+const DOORS = [
+  {
+    href: "/shop#edition",
+    label: "A pair",
+    line: "Founding runners, requested from the shop.",
+  },
+  {
+    href: "/wardrobe#build",
+    label: "A look",
+    line: "One complete combination you adjust.",
+  },
+  {
+    href: "/wardrobe#build",
+    label: "A capsule",
+    line: "A narrowly scoped set for real dates.",
+  },
+] as const;
 
 export function WardrobeChapter() {
   return (
@@ -36,8 +54,21 @@ export function WardrobeChapter() {
             <em className="italic">A wardrobe planned with the house.</em>
           </h2>
           <p className="ms-lede mt-5 max-w-lg">
-            Same silhouettes as the line — commissioned as a look, a season, or a year. Seasonal figures from $6,500 and annual figures from $20,000 are planning targets, not checkout prices.
+            Same silhouettes as the line — begin with a pair, one look, or a small capsule. An annual plan is discussed only after fit and delivery are proven.
           </p>
+        </div>
+
+        <div className="mt-10 grid gap-3 sm:grid-cols-3">
+          {DOORS.map((door) => (
+            <Link
+              key={door.label}
+              href={door.href}
+              className="border border-[#f5f0e8]/25 px-4 py-4 text-[#f5f0e8] transition-opacity hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c0a477]"
+            >
+              <span className="block font-serif text-2xl">{door.label}</span>
+              <span className="mt-2 block text-sm leading-snug text-[#f5f0e8]/65">{door.line}</span>
+            </Link>
+          ))}
         </div>
 
         <div className="mt-14 grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-16">
@@ -107,7 +138,7 @@ export function WardrobeChapter() {
             </div>
 
             <p className="mt-6 text-[12px] leading-relaxed text-[#f5f0e8]/40">
-              Founding runners stay on the shop. This path is for clothes planned with the house — discover, compose, then introduce. A response time is not promised.
+              Planning figures for a season or year stay off the first step. This path is discover, compose, then introduce. A response time is not promised.
             </p>
           </div>
         </div>

@@ -5,7 +5,7 @@ import { PrivateHouse } from "@/components/wardrobe/house";
 export const metadata: Metadata = {
   title: "The Private Wardrobe",
   description:
-    "A private commission path for MADE SAiNT clothes. Discover a starting set, compose the pieces, and send an introduction — not a shop cart. Seasonal and annual figures are planning targets.",
+    "A private commission path for MADE SAiNT clothes. Start with one look or a small capsule, compose the pieces, and send an introduction with settings and dates — not a shop cart.",
 };
 
 export default function WardrobePage() {

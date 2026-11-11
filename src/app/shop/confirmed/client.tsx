@@ -45,7 +45,7 @@ export function ConfirmedClient() {
             </div>
           )}
           <div>
-            <p className="text-sm text-[#1c1a17]/60">{paid ? "Reservation received" : "Request recorded"}</p>
+            <p className="text-sm text-[#1c1a17]/60">{paid ? "Paid reservation · Stripe" : "Unpaid request · no charge"}</p>
             <h1 className="mt-4 font-serif text-5xl leading-[1.02] md:text-6xl">Thank you</h1>
             <dl className="mt-8 divide-y divide-[#1c1a17]/12 border-y border-[#1c1a17]/12 text-sm">
               {[
@@ -53,6 +53,7 @@ export function ConfirmedClient() {
                 ["Size", size ? `US ${size}` : "As selected"],
                 ["Reference", id || "We will confirm by email"],
                 ["Made", "To order"],
+                ["Payment", paid ? "Charged at checkout" : "None taken"],
                 ["Status", shown ? offerLine(shown.series) : "Recorded"],
               ].map(([k, v]) => (
                 <div key={k} className="flex justify-between gap-6 py-3">
@@ -63,8 +64,8 @@ export function ConfirmedClient() {
             </dl>
             <p className="mt-6 text-sm leading-relaxed text-[#1c1a17]/70">
               {paid
-                ? `${shown ? offerLine(shown.series) : "The request is recorded."} The house writes when it leaves.`
-                : "No payment was taken. The request is recorded at the listed price. Checkout is not connected on this page, so there is no charge to return."}
+                ? `${shown ? offerLine(shown.series) : "The paid reservation is recorded."} You may withdraw before the pair is started. The house writes when it leaves. This is not a Private Wardrobe introduction.`
+                : "No payment was taken. This is an unpaid request at the listed price — not a paid reservation and not a wardrobe commission. Checkout is not connected on this page, so there is no charge to return."}
             </p>
             <Link href="/shop" className="mt-8 inline-block border-b border-[#1c1a17] pb-1 text-[11px] tracking-[0.18em] uppercase">
               Return to the edition

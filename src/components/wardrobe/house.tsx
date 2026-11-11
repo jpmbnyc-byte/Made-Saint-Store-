@@ -7,8 +7,10 @@ import type { CommissionScope } from "@/lib/commission";
 import { lineByRef } from "@/lib/line";
 import { lookById, lookForLifestyle, offerFor } from "@/lib/looks";
 import { PIECES, type WardrobePiece } from "@/lib/wardrobe";
+import { StatusMark } from "@/components/house/status-mark";
 import { WardrobeIntro } from "@/components/wardrobe/intro";
 import { TONAL_COLORS, TonalSlideshow } from "@/components/wardrobe/tonal";
+import { IMAGE_STATUS_LABEL, IMAGE_STATUS_MARK, statusFromNote } from "@/lib/image-status";
 
 const CATALOG = PIECES.filter((piece) => Boolean(piece.image) && offerFor(piece.id).kind !== "waitlist");
 
@@ -18,14 +20,17 @@ function clothingIds(ids: readonly string[]) {
 
 function AlternateCard({ piece, onAdd }: { piece: WardrobePiece; onAdd: () => void }) {
   const offer = offerFor(piece.id);
-  const study = /reconstruction/i.test(piece.note ?? "");
+  const status = statusFromNote(piece.note, Boolean(piece.image));
   return (
     <div className="flex flex-col border border-[#1c1a17]/10 bg-white">
-      <img src={piece.image} alt={piece.name} className="h-36 w-full bg-[#e7e0d4] object-contain" />
+      <div className="relative bg-[#e7e0d4]">
+        <img src={piece.image} alt={piece.name} className="h-36 w-full object-contain" />
+        <StatusMark status={status} className="absolute left-2 top-2" />
+      </div>
       <div className="flex flex-1 flex-col p-2">
         <p className="font-serif text-lg leading-tight">{piece.name}</p>
         <p className="mt-1 text-[12px] leading-snug text-[#1c1a17]/60">
-          {study ? "Study. Not a physical sample. " : ""}
+          {IMAGE_STATUS_LABEL[status]}.{" "}
           {offer.kind === "commission" ? "Available to request" : `Available · $${offer.usd} · made to order`}
         </p>
         {offer.kind === "commission" ? (
@@ -125,7 +130,9 @@ export function PrivateHouse() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [note, setNote] = useState("");
-  const [role, setRole] = useState<"" | "myself" | "client">("");
+  const [settings, setSettings] = useState("");
+  const [desiredDates, setDesiredDates] = useState("");
+  const [role, setRole] = useState<"" | "wearer" | "stylist" | "payer" | "assistant">("");
   const [timing, setTiming] = useState<"" | "season" | "year" | "undecided">("");
   const [budget, setBudget] = useState<"" | "undisclosed" | "seasonal" | "annual" | "expanded" | "quoted">("");
   const [toneAt, setToneAt] = useState(0);
@@ -135,6 +142,7 @@ export function PrivateHouse() {
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState<string | null>(null);
   const [remoteFitting, setRemoteFitting] = useState(false);
+  const [privacyConsent, setPrivacyConsent] = useState(false);
 
   const ease = EASES.find((item) => item.id === easeId) ?? EASES[1];
   const shoulder = SHOULDERS.find((item) => item.id === shoulderId) ?? SHOULDERS[0];
@@ -190,9 +198,12 @@ export function PrivateHouse() {
   async function send(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-    if (!role) return setError("Say whether this is for yourself or for a client.");
+    if (!role) return setError("Say whether you are the wearer, a stylist, a payer, or an assistant.");
     if (!timing) return setError("Say when you need the wardrobe.");
-    if (!note.trim() && selected.length === 0 && !lineRef) return setError("Say what you are dressing for.");
+    if (!privacyConsent) return setError("Confirm that photography and public association stay under the wearer's control.");
+    if (!note.trim() && !settings.trim() && selected.length === 0 && !lineRef) {
+      return setError("Say what you are dressing for, or list the settings ahead.");
+    }
     setBusy(true);
     try {
       const res = await fetch("/api/commissions", {
@@ -202,6 +213,8 @@ export function PrivateHouse() {
           name,
           email,
           note,
+          settings,
+          desiredDates,
           role,
           timing,
           budget,
@@ -210,6 +223,7 @@ export function PrivateHouse() {
           pieceIds: selected,
           lineRef,
           remoteFitting,
+          privacyConsent,
         }),
       });
       const text = await res.text();
@@ -289,8 +303,9 @@ export function PrivateHouse() {
                   onClick={() => applyStart(start)}
                   className={`text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1c1a17] ${on ? "ring-2 ring-[#1c1a17]" : ""}`}
                 >
-                  <span className="block bg-[#e7e0d4]">
+                  <span className="relative block bg-[#e7e0d4]">
                     <img src={start.image} alt={start.alt} className={`h-40 w-full object-cover sm:aspect-[4/5] sm:h-auto ${"frame" in start ? start.frame : "object-top"}`} />
+                    <StatusMark status={start.id === "rose" ? "proposed" : "study"} className="absolute left-2 top-2" />
                   </span>
                   <span className="mt-2 block font-serif text-2xl">{start.name}</span>
                   <span className="mt-1 block text-sm leading-snug text-[#1c1a17]/70">{start.line}</span>
@@ -343,13 +358,19 @@ export function PrivateHouse() {
               {visiblePieces(roster).length === 0 && !heldLine && <li className="py-4 text-sm text-[#1c1a17]/60">Nothing kept yet. Add a piece from the photographs below.</li>}
               {visiblePieces(roster).map((piece) => {
                 const offer = offerFor(piece.id);
+                const status = statusFromNote(piece.note, Boolean(piece.image));
                 if (offer.kind !== "commission") {
                   return (
                     <li key={piece.id} className="flex items-center gap-4 py-3">
-                      {piece.image && <img src={piece.image} alt="" className="size-14 shrink-0 bg-[#e7e0d4] object-contain" />}
+                      {piece.image && (
+                        <span className="relative shrink-0">
+                          <img src={piece.image} alt="" className="size-14 bg-[#e7e0d4] object-contain" />
+                          <StatusMark status={status} className="absolute -left-1 -top-1 scale-90" />
+                        </span>
+                      )}
                       <span className="min-w-0 flex-1">
                         <span className="block font-serif text-2xl">{piece.name}</span>
-                        <span className="text-[13px] text-[#1c1a17]/60">Available · ${offer.usd} · made to order</span>
+                        <span className="text-[13px] text-[#1c1a17]/60">{IMAGE_STATUS_LABEL[status]} · ${offer.usd} · made to order</span>
                       </span>
                       <Link href={offer.href} className="inline-flex h-11 items-center text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">
                         Request this pair
@@ -362,10 +383,15 @@ export function PrivateHouse() {
                   <li key={piece.id}>
                     <label className="flex min-h-11 cursor-pointer items-center gap-4 py-3">
                       <input type="checkbox" checked={on} onChange={() => toggle(piece.id)} className="size-5 accent-[#1c1a17]" />
-                      {piece.image && <img src={piece.image} alt="" className="size-14 shrink-0 bg-[#e7e0d4] object-contain" />}
+                      {piece.image && (
+                        <span className="relative shrink-0">
+                          <img src={piece.image} alt="" className="size-14 bg-[#e7e0d4] object-contain" />
+                          <StatusMark status={status} className="absolute -left-1 -top-1 scale-90" />
+                        </span>
+                      )}
                       <span className="min-w-0 flex-1">
                         <span className="block font-serif text-2xl">{piece.name}</span>
-                        <span className="text-[13px] text-[#1c1a17]/60">Available to request</span>
+                        <span className="text-[13px] text-[#1c1a17]/60">{IMAGE_STATUS_LABEL[status]} · available to request</span>
                       </span>
                     </label>
                   </li>
@@ -437,7 +463,7 @@ export function PrivateHouse() {
           <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Step 03 · Private introduction</p>
           <h2 className="mt-3 max-w-3xl font-serif text-4xl md:text-5xl">Send the set you built.</h2>
           <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            This is the commission request — the set, the days you dress for, and who is writing. No payment is taken. A fitting, if you add one, is remote, and it is not an appointment. The house writes back to the email you give. A response time is not promised.
+            This is the commission request — the set, the settings ahead, and who is writing. No payment is taken. A fitting, if you add one, is remote, and it is not an appointment. The house writes back to the email you give. A response time is not promised.
           </p>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
@@ -449,21 +475,24 @@ export function PrivateHouse() {
                   <p className="mt-3 max-w-lg text-sm leading-relaxed text-[#1c1a17]/70">
                     The house will write to {email}. This is not an appointment, and nothing was charged.
                     {remoteFitting ? " A remote fitting consultation is part of this request. It is not booked on a calendar, and it has no listed price." : ""}
-                    {" "}A founding pair, if you want one, is requested from the shop.
+                    {" "}Next: agree looks, cloth, prices, and dates before anything is cut. Corrections after that agreement stay with the house. A founding pair, if you want one, is requested from the shop — that is a separate unpaid or paid reservation, not this introduction.
                   </p>
                   <Link href="/shop#edition" className="mt-6 inline-flex h-12 items-center border border-[#1c1a17] px-5 text-[11px] tracking-[0.16em] uppercase">
-                    Reserve a founding pair
+                    Request a founding pair
                   </Link>
                 </div>
               ) : (
                 <>
                   <fieldset>
                     <legend className="font-serif text-2xl">Who is writing</legend>
+                    <p className="mt-2 text-sm text-[#1c1a17]/65">The wearer approves style. A stylist may shortlist. A payer approves spend. An assistant may manage logistics.</p>
                     <div className="mt-3 grid gap-2 sm:grid-cols-2">
                       {(
                         [
-                          ["myself", "Myself"],
-                          ["client", "On behalf of a client"],
+                          ["wearer", "The wearer"],
+                          ["stylist", "A stylist"],
+                          ["payer", "The payer"],
+                          ["assistant", "An assistant"],
                         ] as const
                       ).map(([value, label]) => (
                         <label key={value} className="flex min-h-12 cursor-pointer items-center gap-3 border border-[#1c1a17]/12 px-3">
@@ -496,6 +525,25 @@ export function PrivateHouse() {
                     </label>
                   </div>
                   <label className="block text-[11px] tracking-[0.12em] uppercase">
+                    Five upcoming settings
+                    <textarea
+                      value={settings}
+                      onChange={(e) => setSettings(e.target.value)}
+                      rows={3}
+                      placeholder="Flight, hotel arrival, dinner, broadcast, private day — or the five you have."
+                      className="mt-1 w-full border border-[#1c1a17]/20 bg-white/70 px-3 py-3 text-base normal-case tracking-normal placeholder:text-[#1c1a17]/35"
+                    />
+                  </label>
+                  <label className="block text-[11px] tracking-[0.12em] uppercase">
+                    Desired dates, if known
+                    <input
+                      value={desiredDates}
+                      onChange={(e) => setDesiredDates(e.target.value)}
+                      placeholder="A week in March, awards night, or still open"
+                      className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal placeholder:text-[#1c1a17]/35"
+                    />
+                  </label>
+                  <label className="block text-[11px] tracking-[0.12em] uppercase">
                     What are you dressing for?
                     <textarea
                       value={note}
@@ -520,7 +568,7 @@ export function PrivateHouse() {
                       <select value={budget} onChange={(e) => setBudget(e.target.value as typeof budget)} className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal">
                         <option value="">Not given</option>
                         <option value="undisclosed">Prefer not to say</option>
-                        <option value="quoted">Ask for a quotation</option>
+                        <option value="quoted">Ask for a quotation on this set</option>
                       </select>
                     </label>
                   </div>
@@ -530,6 +578,14 @@ export function PrivateHouse() {
                     <span>
                       <span className="block font-serif text-2xl">Add a remote fitting consultation</span>
                       <span className="mt-1 block text-sm leading-relaxed text-[#1c1a17]/70">Optional. The fitting is remote, and it is not held in person. This asks the house to include that conversation. It is not a measurement, it is not an appointment, and it has no listed price.</span>
+                    </span>
+                  </label>
+
+                  <label className="flex cursor-pointer items-start gap-3 border border-[#1c1a17]/15 p-4">
+                    <input type="checkbox" checked={privacyConsent} onChange={(e) => setPrivacyConsent(e.target.checked)} className="mt-1 size-5 accent-[#1c1a17]" />
+                    <span>
+                      <span className="block font-serif text-2xl">Photography and association</span>
+                      <span className="mt-1 block text-sm leading-relaxed text-[#1c1a17]/70">Required. The wearer controls visibility, photography, and public association with the house. Nothing is published without that consent.</span>
                     </span>
                   </label>
 
@@ -547,16 +603,27 @@ export function PrivateHouse() {
               <ul className="mt-4 space-y-2 text-sm">
                 {heldLine && <li>{heldLine.ref} · {heldLine.name}</li>}
                 {clothes.map((piece) => (
-                  <li key={piece.id}>{piece.name}</li>
+                  <li key={piece.id}>
+                    {piece.name}
+                    <span className="text-[#1c1a17]/50"> · {IMAGE_STATUS_MARK[statusFromNote(piece.note, Boolean(piece.image))]}</span>
+                  </li>
                 ))}
                 {clothes.length === 0 && !heldLine && <li className="text-[#1c1a17]/60">No piece selected yet.</li>}
               </ul>
-              <p className="mt-4 text-[13px] leading-relaxed text-[#1c1a17]/70">
-                Planning figures, not a choice on this form and not a checkout: seasonal from $6,500, annual from $20,000, expanded from $35,000, atelier quoted. Inclusions are published only after they are costed.
-              </p>
-              <p className="mt-4 text-[13px] leading-relaxed text-[#1c1a17]/60">
-                Arrival, off-duty, and occasion are contexts in one wardrobe. A date can move. The silhouette does not.
-              </p>
+              <div className="mt-6 space-y-3 border-t border-[#1c1a17]/10 pt-4 text-[13px] leading-relaxed text-[#1c1a17]/70">
+                <p>
+                  <span className="font-medium text-[#1c1a17]">No payment here.</span> This introduction is not a checkout and not a reservation of a founding pair.
+                </p>
+                <p>
+                  <span className="font-medium text-[#1c1a17]">Before cutting.</span> Looks, cloth, prices, and dates are agreed in writing. You may withdraw the request until that agreement.
+                </p>
+                <p>
+                  <span className="font-medium text-[#1c1a17]">Corrections.</span> Once a scoped order is agreed, fit and make corrections stay with the house. Dates that move are written by a named person.
+                </p>
+                <p>
+                  <span className="font-medium text-[#1c1a17]">First scope.</span> One look or a small capsule comes before any annual plan. Seasonal from $6,500 and annual from $20,000 are planning targets only — not a choice on this form.
+                </p>
+              </div>
             </aside>
           </div>
         </div>

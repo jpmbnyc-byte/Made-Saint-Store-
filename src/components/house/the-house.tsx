@@ -14,9 +14,9 @@ export function TheHouse() {
         <figure className="mx-auto w-full max-w-[340px]">
           <Image
             src="/house/founder.webp"
-            alt={`${FOUNDER.name}, ${FOUNDER.role.toLowerCase()}, in low light`}
-            width={1400}
-            height={1875}
+            alt={`${FOUNDER.name}, ${FOUNDER.role.toLowerCase()}, in the acid-wash tee`}
+            width={1792}
+            height={2400}
             className="h-auto w-full border border-[#1c1a17]/20"
           />
           <figcaption className="ms-caption mt-3 text-center text-[12px] tracking-[0.14em] text-[#1c1a17]/55 uppercase">

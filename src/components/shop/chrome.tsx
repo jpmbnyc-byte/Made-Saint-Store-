@@ -16,10 +16,19 @@ export function ShopHeader({ status }: { status?: string }) {
             <Link href="/shop#1101" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">1101</Link>
             <Link href="/shop#1213" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">1213</Link>
             <Link href="/shop#0929" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">0929</Link>
-            <Link href="/line" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">The Line</Link>
-            <Link href="/wardrobe" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">Private Wardrobe</Link>
+            <Link href="/line" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">
+              <span className="sm:hidden">Line</span>
+              <span className="hidden sm:inline">The Line</span>
+            </Link>
+            <Link href="/wardrobe" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">
+              <span className="sm:hidden">Wardrobe</span>
+              <span className="hidden sm:inline">Private Wardrobe</span>
+            </Link>
             <Link href="/#looks" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">Looks</Link>
-            <Link href="/brand" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">The House</Link>
+            <Link href="/brand" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">
+              <span className="sm:hidden">House</span>
+              <span className="hidden sm:inline">The House</span>
+            </Link>
           </nav>
           <Link href="/" className="hidden justify-self-center sm:block" aria-label="MADE SAiNT — home">
             <Wordmark />
@@ -48,7 +57,7 @@ export function ShopFooter() {
         <div>
           <p className="font-serif text-3xl text-[#1c1a17]">MADE SAiNT</p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-[#1c1a17]/65">
-            Every runner is live and made to order, ready in 4 to 6 weeks. A fitting, if you add one, is remote.
+            Every runner is live and made to order, ready in 4 to 6 weeks. Clothes beyond a pair are planned through the Private Wardrobe. A fitting, if you add one, is remote.
           </p>
         </div>
         <div className="space-y-2 text-sm">
@@ -61,7 +70,8 @@ export function ShopFooter() {
         </div>
         <div className="space-y-2 text-sm">
           <p className="text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">Private Wardrobe</p>
-          <Link href="/wardrobe" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Discover</Link>
+          <Link href="/wardrobe" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">What it is</Link>
+          <Link href="/wardrobe#build" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Starting sets</Link>
           <Link href="/wardrobe#introduction" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Request an introduction</Link>
           <Link href="/#looks" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Looks</Link>
           <Link href="/line/lookbook" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Lookbook</Link>

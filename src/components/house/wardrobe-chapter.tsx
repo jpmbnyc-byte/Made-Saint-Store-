@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 const STEPS = [
-  ["01", "Conversation", "By video or phone. Remote."],
-  ["02", "Fitting", "Physical, and only when one is arranged."],
-  ["03", "Approval", "Looks, cloth, prices, and dates — before anything is cut."],
-  ["04", "Making", "A named person writes when a date moves."],
-  ["05", "Delivery & care", "A fit review after the clothes have been worn."],
+  ["01", "Discover", "Open a starting set for the days you dress — travel, one look, ordinary days, or a sample."],
+  ["02", "Compose", "Keep the pieces you want made. Prefer a shoulder and a trouser ease for the conversation."],
+  ["03", "Introduce", "Send the set to the house. No payment. A remote fitting can be added; it is not held in person."],
+  ["04", "Approve", "Looks, cloth, prices, and dates — before anything is cut."],
+  ["05", "Make & deliver", "A named person writes when a date moves. A fit review follows after the clothes have been worn."],
 ];
 
 export function WardrobeChapter() {
@@ -16,7 +16,6 @@ export function WardrobeChapter() {
       className="relative scroll-mt-24 border-t border-[#1c1a17]/10 bg-[#1a2232] text-[#f5f0e8]"
       aria-labelledby="wardrobe-heading"
     >
-      {/* Grain overlay */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
@@ -28,23 +27,20 @@ export function WardrobeChapter() {
         }}
       />
 
-      <div className="relative mx-auto max-w-[1200px] px-5 py-16 md:py-24 md:px-8">
-        {/* Header */}
+      <div className="relative mx-auto max-w-[1200px] px-5 py-16 md:px-8 md:py-24">
         <div className="ms-on-dark max-w-2xl">
           <p className="ms-kicker text-[#c0a477]">Private Wardrobe</p>
           <h2 id="wardrobe-heading" className="ms-display mt-4">
-            A wardrobe,
+            Not another cart.
             <br />
-            <em className="italic">considered around you.</em>
+            <em className="italic">A wardrobe planned with the house.</em>
           </h2>
           <p className="ms-lede mt-5 max-w-lg">
-            One person coordinates the days. A fitting, if you add one, is remote. It is not held in person.
+            Same silhouettes as the line — commissioned as a look, a season, or a year. Seasonal figures from $6,500 and annual figures from $20,000 are planning targets, not checkout prices.
           </p>
         </div>
 
-        {/* Grid — image + steps */}
         <div className="mt-14 grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-16">
-          {/* Images */}
           <div className="grid grid-cols-2 gap-3">
             <div className="ms-resin relative aspect-[2/3] overflow-hidden bg-[#2a3030]">
               <Image
@@ -77,7 +73,6 @@ export function WardrobeChapter() {
             </div>
           </div>
 
-          {/* Steps + copy */}
           <div className="flex flex-col justify-center">
             <ol className="space-y-4">
               {STEPS.map(([n, title, body]) => (
@@ -100,19 +95,19 @@ export function WardrobeChapter() {
                 href="/wardrobe"
                 className="ms-cta bg-[#f5f0e8] text-[#1c1a17] transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c0a477]"
               >
-                Discover Private Wardrobe
+                Open Private Wardrobe
               </Link>
               <Link
-                href="/wardrobe#introduction"
+                href="/wardrobe#how-it-works"
                 className="ms-cta border text-[#f5f0e8] transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#f5f0e8]"
                 style={{ borderColor: "rgba(245, 240, 232, 0.35)" }}
               >
-                Request an introduction
+                See how it works
               </Link>
             </div>
 
             <p className="mt-6 text-[12px] leading-relaxed text-[#f5f0e8]/40">
-              No payment in this form. A remote fitting consultation can be added. The house writes back after reviewing your introduction. A response time is not promised.
+              Founding runners stay on the shop. This path is for clothes planned with the house — discover, compose, then introduce. A response time is not promised.
             </p>
           </div>
         </div>

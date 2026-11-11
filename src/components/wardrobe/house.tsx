@@ -7,6 +7,7 @@ import type { CommissionScope } from "@/lib/commission";
 import { lineByRef } from "@/lib/line";
 import { lookById, lookForLifestyle, offerFor } from "@/lib/looks";
 import { PIECES, type WardrobePiece } from "@/lib/wardrobe";
+import { WardrobeIntro } from "@/components/wardrobe/intro";
 import { TONAL_COLORS, TonalSlideshow } from "@/components/wardrobe/tonal";
 
 const CATALOG = PIECES.filter((piece) => Boolean(piece.image) && offerFor(piece.id).kind !== "waitlist");
@@ -268,12 +269,14 @@ export function PrivateHouse() {
 
   return (
     <div>
+      <WardrobeIntro />
+
       <section id="build" className="scroll-mt-28">
         <div className="mx-auto max-w-[1100px] px-5 py-10 md:px-8 md:py-12">
-          <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Start here</p>
+          <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Step 01 · Starting sets</p>
           <h2 className="mt-3 max-w-2xl font-serif text-4xl leading-[0.95] md:text-5xl">Choose a set and adjust it.</h2>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            Start from the day, or from the rose sample. Every piece with a photograph can be requested. A fitting, if you add one, is remote. It is not held in person.
+            Each set is a day you dress for — not a client profile. Start from the day, or from the rose sample. Every piece with a photograph can be requested. After you choose, keep only what you want made, then send an introduction. A fitting, if you add one, is remote. It is not held in person.
           </p>
           <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
             {STARTS.map((start) => {
@@ -308,12 +311,12 @@ export function PrivateHouse() {
       <section id="pieces" className="scroll-mt-28 border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
         <div className="mx-auto grid max-w-[1100px] gap-10 px-5 py-10 md:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
           <div>
-            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">{startId ? `Adjust · ${STARTS.find((start) => start.id === startId)?.name}` : "Adjust"}</p>
+            <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">{startId ? `Step 02 · Adjust · ${STARTS.find((start) => start.id === startId)?.name}` : "Step 02 · Adjust"}</p>
             <h2 className="mt-3 font-serif text-4xl">Keep what you want made.</h2>
             <p className="mt-3 text-[15px] leading-relaxed text-[#1c1a17]/70">
               {startId
-                ? "Uncheck a piece to leave it out. The photographs below are recommended alternates, from pieces that already have an image."
-                : "The pieces with photographs are listed below. Choose a starting set, or add any of them."}
+                ? "These are the clothes in your set. Uncheck a piece to leave it out. The photographs below are recommended alternates from the private register — not a shop checkout."
+                : "Nothing is held yet. Choose a starting set above, or add any photographed piece from the register below. This list is for a commission request, not a cart."}
             </p>
             {startId === "rose" && (
               <div className="mt-6">
@@ -431,10 +434,10 @@ export function PrivateHouse() {
       <div id="commission" className="scroll-mt-28" />
       <section id="introduction" className="scroll-mt-28 border-t border-[#1c1a17]/10">
         <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-10">
-          <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Private introduction</p>
+          <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Step 03 · Private introduction</p>
           <h2 className="mt-3 max-w-3xl font-serif text-4xl md:text-5xl">Send the set you built.</h2>
           <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            This writes the set and who is writing. No payment is taken. A fitting, if you add one, is remote, and it is not an appointment. The house writes back to the email you give. A response time is not promised.
+            This is the commission request — the set, the days you dress for, and who is writing. No payment is taken. A fitting, if you add one, is remote, and it is not an appointment. The house writes back to the email you give. A response time is not promised.
           </p>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">

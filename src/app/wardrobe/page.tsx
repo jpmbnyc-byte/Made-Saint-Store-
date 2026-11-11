@@ -4,7 +4,8 @@ import { PrivateHouse } from "@/components/wardrobe/house";
 
 export const metadata: Metadata = {
   title: "The Private Wardrobe",
-  description: "Choose a starting set, adjust the pieces, and add a remote fitting consultation if you want one.",
+  description:
+    "A private commission path for MADE SAiNT clothes. Discover a starting set, compose the pieces, and send an introduction — not a shop cart. Seasonal and annual figures are planning targets.",
 };
 
 export default function WardrobePage() {

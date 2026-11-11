@@ -58,14 +58,14 @@ export function ClosingCta() {
                 <em className="italic">wardrobe.</em>
               </h2>
               <p className="ms-lede mt-5 max-w-sm flex-1">
-                Choose a set, keep the pieces you want, and add a remote fitting consultation if you want one. The fitting is not held in person.
+                Discover what a private wardrobe is, choose a starting set, keep the pieces you want, then introduce yourself to the house. No cart. No payment on the form.
               </p>
               <div className="mt-8">
                 <Link
-                  href="/wardrobe#introduction"
+                  href="/wardrobe"
                   className="ms-cta bg-[#1c1a17] text-[#f5f0e8] transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8d7349]"
                 >
-                  Begin your wardrobe
+                  Open Private Wardrobe
                 </Link>
               </div>
             </div>

@@ -42,13 +42,16 @@ export default function Home() {
       {/* 03 — 1101 leads, then the seven 1213 colorways */}
       <Range1213 />
 
-      {/* 04 — The people */}
+      {/* 04 — Private Wardrobe beside the runners, not buried below */}
+      <WardrobeChapter />
+
+      {/* 05 — The people */}
       <PeopleChapter />
 
-      {/* 04b — Courtyard arcade looks */}
+      {/* 05b — Courtyard arcade looks */}
       <CourtyardChapter />
 
-      {/* 05 — 0929 runner, the only series with a confirmed make time */}
+      {/* 06 — 0929 runner, the only series with a confirmed make time */}
       <RunnerChapter />
 
       <section className="border-t border-[#1c1a17]/10 bg-[#f5f0e8]">
@@ -60,10 +63,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 04 — Private Wardrobe */}
-      <WardrobeChapter />
-
-      {/* 05 — Styled looks */}
+      {/* 07 — Styled looks */}
       <HouseLooks />
 
       {/* Material in close-up */}

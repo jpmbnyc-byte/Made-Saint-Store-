@@ -39,11 +39,11 @@ export default function Home() {
       {/* 03 — Curated looks */}
       <HouseLooks />
 
-      {/* 04 — Pair enquiry */}
-      <PairEnquiry />
-
-      {/* 05 — Campaign 002 (gated; returns null until imagery approved) */}
+      {/* 04 — Azores world: landscape → person → look → detail → maker → fitting */}
       <Campaign002 />
+
+      {/* 05 — Pair enquiry */}
+      <PairEnquiry />
 
       {/* 06 — Private Wardrobe */}
       <WardrobeChapter />

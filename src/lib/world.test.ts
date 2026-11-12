@@ -25,14 +25,23 @@ test("research references stay out of the site and campaign frames are marked as
     assert.equal(asset.path.startsWith("reference_only/"), true);
     assert.equal(asset.path.startsWith("/"), false);
   }
-  const campaign = ASSET_MANIFEST.filter((asset) => asset.path.startsWith("/world/"));
-  assert.equal(campaign.length, 7);
-  assert.ok(campaign.some((asset) => asset.path === "/world/milot.webp"));
-  assert.ok(campaign.some((asset) => asset.path === "/world/coastline.webp"));
-  for (const asset of campaign) {
+  const haiti = ASSET_MANIFEST.filter(
+    (asset) => asset.path.startsWith("/world/") && !asset.path.startsWith("/world/azores/"),
+  );
+  assert.equal(haiti.length, 7);
+  assert.ok(haiti.some((asset) => asset.path === "/world/milot.webp"));
+  assert.ok(haiti.some((asset) => asset.path === "/world/coastline.webp"));
+  for (const asset of haiti) {
     assert.equal(asset.deployable, true);
     assert.equal(asset.representation, "concept");
     assert.match(asset.location, /not a documented site/);
+  }
+  const azores = ASSET_MANIFEST.filter((asset) => asset.path.startsWith("/world/azores/"));
+  assert.ok(azores.length >= 3);
+  for (const asset of azores) {
+    assert.equal(asset.deployable, true);
+    assert.match(asset.location, /São Miguel|Azores|Ponta Delgada/);
+    assert.match(asset.rightsStatus, /CC BY-SA 4\.0/);
   }
 });
 

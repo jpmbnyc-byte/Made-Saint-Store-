@@ -35,6 +35,10 @@ export default function BrandPage() {
               <h2 className="ms-title">{copy.house.peopleHeading}</h2>
               <p>{copy.house.people}</p>
               <p className="text-[14px] text-[#1c1a17]/60">{copy.house.peopleDisclosure}</p>
+              <h2 className="ms-title pt-4">The world</h2>
+              <p>
+                Campaign 002 is set in São Roque, São Miguel, in the Azores — Atlantic coastline, sacred architecture, volcanic stone, and everyday life. The mainland workshop in São Roque, Oliveira de Azeméis, is a separate making chapter once partnership is confirmed.
+              </p>
               <h2 className="ms-title pt-4">The pairs</h2>
               <p>
                 The 1101 leads. The 1213 is the sculpted-sole runner. The 0929 is the studded-sole runner. Enquire about a colourway to confirm availability, price and delivery.

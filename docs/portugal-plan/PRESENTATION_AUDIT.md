@@ -9,7 +9,9 @@ Date: 12 November 2026.
 | Sneaker PDP gallery | Dark `ms-gallery-well` player, underlit crops, overlay captions | Light `#f3f3f1` stacked frames (desktop) / main + quiet thumbs (mobile) |
 | Sneaker PDP chrome | Series plate mega-mark, dual status badges, OrderRule block | Quiet series line, colour swatches, enquire form |
 | Home clothing | Lookbook “player” + Azores composite plates | ISAIA-style look register grid (full look fills frame) |
-| Home hero | Campaign banner + slideshow player (play/pause/thumbs) | Single dominant look hero |
+| Home hero | Campaign banner + slideshow player (play/pause/thumbs); later text-on-photo | Single Cast look photograph; copy and CTAs **below** the frame — no text on the image |
+| Look crops | Landscape frames in 3:4 cells; `object-position` offsets (18% / 59% / 62%) | Portrait Cast frames only; `object-top` / centre-top so mobile side-crops stay subject-centred |
+| Brand marks | Workshop / third-party wall signage risked as hero | MADE SAiNT on Cast turtlenecks, jackets, and runner tongues; Portuguese shoemaker signage stays in `refs/` only |
 | Private Wardrobe home | Dark resin plate collage | One full look + clear steps |
 
 ## Removed as unnecessary / illogical

@@ -172,9 +172,12 @@ export function lookForLifestyle(lifestyle: LifestyleId) {
   return LOOKS.find((look) => look.lifestyle === lifestyle) ?? LOOKS[0];
 }
 
-/** Worn figures lose their letterbox. A sheet stays whole, on a phone and on a desk. */
+/**
+ * Worn figures: cover + top bias so heads stay in frame on mobile.
+ * Sheets stay whole. Avoid horizontal offsets — those read as off-centre side crops.
+ */
 export function lookFrame(look: Look) {
-  return look.sheet || look.whole ? "object-contain" : "object-cover object-center";
+  return look.sheet || look.whole ? "object-contain object-center" : "object-cover object-top";
 }
 
 export function resolvePiece(id: string) {

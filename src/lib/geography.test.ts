@@ -34,5 +34,7 @@ test("Campaign 002 is a look register without location composite plates", () => 
     assert.ok(look.lookName.length > 0);
     assert.ok(look.pieces.length > 0);
     assert.equal("settingSrc" in look, false);
+    // No annotated styling boards — those bake callout text into the photograph
+    assert.equal(look.lookSrc.includes("styling-"), false, look.id);
   }
 });

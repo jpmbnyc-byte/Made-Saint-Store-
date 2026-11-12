@@ -43,12 +43,24 @@ export const WORKSHOP_CHAPTER = {
   notEditorial: true,
 } as const;
 
-/** Clothing look register — Cast 003 full looks; brown mesh where footwear is shown. */
+/**
+ * Clothing look register — Cast 003 full looks only.
+ * Portrait frames (≈3:4). No landscape side-crops. No baked-in callout text.
+ * Brand marks (MADE SAiNT) live on garments and runners in the photograph.
+ */
 export const AZORES_LOOKS: LookPlate[] = [
+  {
+    id: "amara-camel",
+    lookSrc: "/collection/amara-camel.webp",
+    lookAlt: "Amara in a camel zip set with brown mesh 1101 runners — MADE SAiNT on jacket and tongue",
+    lookName: "Amara",
+    pieces: "Camel zip set · 1101 Brown Mesh",
+    href: "/line/looks/forerunner",
+  },
   {
     id: "malik-chair",
     lookSrc: "/collection/malik.webp",
-    lookAlt: "Malik seated in a navy turtleneck and sand trousers with teal 1101 runners",
+    lookAlt: "Malik seated in a navy turtleneck with MADE SAiNT at the neck and teal 1101 runners",
     lookName: "Malik",
     pieces: "Navy turtleneck · sand trouser · 1101 Teal",
     href: "/line/looks/malik",
@@ -56,18 +68,10 @@ export const AZORES_LOOKS: LookPlate[] = [
   {
     id: "camel",
     lookSrc: "/collection/camel.webp",
-    lookAlt: "Lucien in a dusty rose zip set over a teal turtleneck with brown mesh 1101 runners",
+    lookAlt: "Lucien in a dusty rose zip set over a teal turtleneck with MADE SAiNT at the neck and brown mesh 1101 runners",
     lookName: "Lucien",
     pieces: "Dusty rose zip set · 1101 Brown Mesh",
     href: "/line/looks/camel",
-  },
-  {
-    id: "forerunner",
-    lookSrc: "/collection/forerunner.webp",
-    lookAlt: "Inès in the camel Saint John jacket, the back print facing the camera",
-    lookName: "Inès",
-    pieces: "Saint John jacket",
-    href: "/line/looks/forerunner",
   },
   {
     id: "sage",
@@ -78,14 +82,6 @@ export const AZORES_LOOKS: LookPlate[] = [
     href: "/line/looks/sage",
   },
   {
-    id: "parachute",
-    lookSrc: "/collection/styling-ivory.webp",
-    lookAlt: "Malik in an ivory nylon zip set with a butter suede sling and Japan runners",
-    lookName: "Malik",
-    pieces: "Ivory nylon set · butter sling",
-    href: "/line/lookbook",
-  },
-  {
     id: "solene",
     lookSrc: "/collection/solene.webp",
     lookAlt: "Solène in the printed jersey over a white shirt, navy tie, and charcoal trousers",
@@ -94,9 +90,17 @@ export const AZORES_LOOKS: LookPlate[] = [
     href: "/line/looks/solene",
   },
   {
+    id: "forerunner",
+    lookSrc: "/collection/forerunner.webp",
+    lookAlt: "Amara in a camel zip set with brown mesh 1101 runners",
+    lookName: "Amara",
+    pieces: "Camel zip set · 1101 Brown Mesh",
+    href: "/line/looks/forerunner",
+  },
+  {
     id: "olive",
     lookSrc: "/collection/lucien-terracotta.webp",
-    lookAlt: "Lucien in a dusty rose zip set with brown mesh 1101 runners in a sunlit arcade",
+    lookAlt: "Lucien in a dusty rose zip set with brown mesh 1101 runners",
     lookName: "Lucien",
     pieces: "Dusty rose zip set · 1101 Brown Mesh",
     href: "/line/looks/camel",

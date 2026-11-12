@@ -16,7 +16,7 @@ test("published looks only list pieces already named on the frames", () => {
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "solene")?.pieces.map((item) => item.ref), ["R010"]);
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "sage")?.pieces.map((item) => item.ref), ["N014"]);
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "olive")?.pieces.map((item) => item.ref), []);
-  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "forerunner")?.pieces.map((item) => item.ref), ["R035"]);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "forerunner")?.pieces.map((item) => item.ref), ["N005", "N006"]);
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "duffel")?.pieces.map((item) => item.ref), ["R067"]);
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "amara")?.pieces.map((item) => item.ref), ["R010"]);
   assert.equal(COLLECTION_LOOKS[0]?.slug, "solene");

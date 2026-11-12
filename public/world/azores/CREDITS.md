@@ -19,3 +19,7 @@ Derivatives: resized WebP for the site. ShareAlike applies to adapted files.
 | `procession.webp` | Devotion / community | Documentary context — do not claim São Roque or cast attendance |
 | `blue-tiled-church.webp` | Ease beside architecture | Location reference — exact town unverified; do not caption as Azores without evidence |
 | `workshop-gate.webp` | Prospective maker frame | Oliveira de Azeméis workshop reference — no partnership claim until confirmed |
+| `refs/workshop-gate-sign.webp` | Shoot planning only | Third-party Portuguese shoemaker signage — never a MADE SAiNT hero |
+| `refs/procession.webp` | Shoot planning only | Atmosphere only; not a look or hero |
+| `refs/azulejo-walker.webp` | Shoot planning only | Atmosphere only; not a look or hero |
+| `refs/garden-gate.webp` | Shoot planning only | Atmosphere only; not a look or hero |

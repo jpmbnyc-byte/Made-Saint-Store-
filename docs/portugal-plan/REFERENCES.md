@@ -20,7 +20,7 @@ Live under `public/world/azores/` with credits in `CREDITS.md`.
 
 - **CC BY-SA settings (backgrounds only):** Praia de São Roque; Fenais da Luz; Igreja de São Roque (Ponta Delgada)
 - **Foreground:** MADE SAiNT cast looks and product detail
-- **Shoot planning only (do not publish as tiles):** garden entrance, procession, blue-tiled walker, workshop gate
+- **Shoot planning only (do not publish as tiles):** garden entrance, procession, blue-tiled walker, workshop gate — also under `public/world/azores/refs/` including the Portuguese shoemaker wall mark (never a MADE SAiNT hero; heroes are Cast looks without baked-in signage)
 
 ## Do not
 

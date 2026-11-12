@@ -1,7 +1,7 @@
 import { CampaignBanner } from "@/components/house/campaign-banner";
 
 const LOOK_CHIPS = [
-  { href: "/line/looks/solene", label: "Jersey" },
+  { href: "/line/looks/forerunner", label: "Camel" },
   { href: "/line/looks/sage", label: "Sage" },
   { href: "/line/looks/camel", label: "Terracotta" },
   { href: "/line/looks/malik", label: "Malik" },
@@ -9,14 +9,14 @@ const LOOK_CHIPS = [
 ];
 
 /**
- * Hero in the ISAIA look register spirit: one dominant campaign image,
- * brand line, two actions — no slideshow player chrome.
+ * Hero: one clean Cast look photograph — no text on the image.
+ * Copy and CTAs sit below. Brand marks live on the garments and runners.
  */
 export function EditorialHero() {
   return (
     <CampaignBanner
-      src="/collection/malik.webp"
-      alt="Malik seated in a navy turtleneck — Campaign look"
+      src="/collection/hero-cast.webp"
+      alt="Amara in a camel zip set with brown mesh 1101 runners — Cast 003"
       kicker="MADE SAiNT"
       title="Once sinner. Made Saint."
       body="The collection, worn. Explore the 1101, or open the looks."

@@ -20,7 +20,7 @@ export function CourtyardChapter() {
               <li key={look.slug}>
                 <Link href={`/line/looks/${look.slug}`} className="block bg-[#e7e1d6]">
                   <span className="relative block aspect-[2/3]">
-                    <Image src={look.image} alt={look.alt} fill sizes="(min-width: 768px) 33vw, 50vw" className="object-cover object-[center_18%]" />
+                    <Image src={look.image} alt={look.alt} fill sizes="(min-width: 768px) 33vw, 50vw" className="object-cover object-top" />
                   </span>
                 </Link>
                 <p className="ms-meta mt-3">{look.title}</p>

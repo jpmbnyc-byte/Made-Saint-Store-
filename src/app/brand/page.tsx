@@ -4,12 +4,14 @@ import type { Metadata } from "next";
 import { Mast } from "@/components/house/mast";
 import { ShopFooter } from "@/components/shop/chrome";
 import { Pledge } from "@/components/house/pledge";
-import { offerLine } from "@/lib/business";
+import { PlaceChapter } from "@/components/house/place-chapter";
+import { Campaign002 } from "@/components/house/campaign-002";
 import { FOUNDER } from "@/lib/impact";
+import { copy } from "@/lib/copy";
 
 export const metadata: Metadata = {
-  title: "The House",
-  description: "Once sinner. Made Saint. The house is set in Cap-Haïtien and the north of Haiti.",
+  title: copy.seo.house.title,
+  description: copy.seo.house.description,
 };
 
 export default function BrandPage() {
@@ -19,14 +21,9 @@ export default function BrandPage() {
       <main>
         <section className="mx-auto max-w-[820px] px-5 py-16 md:px-8 md:py-24">
           <p className="ms-kicker">The House</p>
-          <h1 className="ms-display mt-5">
-            Once sinner.
-            <br />
-            <em className="italic">Made Saint.</em>
-          </h1>
-          <p className="ms-lede mt-8 max-w-xl">
-            The line is {FOUNDER.name}&apos;s, for grace and a life changed. A purchase does not confer moral or spiritual standing. The house keeps a Christian name and welcomes a client of any belief.
-          </p>
+          <h1 className="ms-display mt-5">{copy.house.heading}</h1>
+          <p className="ms-lede mt-8 max-w-xl">{copy.house.founder}</p>
+          <p className="ms-lede mt-4 max-w-xl">{copy.house.collection}</p>
         </section>
 
         <section className="border-t border-[#1c1a17]/10">
@@ -35,23 +32,12 @@ export default function BrandPage() {
               <Image src="/brand/wordmark.png" alt="MADE Saint" width={1864} height={462} className="h-auto w-full" />
             </div>
             <div className="max-w-xl space-y-5 text-[16px] leading-relaxed text-[#1c1a17]/80">
-              <h2 className="ms-title">The place</h2>
-              <p>
-                The house is set in Cap-Haïtien and the north of Haiti. The city, the shore at Cormier, and Milot are the places it returns to. Milot is neighboring historic ground. It is not the city, and it is not a house the brand owns. No property has been chosen.
-              </p>
-              <p>
-                The photographs are the collection, worn by the cast, or the product itself. They are not pictures of the city, the shore at Cormier, or Milot, and they are not photographs of the cathedral, a palace, or the Citadelle.
-              </p>
-              <h2 className="ms-title pt-4">The people</h2>
-              <p>
-                Amara, Solène, Inès, Lucien, Ren, and Malik wear the collection. A shoppable look lists only the pieces already mapped to that photograph. A season look that is not priced stays a look.
-              </p>
+              <h2 className="ms-title">{copy.house.peopleHeading}</h2>
+              <p>{copy.house.people}</p>
+              <p className="text-[14px] text-[#1c1a17]/60">{copy.house.peopleDisclosure}</p>
               <h2 className="ms-title pt-4">The pairs</h2>
               <p>
-                The 1101 leads, at $550. The 1213 is the sculpted-sole runner, also $550, in seven colorways. The 0929 is the studded-sole runner, at $490. Every colorway is live. {offerLine("1101")}
-              </p>
-              <p>
-                Brush suede with a soft crepe or nylon brush after wear. Treat it once before the first wear. Store a pair in the dust bag, away from direct sun.
+                The 1101 leads. The 1213 is the sculpted-sole runner. The 0929 is the studded-sole runner. Enquire about a colourway to confirm availability, price and delivery.
               </p>
               <div className="pt-6">
                 <Pledge />
@@ -59,6 +45,9 @@ export default function BrandPage() {
             </div>
           </div>
         </section>
+
+        <PlaceChapter />
+        <Campaign002 />
 
         <section className="border-t border-[#1c1a17]/10">
           <div className="mx-auto flex max-w-[1100px] flex-wrap gap-3 px-5 py-14 md:px-8">

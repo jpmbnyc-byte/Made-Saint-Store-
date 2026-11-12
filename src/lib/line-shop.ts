@@ -46,7 +46,7 @@ const runnerOffer = (id: string, name: string, price = "$550"): LookOffer => ({
   href: `/shop/${id}`,
   name,
   price,
-  detail: "Made to order. Ready in 4 to 6 weeks.",
+  detail: "Delivery is confirmed with your quotation.",
   kind: "runner",
 });
 
@@ -429,7 +429,7 @@ export const FEATURED: EditorialBlock[] = [
 ];
 
 export const CAMPAIGN_BLOCKS: EditorialBlock[] = [
-  { kind: "still", src: "/world/milot.webp", alt: "Cast 003 in the ruins at Milot, a campaign study of Sans-Souci", wide: true, href: "/line/lookbook", name: "Milot, campaign study", cta: "Shop the looks" },
+  { kind: "still", src: "/world/milot.webp", alt: "Campaign 001 study — Cast 003 in the ruins at Milot", wide: true, href: "/line/lookbook", name: "Milot, Campaign 001", cta: "View the lookbook" },
   { kind: "still", src: "/collection/solene-campaign.webp", alt: "Solène in the printed jersey on the hill above the north coast, a campaign study", wide: true, href: "/line/looks/solene", name: "Solène, north coast", cta: "Shop the look" },
   { kind: "look", slug: "camel", wide: true },
   { kind: "look", slug: "parachute" },
@@ -449,7 +449,7 @@ export const CAMPAIGN_BLOCKS: EditorialBlock[] = [
   { kind: "still", src: "/collection/tee-black.webp", alt: "Black acid-wash oversized t-shirt with a red MADE SAiNT collar mark", href: "/wardrobe#introduction", name: "Acid-wash tee, black", cta: "Enquire" },
   { kind: "still", src: "/collection/trail-mule.webp", alt: "MADE SAiNT Trail Mule technical pack, powder blue fog grid", wide: true, href: "/line/r046", name: "Trail Mule", price: "$450", cta: "Enquire" },
   { kind: "still", src: "/runners/navy-ivory-worn.webp", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, worn on foot", wide: true, href: "/shop/ms-runner-chalk-navy", name: "0929 Runner — Navy / Ivory", price: "$490" },
-  { kind: "still", src: "/world/coastline.webp", alt: "MADE SAiNT product branding on the north coast, a campaign study", wide: true, href: "/shop#1101", name: "Coastline, campaign study", cta: "Shop the runners" },
+  { kind: "still", src: "/world/coastline.webp", alt: "Campaign 001 study — MADE SAiNT product branding on the north coast", wide: true, href: "/shop#1101", name: "Coastline, Campaign 001", cta: "Enquire about 1101" },
   { kind: "still", src: "/collection/malik-coast.webp", alt: "Malik at the north coast at dusk, in a mauve overshirt with a yellow suede sling", href: "/line/lookbook", name: "Malik, north coast", cta: "Shop the looks" },
   { kind: "still", src: "/collection/ines-campaign.webp", alt: "Inès in a rust cord set, walking the limestone arcade", wide: true, href: "/line/looks/rust", name: "Inès, limestone arcade", cta: "Shop the look" },
   { kind: "look", slug: "midnight" },

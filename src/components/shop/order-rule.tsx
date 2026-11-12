@@ -1,28 +1,26 @@
-import { LEAD_TIME } from "@/lib/business";
-
 export const ORDER_STEPS = [
   {
     n: "1",
     when: "Now",
     title: "Choose",
-    body: "Pick a colorway and a size. The pair is available now.",
+    body: "Pick a colourway and a preferred size.",
   },
   {
     n: "2",
-    when: "Made to order",
-    title: "Make",
-    body: "The pair is started for you. A fitting, if you add one, is a remote consultation. It is not held in person.",
+    when: "Enquire",
+    title: "Send",
+    body: "Send your preferred style, size and colour. We will confirm availability, price and delivery before you order.",
   },
   {
     n: "3",
-    when: LEAD_TIME,
-    title: "Ready",
-    body: `Made to order. Ready in ${LEAD_TIME}.`,
+    when: "Quotation",
+    title: "Confirm",
+    body: "Delivery is confirmed with your quotation.",
   },
 ] as const;
 
 export function orderWindowLine() {
-  return `Made to order. Ready in ${LEAD_TIME}.`;
+  return "Delivery is confirmed with your quotation.";
 }
 
 export function OrderRule({

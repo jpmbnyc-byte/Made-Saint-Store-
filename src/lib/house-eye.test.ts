@@ -2,9 +2,9 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { HOUSE_DETAIL_CROPS, HOUSE_EYE } from "@/lib/house-eye";
 
-test("the house eye states underlit photography and detail as proof", () => {
-  assert.match(HOUSE_EYE.title, /low light/i);
-  assert.match(HOUSE_EYE.lede, /underlit/i);
+test("the house eye keeps concise preview guidance", () => {
+  assert.match(HOUSE_EYE.title, /cloth/i);
+  assert.match(HOUSE_EYE.lede, /design-preview|visualization/i);
   assert.equal(HOUSE_EYE.principles.length, 3);
   assert.ok(HOUSE_EYE.principles.some((item) => /detail/i.test(item.title)));
   assert.match(HOUSE_EYE.closing, /MADE SAiNT/);

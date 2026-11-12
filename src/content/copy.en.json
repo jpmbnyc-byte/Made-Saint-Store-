@@ -1,0 +1,248 @@
+{
+  "meta": {
+    "brand": "MADE SAiNT",
+    "release": "enquiry",
+    "language": "en",
+    "prepared": "2026-11-12"
+  },
+  "navigation": {
+    "primary": [
+      "1101",
+      "The Line",
+      "Private Wardrobe",
+      "The House"
+    ],
+    "utility": [
+      "Enquire",
+      "Closet"
+    ],
+    "lineTabs": [
+      "Featured",
+      "Lookbook",
+      "Campaign"
+    ]
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "MADE SAiNT",
+      "heading": "Once sinner. Made Saint.",
+      "primaryAction": "Explore 1101",
+      "secondaryAction": "View the collection"
+    },
+    "runner": {
+      "eyebrow": "1101",
+      "heading": "The 1101 runner.",
+      "body": "Explore Butter, Teal, Navy, Bronze, Blush and Onyx.",
+      "action": "View the colourways"
+    },
+    "looks": {
+      "heading": "The collection, worn.",
+      "action": "View the lookbook"
+    },
+    "service": {
+      "heading": "Begin with a pair.",
+      "body": "Send your preferred style, size and colour. We will confirm availability, price and delivery before you order.",
+      "action": "Enquire about 1101"
+    },
+    "wardrobe": {
+      "eyebrow": "PRIVATE WARDROBE",
+      "heading": "One look. A wardrobe built around you.",
+      "body": "Choose the pieces you want to discuss, and tell us where you will wear them.",
+      "action": "Plan your wardrobe"
+    }
+  },
+  "footwearCollection": {
+    "heading": "Footwear",
+    "intro": "Explore the 1101, 1213 and 0929.",
+    "seriesLabels": {
+      "1101": "1101",
+      "1213": "1213",
+      "0929": "0929"
+    },
+    "cardAction": "View pair",
+    "helpHeading": "Need help choosing a size?",
+    "helpAction": "Ask about fit"
+  },
+  "runnerProduct": {
+    "previewLabel": "Design preview",
+    "primaryAction": "Enquire about this pair",
+    "body": "Send your preferred size and colour. We will confirm availability, price and delivery before you order.",
+    "detailsHeading": "Details",
+    "sizeLabel": "Preferred size",
+    "sizeHelpAction": "Size not listed?",
+    "otherSizeLabel": "Your usual size and sizing system",
+    "fitAction": "Ask about fit",
+    "deliveryHeading": "Delivery",
+    "deliveryBody": "Delivery is confirmed with your quotation.",
+    "saveAction": "Save to Closet",
+    "savedAction": "Saved to Closet",
+    "careHeading": "Care",
+    "colourLabel": "Colour"
+  },
+  "line": {
+    "heading": "The Line",
+    "cardAction": "View piece",
+    "lookAction": "View look",
+    "enquiryAction": "Enquire about this piece",
+    "searchLabel": "Search the collection",
+    "searchEmpty": "No pieces match your search.",
+    "clearAction": "Clear filters",
+    "categories": [
+      "All",
+      "Tailoring",
+      "Knitwear",
+      "Jerseys",
+      "Trousers",
+      "Footwear",
+      "Bags",
+      "Headwear"
+    ]
+  },
+  "lookbook": {
+    "heading": "Lookbook",
+    "filters": [
+      "All",
+      "Tailoring",
+      "Everyday",
+      "Leisure"
+    ],
+    "viewAction": "View look",
+    "saveAction": "Save look"
+  },
+  "look": {
+    "piecesHeading": "Pieces in this look",
+    "primaryAction": "Enquire about this look",
+    "saveAction": "Save look to Closet",
+    "previousAction": "Previous look",
+    "nextAction": "Next look",
+    "closeAction": "Back to lookbook",
+    "stylingNote": "The shirt, tie and trousers are styling pieces. They are not included with the jersey.",
+    "soleneTitle": "Solène — printed jersey"
+  },
+  "bagProduct": {
+    "duffelTitle": "Denim-trim duffel",
+    "duffelDescription": "Butter yellow, peach and pale green, each with denim trim.",
+    "previewLabel": "Design preview",
+    "materialLabel": "Materials",
+    "dimensionsLabel": "Dimensions",
+    "primaryAction": "Enquire about this bag",
+    "saveAction": "Save to Closet",
+    "deliveryBody": "Delivery is confirmed with your quotation."
+  },
+  "wardrobe": {
+    "eyebrow": "PRIVATE WARDROBE",
+    "heading": "A wardrobe for the way you live.",
+    "intro": "Begin with one look or a selection of pieces. Tell us about your work, travel and occasions, and the fit you prefer.",
+    "primaryAction": "Begin your enquiry",
+    "selectionHeading": "Choose your pieces",
+    "selectionBody": "Save the pieces you want to discuss.",
+    "preferencesHeading": "Fit preferences",
+    "shoulderLabel": "Shoulder",
+    "trouserLabel": "Trouser fit",
+    "preferencesNote": "Share the fit you prefer. Measurements are reviewed separately.",
+    "steps": [
+      {
+        "title": "Select",
+        "body": "Choose a look or individual pieces."
+      },
+      {
+        "title": "Discuss",
+        "body": "Tell us about fit, use and any dates you have in mind."
+      },
+      {
+        "title": "Review",
+        "body": "Review the proposed pieces, materials, price and delivery before you order."
+      }
+    ]
+  },
+  "fitting": {
+    "eyebrow": "FIT ENQUIRIES",
+    "heading": "Start with the fit.",
+    "intro": "Tell us your usual shoe size, the sizing system you use, and what you would like to change about the fit.",
+    "primaryAction": "Ask about fit",
+    "note": "A fit enquiry does not confirm that a size or adjustment is available.",
+    "fields": [
+      "Usual shoe size",
+      "Sizing system",
+      "What would you like to change about the fit?"
+    ]
+  },
+  "house": {
+    "heading": "Once sinner. Made Saint.",
+    "founder": "MADE SAiNT is Jean Pierre Bobo’s label. Its name speaks to grace and a life changed.",
+    "collection": "The collection brings together tailoring, knitwear, footwear and accessories.",
+    "peopleHeading": "The cast",
+    "people": "Solène, Amara, Inès, Lucien, Ren and Malik appear throughout the collection.",
+    "peopleDisclosure": "The cast consists of original fictional identities used in campaign imagery.",
+    "givingHeading": "A future still being made.",
+    "givingIntro": "Every child deserves nourishment, an education, and room to become."
+  },
+  "enquiry": {
+    "heading": "Your enquiry",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "countryLabel": "Delivery country",
+    "interestLabel": "Interested pieces",
+    "occasionLabel": "What are you dressing for?",
+    "dateLabel": "Date needed, if any",
+    "notesLabel": "Anything else we should know?",
+    "roleLabel": "Ordering for",
+    "roleOptions": [
+      "Myself",
+      "Someone else"
+    ],
+    "submit": "Send enquiry",
+    "submitting": "Sending…",
+    "successTitle": "Enquiry received.",
+    "successBody": "Your selected pieces and notes have been sent to MADE SAiNT.",
+    "error": "Your enquiry was not sent. Please try again.",
+    "nameError": "Enter your name.",
+    "emailError": "Enter a valid email address.",
+    "requiredLabel": "Required",
+    "optionalLabel": "Optional",
+    "noSelection": "No pieces selected.",
+    "noPayment": "No payment is taken with this enquiry."
+  },
+  "closet": {
+    "heading": "My Closet",
+    "empty": "Your Closet is empty.",
+    "body": "Save pieces and looks as you explore the collection.",
+    "storageNote": "Saved on this browser.",
+    "action": "Explore the collection",
+    "enquiryAction": "Enquire about selected pieces",
+    "removeAction": "Remove"
+  },
+  "footer": {
+    "brandLine": "Once sinner. Made Saint.",
+    "links": [
+      "Footwear",
+      "The Line",
+      "Private Wardrobe",
+      "The House",
+      "Enquire",
+      "Closet"
+    ]
+  },
+  "seo": {
+    "home": {
+      "title": "MADE SAiNT | Footwear and Private Wardrobe",
+      "description": "Explore MADE SAiNT footwear, clothing and accessories. Discover the 1101 runner and enquire about a private wardrobe."
+    },
+    "shop": {
+      "title": "Footwear | MADE SAiNT",
+      "description": "Explore the MADE SAiNT 1101, 1213 and 0929 runners. View the colourways and enquire about fit, availability and delivery."
+    },
+    "wardrobe": {
+      "title": "Private Wardrobe | MADE SAiNT",
+      "description": "Begin with a look or a selection of MADE SAiNT pieces. Discuss fit, materials and the occasions you are dressing for."
+    },
+    "house": {
+      "title": "The House | MADE SAiNT",
+      "description": "Meet the label founded by Jean Pierre Bobo. Explore the ideas, collection and campaign cast behind MADE SAiNT."
+    },
+    "fitting": {
+      "title": "Fit Enquiries | MADE SAiNT",
+      "description": "Ask MADE SAiNT about footwear fit. Share your usual size, sizing system and the fit you are looking for."
+    }
+  }
+}

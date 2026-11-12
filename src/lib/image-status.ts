@@ -4,7 +4,7 @@ export type ImageStatus = "physical" | "study" | "proposed" | "pending";
 
 export const IMAGE_STATUS_LABEL: Record<ImageStatus, string> = {
   physical: "Physical sample",
-  study: "Study · not a physical sample",
+  study: "Design preview",
   proposed: "Proposed · not approved",
   pending: "Image pending",
 };
@@ -12,14 +12,14 @@ export const IMAGE_STATUS_LABEL: Record<ImageStatus, string> = {
 /** Short mark for overlays and dense lists. */
 export const IMAGE_STATUS_MARK: Record<ImageStatus, string> = {
   physical: "Sample",
-  study: "Study",
+  study: "Design preview",
   proposed: "Proposed",
   pending: "Pending",
 };
 
 /**
  * Derive status from a wardrobe register note.
- * Default to study when there is a photograph — most boards are references, not hand samples.
+ * Default to study when there is a photograph — most boards are design previews.
  */
 export function statusFromNote(note?: string, hasImage = true): ImageStatus {
   const text = (note ?? "").toLowerCase();
@@ -33,14 +33,14 @@ export function statusFromNote(note?: string, hasImage = true): ImageStatus {
   return hasImage ? "study" : "pending";
 }
 
-/** Runner PDPs: live made-to-order pairs shown as photographs, not hand samples on the page. */
+/** Runner PDPs: photographs shown as design previews until a physical sample is confirmed. */
 export function runnerImageStatus(): ImageStatus {
   return "study";
 }
 
 export function runnerStatusCopy() {
   return {
-    mark: "Made to order",
-    line: "Photographic reference. A pair is cut after your request. This page is not a hand sample in hand.",
+    mark: "Design preview",
+    line: "Send your preferred size and colour. We will confirm availability, price and delivery before you order.",
   };
 }

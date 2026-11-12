@@ -36,8 +36,8 @@ test("research references stay out of the site and campaign frames are marked as
   }
 });
 
-test("every runner is live on the same make time", () => {
+test("every runner shares the quotation delivery line", () => {
   for (const series of ["1101", "1213", "0929"] as const) {
-    assert.match(offerLine(series), /Made to order\. Ready in 4 to 6 weeks/);
+    assert.match(offerLine(series), /Delivery is confirmed with your quotation/);
   }
 });

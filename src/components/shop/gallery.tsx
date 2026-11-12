@@ -74,7 +74,7 @@ export function ProductGallery({ views }: { views: CatalogView[] }) {
               />
               <figcaption className="absolute bottom-3 left-3 z-[3] text-[10px] tracking-[0.16em] text-[#f5f0e8]/65 uppercase">
                 {v.label}
-                {detail ? " · construction crop" : ""}
+                {detail ? " · detail" : ""}
               </figcaption>
             </figure>
           );

@@ -3,16 +3,14 @@ import { Wordmark } from "@/components/house/wordmark";
 
 const NAV_LEFT = [
   { href: "/shop#1101", label: "1101" },
-  { href: "/shop#1213", label: "1213" },
-  { href: "/shop#0929", label: "0929" },
   { href: "/line", label: "The Line", short: "Line" },
   { href: "/wardrobe", label: "Private Wardrobe", short: "Wardrobe" },
+  { href: "/brand", label: "The House", short: "House" },
 ];
 
 const NAV_RIGHT = [
-  { href: "/#looks", label: "Looks" },
+  { href: "/wardrobe#introduction", label: "Enquire" },
   { href: "/closet", label: "Closet" },
-  { href: "/brand", label: "The House", short: "House" },
 ];
 
 function NavLabel({ label, short }: { label: string; short?: string }) {
@@ -47,13 +45,13 @@ export function Mast() {
                 <NavLabel label={label} short={short} />
               </Link>
             ))}
-            {NAV_RIGHT.map(({ href, label, short }) => (
+            {NAV_RIGHT.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
                 className="ms-nav-label inline-flex h-11 shrink-0 items-center px-2 text-[#1c1a17] sm:hidden"
               >
-                <NavLabel label={label} short={short} />
+                {label}
               </Link>
             ))}
           </nav>
@@ -79,7 +77,7 @@ export function Mast() {
               href="/wardrobe#introduction"
               className="ms-cta ml-2 h-11 bg-[#1c1a17] px-4 text-[#f5f0e8] transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
             >
-              Introduction
+              Enquire
             </Link>
           </nav>
         </div>

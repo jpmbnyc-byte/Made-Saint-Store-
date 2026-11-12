@@ -11,7 +11,7 @@ const SHOWN = [
       "US men's 7 to 12",
       "The price on the card is the price",
       "Available now",
-      "The 0929 is made to order. Ready in 4 to 6 weeks.",
+      "Delivery is confirmed with your quotation.",
     ],
   },
   {

@@ -35,7 +35,7 @@ export function ClosetWorkspace() {
   function priceOf(piece: PieceSelection) {
     if (piece.kind === "runner") {
       const product = PRODUCTS.find((item) => item.id === piece.productRef);
-      return product ? { text: usd(product.usd), lead: "Made to order. Ready in 4 to 6 weeks.", buyable: product.launch } : { text: "Unavailable", lead: "", buyable: false };
+      return product ? { text: usd(product.usd), lead: "Delivery is confirmed with your quotation.", buyable: product.launch } : { text: "Unavailable", lead: "", buyable: false };
     }
     const product = lineByRef(piece.productRef);
     if (!product) return { text: "Unavailable", lead: "", buyable: false };
@@ -237,7 +237,7 @@ export function ClosetWorkspace() {
             Undo remove
           </button>
         )}
-        <Link href="/bag" className="text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">Open bag {bag.data.items.length}</Link>
+        <Link href="/wardrobe#introduction" className="text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">Enquire</Link>
         <Link href="/shop#1101" className="text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">Shop runners</Link>
       </div>
       <p className="sr-only" aria-live="polite">{report}</p>

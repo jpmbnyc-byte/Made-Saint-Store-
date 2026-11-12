@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/house/wordmark";
+import { copy } from "@/lib/copy";
 
 export function ShopHeader({ status }: { status?: string }) {
   return (
@@ -24,7 +25,6 @@ export function ShopHeader({ status }: { status?: string }) {
               <span className="sm:hidden">Wardrobe</span>
               <span className="hidden sm:inline">Private Wardrobe</span>
             </Link>
-            <Link href="/#looks" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">Looks</Link>
             <Link href="/brand" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">
               <span className="sm:hidden">House</span>
               <span className="hidden sm:inline">The House</span>
@@ -35,13 +35,10 @@ export function ShopHeader({ status }: { status?: string }) {
           </Link>
           <nav aria-label="Secondary navigation" className="hidden items-center justify-end gap-2 sm:flex">
             <Link href="/closet" className="inline-flex h-11 items-center px-2 text-[11px] tracking-[0.14em] uppercase hover:opacity-70">
-              My Closet
-            </Link>
-            <Link href="/bag" className="inline-flex h-11 items-center px-2 text-[11px] tracking-[0.14em] uppercase hover:opacity-70">
-              Bag
+              Closet
             </Link>
             <Link href="/wardrobe#introduction" className="inline-flex h-11 items-center bg-[#1c1a17] px-4 text-[11px] tracking-[0.14em] text-[#f5f0e8] uppercase hover:opacity-80">
-              Introduction
+              Enquire
             </Link>
           </nav>
         </div>
@@ -57,35 +54,28 @@ export function ShopFooter() {
         <div>
           <p className="font-serif text-3xl text-[#1c1a17]">MADE SAiNT</p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-[#1c1a17]/65">
-            Every runner is live and made to order, ready in 4 to 6 weeks. We photograph underlit so the cloth and the stitch hold. Clothes beyond a pair are planned through the Private Wardrobe.
+            {copy.footer.brandLine} Explore the 1101, 1213 and 0929. Clothes beyond a pair are planned through the Private Wardrobe.
           </p>
         </div>
         <div className="space-y-2 text-sm">
-          <p className="text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">1101</p>
+          <p className="text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">Footwear</p>
           <Link href="/shop#1101" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">The 1101 runner</Link>
           <Link href="/shop#1213" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">The 1213 runner</Link>
           <Link href="/shop#0929" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">The 0929 runners</Link>
-          <Link href="/shop#edition" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">All colorways</Link>
           <Link href="/shop#faq" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Care &amp; questions</Link>
         </div>
         <div className="space-y-2 text-sm">
           <p className="text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">Private Wardrobe</p>
-          <Link href="/wardrobe" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">What it is</Link>
-          <Link href="/wardrobe#build" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Starting sets</Link>
-          <Link href="/wardrobe#introduction" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Request an introduction</Link>
-          <Link href="/#looks" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Looks</Link>
+          <Link href="/wardrobe" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Private Wardrobe</Link>
+          <Link href="/wardrobe#build" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Choose your pieces</Link>
+          <Link href="/wardrobe#introduction" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Enquire</Link>
           <Link href="/line/lookbook" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Lookbook</Link>
-          <Link href="/closet" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">My Closet</Link>
-          <Link href="/bag" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Bag</Link>
+          <Link href="/closet" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Closet</Link>
         </div>
         <div className="space-y-2 text-sm">
           <p className="text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">The House</p>
           <Link href="/brand" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">About</Link>
-          <Link href="/line" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">2027 line</Link>
-          <div className="mt-3 space-y-1 text-[12px] text-[#1c1a17]/50">
-            <p>Size exchanges within 30 days of delivery</p>
-            <p>Free insured shipping in the US</p>
-          </div>
+          <Link href="/line" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">The Line</Link>
         </div>
       </div>
     </footer>

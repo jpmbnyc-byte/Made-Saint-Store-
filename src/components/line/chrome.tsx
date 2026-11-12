@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Wordmark } from "@/components/house/wordmark";
-import { useBag, useCloset } from "@/components/line/store";
+import { useCloset } from "@/components/line/store";
 
 const VIEWS = [
   { href: "/line", id: "featured", label: "Featured" },
@@ -12,7 +12,6 @@ const VIEWS = [
 
 export function CollectionChrome({ view }: { view: "featured" | "lookbook" | "campaign" | "look" | "product" | "account" }) {
   const closet = useCloset();
-  const bag = useBag();
   return (
     <header className="bg-[#f5f0e8] text-[#1c1a17]">
       <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between gap-3 px-4 md:h-[72px] md:px-8">
@@ -21,8 +20,8 @@ export function CollectionChrome({ view }: { view: "featured" | "lookbook" | "ca
         </Link>
         <nav aria-label="Line account" className="ms-nav-label flex items-center gap-1">
           <Link href="/line#line-search" className="inline-flex h-11 items-center px-2">Search</Link>
-          <Link href="/closet" className="inline-flex h-11 items-center px-2">My Closet {closet.data.pieces.length}</Link>
-          <Link href="/bag" className="inline-flex h-11 items-center px-2">Bag {bag.data.items.reduce((sum, item) => sum + item.qty, 0)}</Link>
+          <Link href="/closet" className="inline-flex h-11 items-center px-2">Closet {closet.data.pieces.length}</Link>
+          <Link href="/wardrobe#introduction" className="inline-flex h-11 items-center px-2">Enquire</Link>
         </nav>
       </div>
       {view !== "look" && view !== "account" && (

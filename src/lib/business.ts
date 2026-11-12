@@ -95,8 +95,11 @@ export const PRODUCTS: Product[] = [
 
 export const productsIn = (series: SeriesId) => PRODUCTS.filter((product) => product.launch && product.series === series);
 
-/** Customer-facing make time. A requested pair is started for that person. */
-export const LEAD_TIME = "4 to 6 weeks";
+/**
+ * Historic internal planning note only. Do not publish as a customer lead time
+ * until product-, capacity- and destination-specific evidence is approved.
+ */
+export const LEAD_TIME = "confirmed with your quotation";
 
 /** US men's sizes the MEES nub sole covers (EU 39–46), with a typical men's size curve. */
 export const SIZES = ["7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12"] as const;
@@ -239,11 +242,11 @@ export const productById = (id: string) => PRODUCTS.find((p) => p.id === id);
 /** Every launched runner is live and made to order on the same promise. */
 export function offerLine(series: SeriesId) {
   void series;
-  return `Made to order. Ready in ${LEAD_TIME}.`;
+  return "Delivery is confirmed with your quotation.";
 }
 
 export function statusLine() {
-  return `Made to order · ready in ${LEAD_TIME}`;
+  return "Enquire · delivery confirmed with your quotation";
 }
 
 export type FundingId = "owner" | "lean" | "render" | "crowd";

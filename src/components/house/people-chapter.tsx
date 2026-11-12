@@ -17,7 +17,7 @@ export function PeopleChapter() {
           The same people return.
         </h2>
         <p className="ms-lede mt-5 max-w-xl">
-          Amara, Solène, Inès, Lucien, Ren, and Malik wear the collection. Open a look to shop the mapped pieces. Garments are made through an enquiry. Runners are requested from the shop.
+          Amara, Solène, Inès, Lucien, Ren, and Malik wear the collection. Open a look to view the pieces. Garments are made through an enquiry. Runners are enquired about from the shop.
         </p>
         <ul className="mt-10 grid grid-cols-2 gap-x-3 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 md:gap-x-8 md:gap-y-10">
           {looks.map((look) => {

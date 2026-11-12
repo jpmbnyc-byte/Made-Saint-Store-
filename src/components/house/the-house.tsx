@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Pledge } from "@/components/house/pledge";
 import { FOUNDER } from "@/lib/impact";
+import { copy } from "@/lib/copy";
 
 export function TheHouse() {
   return (
@@ -26,13 +27,10 @@ export function TheHouse() {
         <div>
           <p className="ms-kicker">The House</p>
           <h2 id="house-heading" className="ms-display mt-5">
-            Once sinner.
-            <br />
-            <em className="italic">Made Saint.</em>
+            {copy.house.heading}
           </h2>
-          <p className="ms-lede mt-7 max-w-lg">
-            The line is {FOUNDER.name}&apos;s, for grace and a life changed. A purchase does not confer moral or spiritual standing. The house keeps a Christian name and welcomes a client of any belief.
-          </p>
+          <p className="ms-lede mt-7 max-w-lg">{copy.house.founder}</p>
+          <p className="ms-lede mt-4 max-w-lg">{copy.house.collection}</p>
           <div className="mt-8">
             <Pledge />
           </div>

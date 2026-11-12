@@ -142,7 +142,6 @@ export function PrivateHouse() {
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState<string | null>(null);
   const [remoteFitting, setRemoteFitting] = useState(false);
-  const [privacyConsent, setPrivacyConsent] = useState(false);
 
   const ease = EASES.find((item) => item.id === easeId) ?? EASES[1];
   const shoulder = SHOULDERS.find((item) => item.id === shoulderId) ?? SHOULDERS[0];
@@ -198,11 +197,8 @@ export function PrivateHouse() {
   async function send(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-    if (!role) return setError("Say whether you are the wearer, a stylist, a payer, or an assistant.");
-    if (!timing) return setError("Say when you need the wardrobe.");
-    if (!privacyConsent) return setError("Confirm that photography and public association stay under the wearer's control.");
     if (!note.trim() && !settings.trim() && selected.length === 0 && !lineRef) {
-      return setError("Say what you are dressing for, or list the settings ahead.");
+      return setError("Say what you are dressing for, or choose the pieces you want to discuss.");
     }
     setBusy(true);
     try {
@@ -223,7 +219,7 @@ export function PrivateHouse() {
           pieceIds: selected,
           lineRef,
           remoteFitting,
-          privacyConsent,
+          privacyConsent: false,
         }),
       });
       const text = await res.text();
@@ -460,10 +456,10 @@ export function PrivateHouse() {
       <div id="commission" className="scroll-mt-28" />
       <section id="introduction" className="scroll-mt-28 border-t border-[#1c1a17]/10">
         <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-10">
-          <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Step 03 · Private introduction</p>
-          <h2 className="mt-3 max-w-3xl font-serif text-4xl md:text-5xl">Send the set you built.</h2>
+          <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Your enquiry</p>
+          <h2 className="mt-3 max-w-3xl font-serif text-4xl md:text-5xl">Send your enquiry.</h2>
           <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            This is the commission request — the set, the settings ahead, and who is writing. No payment is taken. A fitting, if you add one, is remote, and it is not an appointment. The house writes back to the email you give. A response time is not promised.
+            Tell us about the pieces, fit, use and any dates you have in mind. No payment is taken with this enquiry.
           </p>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
@@ -471,28 +467,25 @@ export function PrivateHouse() {
               {sent ? (
                 <div className="border border-[#1c1a17]/15 p-6">
                   <p className="text-[11px] tracking-[0.16em] uppercase">Received · {sent}</p>
-                  <p className="mt-3 font-serif text-3xl">The request is with the house.</p>
+                  <p className="mt-3 font-serif text-3xl">Enquiry received.</p>
                   <p className="mt-3 max-w-lg text-sm leading-relaxed text-[#1c1a17]/70">
-                    The house will write to {email}. This is not an appointment, and nothing was charged.
-                    {remoteFitting ? " A remote fitting consultation is part of this request. It is not booked on a calendar, and it has no listed price." : ""}
-                    {" "}Next: agree looks, cloth, prices, and dates before anything is cut. Corrections after that agreement stay with the house. A founding pair, if you want one, is requested from the shop — that is a separate unpaid or paid reservation, not this introduction.
+                    Your selected pieces and notes have been sent to MADE SAiNT. We will write to {email}.
+                    {remoteFitting ? " A remote fitting note is included with this enquiry." : ""}
                   </p>
-                  <Link href="/shop#edition" className="mt-6 inline-flex h-12 items-center border border-[#1c1a17] px-5 text-[11px] tracking-[0.16em] uppercase">
-                    Request a founding pair
+                  <Link href="/shop#1101" className="mt-6 inline-flex h-12 items-center border border-[#1c1a17] px-5 text-[11px] tracking-[0.16em] uppercase">
+                    Enquire about 1101
                   </Link>
                 </div>
               ) : (
                 <>
                   <fieldset>
-                    <legend className="font-serif text-2xl">Who is writing</legend>
-                    <p className="mt-2 text-sm text-[#1c1a17]/65">The wearer approves style. A stylist may shortlist. A payer approves spend. An assistant may manage logistics.</p>
+                    <legend className="font-serif text-2xl">Ordering for</legend>
+                    <p className="mt-2 text-sm text-[#1c1a17]/65">Optional.</p>
                     <div className="mt-3 grid gap-2 sm:grid-cols-2">
                       {(
                         [
-                          ["wearer", "The wearer"],
-                          ["stylist", "A stylist"],
-                          ["payer", "The payer"],
-                          ["assistant", "An assistant"],
+                          ["wearer", "Myself"],
+                          ["stylist", "Someone else"],
                         ] as const
                       ).map(([value, label]) => (
                         <label key={value} className="flex min-h-12 cursor-pointer items-center gap-3 border border-[#1c1a17]/12 px-3">
@@ -510,6 +503,7 @@ export function PrivateHouse() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         autoComplete="name"
+                        required
                         className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal"
                       />
                     </label>
@@ -520,26 +514,26 @@ export function PrivateHouse() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         autoComplete="email"
+                        required
                         className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal"
                       />
                     </label>
                   </div>
                   <label className="block text-[11px] tracking-[0.12em] uppercase">
-                    Five upcoming settings
-                    <textarea
+                    Delivery country
+                    <input
                       value={settings}
                       onChange={(e) => setSettings(e.target.value)}
-                      rows={3}
-                      placeholder="Flight, hotel arrival, dinner, broadcast, private day — or the five you have."
-                      className="mt-1 w-full border border-[#1c1a17]/20 bg-white/70 px-3 py-3 text-base normal-case tracking-normal placeholder:text-[#1c1a17]/35"
+                      placeholder="Optional"
+                      className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal placeholder:text-[#1c1a17]/35"
                     />
                   </label>
                   <label className="block text-[11px] tracking-[0.12em] uppercase">
-                    Desired dates, if known
+                    Date needed, if any
                     <input
                       value={desiredDates}
                       onChange={(e) => setDesiredDates(e.target.value)}
-                      placeholder="A week in March, awards night, or still open"
+                      placeholder="Optional"
                       className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal placeholder:text-[#1c1a17]/35"
                     />
                   </label>
@@ -549,49 +543,22 @@ export function PrivateHouse() {
                       value={note}
                       onChange={(e) => setNote(e.target.value)}
                       rows={4}
-                      placeholder="Travel weeks, a public day, time off, a formal hour."
+                      placeholder="Work, travel, occasions — or anything else we should know."
                       className="mt-1 w-full border border-[#1c1a17]/20 bg-white/70 px-3 py-3 text-base normal-case tracking-normal placeholder:text-[#1c1a17]/35"
                     />
                   </label>
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <label className="block text-[11px] tracking-[0.12em] uppercase">
-                      Timing
-                      <select value={timing} onChange={(e) => setTiming(e.target.value as typeof timing)} className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal">
-                        <option value="">Choose</option>
-                        <option value="season">This season</option>
-                        <option value="year">This year</option>
-                        <option value="undecided">Not decided</option>
-                      </select>
-                    </label>
-                    <label className="block text-[11px] tracking-[0.12em] uppercase">
-                      Budget, if you want to say
-                      <select value={budget} onChange={(e) => setBudget(e.target.value as typeof budget)} className="mt-1 h-12 w-full border border-[#1c1a17]/20 bg-white/70 px-3 text-base normal-case tracking-normal">
-                        <option value="">Not given</option>
-                        <option value="undisclosed">Prefer not to say</option>
-                        <option value="quoted">Ask for a quotation on this set</option>
-                      </select>
-                    </label>
-                  </div>
 
                   <label className="flex cursor-pointer items-start gap-3 border border-[#1c1a17]/15 p-4">
                     <input type="checkbox" checked={remoteFitting} onChange={(e) => setRemoteFitting(e.target.checked)} className="mt-1 size-5 accent-[#1c1a17]" />
                     <span>
-                      <span className="block font-serif text-2xl">Add a remote fitting consultation</span>
-                      <span className="mt-1 block text-sm leading-relaxed text-[#1c1a17]/70">Optional. The fitting is remote, and it is not held in person. This asks the house to include that conversation. It is not a measurement, it is not an appointment, and it has no listed price.</span>
-                    </span>
-                  </label>
-
-                  <label className="flex cursor-pointer items-start gap-3 border border-[#1c1a17]/15 p-4">
-                    <input type="checkbox" checked={privacyConsent} onChange={(e) => setPrivacyConsent(e.target.checked)} className="mt-1 size-5 accent-[#1c1a17]" />
-                    <span>
-                      <span className="block font-serif text-2xl">Photography and association</span>
-                      <span className="mt-1 block text-sm leading-relaxed text-[#1c1a17]/70">Required. The wearer controls visibility, photography, and public association with the house. Nothing is published without that consent.</span>
+                      <span className="block font-serif text-2xl">Ask about fit</span>
+                      <span className="mt-1 block text-sm leading-relaxed text-[#1c1a17]/70">Optional. Include a fit note with this enquiry. It does not confirm that a size or adjustment is available.</span>
                     </span>
                   </label>
 
                   {error && <p className="text-sm">{error}</p>}
                   <button type="submit" disabled={busy} className="inline-flex h-12 w-full items-center justify-center bg-[#1c1a17] px-6 text-[11px] tracking-[0.18em] text-[#f6f4ef] uppercase disabled:opacity-60 sm:w-auto">
-                    {busy ? "Sending" : "Send the introduction"}
+                    {busy ? "Sending…" : "Send enquiry"}
                   </button>
                 </>
               )}
@@ -612,16 +579,7 @@ export function PrivateHouse() {
               </ul>
               <div className="mt-6 space-y-3 border-t border-[#1c1a17]/10 pt-4 text-[13px] leading-relaxed text-[#1c1a17]/70">
                 <p>
-                  <span className="font-medium text-[#1c1a17]">No payment here.</span> This introduction is not a checkout and not a reservation of a founding pair.
-                </p>
-                <p>
-                  <span className="font-medium text-[#1c1a17]">Before cutting.</span> Looks, cloth, prices, and dates are agreed in writing. You may withdraw the request until that agreement.
-                </p>
-                <p>
-                  <span className="font-medium text-[#1c1a17]">Corrections.</span> Once a scoped order is agreed, fit and make corrections stay with the house. Dates that move are written by a named person.
-                </p>
-                <p>
-                  <span className="font-medium text-[#1c1a17]">First scope.</span> One look or a small capsule comes before any annual plan. Seasonal from $6,500 and annual from $20,000 are planning targets only — not a choice on this form.
+                  <span className="font-medium text-[#1c1a17]">No payment is taken with this enquiry.</span> We will confirm materials, price and delivery before you order.
                 </p>
               </div>
             </aside>

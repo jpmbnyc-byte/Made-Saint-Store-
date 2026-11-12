@@ -1,0 +1,75 @@
+{
+  "purpose": "Observed values for reconciliation; not approved supplier specifications or a deployable catalogue",
+  "observed_date": "2026-11-12",
+  "items": [
+    {
+      "series": "1101",
+      "observed_price_usd": 550,
+      "observed_colors": [
+        "Butter",
+        "Teal",
+        "Navy",
+        "Bronze",
+        "Blush",
+        "Onyx"
+      ],
+      "observed_size_statement": "US men’s 7–12",
+      "approved_factory_model": null,
+      "approved_materials": null,
+      "approved_delivery": null,
+      "paid_release_ready": false
+    },
+    {
+      "series": "1213",
+      "observed_price_usd": 550,
+      "observed_colors": [
+        "Espresso",
+        "Olive",
+        "Mineral Blue",
+        "Midnight",
+        "Chestnut",
+        "Sacred Light",
+        "Graphite"
+      ],
+      "observed_size_statement": "US men’s 7–12",
+      "approved_factory_model": null,
+      "approved_materials": null,
+      "approved_delivery": null,
+      "paid_release_ready": false
+    },
+    {
+      "series": "0929",
+      "observed_price_usd": 490,
+      "observed_colors": [
+        "Navy / Ivory",
+        "Navy / Sand",
+        "Washed / Indigo"
+      ],
+      "observed_size_statement": "US men’s 7–12",
+      "approved_factory_model": null,
+      "approved_materials": null,
+      "approved_delivery": null,
+      "paid_release_ready": false
+    },
+    {
+      "sku": "R067",
+      "name": "Denim-trim duffel",
+      "observed_price_usd": 590,
+      "observed_colors": [
+        "Butter yellow",
+        "Peach",
+        "Pale green"
+      ],
+      "observed_invalid_size_options": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "verified_dimensions_cm": null,
+      "approved_materials": null,
+      "approved_supplier": null,
+      "paid_release_ready": false
+    }
+  ]
+}

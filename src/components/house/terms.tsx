@@ -5,7 +5,7 @@ const TENSIONS = [
   {
     n: "01",
     title: "A picture is not a pair",
-    body: "Every runner is live and made to order. Ready in 4 to 6 weeks.",
+    body: "Delivery is confirmed with your quotation.",
   },
   {
     n: "02",
@@ -20,7 +20,7 @@ const TENSIONS = [
 ] as const;
 
 const FOR = [
-  "You can wait 4 to 6 weeks for a 0929 pair made for you.",
+  "You can enquire about a pair and confirm delivery with your quotation.",
   "You want the published price, the same on the first day and the last.",
   "You are dressing a day. The clothes around the pair are commissioned.",
 ] as const;

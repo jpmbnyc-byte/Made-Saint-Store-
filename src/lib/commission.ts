@@ -9,12 +9,12 @@ export type CommissionScope = (typeof COMMISSION_SCOPES)[number];
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const FIT_KEYS = Object.keys(EMPTY_FIT) as (keyof FitInput)[];
 
-/** Who is writing. Wearer approves style; stylist may shortlist; payer approves spend; assistant manages logistics. */
+/** Optional. “Myself” / “Someone else” map onto the stored role values. */
 export const INTRODUCTION_ROLES = ["", "wearer", "stylist", "payer", "assistant"] as const;
 
 function normalizeRole(role: string) {
   if (role === "athlete" || role === "myself") return "wearer";
-  if (role === "representative" || role === "client") return "stylist";
+  if (role === "someone-else" || role === "someone_else" || role === "representative" || role === "client") return "stylist";
   return role;
 }
 export const INTRODUCTION_TIMINGS = ["", "season", "year", "undecided"] as const;
@@ -70,20 +70,17 @@ export function parseCommission(raw: unknown): { ok: true; value: CommissionDraf
   if (!EMAIL.test(email)) return { ok: false, error: "Enter a valid email address." };
   if (!COMMISSION_SCOPES.includes(scope as CommissionScope)) return { ok: false, error: "Choose what you are commissioning." };
   if (!INTRODUCTION_ROLES.includes(role as (typeof INTRODUCTION_ROLES)[number])) {
-    return { ok: false, error: "Say whether you are the wearer, a stylist, a payer, or an assistant." };
+    return { ok: false, error: "Choose who you are ordering for." };
   }
-  if (!INTRODUCTION_TIMINGS.includes(timing as (typeof INTRODUCTION_TIMINGS)[number])) return { ok: false, error: "Say when you need the wardrobe." };
+  if (!INTRODUCTION_TIMINGS.includes(timing as (typeof INTRODUCTION_TIMINGS)[number])) return { ok: false, error: "That timing is not recognised." };
   if (!INTRODUCTION_BUDGETS.includes(budget as (typeof INTRODUCTION_BUDGETS)[number])) return { ok: false, error: "That budget range is not one the house uses." };
   if (lookId && !lookById(lookId)) return { ok: false, error: "That look is not in the house." };
   if (lineRef && !lineByRef(lineRef)) return { ok: false, error: "That style is not on the line." };
   for (const id of pieceIds) {
-    if (!pieceById(id)) return { ok: false, error: "That piece is not in the register." };
+    if (!pieceById(id)) return { ok: false, error: "That piece is not available." };
   }
   if (pieceIds.length === 0 && !lineRef && !note && !settings) {
     return { ok: false, error: "Name what you want made, the days you dress for, or add a note." };
-  }
-  if (!privacyConsent) {
-    return { ok: false, error: "Confirm that photography and public association stay under the wearer's control." };
   }
 
   const fit = { ...EMPTY_FIT };

@@ -194,13 +194,13 @@ export function EditorialHero() {
     <>
     <CampaignBanner
       src="/world/milot.webp"
-      alt="Cast 003 standing in the ruins at Milot, a campaign study of Sans-Souci"
-      kicker="Milot · campaign study"
-      title="You are what you become."
-      body="The group in the ruins of Sans-Souci. A campaign study of the north, not a location shoot and not a house there."
+      alt="Campaign visualization — Cast 003 in the ruins at Milot, Campaign 001"
+      kicker="MADE SAiNT"
+      title="Once sinner. Made Saint."
+      body="Campaign visualization. Explore the 1101, or open the collection."
       chips={MILOT_CHIPS}
-      primary={{ href: "/line/lookbook", label: "Shop the looks" }}
-      secondary={{ href: "/shop#1101", label: "Shop 1101" }}
+      primary={{ href: "/shop#1101", label: "Explore 1101" }}
+      secondary={{ href: "/line", label: "View the collection" }}
       priority
       tall
       heading="h1"
@@ -313,7 +313,7 @@ export function EditorialHero() {
           </h2>
 
           <p className="ms-lede ms-hero-text-rise mt-4 max-w-sm" style={{ animationDelay: "320ms" }}>
-            The collection, worn. Open a look to shop the mapped pieces. Garments are made through an enquiry.
+            The collection, worn. Open a look to view the pieces. Garments are made through an enquiry.
           </p>
 
           {lookPrice && (

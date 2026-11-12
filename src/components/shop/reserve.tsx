@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Loader2, Lock } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { offerLine, productById } from "@/lib/business";
+import { copy } from "@/lib/copy";
 
 export function ReserveForm({
   productId,
@@ -28,7 +29,7 @@ export function ReserveForm({
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!size) return setError("Choose a size.");
+    if (!size) return setError("Choose a preferred size.");
     setBusy(true);
     setError(null);
     try {
@@ -42,7 +43,7 @@ export function ReserveForm({
       try {
         json = JSON.parse(text) as typeof json;
       } catch {
-        throw new Error("Reservations are temporarily unavailable. Write to us and we will hold your size.");
+        throw new Error("Enquiries are temporarily unavailable. Please try again.");
       }
       if (!res.ok) throw new Error(json.error ?? "Something went wrong.");
       if (json.mode === "stripe" && json.redirect) window.location.href = json.redirect;
@@ -56,7 +57,7 @@ export function ReserveForm({
   return (
     <form onSubmit={submit} className="space-y-6">
       <fieldset>
-        <legend className="text-[11px] tracking-[0.16em] uppercase">Size · US men&apos;s</legend>
+        <legend className="text-[11px] tracking-[0.16em] uppercase">{copy.runnerProduct.sizeLabel} · US men&apos;s</legend>
         <div className="mt-3 grid grid-cols-4 gap-1.5 min-[380px]:grid-cols-6">
           {sizes.map((s) => (
             <button
@@ -72,16 +73,18 @@ export function ReserveForm({
             </button>
           ))}
         </div>
-        <p className="mt-2 text-[12px] text-[#1c1a17]/55">Between sizes, take the half size up.</p>
+        <p className="mt-2 text-[12px] text-[#1c1a17]/55">
+          {copy.runnerProduct.sizeHelpAction} Include your usual size and sizing system in a note if needed.
+        </p>
       </fieldset>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-1.5">
-          <Label htmlFor="name" className="text-[11px] tracking-[0.16em] uppercase">Name</Label>
+          <Label htmlFor="name" className="text-[11px] tracking-[0.16em] uppercase">{copy.enquiry.nameLabel}</Label>
           <Input id="name" value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" className="h-11 rounded-none border-[#1c1a17]/20 bg-white/60" />
         </div>
         <div className="space-y-1.5">
-          <Label htmlFor="email" className="text-[11px] tracking-[0.16em] uppercase">Email</Label>
+          <Label htmlFor="email" className="text-[11px] tracking-[0.16em] uppercase">{copy.enquiry.emailLabel}</Label>
           <Input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" className="h-11 rounded-none border-[#1c1a17]/20 bg-white/60" />
         </div>
       </div>
@@ -89,20 +92,11 @@ export function ReserveForm({
       {error && <p className="text-[13px] text-[#9a2a1f]">{error}</p>}
 
       <div className="border border-[#1c1a17]/15 px-4 py-3 text-sm leading-relaxed text-[#1c1a17]/75">
-        {payments === "stripe" ? (
-          <>
-            <p className="text-[11px] tracking-[0.14em] text-[#1c1a17] uppercase">Paid reservation · Stripe</p>
-            <p className="mt-2">
-              Checkout charges the listed price of ${priceUsd}. Payment confirms the reservation. You may withdraw before the pair is started; paid checkout follows the terms shown there.
-            </p>
-          </>
-        ) : (
-          <>
-            <p className="text-[11px] tracking-[0.14em] text-[#1c1a17] uppercase">Unpaid request · not a charge</p>
-            <p className="mt-2">
-              No card is taken today. This records your name, size, and email as a request at the listed price of ${priceUsd}. It is not a paid reservation and not a Private Wardrobe introduction.
-            </p>
-          </>
+        <p className="text-[11px] tracking-[0.14em] text-[#1c1a17] uppercase">Enquiry</p>
+        <p className="mt-2">{copy.runnerProduct.body}</p>
+        <p className="mt-2">{copy.enquiry.noPayment}</p>
+        {payments === "stripe" && (
+          <p className="mt-2">Listed reference ${priceUsd}. Checkout, when offered, follows the terms shown there.</p>
         )}
       </div>
 
@@ -111,13 +105,11 @@ export function ReserveForm({
         disabled={busy}
         className="flex h-14 w-full items-center justify-center gap-3 bg-[#1c1a17] text-[11px] tracking-[0.2em] text-[#f6f4ef] uppercase transition hover:bg-[#1c1a17]/85 disabled:opacity-60"
       >
-        {busy ? <Loader2 className="size-4 animate-spin" /> : payments === "stripe" ? <Lock className="size-3.5" /> : null}
-        {payments === "stripe" ? `Pay to reserve · $${priceUsd}` : `Request this pair · unpaid`}
+        {busy ? <Loader2 className="size-4 animate-spin" /> : null}
+        {busy ? copy.enquiry.submitting : copy.runnerProduct.primaryAction}
       </button>
       <p className="text-center text-sm leading-relaxed text-[#1c1a17]/70">
-        {payments === "stripe"
-          ? `Secure checkout by Stripe. ${offerLine(productById(productId)?.series ?? "0929")}`
-          : `Checkout is not connected on this page. ${offerLine(productById(productId)?.series ?? "0929")}`}
+        {offerLine(productById(productId)?.series ?? "0929")}
       </p>
     </form>
   );

@@ -27,11 +27,11 @@ export const metadata: Metadata = {
     template: "%s · MADE SAiNT",
   },
   description:
-    "Once sinner. Made Saint. The 1101 leads. The house is set in Cap-Haïtien and the north of Haiti.",
+    "Explore MADE SAiNT footwear, clothing and accessories. Discover the 1101 runner and enquire about a private wardrobe.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "MADE SAiNT",
-    description: "Once sinner. Made Saint. The 1101 leads.",
+    description: "Once sinner. Made Saint. Explore the 1101 and enquire about a private wardrobe.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "MADE SAiNT" }],
   },
   twitter: {

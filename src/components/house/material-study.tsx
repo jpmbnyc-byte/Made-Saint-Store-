@@ -48,7 +48,7 @@ export function MaterialStudy() {
             will tell you first.
           </h2>
           <p className="ms-lede mt-5">
-            Underlit frames and tight crops. Woven calf, bouclé suede, perforated mesh, and nub-lug rubber — each panel is chosen for feel, then tested in the photograph.
+            Close frames of woven calf, bouclé suede, perforated mesh, and nub-lug rubber. Design previews until a physical sample is confirmed.
           </p>
         </div>
 
@@ -84,8 +84,8 @@ export function MaterialStudy() {
           <p className="max-w-xl text-[12px] leading-relaxed text-[#1c1a17]/45">
             Leather studies can be requested. A price is not listed, and a ship date is not promised. The priced colorways are Navy / Ivory, Navy / Sand, and Washed / Indigo.
           </p>
-          <Link href="/#house-eye" className="ms-link text-[#1c1a17]">
-            The house eye
+          <Link href="/shop#1101" className="ms-link text-[#1c1a17]">
+            Enquire about 1101
           </Link>
         </div>
       </div>

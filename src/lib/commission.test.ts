@@ -72,9 +72,9 @@ test("an introduction can name the person and the days without choosing a packag
   assert.equal(legacy.value.role, "wearer");
 });
 
-test("privacy consent is required", () => {
-  assert.equal(parseCommission({ ...base, privacyConsent: false }).ok, false);
-  assert.equal(parseCommission({ ...base, privacyConsent: undefined }).ok, false);
+test("photography consent is optional for an enquiry", () => {
+  assert.equal(parseCommission({ ...base, privacyConsent: false }).ok, true);
+  assert.equal(parseCommission({ ...base, privacyConsent: undefined }).ok, true);
 });
 
 test("a line style can be commissioned without a wardrobe piece", () => {

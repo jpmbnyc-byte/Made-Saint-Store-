@@ -2,25 +2,21 @@ import type { Metadata } from "next";
 import { ShopFooter } from "@/components/shop/chrome";
 import { Mast } from "@/components/house/mast";
 import { EditorialHero } from "@/components/house/editorial-hero";
-import { PlaceChapter } from "@/components/house/place-chapter";
-import { PeopleChapter } from "@/components/house/people-chapter";
-import { CourtyardChapter } from "@/components/house/courtyard-chapter";
-import { RunnerChapter } from "@/components/house/runner-chapter";
 import { Range1213 } from "@/components/house/range-1213";
+import { PairEnquiry } from "@/components/house/pair-enquiry";
 import { WardrobeChapter } from "@/components/house/wardrobe-chapter";
 import { HouseLooks } from "@/components/house/examples";
-import { MaterialStudy } from "@/components/house/material-study";
-import { HouseEye } from "@/components/house/house-eye";
 import { TheHouse } from "@/components/house/the-house";
 import { ClosingCta } from "@/components/house/closing-cta";
-import { OrderRule } from "@/components/shop/order-rule";
+import { Campaign002 } from "@/components/house/campaign-002";
+import { copy } from "@/lib/copy";
 
 export const metadata: Metadata = {
-  title: { absolute: "MADE SAiNT" },
-  description: "Once sinner. Made Saint. The house is set in Cap-Haïtien and the north of Haiti. The 1101 leads.",
+  title: { absolute: copy.seo.home.title },
+  description: copy.seo.home.description,
   openGraph: {
-    title: "MADE SAiNT",
-    description: "Once sinner. Made Saint. The house is set in Cap-Haïtien and the north of Haiti.",
+    title: copy.seo.home.title,
+    description: copy.seo.home.description,
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "MADE SAiNT" }],
   },
   twitter: {
@@ -37,43 +33,22 @@ export default function Home() {
       {/* 01 — Campaign */}
       <EditorialHero />
 
-      {/* 02 — The place */}
-      <PlaceChapter />
-
-      {/* 03 — 1101 leads, then the seven 1213 colorways */}
+      {/* 02 — 1101 and colourways */}
       <Range1213 />
 
-      {/* 04 — Private Wardrobe beside the runners, not buried below */}
-      <WardrobeChapter />
-
-      {/* 05 — The people */}
-      <PeopleChapter />
-
-      {/* 05b — Courtyard arcade looks */}
-      <CourtyardChapter />
-
-      {/* 06 — 0929 runner, the only series with a confirmed make time */}
-      <RunnerChapter />
-
-      <section className="border-t border-[#1c1a17]/10 bg-[#f5f0e8]">
-        <div className="mx-auto max-w-[1100px] px-5 py-10 md:px-8 md:py-14">
-          <p className="ms-kicker mb-5">
-            The 0929 · how a pair is made
-          </p>
-          <OrderRule />
-        </div>
-      </section>
-
-      {/* 07 — Styled looks */}
+      {/* 03 — Curated looks */}
       <HouseLooks />
 
-      {/* Material in close-up — underlit construction crops */}
-      <MaterialStudy />
+      {/* 04 — Pair enquiry */}
+      <PairEnquiry />
 
-      {/* Sitewide photographic doctrine */}
-      <HouseEye />
+      {/* 05 — Campaign 002 (gated; returns null until imagery approved) */}
+      <Campaign002 />
 
-      {/* 06 — The House / brand statement */}
+      {/* 06 — Private Wardrobe */}
+      <WardrobeChapter />
+
+      {/* 07 — The House */}
       <TheHouse />
 
       {/* Closing choice */}

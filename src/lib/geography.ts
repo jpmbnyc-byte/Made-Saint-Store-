@@ -1,11 +1,8 @@
 /**
- * Geography and Campaign 002 editorial plates.
+ * Geography and Campaign 002 look register.
  *
- * Two different São Roques:
- * - São Roque, São Miguel, Azores — campaign setting (atmosphere behind looks)
- * - São Roque, Oliveira de Azeméis — prospective mainland workshop (not editorial)
- *
- * Location references are backgrounds for outfits only — never standalone travel frames.
+ * São Roque, São Miguel, Azores — campaign setting (named once; not a travel gallery)
+ * São Roque, Oliveira de Azeméis — prospective mainland workshop
  */
 
 export type LookPlate = {
@@ -15,10 +12,6 @@ export type LookPlate = {
   lookName: string;
   pieces: string;
   href: string;
-  /** Quiet setting atmosphere behind the look — not a travel photo. */
-  settingSrc?: string;
-  settingAlt?: string;
-  settingCredit?: string;
 };
 
 export const CAMPAIGN_001 = {
@@ -36,7 +29,7 @@ export const CAMPAIGN_002 = {
   title: "Once sinner. Made Saint.",
   locationLabel: "São Roque, São Miguel, Azores",
   placeDetail: "São Roque, Ponta Delgada — coastal parish on São Miguel",
-  body: "The collection worn in Atlantic light — looks first, place as atmosphere.",
+  body: "The collection, worn.",
   published: true,
 } as const;
 
@@ -50,10 +43,7 @@ export const WORKSHOP_CHAPTER = {
   notEditorial: true,
 } as const;
 
-/**
- * Fashion plates for Campaign 002.
- * Each plate is a complete look. Optional settingSrc is atmosphere only.
- */
+/** Clothing look register — full looks only, no location composite plates. */
 export const AZORES_LOOKS: LookPlate[] = [
   {
     id: "malik-coast",
@@ -62,9 +52,6 @@ export const AZORES_LOOKS: LookPlate[] = [
     lookName: "Malik",
     pieces: "Mauve overshirt · yellow sling",
     href: "/line/lookbook",
-    settingSrc: "/world/azores/praia-sao-roque.webp",
-    settingAlt: "",
-    settingCredit: "Setting: Praia de São Roque · Mariana Fernandes · CC BY-SA 4.0",
   },
   {
     id: "camel",
@@ -73,9 +60,6 @@ export const AZORES_LOOKS: LookPlate[] = [
     lookName: "Solène",
     pieces: "Camel zip set · 1101 Bronze",
     href: "/line/looks/camel",
-    settingSrc: "/world/azores/igreja-sao-roque.webp",
-    settingAlt: "",
-    settingCredit: "Setting: Igreja de São Roque · Kritzolina · CC BY-SA 4.0",
   },
   {
     id: "forerunner",
@@ -84,9 +68,6 @@ export const AZORES_LOOKS: LookPlate[] = [
     lookName: "Inès",
     pieces: "Saint John jacket",
     href: "/line/looks/forerunner",
-    settingSrc: "/world/azores/fenais-coast.webp",
-    settingAlt: "",
-    settingCredit: "Setting: Fenais da Luz · Jules Verne Times Two · CC BY-SA 4.0",
   },
   {
     id: "sage",
@@ -104,14 +85,31 @@ export const AZORES_LOOKS: LookPlate[] = [
     pieces: "Printed jersey · navy parachute · 1101 Navy",
     href: "/line/looks/parachute",
   },
+  {
+    id: "solene",
+    lookSrc: "/collection/solene.webp",
+    lookAlt: "Solène in the printed jersey over a white shirt, navy tie, and black trousers",
+    lookName: "Solène",
+    pieces: "Printed jersey",
+    href: "/line/looks/solene",
+  },
+  {
+    id: "olive",
+    lookSrc: "/collection/olive.webp",
+    lookAlt: "Lucien in an olive zip set and olive mules",
+    lookName: "Lucien",
+    pieces: "Olive zip set · mule",
+    href: "/line/looks/olive",
+  },
+  {
+    id: "rust",
+    lookSrc: "/collection/rust.webp",
+    lookAlt: "Inès in a rust cord zip jacket and matching trousers with blush 1101 runners",
+    lookName: "Inès",
+    pieces: "Rust cord set · 1101 Blush",
+    href: "/line/looks/rust",
+  },
 ];
-
-export const AZORES_DETAIL = {
-  src: "/runners/navy-ivory-detail.webp",
-  alt: "Navy and ivory runner — wave panel and sole edge",
-  title: "0929 Navy / Ivory",
-  href: "/shop#0929",
-} as const;
 
 export function campaign002Ready() {
   return CAMPAIGN_002.published;

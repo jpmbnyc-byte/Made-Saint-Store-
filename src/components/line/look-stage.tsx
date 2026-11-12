@@ -61,8 +61,8 @@ export function LookStage({ slug }: { slug: string }) {
   return (
     <div ref={root} role="dialog" aria-modal="true" aria-label={`Look ${look.number}`} className="fixed inset-0 z-50 overflow-y-auto bg-[#f5f0e8] text-[#1c1a17]">
       <div className="flex min-h-full flex-col md:grid md:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]">
-        <div className="bg-[#f3f3f1] md:sticky md:top-0 md:h-screen">
-          <img src={image} alt={frame?.alt ?? look.alt} className="h-[70vh] w-full object-contain md:h-screen" />
+        <div className="bg-[#efefed] md:sticky md:top-0 md:h-screen">
+          <img src={image} alt={frame?.alt ?? look.alt} className="h-[70vh] w-full object-cover object-top md:h-screen md:object-contain" />
         </div>
         <div className="flex flex-col px-5 py-6 md:px-8 md:py-8">
           <div className="flex items-center justify-between gap-3">

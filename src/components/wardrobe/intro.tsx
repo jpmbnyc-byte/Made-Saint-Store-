@@ -51,18 +51,15 @@ export function WardrobeIntro() {
           </p>
         </div>
 
-        <figure className="ms-resin relative aspect-[4/5] overflow-hidden bg-[#2a3030] md:aspect-[5/6]">
+        <figure className="relative aspect-[4/5] overflow-hidden bg-[#efefed] md:aspect-[5/6]">
           <Image
             src="/line/f35.webp"
             alt="Malik in a navy zip jacket, white layer, and matching trouser — a wardrobe starting set"
             fill
             priority
             sizes="(min-width: 768px) 40vw, 90vw"
-            className="object-contain"
+            className="object-cover object-top"
           />
-          <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1a2232]/90 to-transparent px-4 pb-4 pt-16 text-[12px] leading-relaxed text-[#f5f0e8]/70">
-            Design preview. A starting look for the enquiry.
-          </figcaption>
         </figure>
       </div>
 

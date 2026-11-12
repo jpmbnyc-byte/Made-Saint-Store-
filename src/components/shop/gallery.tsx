@@ -3,82 +3,66 @@
 import { useMemo, useState } from "react";
 import type { CatalogView } from "@/lib/catalog";
 
-function rank(view: CatalogView) {
-  if (view.id === "detail") return 0;
-  if (view.id === "study") return 1;
-  if (view.id === "threequarter") return 2;
-  if (view.id === "reverse") return 3;
-  if (view.id === "hero") return 4;
-  return 5;
-}
-
+/**
+ * ISAIA-style sneaker media: light ground, full product reads, no dark player well,
+ * no underlit crops, no overlay captions.
+ */
 export function ProductGallery({ views }: { views: CatalogView[] }) {
   const ordered = useMemo(() => {
-    const next = [...views];
-    next.sort((a, b) => rank(a) - rank(b));
-    // Keep a full product/overhead near the front when present, after the first detail.
-    const product = next.find((view) => view.id === "product");
-    if (product && next[0]?.id === "detail") {
-      const without = next.filter((view) => view !== product);
-      without.splice(1, 0, product);
-      return without;
-    }
-    return next;
+    const preferred = ["hero", "product", "threequarter", "reverse", "detail", "study"];
+    return [...views].sort((a, b) => {
+      const ai = preferred.indexOf(a.id);
+      const bi = preferred.indexOf(b.id);
+      return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+    });
   }, [views]);
 
   const [active, setActive] = useState(0);
   const current = ordered[active] ?? ordered[0];
-  const isDetail = current?.id === "detail" || current?.id === "study";
+  if (!current) return null;
 
   return (
     <div className="min-w-0">
-      <div className="ms-gallery-well lg:hidden">
-        <div className={`relative ${isDetail ? "ms-underlit" : ""}`}>
+      {/* Mobile: one large frame + quiet thumbs */}
+      <div className="lg:hidden">
+        <div className="bg-[#f3f3f1]">
           <img
             src={current.src}
             alt={current.alt}
-            className={`aspect-[2/3] w-full object-contain ${isDetail ? "ms-detail-crop scale-[1.18] object-center" : ""}`}
+            className="aspect-[4/5] w-full object-contain object-center p-6"
           />
-          <p className="absolute bottom-3 left-3 z-[3] text-[10px] tracking-[0.16em] text-[#f5f0e8]/70 uppercase">
-            {current.label}
-            {isDetail ? " · crop" : ""}
-          </p>
         </div>
         {ordered.length > 1 && (
-          <div className="flex min-w-0 gap-2 overflow-x-auto px-4 py-3">
-            {ordered.map((v, i) => (
+          <div className="mt-3 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {ordered.map((view, index) => (
               <button
-                key={`${v.src}-${v.label}`}
+                key={`${view.src}-${view.label}`}
                 type="button"
-                onClick={() => setActive(i)}
-                aria-label={v.label}
-                aria-current={i === active}
-                className={`h-16 w-14 shrink-0 bg-[#12151c] ${i === active ? "ring-1 ring-[#f5f0e8]" : "opacity-70"}`}
+                onClick={() => setActive(index)}
+                aria-label={view.label}
+                aria-current={index === active}
+                className={`h-[72px] w-[58px] shrink-0 bg-[#f3f3f1] ${
+                  index === active ? "ring-1 ring-[#1c1a17]" : "opacity-60 hover:opacity-100"
+                }`}
               >
-                <img src={v.src} alt="" className="h-full w-full object-contain" />
+                <img src={view.src} alt="" className="h-full w-full object-contain p-1" />
               </button>
             ))}
           </div>
         )}
       </div>
 
-      <div className="hidden flex-col gap-3 lg:flex">
-        {ordered.map((v) => {
-          const detail = v.id === "detail" || v.id === "study";
-          return (
-            <figure key={`${v.src}-${v.label}`} className={`ms-gallery-well relative ${detail ? "ms-underlit" : ""}`}>
-              <img
-                src={v.src}
-                alt={v.alt}
-                className={`mx-auto max-h-[920px] w-full object-contain ${detail ? "ms-detail-crop scale-[1.12] object-center py-8" : ""}`}
-              />
-              <figcaption className="absolute bottom-3 left-3 z-[3] text-[10px] tracking-[0.16em] text-[#f5f0e8]/65 uppercase">
-                {v.label}
-                {detail ? " · detail" : ""}
-              </figcaption>
-            </figure>
-          );
-        })}
+      {/* Desktop: stacked clean frames — scroll the product, not a media player */}
+      <div className="hidden flex-col gap-2 lg:flex">
+        {ordered.map((view) => (
+          <figure key={`${view.src}-${view.label}`} className="bg-[#f3f3f1]">
+            <img
+              src={view.src}
+              alt={view.alt}
+              className="mx-auto max-h-[880px] w-full object-contain object-center p-8 xl:p-12"
+            />
+          </figure>
+        ))}
       </div>
     </div>
   );

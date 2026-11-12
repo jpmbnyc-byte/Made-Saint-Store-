@@ -3,9 +3,7 @@ import { ShopFooter } from "@/components/shop/chrome";
 import { Mast } from "@/components/house/mast";
 import { EditorialHero } from "@/components/house/editorial-hero";
 import { Range1213 } from "@/components/house/range-1213";
-import { PairEnquiry } from "@/components/house/pair-enquiry";
 import { WardrobeChapter } from "@/components/house/wardrobe-chapter";
-import { HouseLooks } from "@/components/house/examples";
 import { TheHouse } from "@/components/house/the-house";
 import { ClosingCta } from "@/components/house/closing-cta";
 import { Campaign002 } from "@/components/house/campaign-002";
@@ -25,35 +23,21 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Home sequence after audit:
+ * campaign → footwear → clothing look register → wardrobe → house → enquire.
+ * Removed: lookbook player, Azores composite plates, duplicate pair-enquiry block.
+ */
 export default function Home() {
   return (
-    <div className="bg-[#f5f0e8] text-[#1c1a17]">
+    <div className="bg-[#f7f7f5] text-[#1c1a17]">
       <Mast />
-
-      {/* 01 — Campaign */}
       <EditorialHero />
-
-      {/* 02 — 1101 and colourways */}
       <Range1213 />
-
-      {/* 03 — Curated looks */}
-      <HouseLooks />
-
-      {/* 04 — Azores world: landscape → person → look → detail → maker → fitting */}
       <Campaign002 />
-
-      {/* 05 — Pair enquiry */}
-      <PairEnquiry />
-
-      {/* 06 — Private Wardrobe */}
       <WardrobeChapter />
-
-      {/* 07 — The House */}
       <TheHouse />
-
-      {/* Closing choice */}
       <ClosingCta />
-
       <ShopFooter />
     </div>
   );

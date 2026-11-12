@@ -31,7 +31,7 @@ export function Range1213() {
       <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
         <SeriesPlate series="1101" size="md" />
         <p className="ms-lede mt-4 max-w-xl">
-          The 1101 runner. Brown Mesh, Teal, Navy, Bronze, Blush and Onyx.
+          The 1101 runner. Brown Mesh, Teal, Navy, Blush and Onyx.
         </p>
         <Rail ids={lead} />
         <div className="mt-12 border-t border-[#1c1a17]/10 pt-12">

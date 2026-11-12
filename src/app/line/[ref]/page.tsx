@@ -94,7 +94,12 @@ export default async function LineProductPage({ params }: { params: Promise<{ re
             )}
             {product.ref === "N014" && (
               <p className="mt-6 text-sm leading-relaxed text-[#111]/70">
-                The frames show the neck worn under another jacket.
+                The iconic frame is the Cast turtleneck worn as the outer knit. Earlier neck-only crops under another jacket remain studies.
+              </p>
+            )}
+            {product.ref === "R046" && (
+              <p className="mt-6 text-sm leading-relaxed text-[#111]/70">
+                Product views from the MS-TM01 tech pack — powder blue fog grid and carbon. Concept illustrations are not measured CAD.
               </p>
             )}
             <ProductActions refId={product.ref} name={customerName(product)} color={customerColors(product)} />

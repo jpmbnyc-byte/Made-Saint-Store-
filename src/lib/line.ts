@@ -91,7 +91,7 @@ export const LINE: LineProduct[] = [
   { ref: "R026", name: "Washed varsity jacket", tier: "GRAIL", category: "Denim", colors: "Black and tonal", material: "Heavy washed denim body; composition TBC", retail: 1195, status: "proposed" },
   { ref: "R049", name: "Class Slipper", tier: "GRAIL", category: "Footwear", colors: "Black and graphite; other colors TBC", material: "Fine-nap suede upper and a cashmere lining are proposed. Neither is approved", retail: 1280, status: "proposed" },
   { ref: "N002", name: "Chevron Mohair-Cashmere Mock Neck", tier: "GRAIL", category: "Knitwear", colors: "Charcoal; cream; mauve", material: "Mohair-cashmere yarn, chevron knit; blend and gauge TBC", retail: 1395, status: "proposed" },
-  { ref: "N014", name: "Fine Cashmere Turtleneck", tier: "GRAIL", category: "Knitwear", colors: "Butter yellow; powder; graphite", material: "100% cashmere is the target. Yarn origin and grade are unverified", retail: 995, status: "proposed" },
+  { ref: "N014", name: "Fine Cashmere Turtleneck", tier: "GRAIL", category: "Knitwear", colors: "Navy; butter yellow; powder; graphite; petrol", material: "100% cashmere is the target. Yarn origin and grade are unverified", retail: 995, status: "proposed" },
   { ref: "R064", name: "Aperture Shirt", tier: "GRAIL", category: "Light studies", colors: "Light and color studies", material: "Cotton-silk poplin shirting direction. Cloth not selected", retail: 850, status: "proposed" },
   { ref: "R063", name: "Atmosphere Knit", tier: "GRAIL", category: "Light studies", colors: "Light and color studies", material: "Cashmere-silk fine-gauge knit direction. Cloth not selected", retail: 1350, status: "proposed" },
   { ref: "R062", name: "Ghirri Jacket", tier: "GRAIL", category: "Light studies", colors: "Light and color studies", material: "Linen-silk jacket cloth direction. Cloth not selected", retail: 1850, status: "proposed" },
@@ -123,6 +123,9 @@ export const FRAMES: Frame[] = [
   { n: 9, alt: "Washed denim jacket, Saint Gabriel back study", refs: [] },
   { n: 10, alt: "Washed denim jacket, front wordmark", refs: [] },
   { n: 11, alt: "Washed denim jacket, front", refs: [] },
+  { n: 66, alt: "City Leather Mule — espresso, product study", refs: ["N015"] },
+  { n: 67, alt: "City Leather Mule — black, product study", refs: ["N015"] },
+  { n: 68, alt: "City Leather Mule — stone, product study", refs: ["N015"] },
   { n: 12, alt: "Brown suede lace mule, pair", refs: ["N015"] },
   { n: 13, alt: "Brown suede lace mule, side", refs: ["N015"] },
   { n: 14, alt: "Brown suede lace mule, three-quarter", refs: ["N015"] },
@@ -171,7 +174,12 @@ export const FRAMES: Frame[] = [
   { n: 57, alt: "Black jacket, technical trouser, and a yellow crossbody, front", refs: [] },
   { n: 58, alt: "Mauve jacket and trouser with a yellow crossbody", refs: [] },
   { n: 59, alt: "Mauve jacket and trouser with a yellow crossbody, three-quarter", refs: [] },
-  { n: 60, alt: "MADE SAiNT Trail Mule technical pack, powder blue fog grid", refs: ["R046"] },
+  { n: 60, alt: "Trail Mule — powder blue fog grid, product pair", refs: ["R046"] },
+  { n: 61, alt: "Malik in a navy turtleneck with MADE SAiNT runners — iconic turtleneck frame", refs: ["N014"] },
+  { n: 62, alt: "Trail Mule — powder blue fog grid, alternate product pair", refs: ["R046"] },
+  { n: 63, alt: "Trail Mule — carbon grid, product views", refs: ["R046"] },
+  { n: 64, alt: "Mauve mohair turtleneck, product front", refs: ["N002"] },
+  { n: 65, alt: "Mauve mohair turtleneck, front back and details", refs: ["N002"] },
 ];
 
 export const frameSrc = (n: number) => `/line/f${String(n).padStart(2, "0")}.webp`;

@@ -91,9 +91,15 @@ test("editorial stills stay shoppable without inventing a tee sku", () => {
     assert.equal(still.href, "/wardrobe#introduction");
     assert.equal(still.cta, "Enquire");
   }
-  const mule = stills.find((still) => still.src.includes("trail-mule"));
+  const mule = stills.find((still) => still.src.includes("trail-powder-blue"));
   assert.equal(mule?.href, "/line/r046");
   assert.equal(mule?.price, "$450");
+  const city = stills.find((still) => still.src.includes("city-espresso"));
+  assert.equal(city?.href, "/line/n015");
+  assert.equal(city?.price, "$795");
+  const knit = stills.find((still) => still.src.includes("turtleneck-iconic"));
+  assert.equal(knit?.href, "/line/n014");
+  assert.equal(knit?.price, "$995");
   const grids = [...FEATURED, ...CAMPAIGN_BLOCKS].filter((block) => block.kind === "look");
   assert.equal(grids.some((block) => block.slug === "jersey"), false);
   assert.ok(grids.some((block) => block.slug === "malik"));

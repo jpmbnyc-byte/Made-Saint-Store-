@@ -16,6 +16,7 @@ export function ShopHeader({ status }: { status?: string }) {
           <nav aria-label="Primary navigation" className="flex min-w-0 items-center justify-between gap-1 overflow-x-auto text-[11px] tracking-[0.14em] text-[#1c1a17] uppercase [scrollbar-width:none] sm:justify-start sm:gap-2 [&::-webkit-scrollbar]:hidden">
             <Link href="/shop#1101" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">1101</Link>
             <Link href="/shop#1213" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">1213</Link>
+            <Link href="/shop#mules" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">Mules</Link>
             <Link href="/shop#0929" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">0929</Link>
             <Link href="/line" className="inline-flex h-11 shrink-0 items-center px-2 hover:opacity-70">
               <span className="sm:hidden">Line</span>
@@ -61,6 +62,7 @@ export function ShopFooter() {
           <p className="text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">Footwear</p>
           <Link href="/shop#1101" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">The 1101 runner</Link>
           <Link href="/shop#1213" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">The 1213 runner</Link>
+          <Link href="/shop#mules" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Trail &amp; City Mule</Link>
           <Link href="/shop#0929" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">The 0929 runners</Link>
           <Link href="/shop#faq" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Care &amp; questions</Link>
         </div>

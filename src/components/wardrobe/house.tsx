@@ -116,7 +116,8 @@ const STARTS = [
 const ROSE_SHEETS = [
   { src: "/wardrobe/blouson-rose-sheet.webp", alt: "Dusty rose zip blouson, front and back, a proposed sample sheet" },
   { src: "/wardrobe/trouser-rose-sheet.webp", alt: "Dusty rose tailored trouser, front and back, a proposed sample sheet" },
-  { src: "/wardrobe/turtleneck-teal-sheet.webp", alt: "Petrol teal turtleneck, front and back, with a red MADE Saint study at the neck" },
+  { src: "/knit/turtleneck-iconic.webp", alt: "Navy cashmere turtleneck — Cast iconic frame with MADE SAiNT runners" },
+  { src: "/knit/turtleneck-mauve.webp", alt: "Mauve mohair turtleneck, product front from the MS-K01 tech pack" },
 ] as const;
 
 export function PrivateHouse() {

@@ -4,7 +4,7 @@ import { PRODUCTS, SERIES_ORDER, SERIES_PLATE, productsIn } from "./business";
 
 test("the runner series keep the handoff colorways and the price order", () => {
   assert.deepEqual(SERIES_ORDER, ["1101", "1213", "0929"]);
-  assert.equal(productsIn("1101").length, 6);
+  assert.equal(productsIn("1101").length, 5);
   assert.equal(productsIn("1213").length, 7);
   assert.equal(productsIn("0929").length, 3);
   const names = productsIn("1213").map((product) => product.name.split("—").pop()?.trim());

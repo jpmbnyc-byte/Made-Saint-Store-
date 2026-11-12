@@ -38,6 +38,8 @@ export const SERIES_PLATE: Record<SeriesId, { src: string; alt: string }> = {
   "0929": { src: "/brand/name-0929.webp", alt: "MADE Saint 0929 v1" },
 };
 
+export type Construction = "mesh" | "leather";
+
 export type Product = {
   id: string;
   storyId?: string;
@@ -51,6 +53,19 @@ export type Product = {
   materials: string[];
   costUsd: number;
   notice?: string;
+  /** 1101 vintage set: open-mesh upper vs full leather upper. */
+  construction?: Construction;
+};
+
+export type BagProduct = {
+  id: string;
+  name: string;
+  line: string;
+  usd: number;
+  image: string;
+  construction: Construction;
+  materials: string[];
+  launch: boolean;
 };
 
 /** Bogner Cortina, leather and mesh, is $490. The 0929 is that kind of runner. */
@@ -73,17 +88,38 @@ const CONSTRUCTION_1101 = [
   "Low rear and a plain tongue back",
   "Brushed sole faces, piano-black rails, matte black traction rubber",
 ];
+const CONSTRUCTION_1101_MESH = [
+  "Open technical mesh panels",
+  "Vintage-wash overlays",
+  "Wavy midfoot cage",
+  "Chunky multi-layer sole",
+  "MADE SAiNT tongue and midsole mark",
+];
+const CONSTRUCTION_1101_LEATHER = [
+  "Full leather upper — no open mesh windows",
+  "Vintage-wash overlays",
+  "Wavy midfoot cage",
+  "Chunky multi-layer sole",
+  "MADE SAiNT tongue and midsole mark",
+];
+const PRICE_BAG = 1450;
 export const PRODUCTS: Product[] = [
   { id: "ms-runner-chalk-navy", storyId: "chalk-navy", series: "0929", name: "MADE SAiNT 0929 Runner — Navy / Ivory", line: "Ivory suede, navy mesh", usd: PRICE_MESH, image: "/runners/navy-ivory-overhead.webp", launch: true, materials: ["Ivory suede overlays", "Navy mesh", "Nub-lug rubber sole"], costUsd: 0 },
   { id: "ms-runner-navy-intrecciato", storyId: "navy-intrecciato", series: "0929", name: "MADE SAiNT 0929 Runner — Navy / Sand", line: "Navy overlays, sand mesh", usd: PRICE_MESH, image: "/runners/navy-sand-overhead.webp", launch: true, materials: ["Navy mesh and suede overlays", "Sand mesh windows", "Nub-lug rubber sole"], costUsd: 0 },
   { id: "ms-runner-washed-denim", storyId: "washed-denim", series: "0929", name: "MADE SAiNT 0929 Runner — Washed / Indigo", line: "Blue suede, navy mesh", usd: PRICE_MESH, image: "/runners/indigo-overhead.webp", launch: true, materials: ["Blue suede overlays", "Navy mesh", "Light blue laces", "Nub-lug rubber sole"], costUsd: 0 },
   { id: "ms-runner-espresso", storyId: "espresso-oxblood", series: "0929", name: "MADE SAiNT 0929 Runner — Espresso / Oxblood", line: "Espresso suede, oxblood lining", usd: PRICE_MESH, image: "/stories/espresso-oxblood.webp", launch: false, materials: ["Espresso suede", "Technical mesh", "Oxblood terry lining", "Nub-lug rubber sole"], costUsd: 0 },
-  { id: "ms-runner-1101-butter", series: "1101", name: "MADE SAiNT 1101 Runner — Brown Mesh", line: "Dark chocolate suede with tan open-mesh panels", usd: PRICE_1101, image: "/runners/1213/1101-butter-pair.webp", launch: true, materials: ["Dark chocolate suede", "Tan open-mesh panels", "Bronze midsole", "Cream-brown flecked laces", ...CONSTRUCTION_1101], costUsd: 0 },
-  { id: "ms-runner-1101-teal", series: "1101", name: "MADE SAiNT 1101 Runner — Teal", line: "Deep teal leather and ivory wave panels", usd: PRICE_1101, image: "/runners/1213/1101-teal-pair.webp", launch: true, materials: ["Deep teal leather", "Ivory wave panels", "Braided laces", ...CONSTRUCTION_1101], costUsd: 0 },
-  { id: "ms-runner-1101-navy", series: "1101", name: "MADE SAiNT 1101 Runner — Navy", line: "Navy leather and cream wave panels", usd: PRICE_1101, image: "/runners/1213/1101-navy-pair.webp", launch: true, materials: ["Navy leather", "Cream wave panels", "Braided laces", ...CONSTRUCTION_1101], costUsd: 0 },
+  { id: "ms-runner-1101-mesh-black", series: "1101", name: "MADE SAiNT 1101 Runner — Black Vintage Mesh", line: "Mesh · charcoal open mesh with vintage-wash overlays", usd: PRICE_1101, image: "/runners/1213/vintage/mesh-black-pair.webp", launch: true, construction: "mesh", materials: ["Charcoal open mesh", "Vintage-wash overlays", ...CONSTRUCTION_1101_MESH], costUsd: 0 },
+  { id: "ms-runner-1101-mesh-cocoa", series: "1101", name: "MADE SAiNT 1101 Runner — Cocoa Mesh", line: "Mesh · cocoa open mesh with warm vintage overlays", usd: PRICE_1101, image: "/runners/1213/vintage/mesh-cocoa-pair.webp", launch: true, construction: "mesh", materials: ["Cocoa open mesh", "Warm vintage overlays", ...CONSTRUCTION_1101_MESH], costUsd: 0 },
+  { id: "ms-runner-1101-mesh-stone", series: "1101", name: "MADE SAiNT 1101 Runner — Stone Mesh", line: "Mesh · stone open mesh with pale vintage overlays", usd: PRICE_1101, image: "/runners/1213/vintage/mesh-stone-pair.webp", launch: true, construction: "mesh", materials: ["Stone open mesh", "Pale vintage overlays", ...CONSTRUCTION_1101_MESH], costUsd: 0 },
+  { id: "ms-runner-1101-leather-espresso", series: "1101", name: "MADE SAiNT 1101 Runner — Espresso Leather", line: "Leather · full espresso upper, no open mesh windows", usd: PRICE_1101, image: "/runners/1213/vintage/leather-espresso-pair.webp", launch: true, construction: "leather", materials: ["Espresso leather upper", ...CONSTRUCTION_1101_LEATHER], costUsd: 0 },
+  { id: "ms-runner-1101-leather-navy", series: "1101", name: "MADE SAiNT 1101 Runner — Navy Leather", line: "Leather · full navy upper, no open mesh windows", usd: PRICE_1101, image: "/runners/1213/vintage/leather-navy-pair.webp", launch: true, construction: "leather", materials: ["Navy leather upper", ...CONSTRUCTION_1101_LEATHER], costUsd: 0 },
+  { id: "ms-runner-1101-leather-taupe", series: "1101", name: "MADE SAiNT 1101 Runner — Taupe Leather", line: "Leather · full taupe upper, no open mesh windows", usd: PRICE_1101, image: "/runners/1213/vintage/leather-taupe-pair.webp", launch: true, construction: "leather", materials: ["Taupe leather upper", ...CONSTRUCTION_1101_LEATHER], costUsd: 0 },
+  { id: "ms-runner-1101-butter", series: "1101", name: "MADE SAiNT 1101 Runner — Brown Mesh", line: "Dark chocolate suede with tan open-mesh panels", usd: PRICE_1101, image: "/runners/1213/1101-butter-pair.webp", launch: false, construction: "mesh", materials: ["Dark chocolate suede", "Tan open-mesh panels", "Bronze midsole", "Cream-brown flecked laces", ...CONSTRUCTION_1101], costUsd: 0 },
+  { id: "ms-runner-1101-teal", series: "1101", name: "MADE SAiNT 1101 Runner — Teal", line: "Deep teal leather and ivory wave panels", usd: PRICE_1101, image: "/runners/1213/1101-teal-pair.webp", launch: false, construction: "leather", materials: ["Deep teal leather", "Ivory wave panels", "Braided laces", ...CONSTRUCTION_1101], costUsd: 0 },
+  { id: "ms-runner-1101-navy", series: "1101", name: "MADE SAiNT 1101 Runner — Navy", line: "Navy leather and cream wave panels", usd: PRICE_1101, image: "/runners/1213/1101-navy-pair.webp", launch: false, construction: "leather", materials: ["Navy leather", "Cream wave panels", "Braided laces", ...CONSTRUCTION_1101], costUsd: 0 },
   { id: "ms-runner-1101-bronze", series: "1101", name: "MADE SAiNT 1101 Runner — Bronze", line: "Dark chocolate leather with bronze open-mesh panels", usd: PRICE_1101, image: "/runners/1213/1101-bronze-pair.webp", launch: false, materials: ["Dark chocolate leather", "Bronze open-mesh panels", "Cream laces", ...CONSTRUCTION_1101], costUsd: 0 },
-  { id: "ms-runner-1101-blush", series: "1101", name: "MADE SAiNT 1101 Runner — Blush", line: "Dark chocolate leather with blush open-mesh panels", usd: PRICE_1101, image: "/runners/1213/1101-blush-pair.webp", launch: true, materials: ["Dark chocolate leather", "Blush open-mesh panels", "Cream laces", ...CONSTRUCTION_1101], costUsd: 0 },
-  { id: "ms-runner-1101-onyx", series: "1101", name: "MADE SAiNT 1101 Runner — Onyx", line: "Onyx leather and gunmetal wave panels", usd: PRICE_1101, image: "/runners/1213/1101-onyx-pair.webp", launch: true, materials: ["Onyx leather", "Gunmetal wave panels", "Braided laces", ...CONSTRUCTION_1101], costUsd: 0 },
+  { id: "ms-runner-1101-blush", series: "1101", name: "MADE SAiNT 1101 Runner — Blush", line: "Dark chocolate leather with blush open-mesh panels", usd: PRICE_1101, image: "/runners/1213/1101-blush-pair.webp", launch: false, construction: "mesh", materials: ["Dark chocolate leather", "Blush open-mesh panels", "Cream laces", ...CONSTRUCTION_1101], costUsd: 0 },
+  { id: "ms-runner-1101-onyx", series: "1101", name: "MADE SAiNT 1101 Runner — Onyx", line: "Onyx leather and gunmetal wave panels", usd: PRICE_1101, image: "/runners/1213/1101-onyx-pair.webp", launch: false, construction: "leather", materials: ["Onyx leather", "Gunmetal wave panels", "Braided laces", ...CONSTRUCTION_1101], costUsd: 0 },
   { id: "ms-runner-1213-espresso", series: "1213", name: "MADE SAiNT 1213 Runner — Espresso", line: "Deep chocolate leather, taupe accents, and cream laces", usd: PRICE_SCULPTED, image: "/runners/1213/espresso.webp", launch: true, materials: ["Deep chocolate leather", "Taupe accents", "Cream laces", ...CONSTRUCTION_1101], costUsd: 0 },
   { id: "ms-runner-1213-olive", series: "1213", name: "MADE SAiNT 1213 Runner — Olive", line: "Olive leather, sage overlays, and an ivory signature", usd: PRICE_SCULPTED, image: "/runners/1213/olive.webp", launch: true, materials: ["Olive leather", "Sage overlays", "Ivory signature", ...CONSTRUCTION_1101], costUsd: 0 },
   { id: "ms-runner-1213-mineral-blue", series: "1213", name: "MADE SAiNT 1213 Runner — Mineral Blue", line: "Mineral blue leather, a pale signature, and a muted red heel accent", usd: PRICE_SCULPTED, image: "/runners/1213/mineral-blue.webp", launch: true, materials: ["Mineral blue leather", "Pale signature", "Muted red heel accent", ...CONSTRUCTION_1101], costUsd: 0 },
@@ -93,7 +129,21 @@ export const PRODUCTS: Product[] = [
   { id: "ms-runner-1213-graphite", series: "1213", name: "MADE SAiNT 1213 Runner — Graphite", line: "Graphite overlays and pewter accents", usd: PRICE_SCULPTED, image: "/runners/1213/graphite.webp", launch: true, materials: ["Graphite overlays", "Pewter accents", ...CONSTRUCTION_1101], costUsd: 0 },
 ];
 
+/** 1101 vintage flap backpack — mesh body vs leather body, matched studio framing. */
+export const BAGS: BagProduct[] = [
+  { id: "ms-bag-1101-mesh-black", name: "MADE SAiNT 1101 Backpack — Black Mesh", line: "Mesh · black textured body, gold X hardware", usd: PRICE_BAG, image: "/bags/1101/mesh-black-front.webp", construction: "mesh", materials: ["Textured mesh body", "Leather trim", "Gold X hardware", "Gold eyelets"], launch: true },
+  { id: "ms-bag-1101-mesh-olive", name: "MADE SAiNT 1101 Backpack — Olive Mesh", line: "Mesh · olive textured body, gold X hardware", usd: PRICE_BAG, image: "/bags/1101/mesh-olive-front.webp", construction: "mesh", materials: ["Olive textured mesh body", "Leather trim", "Gold X hardware", "Gold eyelets"], launch: true },
+  { id: "ms-bag-1101-mesh-stone", name: "MADE SAiNT 1101 Backpack — Stone Mesh", line: "Mesh · stone textured body, gold X hardware", usd: PRICE_BAG, image: "/bags/1101/mesh-stone-front.webp", construction: "mesh", materials: ["Stone textured mesh body", "Leather trim", "Gold X hardware", "Gold eyelets"], launch: true },
+  { id: "ms-bag-1101-leather-espresso", name: "MADE SAiNT 1101 Backpack — Espresso Leather", line: "Leather · espresso body, gold X hardware", usd: PRICE_BAG, image: "/bags/1101/leather-espresso-front.webp", construction: "leather", materials: ["Espresso leather body", "Leather trim", "Gold X hardware", "Gold eyelets"], launch: true },
+  { id: "ms-bag-1101-leather-navy", name: "MADE SAiNT 1101 Backpack — Navy Leather", line: "Leather · navy body, gold X hardware", usd: PRICE_BAG, image: "/bags/1101/leather-navy-front.webp", construction: "leather", materials: ["Navy leather body", "Leather trim", "Gold X hardware", "Gold eyelets"], launch: true },
+  { id: "ms-bag-1101-leather-butter", name: "MADE SAiNT 1101 Backpack — Butter Leather", line: "Leather · butter body, gold X hardware", usd: PRICE_BAG, image: "/bags/1101/leather-butter-front.webp", construction: "leather", materials: ["Butter leather body", "Leather trim", "Gold X hardware", "Gold eyelets"], launch: true },
+];
+
 export const productsIn = (series: SeriesId) => PRODUCTS.filter((product) => product.launch && product.series === series);
+export const constructionIn = (series: SeriesId, construction: Construction) =>
+  productsIn(series).filter((product) => product.construction === construction);
+export const bagsIn = (construction?: Construction) =>
+  BAGS.filter((bag) => bag.launch && (construction == null || bag.construction === construction));
 
 /**
  * Historic internal planning note only. Do not publish as a customer lead time

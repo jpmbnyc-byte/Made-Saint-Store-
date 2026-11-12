@@ -736,40 +736,41 @@ th:first-child {
 /* ── Liquid editorial design system ───────────────────────────────────── */
 
 :root {
-  --ms-ivory: #f5f0e8;
-  --ms-limestone: #ede6d8;
-  --ms-parchment: #f2eee8;
+  --ms-ivory: #f3efe6;
+  --ms-limestone: #ebe6dc;
+  --ms-parchment: #f1eee8;
   --ms-midnight: #1a2232;
-  --ms-ink: #1c1a17;
+  --ms-ink: #262626;
   --ms-dusk: #2a3746;
   --ms-slate: #41505b;
   --ms-mist: #8d9aaa;
-  --ms-gold: #8d7349;
+  --ms-gold: #7a6a52;
   --ms-red: #B03236;
-  --ms-cream: #f6f4ef;
+  --ms-cream: #f6f3ec;
+  --ms-greige: #efeae0;
 }
 
 /* House type scale. Layered so color utilities can invert it on dark surfaces. */
 @layer components {
   .ms-kicker {
-    font-size: 0.6875rem;
+    font-size: 0.625rem;
     font-weight: 500;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     line-height: 1.4;
     text-transform: uppercase;
-    color: var(--ms-gold);
+    color: color-mix(in srgb, var(--ms-ink) 42%, transparent);
   }
   .ms-display {
     font-family: var(--font-serif), Georgia, serif;
-    font-weight: 400;
-    letter-spacing: -0.04em;
-    line-height: 0.94;
+    font-weight: 300;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
     font-size: clamp(1.75rem, 1.05rem + 3.6vw, 4.25rem);
     color: var(--ms-ink);
   }
   .ms-title {
     font-family: var(--font-serif), Georgia, serif;
-    font-weight: 400;
+    font-weight: 300;
     letter-spacing: -0.03em;
     line-height: 0.96;
     font-size: clamp(1.625rem, 1.1rem + 2vw, 2.75rem);

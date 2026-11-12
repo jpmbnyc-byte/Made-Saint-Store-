@@ -3,8 +3,8 @@ import { CampaignBanner } from "@/components/house/campaign-banner";
 const LOOK_CHIPS = [
   { href: "/line/looks/solene", label: "Jersey" },
   { href: "/line/looks/sage", label: "Sage" },
-  { href: "/line/looks/forerunner", label: "Saint John" },
-  { href: "/line/looks/camel", label: "Camel" },
+  { href: "/line/looks/camel", label: "Terracotta" },
+  { href: "/line/looks/malik", label: "Malik" },
   { href: "/line/lookbook", label: "Lookbook" },
 ];
 
@@ -15,8 +15,8 @@ const LOOK_CHIPS = [
 export function EditorialHero() {
   return (
     <CampaignBanner
-      src="/collection/solene-campaign.webp"
-      alt="Solène wearing the printed jersey — Campaign look"
+      src="/collection/malik.webp"
+      alt="Malik seated in a navy turtleneck — Campaign look"
       kicker="MADE SAiNT"
       title="Once sinner. Made Saint."
       body="The collection, worn. Explore the 1101, or open the looks."

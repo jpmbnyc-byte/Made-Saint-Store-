@@ -14,8 +14,8 @@ test("published looks only list pieces already named on the frames", () => {
   }
   assert.ok(COLLECTION_LOOKS.some((look) => look.slug === "velvet" && look.pieces.length === 0));
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "solene")?.pieces.map((item) => item.ref), ["R010"]);
-  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "sage")?.pieces.map((item) => item.ref), ["N014", "R067"]);
-  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "olive")?.pieces.map((item) => item.ref), ["R046"]);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "sage")?.pieces.map((item) => item.ref), ["N014"]);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "olive")?.pieces.map((item) => item.ref), []);
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "forerunner")?.pieces.map((item) => item.ref), ["R035"]);
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "duffel")?.pieces.map((item) => item.ref), ["R067"]);
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "amara")?.pieces.map((item) => item.ref), ["R010"]);
@@ -23,7 +23,7 @@ test("published looks only list pieces already named on the frames", () => {
   assert.equal(COLLECTION_LOOKS[1]?.slug, "sage");
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "parachute")?.pieces.map((item) => item.ref), ["R010"]);
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "olive-wool")?.pieces.map((item) => item.ref), ["R046"]);
-  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "rust")?.pieces.map((item) => item.ref), []);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "rust")?.pieces.map((item) => item.ref), ["N014"]);
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "camel")?.pieces.map((item) => item.ref), ["N005", "N006"]);
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "midnight")?.pieces.map((item) => item.ref), ["N005", "N006"]);
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "onyx")?.pieces.map((item) => item.ref), ["N005", "N006"]);

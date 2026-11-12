@@ -11,8 +11,8 @@ const MATERIALS = [
   },
   {
     src: "/opening/butter-hand.webp",
-    alt: "Butter leather runner held in hand — panel construction and colour detail",
-    label: "Butter leather",
+    alt: "Brown mesh runner — dark chocolate suede and tan open mesh",
+    label: "Brown mesh",
     note: "Hand crop",
     crop: "object-[center_40%] scale-[1.4]",
   },

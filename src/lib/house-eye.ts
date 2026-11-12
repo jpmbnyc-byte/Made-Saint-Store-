@@ -35,7 +35,7 @@ export type DetailCrop = {
 export const HOUSE_DETAIL_CROPS: DetailCrop[] = [
   {
     src: "/opening/butter-hand.webp",
-    alt: "Butter leather runner held in hand — panel edge and colour",
+    alt: "Brown mesh runner — dark chocolate suede and tan open mesh",
     label: "Hand crop",
     crop: "object-[center_40%] scale-[1.35]",
   },

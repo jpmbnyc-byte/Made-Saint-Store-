@@ -45,7 +45,9 @@ const EXTRA: Record<string, CatalogView[]> = {
     { id: "study", src: "/runners/indigo-worn.webp", label: "Worn", alt: `MADE SAiNT 0929 Runner — Washed / Indigo. ${worn}` },
   ],
   "ms-runner-1101-butter": [
-    { id: "threequarter", src: "/runners/1213/1101-butter-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Butter, the pair" },
+    { id: "threequarter", src: "/runners/1213/1101-butter-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Brown Mesh, the pair" },
+    { id: "study", src: "/runners/1213/1101-brown-atelier.webp", label: "Atelier", alt: "MADE SAiNT 1101 Runner — Brown Mesh, atelier floor" },
+    { id: "product", src: "/runners/1213/1101-brown-pair.webp", label: "Studio", alt: "MADE SAiNT 1101 Runner — Brown Mesh, studio pair" },
   ],
   "ms-runner-1101-teal": [
     { id: "threequarter", src: "/runners/1213/1101-teal-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Teal, the pair" },
@@ -56,7 +58,7 @@ const EXTRA: Record<string, CatalogView[]> = {
   ],
   "ms-runner-1101-bronze": [
     { id: "threequarter", src: "/runners/1213/1101-bronze-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Bronze, the pair" },
-    { id: "reverse", src: "/runners/1213/1101-bronze-lateral.webp", label: "Lateral", alt: "MADE SAiNT 1101 Runner — Bronze, lateral" },
+    { id: "reverse", src: "/runners/1213/1101-brown-atelier.webp", label: "Atelier", alt: "MADE SAiNT 1101 Runner — Bronze, atelier floor" },
   ],
   "ms-runner-1101-blush": [
     { id: "threequarter", src: "/runners/1213/1101-blush-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Blush, the pair" },

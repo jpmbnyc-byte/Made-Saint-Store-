@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
-  AZORES_SEQUENCE,
+  AZORES_LOOKS,
   CAMPAIGN_001,
   CAMPAIGN_002,
   WORKSHOP_CHAPTER,
@@ -20,7 +20,7 @@ test("Campaign 002 names São Roque on São Miguel, Azores", () => {
   assert.match(CAMPAIGN_002.placeDetail, /Ponta Delgada/);
   assert.equal(CAMPAIGN_002.published, true);
   assert.equal(campaign002Ready(), true);
-  assert.match(CAMPAIGN_002.sequenceLine, /Landscape → person → complete look → product detail → maker → fitting/i);
+  assert.match(CAMPAIGN_002.body, /looks first/i);
 });
 
 test("workshop chapter is Oliveira de Azeméis and stays gated for partnership claims", () => {
@@ -33,21 +33,20 @@ test("workshop chapter is Oliveira de Azeméis and stays gated for partnership c
 test("the two São Roques are not conflated", () => {
   assert.match(CAMPAIGN_002.locationLabel, /Azores/);
   assert.doesNotMatch(WORKSHOP_CHAPTER.title, /Azores|São Miguel/);
-  assert.notEqual(CAMPAIGN_002.locationLabel, WORKSHOP_CHAPTER.title);
 });
 
-test("Azores sequence keeps landscape, person, look, detail, and maker", () => {
-  const kinds = new Set(AZORES_SEQUENCE.map((frame) => frame.kind));
-  for (const kind of ["landscape", "person", "look", "detail", "maker", "arrival", "context"] as const) {
-    assert.ok(kinds.has(kind), `missing ${kind}`);
+test("Campaign 002 plates are looks, not travel frames", () => {
+  assert.ok(AZORES_LOOKS.length >= 3);
+  for (const plate of AZORES_LOOKS) {
+    assert.ok(plate.lookSrc.startsWith("/collection/"), `${plate.id} must lead with a collection look`);
+    assert.ok(plate.lookName.length > 0);
+    assert.ok(plate.pieces.length > 0);
+    assert.ok(plate.href.startsWith("/line"));
+    if (plate.settingSrc) {
+      assert.ok(plate.settingSrc.startsWith("/world/azores/"), `${plate.id} setting must stay under azores refs`);
+      assert.equal(plate.settingAlt, "", `${plate.id} setting must be decorative atmosphere`);
+    }
   }
-  assert.ok(AZORES_SEQUENCE.some((frame) => /Praia de São Roque/.test(frame.locationLabel)));
-  assert.ok(AZORES_SEQUENCE.some((frame) => /Igreja de São Roque/.test(frame.locationLabel)));
-  const procession = AZORES_SEQUENCE.find((frame) => frame.id === "context-procession");
-  assert.ok(procession);
-  assert.doesNotMatch(procession!.locationLabel, /Azores|São Miguel/);
-  const workshop = AZORES_SEQUENCE.find((frame) => frame.kind === "maker");
-  assert.ok(workshop);
-  assert.match(workshop!.locationLabel, /Oliveira de Azeméis/);
-  assert.match(workshop!.caption, /Separate from the Azores/i);
+  assert.ok(AZORES_LOOKS.some((plate) => plate.settingSrc));
+  assert.ok(AZORES_LOOKS.some((plate) => !plate.settingSrc), "some looks stand without a setting plate");
 });

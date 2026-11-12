@@ -37,7 +37,7 @@ export default function BrandPage() {
               <p className="text-[14px] text-[#1c1a17]/60">{copy.house.peopleDisclosure}</p>
               <h2 className="ms-title pt-4">The world</h2>
               <p>
-                Campaign 002 is set in São Roque, São Miguel, in the Azores — Atlantic coastline, sacred architecture, volcanic stone, and everyday life. The mainland workshop in São Roque, Oliveira de Azeméis, is a separate making chapter once partnership is confirmed.
+                Campaign 002 places the collection in São Roque, São Miguel — looks first, Atlantic light as atmosphere. The mainland workshop in São Roque, Oliveira de Azeméis, is a separate making chapter once partnership is confirmed.
               </p>
               <h2 className="ms-title pt-4">The pairs</h2>
               <p>

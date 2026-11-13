@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ChevronLeft } from "lucide-react";
-import { PRODUCTS, SIZES, productById } from "@/lib/business";
+import { PRODUCTS, SIZES, productById, runnerHref } from "@/lib/business";
 import { viewsFor } from "@/lib/catalog";
 import { withPublished } from "@/lib/atelier/publish";
 import { stripeEnabled } from "@/lib/stripe";
@@ -12,6 +12,7 @@ import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
 import { ProductGallery } from "@/components/shop/gallery";
 import { ReserveForm } from "@/components/shop/reserve";
 import { SaveRunner } from "@/components/shop/save-runner";
+import { HashScroll } from "@/components/shop/hash-scroll";
 import { runnerStatusCopy } from "@/lib/image-status";
 
 export function generateStaticParams() {
@@ -37,6 +38,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   return (
     <div className="min-h-screen bg-[#f7f7f5] text-[#1c1a17]">
       <ShopHeader />
+      <HashScroll />
       <main className="mx-auto max-w-[1440px] px-0 py-0 md:px-8 md:py-8">
         <div className="px-5 pt-5 md:px-0 md:pt-0">
           <Link href={`/shop#${product.series}`} className="inline-flex items-center gap-1 text-[11px] tracking-[0.16em] text-[#1c1a17]/60 uppercase hover:text-[#1c1a17]">
@@ -50,10 +52,12 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           </div>
 
           <div className="min-w-0 px-5 pb-12 lg:sticky lg:top-28 lg:self-start lg:px-0 lg:pb-0">
-            <p className="text-[11px] tracking-[0.18em] text-[#1c1a17]/55 uppercase">
-              MADE SAiNT · {product.series}
-            </p>
-            <h1 className="mt-3 font-serif text-4xl leading-none md:text-5xl">{color(product.name)}</h1>
+            <div id="title" className="scroll-mt-36 md:scroll-mt-28">
+              <p className="text-[11px] tracking-[0.18em] text-[#1c1a17]/55 uppercase">
+                MADE SAiNT · {product.series}
+              </p>
+              <h1 className="mt-3 font-serif text-4xl leading-none md:text-5xl">{color(product.name)}</h1>
+            </div>
             <p className="mt-4 text-lg tabular-nums">${product.usd}</p>
             <p className="mt-2 text-[12px] tracking-[0.08em] text-[#1c1a17]/50 uppercase">{statusCopy.mark}</p>
             {product.notice && <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">{product.notice}</p>}
@@ -63,13 +67,13 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <div className="mt-8">
               <p className="text-[11px] tracking-[0.16em] uppercase">Colour</p>
               <div className="mt-3 flex min-w-0 gap-2 overflow-x-auto">
-                <Link href={`/shop/${product.id}`} aria-current="page" className="w-14 min-w-14 shrink-0 overflow-hidden ring-1 ring-[#1c1a17]">
+                <Link href={runnerHref(product.id)} aria-current="page" className="w-14 min-w-14 shrink-0 overflow-hidden ring-1 ring-[#1c1a17]">
                   <span className="relative block aspect-square bg-[#f3f3f1]">
                     <Image src={product.image} alt="" fill sizes="56px" className="object-contain p-1" />
                   </span>
                 </Link>
                 {siblings.map((p) => (
-                  <Link key={p.id} href={`/shop/${p.id}`} className="w-14 min-w-14 shrink-0 overflow-hidden opacity-70 hover:opacity-100">
+                  <Link key={p.id} href={runnerHref(p.id)} className="w-14 min-w-14 shrink-0 overflow-hidden opacity-70 hover:opacity-100">
                     <span className="relative block aspect-square bg-[#f3f3f1]">
                       <Image src={p.image} alt="" fill sizes="56px" className="object-contain p-1" />
                     </span>

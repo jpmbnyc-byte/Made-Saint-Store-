@@ -34,6 +34,9 @@ test("published looks only list pieces already named on the frames", () => {
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "sand-jersey")?.pieces.map((item) => item.ref), ["R010"]);
   assert.equal(COLLECTION_LOOKS.find((look) => look.slug === "sand-jersey")?.pieces[0]?.color, "Sand");
   assert.equal(COLLECTION_LOOKS.find((look) => look.slug === "blue-jersey")?.pieces[0]?.color, "Blue");
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "triangle-cap")?.pieces.map((item) => item.ref), ["R042"]);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "blue-jersey-denim")?.pieces.map((item) => item.ref), ["R010"]);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "sand-jersey-denim")?.pieces.map((item) => item.ref), ["R010"]);
   assert.match(customerName(lineByRef("R010")!), /printed jersey/i);
   assert.match(customerMaterial(lineByRef("R010")!), /polyester jersey/i);
   assert.equal(/cotton woven collar/i.test(customerMaterial(lineByRef("R010")!) ?? ""), false);
@@ -94,7 +97,7 @@ test("editorial stills stay shoppable without inventing a tee sku", () => {
     assert.ok(still.name, still.src);
   }
   const runner = stills.find((still) => still.src.includes("navy-ivory-worn"));
-  assert.equal(runner?.href, "/shop/ms-runner-chalk-navy");
+  assert.equal(runner?.href, "/shop/ms-runner-chalk-navy#title");
   assert.equal(runner?.price, "$490");
   for (const still of stills.filter((block) => block.src.includes("tee-"))) {
     assert.equal(still.href, "/wardrobe#introduction");

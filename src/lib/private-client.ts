@@ -10,10 +10,10 @@ const APPROVED: Record<string, number> = {
 };
 
 const SHOP: Record<string, string> = {
-  rn01: "/shop/ms-runner-navy-intrecciato",
-  rn02: "/shop/ms-runner-espresso",
-  rn04: "/shop/ms-runner-chalk-navy",
-  rn06: "/shop/ms-runner-washed-denim",
+  rn01: "/shop/ms-runner-navy-intrecciato#title",
+  rn02: "/shop/ms-runner-espresso#title",
+  rn04: "/shop/ms-runner-chalk-navy#title",
+  rn06: "/shop/ms-runner-washed-denim#title",
 };
 
 export const retailOf = (id: string) => APPROVED[id] ?? null;

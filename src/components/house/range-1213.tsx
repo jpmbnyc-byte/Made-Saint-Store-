@@ -10,7 +10,7 @@ function Rail({ ids }: { ids: ReturnType<typeof productsIn> }) {
     <ul className="mt-8 flex min-w-0 gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       {ids.map((product) => (
         <li key={product.id} className="w-36 shrink-0 sm:w-44">
-          <Link href={`/shop/${product.id}`} className="block">
+          <Link href={`/shop/${product.id}#title`} className="block">
             <span className="relative block aspect-square bg-[#f3f3f1]">
               <Image src={product.image} alt={product.name} fill sizes="176px" className="object-contain p-2" />
             </span>

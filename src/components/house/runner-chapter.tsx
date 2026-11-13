@@ -192,7 +192,7 @@ export function RunnerChapter() {
           {/* CTAs */}
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              href={`/shop/${product.id}`}
+              href={`/shop/${product.id}#title`}
               className="inline-flex h-12 items-center bg-[#1c1a17] px-6 text-[12px] tracking-[0.18em] text-[#f5f0e8] uppercase transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
             >
               Request this pair

@@ -2,17 +2,18 @@ import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { LEAD_TIME, offerLine, productsIn, statusLine, type Product } from "@/lib/business";
+import { offerLine, productsIn, runnerHref, statusLine, type Product } from "@/lib/business";
 import { QUESTIONS } from "@/lib/questions";
 import { OrderRule, orderWindowLine } from "@/components/shop/order-rule";
 import { SeriesPlate } from "@/components/shop/series-plate";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
 import { CancelledBanner } from "@/components/shop/live";
+import { HashScroll } from "@/components/shop/hash-scroll";
 const colorOf = (name: string) => name.split("—").pop()?.trim() ?? name;
 
 function Listing({ product, frame }: { product: Product; frame: string }) {
   return (
-    <Link href={`/shop/${product.id}`} className="block">
+    <Link href={runnerHref(product.id)} className="block">
       <span className={`relative block bg-[#f3efe8] ${frame}`}>
         <Image src={product.image} alt={product.name} fill sizes="(min-width: 1024px) 30vw, 50vw" className="object-contain" />
       </span>
@@ -35,12 +36,13 @@ export default async function ShopPage() {
   return (
     <div className="min-h-screen bg-[#f5f0e8] text-[#1c1a17]">
       <ShopHeader status={statusLine()} />
+      <HashScroll />
 
       <Suspense fallback={null}>
         <CancelledBanner />
       </Suspense>
 
-      <section id="1101" className="mx-auto max-w-[1100px] scroll-mt-28 px-5 py-12 md:px-8 md:py-16">
+      <section id="1101" className="mx-auto max-w-[1100px] scroll-mt-36 px-5 py-12 md:scroll-mt-28 md:px-8 md:py-16">
         <SeriesPlate series="1101" size="md" />
         <h1 className="mt-4 max-w-3xl font-serif text-[44px] leading-[0.95] text-[#1c1a17] md:text-[64px]">The lead runner.</h1>
         <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">$550. Listed first. {offerLine("1101")}</p>
@@ -56,7 +58,7 @@ export default async function ShopPage() {
         </ul>
       </section>
 
-      <section id="1213" className="border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
+      <section id="1213" className="scroll-mt-36 border-t border-[#1c1a17]/10 bg-[#f6f4ef] md:scroll-mt-28">
         <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-8">
           <SeriesPlate series="1213" size="md" />
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
@@ -70,12 +72,14 @@ export default async function ShopPage() {
         </div>
       </section>
 
-      <section id="order" className="mx-auto max-w-[1100px] scroll-mt-28 px-5 py-12 md:px-8 md:py-16">
+      <section id="0929" className="mx-auto max-w-[1100px] scroll-mt-36 px-5 py-12 md:scroll-mt-28 md:px-8 md:py-16">
+        <div id="order" className="scroll-mt-36 md:scroll-mt-28" />
+        <div id="edition" className="scroll-mt-36 md:scroll-mt-28" />
         <SeriesPlate series="0929" size="md" />
         <h2 className="mt-4 max-w-3xl font-serif text-[44px] leading-[0.95] text-[#1c1a17] md:text-[64px]">A pair, made for you.</h2>
         <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">{orderWindowLine()}</p>
         <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-          Anyone the size fits can request a pair, in US men&apos;s 7 through 12. Other sizes are not offered. A pair does not open a wardrobe.
+          Anyone the size fits can request a pair, in US men&apos;s 7 through 12. Other sizes are not offered. A pair does not open a wardrobe. $490. {offerLine("0929")}
         </p>
         <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
           {founding.map((p) => (
@@ -86,18 +90,6 @@ export default async function ShopPage() {
         </ul>
         <div className="mt-10">
           <OrderRule />
-        </div>
-      </section>
-
-      <section id="0929" className="mx-auto max-w-[1100px] scroll-mt-28 px-5 pb-14 md:px-8">
-        <div id="edition" className="flex scroll-mt-28 flex-wrap items-end justify-between gap-4 border-t border-[#1c1a17]/15 pt-8">
-          <h2 className="font-serif text-4xl">Available now</h2>
-          <p className="text-[13px] text-[#1c1a17]/60">$490 · ready in {LEAD_TIME}</p>
-        </div>
-        <div className="mt-8 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-          {founding.map((p) => (
-            <Listing key={p.id} product={p} frame="aspect-[2/3]" />
-          ))}
         </div>
       </section>
 

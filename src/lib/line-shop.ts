@@ -43,7 +43,7 @@ const piece = (ref: string, role: string, color?: string): LookPiece => {
 };
 
 const runnerOffer = (id: string, name: string, price = "$550"): LookOffer => ({
-  href: `/shop/${id}`,
+  href: `/shop/${id}#title`,
   name,
   price,
   detail: "Delivery is confirmed with your quotation.",
@@ -416,6 +416,47 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     ],
     offers: [runnerOffer("ms-runner-1101-butter", "1101 Runner — Brown Mesh")],
   },
+  {
+    slug: "triangle-cap",
+    number: "30",
+    title: "Triangle cap",
+    use: "Everyday",
+    image: "/collection/triangle-cap.webp",
+    alt: "Ivory and black triangle chenille patch cap with MADE SAiNT saint graphic, worn",
+    frames: [],
+    pieces: [piece("R042", "Cap", "Ivory")],
+    styling: ["The shirt and knit in the photograph complete the frame. They are not included with the cap."],
+  },
+  {
+    slug: "blue-jersey-denim",
+    number: "31",
+    title: "Blue jersey denim",
+    use: "Everyday",
+    image: "/collection/blue-jersey-denim.webp",
+    alt: "Blue printed jersey over a white shirt and navy tie, with light wash jeans and blue 0929 runners",
+    frames: [],
+    pieces: [piece("R010", "Jersey", "Blue")],
+    styling: [
+      "The $390 enquiry is for the printed jersey only.",
+      "The shirt, the tie, and the jeans are styling. They are not included with the jersey.",
+    ],
+    offers: [runnerOffer("ms-runner-washed-denim", "0929 Runner — Washed / Indigo", "$490")],
+  },
+  {
+    slug: "sand-jersey-denim",
+    number: "32",
+    title: "Sand jersey denim",
+    use: "Everyday",
+    image: "/collection/sand-jersey-denim.webp",
+    alt: "Sand printed jersey over a light blue shirt and brown tie, with navy jeans and navy sand 0929 runners",
+    frames: [],
+    pieces: [piece("R010", "Jersey", "Sand")],
+    styling: [
+      "The $390 enquiry is for the sand printed jersey only.",
+      "The shirt, the tie, and the jeans are styling. They are not included with the jersey.",
+    ],
+    offers: [runnerOffer("ms-runner-navy-intrecciato", "0929 Runner — Navy / Sand", "$490")],
+  },
 ];
 
 /** Selectable R010 colorways with a customer photograph. */
@@ -460,7 +501,10 @@ export type EditorialBlock =
 export const FEATURED: EditorialBlock[] = [
   { kind: "still", src: "/knit/turtleneck-iconic.webp", alt: "Fine cashmere turtleneck — Cast iconic frame", href: "/line/n014", name: "Cashmere turtleneck", price: "$995", cta: "Enquire" },
   { kind: "look", slug: "sand-jersey", wide: true },
+  { kind: "look", slug: "sand-jersey-denim" },
   { kind: "look", slug: "blue-jersey" },
+  { kind: "look", slug: "blue-jersey-denim" },
+  { kind: "look", slug: "triangle-cap" },
   { kind: "look", slug: "butter-mock" },
   { kind: "look", slug: "malik" },
   { kind: "look", slug: "solene" },
@@ -492,7 +536,10 @@ export const CAMPAIGN_BLOCKS: EditorialBlock[] = [
   { kind: "still", src: "/world/milot.webp", alt: "Campaign 001 study — Cast 003 in the ruins at Milot", wide: true, href: "/line/lookbook", name: "Milot, Campaign 001", cta: "View the lookbook" },
   { kind: "still", src: "/collection/solene.webp", alt: "Solène in the printed jersey — Cast 003 look", wide: true, href: "/line/looks/solene", name: "Solène jersey", cta: "Shop the look" },
   { kind: "look", slug: "sand-jersey", wide: true },
+  { kind: "look", slug: "sand-jersey-denim" },
   { kind: "look", slug: "blue-jersey" },
+  { kind: "look", slug: "blue-jersey-denim" },
+  { kind: "look", slug: "triangle-cap" },
   { kind: "look", slug: "butter-mock" },
   { kind: "look", slug: "camel", wide: true },
   { kind: "look", slug: "parachute" },
@@ -511,7 +558,7 @@ export const CAMPAIGN_BLOCKS: EditorialBlock[] = [
   { kind: "look", slug: "black-tee" },
   { kind: "still", src: "/collection/tee-black.webp", alt: "Black acid-wash oversized t-shirt with a red MADE SAiNT collar mark", href: "/wardrobe#introduction", name: "Acid-wash tee, black", cta: "Enquire" },
   { kind: "still", src: "/knit/turtleneck-iconic.webp", alt: "Fine cashmere turtleneck — iconic Cast frame", href: "/line/n014", name: "Cashmere turtleneck", price: "$995", cta: "Enquire" },
-  { kind: "still", src: "/runners/navy-ivory-worn.webp", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, worn on foot", wide: true, href: "/shop/ms-runner-chalk-navy", name: "0929 Runner — Navy / Ivory", price: "$490" },
+  { kind: "still", src: "/runners/navy-ivory-worn.webp", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, worn on foot", wide: true, href: "/shop/ms-runner-chalk-navy#title", name: "0929 Runner — Navy / Ivory", price: "$490" },
   { kind: "still", src: "/world/coastline.webp", alt: "Campaign 001 study — MADE SAiNT product branding on the north coast", wide: true, href: "/shop#1101", name: "Coastline, Campaign 001", cta: "Enquire about 1101" },
   { kind: "still", src: "/collection/malik.webp", alt: "Malik seated in a navy turtleneck and sand trousers with teal 1101 runners", href: "/line/looks/malik", name: "Malik, chair", cta: "Shop the look" },
   { kind: "still", src: "/collection/ines-burgundy.webp", alt: "Inès on a stool with brown mesh 1101 runners", wide: true, href: "/line/looks/rust", name: "Inès, burgundy stool", cta: "Shop the look" },

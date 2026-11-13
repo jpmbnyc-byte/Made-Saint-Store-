@@ -99,7 +99,12 @@ export default async function LineProductPage({ params }: { params: Promise<{ re
             )}
             {product.ref === "R046" && (
               <p className="mt-6 text-sm leading-relaxed text-[#111]/70">
-                Product views from the MS-TM01 tech pack — powder blue fog grid and carbon. Concept illustrations are not measured CAD.
+                Clean product stills for the MS-TM01 Trail Mule — Hermes framing, three views per colorway. Concept illustrations are not measured CAD.
+              </p>
+            )}
+            {product.ref === "R049" && (
+              <p className="mt-6 text-sm leading-relaxed text-[#111]/70">
+                Class Slipper product stills — chocolate espresso and black graphite, three views each.
               </p>
             )}
             <ProductActions refId={product.ref} name={customerName(product)} color={customerColors(product)} />

@@ -8,9 +8,7 @@ import { OrderRule, orderWindowLine } from "@/components/shop/order-rule";
 import { SeriesPlate } from "@/components/shop/series-plate";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
 import { CancelledBanner } from "@/components/shop/live";
-import { frameSrc, lineByRef } from "@/lib/line";
-import { customerName, customerStatus } from "@/lib/line-shop";
-import { primaryFrame } from "@/lib/imagery";
+import { MULE_COLORWAYS, muleFamilies } from "@/lib/mules";
 
 const colorOf = (name: string) => name.split("—").pop()?.trim() ?? name;
 
@@ -38,11 +36,9 @@ function BagListing({ bag }: { bag: BagProduct }) {
   );
 }
 
-const MULE_REFS = ["R046", "N015"] as const;
-
 export const metadata: Metadata = {
   title: "1101",
-  description: "The 1101 vintage runner in mesh and leather, Trail Mule, City Mule, and the 1101 backpack.",
+  description: "The 1101 vintage runner in mesh and leather, Trail Mule, City Mule, Class Slipper, and the 1101 backpack.",
 };
 
 export default async function ShopPage() {
@@ -52,7 +48,7 @@ export default async function ShopPage() {
   const founding = productsIn("0929");
   const bagMesh = bagsIn("mesh");
   const bagLeather = bagsIn("leather");
-  const mules = MULE_REFS.map((ref) => lineByRef(ref)).filter(Boolean);
+  const families = muleFamilies();
   return (
     <div className="min-h-screen bg-[#f3efe6] text-[#1c1a17]">
       <ShopHeader status={statusLine()} />
@@ -139,37 +135,48 @@ export default async function ShopPage() {
       <section id="mules" className="border-t border-[#1c1a17]/08 bg-[#f7f5f0]">
         <div className="mx-auto max-w-[1100px] scroll-mt-28 px-5 py-14 md:px-8 md:py-20">
           <p className="text-[10px] tracking-[0.22em] uppercase text-[#1c1a17]/40">Footwear · line</p>
-          <h2 className="mt-4 max-w-3xl font-serif text-[36px] font-light leading-[0.95] tracking-[-0.03em] md:text-[48px]">Trail Mule &amp; City Mule.</h2>
+          <h2 className="mt-4 max-w-3xl font-serif text-[36px] font-light leading-[0.95] tracking-[-0.03em] md:text-[48px]">
+            The mule selection.
+          </h2>
           <p className="mt-5 max-w-xl text-[15px] leading-[1.7] text-[#1c1a17]/65">
-            MS-TM01 Trail Mule and the City Leather Mule — product views from the tech packs.
+            Trail Mule, City Leather Mule, and Class Slipper — clean product stills, three views each, no titles on the frame.
           </p>
-          <ul className="mt-10 grid grid-cols-2 gap-x-5 gap-y-12 sm:grid-cols-3">
-            {mules.map((product) => {
-              if (!product) return null;
-              const frame = primaryFrame(product.ref);
-              const status = customerStatus(product);
-              const image =
-                product.ref === "R046"
-                  ? "/mules/trail-powder-blue.webp"
-                  : product.ref === "N015"
-                    ? "/mules/city-espresso.webp"
-                    : frame
-                      ? frameSrc(frame.n)
-                      : "/mules/trail-powder-blue.webp";
-              return (
-                <li key={product.ref}>
-                  <Link href={`/line/${product.ref.toLowerCase()}`} className="block group">
-                    <span className="relative block aspect-square bg-[#f1eee8]">
-                      <Image src={image} alt={customerName(product)} fill sizes="(min-width: 1024px) 30vw, 50vw" className="object-contain p-4 transition-opacity duration-500 group-hover:opacity-90" />
-                    </span>
-                    <span className="mt-4 block text-[10px] tracking-[0.2em] uppercase text-[#1c1a17]/45">{product.ref}</span>
-                    <span className="mt-1 block font-serif text-[22px] leading-none tracking-[-0.02em] md:text-2xl">{customerName(product)}</span>
-                    <span className="mt-2 block text-[13px] tabular-nums text-[#1c1a17]/70">{status.price}</span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          {families.map((family) => {
+            const colorways = MULE_COLORWAYS.filter((item) => item.family === family.id);
+            return (
+              <div key={family.id} className="mt-16 first:mt-12">
+                <p className="text-[10px] tracking-[0.22em] uppercase text-[#1c1a17]/40">{family.title}</p>
+                <p className="mt-2 text-[13px] text-[#1c1a17]/55">{family.note}</p>
+                <ul className="mt-8 grid grid-cols-1 gap-y-14 sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-6">
+                  {colorways.map((item) => (
+                    <li key={item.id}>
+                      <Link href={item.href} className="block group">
+                        <span className="relative block aspect-[4/5] bg-[#f1eee8]">
+                          <Image
+                            src={item.views[0].src}
+                            alt={item.views[0].alt}
+                            fill
+                            sizes="(min-width: 1024px) 30vw, 50vw"
+                            className="object-contain p-3 transition-opacity duration-500 group-hover:opacity-90"
+                          />
+                        </span>
+                        <span className="mt-5 grid grid-cols-3 gap-2">
+                          {item.views.map((frame) => (
+                            <span key={frame.src} className="relative block aspect-square bg-[#f1eee8]">
+                              <Image src={frame.src} alt={frame.alt} fill sizes="120px" className="object-contain p-1.5" />
+                            </span>
+                          ))}
+                        </span>
+                        <span className="mt-4 block text-[10px] tracking-[0.18em] uppercase text-[#1c1a17]/40">{item.code}</span>
+                        <span className="mt-1 block font-serif text-[22px] leading-none tracking-[-0.02em] md:text-2xl">{item.name}</span>
+                        <span className="mt-2 block text-[13px] tabular-nums text-[#1c1a17]/70">{item.price}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
         </div>
       </section>
 

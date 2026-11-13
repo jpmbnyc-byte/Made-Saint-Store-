@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { ArrowLeft, ArrowRight, Pause, Play, X } from "lucide-react";
+import { tonalRunner, tonalRunnerHref } from "@/lib/tonal-runners";
 
 export const TONAL_COLORS = [
   { id: "carbon", name: "Carbon", description: "Soft charcoal black", hex: "#30312e" },
@@ -46,7 +48,6 @@ export function TonalSlideshow({ onIndex, onRequest }: { onIndex?: (index: numbe
   const [hovered, setHovered] = useState(false);
   const [pageHidden, setPageHidden] = useState(false);
   const [detailOpen, setDetailOpen] = useState(false);
-  const [detailView, setDetailView] = useState<"front" | "back">("front");
   const [assetsReady, setAssetsReady] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
   const explore = useRef<HTMLButtonElement>(null);
@@ -55,6 +56,7 @@ export function TonalSlideshow({ onIndex, onRequest }: { onIndex?: (index: numbe
   const onIndexRef = useRef(onIndex);
   onIndexRef.current = onIndex;
   const color = TONAL_COLORS[index];
+  const runner = tonalRunner(color.id);
   const active = playing && !hovered && !pageHidden && !detailOpen && assetsReady;
 
   useEffect(() => {
@@ -122,6 +124,11 @@ export function TonalSlideshow({ onIndex, onRequest }: { onIndex?: (index: numbe
     setPlaying(false);
   }
 
+  function openDetails() {
+    setPlaying(false);
+    setDetailOpen(true);
+  }
+
   function closeDetails() {
     setDetailOpen(false);
     explore.current?.focus();
@@ -145,11 +152,21 @@ export function TonalSlideshow({ onIndex, onRequest }: { onIndex?: (index: numbe
       event.preventDefault();
       select(TONAL_COLORS.length - 1);
     }
+    if (event.key === "Enter" || event.key === " ") {
+      // handled by explore / photo buttons
+    }
   }
 
   return (
     <>
       <section id="style" className="ms-tonal scroll-mt-28" aria-label="The Tonal Collection" aria-roledescription="carousel" onKeyDown={onKeyDown}>
+        <div className="mx-auto max-w-[1100px] px-5 pb-6 pt-10 md:px-8 md:pb-8 md:pt-12">
+          <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Step 03 · Color</p>
+          <p className="mt-3 max-w-2xl font-serif text-4xl leading-[0.95] text-[#1c1a17] md:text-5xl">The Tonal Collection.</p>
+          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
+            One jacket and trouser silhouette in seven tones. Open a color to inspect the study, then carry it into your wardrobe enquiry with a matching runner.
+          </p>
+        </div>
         <div
           className="hero"
           aria-label={`${color.name} editorial`}
@@ -164,37 +181,35 @@ export function TonalSlideshow({ onIndex, onRequest }: { onIndex?: (index: numbe
             touch.current = null;
           }}
         >
-          <div className="photography" aria-live="off">
+          <button type="button" className="photography" aria-label={`Open ${color.name} study`} onClick={openDetails}>
             {TONAL_COLORS.map((item, i) => (
               <img
                 key={item.id}
                 className={`editorial-photo${i === index ? " is-visible" : ""}`}
                 src={`/editorial/tonal/${item.id}.webp`}
-                alt={i === index ? `${item.name} collared jacket and pleated trouser, a garment study in a courtyard. The back is plain. Not a client, and not an endorsement.` : ""}
+                alt={i === index ? `${item.name} collared jacket and pleated trouser, a garment study. Not a client.` : ""}
                 aria-hidden={i !== index}
                 fetchPriority={i === 0 ? "high" : "auto"}
                 draggable={false}
               />
             ))}
-          </div>
+          </button>
           <div className="editorial-copy">
             <p className="eyebrow">Silk-cashmere direction</p>
-            <h1>
+            <h2>
               <span>Made for</span>
               <span>the everyday.</span>
-            </h1>
+            </h2>
             <p className="collection-title">The Tonal Collection</p>
-            <p className="study-note">A garment study. Not a client, and not an endorsement. The shoes are not a founding runner.</p>
-            <button
-              ref={explore}
-              className="explore"
-              type="button"
-              onClick={() => {
-                setPlaying(false);
-                setDetailView("front");
-                setDetailOpen(true);
-              }}
-            >
+            <p className="study-note">
+              A garment study for an athletic, tall physique — longer sleeve and rise, structured shoulder, tailored ease. Click the photograph to enlarge.
+            </p>
+            {runner ? (
+              <p className="study-note">
+                Matching runner: {runner.name} · {runner.price}
+              </p>
+            ) : null}
+            <button ref={explore} className="explore" type="button" onClick={openDetails}>
               <span>Explore {color.name}</span>
               <Icon as={ArrowRight} />
             </button>
@@ -256,15 +271,26 @@ export function TonalSlideshow({ onIndex, onRequest }: { onIndex?: (index: numbe
         aria-labelledby="tonal-detail-title"
       >
         <div className="detail-layout">
-          <div className={`detail-image${detailView === "back" ? " back-view" : ""}`}>
+          <div className="detail-image">
             <img
               src={`/editorial/tonal/${color.id}.webp`}
-              alt={detailView === "back" ? `${color.name} jacket, plain unprinted back. A garment study.` : `${color.name} jacket and trouser, a garment study.`}
+              alt={`${color.name} jacket and trouser, a garment study for an athletic tall physique.`}
             />
-            <div className="view-switch" role="group" aria-label="Product image view">
-              <button type="button" aria-pressed={detailView === "front"} onClick={() => setDetailView("front")}>The look</button>
-              <button type="button" aria-pressed={detailView === "back"} onClick={() => setDetailView("back")}>Plain back</button>
-            </div>
+            {runner ? (
+              <div className="mt-4 flex items-center gap-4 border border-[#1c1a17]/10 bg-[#f7f4ee] p-3 text-[#1c1a17]">
+                <img src={runner.image} alt="" className="h-16 w-16 object-contain" />
+                <div className="min-w-0 flex-1">
+                  <p className="text-[11px] tracking-[0.14em] uppercase text-[#1c1a17]/55">Matching runner</p>
+                  <p className="mt-1 font-serif text-xl leading-tight">{runner.name}</p>
+                  <p className="mt-1 text-[13px] text-[#1c1a17]/65">
+                    {runner.note} · {runner.price}
+                  </p>
+                </div>
+                <Link href={tonalRunnerHref(color.id)} className="shrink-0 text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">
+                  View
+                </Link>
+              </div>
+            ) : null}
           </div>
           <div className="detail-copy">
             <button className="icon-button close-dialog" type="button" aria-label="Close collection details" onClick={closeDetails}>
@@ -274,16 +300,36 @@ export function TonalSlideshow({ onIndex, onRequest }: { onIndex?: (index: numbe
             <h2 id="tonal-detail-title">{color.name}</h2>
             <p className="detail-shade">{color.description}</p>
             <p className="detail-description">
-              A clean collared jacket. A considered pleat.
+              A clean collared jacket and considered pleat, developed for an athletic tall physique — longer sleeve and rise, structured shoulder, tailored through the leg.
               <br />
               One silhouette, in seven tones. A garment study, not a client.
             </p>
             <Swatches index={index} onSelect={select} />
             <dl>
-              <div><dt>Silhouette</dt><dd>Collared jacket and pleated trouser</dd></div>
-              <div><dt>Detail</dt><dd>Tonal chest signature</dd></div>
-              <div><dt>Back</dt><dd>Clean, without printing</dd></div>
-              <div><dt>Cloth</dt><dd>Silk-cashmere direction. Not a confirmed cloth.</dd></div>
+              <div>
+                <dt>Silhouette</dt>
+                <dd>Collared jacket and pleated trouser</dd>
+              </div>
+              <div>
+                <dt>Fit</dt>
+                <dd>Athletic tall · structured shoulder · tailored ease</dd>
+              </div>
+              <div>
+                <dt>Detail</dt>
+                <dd>Tonal chest signature · plain back</dd>
+              </div>
+              <div>
+                <dt>Cloth</dt>
+                <dd>Silk-cashmere direction. Not a confirmed cloth.</dd>
+              </div>
+              {runner ? (
+                <div>
+                  <dt>Runner</dt>
+                  <dd>
+                    {runner.name} · {runner.price}
+                  </dd>
+                </div>
+              ) : null}
             </dl>
             <button
               className="back-to-collection"
@@ -293,7 +339,7 @@ export function TonalSlideshow({ onIndex, onRequest }: { onIndex?: (index: numbe
                 closeDetails();
               }}
             >
-              Request {color.name}
+              Carry {color.name} into enquiry
               <Icon as={ArrowRight} />
             </button>
           </div>

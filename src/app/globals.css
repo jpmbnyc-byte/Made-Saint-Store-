@@ -1166,7 +1166,11 @@ th:first-child {
   position: absolute;
   inset: 0;
   z-index: 0;
+  display: block;
+  width: 100%;
+  padding: 0;
   background: #ddc7a8;
+  cursor: zoom-in;
 }
 .ms-tonal .editorial-photo {
   position: absolute;
@@ -1178,6 +1182,7 @@ th:first-child {
   opacity: 0;
   transition: opacity 0.8s ease;
   user-select: none;
+  pointer-events: none;
 }
 .ms-tonal .editorial-photo.is-visible { opacity: 1; }
 .ms-tonal .editorial-copy {
@@ -1186,6 +1191,10 @@ th:first-child {
   top: 18%;
   z-index: 1;
   max-width: 42%;
+  pointer-events: none;
+}
+.ms-tonal .editorial-copy .explore {
+  pointer-events: auto;
 }
 .ms-tonal .eyebrow {
   margin: 0 0 27px;
@@ -1194,7 +1203,8 @@ th:first-child {
   line-height: 1.5;
   text-transform: uppercase;
 }
-.ms-tonal .editorial-copy h1 {
+.ms-tonal .editorial-copy h1,
+.ms-tonal .editorial-copy h2 {
   margin: 0;
   font-family: var(--font-serif), Georgia, serif;
   font-size: clamp(60px, 6.35vw, 108px);
@@ -1202,7 +1212,8 @@ th:first-child {
   line-height: 0.93;
   letter-spacing: -0.047em;
 }
-.ms-tonal .editorial-copy h1 span {
+.ms-tonal .editorial-copy h1 span,
+.ms-tonal .editorial-copy h2 span {
   display: block;
   white-space: nowrap;
 }

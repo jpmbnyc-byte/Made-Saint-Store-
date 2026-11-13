@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { visiblePieces, type LifestyleId } from "@/lib/private-client";
+import { visiblePieces, type FitInput, type LifestyleId } from "@/lib/private-client";
 import type { CommissionScope } from "@/lib/commission";
 import { lineByRef } from "@/lib/line";
 import { customerName, lookBySlug } from "@/lib/line-shop";
@@ -10,8 +10,10 @@ import { lookById, lookForLifestyle, offerFor } from "@/lib/looks";
 import { PIECES, type WardrobePiece } from "@/lib/wardrobe";
 import { StatusMark } from "@/components/house/status-mark";
 import { WardrobeIntro } from "@/components/wardrobe/intro";
+import { PreviewTrigger, WardrobePreview, type PreviewFrame } from "@/components/wardrobe/preview";
 import { TONAL_COLORS, TonalSlideshow } from "@/components/wardrobe/tonal";
 import { IMAGE_STATUS_LABEL, IMAGE_STATUS_MARK, statusFromNote } from "@/lib/image-status";
+import { tonalRunner } from "@/lib/tonal-runners";
 
 const CATALOG = PIECES.filter((piece) => {
   if (!piece.image || offerFor(piece.id).kind === "waitlist") return false;
@@ -22,27 +24,48 @@ function clothingIds(ids: readonly string[]) {
   return ids.filter((id) => offerFor(id).kind === "commission");
 }
 
-function AlternateCard({ piece, onAdd }: { piece: WardrobePiece; onAdd: () => void }) {
+function AlternateCard({
+  piece,
+  onAdd,
+  onPreview,
+}: {
+  piece: WardrobePiece;
+  onAdd: () => void;
+  onPreview: (frame: PreviewFrame) => void;
+}) {
   const offer = offerFor(piece.id);
   const status = statusFromNote(piece.note, Boolean(piece.image));
   return (
     <div className="flex flex-col border border-[#1c1a17]/10 bg-white">
       <div className="relative bg-[#e7e0d4]">
-        <img src={piece.image} alt={piece.name} className="h-36 w-full object-contain" />
-        <StatusMark status={status} className="absolute left-2 top-2" />
+        {piece.image ? (
+          <PreviewTrigger
+            src={piece.image}
+            alt={piece.name}
+            caption={`${IMAGE_STATUS_LABEL[status]}. Click stays a study — not a checkout.`}
+            className="relative block w-full"
+            imgClassName="h-44 w-full object-contain sm:h-52"
+            onOpen={onPreview}
+          >
+            <StatusMark status={status} className="pointer-events-none absolute left-2 top-2" />
+            <span className="pointer-events-none absolute bottom-2 right-2 bg-[#1c1a17]/75 px-2 py-1 text-[10px] tracking-[0.14em] text-[#f5f0e8] uppercase">
+              View
+            </span>
+          </PreviewTrigger>
+        ) : null}
       </div>
-      <div className="flex flex-1 flex-col p-2">
+      <div className="flex flex-1 flex-col p-3">
         <p className="font-serif text-lg leading-tight">{piece.name}</p>
         <p className="mt-1 text-[12px] leading-snug text-[#1c1a17]/60">
           {IMAGE_STATUS_LABEL[status]}.{" "}
           {offer.kind === "commission" ? "Available to request" : `Available · $${offer.usd} · made to order`}
         </p>
         {offer.kind === "commission" ? (
-          <button type="button" onClick={onAdd} className="mt-2 h-10 text-left text-[11px] tracking-[0.12em] uppercase underline underline-offset-4">
-            Add
+          <button type="button" onClick={onAdd} className="mt-3 h-10 text-left text-[11px] tracking-[0.12em] uppercase underline underline-offset-4">
+            Add to request
           </button>
         ) : (
-          <Link href={offer.href} className="mt-2 inline-flex h-10 items-center text-[11px] tracking-[0.12em] uppercase underline underline-offset-4">
+          <Link href={offer.href} className="mt-3 inline-flex h-10 items-center text-[11px] tracking-[0.12em] uppercase underline underline-offset-4">
             Request this pair
           </Link>
         )}
@@ -52,14 +75,32 @@ function AlternateCard({ piece, onAdd }: { piece: WardrobePiece; onAdd: () => vo
 }
 
 const EASES = [
-  { id: "tailored", label: "Tailored", line: "Closer through the leg. Still room to sit." },
-  { id: "easy", label: "Easy", line: "A little room to move. A clean, tapered line." },
-  { id: "relaxed", label: "Relaxed", line: "More room through the thigh. The hem stays clean." },
+  { id: "tailored", label: "Tailored", line: "Closer through the leg. Still room to sit.", fit: "close" as const },
+  { id: "easy", label: "Easy", line: "A little room to move. A clean, tapered line.", fit: "standard" as const },
+  { id: "relaxed", label: "Relaxed", line: "More room through the thigh. The hem stays clean.", fit: "generous" as const },
 ] as const;
 
 const SHOULDERS = [
   { id: "structured", label: "Structured", line: "A cleaner line through the shoulder." },
   { id: "relaxed", label: "Relaxed", line: "More room through the shoulder." },
+] as const;
+
+const PHYSIQUES = [
+  {
+    id: "athletic-tall",
+    label: "Athletic · tall",
+    line: "Longer sleeve and rise. Structured shoulder. Tailored through the leg with room to move.",
+  },
+  {
+    id: "athletic",
+    label: "Athletic",
+    line: "Broader through the chest and thigh. Clean hem.",
+  },
+  {
+    id: "standard",
+    label: "Standard",
+    line: "House base proportions.",
+  },
 ] as const;
 
 /** Starting sets follow the days a client dresses for. They are not client profiles. */
@@ -129,15 +170,18 @@ export function PrivateHouse() {
   const [timing, setTiming] = useState<"" | "season" | "year" | "undecided">("");
   const [budget, setBudget] = useState<"" | "undisclosed" | "seasonal" | "annual" | "expanded" | "quoted">("");
   const [toneAt, setToneAt] = useState(0);
-  const [easeId, setEaseId] = useState<(typeof EASES)[number]["id"]>("easy");
+  const [easeId, setEaseId] = useState<(typeof EASES)[number]["id"]>("tailored");
   const [shoulderId, setShoulderId] = useState<(typeof SHOULDERS)[number]["id"]>("structured");
+  const [physiqueId, setPhysiqueId] = useState<(typeof PHYSIQUES)[number]["id"]>("athletic-tall");
+  const [preview, setPreview] = useState<PreviewFrame | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState<string | null>(null);
   const [remoteFitting, setRemoteFitting] = useState(false);
 
-  const ease = EASES.find((item) => item.id === easeId) ?? EASES[1];
+  const ease = EASES.find((item) => item.id === easeId) ?? EASES[0];
   const shoulder = SHOULDERS.find((item) => item.id === shoulderId) ?? SHOULDERS[0];
+  const physique = PHYSIQUES.find((item) => item.id === physiqueId) ?? PHYSIQUES[0];
   const clothes = visiblePieces(selected);
   const heldLine = lineByRef(lineRef);
   const castLook = collectionLook ? lookBySlug(collectionLook) : undefined;
@@ -249,6 +293,14 @@ export function PrivateHouse() {
           lineSize,
           lineImage,
           matchingPieces,
+          fit: {
+            shoulderStyle: shoulder.id,
+            ease: ease.fit,
+            height: physiqueId === "athletic-tall" ? "196" : "",
+            thigh: physiqueId === "athletic" || physiqueId === "athletic-tall" ? "66" : "",
+            sleeve: physiqueId === "athletic-tall" ? "70" : "",
+            inseam: physiqueId === "athletic-tall" ? "90" : "",
+          } satisfies Partial<FitInput>,
           remoteFitting,
           privacyConsent: false,
         }),
@@ -268,31 +320,49 @@ export function PrivateHouse() {
     }
   }
 
-  function writeTone(index: number, easeLabel?: string, shoulderLabel?: string) {
+  function writeTone(index: number, easeLabel?: string, shoulderLabel?: string, physiqueLabel?: string) {
     const chosen = TONAL_COLORS[index] ?? TONAL_COLORS[0];
+    const runner = tonalRunner(chosen.id);
     const colorLine = `Tonal color: ${chosen.name}.`;
+    const runnerLine = runner ? ` Matching runner: ${runner.name}.` : "";
     const easeLine = easeLabel ? ` Trouser ease: ${easeLabel}.` : "";
     const shoulderLine = shoulderLabel ? ` Shoulder: ${shoulderLabel}.` : "";
+    const physiqueLine = physiqueLabel ? ` Physique: ${physiqueLabel}.` : "";
     setNote((current) => {
       const without = current
         .replace(/Tonal color: [^.]+\./, "")
+        .replace(/Matching runner: [^.]+\./, "")
         .replace(/Trouser ease: [^.]+\./, "")
         .replace(/Shoulder: [^.]+\./, "")
+        .replace(/Physique: [^.]+\./, "")
         .replace(/\s+/g, " ")
         .trim();
-      return `${without}${without ? " " : ""}${colorLine}${easeLine}${shoulderLine}`.trim();
+      return `${without}${without ? " " : ""}${colorLine}${runnerLine}${easeLine}${shoulderLine}${physiqueLine}`.trim();
     });
+    if (runner) setMatchingPieces([runner.name]);
   }
 
   function rememberFit() {
-    writeTone(toneAt, ease.label, shoulder.label);
-    document.getElementById("introduction")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    writeTone(toneAt, ease.label, shoulder.label, physique.label);
+    document.getElementById("style")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   function requestTone(index: number) {
     setToneAt(index);
-    writeTone(index, ease.label, shoulder.label);
+    writeTone(index, ease.label, shoulder.label, physique.label);
+    setScope((current) => {
+      if (current === "season" || current === "annual" || current === "expanded" || current === "atelier") return current;
+      return "look";
+    });
     document.getElementById("introduction")?.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function choosePhysique(id: (typeof PHYSIQUES)[number]["id"]) {
+    setPhysiqueId(id);
+    if (id === "athletic-tall" || id === "athletic") {
+      setShoulderId("structured");
+      setEaseId("tailored");
+    }
   }
 
   function toggle(id: string) {
@@ -311,42 +381,64 @@ export function PrivateHouse() {
   return (
     <div>
       <WardrobeIntro />
+      <WardrobePreview frame={preview} onClose={() => setPreview(null)} />
 
       <section id="build" className="scroll-mt-28">
         <div className="mx-auto max-w-[1100px] px-5 py-10 md:px-8 md:py-12">
           <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Step 01 · Starting sets</p>
           <h2 className="mt-3 max-w-2xl font-serif text-4xl leading-[0.95] md:text-5xl">Choose a set and adjust it.</h2>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            Each set is a day you dress for — not a client profile. Start from the day, or from the rose sample. Every piece with a photograph can be requested. After you choose, keep only what you want made, then send an introduction. A fitting, if you add one, is remote. It is not held in person.
+            Each set is a day you dress for — not a client profile. Open any photograph for the full study, then use the set. Keep only what you want made, choose color and fit, and send an introduction.
           </p>
-          <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
+          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {STARTS.map((start) => {
               const on = start.id === startId;
               return (
-                <button
+                <article
                   key={start.id}
-                  type="button"
-                  aria-pressed={on}
-                  onClick={() => applyStart(start)}
-                  className={`text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1c1a17] ${on ? "ring-2 ring-[#1c1a17]" : ""}`}
+                  className={`flex flex-col text-left ${on ? "ring-2 ring-[#1c1a17] ring-offset-4 ring-offset-[#f5f0e8]" : ""}`}
                 >
-                  <span className="relative block bg-[#e7e0d4]">
-                    <img src={start.image} alt={start.alt} className={`h-40 w-full object-cover sm:aspect-[4/5] sm:h-auto ${"frame" in start ? start.frame : "object-top"}`} />
-                    <StatusMark status="study" className="absolute left-2 top-2" />
-                  </span>
-                  <span className="mt-2 block font-serif text-2xl">{start.name}</span>
-                  <span className="mt-1 block text-sm leading-snug text-[#1c1a17]/70">{start.line}</span>
-                </button>
+                  <PreviewTrigger
+                    src={start.image}
+                    alt={start.alt}
+                    caption={start.line}
+                    className="relative block w-full bg-[#e7e0d4]"
+                    imgClassName={`aspect-[4/5] w-full object-cover ${"frame" in start ? start.frame : "object-top"}`}
+                    onOpen={setPreview}
+                  >
+                    <StatusMark status="study" className="pointer-events-none absolute left-2 top-2" />
+                    <span className="pointer-events-none absolute bottom-2 right-2 bg-[#1c1a17]/75 px-2 py-1 text-[10px] tracking-[0.14em] text-[#f5f0e8] uppercase">
+                      View look
+                    </span>
+                  </PreviewTrigger>
+                  <h3 className="mt-3 font-serif text-2xl">{start.name}</h3>
+                  <p className="mt-1 flex-1 text-sm leading-snug text-[#1c1a17]/70">{start.line}</p>
+                  <button
+                    type="button"
+                    aria-pressed={on}
+                    onClick={() => applyStart(start)}
+                    className={`mt-4 inline-flex h-11 items-center justify-center px-4 text-[11px] tracking-[0.14em] uppercase ${
+                      on ? "bg-[#1c1a17] text-[#f5f0e8]" : "border border-[#1c1a17] text-[#1c1a17]"
+                    }`}
+                  >
+                    {on ? "Selected" : "Use this set"}
+                  </button>
+                </article>
               );
             })}
           </div>
-          <p className="mt-5 text-sm text-[#1c1a17]/65">
-            A single pair does not open a wardrobe.{" "}
-            <Link href="/shop#edition" className="underline underline-offset-4">
-              Request one founding pair
-            </Link>
-            , in US men&apos;s 7 through 12.
-          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <a href="#pieces" className="inline-flex h-12 items-center bg-[#1c1a17] px-5 text-[11px] tracking-[0.16em] text-[#f5f0e8] uppercase">
+              Continue to pieces
+            </a>
+            <p className="text-sm text-[#1c1a17]/65">
+              A single pair does not open a wardrobe.{" "}
+              <Link href="/shop#0929" className="underline underline-offset-4">
+                Request one founding pair
+              </Link>
+              .
+            </p>
+          </div>
         </div>
       </section>
 
@@ -364,7 +456,14 @@ export function PrivateHouse() {
               {heldLine && (
                 <li className="flex items-center gap-4 py-3">
                   {(lineImage || castLook?.image) && (
-                    <img src={lineImage || castLook?.image} alt="" className="size-14 bg-[#e7e0d4] object-cover object-top" />
+                    <PreviewTrigger
+                      src={lineImage || castLook!.image}
+                      alt={castLook?.alt ?? customerName(heldLine)}
+                      caption="Line piece held for this enquiry."
+                      className="relative shrink-0"
+                      imgClassName="size-20 bg-[#e7e0d4] object-cover object-top"
+                      onOpen={setPreview}
+                    />
                   )}
                   {!lineImage && !castLook?.image && (
                     <span className="grid size-11 shrink-0 place-items-center border border-[#1c1a17] text-[11px]">In</span>
@@ -388,10 +487,16 @@ export function PrivateHouse() {
                   return (
                     <li key={piece.id} className="flex items-center gap-4 py-3">
                       {piece.image && (
-                        <span className="relative shrink-0">
-                          <img src={piece.image} alt="" className="size-14 bg-[#e7e0d4] object-contain" />
-                          <StatusMark status={status} className="absolute -left-1 -top-1 scale-90" />
-                        </span>
+                        <PreviewTrigger
+                          src={piece.image}
+                          alt={piece.name}
+                          caption={`${IMAGE_STATUS_LABEL[status]} · $${offer.usd}`}
+                          className="relative shrink-0"
+                          imgClassName="size-20 bg-[#e7e0d4] object-contain"
+                          onOpen={setPreview}
+                        >
+                          <StatusMark status={status} className="pointer-events-none absolute -left-1 -top-1 scale-90" />
+                        </PreviewTrigger>
                       )}
                       <span className="min-w-0 flex-1">
                         <span className="block font-serif text-2xl">{piece.name}</span>
@@ -406,19 +511,25 @@ export function PrivateHouse() {
                 const on = selected.includes(piece.id);
                 return (
                   <li key={piece.id}>
-                    <label className="flex min-h-11 cursor-pointer items-center gap-4 py-3">
-                      <input type="checkbox" checked={on} onChange={() => toggle(piece.id)} className="size-5 accent-[#1c1a17]" />
+                    <div className="flex min-h-11 items-center gap-4 py-3">
+                      <input type="checkbox" checked={on} onChange={() => toggle(piece.id)} className="size-5 accent-[#1c1a17]" aria-label={`Keep ${piece.name}`} />
                       {piece.image && (
-                        <span className="relative shrink-0">
-                          <img src={piece.image} alt="" className="size-14 bg-[#e7e0d4] object-contain" />
-                          <StatusMark status={status} className="absolute -left-1 -top-1 scale-90" />
-                        </span>
+                        <PreviewTrigger
+                          src={piece.image}
+                          alt={piece.name}
+                          caption={`${IMAGE_STATUS_LABEL[status]} · available to request`}
+                          className="relative shrink-0"
+                          imgClassName="size-20 bg-[#e7e0d4] object-contain"
+                          onOpen={setPreview}
+                        >
+                          <StatusMark status={status} className="pointer-events-none absolute -left-1 -top-1 scale-90" />
+                        </PreviewTrigger>
                       )}
                       <span className="min-w-0 flex-1">
                         <span className="block font-serif text-2xl">{piece.name}</span>
                         <span className="text-[13px] text-[#1c1a17]/60">{IMAGE_STATUS_LABEL[status]} · available to request</span>
                       </span>
-                    </label>
+                    </div>
                   </li>
                 );
               })}
@@ -430,27 +541,64 @@ export function PrivateHouse() {
               ) : (
                 <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
                   {alternates.map((piece) => (
-                    <AlternateCard key={piece.id} piece={piece} onAdd={() => addPiece(piece.id)} />
+                    <AlternateCard key={piece.id} piece={piece} onAdd={() => addPiece(piece.id)} onPreview={setPreview} />
                   ))}
                 </div>
               )}
             </div>
+            <a href="#fit" className="mt-8 inline-flex h-12 items-center border border-[#1c1a17] px-5 text-[11px] tracking-[0.16em] uppercase lg:hidden">
+              Continue to fit
+            </a>
           </div>
 
           <div id="fit" className="scroll-mt-28 border border-[#1c1a17]/15 bg-[#1c1a17] p-4 text-[#f6f4ef] md:p-5">
-            <p className="text-[11px] tracking-[0.16em] text-[#f6f4ef]/55 uppercase">Virtual fit</p>
-            <h2 className="mt-2 font-serif text-4xl">Find your ease.</h2>
+            <p className="text-[11px] tracking-[0.16em] text-[#f6f4ef]/55 uppercase">Step 02 · Virtual fit</p>
+            <h2 className="mt-2 font-serif text-4xl">Athletic tall, by default.</h2>
             <div className="mt-4 grid grid-cols-2 gap-3">
               <figure className="bg-[#2a2824]">
-                <img src="/editorial/saint-john-worn.webp" alt="Lucien in the camel Saint John jacket and trouser, worn as a fit reference" className="h-56 w-full object-contain md:h-64" />
-                <figcaption className="ms-caption px-2 pb-2 text-xs text-[#f6f4ef]/70">Lucien, in Saint John. Worn. Not a client. The shoes are not a founding runner.</figcaption>
+                <PreviewTrigger
+                  src="/editorial/saint-john-worn.webp"
+                  alt="Lucien in the camel Saint John jacket and trouser, worn as a fit reference"
+                  caption="Lucien, in Saint John. Worn. Not a client."
+                  className="relative block w-full"
+                  imgClassName="h-56 w-full object-contain md:h-64"
+                  onOpen={setPreview}
+                />
+                <figcaption className="ms-caption px-2 pb-2 text-xs text-[#f6f4ef]/70">Lucien, in Saint John. Open for the full frame.</figcaption>
               </figure>
               <figure className="bg-[#2a2824]">
-                <img src="/editorial/saint-michael-back.webp" alt="Back of the olive Saint Michael jacket, with Saint Michael the Archangel" className="h-56 w-full object-contain md:h-64" />
-                <figcaption className="ms-caption px-2 pb-2 text-xs text-[#f6f4ef]/70">Saint Michael, the back. A different study from the worn photograph.</figcaption>
+                <PreviewTrigger
+                  src="/editorial/saint-michael-back.webp"
+                  alt="Back of the olive Saint Michael jacket, with Saint Michael the Archangel"
+                  caption="Saint Michael, the back. A different study from the worn photograph."
+                  className="relative block w-full"
+                  imgClassName="h-56 w-full object-contain md:h-64"
+                  onOpen={setPreview}
+                />
+                <figcaption className="ms-caption px-2 pb-2 text-xs text-[#f6f4ef]/70">Saint Michael, the back. Open for the full frame.</figcaption>
               </figure>
             </div>
-            <p className="mt-4 text-sm leading-relaxed text-[#f6f4ef]/75">The fitting is remote. It is not held in person. Measurements are not entered here. A remote fitting consultation can be added with the introduction. It has no listed price.</p>
+            <p className="mt-4 text-sm leading-relaxed text-[#f6f4ef]/75">
+              The house develops for an athletic tall physique — longer sleeve and rise, structured shoulder, tailored ease. The fitting is remote. Measurements are not entered here.
+            </p>
+            <p className="mt-5 text-sm text-[#f6f4ef]/80">Physique</p>
+            <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3" role="tablist" aria-label="Physique">
+              {PHYSIQUES.map((item) => {
+                const on = item.id === physique.id;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={on}
+                    onClick={() => choosePhysique(item.id)}
+                    className={`h-12 text-sm ${on ? "bg-[#f6f4ef] text-[#1c1a17]" : "border border-[#f6f4ef]/30 text-[#f6f4ef]"}`}
+                  >
+                    {item.label}
+                  </button>
+                );
+              })}
+            </div>
             <p className="mt-5 text-sm text-[#f6f4ef]/80">How should the shoulder feel?</p>
             <div className="mt-2 grid grid-cols-2 gap-2" role="tablist" aria-label="Shoulder">
               {SHOULDERS.map((item) => {
@@ -473,19 +621,34 @@ export function PrivateHouse() {
                 );
               })}
             </div>
-            <p className="mt-4 text-sm leading-relaxed text-[#f6f4ef]/75">{shoulder.line} {ease.line} A preference for the conversation, not a measurement.</p>
+            <p className="mt-4 text-sm leading-relaxed text-[#f6f4ef]/75">
+              {physique.line} {shoulder.line} {ease.line} A preference for the conversation, not a measurement.
+            </p>
             <button type="button" onClick={rememberFit} className="mt-5 inline-flex h-12 w-full items-center justify-center bg-[#f6f4ef] px-5 text-sm tracking-[0.12em] text-[#1c1a17] uppercase">
-              Carry this into the introduction
+              Continue to tonal color
             </button>
           </div>
         </div>
       </section>
 
       <TonalSlideshow onIndex={setToneAt} onRequest={requestTone} />
+
+      <div className="border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
+        <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-4 px-5 py-8 md:px-8">
+          <div>
+            <p className="text-[11px] tracking-[0.18em] text-[#8d7349] uppercase">Next</p>
+            <p className="mt-2 max-w-xl font-serif text-2xl md:text-3xl">Pieces, fit, and color — ready for the introduction.</p>
+          </div>
+          <a href="#introduction" className="inline-flex h-12 items-center bg-[#1c1a17] px-5 text-[11px] tracking-[0.16em] text-[#f5f0e8] uppercase">
+            Send enquiry
+          </a>
+        </div>
+      </div>
+
       <div id="commission" className="scroll-mt-28" />
       <section id="introduction" className="scroll-mt-28 border-t border-[#1c1a17]/10">
         <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-10">
-          <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Your enquiry</p>
+          <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Step 04 · Your enquiry</p>
           <h2 className="mt-3 max-w-3xl font-serif text-4xl md:text-5xl">Send your enquiry.</h2>
           <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[#1c1a17]/70">
             Tell us about the pieces, fit, use and any dates you have in mind. No payment is taken with this enquiry.
@@ -597,11 +760,18 @@ export function PrivateHouse() {
               <p className="text-[11px] tracking-[0.16em] uppercase">This request</p>
               <h3 className="mt-3 font-serif text-3xl">{requestTitle}</h3>
               {(lineImage || castLook?.image) && (
-                <img
-                  src={lineImage || castLook?.image}
+                <PreviewTrigger
+                  src={lineImage || castLook!.image}
                   alt={castLook?.alt ?? requestTitle}
-                  className="mt-4 aspect-[3/4] w-full max-w-[200px] bg-[#e7e0d4] object-cover object-top"
-                />
+                  caption="Held for this enquiry."
+                  className="relative mt-4 block w-full max-w-[220px]"
+                  imgClassName="aspect-[3/4] w-full bg-[#e7e0d4] object-cover object-top"
+                  onOpen={setPreview}
+                >
+                  <span className="pointer-events-none absolute bottom-2 right-2 bg-[#1c1a17]/75 px-2 py-1 text-[10px] tracking-[0.14em] text-[#f5f0e8] uppercase">
+                    View
+                  </span>
+                </PreviewTrigger>
               )}
               <ul className="mt-4 space-y-2 text-sm">
                 {heldLine && (
@@ -611,6 +781,9 @@ export function PrivateHouse() {
                     {lineSize ? ` · size ${lineSize}` : ""}
                   </li>
                 )}
+                <li className="text-[#1c1a17]/70">
+                  Fit · {physique.label} · {shoulder.label} shoulder · {ease.label} ease
+                </li>
                 {matchingPieces.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -620,12 +793,23 @@ export function PrivateHouse() {
                     <span className="text-[#1c1a17]/50"> · {IMAGE_STATUS_MARK[statusFromNote(piece.note, Boolean(piece.image))]}</span>
                   </li>
                 ))}
-                {clothes.length === 0 && !heldLine && <li className="text-[#1c1a17]/60">No piece selected yet.</li>}
+                {clothes.length === 0 && !heldLine && <li className="text-[#1c1a17]/60">No piece selected yet — color and fit can still go in the note.</li>}
               </ul>
               <div className="mt-6 space-y-3 border-t border-[#1c1a17]/10 pt-4 text-[13px] leading-relaxed text-[#1c1a17]/70">
                 <p>
                   <span className="font-medium text-[#1c1a17]">No payment is taken with this enquiry.</span> We will confirm materials, price and delivery before you order.
                 </p>
+                <div className="flex flex-wrap gap-3 pt-1">
+                  <a href="#build" className="underline underline-offset-4">
+                    Edit set
+                  </a>
+                  <a href="#style" className="underline underline-offset-4">
+                    Edit color
+                  </a>
+                  <a href="#fit" className="underline underline-offset-4">
+                    Edit fit
+                  </a>
+                </div>
               </div>
             </aside>
           </div>

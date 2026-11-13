@@ -332,7 +332,7 @@ export function PrivateHouse() {
                 >
                   <span className="relative block bg-[#e7e0d4]">
                     <img src={start.image} alt={start.alt} className={`h-40 w-full object-cover sm:aspect-[4/5] sm:h-auto ${"frame" in start ? start.frame : "object-top"}`} />
-                    <StatusMark status={start.id === "rose" ? "proposed" : "study"} className="absolute left-2 top-2" />
+                    <StatusMark status="study" className="absolute left-2 top-2" />
                   </span>
                   <span className="mt-2 block font-serif text-2xl">{start.name}</span>
                   <span className="mt-1 block text-sm leading-snug text-[#1c1a17]/70">{start.line}</span>

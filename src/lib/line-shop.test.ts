@@ -97,7 +97,7 @@ test("editorial stills stay shoppable without inventing a tee sku", () => {
     assert.ok(still.name, still.src);
   }
   const runner = stills.find((still) => still.src.includes("navy-ivory-worn"));
-  assert.equal(runner?.href, "/shop/ms-runner-chalk-navy");
+  assert.equal(runner?.href, "/shop/ms-runner-chalk-navy#title");
   assert.equal(runner?.price, "$490");
   for (const still of stills.filter((block) => block.src.includes("tee-"))) {
     assert.equal(still.href, "/wardrobe#introduction");

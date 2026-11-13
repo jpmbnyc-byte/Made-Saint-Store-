@@ -30,7 +30,7 @@ export function EditionSlider({ products }: { products: Product[] }) {
               {SIZES.map((size) => (
                 <Link
                   key={size}
-                  href={`/shop/${product.id}?size=${size}`}
+                  href={`/shop/${product.id}?size=${size}#title`}
                   className="grid h-11 w-12 shrink-0 place-items-center border border-[#41505b]/20 text-sm tabular-nums text-[#1c1a17] hover:border-[#c0a477]"
                 >
                   {size}
@@ -40,7 +40,7 @@ export function EditionSlider({ products }: { products: Product[] }) {
             <p className="mt-2 text-[12px] text-[#41505b]">Between sizes, take the half size up. The size is waiting on the reservation.</p>
           </div>
           <p className="mt-6 text-sm text-[#41505b]">The price above is the listed price. This page does not take payment.</p>
-          <Link href={`/shop/${product.id}`} className="mt-4 inline-flex h-12 items-center bg-[#2a3746] px-6 text-sm text-[#f2eee8]">
+          <Link href={`/shop/${product.id}#title`} className="mt-4 inline-flex h-12 items-center bg-[#2a3746] px-6 text-sm text-[#f2eee8]">
             Continue to this pair
           </Link>
         </div>

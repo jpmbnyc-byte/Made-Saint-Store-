@@ -240,6 +240,16 @@ export function campaignStatus(now = new Date(), c: Campaign = CAMPAIGN): Campai
 
 export const productById = (id: string) => PRODUCTS.find((p) => p.id === id);
 
+/** Product pages open on the shoe title (`#title`), not the gallery top. */
+export function runnerHref(id: string, opts?: { size?: string }) {
+  const query = opts?.size ? `?size=${encodeURIComponent(opts.size)}` : "";
+  return `/shop/${id}${query}#title`;
+}
+
+export function seriesHref(series: SeriesId) {
+  return `/shop#${series}`;
+}
+
 /** Every launched runner is live and made to order on the same promise. */
 export function offerLine(series: SeriesId) {
   void series;

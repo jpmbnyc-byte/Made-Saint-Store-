@@ -1,6 +1,12 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { PRODUCTS, SERIES_ORDER, SERIES_PLATE, productsIn } from "./business";
+import { PRODUCTS, SERIES_ORDER, SERIES_PLATE, productsIn, runnerHref, seriesHref } from "./business";
+
+test("runner and series links open on the title or series plate", () => {
+  assert.equal(runnerHref("ms-runner-chalk-navy"), "/shop/ms-runner-chalk-navy#title");
+  assert.equal(runnerHref("ms-runner-chalk-navy", { size: "10" }), "/shop/ms-runner-chalk-navy?size=10#title");
+  assert.equal(seriesHref("1213"), "/shop#1213");
+});
 
 test("the runner series keep the handoff colorways and the price order", () => {
   assert.deepEqual(SERIES_ORDER, ["1101", "1213", "0929"]);

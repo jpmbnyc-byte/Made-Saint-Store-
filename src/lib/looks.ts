@@ -145,7 +145,7 @@ export function offerFor(pieceId: string): Offer {
   const href = shopHref(pieceId);
   const usd = retailOf(pieceId);
   if (!href || usd == null) return { kind: "commission" };
-  const product = PRODUCTS.find((p) => href === `/shop/${p.id}`);
+  const product = PRODUCTS.find((p) => href === `/shop/${p.id}` || href.startsWith(`/shop/${p.id}?`) || href.startsWith(`/shop/${p.id}#`));
   if (product?.launch) return { kind: "reserve", href, usd };
   return { kind: "waitlist", href, usd };
 }

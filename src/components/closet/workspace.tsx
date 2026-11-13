@@ -164,7 +164,7 @@ export function ClosetWorkspace() {
                         <Link href={`/wardrobe?ref=${piece.productRef}#introduction`} className="mt-3 inline-flex h-11 items-center text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">Enquire</Link>
                       )}
                       {piece.kind === "runner" && piece.size && (
-                        <Link href={`/shop/${piece.productRef}?size=${piece.size}`} className="mt-3 inline-flex h-11 items-center text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">Request this pair</Link>
+                        <Link href={`/shop/${piece.productRef}?size=${piece.size}#title`} className="mt-3 inline-flex h-11 items-center text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">Request this pair</Link>
                       )}
                     </div>
                   </li>

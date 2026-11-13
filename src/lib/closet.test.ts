@@ -59,17 +59,17 @@ test("creating a group names it, attaches selected pieces, and refuses a blank n
 
 test("only a launched runner with a size can enter the bag, and a retry does not duplicate", () => {
   const line = decideBag({ productRef: "R027", kind: "line", size: "M", launch: false });
-  const bare = decideBag({ productRef: "ms-runner-1101-mesh-black", kind: "runner", size: "", launch: true });
-  const pair = decideBag({ productRef: "ms-runner-1101-mesh-black", kind: "runner", size: "9", launch: true });
+  const bare = decideBag({ productRef: "ms-runner-1101-butter", kind: "runner", size: "", launch: true });
+  const pair = decideBag({ productRef: "ms-runner-1101-butter", kind: "runner", size: "9", launch: true });
   assert.equal(line.ok, false);
   assert.equal(bare.ok, false);
   assert.equal(pair.ok, true);
   const first = addToBag(emptyBag(), [line, bare, pair]);
-  assert.deepEqual(first.added, ["ms-runner-1101-mesh-black"]);
+  assert.deepEqual(first.added, ["ms-runner-1101-butter"]);
   assert.equal(first.blocked.length, 2);
   const second = addToBag(first.bag, [pair]);
   assert.deepEqual(second.added, []);
-  assert.deepEqual(second.alreadyThere, ["ms-runner-1101-mesh-black"]);
+  assert.deepEqual(second.alreadyThere, ["ms-runner-1101-butter"]);
   assert.equal(second.bag.items.length, 1);
 });
 

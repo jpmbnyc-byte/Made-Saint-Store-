@@ -3,8 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ChevronLeft } from "lucide-react";
-import { PRODUCTS, SIZES, productById, runnerHref } from "@/lib/business";
+import { PRODUCTS, SERIES_ORDER, SIZES, productById, runnerHref, seriesHref } from "@/lib/business";
 import { viewsFor } from "@/lib/catalog";
 import { withPublished } from "@/lib/atelier/publish";
 import { stripeEnabled } from "@/lib/stripe";
@@ -13,6 +12,8 @@ import { ProductGallery } from "@/components/shop/gallery";
 import { ReserveForm } from "@/components/shop/reserve";
 import { SaveRunner } from "@/components/shop/save-runner";
 import { HashScroll } from "@/components/shop/hash-scroll";
+import { ProductBreakdown, SeriesStoryPanel } from "@/components/shop/series-story";
+import { breakdownForProduct, seriesStory } from "@/lib/series-story";
 import { runnerStatusCopy } from "@/lib/image-status";
 
 export function generateStaticParams() {
@@ -34,55 +35,73 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   const views = await withPublished(product.id, viewsFor(product));
   const siblings = PRODUCTS.filter((p) => p.launch && p.series === product.series && p.id !== product.id);
   const statusCopy = runnerStatusCopy();
+  const story = seriesStory(product.series);
+  const leadColorway = product.id === story.leadProductId;
+  const editorialHero = leadColorway ? story.editorialHero : null;
+  const colourway = color(product.name);
+  const breakdown = breakdownForProduct(story, product.id, product.materials, colourway);
 
   return (
-    <div className="min-h-screen bg-[#f7f7f5] text-[#1c1a17]">
+    <div className="min-h-screen bg-[#f6f2eb] text-[#352a23]">
       <ShopHeader />
       <HashScroll />
-      <main className="mx-auto max-w-[1440px] px-0 py-0 md:px-8 md:py-8">
-        <div className="px-5 pt-5 md:px-0 md:pt-0">
-          <Link href={`/shop#${product.series}`} className="inline-flex items-center gap-1 text-[11px] tracking-[0.16em] text-[#1c1a17]/60 uppercase hover:text-[#1c1a17]">
-            <ChevronLeft className="size-3.5" /> {product.series}
-          </Link>
-        </div>
+      <main>
+        <section className="mx-auto grid max-w-[1600px] items-start gap-8 px-[4.5%] pt-8 pb-6 md:gap-10 md:pt-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(340px,0.95fr)] lg:gap-14 lg:pb-10" aria-label={`${product.series} ${colourway}`}>
+          <ProductGallery views={views} editorialHero={editorialHero} productName={product.name} />
 
-        <div className="mt-4 grid min-w-0 items-start gap-8 lg:mt-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(340px,0.85fr)] lg:gap-12">
-          <div className="min-w-0">
-            <ProductGallery views={views} />
-          </div>
-
-          <div className="min-w-0 px-5 pb-12 lg:sticky lg:top-28 lg:self-start lg:px-0 lg:pb-0">
+          <div className="min-w-0 pb-8 lg:sticky lg:top-28 lg:self-start lg:pb-0">
             <div id="title" className="scroll-mt-36 md:scroll-mt-28">
-              <p className="text-[11px] tracking-[0.18em] text-[#1c1a17]/55 uppercase">
-                MADE SAiNT · {product.series}
+              <p className="text-[11px] tracking-[0.22em] text-[#352a23] uppercase md:text-[12px]">Series</p>
+              <p className="mt-2 font-serif text-[clamp(4.5rem,9vw,7.5rem)] leading-none tracking-[-0.04em] text-[#352a23]">
+                {product.series}
               </p>
-              <h1 className="mt-3 font-serif text-4xl leading-none md:text-5xl">{color(product.name)}</h1>
+              <h1 className="mt-3 font-serif text-[clamp(2.4rem,4.5vw,3.6rem)] leading-[1.05] tracking-[-0.02em]">
+                {colourway}
+              </h1>
             </div>
-            <p className="mt-4 text-lg tabular-nums">${product.usd}</p>
-            <p className="mt-2 text-[12px] tracking-[0.08em] text-[#1c1a17]/50 uppercase">{statusCopy.mark}</p>
-            {product.notice && <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">{product.notice}</p>}
-            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{product.line}</p>
-            <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">{statusCopy.line}</p>
 
-            <div className="mt-8">
-              <p className="text-[11px] tracking-[0.16em] uppercase">Colour</p>
-              <div className="mt-3 flex min-w-0 gap-2 overflow-x-auto">
-                <Link href={runnerHref(product.id)} aria-current="page" className="w-14 min-w-14 shrink-0 overflow-hidden ring-1 ring-[#1c1a17]">
-                  <span className="relative block aspect-square bg-[#f3f3f1]">
-                    <Image src={product.image} alt="" fill sizes="56px" className="object-contain p-1" />
+            <p className="mt-6 text-[11px] tracking-[0.18em] text-[#352a23] uppercase">{statusCopy.mark}</p>
+            <p className="mt-3 max-w-md text-[16px] leading-relaxed text-[#352a23] md:text-[17px]">
+              {leadColorway ? product.line : `${colourway} · Series ${product.series}`}
+            </p>
+            {product.notice ? (
+              <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#75695d]">{product.notice}</p>
+            ) : null}
+            <p className="mt-6 font-serif text-[clamp(2rem,3vw,2.6rem)] tabular-nums tracking-[-0.02em]">
+              ${product.usd}
+            </p>
+            <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#75695d]">{statusCopy.line}</p>
+
+            <div className="mt-9">
+              <p className="text-[11px] tracking-[0.18em] uppercase">
+                Colour <span className="tracking-[0.08em] text-[#75695d]">/ {colourway}</span>
+              </p>
+              <div className="mt-3 flex min-w-0 gap-2 overflow-x-auto pb-1">
+                <Link
+                  href={runnerHref(product.id)}
+                  aria-current="page"
+                  className="w-[57px] min-w-[57px] shrink-0 overflow-hidden ring-1 ring-[#352a23]"
+                >
+                  <span className="relative block aspect-square bg-[#ece3d5]">
+                    <Image src={product.image} alt="" fill sizes="57px" className="object-contain p-1" />
                   </span>
                 </Link>
                 {siblings.map((p) => (
-                  <Link key={p.id} href={runnerHref(p.id)} className="w-14 min-w-14 shrink-0 overflow-hidden opacity-70 hover:opacity-100">
-                    <span className="relative block aspect-square bg-[#f3f3f1]">
-                      <Image src={p.image} alt="" fill sizes="56px" className="object-contain p-1" />
+                  <Link
+                    key={p.id}
+                    href={runnerHref(p.id)}
+                    className="w-[57px] min-w-[57px] shrink-0 overflow-hidden opacity-75 hover:opacity-100"
+                    title={color(p.name)}
+                  >
+                    <span className="relative block aspect-square bg-[#ece3d5]">
+                      <Image src={p.image} alt="" fill sizes="57px" className="object-contain p-1" />
                     </span>
                   </Link>
                 ))}
               </div>
             </div>
 
-            <div className="mt-8">
+            <div className="mt-9 border-t border-[#dfd6ca] pt-8">
               <Suspense fallback={null}>
                 <ReserveForm
                   productId={product.id}
@@ -91,53 +110,29 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                   sizes={SIZES}
                 />
               </Suspense>
-              {product.launch && <SaveRunner productId={product.id} color={product.line} />}
+              {product.launch ? <SaveRunner productId={product.id} color={product.line} /> : null}
             </div>
 
-            <div className="mt-10 divide-y divide-[#1c1a17]/12 border-y border-[#1c1a17]/12">
-              <details open className="group py-4">
-                <summary className="flex cursor-pointer list-none items-center justify-between text-[13px] tracking-[0.14em] uppercase">
-                  Product details
-                  <span className="text-lg leading-none text-[#1c1a17]/40 group-open:rotate-45">+</span>
+            <div className="mt-10 divide-y divide-[#dfd6ca] border-y border-[#dfd6ca]">
+              <details open className="group py-5">
+                <summary className="flex cursor-pointer list-none items-center justify-between text-[11px] tracking-[0.16em] uppercase">
+                  Fit &amp; sizing
+                  <span className="text-base leading-none text-[#75695d]">▾</span>
                 </summary>
-                <div className="mt-4 space-y-3 text-sm leading-relaxed text-[#1c1a17]/75">
-                  <ul className="space-y-1.5">
-                    {product.materials.map((m) => (
-                      <li key={m}>{m}</li>
-                    ))}
-                  </ul>
-                  <p>
-                    {product.series === "0929"
-                      ? "Tongue wordmark printed MADE SAiNT, lowercase i. Calf lined. Nub-lug sole."
-                      : product.id === "ms-runner-1213-sacred-light"
-                        ? "Tongue wordmark printed MADE SAiNT. The sole is sculpted. An angel is printed on the insole."
-                        : product.id === "ms-runner-1101-butter"
-                          ? "Dark chocolate suede with tan open-mesh panels. Five eyelet pairs. Tongue wordmark printed MADE SAiNT."
-                          : product.materials.some((item) => /gris medio/i.test(item))
-                            ? "Leather and 29 Gris Medio mesh. Five eyelet pairs. Tongue wordmark printed MADE SAiNT."
-                            : "Leather with open-mesh or wave panels. Five eyelet pairs. Tongue wordmark printed MADE SAiNT."}
-                  </p>
-                  <p className="text-[12px] tracking-[0.08em] text-[#1c1a17]/50 uppercase">Code {product.id}</p>
-                </div>
-              </details>
-              <details className="group py-4">
-                <summary className="flex cursor-pointer list-none items-center justify-between text-[13px] tracking-[0.14em] uppercase">
-                  Care
-                  <span className="text-lg leading-none text-[#1c1a17]/40 group-open:rotate-45">+</span>
-                </summary>
-                <p className="mt-4 text-sm leading-relaxed text-[#1c1a17]/75">
-                  Brush suede and woven leather with a soft crepe brush. Treat once before the first wear. Store in the dust bag, away from direct sun. Size exchanges are free within 30 days of delivery.
+                <p className="mt-4 text-[15px] leading-relaxed text-[#75695d]">
+                  Choose your usual US men&apos;s size as your preferred size. Tell us about your current shoes and any
+                  fit concerns in your enquiry. Fit and availability will be discussed before you order.
                 </p>
               </details>
-              <details className="group py-4">
-                <summary className="flex cursor-pointer list-none items-center justify-between text-[13px] tracking-[0.14em] uppercase">
-                  Delivery
-                  <span className="text-lg leading-none text-[#1c1a17]/40 group-open:rotate-45">+</span>
+              <details className="group py-5">
+                <summary className="flex cursor-pointer list-none items-center justify-between text-[11px] tracking-[0.16em] uppercase">
+                  Ordering &amp; delivery
+                  <span className="text-base leading-none text-[#75695d]">▾</span>
                 </summary>
-                <div className="mt-4 space-y-3 text-sm leading-relaxed text-[#1c1a17]/75">
-                  <p>Delivery is confirmed with your quotation.</p>
+                <div className="mt-4 space-y-3 text-[15px] leading-relaxed text-[#75695d]">
                   <p>
-                    An enquiry records your interest only. No payment is taken with the enquiry. When checkout is offered, it follows the terms shown there.
+                    Send your preferred style, colour and size. Availability, final price and delivery are confirmed with
+                    your quotation. No payment is taken with an enquiry.
                   </p>
                   <p>
                     Prefer a wardrobe around this pair?{" "}
@@ -148,9 +143,45 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                   </p>
                 </div>
               </details>
+              <details className="group py-5">
+                <summary className="flex cursor-pointer list-none items-center justify-between text-[11px] tracking-[0.16em] uppercase">
+                  Materials
+                  <span className="text-base leading-none text-[#75695d]">▾</span>
+                </summary>
+                <ul className="mt-4 space-y-1.5 text-[15px] leading-relaxed text-[#75695d]">
+                  {product.materials.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <p className="mt-3 text-[12px] tracking-[0.08em] text-[#75695d] uppercase">Code {product.id}</p>
+              </details>
             </div>
           </div>
-        </div>
+        </section>
+
+        <SeriesStoryPanel story={story} leadColorway={leadColorway} />
+        <ProductBreakdown parts={breakdown.parts} facts={breakdown.facts} leadName={breakdown.leadName} />
+
+        <nav
+          aria-label="Series"
+          className="mx-auto flex max-w-[1600px] flex-wrap items-center justify-between gap-4 border-t border-[#dfd6ca] px-[4.5%] py-10"
+        >
+          <p className="text-[11px] tracking-[0.18em] uppercase">Continue in the house</p>
+          <div className="flex flex-wrap gap-6">
+            {SERIES_ORDER.map((series) => (
+              <Link
+                key={series}
+                href={series === product.series ? runnerHref(product.id) : seriesHref(series)}
+                aria-current={series === product.series ? "page" : undefined}
+                className={`text-[13px] tracking-[0.16em] uppercase ${
+                  series === product.series ? "border-b border-[#352a23] pb-1" : "text-[#75695d] hover:text-[#352a23]"
+                }`}
+              >
+                {series}
+              </Link>
+            ))}
+          </div>
+        </nav>
       </main>
       <ShopFooter />
     </div>

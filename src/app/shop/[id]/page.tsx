@@ -53,10 +53,10 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
           <div className="min-w-0 px-5 pb-12 lg:sticky lg:top-28 lg:self-start lg:px-0 lg:pb-0">
             <div id="title" className="scroll-mt-36 md:scroll-mt-28">
-            <p className="text-[11px] tracking-[0.18em] text-[#1c1a17]/55 uppercase">
-              MADE SAiNT · {product.series}
-            </p>
-            <h1 className="mt-3 font-serif text-4xl leading-none md:text-5xl">{color(product.name)}</h1>
+              <p className="text-[11px] tracking-[0.18em] text-[#1c1a17]/55 uppercase">
+                MADE SAiNT · {product.series}
+              </p>
+              <h1 className="mt-3 font-serif text-4xl leading-none md:text-5xl">{color(product.name)}</h1>
             </div>
             <p className="mt-4 text-lg tabular-nums">${product.usd}</p>
             <p className="mt-2 text-[12px] tracking-[0.08em] text-[#1c1a17]/50 uppercase">{statusCopy.mark}</p>

@@ -18,6 +18,24 @@ export function SeriesStoryPanel({ story, leadColorway }: { story: SeriesStory; 
           <blockquote className="mt-10 max-w-xl font-serif text-[19px] leading-[1.65] text-[#352a23] italic md:text-[22px]">
             {story.quote}
           </blockquote>
+
+          <div className="mt-12 max-w-xl" aria-label={`Founder’s reading of ${story.series}`}>
+            <p className="text-[11px] tracking-[0.22em] text-[#352a23] uppercase">The name · {story.series}</p>
+            <ol className="mt-6 space-y-4">
+              {story.nameReading.map((item, index) => (
+                <li key={`${item.digit}-${index}`} className="grid grid-cols-[2.5rem_minmax(0,1fr)] items-baseline gap-4 border-t border-[#dfd6ca] pt-4 first:border-t-0 first:pt-0">
+                  <span className="font-serif text-[28px] leading-none tracking-[-0.03em] text-[#352a23] md:text-[32px]">
+                    {item.digit}
+                  </span>
+                  <span className="text-[15px] leading-relaxed text-[#352a23] md:text-[16px]">{item.meaning}</span>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-5 text-[12px] leading-relaxed text-[#75695d]">
+              The founder’s personal reading of the digits — not a claim of scriptural numerology.
+            </p>
+          </div>
+
           <button
             type="button"
             className="mt-10 border-b border-[#352a23] pb-1.5 text-left text-[10px] tracking-[0.13em] uppercase md:text-[11px]"

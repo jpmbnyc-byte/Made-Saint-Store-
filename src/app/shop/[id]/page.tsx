@@ -107,7 +107,11 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                       ? "Tongue wordmark printed MADE SAiNT, lowercase i. Calf lined. Nub-lug sole."
                       : product.id === "ms-runner-1213-sacred-light"
                         ? "Tongue wordmark printed MADE SAiNT. The sole is sculpted. An angel is printed on the insole."
-                        : "Leather and 29 Gris Medio mesh. Five eyelet pairs. Tongue wordmark printed MADE SAiNT."}
+                        : product.id === "ms-runner-1101-butter"
+                          ? "Dark chocolate suede with tan open-mesh panels. Five eyelet pairs. Tongue wordmark printed MADE SAiNT."
+                          : product.materials.some((item) => /gris medio/i.test(item))
+                            ? "Leather and 29 Gris Medio mesh. Five eyelet pairs. Tongue wordmark printed MADE SAiNT."
+                            : "Leather with open-mesh or wave panels. Five eyelet pairs. Tongue wordmark printed MADE SAiNT."}
                   </p>
                   <p className="text-[12px] tracking-[0.08em] text-[#1c1a17]/50 uppercase">Code {product.id}</p>
                 </div>

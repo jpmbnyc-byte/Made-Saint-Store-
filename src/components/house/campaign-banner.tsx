@@ -23,6 +23,7 @@ export function CampaignBanner({
   secondary,
   priority = false,
   tall = false,
+  compact = false,
   heading = "h2",
   id,
 }: {
@@ -36,19 +37,25 @@ export function CampaignBanner({
   secondary?: { href: string; label: string };
   priority?: boolean;
   tall?: boolean;
+  /** Shorter image so headline and CTA fit the first desktop viewport. */
+  compact?: boolean;
   heading?: "h1" | "h2";
   id?: string;
 }) {
   const Heading = heading;
+  const frameClass = compact
+    ? "relative mx-auto aspect-[4/5] max-h-[min(58vh,640px)] w-full max-w-[1440px] overflow-hidden bg-[#efefed] md:aspect-[16/10] md:max-h-[min(62vh,680px)]"
+    : tall
+      ? "relative mx-auto aspect-[3/4] w-full max-w-[1440px] overflow-hidden bg-[#efefed] sm:aspect-[4/5] md:aspect-[5/6] lg:aspect-[4/5]"
+      : "relative mx-auto aspect-[4/5] w-full max-w-[1440px] overflow-hidden bg-[#efefed] md:aspect-[3/4]";
+
   return (
-    <section id={id} className="overflow-hidden bg-[#f7f7f5] text-[#1c1a17]" aria-label={kicker}>
-      <div
-        className={
-          tall
-            ? "relative mx-auto aspect-[3/4] w-full max-w-[1440px] overflow-hidden bg-[#efefed] sm:aspect-[4/5] md:aspect-[5/6] lg:aspect-[4/5]"
-            : "relative mx-auto aspect-[4/5] w-full max-w-[1440px] overflow-hidden bg-[#efefed] md:aspect-[3/4]"
-        }
-      >
+    <section
+      id={id}
+      className={compact ? "flex min-h-[calc(100dvh-3.5rem)] flex-col overflow-hidden bg-[#f7f7f5] text-[#1c1a17]" : "overflow-hidden bg-[#f7f7f5] text-[#1c1a17]"}
+      aria-label={kicker}
+    >
+      <div className={frameClass}>
         <Image
           src={src}
           alt={alt}
@@ -58,7 +65,7 @@ export function CampaignBanner({
           className={`object-cover object-[center_top] ${priority ? "ms-hero-img-settle" : ""}`}
         />
       </div>
-      <div className="mx-auto max-w-[720px] px-5 py-8 text-center md:px-10 md:py-12">
+      <div className={`mx-auto max-w-[720px] px-5 text-center md:px-10 ${compact ? "py-5 md:py-6" : "py-8 md:py-12"}`}>
         <p className="ms-kicker ms-hero-text-rise flex items-center justify-center gap-3" style={{ animationDelay: "40ms" }}>
           <span aria-hidden="true" className="inline-block h-px w-6 bg-[#B03236]" />
           {kicker}
@@ -79,10 +86,10 @@ export function CampaignBanner({
               <li key={chip.href + chip.label}>
                 <Link
                   href={chip.href}
-                  className="ms-meta inline-flex h-11 items-center gap-2 border border-[#1c1a17]/20 bg-transparent px-3 text-[#1c1a17] transition-colors hover:border-[#1c1a17]/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B03236]"
+                  className="ms-meta inline-flex h-11 items-center gap-2 border border-[#1c1a17]/35 bg-transparent px-3 text-[#1c1a17] transition-colors hover:border-[#1c1a17]/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B03236]"
                 >
                   <span>{chip.label}</span>
-                  {chip.price && <span className="text-[#1c1a17]/55">{chip.price}</span>}
+                  {chip.price && <span className="text-[#1c1a17]/70">{chip.price}</span>}
                 </Link>
               </li>
             ))}
@@ -98,7 +105,7 @@ export function CampaignBanner({
           {secondary && (
             <Link
               href={secondary.href}
-              className="ms-link h-12 px-3 text-[#1c1a17]/70 decoration-1 underline-offset-[6px] transition-opacity hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
+              className="ms-link h-12 px-3 text-[#1c1a17]/85 decoration-1 underline-offset-[6px] transition-opacity hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
             >
               {secondary.label}
             </Link>

@@ -17,7 +17,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  let input: { kind?: string; productId?: string; size?: string; email?: string; name?: string };
+  let input: { kind?: string; productId?: string; size?: string; email?: string; name?: string; note?: string };
   try {
     input = await req.json();
   } catch {
@@ -26,11 +26,12 @@ export async function POST(req: NextRequest) {
   const product = productById(input.productId ?? "");
   const email = (input.email ?? "").trim().toLowerCase();
   const name = (input.name ?? "").trim().slice(0, 120) || undefined;
+  const note = typeof input.note === "string" ? input.note.trim().slice(0, 400) || undefined : undefined;
   if (!product) return NextResponse.json({ error: "That colorway does not exist." }, { status: 400 });
   if (!EMAIL.test(email)) return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 });
 
   if (input.kind === "waitlist" || !product.launch) {
-    const r = await createReservation({ kind: "waitlist", productId: product.id, email, name, amountUsd: 0, status: "reserved" });
+    const r = await createReservation({ kind: "waitlist", productId: product.id, email, name, note, amountUsd: 0, status: "reserved" });
     return NextResponse.json({ ok: true, mode: "waitlist", id: r.id });
   }
 
@@ -39,11 +40,11 @@ export async function POST(req: NextRequest) {
   const amountUsd = product.usd * CAMPAIGN.depositShare;
 
   if (!stripeEnabled()) {
-    const r = await createReservation({ kind: "preorder", productId: product.id, size: input.size, email, name, amountUsd, status: "reserved" });
+    const r = await createReservation({ kind: "preorder", productId: product.id, size: input.size, email, name, note, amountUsd, status: "reserved" });
     return NextResponse.json({ ok: true, mode: "mock", id: r.id, redirect: `/shop/confirmed?r=${r.id}` });
   }
 
-  const r = await createReservation({ kind: "preorder", productId: product.id, size: input.size, email, name, amountUsd, status: "pending" });
+  const r = await createReservation({ kind: "preorder", productId: product.id, size: input.size, email, name, note, amountUsd, status: "pending" });
   try {
     const base = siteOrigin(req);
     const session = await createCheckout({

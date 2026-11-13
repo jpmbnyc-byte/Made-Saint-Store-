@@ -9,7 +9,6 @@ const NAV_LEFT = [
 ];
 
 const NAV_RIGHT = [
-  { href: "/wardrobe#introduction", label: "Enquire" },
   { href: "/closet", label: "Closet" },
 ];
 
@@ -54,6 +53,12 @@ export function Mast() {
                 {label}
               </Link>
             ))}
+            <Link
+              href="/wardrobe#introduction"
+              className="ms-nav-label inline-flex h-11 shrink-0 items-center px-2 text-[#1c1a17] sm:hidden"
+            >
+              Enquire
+            </Link>
           </nav>
 
           <Link href="/" className="hidden justify-self-center sm:block" aria-label="MADE SAiNT — home">

@@ -24,6 +24,7 @@ export function ReserveForm({
   const [size, setSize] = useState<string | null>(requested && sizes.includes(requested) ? requested : null);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [note, setNote] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -36,7 +37,7 @@ export function ReserveForm({
       const res = await fetch("/api/preorders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productId, size, email, name }),
+        body: JSON.stringify({ productId, size, email, name, note: note.trim() || undefined }),
       });
       const text = await res.text();
       let json: { error?: string; mode?: string; redirect?: string; id?: string } = {};
@@ -73,8 +74,8 @@ export function ReserveForm({
             </button>
           ))}
         </div>
-        <p className="mt-2 text-[12px] text-[#1c1a17]/55">
-          {copy.runnerProduct.sizeHelpAction} Include your usual size and sizing system in a note if needed.
+        <p className="mt-2 text-[12px] text-[#1c1a17]/70">
+          {copy.runnerProduct.sizeHelpAction} Use the note below for your usual size and sizing system if needed.
         </p>
       </fieldset>
 
@@ -87,6 +88,18 @@ export function ReserveForm({
           <Label htmlFor="email" className="text-[11px] tracking-[0.16em] uppercase">{copy.enquiry.emailLabel}</Label>
           <Input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" className="h-11 rounded-none border-[#1c1a17]/20 bg-white/60" />
         </div>
+      </div>
+
+      <div className="space-y-1.5">
+        <Label htmlFor="note" className="text-[11px] tracking-[0.16em] uppercase">Note · optional</Label>
+        <textarea
+          id="note"
+          value={note}
+          onChange={(e) => setNote(e.target.value.slice(0, 400))}
+          rows={3}
+          placeholder="Usual size, sizing system, or a message for the house"
+          className="w-full resize-y rounded-none border border-[#1c1a17]/20 bg-white/60 px-3 py-2 text-sm leading-relaxed"
+        />
       </div>
 
       {error && <p className="text-[13px] text-[#9a2a1f]">{error}</p>}

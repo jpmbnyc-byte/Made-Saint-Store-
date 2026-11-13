@@ -28,6 +28,9 @@ test("published looks only list pieces already named on the frames", () => {
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "midnight")?.pieces.map((item) => item.ref), ["N005", "N006"]);
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "onyx")?.pieces.map((item) => item.ref), ["N005", "N006"]);
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "mauve-nylon")?.pieces.map((item) => item.ref), ["N003"]);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "butter-mock")?.pieces.map((item) => item.ref), ["N014"]);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "blue-jersey")?.pieces.map((item) => item.ref), ["R010"]);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "sand-jersey")?.pieces.map((item) => item.ref), ["R010"]);
   assert.equal(COLLECTION_LOOKS.find((look) => look.slug === "jersey")?.listed, false);
   assert.ok(COLLECTION_LOOKS.some((look) => look.slug === "malik"));
   assert.equal(publishedLooks().some((look) => look.slug === "jersey"), false);

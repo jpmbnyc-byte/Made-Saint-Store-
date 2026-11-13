@@ -34,6 +34,9 @@ test("published looks only list pieces already named on the frames", () => {
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "sand-jersey")?.pieces.map((item) => item.ref), ["R010"]);
   assert.equal(COLLECTION_LOOKS.find((look) => look.slug === "sand-jersey")?.pieces[0]?.color, "Sand");
   assert.equal(COLLECTION_LOOKS.find((look) => look.slug === "blue-jersey")?.pieces[0]?.color, "Blue");
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "triangle-cap")?.pieces.map((item) => item.ref), ["R042"]);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "blue-jersey-denim")?.pieces.map((item) => item.ref), ["R010"]);
+  assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "sand-jersey-denim")?.pieces.map((item) => item.ref), ["R010"]);
   assert.match(customerName(lineByRef("R010")!), /printed jersey/i);
   assert.match(customerMaterial(lineByRef("R010")!), /polyester jersey/i);
   assert.equal(/cotton woven collar/i.test(customerMaterial(lineByRef("R010")!) ?? ""), false);

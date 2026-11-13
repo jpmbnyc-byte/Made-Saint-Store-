@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
+import { ShopFooter } from "@/components/shop/chrome";
+import { Mast } from "@/components/house/mast";
 import { PrivateHouse } from "@/components/wardrobe/house";
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 export default function WardrobePage() {
   return (
     <div className="min-h-screen bg-[#f5f0e8] text-[#1c1a17]">
-      <ShopHeader />
+      <Mast />
       <PrivateHouse />
       <ShopFooter />
     </div>

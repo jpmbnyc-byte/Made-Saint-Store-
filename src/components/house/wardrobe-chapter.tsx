@@ -39,9 +39,14 @@ export function WardrobeChapter() {
                 </li>
               ))}
             </ol>
-            <Link href="/wardrobe" className="ms-cta mt-8 inline-flex bg-[#1c1a17] text-[#f5f0e8]">
-              {action}
-            </Link>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/wardrobe#build" className="ms-cta inline-flex bg-[#1c1a17] text-[#f5f0e8]">
+                {action}
+              </Link>
+              <Link href="/wardrobe#style" className="ms-cta inline-flex border border-[#1c1a17]/25">
+                View tonal colors
+              </Link>
+            </div>
           </div>
         </div>
       </div>

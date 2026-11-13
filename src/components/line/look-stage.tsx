@@ -3,10 +3,20 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { COLLECTION_LOOKS, customerStatus, lookBySlug, lookImage } from "@/lib/line-shop";
+import { COLLECTION_LOOKS, customerName, customerStatus, lookBySlug, lookImage } from "@/lib/line-shop";
 import { lineByRef } from "@/lib/line";
 import { addPiece, hasPiece, saveLook } from "@/lib/closet";
 import { useCloset } from "@/components/line/store";
+
+function enquirePath(opts: { ref?: string; look: string; color?: string; image?: string; match?: string[] }) {
+  const params = new URLSearchParams();
+  if (opts.ref) params.set("ref", opts.ref);
+  params.set("look", opts.look);
+  if (opts.color) params.set("color", opts.color);
+  if (opts.image) params.set("image", opts.image);
+  if (opts.match?.length) params.set("match", opts.match.join("|"));
+  return `/wardrobe?${params.toString()}#introduction`;
+}
 
 export function LookStage({ slug }: { slug: string }) {
   const look = lookBySlug(slug);
@@ -53,10 +63,17 @@ export function LookStage({ slug }: { slug: string }) {
   const frame = look.frames[frameAt] ?? look.frames[0];
   const image = lookImage(look, frame);
   const saved = closet.data.groups.some((group) => group.lookId === look.slug);
-  const enquireHref = look.pieces[0]
-    ? `/wardrobe?ref=${look.pieces[0].ref}#introduction`
-    : look.offers?.find((offer) => offer.kind === "enquire")?.href ?? "/wardrobe#introduction";
   const runnerOffer = look.offers?.find((offer) => offer.kind === "runner");
+  const matchNames = (look.offers ?? []).filter((offer) => offer.kind === "runner").map((offer) => offer.name);
+  const enquireHref = look.pieces[0]
+    ? enquirePath({
+        ref: look.pieces[0].ref,
+        look: look.slug,
+        color: look.pieces[0].color,
+        image: look.image,
+        match: matchNames,
+      })
+    : look.offers?.find((offer) => offer.kind === "enquire")?.href ?? "/wardrobe#introduction";
 
   return (
     <div ref={root} role="dialog" aria-modal="true" aria-label={`Look ${look.number}`} className="fixed inset-0 z-50 overflow-y-auto bg-[#f5f0e8] text-[#1c1a17]">
@@ -81,11 +98,18 @@ export function LookStage({ slug }: { slug: string }) {
                 const status = product ? customerStatus(product) : null;
                 const thumb = lookImage(look);
                 const inCloset = hasPiece(closet.data, { productRef: item.ref, color: item.color, size: "", lookId: look.slug });
+                const colorLabel = item.color.split(/[,;]/)[0]?.trim() || item.color;
+                const pieceLabel = product?.ref === "R010"
+                  ? `${colorLabel} printed jersey`
+                  : (product ? customerName(product) : item.role);
+                const productHref = product?.ref === "R010"
+                  ? `/line/r010?color=${encodeURIComponent(colorLabel)}&from=${look.slug}`
+                  : `/line/${item.ref.toLowerCase()}`;
                 return (
                   <li key={item.ref} className="flex gap-4 py-4">
                     <img src={thumb} alt="" className="h-20 w-16 bg-[#f3f3f1] object-contain" />
                     <div className="min-w-0 flex-1">
-                      <Link href={`/line/${item.ref.toLowerCase()}`} className="text-[15px] underline underline-offset-4">{product?.name ?? item.role}</Link>
+                      <Link href={productHref} className="text-[15px] underline underline-offset-4">{pieceLabel}</Link>
                       <p className="mt-1 text-[12px] text-[#1c1a17]/60">{item.color}</p>
                       <p className="mt-1 text-[12px]">{status?.price ?? "Enquire"}</p>
                       <div className="mt-2 flex flex-wrap gap-3">
@@ -94,16 +118,25 @@ export function LookStage({ slug }: { slug: string }) {
                           className="inline-flex h-11 items-center text-[11px] tracking-[0.14em] uppercase"
                           onClick={() => {
                             if (inCloset) {
-                              setNote(`${product?.name ?? item.role} is already in My Closet.`);
+                              setNote(`${pieceLabel} is already in My Closet.`);
                               return;
                             }
                             closet.commit(addPiece(closet.data, { productRef: item.ref, kind: "line", color: item.color, size: "", lookId: look.slug }, new Date().toISOString()));
-                            setNote(`${product?.name ?? item.role} is in My Closet. Choose a size before any purchase.`);
+                            setNote(`${pieceLabel} is in My Closet. Choose a size before any purchase.`);
                           }}
                         >
                           {inCloset ? "In Closet" : "Add to Closet"}
                         </button>
-                        <Link href={`/wardrobe?ref=${item.ref}#introduction`} className="inline-flex h-11 items-center text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">
+                        <Link
+                          href={enquirePath({
+                            ref: item.ref,
+                            look: look.slug,
+                            color: item.color,
+                            image: look.image,
+                            match: matchNames,
+                          })}
+                          className="inline-flex h-11 items-center text-[11px] tracking-[0.14em] uppercase underline underline-offset-4"
+                        >
                           Enquire
                         </Link>
                       </div>

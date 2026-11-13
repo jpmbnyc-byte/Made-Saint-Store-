@@ -1,4 +1,5 @@
 import { lineByRef } from "@/lib/line";
+import { lookBySlug } from "@/lib/line-shop";
 import { lookById } from "@/lib/looks";
 import { EMPTY_FIT, OFFERINGS, fitReview, pieceById, type FitInput, type Pathway } from "@/lib/private-client";
 
@@ -30,8 +31,15 @@ export type CommissionDraft = {
   desiredDates: string;
   scope: CommissionScope;
   lookId: string;
+  /** Cast / collection look slug (e.g. sand-jersey), separate from wardrobe lookId. */
+  collectionLook: string;
   pieceIds: string[];
   lineRef: string;
+  lineColor: string;
+  lineSize: string;
+  lineImage: string;
+  /** Customer-selected matching pieces carried from a look (e.g. a runner). */
+  matchingPieces: string[];
   fit: FitInput;
   role: (typeof INTRODUCTION_ROLES)[number];
   timing: (typeof INTRODUCTION_TIMINGS)[number];
@@ -63,8 +71,15 @@ export function parseCommission(raw: unknown): { ok: true; value: CommissionDraf
   const remoteFitting = body.remoteFitting === true;
   const privacyConsent = body.privacyConsent === true;
   const lookId = typeof body.lookId === "string" ? body.lookId.trim().slice(0, 40) : "";
+  const collectionLook = typeof body.collectionLook === "string" ? body.collectionLook.trim().slice(0, 40) : "";
   const lineRef = typeof body.lineRef === "string" ? body.lineRef.trim().slice(0, 12) : "";
+  const lineColor = typeof body.lineColor === "string" ? body.lineColor.trim().slice(0, 80) : "";
+  const lineSize = typeof body.lineSize === "string" ? body.lineSize.trim().slice(0, 24) : "";
+  const lineImage = typeof body.lineImage === "string" ? body.lineImage.trim().slice(0, 160) : "";
   const pieceIds = Array.isArray(body.pieceIds) ? body.pieceIds.filter((id): id is string => typeof id === "string").slice(0, 12) : [];
+  const matchingPieces = Array.isArray(body.matchingPieces)
+    ? body.matchingPieces.filter((item): item is string => typeof item === "string").map((item) => item.trim().slice(0, 120)).filter(Boolean).slice(0, 8)
+    : [];
 
   if (!name) return { ok: false, error: "Enter your name." };
   if (!EMAIL.test(email)) return { ok: false, error: "Enter a valid email address." };
@@ -75,11 +90,13 @@ export function parseCommission(raw: unknown): { ok: true; value: CommissionDraf
   if (!INTRODUCTION_TIMINGS.includes(timing as (typeof INTRODUCTION_TIMINGS)[number])) return { ok: false, error: "That timing is not recognised." };
   if (!INTRODUCTION_BUDGETS.includes(budget as (typeof INTRODUCTION_BUDGETS)[number])) return { ok: false, error: "That budget range is not one the house uses." };
   if (lookId && !lookById(lookId)) return { ok: false, error: "That look is not in the house." };
+  if (collectionLook && !lookBySlug(collectionLook)) return { ok: false, error: "That collection look is not published." };
   if (lineRef && !lineByRef(lineRef)) return { ok: false, error: "That style is not on the line." };
+  if (lineImage && !lineImage.startsWith("/")) return { ok: false, error: "That reference image is not valid." };
   for (const id of pieceIds) {
     if (!pieceById(id)) return { ok: false, error: "That piece is not available." };
   }
-  if (pieceIds.length === 0 && !lineRef && !note && !settings) {
+  if (pieceIds.length === 0 && !lineRef && !collectionLook && !note && !settings) {
     return { ok: false, error: "Name what you want made, the days you dress for, or add a note." };
   }
 
@@ -109,8 +126,13 @@ export function parseCommission(raw: unknown): { ok: true; value: CommissionDraf
       desiredDates,
       scope: scope as CommissionScope,
       lookId,
+      collectionLook,
       pieceIds,
       lineRef,
+      lineColor,
+      lineSize,
+      lineImage,
+      matchingPieces,
       fit,
       role: role as CommissionDraft["role"],
       timing: timing as CommissionDraft["timing"],

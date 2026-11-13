@@ -5,6 +5,7 @@ import Link from "next/link";
 import { visiblePieces, type LifestyleId } from "@/lib/private-client";
 import type { CommissionScope } from "@/lib/commission";
 import { lineByRef } from "@/lib/line";
+import { customerName, lookBySlug } from "@/lib/line-shop";
 import { lookById, lookForLifestyle, offerFor } from "@/lib/looks";
 import { PIECES, type WardrobePiece } from "@/lib/wardrobe";
 import { StatusMark } from "@/components/house/status-mark";
@@ -12,7 +13,10 @@ import { WardrobeIntro } from "@/components/wardrobe/intro";
 import { TONAL_COLORS, TonalSlideshow } from "@/components/wardrobe/tonal";
 import { IMAGE_STATUS_LABEL, IMAGE_STATUS_MARK, statusFromNote } from "@/lib/image-status";
 
-const CATALOG = PIECES.filter((piece) => Boolean(piece.image) && offerFor(piece.id).kind !== "waitlist");
+const CATALOG = PIECES.filter((piece) => {
+  if (!piece.image || offerFor(piece.id).kind === "waitlist") return false;
+  return statusFromNote(piece.note, Boolean(piece.image)) !== "proposed";
+});
 
 function clothingIds(ids: readonly string[]) {
   return ids.filter((id) => offerFor(id).kind === "commission");
@@ -101,23 +105,6 @@ const STARTS = [
     lifestyle: "off-duty" as const,
     pieces: ["p09", "p08", "p07"],
   },
-  {
-    id: "rose",
-    name: "Rose set",
-    line: "Dusty rose blouson and trouser, with a petrol teal turtleneck. Proposed, not approved.",
-    image: "/line/f50.webp",
-    alt: "Dusty rose zip blouson and trouser, worn over a petrol teal turtleneck. Not a client. The shoes are not a founding runner.",
-    lookId: "rose",
-    lifestyle: "off-duty" as const,
-    pieces: ["p06", "p07", "p13"],
-  },
-] as const;
-
-const ROSE_SHEETS = [
-  { src: "/wardrobe/blouson-rose-sheet.webp", alt: "Dusty rose zip blouson, front and back, a proposed sample sheet" },
-  { src: "/wardrobe/trouser-rose-sheet.webp", alt: "Dusty rose tailored trouser, front and back, a proposed sample sheet" },
-  { src: "/knit/turtleneck-iconic.webp", alt: "Navy cashmere turtleneck — Cast iconic frame with MADE SAiNT runners" },
-  { src: "/knit/turtleneck-mauve.webp", alt: "Mauve mohair turtleneck, product front from the MS-K01 tech pack" },
 ] as const;
 
 export function PrivateHouse() {
@@ -127,6 +114,11 @@ export function PrivateHouse() {
   const [roster, setRoster] = useState<string[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
   const [lineRef, setLineRef] = useState("");
+  const [lineColor, setLineColor] = useState("");
+  const [lineSize, setLineSize] = useState("");
+  const [lineImage, setLineImage] = useState("");
+  const [collectionLook, setCollectionLook] = useState("");
+  const [matchingPieces, setMatchingPieces] = useState<string[]>([]);
   const [scope, setScope] = useState<CommissionScope>("look");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -148,29 +140,62 @@ export function PrivateHouse() {
   const shoulder = SHOULDERS.find((item) => item.id === shoulderId) ?? SHOULDERS[0];
   const clothes = visiblePieces(selected);
   const heldLine = lineByRef(lineRef);
+  const castLook = collectionLook ? lookBySlug(collectionLook) : undefined;
   const activeLook = focusLookId ? lookById(focusLookId) : roster.length ? lookForLifestyle(lifestyleId) : undefined;
+  const requestTitle = castLook?.title
+    ?? (clothes.length === 0 && heldLine ? customerName(heldLine) : activeLook?.name)
+    ?? "A commission";
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const look = lookById(params.get("look") ?? "");
+    const lookParam = params.get("look") ?? "";
+    const wardrobeLook = lookById(lookParam);
+    const cast = lookBySlug(lookParam);
     const line = lineByRef(params.get("ref") ?? "");
+    const color = (params.get("color") ?? "").trim();
+    const size = (params.get("size") ?? "").trim();
+    const image = (params.get("image") ?? "").trim();
+    const match = (params.get("match") ?? "")
+      .split("|")
+      .map((item) => item.trim())
+      .filter(Boolean);
     if (line) setLineRef(line.ref);
-    if (look) {
-      const ids = look.pieces.map((piece) => piece.id);
+    if (color) setLineColor(color);
+    if (size) setLineSize(size);
+    if (image.startsWith("/")) setLineImage(image);
+    if (match.length) setMatchingPieces(match);
+    if (wardrobeLook) {
+      const ids = wardrobeLook.pieces.map((piece) => piece.id);
       const clothing = clothingIds(ids);
-      const match = STARTS.find((start) => start.lookId === look.id && start.pieces.length === clothing.length && start.pieces.every((id) => clothing.includes(id)));
-      setStartId(match?.id ?? "");
-      setLifestyleId(look.lifestyle);
-      setFocusLookId(look.id);
+      const startMatch = STARTS.find((start) => start.lookId === wardrobeLook.id && start.pieces.length === clothing.length && start.pieces.every((id) => clothing.includes(id)));
+      setStartId(startMatch?.id ?? "");
+      setLifestyleId(wardrobeLook.lifestyle);
+      setFocusLookId(wardrobeLook.id);
       setRoster(ids);
       setSelected(clothingIds(ids));
-      setNote((current) => current || `${look.name}. ${look.read}`);
+      setNote((current) => current || `${wardrobeLook.name}. ${wardrobeLook.read}`);
+      return;
+    }
+    if (cast) {
+      setCollectionLook(cast.slug);
+      setLineImage((current) => current || cast.image);
+      setLineColor((current) => current || cast.pieces[0]?.color || "");
+      if (line || cast.pieces[0]) setLineRef(line?.ref ?? cast.pieces[0]!.ref);
+      setRoster([]);
+      setSelected([]);
+      setScope("piece");
+      const matchNames = match.length
+        ? match
+        : (cast.offers ?? []).filter((offer) => offer.kind === "runner").map((offer) => offer.name);
+      if (matchNames.length) setMatchingPieces(matchNames);
+      setNote((current) => current || `${cast.title}. ${cast.styling[0] ?? "Printed jersey enquiry."}`);
       return;
     }
     if (line) {
       setRoster([]);
       setSelected([]);
       setScope("piece");
+      if (color) setNote((current) => current || `${customerName(line)}${color ? ` — ${color}` : ""}.`);
     }
   }, []);
 
@@ -198,7 +223,7 @@ export function PrivateHouse() {
   async function send(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-    if (!note.trim() && !settings.trim() && selected.length === 0 && !lineRef) {
+    if (!note.trim() && !settings.trim() && selected.length === 0 && !lineRef && !collectionLook) {
       return setError("Say what you are dressing for, or choose the pieces you want to discuss.");
     }
     setBusy(true);
@@ -217,8 +242,13 @@ export function PrivateHouse() {
           budget,
           scope,
           lookId: activeLook?.id ?? "",
+          collectionLook,
           pieceIds: selected,
           lineRef,
+          lineColor,
+          lineSize,
+          lineImage,
+          matchingPieces,
           remoteFitting,
           privacyConsent: false,
         }),
@@ -302,7 +332,7 @@ export function PrivateHouse() {
                 >
                   <span className="relative block bg-[#e7e0d4]">
                     <img src={start.image} alt={start.alt} className={`h-40 w-full object-cover sm:aspect-[4/5] sm:h-auto ${"frame" in start ? start.frame : "object-top"}`} />
-                    <StatusMark status={start.id === "rose" ? "proposed" : "study"} className="absolute left-2 top-2" />
+                    <StatusMark status="study" className="absolute left-2 top-2" />
                   </span>
                   <span className="mt-2 block font-serif text-2xl">{start.name}</span>
                   <span className="mt-1 block text-sm leading-snug text-[#1c1a17]/70">{start.line}</span>
@@ -330,25 +360,23 @@ export function PrivateHouse() {
                 ? "These are the clothes in your set. Uncheck a piece to leave it out. The photographs below are recommended alternates from the private register — not a shop checkout."
                 : "Nothing is held yet. Choose a starting set above, or add any photographed piece from the register below. This list is for a commission request, not a cart."}
             </p>
-            {startId === "rose" && (
-              <div className="mt-6">
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                  {ROSE_SHEETS.map((sheet) => (
-                    <img key={sheet.src} src={sheet.src} alt={sheet.alt} className="h-auto w-full bg-white object-contain" />
-                  ))}
-                </div>
-                <p className="mt-3 text-sm leading-relaxed text-[#1c1a17]/65">
-                  Sample sheets of the look. Enquire with the house to have it made.
-                </p>
-              </div>
-            )}
             <ul className="mt-6 divide-y divide-[#1c1a17]/12 border-y border-[#1c1a17]/12">
               {heldLine && (
                 <li className="flex items-center gap-4 py-3">
-                  <span className="grid size-11 shrink-0 place-items-center border border-[#1c1a17] text-[11px]">In</span>
+                  {(lineImage || castLook?.image) && (
+                    <img src={lineImage || castLook?.image} alt="" className="size-14 bg-[#e7e0d4] object-cover object-top" />
+                  )}
+                  {!lineImage && !castLook?.image && (
+                    <span className="grid size-11 shrink-0 place-items-center border border-[#1c1a17] text-[11px]">In</span>
+                  )}
                   <span className="min-w-0 flex-1">
-                    <span className="block font-serif text-2xl">{heldLine.name}</span>
-                    <span className="text-[13px] text-[#1c1a17]/60">{heldLine.ref} · 2027 line · enquire</span>
+                    <span className="block font-serif text-2xl">{castLook?.title ?? customerName(heldLine)}</span>
+                    <span className="text-[13px] text-[#1c1a17]/60">
+                      {heldLine.ref}
+                      {lineColor ? ` · ${lineColor}` : ""}
+                      {lineSize ? ` · size ${lineSize}` : ""}
+                      {" · 2027 line · enquire"}
+                    </span>
                   </span>
                 </li>
               )}
@@ -396,7 +424,7 @@ export function PrivateHouse() {
               })}
             </ul>
             <div className="mt-8">
-              <p className="text-[11px] tracking-[0.16em] text-[#8d7349] uppercase">{startId ? "Recommended alternates" : "Available now"}</p>
+              <p className="text-[11px] tracking-[0.16em] text-[#8d7349] uppercase">{startId ? "Recommended alternates" : "Available to request"}</p>
               {alternates.length === 0 ? (
                 <p className="mt-3 text-sm text-[#1c1a17]/60">Every photographed piece is in the list above.</p>
               ) : (
@@ -567,9 +595,25 @@ export function PrivateHouse() {
 
             <aside className="order-1 h-fit border border-[#1c1a17]/15 p-6 lg:sticky lg:top-28 lg:order-2">
               <p className="text-[11px] tracking-[0.16em] uppercase">This request</p>
-              <h3 className="mt-3 font-serif text-3xl">{clothes.length === 0 && heldLine ? heldLine.name : (activeLook?.name ?? "A commission")}</h3>
+              <h3 className="mt-3 font-serif text-3xl">{requestTitle}</h3>
+              {(lineImage || castLook?.image) && (
+                <img
+                  src={lineImage || castLook?.image}
+                  alt={castLook?.alt ?? requestTitle}
+                  className="mt-4 aspect-[3/4] w-full max-w-[200px] bg-[#e7e0d4] object-cover object-top"
+                />
+              )}
               <ul className="mt-4 space-y-2 text-sm">
-                {heldLine && <li>{heldLine.ref} · {heldLine.name}</li>}
+                {heldLine && (
+                  <li>
+                    {heldLine.ref} · {customerName(heldLine)}
+                    {lineColor ? ` · ${lineColor}` : ""}
+                    {lineSize ? ` · size ${lineSize}` : ""}
+                  </li>
+                )}
+                {matchingPieces.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
                 {clothes.map((piece) => (
                   <li key={piece.id}>
                     {piece.name}

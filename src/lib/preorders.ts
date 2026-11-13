@@ -14,6 +14,8 @@ export type Reservation = {
   size?: string;
   email: string;
   name?: string;
+  /** Optional sizing note or message from the enquiry form. */
+  note?: string;
   amountUsd: number;
   /** reserved: recorded without payment (no Stripe key). pending: sent to Stripe. paid: Stripe confirmed. */
   status: "reserved" | "pending" | "paid" | "refunded" | "cancelled";

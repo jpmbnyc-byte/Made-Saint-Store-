@@ -3,6 +3,7 @@ import { isAdmin } from "@/lib/admin";
 import { parseCommission, reviewCommission } from "@/lib/commission";
 import { createCommission, listCommissions } from "@/lib/commissions";
 import { lineByRef } from "@/lib/line";
+import { customerName, lookBySlug } from "@/lib/line-shop";
 import { lookById } from "@/lib/looks";
 import { pieceById } from "@/lib/private-client";
 
@@ -27,15 +28,24 @@ export async function POST(req: NextRequest) {
 
   const draft = parsed.value;
   const look = draft.lookId ? lookById(draft.lookId) : undefined;
+  const cast = draft.collectionLook ? lookBySlug(draft.collectionLook) : undefined;
   const line = draft.lineRef ? lineByRef(draft.lineRef) : undefined;
   const pieces = draft.pieceIds.map((id) => pieceById(id)!);
   const review = reviewCommission(draft.fit);
+  const lineLabel = line
+    ? [line.ref, customerName(line), draft.lineColor, draft.lineSize ? `size ${draft.lineSize}` : ""]
+        .filter(Boolean)
+        .join(" · ")
+    : "";
   const record = await createCommission({
     ...draft,
     ...review,
-    lookName: look?.name ?? "",
-    pieceNames: pieces.map((piece) => piece.name),
-    lineName: line ? `${line.ref} ${line.name}` : "",
+    lookName: cast ? cast.title : look?.name ?? "",
+    pieceNames: [
+      ...pieces.map((piece) => piece.name),
+      ...draft.matchingPieces,
+    ],
+    lineName: lineLabel,
   });
   return NextResponse.json({ ok: true, id: record.id });
 }

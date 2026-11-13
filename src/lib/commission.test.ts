@@ -84,6 +84,28 @@ test("a line style can be commissioned without a wardrobe piece", () => {
   assert.equal(parsed.value.lineRef, "R020");
 });
 
+test("a cast look enquiry keeps sand jersey selection fields", () => {
+  const parsed = parseCommission({
+    ...base,
+    lookId: "",
+    pieceIds: [],
+    lineRef: "R010",
+    collectionLook: "sand-jersey",
+    lineColor: "Sand",
+    lineSize: "M",
+    lineImage: "/collection/sand-jersey.webp",
+    matchingPieces: ["1101 Runner — Brown Mesh"],
+  });
+  assert.equal(parsed.ok, true);
+  if (!parsed.ok) return;
+  assert.equal(parsed.value.collectionLook, "sand-jersey");
+  assert.equal(parsed.value.lineColor, "Sand");
+  assert.equal(parsed.value.lineSize, "M");
+  assert.equal(parsed.value.lineImage, "/collection/sand-jersey.webp");
+  assert.deepEqual(parsed.value.matchingPieces, ["1101 Runner — Brown Mesh"]);
+  assert.equal(parseCommission({ ...base, collectionLook: "missing-look" }).ok, false);
+});
+
 test("a remote fitting consultation is optional and unpriced", () => {
   const off = parseCommission(base);
   assert.equal(off.ok, true);

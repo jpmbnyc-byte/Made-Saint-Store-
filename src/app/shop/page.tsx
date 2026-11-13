@@ -45,7 +45,7 @@ export default async function ShopPage() {
         <h1 className="mt-4 max-w-3xl font-serif text-[44px] leading-[0.95] text-[#1c1a17] md:text-[64px]">The lead runner.</h1>
         <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">$550. Listed first. {offerLine("1101")}</p>
         <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-          Leather and 29 Gris Medio mesh. Live now.
+          Brown Mesh leads with dark chocolate suede and tan open-mesh panels. Other 1101 colorways follow.
         </p>
         <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
           {lead.map((p) => (

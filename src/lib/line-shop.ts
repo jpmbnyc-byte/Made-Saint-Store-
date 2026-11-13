@@ -394,8 +394,11 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     image: "/collection/blue-jersey.webp",
     alt: "Blue printed jersey over a white shirt and navy tie, with black pleated trousers",
     frames: [],
-    pieces: [piece("R010", "Jersey")],
-    styling: ["The shirt, the tie, and the trousers are styling. They are not included with the jersey."],
+    pieces: [piece("R010", "Jersey", "Blue")],
+    styling: [
+      "The $390 enquiry is for the printed jersey only.",
+      "The shirt, the tie, and the trousers are styling. They are not included with the jersey.",
+    ],
     offers: [runnerOffer("ms-runner-1101-navy", "1101 Runner — Navy")],
   },
   {
@@ -406,11 +409,26 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     image: "/collection/sand-jersey.webp",
     alt: "Sand printed jersey over a light blue shirt and brown tie, with charcoal pleated trousers",
     frames: [],
-    pieces: [piece("R010", "Jersey")],
-    styling: ["The shirt, the tie, and the trousers are styling. They are not included with the jersey."],
+    pieces: [piece("R010", "Jersey", "Sand")],
+    styling: [
+      "The $390 enquiry is for the sand printed jersey only.",
+      "The shirt, the tie, and the trousers are styling. They are not included with the jersey.",
+    ],
     offers: [runnerOffer("ms-runner-1101-butter", "1101 Runner — Brown Mesh")],
   },
 ];
+
+/** Selectable R010 colorways with a customer photograph. */
+export const JERSEY_COLORWAYS = [
+  { color: "Sand", label: "Sand and brown", image: "/collection/sand-jersey.webp", look: "sand-jersey" },
+  { color: "Blue", label: "Blue, white, and navy", image: "/collection/blue-jersey.webp", look: "blue-jersey" },
+] as const;
+
+export function jerseyColorway(color?: string | null) {
+  if (!color) return null;
+  const key = color.trim().toLowerCase();
+  return JERSEY_COLORWAYS.find((item) => item.color.toLowerCase() === key || item.label.toLowerCase().includes(key)) ?? null;
+}
 
 export const lookBySlug = (slug: string) => COLLECTION_LOOKS.find((look) => look.slug === slug);
 

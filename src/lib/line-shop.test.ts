@@ -3,6 +3,7 @@ import test from "node:test";
 import { CAMPAIGN_BLOCKS, COLLECTION_LOOKS, FEATURED, catalogDiagnostics, customerMaterial, customerName, customerStatus, lineAssetManifest, publishedLooks } from "./line-shop";
 import { lineByRef } from "./line";
 import { listedLine } from "./imagery";
+// lineByRef used for R010 customer copy assertions
 
 test("published looks only list pieces already named on the frames", () => {
   const cobalt = COLLECTION_LOOKS.find((look) => look.slug === "cobalt");
@@ -31,6 +32,11 @@ test("published looks only list pieces already named on the frames", () => {
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "butter-mock")?.pieces.map((item) => item.ref), ["N014"]);
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "blue-jersey")?.pieces.map((item) => item.ref), ["R010"]);
   assert.deepEqual(COLLECTION_LOOKS.find((look) => look.slug === "sand-jersey")?.pieces.map((item) => item.ref), ["R010"]);
+  assert.equal(COLLECTION_LOOKS.find((look) => look.slug === "sand-jersey")?.pieces[0]?.color, "Sand");
+  assert.equal(COLLECTION_LOOKS.find((look) => look.slug === "blue-jersey")?.pieces[0]?.color, "Blue");
+  assert.match(customerName(lineByRef("R010")!), /printed jersey/i);
+  assert.match(customerMaterial(lineByRef("R010")!), /polyester jersey/i);
+  assert.equal(/cotton woven collar/i.test(customerMaterial(lineByRef("R010")!) ?? ""), false);
   assert.equal(COLLECTION_LOOKS.find((look) => look.slug === "jersey")?.listed, false);
   assert.ok(COLLECTION_LOOKS.some((look) => look.slug === "malik"));
   assert.equal(publishedLooks().some((look) => look.slug === "jersey"), false);

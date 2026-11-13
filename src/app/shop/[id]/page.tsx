@@ -35,31 +35,30 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   const statusCopy = runnerStatusCopy();
 
   return (
-    <div className="min-h-screen bg-[#f3efe6] text-[#1c1a17]">
+    <div className="min-h-screen bg-[#f7f7f5] text-[#1c1a17]">
       <ShopHeader />
       <main className="mx-auto max-w-[1440px] px-0 py-0 md:px-8 md:py-8">
         <div className="px-5 pt-5 md:px-0 md:pt-0">
-          <Link href={`/shop#${product.series}`} className="inline-flex items-center gap-1 text-[10px] tracking-[0.2em] text-[#1c1a17]/45 uppercase hover:text-[#1c1a17]">
+          <Link href={`/shop#${product.series}`} className="inline-flex items-center gap-1 text-[11px] tracking-[0.16em] text-[#1c1a17]/60 uppercase hover:text-[#1c1a17]">
             <ChevronLeft className="size-3.5" /> {product.series}
           </Link>
         </div>
 
-        <div className="mt-4 grid min-w-0 items-start gap-8 lg:mt-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(340px,0.85fr)] lg:gap-14">
-          <div className="min-w-0 bg-[#f1eee8]">
+        <div className="mt-4 grid min-w-0 items-start gap-8 lg:mt-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(340px,0.85fr)] lg:gap-12">
+          <div className="min-w-0">
             <ProductGallery views={views} />
           </div>
 
           <div className="min-w-0 px-5 pb-12 lg:sticky lg:top-28 lg:self-start lg:px-0 lg:pb-0">
-            <p className="text-[10px] tracking-[0.22em] text-[#1c1a17]/40 uppercase">
+            <p className="text-[11px] tracking-[0.18em] text-[#1c1a17]/55 uppercase">
               MADE SAiNT · {product.series}
-              {product.construction ? ` · ${product.construction}` : ""}
             </p>
-            <h1 className="mt-4 font-serif text-4xl font-light leading-none tracking-[-0.03em] md:text-5xl">{color(product.name)}</h1>
-            <p className="mt-5 text-[17px] tabular-nums text-[#1c1a17]/80">${product.usd}</p>
-            <p className="mt-2 text-[11px] tracking-[0.12em] text-[#1c1a17]/40 uppercase">{statusCopy.mark}</p>
-            {product.notice && <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/60">{product.notice}</p>}
-            <p className="mt-5 max-w-md text-[15px] leading-[1.7] text-[#1c1a17]/65">{product.line}</p>
-            <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/55">{statusCopy.line}</p>
+            <h1 className="mt-3 font-serif text-4xl leading-none md:text-5xl">{color(product.name)}</h1>
+            <p className="mt-4 text-lg tabular-nums">${product.usd}</p>
+            <p className="mt-2 text-[12px] tracking-[0.08em] text-[#1c1a17]/50 uppercase">{statusCopy.mark}</p>
+            {product.notice && <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">{product.notice}</p>}
+            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[#1c1a17]/75">{product.line}</p>
+            <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#1c1a17]/65">{statusCopy.line}</p>
 
             <div className="mt-8">
               <p className="text-[11px] tracking-[0.16em] uppercase">Colour</p>

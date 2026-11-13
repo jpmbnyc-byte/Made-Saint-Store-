@@ -60,7 +60,7 @@ export const AZORES_LOOKS: LookPlate[] = [
   {
     id: "malik-chair",
     lookSrc: "/collection/malik.webp",
-    lookAlt: "Malik in a navy turtleneck with MADE SAiNT at the chest",
+    lookAlt: "Malik seated in a navy turtleneck with MADE SAiNT at the neck and teal 1101 runners",
     lookName: "Malik",
     pieces: "Navy turtleneck · sand trouser · 1101 Teal",
     href: "/line/looks/malik",

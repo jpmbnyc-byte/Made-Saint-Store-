@@ -82,11 +82,6 @@ export default async function LineProductPage({ params }: { params: Promise<{ re
                 <dd className="mt-1 leading-relaxed">Return terms are confirmed with the order.</dd>
               </div>
             </dl>
-            {product.ref === "N015" && (
-              <p className="mt-6 text-sm leading-relaxed text-[#111]/70">
-                The photographs show a suede lace mule, including a D-ring and a brown upper. The written colorways are stone, midnight, and espresso. Brown is the espresso study. The D-ring is in the photograph and is not in the written specification.
-              </p>
-            )}
             {product.ref === "N001" && (
               <p className="mt-6 text-sm leading-relaxed text-[#111]/70">
                 This plum and ivory runner is not a Founding Edition colorway. Those pairs, and their prices, stay on the shop.
@@ -97,14 +92,9 @@ export default async function LineProductPage({ params }: { params: Promise<{ re
                 The iconic frame is the Cast turtleneck worn as the outer knit. Earlier neck-only crops under another jacket remain studies.
               </p>
             )}
-            {product.ref === "R046" && (
+            {(product.ref === "R046" || product.ref === "N015" || product.ref === "R049" || product.ref === "R048" || product.ref === "R047" || product.ref === "N016") && (
               <p className="mt-6 text-sm leading-relaxed text-[#111]/70">
-                Clean product stills for the MS-TM01 Trail Mule — Hermes framing, three views per colorway. Concept illustrations are not measured CAD.
-              </p>
-            )}
-            {product.ref === "R049" && (
-              <p className="mt-6 text-sm leading-relaxed text-[#111]/70">
-                Class Slipper product stills — chocolate espresso and black graphite, three views each.
+                This mule style is held. Product photographs are not published until clean studio stills are approved.
               </p>
             )}
             <ProductActions refId={product.ref} name={customerName(product)} color={customerColors(product)} />

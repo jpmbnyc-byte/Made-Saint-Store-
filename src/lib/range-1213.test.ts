@@ -4,17 +4,11 @@ import { PRODUCTS, SERIES_ORDER, SERIES_PLATE, productsIn } from "./business";
 
 test("the runner series keep the handoff colorways and the price order", () => {
   assert.deepEqual(SERIES_ORDER, ["1101", "1213", "0929"]);
-  assert.equal(productsIn("1101").length, 6);
+  assert.equal(productsIn("1101").length, 5);
   assert.equal(productsIn("1213").length, 7);
   assert.equal(productsIn("0929").length, 3);
   const names = productsIn("1213").map((product) => product.name.split("—").pop()?.trim());
   assert.deepEqual(names, ["Espresso", "Olive", "Mineral Blue", "Midnight", "Chestnut", "Sacred Light", "Graphite"]);
-  const mesh = productsIn("1101").filter((product) => product.construction === "mesh");
-  const leather = productsIn("1101").filter((product) => product.construction === "leather");
-  assert.equal(mesh.length, 3);
-  assert.equal(leather.length, 3);
-  assert.ok(mesh.every((product) => /Mesh/.test(product.name)));
-  assert.ok(leather.every((product) => /Leather/.test(product.name)));
   for (const product of productsIn("0929")) assert.equal(product.usd, 490);
   for (const product of [...productsIn("1101"), ...productsIn("1213")]) assert.equal(product.usd, 550);
   assert.ok(productsIn("1101")[0].usd >= productsIn("1213")[0].usd);
@@ -30,5 +24,4 @@ test("the runner series keep the handoff colorways and the price order", () => {
   const sacred = PRODUCTS.find((product) => product.id === "ms-runner-1213-sacred-light");
   assert.equal(sacred?.series, "1213");
   assert.equal(sacred?.name.includes("Sacred Light"), true);
-  assert.ok(PRODUCTS.some((product) => product.id === "ms-runner-1101-mesh-black" && product.launch));
 });

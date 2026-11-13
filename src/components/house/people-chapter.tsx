@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { COLLECTION_LOOKS, lookPriceLine } from "@/lib/line-shop";
 
-const FEATURED_LOOKS = ["solene", "amara", "forerunner", "sage", "olive", "malik"];
+const FEATURED_LOOKS = ["sand-jersey", "blue-jersey", "butter-mock", "solene", "amara", "forerunner", "sage", "olive", "malik"];
 
 export function PeopleChapter() {
   const looks = FEATURED_LOOKS.map((slug) => COLLECTION_LOOKS.find((look) => look.slug === slug)).filter(

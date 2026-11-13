@@ -1,9 +1,9 @@
 import { CampaignBanner } from "@/components/house/campaign-banner";
 
 const LOOK_CHIPS = [
-  { href: "/line/looks/forerunner", label: "Camel" },
-  { href: "/line/looks/sage", label: "Sage" },
-  { href: "/line/looks/camel", label: "Terracotta" },
+  { href: "/line/looks/sand-jersey", label: "Sand jersey" },
+  { href: "/line/looks/blue-jersey", label: "Blue jersey" },
+  { href: "/line/looks/butter-mock", label: "Butter mock" },
   { href: "/line/looks/malik", label: "Malik" },
   { href: "/line/lookbook", label: "Lookbook" },
 ];
@@ -16,7 +16,7 @@ export function EditorialHero() {
   return (
     <CampaignBanner
       src="/collection/hero-cast.webp"
-      alt="Amara in a camel zip set with brown mesh 1101 runners — Cast 003"
+      alt="Sand printed jersey over a light blue shirt and brown tie — Cast 003"
       kicker="MADE SAiNT"
       title="Once sinner. Made Saint."
       body="The collection, worn. Explore the 1101, or open the looks."

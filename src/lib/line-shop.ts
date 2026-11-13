@@ -374,6 +374,42 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     styling: [],
     offers: [runnerOffer("ms-runner-chalk-navy", "0929 Runner — Navy / Ivory", "$490")],
   },
+  {
+    slug: "butter-mock",
+    number: "27",
+    title: "Butter mock",
+    use: "Everyday",
+    image: "/collection/butter-mock.webp",
+    alt: "Butter mock-neck with a red MADE SAiNT collar mark, black pleated trousers, and butter-tan runners",
+    frames: [],
+    pieces: [piece("N014", "Turtleneck", "Butter yellow")],
+    styling: ["MADE SAiNT is embroidered in red at the mock-neck. The black trousers complete the photograph."],
+    offers: [enquireOffer("Butter mock-neck"), runnerOffer("ms-runner-1101-butter", "1101 Runner — Brown Mesh")],
+  },
+  {
+    slug: "blue-jersey",
+    number: "28",
+    title: "Blue jersey",
+    use: "Everyday",
+    image: "/collection/blue-jersey.webp",
+    alt: "Blue printed jersey over a white shirt and navy tie, with black pleated trousers",
+    frames: [],
+    pieces: [piece("R010", "Jersey")],
+    styling: ["The shirt, the tie, and the trousers are styling. They are not included with the jersey."],
+    offers: [runnerOffer("ms-runner-1101-navy", "1101 Runner — Navy")],
+  },
+  {
+    slug: "sand-jersey",
+    number: "29",
+    title: "Sand jersey",
+    use: "Everyday",
+    image: "/collection/sand-jersey.webp",
+    alt: "Sand printed jersey over a light blue shirt and brown tie, with charcoal pleated trousers",
+    frames: [],
+    pieces: [piece("R010", "Jersey")],
+    styling: ["The shirt, the tie, and the trousers are styling. They are not included with the jersey."],
+    offers: [runnerOffer("ms-runner-1101-butter", "1101 Runner — Brown Mesh")],
+  },
 ];
 
 export const lookBySlug = (slug: string) => COLLECTION_LOOKS.find((look) => look.slug === slug);
@@ -405,6 +441,9 @@ export type EditorialBlock =
 
 export const FEATURED: EditorialBlock[] = [
   { kind: "still", src: "/knit/turtleneck-iconic.webp", alt: "Fine cashmere turtleneck — Cast iconic frame", href: "/line/n014", name: "Cashmere turtleneck", price: "$995", cta: "Enquire" },
+  { kind: "look", slug: "sand-jersey", wide: true },
+  { kind: "look", slug: "blue-jersey" },
+  { kind: "look", slug: "butter-mock" },
   { kind: "look", slug: "malik" },
   { kind: "look", slug: "solene" },
   { kind: "look", slug: "camel" },
@@ -434,6 +473,9 @@ export const FEATURED: EditorialBlock[] = [
 export const CAMPAIGN_BLOCKS: EditorialBlock[] = [
   { kind: "still", src: "/world/milot.webp", alt: "Campaign 001 study — Cast 003 in the ruins at Milot", wide: true, href: "/line/lookbook", name: "Milot, Campaign 001", cta: "View the lookbook" },
   { kind: "still", src: "/collection/solene.webp", alt: "Solène in the printed jersey — Cast 003 look", wide: true, href: "/line/looks/solene", name: "Solène jersey", cta: "Shop the look" },
+  { kind: "look", slug: "sand-jersey", wide: true },
+  { kind: "look", slug: "blue-jersey" },
+  { kind: "look", slug: "butter-mock" },
   { kind: "look", slug: "camel", wide: true },
   { kind: "look", slug: "parachute" },
   { kind: "look", slug: "rust" },

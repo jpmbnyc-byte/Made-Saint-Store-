@@ -8,10 +8,6 @@ import { OrderRule, orderWindowLine } from "@/components/shop/order-rule";
 import { SeriesPlate } from "@/components/shop/series-plate";
 import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
 import { CancelledBanner } from "@/components/shop/live";
-import { frameSrc, lineByRef } from "@/lib/line";
-import { customerName, customerStatus } from "@/lib/line-shop";
-import { primaryFrame } from "@/lib/imagery";
-
 const colorOf = (name: string) => name.split("—").pop()?.trim() ?? name;
 
 function Listing({ product, frame }: { product: Product; frame: string }) {
@@ -27,18 +23,15 @@ function Listing({ product, frame }: { product: Product; frame: string }) {
   );
 }
 
-const MULE_REFS = ["R046", "N015"] as const;
-
 export const metadata: Metadata = {
   title: "1101",
-  description: "The 1101, 1213, and 0929 runners, Trail Mule and City Leather Mule. Made to order.",
+  description: "The 1101, 1213, and 0929 runners. Made to order.",
 };
 
 export default async function ShopPage() {
   const lead = productsIn("1101");
   const sculpted = productsIn("1213");
   const founding = productsIn("0929");
-  const mules = MULE_REFS.map((ref) => lineByRef(ref)).filter(Boolean);
   return (
     <div className="min-h-screen bg-[#f5f0e8] text-[#1c1a17]">
       <ShopHeader status={statusLine()} />
@@ -74,43 +67,6 @@ export default async function ShopPage() {
               <Listing key={p.id} product={p} frame="aspect-square" />
             ))}
           </div>
-        </div>
-      </section>
-
-      <section id="mules" className="border-t border-[#1c1a17]/10 bg-[#f7f7f5]">
-        <div className="mx-auto max-w-[1100px] scroll-mt-28 px-5 py-12 md:px-8 md:py-16">
-          <p className="ms-kicker">Footwear · line</p>
-          <h2 className="mt-3 max-w-3xl font-serif text-[44px] leading-[0.95] text-[#1c1a17] md:text-[64px]">Trail Mule &amp; City Mule.</h2>
-          <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">
-            MS-TM01 Trail Mule and the City Leather Mule — product views from the tech packs, not buried in the line grid.
-          </p>
-          <ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
-            {mules.map((product) => {
-              if (!product) return null;
-              const frame = primaryFrame(product.ref);
-              const status = customerStatus(product);
-              const image =
-                product.ref === "R046"
-                  ? "/mules/trail-powder-blue.webp"
-                  : product.ref === "N015"
-                    ? "/mules/city-espresso.webp"
-                    : frame
-                      ? frameSrc(frame.n)
-                      : "/mules/trail-powder-blue.webp";
-              return (
-                <li key={product.ref}>
-                  <Link href={`/line/${product.ref.toLowerCase()}`} className="block">
-                    <span className="relative block aspect-square bg-[#f3efe8]">
-                      <Image src={image} alt={customerName(product)} fill sizes="(min-width: 1024px) 30vw, 50vw" className="object-contain p-4" />
-                    </span>
-                    <span className="mt-3 block text-[11px] tracking-[0.14em] uppercase text-[#1c1a17]/45">{product.ref}</span>
-                    <span className="mt-1 block font-serif text-2xl leading-none">{customerName(product)}</span>
-                    <span className="mt-2 block text-sm tabular-nums">{status.price}</span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
         </div>
       </section>
 

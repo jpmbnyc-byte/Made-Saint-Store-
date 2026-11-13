@@ -4,8 +4,8 @@ import { FRAMES, LINE, framesFor, pricedLine } from "./line";
 
 test("the 2027 line keeps proposed prices and leaves licensing concepts off the page", () => {
   const priced = pricedLine();
-  assert.equal(priced.length, 75);
-  assert.equal(LINE.filter((item) => item.status === "held").length, 5);
+  assert.equal(priced.length, 69);
+  assert.equal(LINE.filter((item) => item.status === "held").length, 11);
   assert.equal(LINE.some((item) => /dunkin/i.test(item.name)), false);
   const hat = LINE.find((item) => item.ref === "R043");
   const cape = LINE.find((item) => item.ref === "R056");

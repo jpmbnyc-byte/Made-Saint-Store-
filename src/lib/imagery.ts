@@ -29,8 +29,13 @@ export const FRAME_PX: Record<number, [number, number]> = {
   68: [1200, 900],
 };
 
-/** Frames that are large on disk but are crops, composites, or known low-resolution panels. */
-const HELD_BACK = new Set([31, 34, 45, 46, 47, 48, 49, 51, 53, 54]);
+/** Frames that are large on disk but are crops, composites, titled sheets, or unusable product stills. */
+const HELD_BACK = new Set([
+  12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, // lace / city mule studies with baked titles
+  31, 34, 45, 46, 47, 48, 49, 51, 53, 54,
+  60, 62, 63, // Trail Mule titled / concept sheets
+  66, 67, 68, // City Leather Mule titled / misfiled sheets
+]);
 
 export const MIN_EDGE = 800;
 

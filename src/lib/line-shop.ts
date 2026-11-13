@@ -404,8 +404,6 @@ export type EditorialBlock =
   | { kind: "still"; src: string; alt: string; wide?: boolean; href?: string; name?: string; price?: string; cta?: string };
 
 export const FEATURED: EditorialBlock[] = [
-  { kind: "still", src: "/mules/trail-powder-blue.webp", alt: "Trail Mule — powder blue fog grid", href: "/line/r046", name: "Trail Mule", price: "$450", cta: "Enquire" },
-  { kind: "still", src: "/mules/city-espresso.webp", alt: "City Leather Mule — espresso study", href: "/line/n015", name: "City Leather Mule", price: "$795", cta: "Enquire" },
   { kind: "still", src: "/knit/turtleneck-iconic.webp", alt: "Fine cashmere turtleneck — Cast iconic frame", href: "/line/n014", name: "Cashmere turtleneck", price: "$995", cta: "Enquire" },
   { kind: "look", slug: "malik" },
   { kind: "look", slug: "solene" },
@@ -429,8 +427,6 @@ export const FEATURED: EditorialBlock[] = [
   { kind: "look", slug: "onyx" },
   { kind: "look", slug: "mauve-nylon" },
   { kind: "look", slug: "amara" },
-  { kind: "product", ref: "N015", frame: 66 },
-  { kind: "product", ref: "R046", frame: 60 },
   { kind: "product", ref: "N014", frame: 61 },
   { kind: "product", ref: "R067", frame: 27, wide: true },
 ];
@@ -454,8 +450,6 @@ export const CAMPAIGN_BLOCKS: EditorialBlock[] = [
   { kind: "look", slug: "denim-tee" },
   { kind: "look", slug: "black-tee" },
   { kind: "still", src: "/collection/tee-black.webp", alt: "Black acid-wash oversized t-shirt with a red MADE SAiNT collar mark", href: "/wardrobe#introduction", name: "Acid-wash tee, black", cta: "Enquire" },
-  { kind: "still", src: "/mules/trail-powder-blue.webp", alt: "Trail Mule — powder blue fog grid", wide: true, href: "/line/r046", name: "Trail Mule", price: "$450", cta: "Enquire" },
-  { kind: "still", src: "/mules/city-espresso.webp", alt: "City Leather Mule — espresso study", href: "/line/n015", name: "City Leather Mule", price: "$795", cta: "Enquire" },
   { kind: "still", src: "/knit/turtleneck-iconic.webp", alt: "Fine cashmere turtleneck — iconic Cast frame", href: "/line/n014", name: "Cashmere turtleneck", price: "$995", cta: "Enquire" },
   { kind: "still", src: "/runners/navy-ivory-worn.webp", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, worn on foot", wide: true, href: "/shop/ms-runner-chalk-navy", name: "0929 Runner — Navy / Ivory", price: "$490" },
   { kind: "still", src: "/world/coastline.webp", alt: "Campaign 001 study — MADE SAiNT product branding on the north coast", wide: true, href: "/shop#1101", name: "Coastline, Campaign 001", cta: "Enquire about 1101" },

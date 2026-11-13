@@ -67,7 +67,7 @@ test("a garment price stays an enquiry", () => {
   assert.equal(/goatskin/i.test(customerName(n001)), false);
   const mule = lineByRef("R046");
   assert.ok(mule);
-  assert.equal(listedLine(mule), true);
+  assert.equal(listedLine(mule), false);
 });
 
 test("catalog diagnostics count hidden records without publishing them as shopper copy", () => {
@@ -91,12 +91,13 @@ test("editorial stills stay shoppable without inventing a tee sku", () => {
     assert.equal(still.href, "/wardrobe#introduction");
     assert.equal(still.cta, "Enquire");
   }
-  const mule = stills.find((still) => still.src.includes("trail-powder-blue"));
-  assert.equal(mule?.href, "/line/r046");
-  assert.equal(mule?.price, "$450");
-  const city = stills.find((still) => still.src.includes("city-espresso"));
-  assert.equal(city?.href, "/line/n015");
-  assert.equal(city?.price, "$795");
+  assert.equal(stills.some((still) => still.src.includes("/mules/")), false);
+  assert.equal(
+    [...FEATURED, ...CAMPAIGN_BLOCKS].some(
+      (block) => block.kind === "product" && (block.ref === "R046" || block.ref === "N015" || block.ref === "R049"),
+    ),
+    false,
+  );
   const knit = stills.find((still) => still.src.includes("turtleneck-iconic"));
   assert.equal(knit?.href, "/line/n014");
   assert.equal(knit?.price, "$995");

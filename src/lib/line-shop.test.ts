@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { CAMPAIGN_BLOCKS, COLLECTION_LOOKS, FEATURED, catalogDiagnostics, customerMaterial, customerName, customerStatus, lineAssetManifest, publishedLooks } from "./line-shop";
+import { CAMPAIGN_BLOCKS, COLLECTION_LOOKS, FEATURED, catalogDiagnostics, customerMaterial, customerName, customerStatus, lineAssetManifest, lookBySlug, publishedLooks } from "./line-shop";
 import { lineByRef } from "./line";
 import { listedLine } from "./imagery";
 
@@ -102,5 +102,28 @@ test("editorial stills stay shoppable without inventing a tee sku", () => {
   assert.equal(knit?.price, "$995");
   const grids = [...FEATURED, ...CAMPAIGN_BLOCKS].filter((block) => block.kind === "look");
   assert.equal(grids.some((block) => block.slug === "jersey"), false);
-  assert.ok(grids.some((block) => block.slug === "malik"));
+  // Chair turtleneck appears once as a still, not also as look "malik".
+  assert.equal(grids.some((block) => block.slug === "malik"), false);
+  assert.ok(stills.some((still) => still.src.includes("turtleneck-iconic")));
+  // Slate zip set appears once as midnight — onyx is a near-duplicate.
+  assert.ok(grids.some((block) => block.slug === "midnight"));
+  assert.equal(grids.some((block) => block.slug === "onyx"), false);
+  for (const [label, blocks] of [
+    ["FEATURED", FEATURED],
+    ["CAMPAIGN", CAMPAIGN_BLOCKS],
+  ] as const) {
+    const imageUses = new Map<string, number>();
+    for (const block of blocks) {
+      const key =
+        block.kind === "still"
+          ? block.src
+          : block.kind === "look"
+            ? lookBySlug(block.slug)?.image ?? block.slug
+            : `${block.ref}:${block.frame}`;
+      imageUses.set(key, (imageUses.get(key) ?? 0) + 1);
+    }
+    for (const [key, count] of imageUses) {
+      assert.equal(count, 1, `duplicate ${label} image ${key}`);
+    }
+  }
 });

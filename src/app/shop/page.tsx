@@ -20,11 +20,8 @@ function Listing({ product, frame }: { product: Product; frame: string }) {
       <span className={`relative block bg-[#f1eee8] ${frame}`}>
         <Image src={product.image} alt={product.name} fill sizes="(min-width: 1024px) 30vw, 50vw" className="object-contain p-3 transition-opacity duration-500 group-hover:opacity-90" />
       </span>
-      {product.construction && (
-        <span className="mt-4 block text-[10px] tracking-[0.2em] uppercase text-[#1c1a17]/45">{product.construction}</span>
-      )}
-      <span className="mt-1 block font-serif text-[22px] leading-none tracking-[-0.02em] md:text-2xl">{colorOf(product.name)}</span>
-      <span className="mt-2 block text-[13px] tabular-nums text-[#1c1a17]/70">${product.usd}</span>
+      <span className="mt-5 block font-serif text-[22px] font-light leading-none tracking-[-0.02em] md:text-2xl">{colorOf(product.name)}</span>
+      <span className="mt-2 block text-[12px] tracking-[0.06em] tabular-nums text-[#262626]/55">${product.usd}</span>
     </Link>
   );
 }
@@ -35,9 +32,8 @@ function BagListing({ bag }: { bag: BagProduct }) {
       <span className="relative block aspect-[3/4] bg-[#f1eee8]">
         <Image src={bag.image} alt={bag.name} fill sizes="(min-width: 1024px) 30vw, 50vw" className="object-contain p-4 transition-opacity duration-500 group-hover:opacity-90" />
       </span>
-      <span className="mt-4 block text-[10px] tracking-[0.2em] uppercase text-[#1c1a17]/45">{bag.construction}</span>
-      <span className="mt-1 block font-serif text-[22px] leading-none tracking-[-0.02em] md:text-2xl">{colorOf(bag.name)}</span>
-      <span className="mt-2 block text-[13px] tabular-nums text-[#1c1a17]/70">${bag.usd}</span>
+      <span className="mt-5 block font-serif text-[22px] font-light leading-none tracking-[-0.02em] md:text-2xl">{colorOf(bag.name)}</span>
+      <span className="mt-2 block text-[12px] tracking-[0.06em] tabular-nums text-[#262626]/55">${bag.usd}</span>
     </Link>
   );
 }
@@ -74,12 +70,9 @@ export default async function ShopPage() {
           $550. Three mesh colorways and three leather colorways, photographed on the same frame. {offerLine("1101")}
         </p>
 
-        <div id="mesh" className="mt-14 scroll-mt-28">
-          <p className="text-[10px] tracking-[0.22em] uppercase text-[#1c1a17]/40">Mesh</p>
-          <p className="mt-2 max-w-lg text-[14px] leading-relaxed text-[#1c1a17]/60">
-            Open technical mesh panels. Black Vintage, Cocoa, and Stone.
-          </p>
-          <ul className="mt-8 grid grid-cols-2 gap-x-5 gap-y-12 sm:grid-cols-3">
+        <div id="mesh" className="mt-16 scroll-mt-28">
+          <p className="text-[10px] tracking-[0.22em] uppercase text-[#262626]/40">Mesh</p>
+          <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-14 sm:grid-cols-3">
             {mesh.map((p) => (
               <li key={p.id}>
                 <Listing product={p} frame="aspect-[4/5]" />
@@ -88,12 +81,9 @@ export default async function ShopPage() {
           </ul>
         </div>
 
-        <div id="leather" className="mt-16 scroll-mt-28 border-t border-[#1c1a17]/08 pt-14">
-          <p className="text-[10px] tracking-[0.22em] uppercase text-[#1c1a17]/40">Leather</p>
-          <p className="mt-2 max-w-lg text-[14px] leading-relaxed text-[#1c1a17]/60">
-            Full leather upper — no open mesh windows. Espresso, Navy, and Taupe.
-          </p>
-          <ul className="mt-8 grid grid-cols-2 gap-x-5 gap-y-12 sm:grid-cols-3">
+        <div id="leather" className="mt-20 scroll-mt-28 border-t border-[#262626]/08 pt-16">
+          <p className="text-[10px] tracking-[0.22em] uppercase text-[#262626]/40">Leather</p>
+          <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-14 sm:grid-cols-3">
             {leather.map((p) => (
               <li key={p.id}>
                 <Listing product={p} frame="aspect-[4/5]" />
@@ -105,16 +95,13 @@ export default async function ShopPage() {
 
       <section id="bags" className="border-t border-[#1c1a17]/08 bg-[#efeae0]">
         <div className="mx-auto max-w-[1100px] scroll-mt-28 px-5 py-14 md:px-8 md:py-20">
-          <p className="text-[10px] tracking-[0.22em] uppercase text-[#1c1a17]/40">1101 · Backpack</p>
+          <p className="text-[10px] tracking-[0.22em] uppercase text-[#262626]/40">1101 · Backpack</p>
           <h2 className="mt-4 max-w-3xl font-serif text-[36px] font-light leading-[0.95] tracking-[-0.03em] md:text-[48px]">
             Flap backpack.
           </h2>
-          <p className="mt-5 max-w-xl text-[15px] leading-[1.7] text-[#1c1a17]/65">
-            Three mesh bodies and three leather bodies. Same studio framing. No subtitle typography on the photographs.
-          </p>
-          <div className="mt-12">
-            <p className="text-[10px] tracking-[0.22em] uppercase text-[#1c1a17]/40">Mesh</p>
-            <ul className="mt-6 grid grid-cols-2 gap-x-5 gap-y-12 sm:grid-cols-3">
+          <div className="mt-14">
+            <p className="text-[10px] tracking-[0.22em] uppercase text-[#262626]/40">Mesh</p>
+            <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-14 sm:grid-cols-3">
               {bagMesh.map((bag) => (
                 <li key={bag.id}>
                   <BagListing bag={bag} />
@@ -122,9 +109,9 @@ export default async function ShopPage() {
               ))}
             </ul>
           </div>
-          <div className="mt-14">
-            <p className="text-[10px] tracking-[0.22em] uppercase text-[#1c1a17]/40">Leather</p>
-            <ul className="mt-6 grid grid-cols-2 gap-x-5 gap-y-12 sm:grid-cols-3">
+          <div className="mt-16">
+            <p className="text-[10px] tracking-[0.22em] uppercase text-[#262626]/40">Leather</p>
+            <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-14 sm:grid-cols-3">
               {bagLeather.map((bag) => (
                 <li key={bag.id}>
                   <BagListing bag={bag} />

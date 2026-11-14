@@ -1,5 +1,10 @@
 import type { SeriesId } from "@/lib/business";
 
+export type NameDigit = {
+  digit: string;
+  meaning: string;
+};
+
 export type SeriesStory = {
   series: SeriesId;
   date: string;
@@ -10,6 +15,11 @@ export type SeriesStory = {
   parts: string[];
   facts: string[];
   reflection: string[];
+  /**
+   * Founder’s personal reading of each digit in the series name.
+   * Calendar dates are feast days; digit meanings are philosophy, not scriptural numerology.
+   */
+  nameReading: NameDigit[];
   /** Editorial pair hero for the lead colourway only. */
   editorialHero: string;
   leadProductId: string;
@@ -36,6 +46,12 @@ export const SERIES_STORIES: Record<SeriesId, SeriesStory> = {
       "Tan open-mesh panels and cream-brown flecked laces.",
       "Bronze midsole with matte black traction rubber.",
     ],
+    nameReading: [
+      { digit: "1", meaning: "The Father — a pillar of faith" },
+      { digit: "1", meaning: "The Son — a pillar of faith" },
+      { digit: "0", meaning: "The Holy Spirit — the unbroken circle, returning to the origin of all" },
+      { digit: "1", meaning: "You — welcomed into relationship with God" },
+    ],
     reflection: [
       "All Saints’ Day honors the saints, both known and unknown. That breadth of belonging lives at the heart of 1101.",
       "The Father. The Son. The Holy Spirit. You.",
@@ -59,6 +75,12 @@ export const SERIES_STORIES: Record<SeriesId, SeriesStory> = {
       "Taupe details trace the side emblem and heel.",
       "Cream laces complete the Espresso colourway.",
     ],
+    nameReading: [
+      { digit: "1", meaning: "Advance — movement with intention" },
+      { digit: "2", meaning: "Strength — conviction carried into action" },
+      { digit: "1", meaning: "Return to center — balance" },
+      { digit: "3", meaning: "A further step — the faith to keep becoming" },
+    ],
     reflection: [
       "To me, 1213 represents movement, strength and balanced power.",
       "I see a rhythm in the sequence: one, two, one, three. An advance, a return to center, then a further step.",
@@ -80,6 +102,12 @@ export const SERIES_STORIES: Record<SeriesId, SeriesStory> = {
       "Ivory suede overlays in the Navy / Ivory colourway.",
       "Navy mesh panels in the Navy / Ivory colourway.",
       "A black nub-lug rubber sole.",
+    ],
+    nameReading: [
+      { digit: "0", meaning: "Origin — the space before form" },
+      { digit: "9", meaning: "Fullness — receiving what is complete" },
+      { digit: "2", meaning: "Contrast — relationship, the human form" },
+      { digit: "9", meaning: "Fullness again — nine to nine" },
     ],
     reflection: [
       "To me, 0929 represents the infinite beauty of the world: existence repeating, renewing, forever becoming.",

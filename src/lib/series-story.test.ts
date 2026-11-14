@@ -14,6 +14,9 @@ test("series stories cover every launched series with feast and reflection", () 
     assert.ok(story.detail.startsWith("/runners/atelier/"));
     assert.equal(story.parts.length, 3);
     assert.equal(story.facts.length, 3);
+    assert.equal(story.nameReading.length, 4);
+    assert.equal(story.nameReading.map((item) => item.digit).join(""), series);
+    for (const item of story.nameReading) assert.ok(item.meaning.length > 0);
   }
   assert.equal(Object.keys(SERIES_STORIES).length, 3);
 });

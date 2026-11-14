@@ -5,14 +5,14 @@ import Link from "next/link";
 import { customerStatus, lookBySlug } from "@/lib/line-shop";
 import { lineByRef, usd } from "@/lib/line";
 import { PRODUCTS, SIZES as RUNNER_SIZES } from "@/lib/business";
-import { addToBag, createGroup, decideBag, loadBag, removePiece, renameGroup, restorePiece, setPieceSize, writeBag, type PieceSelection } from "@/lib/closet";
-import { useBag, useCloset } from "@/components/line/store";
+import { createGroup, removePiece, renameGroup, restorePiece, setPieceSize, type PieceSelection } from "@/lib/closet";
+import { useCloset } from "@/components/line/store";
+import { copy } from "@/lib/copy";
 
 const SIZES = ["", "S", "M", "L", "XL"];
 
 export function ClosetWorkspace() {
   const closet = useCloset();
-  const bag = useBag();
   const [tab, setTab] = useState<"pieces" | "looks">("pieces");
   const [selected, setSelected] = useState<string[]>([]);
   const [undo, setUndo] = useState<PieceSelection | null>(null);
@@ -63,34 +63,6 @@ export function ClosetWorkspace() {
     setName("");
     setTab("looks");
     setReport(chosen.length ? `${trimmed} now holds ${chosen.length} piece${chosen.length === 1 ? "" : "s"}.` : `${trimmed} is in My Closet.`);
-  }
-
-  function transfer() {
-    const chosen = chosenPieces();
-    if (chosen.length === 0) {
-      setReport("Select a sized runner before adding to the bag.");
-      return;
-    }
-    const decisions = chosen.map((piece) => decideBag({
-      productRef: piece.productRef,
-      kind: piece.kind,
-      size: piece.size,
-      launch: piece.kind === "runner" && Boolean(PRODUCTS.find((item) => item.id === piece.productRef)?.launch),
-    }));
-    const store = {
-      getItem: (key: string) => localStorage.getItem(key),
-      setItem: (key: string, value: string) => localStorage.setItem(key, value),
-    };
-    const next = addToBag(loadBag(store), decisions);
-    try {
-      writeBag(store, next.bag);
-      window.dispatchEvent(new Event("ms-store"));
-    } catch {
-      bag.commit(next.bag);
-    }
-    const blocked = next.blocked.map((item) => `${label(item.productRef)}: ${item.reason}`).join(" ");
-    const added = next.added.length ? `${next.added.length} pair${next.added.length === 1 ? "" : "s"} recorded in the bag.` : "Nothing new was added to the bag.";
-    setReport(`${added} ${blocked} Saved pieces stay in the closet.`.trim());
   }
 
   if (closet.data.pieces.length === 0 && closet.data.groups.length === 0) {
@@ -231,14 +203,16 @@ export function ClosetWorkspace() {
       )}
 
       <div className="mt-8 flex flex-wrap items-center gap-4">
-        <button type="button" onClick={transfer} className="inline-flex h-12 items-center bg-[#111] px-5 text-[11px] tracking-[0.16em] text-[#f7f7f5] uppercase">Add selected to bag</button>
+        <Link href="/wardrobe#introduction" className="inline-flex h-12 items-center bg-[#111] px-5 text-[11px] tracking-[0.16em] text-[#f7f7f5] uppercase">
+          {copy.closet.enquiryAction}
+        </Link>
         {undo && (
           <button type="button" className="inline-flex h-11 items-center text-[11px] tracking-[0.14em] uppercase underline underline-offset-4" onClick={() => { closet.commit(restorePiece(closet.data, undo)); setUndo(null); setReport("Restored."); }}>
             Undo remove
           </button>
         )}
-        <Link href="/wardrobe#introduction" className="text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">Enquire</Link>
-        <Link href="/shop#1101" className="text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">Shop runners</Link>
+        <Link href="/shop#1101" className="text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">Explore footwear</Link>
+        <Link href="/line" className="text-[11px] tracking-[0.14em] uppercase underline underline-offset-4">Explore the collection</Link>
       </div>
       <p className="sr-only" aria-live="polite">{report}</p>
       {report && <p className="mt-4 max-w-xl text-sm leading-relaxed">{report}</p>}

@@ -1,20 +1,21 @@
 import { CampaignBanner } from "@/components/house/campaign-banner";
+import { copy } from "@/lib/copy";
 
 /**
- * Hero: sand jersey Cast look. Shorter opening frame so the look CTA sits
- * in the first screen. Photograph stays clean — copy below the image.
+ * Hero: brand first. Fashion-led enquiry CTAs from the site copy pack.
+ * Photograph stays clean — copy below the image.
  */
 export function EditorialHero() {
   return (
     <CampaignBanner
       src="/collection/hero-cast.webp"
       alt="Sand printed jersey over a light blue shirt and brown tie — Cast 003"
-      kicker="MADE SAiNT"
-      title="Once sinner. Made Saint."
-      body="The sand jersey, worn. Enquire about the printed jersey, or open the look."
+      kicker={copy.home.hero.eyebrow}
+      title={copy.home.hero.heading}
+      body=""
       chips={[]}
-      primary={{ href: "/line/looks/sand-jersey", label: "View this look" }}
-      secondary={{ href: "/wardrobe?ref=R010&look=sand-jersey&color=Sand&image=%2Fcollection%2Fsand-jersey.webp&match=1101%20Runner%20%E2%80%94%20Brown%20Mesh#introduction", label: "Enquire about this look" }}
+      primary={{ href: "/shop#1101", label: copy.home.hero.primaryAction }}
+      secondary={{ href: "/line", label: copy.home.hero.secondaryAction }}
       priority
       compact
       heading="h1"

@@ -14,6 +14,7 @@ import { PreviewTrigger, WardrobePreview, type PreviewFrame } from "@/components
 import { TONAL_COLORS, TonalSlideshow } from "@/components/wardrobe/tonal";
 import { IMAGE_STATUS_LABEL, IMAGE_STATUS_MARK, statusFromNote } from "@/lib/image-status";
 import { tonalRunner } from "@/lib/tonal-runners";
+import { copy } from "@/lib/copy";
 
 const CATALOG = PIECES.filter((piece) => {
   if (!piece.image || offerFor(piece.id).kind === "waitlist") return false;
@@ -385,10 +386,10 @@ export function PrivateHouse() {
 
       <section id="build" className="scroll-mt-28">
         <div className="mx-auto max-w-[1100px] px-5 py-10 md:px-8 md:py-12">
-          <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Step 01 · Starting sets</p>
-          <h2 className="mt-3 max-w-2xl font-serif text-4xl leading-[0.95] md:text-5xl">Choose a set and adjust it.</h2>
+          <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Step 01 · {copy.wardrobe.selectionHeading}</p>
+          <h2 className="mt-3 max-w-2xl font-serif text-4xl leading-[0.95] md:text-5xl">Choose a look or a selection of pieces.</h2>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            Each set is a day you dress for — not a client profile. Open any photograph for the full study, then use the set. Keep only what you want made, choose color and fit, and send an introduction.
+            {copy.wardrobe.selectionBody} Open any photograph for the full study, then keep only what you want to discuss.
           </p>
           <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {STARTS.map((start) => {
@@ -432,9 +433,9 @@ export function PrivateHouse() {
               Continue to pieces
             </a>
             <p className="text-sm text-[#1c1a17]/65">
-              A single pair does not open a wardrobe.{" "}
-              <Link href="/shop#0929" className="underline underline-offset-4">
-                Request one founding pair
+              Prefer a pair first?{" "}
+              <Link href="/shop#1101" className="underline underline-offset-4">
+                Enquire about 1101
               </Link>
               .
             </p>
@@ -449,8 +450,8 @@ export function PrivateHouse() {
             <h2 className="mt-3 font-serif text-4xl">Keep what you want made.</h2>
             <p className="mt-3 text-[15px] leading-relaxed text-[#1c1a17]/70">
               {startId
-                ? "These are the clothes in your set. Uncheck a piece to leave it out. The photographs below are recommended alternates from the private register — not a shop checkout."
-                : "Nothing is held yet. Choose a starting set above, or add any photographed piece from the register below. This list is for a commission request, not a cart."}
+                ? "These are the clothes in your set. Uncheck a piece to leave it out. The photographs below are recommended alternates you can add."
+                : "Nothing is selected yet. Choose a look above, or add any photographed piece below."}
             </p>
             <ul className="mt-6 divide-y divide-[#1c1a17]/12 border-y border-[#1c1a17]/12">
               {heldLine && (
@@ -552,8 +553,8 @@ export function PrivateHouse() {
           </div>
 
           <div id="fit" className="scroll-mt-28 border border-[#1c1a17]/15 bg-[#1c1a17] p-4 text-[#f6f4ef] md:p-5">
-            <p className="text-[11px] tracking-[0.16em] text-[#f6f4ef]/55 uppercase">Step 02 · Virtual fit</p>
-            <h2 className="mt-2 font-serif text-4xl">Athletic tall, by default.</h2>
+            <p className="text-[11px] tracking-[0.16em] text-[#f6f4ef]/55 uppercase">Step 02 · {copy.wardrobe.preferencesHeading}</p>
+            <h2 className="mt-2 font-serif text-4xl">Share the fit you prefer.</h2>
             <div className="mt-4 grid grid-cols-2 gap-3">
               <figure className="bg-[#2a2824]">
                 <PreviewTrigger
@@ -579,7 +580,7 @@ export function PrivateHouse() {
               </figure>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-[#f6f4ef]/75">
-              The house develops for an athletic tall physique — longer sleeve and rise, structured shoulder, tailored ease. The fitting is remote. Measurements are not entered here.
+              {copy.wardrobe.preferencesNote}
             </p>
             <p className="mt-5 text-sm text-[#f6f4ef]/80">Physique</p>
             <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3" role="tablist" aria-label="Physique">
@@ -637,10 +638,10 @@ export function PrivateHouse() {
         <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-4 px-5 py-8 md:px-8">
           <div>
             <p className="text-[11px] tracking-[0.18em] text-[#8d7349] uppercase">Next</p>
-            <p className="mt-2 max-w-xl font-serif text-2xl md:text-3xl">Pieces, fit, and color — ready for the introduction.</p>
+            <p className="mt-2 max-w-xl font-serif text-2xl md:text-3xl">Pieces, fit and colour — ready to enquire.</p>
           </div>
           <a href="#introduction" className="inline-flex h-12 items-center bg-[#1c1a17] px-5 text-[11px] tracking-[0.16em] text-[#f5f0e8] uppercase">
-            Send enquiry
+            {copy.enquiry.submit}
           </a>
         </div>
       </div>

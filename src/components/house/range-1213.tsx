@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { productsIn } from "@/lib/business";
 import { SeriesPlate } from "@/components/shop/series-plate";
+import { copy } from "@/lib/copy";
 
 const colorOf = (name: string) => name.split("—").pop()?.trim() ?? name;
 
@@ -29,15 +30,20 @@ export function Range1213() {
   return (
     <section className="border-t border-[#1c1a17]/10 bg-[#f6f4ef]">
       <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-8 md:py-20">
-        <SeriesPlate series="1101" size="md" />
-        <p className="ms-lede mt-4 max-w-xl">
-          The 1101 runner. Brown Mesh, Teal, Navy, Blush and Onyx.
-        </p>
+        <p className="ms-kicker">{copy.home.runner.eyebrow}</p>
+        <h2 className="ms-title mt-3">{copy.home.runner.heading}</h2>
+        <p className="ms-lede mt-4 max-w-xl">{copy.home.runner.body}</p>
+        <Link
+          href="/shop#1101"
+          className="mt-5 inline-flex border-b border-[#1c1a17] pb-1 text-[11px] tracking-[0.16em] uppercase"
+        >
+          {copy.home.runner.action}
+        </Link>
         <Rail ids={lead} />
         <div className="mt-12 border-t border-[#1c1a17]/10 pt-12">
           <SeriesPlate series="1213" size="md" />
           <p className="ms-lede mt-4 max-w-xl">
-            The 1213 runner. Espresso, Olive, Mineral Blue, Midnight, Chestnut, Sacred Light and Graphite.
+            Espresso, Olive, Mineral Blue, Midnight, Chestnut, Sacred Light and Graphite.
           </p>
           <Rail ids={sculpted} />
         </div>

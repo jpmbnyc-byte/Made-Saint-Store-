@@ -60,9 +60,9 @@ export const LOOKS: Look[] = [
     name: "The Course",
     image: "/wardrobe/course-edit-campaign.webp",
     alt: "Malik, Ren, and Lucien in three course suits on a green",
-    read: "The course edit. One registered suit, shown with the rest of the sheet.",
+    read: "The course edit. Indigo pinstripe suit, worn with the cast.",
     sheet: true,
-    aside: "The sheet shows three figures. The registered suit is the indigo pinstripe. The other two are the same edit, not separate reservations. Proposed prices stay on the line.",
+    aside: "Three figures in the course edit. The indigo pinstripe is the suit shown for enquiry.",
     pieces: [{ id: "s03", role: "Suit", shown: true }],
   },
   {
@@ -89,7 +89,7 @@ export const LOOKS: Look[] = [
     read: "A dusty rose blouson, the matching trouser, and a petrol teal turtleneck.",
     listed: false,
     whole: true,
-    aside: "A worn study, not a client. The shoes are not a founding runner. The product sheets are reconstructions, not physical samples. Cloth is unconfirmed, and no price is listed.",
+    aside: "Design preview. The shoes in the photograph are styling. Cloth and price are confirmed with your quotation.",
     pieces: [
       { id: "p06", role: "Blouson", shown: true },
       { id: "p07", role: "Trouser", shown: true },

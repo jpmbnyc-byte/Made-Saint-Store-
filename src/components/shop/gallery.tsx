@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { CatalogView } from "@/lib/catalog";
 
 /**
@@ -29,6 +29,9 @@ export function ProductGallery({
   const [mode, setMode] = useState<"editorial" | "studio">(hasEditorial ? "editorial" : "studio");
   const [studioIndex, setStudioIndex] = useState(0);
   const [enlarge, setEnlarge] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const heroRef = useRef<HTMLButtonElement>(null);
+  const scrollYRef = useRef(0);
 
   const studio = ordered[Math.min(studioIndex, Math.max(ordered.length - 1, 0))];
   const currentSrc =
@@ -38,15 +41,63 @@ export function ProductGallery({
       ? `${productName}, the pair`
       : studio?.alt ?? productName;
 
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    if (enlarge) {
+      if (!dialog.open) dialog.showModal();
+      const { style } = document.body;
+      style.position = "fixed";
+      style.top = `-${scrollYRef.current}px`;
+      style.left = "0";
+      style.right = "0";
+      style.width = "100%";
+      style.overflow = "hidden";
+    } else if (dialog.open) {
+      dialog.close();
+    }
+
+    return () => {
+      const { style } = document.body;
+      const locked = style.position === "fixed";
+      style.position = "";
+      style.top = "";
+      style.left = "";
+      style.right = "";
+      style.width = "";
+      style.overflow = "";
+      if (locked) window.scrollTo(0, scrollYRef.current);
+    };
+  }, [enlarge]);
+
+  function openEnlarge() {
+    // Capture scroll before focus/layout changes so mobile does not jump.
+    scrollYRef.current = window.scrollY;
+    setEnlarge(true);
+  }
+
+  function selectStudio(index: number) {
+    setStudioIndex(index);
+    setMode("studio");
+    // Keep the updated hero in view on mobile instead of leaving the user on the thumb strip.
+    heroRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }
+
   if (!currentSrc) return null;
 
   return (
     <div className="group min-w-0">
       <button
+        ref={heroRef}
         type="button"
         className="relative block w-full overflow-hidden bg-[#ece3d5]"
         style={{ aspectRatio: "0.765" }}
-        onClick={() => setEnlarge(true)}
+        onPointerDown={() => {
+          scrollYRef.current = window.scrollY;
+        }}
+        onMouseDown={(event) => event.preventDefault()}
+        onClick={openEnlarge}
         aria-label={`Enlarge ${productName} photograph`}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -62,14 +113,17 @@ export function ProductGallery({
             <button
               type="button"
               className={`pb-1 ${mode === "editorial" ? "border-b border-[#352a23] text-[#352a23]" : ""}`}
-              onClick={() => setMode("editorial")}
+              onClick={() => {
+                setMode("editorial");
+                heroRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+              }}
             >
               The pair
             </button>
             <button
               type="button"
               className={`pb-1 ${mode === "studio" ? "border-b border-[#352a23] text-[#352a23]" : ""}`}
-              onClick={() => setMode("studio")}
+              onClick={() => selectStudio(studioIndex)}
             >
               Studio view
             </button>
@@ -88,10 +142,7 @@ export function ProductGallery({
               <button
                 key={`${view.src}-${view.label}-${index}`}
                 type="button"
-                onClick={() => {
-                  setStudioIndex(index);
-                  setMode("studio");
-                }}
+                onClick={() => selectStudio(index)}
                 aria-label={view.label}
                 aria-pressed={active}
                 className={`relative h-16 w-16 shrink-0 overflow-hidden bg-[#ece3d5] ${active ? "ring-1 ring-[#352a23]" : "opacity-75 hover:opacity-100"}`}
@@ -118,31 +169,35 @@ export function ProductGallery({
         ))}
       </div>
 
-      {enlarge ? (
-        <dialog
-          open
-          className="fixed inset-0 z-[80] m-0 flex h-full max-h-none w-full max-w-none items-center justify-center border-0 bg-[#261e16a8] p-4"
-          onClick={(event) => {
-            if (event.target === event.currentTarget) setEnlarge(false);
-          }}
-          onCancel={(event) => {
-            event.preventDefault();
-            setEnlarge(false);
-          }}
-        >
-          <div className="relative max-h-[90dvh] w-full max-w-[1000px] border border-[#dfd6ca] bg-[#f6f2eb] p-4 md:p-8">
-            <button
-              type="button"
-              className="absolute top-3 right-3 z-10 px-2 text-[11px] tracking-[0.16em] uppercase"
-              onClick={() => setEnlarge(false)}
-            >
-              Close
-            </button>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={currentSrc} alt={`${productName}, enlarged`} className="mx-auto max-h-[80dvh] object-contain" />
-          </div>
-        </dialog>
-      ) : null}
+      <dialog
+        ref={dialogRef}
+        className="fixed inset-0 z-[80] m-0 hidden h-[100dvh] max-h-none w-full max-w-none items-center justify-center border-0 bg-[#261e16cc] p-4 open:flex backdrop:bg-[#261e16cc]"
+        onClick={(event) => {
+          if (event.target === event.currentTarget) setEnlarge(false);
+        }}
+        onCancel={(event) => {
+          event.preventDefault();
+          setEnlarge(false);
+        }}
+        onClose={() => setEnlarge(false)}
+      >
+        <div className="relative max-h-[90dvh] w-full max-w-[1000px] overflow-auto border border-[#dfd6ca] bg-[#f6f2eb] p-4 md:p-8">
+          <button
+            type="button"
+            autoFocus
+            className="absolute top-3 right-3 z-10 px-2 text-[11px] tracking-[0.16em] uppercase"
+            onClick={() => setEnlarge(false)}
+          >
+            Close
+          </button>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={currentSrc}
+            alt={`${productName}, enlarged`}
+            className="mx-auto max-h-[80dvh] w-full object-contain"
+          />
+        </div>
+      </dialog>
     </div>
   );
 }

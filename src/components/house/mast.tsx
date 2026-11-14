@@ -100,7 +100,7 @@ export function Mast() {
 
       <div className="relative z-50 mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-4 py-2.5 sm:px-6 sm:py-3">
         <Link href="/" className="inline-flex h-11 shrink-0 items-center" aria-label="MADE SAiNT — home" onClick={() => setOpen(false)}>
-          <Wordmark className="h-7 w-auto sm:h-auto" />
+          <Wordmark className="h-7 w-auto sm:h-9" />
         </Link>
 
         <div className="relative flex items-center gap-2 sm:gap-3">

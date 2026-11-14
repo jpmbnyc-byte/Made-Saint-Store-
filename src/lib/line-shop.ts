@@ -581,7 +581,7 @@ export function customerStatus(product: LineProduct) {
     buyable: false as const,
     label: "Enquire",
     price: usd(product.retail),
-    detail: "A list price for the enquiry. This is not a checkout price. Size and cloth are confirmed with the house before an order.",
+    detail: "Listed for enquiry. Materials, size and delivery are confirmed with your quotation.",
   };
 }
 

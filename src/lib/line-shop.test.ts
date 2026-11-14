@@ -71,7 +71,7 @@ test("a garment price stays an enquiry", () => {
   const status = customerStatus(product);
   assert.equal(status.buyable, false);
   assert.match(status.label, /enquire/i);
-  assert.match(status.detail, /not a checkout price/i);
+  assert.match(status.detail, /confirmed with your quotation/i);
   assert.equal(status.label.includes("Development"), false);
   const n001 = lineByRef("N001");
   assert.ok(n001);

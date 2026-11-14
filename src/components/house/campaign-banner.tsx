@@ -77,9 +77,11 @@ export function CampaignBanner({
         >
           {title}
         </Heading>
-        <p className="ms-lede ms-hero-text-rise mx-auto mt-3 max-w-xl md:mt-4" style={{ animationDelay: "280ms" }}>
-          {body}
-        </p>
+        {body ? (
+          <p className="ms-lede ms-hero-text-rise mx-auto mt-3 max-w-xl md:mt-4" style={{ animationDelay: "280ms" }}>
+            {body}
+          </p>
+        ) : null}
         {chips.length > 0 && (
           <ul className="ms-hero-text-rise mt-4 flex flex-wrap justify-center gap-2 md:mt-6" style={{ animationDelay: "360ms" }}>
             {chips.map((chip) => (

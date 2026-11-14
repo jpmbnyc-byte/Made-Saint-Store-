@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { ShopFooter } from "@/components/shop/chrome";
 import { Mast } from "@/components/house/mast";
 import { PrivateHouse } from "@/components/wardrobe/house";
+import { copy } from "@/lib/copy";
 
 export const metadata: Metadata = {
-  title: "The Private Wardrobe",
-  description:
-    "A private commission path for MADE SAiNT clothes. Start with one look or a small capsule, compose the pieces, and send an introduction with settings and dates — not a shop cart.",
+  title: { absolute: copy.seo.wardrobe.title },
+  description: copy.seo.wardrobe.description,
 };
 
 export default function WardrobePage() {

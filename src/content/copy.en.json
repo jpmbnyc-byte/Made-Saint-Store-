@@ -32,7 +32,7 @@
     "runner": {
       "eyebrow": "1101",
       "heading": "The 1101 runner.",
-      "body": "Explore Brown Mesh, Teal, Navy, Bronze, Blush and Onyx.",
+      "body": "Explore Butter, Teal, Navy, Bronze, Blush and Onyx.",
       "action": "View the colourways"
     },
     "looks": {
@@ -132,7 +132,7 @@
   "wardrobe": {
     "eyebrow": "PRIVATE WARDROBE",
     "heading": "A wardrobe for the way you live.",
-    "intro": "Open the looks, keep the pieces, choose a tonal color with a matching runner, and tell us how an athletic tall fit should feel. No payment is taken with the enquiry.",
+    "intro": "Begin with one look or a selection of pieces. Tell us about your work, travel and occasions, and the fit you prefer.",
     "primaryAction": "Begin your enquiry",
     "selectionHeading": "Choose your pieces",
     "selectionBody": "Save the pieces you want to discuss.",
@@ -143,15 +143,15 @@
     "steps": [
       {
         "title": "Select",
-        "body": "Open a look, keep the pieces, and add alternates from the register."
+        "body": "Choose a look or individual pieces."
       },
       {
-        "title": "Fit & color",
-        "body": "Set an athletic tall preference, then carry a tonal color with its matching runner."
+        "title": "Discuss",
+        "body": "Tell us about fit, use and any dates you have in mind."
       },
       {
-        "title": "Enquire",
-        "body": "Send the introduction. We confirm materials, price and delivery before you order."
+        "title": "Review",
+        "body": "Review the proposed pieces, materials, price and delivery before you order."
       }
     ]
   },

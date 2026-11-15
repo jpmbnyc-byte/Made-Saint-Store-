@@ -9,6 +9,6 @@ test("every tonal colorway maps to a launched runner", () => {
     assert.ok(product, `${id} runner missing`);
     assert.equal(product?.launch, true, `${id} runner not launched`);
     assert.equal(tonalRunner(id)?.productId, runner.productId);
-    assert.ok(tonalRunnerHref(id).includes("#title"));
+    assert.ok(tonalRunnerHref(id).includes("#gallery"));
   }
 });

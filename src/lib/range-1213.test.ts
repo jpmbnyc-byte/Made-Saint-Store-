@@ -3,8 +3,8 @@ import test from "node:test";
 import { PRODUCTS, SERIES_ORDER, SERIES_PLATE, productsIn, runnerHref, seriesHref } from "./business";
 
 test("runner and series links open on the title or series plate", () => {
-  assert.equal(runnerHref("ms-runner-chalk-navy"), "/shop/ms-runner-chalk-navy#title");
-  assert.equal(runnerHref("ms-runner-chalk-navy", { size: "10" }), "/shop/ms-runner-chalk-navy?size=10#title");
+  assert.equal(runnerHref("ms-runner-chalk-navy"), "/shop/ms-runner-chalk-navy#gallery");
+  assert.equal(runnerHref("ms-runner-chalk-navy", { size: "10" }), "/shop/ms-runner-chalk-navy?size=10#gallery");
   assert.equal(seriesHref("1213"), "/shop#1213");
 });
 

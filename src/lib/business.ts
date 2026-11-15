@@ -240,10 +240,10 @@ export function campaignStatus(now = new Date(), c: Campaign = CAMPAIGN): Campai
 
 export const productById = (id: string) => PRODUCTS.find((p) => p.id === id);
 
-/** Product pages open on the shoe title (`#title`), not the gallery top. */
+/** Product pages open on the shoe image (`#gallery`) so mobile does not land below the hero. */
 export function runnerHref(id: string, opts?: { size?: string }) {
   const query = opts?.size ? `?size=${encodeURIComponent(opts.size)}` : "";
-  return `/shop/${id}${query}#title`;
+  return `/shop/${id}${query}#gallery`;
 }
 
 export function seriesHref(series: SeriesId) {

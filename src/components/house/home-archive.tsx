@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FEATURED_ARCHIVE_CHAPTERS } from "@/lib/archive-chapters";
+import { HOME_ARCHIVE_CHAPTERS } from "@/lib/archive-chapters";
 import { copy } from "@/lib/copy";
 
 /** Selected archive chapters on the homepage. */
@@ -17,7 +17,7 @@ export function HomeArchive() {
           {copy.home.archive.heading}
         </h2>
         <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {FEATURED_ARCHIVE_CHAPTERS.map((chapter) => (
+          {HOME_ARCHIVE_CHAPTERS.map((chapter) => (
             <li key={chapter.slug}>
               <Link href={`/wardrobe/archive/${chapter.slug}`} className="group block">
                 <span className="relative block aspect-[3/4] overflow-hidden bg-[#efefed]">

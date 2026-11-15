@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FEATURED_ARCHIVE_CHAPTERS } from "@/lib/archive-chapters";
+import { HOME_INVITE_CHAPTER } from "@/lib/archive-chapters";
 import { copy } from "@/lib/copy";
 
 export function WardrobeChapter() {
   const { eyebrow, heading, body, action } = copy.home.wardrobe;
   const steps = copy.wardrobe.steps;
-  const look = FEATURED_ARCHIVE_CHAPTERS[0]!;
+  const look = HOME_INVITE_CHAPTER;
 
   return (
     <section

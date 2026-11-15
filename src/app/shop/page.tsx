@@ -87,7 +87,7 @@ export default async function ShopPage() {
         </p>
         <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
           {copy.footwearCollection.helpHeading}{" "}
-          <Link href="/shop/ms-runner-chalk-navy#title" className="underline underline-offset-4">
+          <Link href="/shop/ms-runner-chalk-navy#gallery" className="underline underline-offset-4">
             {copy.footwearCollection.helpAction}
           </Link>
           .

@@ -87,7 +87,7 @@ export function ProductGallery({
   if (!currentSrc) return null;
 
   return (
-    <div className="group min-w-0">
+    <div id="gallery" className="group min-w-0 scroll-mt-36 md:scroll-mt-28">
       <button
         ref={heroRef}
         type="button"

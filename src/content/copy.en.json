@@ -17,7 +17,7 @@
       "Closet"
     ],
     "lineTabs": [
-      "Featured",
+      "Collection",
       "Lookbook",
       "Campaign"
     ]
@@ -95,12 +95,21 @@
   },
   "line": {
     "heading": "The Line",
+    "eyebrow": "COLLECTION",
+    "intro": "A considered collection. Begin with a look; pieces are confirmed through enquiry.",
     "cardAction": "View piece",
     "lookAction": "View look",
     "enquiryAction": "Enquire about this piece",
-    "searchLabel": "Search the collection",
-    "searchEmpty": "No pieces match your search.",
-    "clearAction": "Clear filters",
+    "indexHeading": "The index",
+    "indexBody": "Every listed piece, quietly arranged.",
+    "searchLabel": "Search",
+    "searchEmpty": "No pieces match that search.",
+    "clearAction": "Clear",
+    "views": {
+      "featured": "Collection",
+      "lookbook": "Lookbook",
+      "campaign": "Campaign"
+    },
     "categories": [
       "All",
       "Tailoring",
@@ -114,6 +123,7 @@
   },
   "lookbook": {
     "heading": "Lookbook",
+    "intro": "Looks arranged by how they are worn.",
     "filters": [
       "All",
       "Tailoring",

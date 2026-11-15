@@ -498,43 +498,105 @@ export type EditorialBlock =
   | { kind: "product"; ref: string; frame: number; wide?: boolean }
   | { kind: "still"; src: string; alt: string; wide?: boolean; href?: string; name?: string; price?: string; cta?: string };
 
-export const FEATURED: EditorialBlock[] = [
-  { kind: "still", src: "/knit/turtleneck-iconic.webp", alt: "Fine cashmere turtleneck — Cast iconic frame", href: "/line/n014", name: "Cashmere turtleneck", price: "$995", cta: "Enquire" },
-  { kind: "look", slug: "sand-jersey", wide: true },
-  { kind: "look", slug: "sand-jersey-denim" },
-  { kind: "look", slug: "blue-jersey" },
-  { kind: "look", slug: "blue-jersey-denim" },
-  { kind: "look", slug: "triangle-cap" },
-  { kind: "look", slug: "butter-mock" },
-  { kind: "look", slug: "malik" },
-  { kind: "look", slug: "solene" },
-  { kind: "look", slug: "camel" },
-  { kind: "look", slug: "parachute" },
-  { kind: "look", slug: "rust" },
-  { kind: "look", slug: "taupe" },
-  { kind: "look", slug: "forest" },
-  { kind: "look", slug: "olive-wool", wide: true },
-  { kind: "look", slug: "sage" },
-  { kind: "look", slug: "olive", wide: true },
-  { kind: "look", slug: "forerunner" },
-  { kind: "look", slug: "butter-tee" },
-  { kind: "look", slug: "denim-tee" },
-  { kind: "look", slug: "black-tee" },
-  { kind: "still", src: "/collection/tee-black.webp", alt: "Black acid-wash oversized t-shirt with a red MADE SAiNT collar mark", href: "/wardrobe#introduction", name: "Acid-wash tee, black", cta: "Enquire" },
-  { kind: "still", src: "/collection/tee-butter.webp", alt: "Butter acid-wash oversized t-shirt with a red MADE SAiNT collar mark", href: "/wardrobe#introduction", name: "Acid-wash tee, butter", cta: "Enquire" },
-  { kind: "still", src: "/collection/tee-denim.webp", alt: "Blue denim acid-wash oversized t-shirt with a red MADE SAiNT collar mark", href: "/wardrobe#introduction", name: "Acid-wash tee, denim", cta: "Enquire" },
-  { kind: "look", slug: "duffel" },
-  { kind: "look", slug: "midnight" },
-  { kind: "look", slug: "onyx" },
-  { kind: "look", slug: "mauve-nylon" },
-  { kind: "look", slug: "amara" },
-  { kind: "product", ref: "N014", frame: 61 },
-  { kind: "product", ref: "R067", frame: 27, wide: true },
+/**
+ * Curated Line chapters for a calm collection presentation.
+ * Kept short on purpose — denser frames live in Campaign / Lookbook.
+ */
+export type FeaturedChapter = {
+  id: string;
+  eyebrow: string;
+  title: string;
+  line: string;
+  blocks: EditorialBlock[];
+};
+
+export const FEATURED_CHAPTERS: FeaturedChapter[] = [
+  {
+    id: "opening",
+    eyebrow: "01",
+    title: "Knit",
+    line: "A quiet foundation. Soft weight against the skin.",
+    blocks: [
+      {
+        kind: "still",
+        src: "/knit/turtleneck-iconic.webp",
+        alt: "Fine cashmere turtleneck — Cast iconic frame",
+        href: "/line/n014",
+        name: "Cashmere turtleneck",
+        price: "$995",
+        cta: "Enquire",
+        wide: true,
+      },
+      { kind: "look", slug: "butter-mock" },
+      { kind: "look", slug: "malik" },
+    ],
+  },
+  {
+    id: "jersey",
+    eyebrow: "02",
+    title: "Printed jersey",
+    line: "Sacred motifs over a clean shirt. Denim when the day asks for it.",
+    blocks: [
+      { kind: "look", slug: "sand-jersey", wide: true },
+      { kind: "look", slug: "blue-jersey" },
+      { kind: "look", slug: "sand-jersey-denim" },
+      { kind: "look", slug: "solene" },
+    ],
+  },
+  {
+    id: "sets",
+    eyebrow: "03",
+    title: "Soft sets",
+    line: "Matched proportions in camel, sage and olive — worn without ceremony.",
+    blocks: [
+      { kind: "look", slug: "olive", wide: true },
+      { kind: "look", slug: "camel" },
+      { kind: "look", slug: "sage" },
+      { kind: "look", slug: "forerunner" },
+    ],
+  },
+  {
+    id: "essentials",
+    eyebrow: "04",
+    title: "Essentials",
+    line: "Acid-wash tees, a duffel, and the pieces that finish a look.",
+    blocks: [
+      {
+        kind: "still",
+        src: "/collection/tee-black.webp",
+        alt: "Black acid-wash oversized t-shirt with a red MADE SAiNT collar mark",
+        href: "/wardrobe#introduction",
+        name: "Acid-wash tee, black",
+        cta: "Enquire",
+      },
+      {
+        kind: "still",
+        src: "/collection/tee-butter.webp",
+        alt: "Butter acid-wash oversized t-shirt with a red MADE SAiNT collar mark",
+        href: "/wardrobe#introduction",
+        name: "Acid-wash tee, butter",
+        cta: "Enquire",
+      },
+      {
+        kind: "still",
+        src: "/collection/tee-denim.webp",
+        alt: "Blue denim acid-wash oversized t-shirt with a red MADE SAiNT collar mark",
+        href: "/wardrobe#introduction",
+        name: "Acid-wash tee, denim",
+        cta: "Enquire",
+      },
+      { kind: "look", slug: "duffel" },
+      { kind: "product", ref: "R067", frame: 27, wide: true },
+    ],
+  },
 ];
+
+/** Flattened featured blocks — used by tests and any single-stream consumers. */
+export const FEATURED: EditorialBlock[] = FEATURED_CHAPTERS.flatMap((chapter) => chapter.blocks);
 
 export const CAMPAIGN_BLOCKS: EditorialBlock[] = [
   { kind: "still", src: "/world/milot.webp", alt: "Campaign 001 study — Cast 003 in the ruins at Milot", wide: true, href: "/line/lookbook", name: "Milot, Campaign 001", cta: "View the lookbook" },
-  { kind: "still", src: "/collection/solene.webp", alt: "Solène in the printed jersey — Cast 003 look", wide: true, href: "/line/looks/solene", name: "Solène jersey", cta: "Shop the look" },
+  { kind: "still", src: "/collection/solene.webp", alt: "Solène in the printed jersey — Cast 003 look", wide: true, href: "/line/looks/solene", name: "Solène jersey", cta: "View look" },
   { kind: "look", slug: "sand-jersey", wide: true },
   { kind: "look", slug: "sand-jersey-denim" },
   { kind: "look", slug: "blue-jersey" },
@@ -560,8 +622,8 @@ export const CAMPAIGN_BLOCKS: EditorialBlock[] = [
   { kind: "still", src: "/knit/turtleneck-iconic.webp", alt: "Fine cashmere turtleneck — iconic Cast frame", href: "/line/n014", name: "Cashmere turtleneck", price: "$995", cta: "Enquire" },
   { kind: "still", src: "/runners/navy-ivory-worn.webp", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, worn on foot", wide: true, href: "/shop/ms-runner-chalk-navy#gallery", name: "0929 Runner — Navy / Ivory", price: "$490" },
   { kind: "still", src: "/world/coastline.webp", alt: "Campaign 001 study — MADE SAiNT product branding on the north coast", wide: true, href: "/shop#1101", name: "Coastline, Campaign 001", cta: "Enquire about 1101" },
-  { kind: "still", src: "/collection/malik.webp", alt: "Malik seated in a navy turtleneck and sand trousers with teal 1101 runners", href: "/line/looks/malik", name: "Malik, chair", cta: "Shop the look" },
-  { kind: "still", src: "/collection/ines-burgundy.webp", alt: "Inès on a stool with brown mesh 1101 runners", wide: true, href: "/line/looks/rust", name: "Inès, burgundy stool", cta: "Shop the look" },
+  { kind: "still", src: "/collection/malik.webp", alt: "Malik seated in a navy turtleneck and sand trousers with teal 1101 runners", href: "/line/looks/malik", name: "Malik, chair", cta: "View look" },
+  { kind: "still", src: "/collection/ines-burgundy.webp", alt: "Inès on a stool with brown mesh 1101 runners", wide: true, href: "/line/looks/rust", name: "Inès, burgundy stool", cta: "View look" },
   { kind: "look", slug: "midnight" },
   { kind: "look", slug: "onyx" },
   { kind: "look", slug: "mauve-nylon" },

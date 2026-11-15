@@ -24,10 +24,10 @@ export async function generateMetadata({ params }: { params: Promise<{ ref: stri
   const product = lineByRef((await params).ref);
   const status = product ? customerStatus(product) : null;
   return {
-    title: product ? customerName(product) : "The 2027 line",
+    title: product ? customerName(product) : "The Line",
     description: product && status?.price
       ? `${customerName(product)}. ${status.price}. Enquire with the house.`
-      : "The 2027 line",
+      : "The Line",
   };
 }
 

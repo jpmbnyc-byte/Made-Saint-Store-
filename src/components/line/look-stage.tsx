@@ -76,7 +76,7 @@ export function LookStage({ slug }: { slug: string }) {
     : look.offers?.find((offer) => offer.kind === "enquire")?.href ?? "/wardrobe#introduction";
 
   return (
-    <div ref={root} role="dialog" aria-modal="true" aria-label={`Look ${look.number}`} className="fixed inset-0 z-50 overflow-y-auto bg-[#f5f0e8] text-[#1c1a17]">
+    <div ref={root} role="dialog" aria-modal="true" aria-label={`Look ${look.number}`} className="fixed inset-0 z-50 overflow-y-auto bg-[#f7f7f5] text-[#1c1a17]">
       <div className="flex min-h-full flex-col md:grid md:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]">
         <div className="bg-[#efefed] md:sticky md:top-0 md:h-screen">
           <img src={image} alt={frame?.alt ?? look.alt} className="h-[70vh] w-full object-cover object-top md:h-screen md:object-contain" />

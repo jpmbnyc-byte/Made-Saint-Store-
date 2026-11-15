@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { LookbookView } from "@/components/line/views";
 
 export const metadata: Metadata = {
-  title: "Lookbook — The 2027 line",
-  description: "Complete looks from the 2027 line, with the pieces each photograph actually shows.",
+  title: "Lookbook — The Line",
+  description: "Looks from The Line, arranged by how they are worn, with the pieces each photograph shows.",
 };
 
 export default function LookbookPage() {

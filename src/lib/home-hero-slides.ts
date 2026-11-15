@@ -31,7 +31,8 @@ export const HOME_HERO_SLIDES: HomeHeroSlide[] = [
   },
   {
     id: "atelier-process",
-    src: "/hero/slides/03-atelier-process.webp",
+    src: "/hero/slides/03-atelier-process-mobile.webp",
+    desktopSrc: "/hero/slides/03-atelier-process.webp",
     alt: "1101 atelier process — sketches, materials, prototype and finished pair",
     href: "/shop#1101",
     label: "Atelier",

@@ -29,8 +29,30 @@ export function TheHouse() {
           <h2 id="house-heading" className="ms-display mt-5">
             {copy.house.heading}
           </h2>
-          <p className="ms-lede mt-7 max-w-lg">{copy.house.founder}</p>
-          <p className="ms-lede mt-4 max-w-lg">{copy.house.collection}</p>
+          <p className="ms-lede mt-4 max-w-lg">{copy.house.subheading}</p>
+          <p className="ms-lede mt-4 max-w-lg">{copy.house.founder}</p>
+          <p className="mt-8 font-serif text-2xl tracking-[-0.01em]">{copy.house.conviction}</p>
+          <p className="ms-lede mt-3 max-w-lg">{copy.house.collection}</p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <figure className="relative aspect-[3/4] overflow-hidden bg-[#efefed]">
+              <Image
+                src="/wardrobe/archive/course-to-club-primary.webp"
+                alt="Blue printed jersey over a shirt and tie — conviction worn daily"
+                fill
+                sizes="280px"
+                className="object-cover object-top"
+              />
+            </figure>
+            <figure className="relative aspect-[3/4] overflow-hidden bg-[#efefed]">
+              <Image
+                src="/wardrobe/archive/miami-arrival-primary.webp"
+                alt="Pale sage set with a sculptural runner beneath a tailored trouser"
+                fill
+                sizes="280px"
+                className="object-cover object-top"
+              />
+            </figure>
+          </div>
           <div className="mt-8">
             <Pledge />
           </div>

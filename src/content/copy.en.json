@@ -3,7 +3,7 @@
     "brand": "MADE SAiNT",
     "release": "enquiry",
     "language": "en",
-    "prepared": "2026-11-12"
+    "prepared": "2026-11-15"
   },
   "navigation": {
     "primary": [
@@ -29,11 +29,16 @@
       "primaryAction": "Explore 1101",
       "secondaryAction": "View the collection"
     },
+    "signature": {
+      "heading": "Once sinner. Made Saint.",
+      "body": "Sacred motifs. An everyday uniform, made personal."
+    },
     "runner": {
       "eyebrow": "1101",
       "heading": "The 1101 runner.",
-      "body": "Explore Butter, Teal, Navy, Bronze, Blush and Onyx.",
-      "action": "View the colourways"
+      "body": "Explore Brown Mesh, Teal, Navy, Blush and Onyx.",
+      "action": "View the colourways",
+      "footwearLink": "View the complete footwear collection"
     },
     "looks": {
       "heading": "The collection, worn.",
@@ -46,9 +51,14 @@
     },
     "wardrobe": {
       "eyebrow": "PRIVATE WARDROBE",
-      "heading": "One look. A wardrobe built around you.",
-      "body": "Choose the pieces you want to discuss, and tell us where you will wear them.",
-      "action": "Plan your wardrobe"
+      "heading": "For every part of your day.",
+      "body": "Begin with a look you love. Tell us where you will wear it, how you like your clothes to fit, and the details that matter to you.",
+      "action": "Explore Private Wardrobe"
+    },
+    "archive": {
+      "eyebrow": "THE ARCHIVE",
+      "heading": "Selected chapters.",
+      "action": "View all twelve chapters"
     }
   },
   "footwearCollection": {
@@ -66,7 +76,7 @@
   "runnerProduct": {
     "previewLabel": "Design preview",
     "primaryAction": "Enquire about this pair",
-    "body": "Send your preferred size and colour. We will confirm availability, price and delivery before you order.",
+    "body": "Share your preferred size. We will confirm availability, the final quotation and delivery before you order. No payment is taken with this enquiry.",
     "detailsHeading": "Details",
     "sizeLabel": "Preferred size",
     "sizeHelpAction": "Size not listed?",
@@ -77,7 +87,11 @@
     "saveAction": "Save to Closet",
     "savedAction": "Saved to Closet",
     "careHeading": "Care",
-    "colourLabel": "Colour"
+    "colourLabel": "Colour",
+    "brownMesh": {
+      "line": "Dark chocolate and tan open mesh, with a sculptural profile.",
+      "body": "A bold shape to set against a clean trouser or worn denim."
+    }
   },
   "line": {
     "heading": "The Line",
@@ -116,8 +130,16 @@
     "previousAction": "Previous look",
     "nextAction": "Next look",
     "closeAction": "Back to lookbook",
-    "stylingNote": "The shirt, tie and trousers are styling pieces. They are not included with the jersey.",
-    "soleneTitle": "Solène — printed jersey"
+    "stylingNote": "Jersey price only. The shirt, tie and trousers are styling pieces and are not included.",
+    "soleneTitle": "Solène — printed jersey",
+    "sandJersey": {
+      "title": "The sand jersey.",
+      "body": "Sacred motifs over a shirt and tie.",
+      "primaryAction": "Enquire about this jersey",
+      "secondaryAction": "Save look to Closet",
+      "pricing": "Jersey price only. The shirt, tie and trousers are styling pieces and are not included.",
+      "runnerAction": "View the Brown Mesh 1101"
+    }
   },
   "bagProduct": {
     "duffelTitle": "Denim-trim duffel",
@@ -132,28 +154,35 @@
   "wardrobe": {
     "eyebrow": "PRIVATE WARDROBE",
     "heading": "A wardrobe for the way you live.",
-    "intro": "Begin with one look or a selection of pieces. Tell us about your work, travel and occasions, and the fit you prefer.",
-    "primaryAction": "Begin your enquiry",
+    "intro": "A journey, an evening, the days between. Begin with a look from the archive and tell us what feels like you. We will discuss the pieces, proportions and details together.",
+    "primaryAction": "Explore the archive",
+    "secondaryAction": "Begin an enquiry",
     "selectionHeading": "Choose your pieces",
     "selectionBody": "Save the pieces you want to discuss.",
     "preferencesHeading": "Fit preferences",
+    "proportionLabel": "Proportion preference",
     "shoulderLabel": "Shoulder",
     "trouserLabel": "Trouser fit",
-    "preferencesNote": "Share the fit you prefer. Measurements are reviewed separately.",
+    "preferencesNote": "These preferences guide our conversation. Measurements and available adjustments are reviewed separately.",
     "steps": [
       {
-        "title": "Select",
+        "title": "Find your starting point",
         "body": "Choose a look or individual pieces."
       },
       {
-        "title": "Discuss",
-        "body": "Tell us about fit, use and any dates you have in mind."
+        "title": "Make it personal",
+        "body": "Tell us about fit, color, use and any dates that matter."
       },
       {
-        "title": "Review",
-        "body": "Review the proposed pieces, materials, price and delivery before you order."
+        "title": "Review your proposal",
+        "body": "Materials, price and delivery are confirmed before you order."
       }
-    ]
+    ],
+    "archiveHeading": "Archive chapters",
+    "archiveAllAction": "View all twelve chapters",
+    "enquireLookAction": "Enquire about this look",
+    "saveLookAction": "Save look to Closet",
+    "piecesHeading": "Pieces available to discuss"
   },
   "fitting": {
     "eyebrow": "FIT ENQUIRIES",
@@ -169,16 +198,20 @@
   },
   "house": {
     "heading": "Once sinner. Made Saint.",
-    "founder": "MADE SAiNT is Jean Pierre Bobo’s label. Its name speaks to grace and a life changed.",
-    "collection": "The collection brings together tailoring, knitwear, footwear and accessories.",
-    "peopleHeading": "The cast",
+    "subheading": "A name about grace. A life still becoming.",
+    "founder": "Founded by Jean Pierre Bobo, MADE SAiNT brings sacred imagery into contemporary dress.",
+    "conviction": "Conviction, worn daily.",
+    "collection": "A printed jersey over a shirt and tie. A sculptural runner beneath a tailored trouser. Familiar pieces, brought into a personal wardrobe.",
+    "campaignHeading": "In Atlantic light.",
+    "campaignBody": "Campaign 002 imagines the collection in São Roque, São Miguel, in the Azores.",
+    "peopleHeading": "Campaign credits",
     "people": "Solène, Amara, Inès, Lucien, Ren and Malik appear throughout the collection.",
     "peopleDisclosure": "The cast consists of original fictional identities used in campaign imagery.",
     "givingHeading": "A future still being made.",
     "givingIntro": "Every child deserves nourishment, an education, and room to become."
   },
   "enquiry": {
-    "heading": "Your enquiry",
+    "heading": "Tell us what you have in mind.",
     "nameLabel": "Name",
     "emailLabel": "Email",
     "countryLabel": "Delivery country",
@@ -234,11 +267,11 @@
     },
     "wardrobe": {
       "title": "Private Wardrobe | MADE SAiNT",
-      "description": "Begin with a look or a selection of MADE SAiNT pieces. Discuss fit, materials and the occasions you are dressing for."
+      "description": "Begin with a look from the MADE SAiNT archive. Discuss fit, materials and the occasions you are dressing for."
     },
     "house": {
       "title": "The House | MADE SAiNT",
-      "description": "Meet the label founded by Jean Pierre Bobo. Explore the ideas, collection and campaign cast behind MADE SAiNT."
+      "description": "Meet the label founded by Jean Pierre Bobo. Explore the ideas, collection and campaign behind MADE SAiNT."
     },
     "fitting": {
       "title": "Fit Enquiries | MADE SAiNT",

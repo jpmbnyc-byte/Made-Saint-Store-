@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const look = lookBySlug((await params).slug);
   return {
     title: look ? `Look ${look.number} — ${look.title}` : "Lookbook",
-    description: look?.alt ?? "A look from the 2027 line.",
+    description: look?.alt ?? "A look from The Line.",
   };
 }
 

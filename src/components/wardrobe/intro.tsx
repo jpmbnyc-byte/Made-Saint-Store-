@@ -3,7 +3,7 @@ import Link from "next/link";
 import { copy } from "@/lib/copy";
 
 export function WardrobeIntro() {
-  const { eyebrow, heading, intro, primaryAction, steps } = copy.wardrobe;
+  const { eyebrow, heading, intro, primaryAction, secondaryAction, steps } = copy.wardrobe;
 
   return (
     <section
@@ -30,16 +30,16 @@ export function WardrobeIntro() {
           <p className="ms-lede mt-5 max-w-xl">{intro}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
-              href="#introduction"
-              className="inline-flex h-12 items-center bg-[#f5f0e8] px-5 text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c0a477]"
+              href="#archive"
+              className="inline-flex h-12 items-center bg-[#f5f0e8] px-5 text-[14px] text-[#1c1a17] transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c0a477]"
             >
               {primaryAction}
             </a>
             <a
-              href="#build"
-              className="inline-flex h-12 items-center border border-[#f5f0e8]/30 px-5 text-[11px] tracking-[0.16em] text-[#f5f0e8] uppercase transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c0a477]"
+              href="#introduction"
+              className="inline-flex h-12 items-center border border-[#f5f0e8]/30 px-5 text-[14px] text-[#f5f0e8] transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c0a477]"
             >
-              {copy.wardrobe.selectionHeading}
+              {secondaryAction}
             </a>
           </div>
           <p className="mt-5 text-[13px] leading-relaxed text-[#f5f0e8]/55">
@@ -53,20 +53,19 @@ export function WardrobeIntro() {
 
         <figure className="relative aspect-[4/5] overflow-hidden bg-[#efefed] md:aspect-[5/6]">
           <Image
-            src="/line/f35.webp"
-            alt="Malik in a navy zip jacket, white layer, and matching trouser — a wardrobe starting set"
+            src="/wardrobe/hero-private.webp"
+            alt="A private wardrobe fitting — navy pinstripe set, MADE SAiNT boxes and a garment bag"
             fill
             priority
             sizes="(min-width: 768px) 40vw, 90vw"
-            className="object-cover object-top"
+            className="object-cover object-[center_20%]"
           />
         </figure>
       </div>
 
       <div id="how-it-works" className="relative scroll-mt-28 border-t border-[#f5f0e8]/10">
         <div className="mx-auto max-w-[1200px] px-5 py-12 md:px-8 md:py-16">
-          <p className="ms-kicker text-[#c0a477]">How it works</p>
-          <ol className="mt-8 grid gap-8 md:grid-cols-3 md:gap-10">
+          <ol className="grid gap-8 md:grid-cols-3 md:gap-10">
             {steps.map((step, index) => (
               <li key={step.title} className="ms-on-dark">
                 <span className="font-serif text-2xl italic text-[#c0a477]">

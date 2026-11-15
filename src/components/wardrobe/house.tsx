@@ -10,6 +10,7 @@ import { lookById, lookForLifestyle, offerFor } from "@/lib/looks";
 import { PIECES, type WardrobePiece } from "@/lib/wardrobe";
 import { StatusMark } from "@/components/house/status-mark";
 import { WardrobeIntro } from "@/components/wardrobe/intro";
+import { ArchiveGrid } from "@/components/wardrobe/archive-grid";
 import { PreviewTrigger, WardrobePreview, type PreviewFrame } from "@/components/wardrobe/preview";
 import { TONAL_COLORS, TonalSlideshow } from "@/components/wardrobe/tonal";
 import { IMAGE_STATUS_LABEL, IMAGE_STATUS_MARK, statusFromNote } from "@/lib/image-status";
@@ -89,7 +90,7 @@ const SHOULDERS = [
 const PHYSIQUES = [
   {
     id: "athletic-tall",
-    label: "Athletic · tall",
+    label: "Tall / athletic",
     line: "Longer sleeve and rise. Structured shoulder. Tailored through the leg with room to move.",
   },
   {
@@ -99,8 +100,13 @@ const PHYSIQUES = [
   },
   {
     id: "standard",
-    label: "Standard",
+    label: "Regular",
     line: "House base proportions.",
+  },
+  {
+    id: "discuss",
+    label: "Discuss with me",
+    line: "We will talk through proportion together.",
   },
 ] as const;
 
@@ -173,7 +179,7 @@ export function PrivateHouse() {
   const [toneAt, setToneAt] = useState(0);
   const [easeId, setEaseId] = useState<(typeof EASES)[number]["id"]>("tailored");
   const [shoulderId, setShoulderId] = useState<(typeof SHOULDERS)[number]["id"]>("structured");
-  const [physiqueId, setPhysiqueId] = useState<(typeof PHYSIQUES)[number]["id"]>("athletic-tall");
+  const [physiqueId, setPhysiqueId] = useState<(typeof PHYSIQUES)[number]["id"] | "">("");
   const [preview, setPreview] = useState<PreviewFrame | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -182,7 +188,7 @@ export function PrivateHouse() {
 
   const ease = EASES.find((item) => item.id === easeId) ?? EASES[0];
   const shoulder = SHOULDERS.find((item) => item.id === shoulderId) ?? SHOULDERS[0];
-  const physique = PHYSIQUES.find((item) => item.id === physiqueId) ?? PHYSIQUES[0];
+  const physique = PHYSIQUES.find((item) => item.id === physiqueId);
   const clothes = visiblePieces(selected);
   const heldLine = lineByRef(lineRef);
   const castLook = collectionLook ? lookBySlug(collectionLook) : undefined;
@@ -301,6 +307,7 @@ export function PrivateHouse() {
             thigh: physiqueId === "athletic" || physiqueId === "athletic-tall" ? "66" : "",
             sleeve: physiqueId === "athletic-tall" ? "70" : "",
             inseam: physiqueId === "athletic-tall" ? "90" : "",
+            // discuss / empty leave measures unset until conversation
           } satisfies Partial<FitInput>,
           remoteFitting,
           privacyConsent: false,
@@ -328,13 +335,14 @@ export function PrivateHouse() {
     const runnerLine = runner ? ` Matching runner: ${runner.name}.` : "";
     const easeLine = easeLabel ? ` Trouser ease: ${easeLabel}.` : "";
     const shoulderLine = shoulderLabel ? ` Shoulder: ${shoulderLabel}.` : "";
-    const physiqueLine = physiqueLabel ? ` Physique: ${physiqueLabel}.` : "";
+    const physiqueLine = physiqueLabel ? ` Proportion preference: ${physiqueLabel}.` : "";
     setNote((current) => {
       const without = current
         .replace(/Tonal color: [^.]+\./, "")
         .replace(/Matching runner: [^.]+\./, "")
         .replace(/Trouser ease: [^.]+\./, "")
         .replace(/Shoulder: [^.]+\./, "")
+        .replace(/Proportion preference: [^.]+\./, "")
         .replace(/Physique: [^.]+\./, "")
         .replace(/\s+/g, " ")
         .trim();
@@ -344,13 +352,13 @@ export function PrivateHouse() {
   }
 
   function rememberFit() {
-    writeTone(toneAt, ease.label, shoulder.label, physique.label);
+    writeTone(toneAt, ease.label, shoulder.label, physique?.label);
     document.getElementById("style")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   function requestTone(index: number) {
     setToneAt(index);
-    writeTone(index, ease.label, shoulder.label, physique.label);
+    writeTone(index, ease.label, shoulder.label, physique?.label);
     setScope((current) => {
       if (current === "season" || current === "annual" || current === "expanded" || current === "atelier") return current;
       return "look";
@@ -383,53 +391,17 @@ export function PrivateHouse() {
     <div>
       <WardrobeIntro />
       <WardrobePreview frame={preview} onClose={() => setPreview(null)} />
+      <ArchiveGrid featuredOnly />
 
       <section id="build" className="scroll-mt-28">
         <div className="mx-auto max-w-[1100px] px-5 py-10 md:px-8 md:py-12">
           <p className="text-[11px] tracking-[0.22em] text-[#8d7349] uppercase">Step 01 · {copy.wardrobe.selectionHeading}</p>
           <h2 className="mt-3 max-w-2xl font-serif text-4xl leading-[0.95] md:text-5xl">Choose a look or a selection of pieces.</h2>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            {copy.wardrobe.selectionBody} Open any photograph for the full study, then keep only what you want to discuss.
+            {copy.wardrobe.selectionBody} Open an archive chapter above, or keep building from individual pieces below.
           </p>
-          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {STARTS.map((start) => {
-              const on = start.id === startId;
-              return (
-                <article
-                  key={start.id}
-                  className={`flex flex-col text-left ${on ? "ring-2 ring-[#1c1a17] ring-offset-4 ring-offset-[#f5f0e8]" : ""}`}
-                >
-                  <PreviewTrigger
-                    src={start.image}
-                    alt={start.alt}
-                    caption={start.line}
-                    className="relative block w-full bg-[#e7e0d4]"
-                    imgClassName={`aspect-[4/5] w-full object-cover ${"frame" in start ? start.frame : "object-top"}`}
-                    onOpen={setPreview}
-                  >
-                    <StatusMark status="study" className="pointer-events-none absolute left-2 top-2" />
-                    <span className="pointer-events-none absolute bottom-2 right-2 bg-[#1c1a17]/75 px-2 py-1 text-[10px] tracking-[0.14em] text-[#f5f0e8] uppercase">
-                      View look
-                    </span>
-                  </PreviewTrigger>
-                  <h3 className="mt-3 font-serif text-2xl">{start.name}</h3>
-                  <p className="mt-1 flex-1 text-sm leading-snug text-[#1c1a17]/70">{start.line}</p>
-                  <button
-                    type="button"
-                    aria-pressed={on}
-                    onClick={() => applyStart(start)}
-                    className={`mt-4 inline-flex h-11 items-center justify-center px-4 text-[11px] tracking-[0.14em] uppercase ${
-                      on ? "bg-[#1c1a17] text-[#f5f0e8]" : "border border-[#1c1a17] text-[#1c1a17]"
-                    }`}
-                  >
-                    {on ? "Selected" : "Use this set"}
-                  </button>
-                </article>
-              );
-            })}
-          </div>
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <a href="#pieces" className="inline-flex h-12 items-center bg-[#1c1a17] px-5 text-[11px] tracking-[0.16em] text-[#f5f0e8] uppercase">
+            <a href="#pieces" className="inline-flex h-12 items-center bg-[#1c1a17] px-5 text-[14px] text-[#f5f0e8]">
               Continue to pieces
             </a>
             <p className="text-sm text-[#1c1a17]/65">
@@ -582,10 +554,10 @@ export function PrivateHouse() {
             <p className="mt-4 text-sm leading-relaxed text-[#f6f4ef]/75">
               {copy.wardrobe.preferencesNote}
             </p>
-            <p className="mt-5 text-sm text-[#f6f4ef]/80">Physique</p>
-            <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3" role="tablist" aria-label="Physique">
+            <p className="mt-5 text-sm text-[#f6f4ef]/80">{copy.wardrobe.proportionLabel}</p>
+            <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2" role="tablist" aria-label={copy.wardrobe.proportionLabel}>
               {PHYSIQUES.map((item) => {
-                const on = item.id === physique.id;
+                const on = item.id === physique?.id;
                 return (
                   <button
                     key={item.id}
@@ -623,7 +595,8 @@ export function PrivateHouse() {
               })}
             </div>
             <p className="mt-4 text-sm leading-relaxed text-[#f6f4ef]/75">
-              {physique.line} {shoulder.line} {ease.line} A preference for the conversation, not a measurement.
+              {physique ? `${physique.line} ` : ""}
+              {shoulder.line} {ease.line} {copy.wardrobe.preferencesNote}
             </p>
             <button type="button" onClick={rememberFit} className="mt-5 inline-flex h-12 w-full items-center justify-center bg-[#f6f4ef] px-5 text-sm tracking-[0.12em] text-[#1c1a17] uppercase">
               Continue to tonal color
@@ -649,10 +622,10 @@ export function PrivateHouse() {
       <div id="commission" className="scroll-mt-28" />
       <section id="introduction" className="scroll-mt-28 border-t border-[#1c1a17]/10">
         <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-10">
-          <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Step 04 · Your enquiry</p>
-          <h2 className="mt-3 max-w-3xl font-serif text-4xl md:text-5xl">Send your enquiry.</h2>
+          <p className="text-[11px] tracking-[0.22em] text-[#1c1a17]/55 uppercase">Step 04 · Enquiry</p>
+          <h2 className="mt-3 max-w-3xl font-serif text-4xl md:text-5xl">{copy.enquiry.heading}</h2>
           <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            Tell us about the pieces, fit, use and any dates you have in mind. No payment is taken with this enquiry.
+            Tell us about the pieces, fit, use and any dates you have in mind. {copy.enquiry.noPayment}
           </p>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
@@ -783,7 +756,7 @@ export function PrivateHouse() {
                   </li>
                 )}
                 <li className="text-[#1c1a17]/70">
-                  Fit · {physique.label} · {shoulder.label} shoulder · {ease.label} ease
+                  Fit · {physique?.label ?? "Open"} · {shoulder.label} shoulder · {ease.label} ease
                 </li>
                 {matchingPieces.map((item) => (
                   <li key={item}>{item}</li>

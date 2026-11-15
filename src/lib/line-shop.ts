@@ -404,15 +404,15 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
   {
     slug: "sand-jersey",
     number: "29",
-    title: "Sand jersey",
+    title: "The sand jersey.",
     use: "Everyday",
     image: "/collection/sand-jersey.webp",
     alt: "Sand printed jersey over a light blue shirt and brown tie, with charcoal pleated trousers",
     frames: [],
     pieces: [piece("R010", "Jersey", "Sand")],
     styling: [
-      "The $390 enquiry is for the sand printed jersey only.",
-      "The shirt, the tie, and the trousers are styling. They are not included with the jersey.",
+      "Sacred motifs over a shirt and tie.",
+      "Jersey price only. The shirt, tie and trousers are styling pieces and are not included.",
     ],
     offers: [runnerOffer("ms-runner-1101-butter", "1101 Runner — Brown Mesh")],
   },

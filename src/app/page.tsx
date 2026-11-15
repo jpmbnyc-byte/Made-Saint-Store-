@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { ShopFooter } from "@/components/shop/chrome";
 import { Mast } from "@/components/house/mast";
 import { EditorialHero } from "@/components/house/editorial-hero";
+import { HomeSignature } from "@/components/house/home-signature";
 import { Range1213 } from "@/components/house/range-1213";
 import { WardrobeChapter } from "@/components/house/wardrobe-chapter";
+import { HomeArchive } from "@/components/house/home-archive";
 import { TheHouse } from "@/components/house/the-house";
 import { ClosingCta } from "@/components/house/closing-cta";
-import { Campaign002 } from "@/components/house/campaign-002";
 import { copy } from "@/lib/copy";
 
 export const metadata: Metadata = {
@@ -24,18 +25,18 @@ export const metadata: Metadata = {
 };
 
 /**
- * Home sequence after audit:
- * campaign → footwear → clothing look register → wardrobe → house → enquire.
- * Removed: lookbook player, Azores composite plates, duplicate pair-enquiry block.
+ * Home sequence:
+ * campaign hero → house signature → 1101 → Private Wardrobe → archive chapters → The House → enquire.
  */
 export default function Home() {
   return (
     <div className="bg-[#f7f7f5] text-[#1c1a17]">
       <Mast />
       <EditorialHero />
+      <HomeSignature />
       <Range1213 />
-      <Campaign002 />
       <WardrobeChapter />
+      <HomeArchive />
       <TheHouse />
       <ClosingCta />
       <ShopFooter />

@@ -22,8 +22,10 @@ export default function BrandPage() {
         <section className="mx-auto max-w-[820px] px-5 py-16 md:px-8 md:py-24">
           <p className="ms-kicker">The House</p>
           <h1 className="ms-display mt-5">{copy.house.heading}</h1>
-          <p className="ms-lede mt-8 max-w-xl">{copy.house.founder}</p>
-          <p className="ms-lede mt-4 max-w-xl">{copy.house.collection}</p>
+          <p className="ms-lede mt-4 max-w-xl">{copy.house.subheading}</p>
+          <p className="ms-lede mt-4 max-w-xl">{copy.house.founder}</p>
+          <p className="mt-8 font-serif text-2xl tracking-[-0.01em]">{copy.house.conviction}</p>
+          <p className="ms-lede mt-3 max-w-xl">{copy.house.collection}</p>
         </section>
 
         <section className="border-t border-[#1c1a17]/10">
@@ -32,13 +34,11 @@ export default function BrandPage() {
               <Image src="/brand/wordmark.png" alt="MADE Saint" width={1864} height={462} className="h-auto w-full" />
             </div>
             <div className="max-w-xl space-y-5 text-[16px] leading-relaxed text-[#1c1a17]/80">
-              <h2 className="ms-title">{copy.house.peopleHeading}</h2>
+              <h2 className="ms-title">{copy.house.campaignHeading}</h2>
+              <p>{copy.house.campaignBody}</p>
+              <h2 className="ms-title pt-4">{copy.house.peopleHeading}</h2>
               <p>{copy.house.people}</p>
               <p className="text-[14px] text-[#1c1a17]/60">{copy.house.peopleDisclosure}</p>
-              <h2 className="ms-title pt-4">The world</h2>
-              <p>
-                Campaign 002 places the collection in São Roque, São Miguel — looks first, Atlantic light as atmosphere.
-              </p>
               <h2 className="ms-title pt-4">The pairs</h2>
               <p>
                 The 1101 leads. The 1213 is the sculpted-sole runner. The 0929 is the studded-sole runner. Enquire about a colourway to confirm availability, price and delivery.

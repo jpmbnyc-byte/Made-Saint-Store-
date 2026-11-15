@@ -24,7 +24,10 @@ export type ArchiveChapter = {
   pieceNotes: string[];
   /** Prefer this runner when linking footwear from the look */
   runnerId?: string;
+  /** Launch entrance on Private Wardrobe */
   featured?: boolean;
+  /** Single look used on the homepage wardrobe invitation (not repeated in home archive strip) */
+  homeInvite?: boolean;
 };
 
 export const ARCHIVE_CHAPTERS: ArchiveChapter[] = [
@@ -50,6 +53,7 @@ export const ARCHIVE_CHAPTERS: ArchiveChapter[] = [
     pieceNotes: ["Pale sage zip jacket", "Matching trouser", "Butter turtleneck", "Sculptural runner as pictured"],
     runnerId: "ms-runner-1101-butter",
     featured: true,
+    homeInvite: true,
   },
   {
     slug: "brooklyn-after-dark",
@@ -290,6 +294,15 @@ export const ARCHIVE_CHAPTERS: ArchiveChapter[] = [
 ];
 
 export const FEATURED_ARCHIVE_CHAPTERS = ARCHIVE_CHAPTERS.filter((chapter) => chapter.featured);
+
+/** Homepage wardrobe invitation look — one full archive silhouette. */
+export const HOME_INVITE_CHAPTER =
+  ARCHIVE_CHAPTERS.find((chapter) => chapter.homeInvite) ?? FEATURED_ARCHIVE_CHAPTERS[0]!;
+
+/** Selected chapters on the homepage strip — excludes the invite look so it is not duplicated. */
+export const HOME_ARCHIVE_CHAPTERS = FEATURED_ARCHIVE_CHAPTERS.filter((chapter) => !chapter.homeInvite).concat(
+  ARCHIVE_CHAPTERS.filter((chapter) => chapter.slug === "camel-residence"),
+).slice(0, 4);
 
 export function archiveChapterBySlug(slug: string) {
   return ARCHIVE_CHAPTERS.find((chapter) => chapter.slug === slug);

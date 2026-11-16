@@ -30,7 +30,7 @@ export function WardrobeIntro() {
           <p className="ms-lede mt-5 max-w-xl">{intro}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
-              href="#archive"
+              href="#capsules"
               className="inline-flex h-12 items-center bg-[#f5f0e8] px-5 text-[14px] text-[#1c1a17] transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c0a477]"
             >
               {primaryAction}

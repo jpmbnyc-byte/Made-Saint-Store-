@@ -67,6 +67,7 @@ export function ShopFooter() {
         <div className="space-y-2 text-sm">
           <p className="text-[11px] tracking-[0.16em] text-[#1c1a17] uppercase">Private Wardrobe</p>
           <Link href="/wardrobe" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Private Wardrobe</Link>
+          <Link href="/wardrobe/capsules" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Capsules</Link>
           <Link href="/wardrobe#build" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Choose your pieces</Link>
           <Link href="/wardrobe#introduction" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Enquire</Link>
           <Link href="/line/lookbook" className="block text-[#1c1a17]/70 hover:text-[#1c1a17]">Lookbook</Link>

@@ -106,6 +106,25 @@ test("a cast look enquiry keeps sand jersey selection fields", () => {
   assert.equal(parseCommission({ ...base, collectionLook: "missing-look" }).ok, false);
 });
 
+test("a capsule enquiry keeps number, title side and plate image", () => {
+  const parsed = parseCommission({
+    ...base,
+    lookId: "",
+    pieceIds: [],
+    capsuleSlug: "miami-arrival",
+    capsuleSide: "women",
+    lineImage: "/wardrobe/capsules/miami-arrival.webp",
+    note: "Capsule 01 · Miami Arrival. Women: sage blouson.",
+  });
+  assert.equal(parsed.ok, true);
+  if (!parsed.ok) return;
+  assert.equal(parsed.value.capsuleSlug, "miami-arrival");
+  assert.equal(parsed.value.capsuleSide, "women");
+  assert.equal(parsed.value.lineImage, "/wardrobe/capsules/miami-arrival.webp");
+  assert.equal(parseCommission({ ...base, capsuleSlug: "missing-capsule", capsuleSide: "men" }).ok, false);
+  assert.equal(parseCommission({ ...base, lookId: "", pieceIds: [], capsuleSlug: "miami-arrival", capsuleSide: "" }).ok, false);
+});
+
 test("a remote fitting consultation is optional and unpriced", () => {
   const off = parseCommission(base);
   assert.equal(off.ok, true);

@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { isAdmin } from "@/lib/admin";
 import { parseCommission, reviewCommission } from "@/lib/commission";
 import { createCommission, listCommissions } from "@/lib/commissions";
+import { capsuleBySlug, capsuleOutfit } from "@/lib/capsules";
 import { lineByRef } from "@/lib/line";
 import { customerName, lookBySlug } from "@/lib/line-shop";
 import { lookById } from "@/lib/looks";
@@ -29,6 +30,7 @@ export async function POST(req: NextRequest) {
   const draft = parsed.value;
   const look = draft.lookId ? lookById(draft.lookId) : undefined;
   const cast = draft.collectionLook ? lookBySlug(draft.collectionLook) : undefined;
+  const capsule = draft.capsuleSlug ? capsuleBySlug(draft.capsuleSlug) : undefined;
   const line = draft.lineRef ? lineByRef(draft.lineRef) : undefined;
   const pieces = draft.pieceIds.map((id) => pieceById(id)!);
   const review = reviewCommission(draft.fit);
@@ -37,12 +39,16 @@ export async function POST(req: NextRequest) {
         .filter(Boolean)
         .join(" · ")
     : "";
+  const capsuleLabel = capsule
+    ? `Capsule ${capsule.number} · ${capsule.title} · ${draft.capsuleSide === "women" ? "Women" : "Men"}`
+    : "";
   const record = await createCommission({
     ...draft,
     ...review,
-    lookName: cast ? cast.title : look?.name ?? "",
+    lookName: capsuleLabel || (cast ? cast.title : look?.name ?? ""),
     pieceNames: [
       ...pieces.map((piece) => piece.name),
+      ...(capsule && draft.capsuleSide ? [capsuleOutfit(capsule, draft.capsuleSide)] : []),
       ...draft.matchingPieces,
     ],
     lineName: lineLabel,

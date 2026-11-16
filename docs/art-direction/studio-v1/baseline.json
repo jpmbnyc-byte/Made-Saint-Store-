@@ -1,0 +1,2725 @@
+{
+  "commit": "25ae5e209dbd74e6dea1fff129319e66d17e371e",
+  "assets": [
+    {
+      "source": "/brand/wordmark.png",
+      "sha256": "9b11033ea2dcf60522c888f270c7e449b156909635f826a287f0f1b36049fcb5",
+      "disposition": "preserve_graphic",
+      "canonicalSource": "/brand/wordmark.png",
+      "blockers": [],
+      "routes": [
+        "/",
+        "/bag",
+        "/brand",
+        "/closet",
+        "/line",
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/n002",
+        "/line/n003",
+        "/line/n005",
+        "/line/n006",
+        "/line/n013",
+        "/line/n014",
+        "/line/r010",
+        "/line/r027",
+        "/line/r031",
+        "/line/r032",
+        "/line/r041",
+        "/line/r042",
+        "/line/r043",
+        "/line/r046",
+        "/line/r067",
+        "/shop",
+        "/shop/ms-runner-1101-blush",
+        "/shop/ms-runner-1101-butter",
+        "/shop/ms-runner-1101-navy",
+        "/shop/ms-runner-1101-onyx",
+        "/shop/ms-runner-1101-teal",
+        "/shop/ms-runner-1213-chestnut",
+        "/shop/ms-runner-1213-espresso",
+        "/shop/ms-runner-1213-graphite",
+        "/shop/ms-runner-1213-midnight",
+        "/shop/ms-runner-1213-mineral-blue",
+        "/shop/ms-runner-1213-olive",
+        "/shop/ms-runner-1213-sacred-light",
+        "/shop/ms-runner-chalk-navy",
+        "/shop/ms-runner-navy-intrecciato",
+        "/shop/ms-runner-washed-denim",
+        "/wardrobe",
+        "/wardrobe/archive",
+        "/wardrobe/archive/blue-hour",
+        "/wardrobe/archive/brooklyn-after-dark",
+        "/wardrobe/archive/camel-residence",
+        "/wardrobe/archive/clubhouse-social",
+        "/wardrobe/archive/course-to-club",
+        "/wardrobe/archive/downtown-denim",
+        "/wardrobe/archive/gallery-opening",
+        "/wardrobe/archive/miami-arrival",
+        "/wardrobe/archive/olive-saint",
+        "/wardrobe/archive/private-departure",
+        "/wardrobe/archive/weekend-residence",
+        "/wardrobe/archive/winter-tunnel",
+        "/wardrobe/capsules",
+        "/wardrobe/capsules/blue-hour",
+        "/wardrobe/capsules/brooklyn-after-dark",
+        "/wardrobe/capsules/camel-residence",
+        "/wardrobe/capsules/clubhouse-social",
+        "/wardrobe/capsules/course-to-club",
+        "/wardrobe/capsules/downtown-denim",
+        "/wardrobe/capsules/gallery-opening",
+        "/wardrobe/capsules/miami-arrival",
+        "/wardrobe/capsules/olive-saint",
+        "/wardrobe/capsules/private-departure",
+        "/wardrobe/capsules/weekend-residence",
+        "/wardrobe/capsules/winter-tunnel"
+      ]
+    },
+    {
+      "source": "/collection/amara-camel.webp",
+      "sha256": "b9c1e072aa1a9b43dab61e732e45964b279a557aa9b0f731eefb6f52d8526313",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/amara-camel.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/brand"
+      ]
+    },
+    {
+      "source": "/collection/amara.webp",
+      "sha256": "d97588501eda69bc6d7f39865da950eb32f6a836d0acddc3ee1cbf38651576f1",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/amara.webp",
+      "blockers": [],
+      "routes": [
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/amara",
+        "/line/r010"
+      ]
+    },
+    {
+      "source": "/collection/black-tee.webp",
+      "sha256": "4bba66bfda11e76bddf44d1b831f5e667c41c7001691b39aa7f633e6cbfc08aa",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/black-tee.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/black-tee"
+      ]
+    },
+    {
+      "source": "/collection/blue-jersey-denim.webp",
+      "sha256": "07c8471ff2825a5fbb3fa5fcedf96ddb20c5f789b785425802dd44923d14a14b",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/blue-jersey-denim.webp",
+      "blockers": [],
+      "routes": [
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/blue-jersey-denim"
+      ]
+    },
+    {
+      "source": "/collection/blue-jersey.webp",
+      "sha256": "6615807f4361968313cc737f7e9a9a48f4b2b7846f6b874064e7cf335688a2a4",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/blue-jersey.webp",
+      "blockers": [],
+      "routes": [
+        "/line",
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/blue-jersey"
+      ]
+    },
+    {
+      "source": "/collection/butter-mock.webp",
+      "sha256": "a804d42f7a07634861ee5c5bf163a51fe4ddde56d26a48a2a156149325fdaeb0",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/butter-mock.webp",
+      "blockers": [],
+      "routes": [
+        "/line",
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/butter-mock"
+      ]
+    },
+    {
+      "source": "/collection/camel.webp",
+      "sha256": "6a7a21d0c50e637200d231c5310dae5dbca0317e15760c63309a2ccce6ece311",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/camel.webp",
+      "blockers": [
+        "recover_master_under_1024"
+      ],
+      "routes": [
+        "/brand",
+        "/line",
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/camel",
+        "/line/n005",
+        "/line/n006"
+      ]
+    },
+    {
+      "source": "/collection/denim-tee.webp",
+      "sha256": "147188bea2db96b5146a263237948a587061c72469d896fa242c192081fe5e11",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/denim-tee.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/denim-tee"
+      ]
+    },
+    {
+      "source": "/collection/duffel.webp",
+      "sha256": "c32c8b6902d6c2e99c903822ca54d1aff78a1fbdab2b7b16198c0a6196a9d37e",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/duffel.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line",
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/duffel",
+        "/line/r067"
+      ]
+    },
+    {
+      "source": "/collection/forerunner.webp",
+      "sha256": "b9c1e072aa1a9b43dab61e732e45964b279a557aa9b0f731eefb6f52d8526313",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/amara-camel.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/brand",
+        "/line",
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/forerunner"
+      ]
+    },
+    {
+      "source": "/collection/forest.webp",
+      "sha256": "08d2405406da7d4ba13816e1c11df7222558612fab15b149a13d29e728e1f348",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/forest.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/forest"
+      ]
+    },
+    {
+      "source": "/collection/ines-burgundy.webp",
+      "sha256": "524c736a452c233d287cb8b800cf5a5b2cc6672900c32ec930bc549fc76d544d",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/ines-burgundy.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/brand",
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/rust"
+      ]
+    },
+    {
+      "source": "/collection/lucien-terracotta.webp",
+      "sha256": "6a7a21d0c50e637200d231c5310dae5dbca0317e15760c63309a2ccce6ece311",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/camel.webp",
+      "blockers": [
+        "recover_master_under_1024"
+      ],
+      "routes": [
+        "/brand",
+        "/line",
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/olive"
+      ]
+    },
+    {
+      "source": "/collection/malik.webp",
+      "sha256": "8d8042144d130976f5bc134017924bbee6146bcbe4fb96c84b0838a19add982a",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/malik.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/brand",
+        "/line",
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/malik"
+      ]
+    },
+    {
+      "source": "/collection/mauve-nylon.webp",
+      "sha256": "f1cfb38d0b4a1e06f6d6b25f8ae5714add28019f6c3c78b15774557df19973b4",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/mauve-nylon.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/mauve-nylon",
+        "/line/n003"
+      ]
+    },
+    {
+      "source": "/collection/midnight.webp",
+      "sha256": "bae692be8fc4450be70f7a8d96c3b4a06be2de125be7a63805f0247d4078690f",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/midnight.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/midnight",
+        "/line/n005",
+        "/line/n006"
+      ]
+    },
+    {
+      "source": "/collection/olive-wool.webp",
+      "sha256": "aed4f6396933ab188b73c505050c94a1d94b33e6a003956ae15f48c77931db2c",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/olive-wool.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/olive-wool",
+        "/line/r046"
+      ]
+    },
+    {
+      "source": "/collection/olive.webp",
+      "sha256": "7867e254881285185bcc026af83c70653717caca78bf8d842c7403cdcfceda46",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/olive.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/r046"
+      ]
+    },
+    {
+      "source": "/collection/onyx.webp",
+      "sha256": "dd42b9c479757af290abf4ae7b4d6bf0957515bf21d3ffeec09eb18a7dbf177b",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/onyx.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/onyx",
+        "/line/n005",
+        "/line/n006"
+      ]
+    },
+    {
+      "source": "/collection/parachute.webp",
+      "sha256": "de6128e0e1f93fc8da148792861c94507e029a68bf748fe4c8a8c3dd5aebdc80",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/parachute.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/parachute",
+        "/line/r010"
+      ]
+    },
+    {
+      "source": "/collection/sage.webp",
+      "sha256": "b534225327cd098bb56e51e0dfb41037ba1638bdb6a36b87eb26c9fc8aaecf45",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/sage.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/brand",
+        "/line",
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/sage",
+        "/line/n014",
+        "/line/r067"
+      ]
+    },
+    {
+      "source": "/collection/sand-jersey-denim.webp",
+      "sha256": "03403931fcc5626170dd34a80495fe5693db4dbe779717179231c82e0b03f799",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/sand-jersey-denim.webp",
+      "blockers": [],
+      "routes": [
+        "/line",
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/sand-jersey-denim"
+      ]
+    },
+    {
+      "source": "/collection/sand-jersey.webp",
+      "sha256": "53869ee7abeb8aae0d01d5dc44ad271fb7df00842e6bfa8ffb357adf3c9e01cf",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/sand-jersey.webp",
+      "blockers": [],
+      "routes": [
+        "/line",
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/sand-jersey"
+      ]
+    },
+    {
+      "source": "/collection/solene.webp",
+      "sha256": "419700b6a9175621e753b8aaf3020128ba6eb60951ece43ba3d4bb478166698b",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/solene.webp",
+      "blockers": [
+        "P0: only 432 x 576. Recover original master before large editorial reuse. Eight captured usage records; do not redraw jersey print or face.",
+        "recover_master_under_1024"
+      ],
+      "routes": [
+        "/brand",
+        "/line",
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/solene",
+        "/line/r010"
+      ]
+    },
+    {
+      "source": "/collection/taupe.webp",
+      "sha256": "85482dfb71d838fe3dd9aba19a970bdd720c13df19454b7d79343a14414d661a",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/taupe.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/taupe"
+      ]
+    },
+    {
+      "source": "/collection/tee-black.webp",
+      "sha256": "fac9635bf791a2d1082705e3d98b0180fe61d9fb15f72bee493d915ebde6b0ff",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/tee-black.webp",
+      "blockers": [],
+      "routes": [
+        "/line",
+        "/line/campaign"
+      ]
+    },
+    {
+      "source": "/collection/tee-butter.webp",
+      "sha256": "6068df3c24e8a5e4852f98fdd1b4108c6c7fd64ea06d3f91940430fe976d4568",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/tee-butter.webp",
+      "blockers": [],
+      "routes": [
+        "/line",
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/butter-tee"
+      ]
+    },
+    {
+      "source": "/collection/tee-denim.webp",
+      "sha256": "478d622eeb015fe2b93d933023edf6641e3231c234a31588e798e6efd4862026",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/tee-denim.webp",
+      "blockers": [],
+      "routes": [
+        "/line"
+      ]
+    },
+    {
+      "source": "/collection/triangle-cap.webp",
+      "sha256": "70089f67c8caef4fd4776cbef3d3ac007f4b1e538c0f8bef9e4e6ab2160b63c5",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/triangle-cap.webp",
+      "blockers": [],
+      "routes": [
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/triangle-cap"
+      ]
+    },
+    {
+      "source": "/collection/velvet.webp",
+      "sha256": "b739d602c63d3ecf0211260fb8239d137e2de92b770522c0436b06bd79d5937c",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/velvet.webp",
+      "blockers": [],
+      "routes": [
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/velvet"
+      ]
+    },
+    {
+      "source": "/editorial/saint-john-worn.webp",
+      "sha256": "aa7894f9a487b8bd2659231223f3492713a6d128e1c8e15c24aed6380d628b74",
+      "disposition": "retouch",
+      "canonicalSource": "/editorial/saint-john-worn.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/brand",
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/editorial/saint-michael-back.webp",
+      "sha256": "002ed05cceb0ab98b336997763a92a941b81749f93cf5e6e105980ffb38b331f",
+      "disposition": "retouch",
+      "canonicalSource": "/editorial/saint-michael-back.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/editorial/tonal/camel.webp",
+      "sha256": "15a8387db287ae9e6a27891bd35db6887da439142c90e9e5e52106536cd0ff64",
+      "disposition": "retouch",
+      "canonicalSource": "/editorial/tonal/camel.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/editorial/tonal/carbon.webp",
+      "sha256": "677003c9fd474af3ae8426148f319e3ed2244114f0a57e0add216ef2a27a7391",
+      "disposition": "retouch",
+      "canonicalSource": "/editorial/tonal/carbon.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/editorial/tonal/indigo.webp",
+      "sha256": "3b532ee0495efedf591fbc0886d0bba51cefb581c5eeb4610e6db0505ea8b456",
+      "disposition": "retouch",
+      "canonicalSource": "/editorial/tonal/indigo.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/editorial/tonal/ivory.webp",
+      "sha256": "09c0cc508c2339e173334fe49fdbdbd45e15fc4614f3d7c9f21526c5dd0f2a34",
+      "disposition": "retouch",
+      "canonicalSource": "/editorial/tonal/ivory.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/editorial/tonal/midnight.webp",
+      "sha256": "e4e8873be7f3b8796bb36f0ec72882f0dbddf1dfc02227a0125fc19116dab8cd",
+      "disposition": "retouch",
+      "canonicalSource": "/editorial/tonal/midnight.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/editorial/tonal/olive.webp",
+      "sha256": "a9cbf53e5f6c9472f64e417169b0930059ec3fdb60e105f492cf49a1064e0a5f",
+      "disposition": "retouch",
+      "canonicalSource": "/editorial/tonal/olive.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/editorial/tonal/sand.webp",
+      "sha256": "f02f294f05ebbcf9d67e080083ef4d88e0b03cd84e70b052bf3313653d40b4d7",
+      "disposition": "retouch",
+      "canonicalSource": "/editorial/tonal/sand.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/hero/1101-runner-hero-desktop.webp",
+      "sha256": "5fa956550c1161d460067fd2e0c8ee636ffbf6baca3cdfe680aff8580e518435",
+      "disposition": "retouch",
+      "canonicalSource": "/hero/1101-runner-hero-desktop.webp",
+      "blockers": [],
+      "routes": [
+        "/"
+      ]
+    },
+    {
+      "source": "/hero/1101-runner-hero-mobile-2x.webp",
+      "sha256": "aa272a7848fd783b026c8d741a3663ee9a58ce84b06b15ee4ad6ce45498866af",
+      "disposition": "retouch",
+      "canonicalSource": "/hero/1101-runner-hero-mobile-2x.webp",
+      "blockers": [],
+      "routes": [
+        "/"
+      ]
+    },
+    {
+      "source": "/hero/navy-ivory.webp",
+      "sha256": "cc36f90a5ae0834946ce3141edd88b13273cd42908d2fd0d4b9892f37ef4c0bf",
+      "disposition": "retouch",
+      "canonicalSource": "/hero/navy-ivory.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-chalk-navy"
+      ]
+    },
+    {
+      "source": "/hero/slides/02-sand-jersey.webp",
+      "sha256": "dfd5af0fa4806b55fbc9ab80f837eb5d311da3795d95666ecbc774a3c49c8293",
+      "disposition": "retouch",
+      "canonicalSource": "/hero/slides/02-sand-jersey.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/"
+      ]
+    },
+    {
+      "source": "/hero/slides/03-atelier-process-mobile.webp",
+      "sha256": "7a3b110406c158e05d99bd58f3792396229ffae7567372f44ab8a953458c4d51",
+      "disposition": "retouch",
+      "canonicalSource": "/hero/slides/03-atelier-process-mobile.webp",
+      "blockers": [],
+      "routes": [
+        "/"
+      ]
+    },
+    {
+      "source": "/hero/slides/03-atelier-process.webp",
+      "sha256": "31ab9e73dec81bbdbd6bd274bfbc67f54a21c37933b440cbcec27c6ce2abe9ba",
+      "disposition": "retouch",
+      "canonicalSource": "/hero/slides/03-atelier-process.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/"
+      ]
+    },
+    {
+      "source": "/hero/slides/04-plaid-look.webp",
+      "sha256": "d2bdc9f3a8285e8aa8f3b5f86e92e59bae0888ba6375c104030d660be58e701c",
+      "disposition": "retouch",
+      "canonicalSource": "/hero/slides/04-plaid-look.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/"
+      ]
+    },
+    {
+      "source": "/hero/slides/05-m-charm.webp",
+      "sha256": "74491e52c3fbf696345dc49910cd4bbcee388cf34e7b27c17056e1a1bba355de",
+      "disposition": "retouch",
+      "canonicalSource": "/hero/slides/05-m-charm.webp",
+      "blockers": [
+        "recover_master_under_1024"
+      ],
+      "routes": [
+        "/"
+      ]
+    },
+    {
+      "source": "/hero/slides/06-headwrap.webp",
+      "sha256": "cd95a8f442aa0aa0fc8e65c7647ebf38c04454382fbd310899acc1187a2637fb",
+      "disposition": "retouch",
+      "canonicalSource": "/hero/slides/06-headwrap.webp",
+      "blockers": [
+        "recover_master_under_1024"
+      ],
+      "routes": [
+        "/"
+      ]
+    },
+    {
+      "source": "/hero/slides/07-saint-cap.webp",
+      "sha256": "170eb63b9ccbf3d8c755adba3b145d5b9992d6997b870268061687545f87af46",
+      "disposition": "retouch",
+      "canonicalSource": "/hero/slides/07-saint-cap.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/"
+      ]
+    },
+    {
+      "source": "/house/founder.webp",
+      "sha256": "e13c23dcd537a856e29ef4b7c7f5bc8dd98d082dca63bc7510bb145a4c491960",
+      "disposition": "preserve_graphic",
+      "canonicalSource": "/house/founder.webp",
+      "blockers": [],
+      "routes": [
+        "/"
+      ]
+    },
+    {
+      "source": "/knit/turtleneck-iconic.webp",
+      "sha256": "8d8042144d130976f5bc134017924bbee6146bcbe4fb96c84b0838a19add982a",
+      "disposition": "retouch",
+      "canonicalSource": "/collection/malik.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line",
+        "/line/campaign"
+      ]
+    },
+    {
+      "source": "/line/f01.webp",
+      "sha256": "a06337770d3c2602c091dc27643d3e0bbb67439cffea20ee95134fcb335c809a",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f01.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line",
+        "/line/r043"
+      ]
+    },
+    {
+      "source": "/line/f02.webp",
+      "sha256": "ecaedece1663173d7e036b917d44f32e7ea123ea2e5a7b33f94ed3957c966f14",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f02.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/r043"
+      ]
+    },
+    {
+      "source": "/line/f03.webp",
+      "sha256": "976b42a065ecfa9d918b845cd62397f3c0316ad6ab60d65c4a5494843e8b239d",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f03.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line",
+        "/line/r042"
+      ]
+    },
+    {
+      "source": "/line/f04.webp",
+      "sha256": "c573ae016ae049ea6c61efa6fdddb9bc885353d0ce9b65dfebfe716c51787119",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f04.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/r042"
+      ]
+    },
+    {
+      "source": "/line/f05.webp",
+      "sha256": "f55d5a271b06b89dfc7f8804775282d35d49d64b72da1dce7726ffbc3f7ea4ec",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f05.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/r043"
+      ]
+    },
+    {
+      "source": "/line/f06.webp",
+      "sha256": "ac524101b5fb73d84db6c68dc4eed47549ab96dd337e88a67fbc0582c610c4f9",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f06.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line",
+        "/line/looks/jersey",
+        "/line/r010"
+      ]
+    },
+    {
+      "source": "/line/f07.webp",
+      "sha256": "72873634ced9df5193c55e35c9ddb55ab8cf4678734d59dc0ade6de9b5a97a60",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f07.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/looks/jersey",
+        "/line/r010"
+      ]
+    },
+    {
+      "source": "/line/f23.webp",
+      "sha256": "216ee80af3deef4a7f7ccc465b073be59a2b9d893739379cdff4ebd56668cfa7",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f23.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line",
+        "/line/r067"
+      ]
+    },
+    {
+      "source": "/line/f25.webp",
+      "sha256": "c2e033dd4b70a6a0e32c7ffe25afb9bf1f37f6e3da7b4d0e3ce53f269e88354e",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f25.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/looks/jersey",
+        "/line/r010"
+      ]
+    },
+    {
+      "source": "/line/f26.webp",
+      "sha256": "63af9a9ff4c3f9acc11ded97916d5935aa523b5ca61e3c225d2b48744256cef5",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f26.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line",
+        "/line/looks/cobalt",
+        "/line/r027"
+      ]
+    },
+    {
+      "source": "/line/f27.webp",
+      "sha256": "de38be988be77fdbb3af0a43a4a97203bc946406b082610e715ee110b9a88ae3",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f27.webp",
+      "blockers": [],
+      "routes": [
+        "/line",
+        "/line/campaign",
+        "/line/r067"
+      ]
+    },
+    {
+      "source": "/line/f29.webp",
+      "sha256": "6a48d2bf3a5c6a6cf89e3aa159d210822a2f1f6b006cd284d65be7a0c5d7fad5",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f29.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line",
+        "/line/looks/day",
+        "/line/n013"
+      ]
+    },
+    {
+      "source": "/line/f30.webp",
+      "sha256": "809c52ccd49181450f684c91efe4c597c10f2d09e91d6150658f469a59596e8e",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f30.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line",
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/day",
+        "/line/n013",
+        "/line/r041"
+      ]
+    },
+    {
+      "source": "/line/f32.webp",
+      "sha256": "fca118d8d4b33b7bd3945fd982ffe8b31851049dd754b42736913d8fd9e1d298",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f32.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line",
+        "/line/looks/stripe",
+        "/line/r031",
+        "/line/r032"
+      ]
+    },
+    {
+      "source": "/line/f33.webp",
+      "sha256": "df04a7b003685833e10db198a9f85b073f85562c3c62668ca1139c00747fcec7",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f33.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/lookbook",
+        "/line/looks/stripe",
+        "/line/r031",
+        "/line/r032"
+      ]
+    },
+    {
+      "source": "/line/f35.webp",
+      "sha256": "73ca62bd1ab8cf49e372a9c1b5f53de9a62d9b00dc7914ceaaf47bc47e4cc40b",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f35.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/arrival"
+      ]
+    },
+    {
+      "source": "/line/f36.webp",
+      "sha256": "f966f4d8c4b1c53564c9d3203352853cb710ff73256319fcd613028ae797086d",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f36.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/looks/cobalt",
+        "/line/r027"
+      ]
+    },
+    {
+      "source": "/line/f37.webp",
+      "sha256": "7b35da27dc959f4bb0dda813305492dc245c7f220f556aa2c9b422fb27d5bc84",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f37.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/lookbook",
+        "/line/looks/cobalt",
+        "/line/r027"
+      ]
+    },
+    {
+      "source": "/line/f50.webp",
+      "sha256": "f0440eaf28afeb2a3155adbf0114427a2c489512eed4b48f7ca92eb082f60d7f",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f50.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/rose"
+      ]
+    },
+    {
+      "source": "/line/f60.webp",
+      "sha256": null,
+      "disposition": "retouch",
+      "canonicalSource": "/line/f60.webp",
+      "blockers": [
+        "P0: HTTP 404 on Trail Mule /line/r046. Recover correct approved Trail Mule technical pack; no unrelated shoe substitution.",
+        "missing"
+      ],
+      "routes": [
+        "/line/r046"
+      ]
+    },
+    {
+      "source": "/line/f61.webp",
+      "sha256": "f3a228dba64a7533898a5177b0fc470da03698e15bd3df9821d35df066ba2d7e",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f61.webp",
+      "blockers": [],
+      "routes": [
+        "/line"
+      ]
+    },
+    {
+      "source": "/line/f64.webp",
+      "sha256": "c630d7cd4247229cac23bf72b164a5929ad48bd38be0184689e7174d08444fa5",
+      "disposition": "retouch",
+      "canonicalSource": "/line/f64.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line"
+      ]
+    },
+    {
+      "source": "/runners/1213/1101-blush-lateral.webp",
+      "sha256": "e79e68a72640276512b98fa21286a07e11b5566dace4645887d9aa5195df1bbe",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/1101-blush-lateral.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-1101-blush"
+      ]
+    },
+    {
+      "source": "/runners/1213/1101-blush-pair.webp",
+      "sha256": "e4f7b3202a608ddd7a64c4f2608858552a06bc62aebc114f67ecdd9057a32ca6",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/1101-blush-pair.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/",
+        "/shop",
+        "/shop/ms-runner-1101-blush",
+        "/shop/ms-runner-1101-butter",
+        "/shop/ms-runner-1101-navy",
+        "/shop/ms-runner-1101-onyx",
+        "/shop/ms-runner-1101-teal"
+      ]
+    },
+    {
+      "source": "/runners/1213/1101-brown-atelier.webp",
+      "sha256": "a6ef4c462627932b3c28fa1b84112aaab308b9d2ea6214f65090893c9689a2e3",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/1101-brown-atelier.webp",
+      "blockers": [
+        "P0: filename/page identify Brown Mesh, but inspected original shows pink/blush mesh. Resolve correct source before processing; do not recolor a wrong variant.",
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-1101-butter"
+      ]
+    },
+    {
+      "source": "/runners/1213/1101-brown-pair.webp",
+      "sha256": "8b79b7ddb5dd6d4679dee88c02eaecb8007610dfcbd9ccff50c7d02a3bcbceb6",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/1101-brown-pair.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-1101-butter"
+      ]
+    },
+    {
+      "source": "/runners/1213/1101-butter-pair.webp",
+      "sha256": "8b79b7ddb5dd6d4679dee88c02eaecb8007610dfcbd9ccff50c7d02a3bcbceb6",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/1101-brown-pair.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/",
+        "/shop",
+        "/shop/ms-runner-1101-blush",
+        "/shop/ms-runner-1101-butter",
+        "/shop/ms-runner-1101-navy",
+        "/shop/ms-runner-1101-onyx",
+        "/shop/ms-runner-1101-teal"
+      ]
+    },
+    {
+      "source": "/runners/1213/1101-navy-lateral.webp",
+      "sha256": "df69e3b9b24437bccd49a8367cdea4a95509edcb5379cc8ce1e97b2dbb360cff",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/1101-navy-lateral.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-1101-navy"
+      ]
+    },
+    {
+      "source": "/runners/1213/1101-navy-pair.webp",
+      "sha256": "add4b215681d0db09e11af7f67c2a932a57dcef5d01bcb376eb654c1b4daabf1",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/1101-navy-pair.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/",
+        "/shop",
+        "/shop/ms-runner-1101-blush",
+        "/shop/ms-runner-1101-butter",
+        "/shop/ms-runner-1101-navy",
+        "/shop/ms-runner-1101-onyx",
+        "/shop/ms-runner-1101-teal"
+      ]
+    },
+    {
+      "source": "/runners/1213/1101-onyx-lateral.webp",
+      "sha256": "c042d37f0fdbb096c92a72037ba9427241618c90112cbacc07cbd69cc7237c5e",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/1101-onyx-lateral.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-1101-onyx"
+      ]
+    },
+    {
+      "source": "/runners/1213/1101-onyx-pair.webp",
+      "sha256": "b5428cb79e64e748b01dbbd885b98074f4943baa7bab16b470566561d6c18c8a",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/1101-onyx-pair.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/",
+        "/shop",
+        "/shop/ms-runner-1101-blush",
+        "/shop/ms-runner-1101-butter",
+        "/shop/ms-runner-1101-navy",
+        "/shop/ms-runner-1101-onyx",
+        "/shop/ms-runner-1101-teal",
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/runners/1213/1101-teal-pair.webp",
+      "sha256": "0cf2fb829e73c2e7c6d708bca7c31a5a39d77d61d89800ebe2086bc3fecef25f",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/1101-teal-pair.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/",
+        "/shop",
+        "/shop/ms-runner-1101-blush",
+        "/shop/ms-runner-1101-butter",
+        "/shop/ms-runner-1101-navy",
+        "/shop/ms-runner-1101-onyx",
+        "/shop/ms-runner-1101-teal"
+      ]
+    },
+    {
+      "source": "/runners/1213/chestnut.webp",
+      "sha256": "5f49569e8be5125f2b613c622ccad1a88e0cf34e4281e73d1ac2d94558308b8b",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/chestnut.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop",
+        "/shop/ms-runner-1213-chestnut",
+        "/shop/ms-runner-1213-espresso",
+        "/shop/ms-runner-1213-graphite",
+        "/shop/ms-runner-1213-midnight",
+        "/shop/ms-runner-1213-mineral-blue",
+        "/shop/ms-runner-1213-olive",
+        "/shop/ms-runner-1213-sacred-light"
+      ]
+    },
+    {
+      "source": "/runners/1213/espresso.webp",
+      "sha256": "de44f0957bcd33142a29cd5d2f8c35b15d5200dab4b204d05774498da8105872",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/espresso.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop",
+        "/shop/ms-runner-1213-chestnut",
+        "/shop/ms-runner-1213-espresso",
+        "/shop/ms-runner-1213-graphite",
+        "/shop/ms-runner-1213-midnight",
+        "/shop/ms-runner-1213-mineral-blue",
+        "/shop/ms-runner-1213-olive",
+        "/shop/ms-runner-1213-sacred-light"
+      ]
+    },
+    {
+      "source": "/runners/1213/graphite.webp",
+      "sha256": "6b916b3feae6c2353d79e8291f1053816cff9c600657c620360390f679db3887",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/graphite.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop",
+        "/shop/ms-runner-1213-chestnut",
+        "/shop/ms-runner-1213-espresso",
+        "/shop/ms-runner-1213-graphite",
+        "/shop/ms-runner-1213-midnight",
+        "/shop/ms-runner-1213-mineral-blue",
+        "/shop/ms-runner-1213-olive",
+        "/shop/ms-runner-1213-sacred-light"
+      ]
+    },
+    {
+      "source": "/runners/1213/midnight.webp",
+      "sha256": "8b32d08e825b206c1f8917eebe0d847d0233a87d1331304d248e66788296365b",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/midnight.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop",
+        "/shop/ms-runner-1213-chestnut",
+        "/shop/ms-runner-1213-espresso",
+        "/shop/ms-runner-1213-graphite",
+        "/shop/ms-runner-1213-midnight",
+        "/shop/ms-runner-1213-mineral-blue",
+        "/shop/ms-runner-1213-olive",
+        "/shop/ms-runner-1213-sacred-light"
+      ]
+    },
+    {
+      "source": "/runners/1213/mineral-blue.webp",
+      "sha256": "11354624a75d3d4b57fdf82646c79c9efb1f7d070f6feed0eacc70501f973542",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/mineral-blue.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop",
+        "/shop/ms-runner-1213-chestnut",
+        "/shop/ms-runner-1213-espresso",
+        "/shop/ms-runner-1213-graphite",
+        "/shop/ms-runner-1213-midnight",
+        "/shop/ms-runner-1213-mineral-blue",
+        "/shop/ms-runner-1213-olive",
+        "/shop/ms-runner-1213-sacred-light"
+      ]
+    },
+    {
+      "source": "/runners/1213/olive.webp",
+      "sha256": "bc940281b5606cf2f8a06e9559915403be05661510fbab82b96e80f17550fbf7",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/olive.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop",
+        "/shop/ms-runner-1213-chestnut",
+        "/shop/ms-runner-1213-espresso",
+        "/shop/ms-runner-1213-graphite",
+        "/shop/ms-runner-1213-midnight",
+        "/shop/ms-runner-1213-mineral-blue",
+        "/shop/ms-runner-1213-olive",
+        "/shop/ms-runner-1213-sacred-light"
+      ]
+    },
+    {
+      "source": "/runners/1213/sacred-light-overhead.webp",
+      "sha256": "bc8982e523188aa96d00a749582921a557343d3523cdf239ddd9b32ea74c72d7",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/sacred-light-overhead.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-1213-sacred-light"
+      ]
+    },
+    {
+      "source": "/runners/1213/sacred-light-profile.webp",
+      "sha256": "8159b3e54249dbb242434580521c7894e3fbb9878f99a9d6276aa5e91d1d5ec5",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/sacred-light-profile.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-1213-sacred-light"
+      ]
+    },
+    {
+      "source": "/runners/1213/sacred-light-rear.webp",
+      "sha256": "506c170cb81cd82a10a7afcb213baffb689db46a949fc44adc8a16dd38379233",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/sacred-light-rear.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-1213-sacred-light"
+      ]
+    },
+    {
+      "source": "/runners/1213/sacred-light-worn-butter.webp",
+      "sha256": "88c4e377532d3fe37be5fc54e02d74d411e27cc0b28c158e0b921aabf4232c12",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/sacred-light-worn-butter.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-1213-sacred-light"
+      ]
+    },
+    {
+      "source": "/runners/1213/sacred-light-worn-plum.webp",
+      "sha256": "d2e4445014105cad47eade9760fe724b06cb3860d8a086efc0a9812590e3c5a5",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/sacred-light-worn-plum.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-1213-sacred-light"
+      ]
+    },
+    {
+      "source": "/runners/1213/sacred-light.webp",
+      "sha256": "92433b868c994d756ea856c9ec569757b82f6d0f4ed6ff33248b50095137ebc8",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/1213/sacred-light.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop",
+        "/shop/ms-runner-1213-chestnut",
+        "/shop/ms-runner-1213-espresso",
+        "/shop/ms-runner-1213-graphite",
+        "/shop/ms-runner-1213-midnight",
+        "/shop/ms-runner-1213-mineral-blue",
+        "/shop/ms-runner-1213-olive",
+        "/shop/ms-runner-1213-sacred-light"
+      ]
+    },
+    {
+      "source": "/runners/atelier/0929-detail.webp",
+      "sha256": "d77fad0fea9e89a2621c5218feefd2fa9c3f5e26fc597c7354a773ad299d5dfa",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/atelier/0929-detail.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-chalk-navy",
+        "/shop/ms-runner-navy-intrecciato",
+        "/shop/ms-runner-washed-denim"
+      ]
+    },
+    {
+      "source": "/runners/atelier/0929-hero.webp",
+      "sha256": "a65030d6f6f8aa9b47a25a74376aa5c28d4add5be629ac5d35b8aa54cffff45b",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/atelier/0929-hero.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-chalk-navy"
+      ]
+    },
+    {
+      "source": "/runners/atelier/1101-detail.webp",
+      "sha256": "ca6873cbe593ac8cf4646d9387eb0612b82e3bcf0cc6daf9f0d47ec8f5b10ec9",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/atelier/1101-detail.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-1101-blush",
+        "/shop/ms-runner-1101-butter",
+        "/shop/ms-runner-1101-navy",
+        "/shop/ms-runner-1101-onyx",
+        "/shop/ms-runner-1101-teal"
+      ]
+    },
+    {
+      "source": "/runners/atelier/1101-hero.webp",
+      "sha256": "191782353b21b42aaeb265556f26b8f306dd82ec22d94b8fe95bfcd59b831f34",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/atelier/1101-hero.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-1101-butter"
+      ]
+    },
+    {
+      "source": "/runners/atelier/1213-hero.webp",
+      "sha256": "9092ef56c8395747258e2315a82476d42f7a895775c6e162e0574ba14b66e0b6",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/atelier/1213-hero.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-1213-chestnut",
+        "/shop/ms-runner-1213-espresso",
+        "/shop/ms-runner-1213-graphite",
+        "/shop/ms-runner-1213-midnight",
+        "/shop/ms-runner-1213-mineral-blue",
+        "/shop/ms-runner-1213-olive",
+        "/shop/ms-runner-1213-sacred-light"
+      ]
+    },
+    {
+      "source": "/runners/indigo-detail.webp",
+      "sha256": "6f7cf23cfe1e194660c69472002f5933290e1c05a16f958a24b396d8d5544297",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/indigo-detail.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-washed-denim"
+      ]
+    },
+    {
+      "source": "/runners/indigo-lateral.webp",
+      "sha256": "d978efd2b17ed7fef3d17872ed9bab2ebde6886d20ec40c1ce314ad81a3aa28d",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/indigo-lateral.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-washed-denim"
+      ]
+    },
+    {
+      "source": "/runners/indigo-medial.webp",
+      "sha256": "e6146acb005dcb72e04ade9a79885b35cc929afe203b352899bf31d49c96d276",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/indigo-medial.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-washed-denim"
+      ]
+    },
+    {
+      "source": "/runners/indigo-overhead.webp",
+      "sha256": "b72d20b25b2e519f5197ac17ceb3af982879188b8f520db7a79c926b462ba528",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/indigo-overhead.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop",
+        "/shop/ms-runner-chalk-navy",
+        "/shop/ms-runner-navy-intrecciato",
+        "/shop/ms-runner-washed-denim",
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/runners/indigo-pair.webp",
+      "sha256": "77dada44d64198d4260351c9178ebac1149b88039dd0758314f775b8afa18c5d",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/indigo-pair.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-washed-denim"
+      ]
+    },
+    {
+      "source": "/runners/indigo-rear.webp",
+      "sha256": "a4e4b2da53513504bfb3478c687f3578f42a8eb4810b6e4817f488233863504c",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/indigo-rear.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-washed-denim"
+      ]
+    },
+    {
+      "source": "/runners/indigo-worn.webp",
+      "sha256": "8d6c8d5a6717cf433d434c1b48b0a72d6f54277857fb13114c19a7ed5dc0cb53",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/indigo-worn.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-washed-denim"
+      ]
+    },
+    {
+      "source": "/runners/navy-ivory-detail.webp",
+      "sha256": "cc7bdfbb592a6903b21e76541ba0967b0fd72df9a758daa4f1e5749ba0ee564a",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/navy-ivory-detail.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-chalk-navy"
+      ]
+    },
+    {
+      "source": "/runners/navy-ivory-lateral.webp",
+      "sha256": "dc74299932804ef33c7d2fd7dd1f9916f8a1ae614f7e07c60ecdd4491f14105d",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/navy-ivory-lateral.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-chalk-navy"
+      ]
+    },
+    {
+      "source": "/runners/navy-ivory-medial.webp",
+      "sha256": "93f215cd7f82764541365ab4c2ec0f152418b18d327089c8e499dd7469aef95d",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/navy-ivory-medial.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-chalk-navy"
+      ]
+    },
+    {
+      "source": "/runners/navy-ivory-overhead.webp",
+      "sha256": "4bfd6a791d4eee7cff15d6847f790fb69c87f09ef4299eb5e7619b0d9947016a",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/navy-ivory-overhead.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop",
+        "/shop/ms-runner-chalk-navy",
+        "/shop/ms-runner-navy-intrecciato",
+        "/shop/ms-runner-washed-denim",
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/runners/navy-ivory-pair.webp",
+      "sha256": "ad907254489560f6917292c1aa8f0cf0322a6dd7afe810bb940517439bd0816f",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/navy-ivory-pair.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-chalk-navy"
+      ]
+    },
+    {
+      "source": "/runners/navy-ivory-rear.webp",
+      "sha256": "1db79169b15ed19e06eabe3e7b7f8151219b912634588f911ae7e0a2a63b789a",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/navy-ivory-rear.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-chalk-navy"
+      ]
+    },
+    {
+      "source": "/runners/navy-ivory-threequarter.webp",
+      "sha256": "a3395be96bc3435c7e9b453c299c88d706c86c3384a5aadee83d1d95b07c269c",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/navy-ivory-threequarter.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-chalk-navy"
+      ]
+    },
+    {
+      "source": "/runners/navy-ivory-worn.webp",
+      "sha256": "a785d2c08cbd44e948d1ccbf2c3851ee01ea14d84f08a878fe40ec375a79a06d",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/navy-ivory-worn.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/line/campaign",
+        "/shop/ms-runner-chalk-navy"
+      ]
+    },
+    {
+      "source": "/runners/navy-sand-detail.webp",
+      "sha256": "5348d685a0b358d5880a988547f9ffa7ea3b8e4acc71daeefe639bf0af7c3d18",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/navy-sand-detail.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-navy-intrecciato"
+      ]
+    },
+    {
+      "source": "/runners/navy-sand-lateral.webp",
+      "sha256": "7fe6890ce06614eee92c0ad97872c58e00f71127e0885f70f1b25a484615da64",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/navy-sand-lateral.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-navy-intrecciato"
+      ]
+    },
+    {
+      "source": "/runners/navy-sand-medial.webp",
+      "sha256": "42dc2dbdfcba95439fea3b77adaa800250ca4c2b089ba6cc826a9ff302f53152",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/navy-sand-medial.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-navy-intrecciato"
+      ]
+    },
+    {
+      "source": "/runners/navy-sand-overhead.webp",
+      "sha256": "28fdfd8349bb92eb49ab94f825a51eec8a80dd151edde2e27a2e05bc2b3af5a9",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/navy-sand-overhead.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop",
+        "/shop/ms-runner-chalk-navy",
+        "/shop/ms-runner-navy-intrecciato",
+        "/shop/ms-runner-washed-denim",
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/runners/navy-sand-worn.webp",
+      "sha256": "8f458840f41350909b71d800a4fbff77a0a12c6330b53dc2a7935f6dab085315",
+      "disposition": "retouch",
+      "canonicalSource": "/runners/navy-sand-worn.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/shop/ms-runner-navy-intrecciato"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/blue-hour-alt.webp",
+      "sha256": "f9a998714822a7c63ff3a78246b27984a64a919ab52eb036f6dab26dc5033f5b",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/blue-hour-alt.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe/archive/blue-hour"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/blue-hour-primary.webp",
+      "sha256": "74675c6a6cb4dd8bac7b96b720e1fcdfb392cc1276ec4f8b8890ce7ee365e346",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/blue-hour-primary.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe/archive",
+        "/wardrobe/archive/blue-hour"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/brooklyn-after-dark-alt.webp",
+      "sha256": "87a2afc75bd4f3e99bbf7c9a308fccc35c9c041ed1bd6e8111ecf91a4efba3fc",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/brooklyn-after-dark-alt.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe/archive/brooklyn-after-dark"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/brooklyn-after-dark-primary.webp",
+      "sha256": "039cbe1b1566619271feeb755c0cf4deb183558de60ef4f013ba05230ad73444",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/brooklyn-after-dark-primary.webp",
+      "blockers": [],
+      "routes": [
+        "/",
+        "/wardrobe",
+        "/wardrobe/archive",
+        "/wardrobe/archive/brooklyn-after-dark"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/camel-residence-alt.webp",
+      "sha256": "3b35dd51920599da98ae7607f7f0763958499f9f39cee3b7a9e8cb759e02c4ed",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/camel-residence-alt.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe/archive/camel-residence"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/camel-residence-primary.webp",
+      "sha256": "f26809a47583271944d73d4a1eddf023cbacd7548e9b3a4f9867f131f36448d6",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/camel-residence-primary.webp",
+      "blockers": [],
+      "routes": [
+        "/",
+        "/wardrobe/archive",
+        "/wardrobe/archive/camel-residence"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/clubhouse-social-alt.webp",
+      "sha256": "d72587f64227ec6f74aa3360c10994bdaac59a346b76e125496a82ba1ea956a0",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/clubhouse-social-alt.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe/archive/clubhouse-social"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/clubhouse-social-primary.webp",
+      "sha256": "3ddc014c0ec6e6226117cf7b25ee6fa04ad69610d0ad208cacd8c8ca3a862849",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/clubhouse-social-primary.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe/archive",
+        "/wardrobe/archive/clubhouse-social"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/course-to-club-alt.webp",
+      "sha256": "3ca848bfa6eee20b2f3fcee25ed1330b7272590163fb8dc3cd02963f23491202",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/course-to-club-alt.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe/archive/course-to-club"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/course-to-club-primary.webp",
+      "sha256": "00435e7ab4bd41884df3308900b1d0978c5295410fb5f20862a887b55a6dc674",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/course-to-club-primary.webp",
+      "blockers": [],
+      "routes": [
+        "/",
+        "/wardrobe",
+        "/wardrobe/archive",
+        "/wardrobe/archive/course-to-club"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/downtown-denim-alt.webp",
+      "sha256": "1782e669e297b62be9f9e291319b0c78026cbf57f1ed36db7e6ec4fee0e525c8",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/downtown-denim-alt.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe/archive/downtown-denim"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/downtown-denim-primary.webp",
+      "sha256": "de02aa5d1a6fc5614b85b2ac380f447aaf97b0ef0431441bb9b6c26b37483ffc",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/downtown-denim-primary.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe/archive",
+        "/wardrobe/archive/downtown-denim"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/gallery-opening-alt.webp",
+      "sha256": "a3fcd2751bf318cb89d532eda93f01d5092440d3b6ffe6daff2e411df199cfde",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/gallery-opening-alt.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/archive/gallery-opening"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/gallery-opening-primary.webp",
+      "sha256": "476056224ca9f2ff5b30fe7f4fef2992284c447520c622bf776865fcd87e206e",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/gallery-opening-primary.webp",
+      "blockers": [],
+      "routes": [
+        "/",
+        "/wardrobe",
+        "/wardrobe/archive",
+        "/wardrobe/archive/gallery-opening"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/miami-arrival-alt.webp",
+      "sha256": "af7399f3f659bc674d08c0e7b0295ff88a93746f051529765b0d10699104e507",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/miami-arrival-alt.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/archive/miami-arrival"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/miami-arrival-primary.webp",
+      "sha256": "ff1bc2847e2fb4b40627ff2dbb15e984d7d7b88c62d8cee4d0282c77e236609f",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/miami-arrival-primary.webp",
+      "blockers": [],
+      "routes": [
+        "/",
+        "/wardrobe",
+        "/wardrobe/archive",
+        "/wardrobe/archive/miami-arrival"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/olive-saint-alt.webp",
+      "sha256": "e213f523b0e3d562a6fdd7180a4266c8148193d4f62ecc3265582f999aa7b686",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/olive-saint-alt.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/archive/olive-saint"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/olive-saint-primary.webp",
+      "sha256": "ad9dd15c5d85015d60a7bb3ba4b0c5108227f448ed8b2850d23116eae5cb6652",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/olive-saint-primary.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe/archive",
+        "/wardrobe/archive/olive-saint"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/private-departure-alt.webp",
+      "sha256": "b4f21f8f08e79c65899222fbf090773b053d7ab40185cb6544fa7304cddf0482",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/private-departure-alt.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe/archive/private-departure"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/private-departure-primary.webp",
+      "sha256": "5f7d263eb5669e7c55fbac882bc7c32ddefb998bc90a04207d7acc7420ac7b00",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/private-departure-primary.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe/archive",
+        "/wardrobe/archive/private-departure"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/weekend-residence-alt.webp",
+      "sha256": "8ac320bbe174a3afd5392b95af1eb0bd653547344c57ffcb6f2a8a0a996b6157",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/weekend-residence-alt.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/archive/weekend-residence"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/weekend-residence-primary.webp",
+      "sha256": "091b9233b0f0fd8e22b93570ac32a9308f20660bb4bb0cfa9bf08a2af8a3a81e",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/weekend-residence-primary.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe/archive",
+        "/wardrobe/archive/weekend-residence"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/winter-tunnel-alt.webp",
+      "sha256": "9cca631dc33a1c9c439c33ae7cec0a25782b212acfa438bc8d5a17215812fea1",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/winter-tunnel-alt.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe/archive/winter-tunnel"
+      ]
+    },
+    {
+      "source": "/wardrobe/archive/winter-tunnel-primary.webp",
+      "sha256": "283657b41304dcb6a85acd3f9e637488d969f4ced70d10a0ef175dd171b92e8c",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/archive/winter-tunnel-primary.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe/archive",
+        "/wardrobe/archive/winter-tunnel"
+      ]
+    },
+    {
+      "source": "/wardrobe/arrival-art-suit-blue.webp",
+      "sha256": "8850063d29e4f87614b20a00d439e3d39ef00138377053f105dd4a122ef1d188",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/arrival-art-suit-blue.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/wardrobe/arrival-trouser-look.webp",
+      "sha256": "2a74090be2f0b382053ef61e323f9675c73faf9407df0a6277e7f0be0215a25c",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/arrival-trouser-look.webp",
+      "blockers": [
+        "P0: 298 x 232 screenshot-derived source with UI/crop contamination. Recover unclipped high-resolution photograph. Inspect the plate structure: isolate actual photos from presentation layouts; preserve exact artwork and typography. Do not publish a flattened screenshot as a new product photograph.",
+        "recover_master_under_1024"
+      ],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/wardrobe/blouson-black-zip.webp",
+      "sha256": "67d80c7f532e730be25fb6e73dc41d86d5a27579b5a89880f26e524b902131cc",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/blouson-black-zip.webp",
+      "blockers": [
+        "P0: 298 x 232 contact-sheet/screenshot source. Recover separate high-resolution front, back and detail originals. Inspect the plate structure: isolate actual photos from presentation layouts; preserve exact artwork and typography. Do not publish a flattened screenshot as a new product photograph.",
+        "recover_master_under_1024"
+      ],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/wardrobe/cable-knit-black.webp",
+      "sha256": "35237748c3cc13f7057d5196368113ff0329de9de0a967579d14df5f9c16573f",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/cable-knit-black.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/blue-hour-card.webp",
+      "sha256": "8b78e98ae52b9d72cb214e58be42cb28ae69d535cb076ebc27dd3b8c337e5c64",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/blue-hour-card.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/blue-hour.webp",
+      "sha256": "876b57a39b9c1ce62e1810028704239c4ea79c68248f1c1f7e74b1a2f10c88a0",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/blue-hour.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/blue-hour"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/brooklyn-after-dark-card.webp",
+      "sha256": "eac95e8dab02d777c070316dd7f8b73fe8a577864060c840e341e50547234894",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/brooklyn-after-dark-card.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe",
+        "/wardrobe/capsules"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/brooklyn-after-dark.webp",
+      "sha256": "739ad692bd2f78530b29a726071614b4240261882982bb63a0400e93685563a7",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/brooklyn-after-dark.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/brooklyn-after-dark"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/camel-residence-card.webp",
+      "sha256": "12a83c1eb75ab1f4e3d89a157adfde8ef19130dc144eef0d9bb2556f993c81c0",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/camel-residence-card.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe",
+        "/wardrobe/capsules"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/camel-residence.webp",
+      "sha256": "6c07a0c3429860c1a2fbf05e90f603e74801b898e2c67b4f2e12eaf6236e4997",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/camel-residence.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/camel-residence"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/clubhouse-social-card.webp",
+      "sha256": "154a70ccc15ae62056c6238625cac235119e2d66f1855f328ca9af21bf0d7f9b",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/clubhouse-social-card.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/clubhouse-social.webp",
+      "sha256": "bf89b2e4d17721c4b293ebe849701c19db3d41df713e90f447d60a9c7aea7b26",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/clubhouse-social.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/clubhouse-social"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/course-to-club-card.webp",
+      "sha256": "0e66bd728775cdb293f7019075f52560e3328efa060d3b61daf56eef2d899197",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/course-to-club-card.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe",
+        "/wardrobe/capsules"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/course-to-club.webp",
+      "sha256": "9e1125402351cff8beeffbd285bfaa48d00af2add372013c609e368d5f28e68b",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/course-to-club.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/course-to-club"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/downtown-denim-card.webp",
+      "sha256": "654238f7df446a1a1f86d68a3bd973f94fdf56df597f25e3b6495dd7ba7d1ceb",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/downtown-denim-card.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/downtown-denim.webp",
+      "sha256": "b881a2f953656eb2aa614f55dcb123024c6e052d01ea70a8cd2ae13c74779539",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/downtown-denim.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/downtown-denim"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/gallery-opening-card.webp",
+      "sha256": "02e251320d44adac618370a889a0af0fba6875c8d5eee5543e2d81646279ee28",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/gallery-opening-card.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/gallery-opening.webp",
+      "sha256": "5c443532c19e016a95a3b98aa40a5b6253b82c0ef1384094e968aaa25a3b97bf",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/gallery-opening.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/gallery-opening"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/miami-arrival-card.webp",
+      "sha256": "34b72c0540992d4cfe6f9fe4340f801907a55fe955649c2e33a3c2460b2441af",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/miami-arrival-card.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe",
+        "/wardrobe/capsules"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/miami-arrival.webp",
+      "sha256": "b76724c1fa571c3ad75e81d2bc80c2631b78a0bf561243826d9a7ccc609b7273",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/miami-arrival.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/miami-arrival"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/olive-saint-card.webp",
+      "sha256": "58acb7d968418e72af1e2bfe88be3e68863d77929e7f8f55142dd80aa26f7c3e",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/olive-saint-card.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/olive-saint.webp",
+      "sha256": "389c90756e11b32522cd18121c067d955eaf903dfdcd61105b372707c37ad3b3",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/olive-saint.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/olive-saint"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/private-departure-card.webp",
+      "sha256": "f49101b2186a378821a3f86ede8a62b3d19a7f6f74864fb3e6005b3f9b643764",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/private-departure-card.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/private-departure.webp",
+      "sha256": "4f6536cea73719b984e2b554b9f5d66560877b1c3c990b362ef6272fb6671070",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/private-departure.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/private-departure"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/weekend-residence-card.webp",
+      "sha256": "566e15f6fecc2818e63e44a1571019c234a6d399a92d89d5520c4ed5314fd93c",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/weekend-residence-card.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/weekend-residence.webp",
+      "sha256": "7445c6c23239e9568fb31e7f8a3b76bf845bd37c0cfa2b7d8d0f80ed7890db2c",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/weekend-residence.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/weekend-residence"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/winter-tunnel-card.webp",
+      "sha256": "06d8b48a25e32a45623dd71b4955f074c968d7eb2f10b04a48679d5d95170984",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/winter-tunnel-card.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/winter-tunnel.webp",
+      "sha256": "2b38891451f0cf0dd25de8ba34818d0ea4786e2b6fbbb64b7bbe82f515c6cf3e",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/winter-tunnel.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/winter-tunnel"
+      ]
+    },
+    {
+      "source": "/wardrobe/course-edit-campaign.webp",
+      "sha256": "f7d00a39a98dd6ec1f581ab7d15e4a9a87cc4ce841ae8de6061cdd4e0ffdb973",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/course-edit-campaign.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/wardrobe/denim-pastel-knit.webp",
+      "sha256": "a189297fde656aa0d2d32f456726157842707d1a01f919c11d48612b2dcaa161",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/denim-pastel-knit.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/wardrobe/duffel-butter.webp",
+      "sha256": "19ae80d0eae40de600f1c7cee61b0196c3f8e29005259d283460435b05818919",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/duffel-butter.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/wardrobe/hero-private.webp",
+      "sha256": "4416b88fa77dfc049937feb50fca038c2078bf1fa0ec80bcb26adc45d6e51c2f",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/hero-private.webp",
+      "blockers": [],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/wardrobe/jacket-black-denim.webp",
+      "sha256": "0ae27c80edc98b58c941e5a602065c75eb025984e7374e273bb4776dd01d8ce3",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/jacket-black-denim.webp",
+      "blockers": [
+        "P0: 298 x 232 contact-sheet/screenshot source. Recover original garment images before retouch. Inspect the plate structure: isolate actual photos from presentation layouts; preserve exact artwork and typography. Do not publish a flattened screenshot as a new product photograph.",
+        "recover_master_under_1024"
+      ],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/wardrobe/jacket-mauve-denim.webp",
+      "sha256": "8bd8c2dbfd38bab0cafb2bd61eae973ffa584a0f4bf1f9799aff947432c9e470",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/jacket-mauve-denim.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/wardrobe/look-crushed-nylon.webp",
+      "sha256": "4e64770d036e13ea75374c04f94cfdb77e1a2b7e03914a374872ccf3fbf57152",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/look-crushed-nylon.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/wardrobe/look-knit-mauve.webp",
+      "sha256": "4a10daa9b7ad42bcc12f173467da90f23deb83340fbc04989e676dc118b08941",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/look-knit-mauve.webp",
+      "blockers": [
+        "P0: 298 x 232 screenshot-derived source. Recover uncropped original look, retain mauve crinkled material. Inspect the plate structure: isolate actual photos from presentation layouts; preserve exact artwork and typography. Do not publish a flattened screenshot as a new product photograph.",
+        "recover_master_under_1024"
+      ],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/wardrobe/suit-saint-john-camel.webp",
+      "sha256": "4a2cfbb9ec0508f2b8192d37b37763aa8ea19292904fb7cead28060f50fdb139",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/suit-saint-john-camel.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/wardrobe/suit-saint-michael-olive.webp",
+      "sha256": "a5013495b978b8e7fde1d7e43a995bab2d5a966fb140f4bed895049f51e22283",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/suit-saint-michael-olive.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/wardrobe/tonal-zip-system.webp",
+      "sha256": "11265e6548b8e2b443ab435fa89e60c0ffaa5d92d635953cf210a382f82dcff7",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/tonal-zip-system.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/wardrobe/turtleneck-grey.webp",
+      "sha256": "aa0f46de23be45ba78812d512c212d933450e11df1aa187d555a2637e172313d",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/turtleneck-grey.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe"
+      ]
+    },
+    {
+      "source": "/world/coastline.webp",
+      "sha256": "c640a75363bb5d454525274ebb128962d9c635f9c65bc31f75860c2d2d3ed087",
+      "disposition": "retouch",
+      "canonicalSource": "/world/coastline.webp",
+      "blockers": [],
+      "routes": [
+        "/brand",
+        "/line/campaign"
+      ]
+    },
+    {
+      "source": "/world/milot.webp",
+      "sha256": "0fc09ae4849e373f820f79ef47388f67a2c7f140ff26b889f04b569740a718c9",
+      "disposition": "retouch",
+      "canonicalSource": "/world/milot.webp",
+      "blockers": [],
+      "routes": [
+        "/brand",
+        "/line/campaign"
+      ]
+    },
+    {
+      "source": "/og.png",
+      "sha256": "5aff5b373d3d153ba27cd948e706b17d39c1d639ace3bff6d4334d9f04c76376",
+      "disposition": "preserve_graphic",
+      "canonicalSource": "/og.png",
+      "blockers": [],
+      "routes": [
+        "/",
+        "/bag",
+        "/brand",
+        "/closet",
+        "/line",
+        "/line/campaign",
+        "/line/lookbook",
+        "/line/looks/amara",
+        "/line/looks/arrival",
+        "/line/looks/black-tee",
+        "/line/looks/blue-jersey",
+        "/line/looks/blue-jersey-denim",
+        "/line/looks/butter-mock",
+        "/line/looks/butter-tee",
+        "/line/looks/camel",
+        "/line/looks/cobalt",
+        "/line/looks/day",
+        "/line/looks/denim-tee",
+        "/line/looks/duffel",
+        "/line/looks/forerunner",
+        "/line/looks/forest",
+        "/line/looks/jersey",
+        "/line/looks/malik",
+        "/line/looks/mauve-nylon",
+        "/line/looks/midnight",
+        "/line/looks/olive",
+        "/line/looks/olive-wool",
+        "/line/looks/onyx",
+        "/line/looks/parachute",
+        "/line/looks/rose",
+        "/line/looks/rust",
+        "/line/looks/sage",
+        "/line/looks/sand-jersey",
+        "/line/looks/sand-jersey-denim",
+        "/line/looks/solene",
+        "/line/looks/stripe",
+        "/line/looks/taupe",
+        "/line/looks/triangle-cap",
+        "/line/looks/velvet",
+        "/line/n002",
+        "/line/n003",
+        "/line/n005",
+        "/line/n006",
+        "/line/n013",
+        "/line/n014",
+        "/line/r010",
+        "/line/r027",
+        "/line/r031",
+        "/line/r032",
+        "/line/r041",
+        "/line/r042",
+        "/line/r043",
+        "/line/r046",
+        "/line/r067",
+        "/shop",
+        "/shop/ms-runner-1101-blush",
+        "/shop/ms-runner-1101-butter",
+        "/shop/ms-runner-1101-navy",
+        "/shop/ms-runner-1101-onyx",
+        "/shop/ms-runner-1101-teal",
+        "/shop/ms-runner-1213-chestnut",
+        "/shop/ms-runner-1213-espresso",
+        "/shop/ms-runner-1213-graphite",
+        "/shop/ms-runner-1213-midnight",
+        "/shop/ms-runner-1213-mineral-blue",
+        "/shop/ms-runner-1213-olive",
+        "/shop/ms-runner-1213-sacred-light",
+        "/shop/ms-runner-chalk-navy",
+        "/shop/ms-runner-navy-intrecciato",
+        "/shop/ms-runner-washed-denim",
+        "/wardrobe",
+        "/wardrobe/archive",
+        "/wardrobe/archive/blue-hour",
+        "/wardrobe/archive/brooklyn-after-dark",
+        "/wardrobe/archive/camel-residence",
+        "/wardrobe/archive/clubhouse-social",
+        "/wardrobe/archive/course-to-club",
+        "/wardrobe/archive/downtown-denim",
+        "/wardrobe/archive/gallery-opening",
+        "/wardrobe/archive/miami-arrival",
+        "/wardrobe/archive/olive-saint",
+        "/wardrobe/archive/private-departure",
+        "/wardrobe/archive/weekend-residence",
+        "/wardrobe/archive/winter-tunnel",
+        "/wardrobe/capsules",
+        "/wardrobe/capsules/blue-hour",
+        "/wardrobe/capsules/brooklyn-after-dark",
+        "/wardrobe/capsules/camel-residence",
+        "/wardrobe/capsules/clubhouse-social",
+        "/wardrobe/capsules/course-to-club",
+        "/wardrobe/capsules/downtown-denim",
+        "/wardrobe/capsules/gallery-opening",
+        "/wardrobe/capsules/miami-arrival",
+        "/wardrobe/capsules/olive-saint",
+        "/wardrobe/capsules/private-departure",
+        "/wardrobe/capsules/weekend-residence",
+        "/wardrobe/capsules/winter-tunnel"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/blue-hour-large.webp",
+      "sha256": "1c62d716526fa431b3ea8870fb2a2c5ce3124e4eef75e1b92ee4932fa77c8859",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/blue-hour-large.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/blue-hour"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/brooklyn-after-dark-large.webp",
+      "sha256": "c7c3c1ca2ce21428768a3f7afdc5170b3ee97b1ee66cf13dbd71d1d256f556ad",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/brooklyn-after-dark-large.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/brooklyn-after-dark"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/camel-residence-large.webp",
+      "sha256": "0f717baba3472dd90d227941500a2146cfd6ad6b2ac85f8050bf483444db9645",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/camel-residence-large.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/camel-residence"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/clubhouse-social-large.webp",
+      "sha256": "e3b2dd78b4c19182168dec08ab0ba1f1ca56b3fdcc65a8af3a57752ccf64da97",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/clubhouse-social-large.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/clubhouse-social"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/course-to-club-large.webp",
+      "sha256": "c0b92f41560765ca35a2251e519c71f56280d0d5087487844e84bf78010d27b0",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/course-to-club-large.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/course-to-club"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/downtown-denim-large.webp",
+      "sha256": "d4fed9a83e7c2ef713863d39e0c16315807237b536032779253c096d7ae908ac",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/downtown-denim-large.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/downtown-denim"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/gallery-opening-large.webp",
+      "sha256": "dd39be0e596a7e2ec4e0ff82789685d04c181b72c83d945c5844e0314352235b",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/gallery-opening-large.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/gallery-opening"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/miami-arrival-large.webp",
+      "sha256": "12e8ddfe60b9aea5469fa8b4ef90b1447d187705a550123e60b5fe133ed54736",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/miami-arrival-large.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/miami-arrival"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/olive-saint-large.webp",
+      "sha256": "9b004ecae4908b814e0e5cbf54d85b94e073a43504e626782b2bbefc501ecb16",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/olive-saint-large.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/olive-saint"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/private-departure-large.webp",
+      "sha256": "4e49b6de13b44fb47b8cd782685f547f5718ec2300c0db554cd0cfdc3d1a555d",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/private-departure-large.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/private-departure"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/weekend-residence-large.webp",
+      "sha256": "ace688830304a967e3674a7b9baaeacf90c17f68ff1f1fa8d83cd5ebef5eb92b",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/weekend-residence-large.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/weekend-residence"
+      ]
+    },
+    {
+      "source": "/wardrobe/capsules/winter-tunnel-large.webp",
+      "sha256": "d0a13934e67561408f0226d4d84d656b8ec8962f360f4ef2d83bdfb52cc47c36",
+      "disposition": "retouch",
+      "canonicalSource": "/wardrobe/capsules/winter-tunnel-large.webp",
+      "blockers": [
+        "master_upgrade_needed_for_large_retina"
+      ],
+      "routes": [
+        "/wardrobe/capsules/winter-tunnel"
+      ]
+    }
+  ]
+}

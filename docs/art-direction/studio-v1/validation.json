@@ -1,0 +1,19 @@
+{
+  "baselineCommit": "25ae5e209dbd74e6dea1fff129319e66d17e371e",
+  "repositoryTests": {
+    "passed": 56,
+    "failed": 0
+  },
+  "studioGuardTests": {
+    "passed": 7,
+    "failed": 0
+  },
+  "inventoryCheck": "passed: 978 paths; no baseline byte drift; one known missing source",
+  "productionBuild": "passed: all 174 generated pages, existing warnings",
+  "lint": "passed: generated public/ms-static bundles and .next-export excluded; application source rules unchanged",
+  "assetRelease": "blocked as expected: 197 photographic sources unapproved; 159 scope reviews pending",
+  "approvedProductionReplacements": 0,
+  "proof": "Solene charcoal proof rejected: small jersey print and lettering drift",
+  "mainMerged": false,
+  "deployment": "not attempted"
+}

@@ -1,7 +1,10 @@
+import { capsuleBySlug, type CapsuleSide } from "@/lib/capsules";
 import { lineByRef } from "@/lib/line";
 import { lookBySlug } from "@/lib/line-shop";
 import { lookById } from "@/lib/looks";
 import { EMPTY_FIT, OFFERINGS, fitReview, pieceById, type FitInput, type Pathway } from "@/lib/private-client";
+
+export const CAPSULE_SIDES = ["men", "women"] as const;
 
 export const COMMISSION_SCOPES = OFFERINGS.map((offer) => offer.id);
 
@@ -33,6 +36,10 @@ export type CommissionDraft = {
   lookId: string;
   /** Cast / collection look slug (e.g. sand-jersey), separate from wardrobe lookId. */
   collectionLook: string;
+  /** Texture-matched capsule slug from Private Wardrobe. */
+  capsuleSlug: string;
+  /** Which outfit note on the paired capsule plate. */
+  capsuleSide: CapsuleSide | "";
   pieceIds: string[];
   lineRef: string;
   lineColor: string;
@@ -72,6 +79,9 @@ export function parseCommission(raw: unknown): { ok: true; value: CommissionDraf
   const privacyConsent = body.privacyConsent === true;
   const lookId = typeof body.lookId === "string" ? body.lookId.trim().slice(0, 40) : "";
   const collectionLook = typeof body.collectionLook === "string" ? body.collectionLook.trim().slice(0, 40) : "";
+  const capsuleSlug = typeof body.capsuleSlug === "string" ? body.capsuleSlug.trim().slice(0, 48) : "";
+  const capsuleSideRaw = typeof body.capsuleSide === "string" ? body.capsuleSide.trim() : "";
+  const capsuleSide = CAPSULE_SIDES.includes(capsuleSideRaw as CapsuleSide) ? (capsuleSideRaw as CapsuleSide) : "";
   const lineRef = typeof body.lineRef === "string" ? body.lineRef.trim().slice(0, 12) : "";
   const lineColor = typeof body.lineColor === "string" ? body.lineColor.trim().slice(0, 80) : "";
   const lineSize = typeof body.lineSize === "string" ? body.lineSize.trim().slice(0, 24) : "";
@@ -91,12 +101,14 @@ export function parseCommission(raw: unknown): { ok: true; value: CommissionDraf
   if (!INTRODUCTION_BUDGETS.includes(budget as (typeof INTRODUCTION_BUDGETS)[number])) return { ok: false, error: "That budget range is not one the house uses." };
   if (lookId && !lookById(lookId)) return { ok: false, error: "That look is not in the house." };
   if (collectionLook && !lookBySlug(collectionLook)) return { ok: false, error: "That collection look is not published." };
+  if (capsuleSlug && !capsuleBySlug(capsuleSlug)) return { ok: false, error: "That capsule is not published." };
+  if (capsuleSlug && !capsuleSide) return { ok: false, error: "Choose the men's or women's note for this capsule." };
   if (lineRef && !lineByRef(lineRef)) return { ok: false, error: "That style is not on the line." };
   if (lineImage && !lineImage.startsWith("/")) return { ok: false, error: "That reference image is not valid." };
   for (const id of pieceIds) {
     if (!pieceById(id)) return { ok: false, error: "That piece is not available." };
   }
-  if (pieceIds.length === 0 && !lineRef && !collectionLook && !note && !settings) {
+  if (pieceIds.length === 0 && !lineRef && !collectionLook && !capsuleSlug && !note && !settings) {
     return { ok: false, error: "Name what you want made, the days you dress for, or add a note." };
   }
 
@@ -127,6 +139,8 @@ export function parseCommission(raw: unknown): { ok: true; value: CommissionDraf
       scope: scope as CommissionScope,
       lookId,
       collectionLook,
+      capsuleSlug,
+      capsuleSide,
       pieceIds,
       lineRef,
       lineColor,

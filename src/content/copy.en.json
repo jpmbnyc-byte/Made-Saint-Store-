@@ -164,8 +164,8 @@
   "wardrobe": {
     "eyebrow": "PRIVATE WARDROBE",
     "heading": "A wardrobe for the way you live.",
-    "intro": "A journey, an evening, the days between. Begin with a look from the archive and tell us what feels like you. We will discuss the pieces, proportions and details together.",
-    "primaryAction": "Explore the archive",
+    "intro": "A journey, an evening, the days between. Begin with a capsule or an archive look and tell us what feels like you. We will discuss the pieces, proportions and details together.",
+    "primaryAction": "Explore the capsules",
     "secondaryAction": "Begin an enquiry",
     "selectionHeading": "Choose your pieces",
     "selectionBody": "Save the pieces you want to discuss.",
@@ -177,7 +177,7 @@
     "steps": [
       {
         "title": "Find your starting point",
-        "body": "Choose a look or individual pieces."
+        "body": "Choose a capsule, a look or individual pieces."
       },
       {
         "title": "Make it personal",
@@ -188,6 +188,13 @@
         "body": "Materials, price and delivery are confirmed before you order."
       }
     ],
+    "capsulesHeading": "Texture-matched capsules",
+    "capsulesIntro": "Twelve paired plates. Each shows a men's look beside a women's look — shared palette, shared texture, distinct proportion.",
+    "capsulesAllAction": "View all twelve capsules",
+    "capsulesBackAction": "All capsules",
+    "capsuleMenLabel": "Men",
+    "capsuleWomenLabel": "Women",
+    "capsuleEnquireAction": "Enquire about this capsule",
     "archiveHeading": "Archive chapters",
     "archiveAllAction": "View all twelve chapters",
     "enquireLookAction": "Enquire about this look",

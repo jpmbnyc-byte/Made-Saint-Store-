@@ -32,6 +32,7 @@ const NAV_GROUPS: NavGroup[] = [
     title: "Private Wardrobe",
     links: [
       { href: "/wardrobe", label: "Private Wardrobe" },
+      { href: "/wardrobe/capsules", label: "Capsules" },
       { href: "/wardrobe#build", label: "Choose your pieces" },
       { href: "/wardrobe#introduction", label: "Enquire" },
     ],

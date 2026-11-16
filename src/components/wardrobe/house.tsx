@@ -10,11 +10,13 @@ import { lookById, lookForLifestyle, offerFor } from "@/lib/looks";
 import { PIECES, type WardrobePiece } from "@/lib/wardrobe";
 import { StatusMark } from "@/components/house/status-mark";
 import { WardrobeIntro } from "@/components/wardrobe/intro";
+import { CapsuleGrid } from "@/components/wardrobe/capsule-grid";
 import { ArchiveGrid } from "@/components/wardrobe/archive-grid";
 import { PreviewTrigger, WardrobePreview, type PreviewFrame } from "@/components/wardrobe/preview";
 import { TONAL_COLORS, TonalSlideshow } from "@/components/wardrobe/tonal";
 import { IMAGE_STATUS_LABEL, IMAGE_STATUS_MARK, statusFromNote } from "@/lib/image-status";
 import { tonalRunner } from "@/lib/tonal-runners";
+import { capsuleBySlug, capsuleOutfit, type CapsuleSide } from "@/lib/capsules";
 import { copy } from "@/lib/copy";
 
 const CATALOG = PIECES.filter((piece) => {
@@ -166,6 +168,8 @@ export function PrivateHouse() {
   const [lineSize, setLineSize] = useState("");
   const [lineImage, setLineImage] = useState("");
   const [collectionLook, setCollectionLook] = useState("");
+  const [capsuleSlug, setCapsuleSlug] = useState("");
+  const [capsuleSide, setCapsuleSide] = useState<CapsuleSide>("men");
   const [matchingPieces, setMatchingPieces] = useState<string[]>([]);
   const [scope, setScope] = useState<CommissionScope>("look");
   const [name, setName] = useState("");
@@ -192,16 +196,21 @@ export function PrivateHouse() {
   const clothes = visiblePieces(selected);
   const heldLine = lineByRef(lineRef);
   const castLook = collectionLook ? lookBySlug(collectionLook) : undefined;
+  const capsule = capsuleSlug ? capsuleBySlug(capsuleSlug) : undefined;
   const activeLook = focusLookId ? lookById(focusLookId) : roster.length ? lookForLifestyle(lifestyleId) : undefined;
-  const requestTitle = castLook?.title
-    ?? (clothes.length === 0 && heldLine ? customerName(heldLine) : activeLook?.name)
-    ?? "A commission";
+  const requestTitle = capsule
+    ? `${capsule.title} · ${capsuleSide === "women" ? "Women" : "Men"}`
+    : castLook?.title
+      ?? (clothes.length === 0 && heldLine ? customerName(heldLine) : activeLook?.name)
+      ?? "A commission";
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const lookParam = params.get("look") ?? "";
     const wardrobeLook = lookById(lookParam);
     const cast = lookBySlug(lookParam);
+    const capsuleParam = capsuleBySlug(params.get("capsule") ?? "");
+    const sideParam = params.get("side") === "women" ? "women" : "men";
     const line = lineByRef(params.get("ref") ?? "");
     const color = (params.get("color") ?? "").trim();
     const size = (params.get("size") ?? "").trim();
@@ -215,6 +224,20 @@ export function PrivateHouse() {
     if (size) setLineSize(size);
     if (image.startsWith("/")) setLineImage(image);
     if (match.length) setMatchingPieces(match);
+    if (capsuleParam) {
+      setCapsuleSlug(capsuleParam.slug);
+      setCapsuleSide(sideParam);
+      setLineImage(capsuleParam.image);
+      setRoster([]);
+      setSelected([]);
+      setScope("look");
+      setNote(
+        (current) =>
+          current ||
+          `Capsule ${capsuleParam.number} · ${capsuleParam.title}. ${sideParam === "women" ? "Women" : "Men"}: ${capsuleOutfit(capsuleParam, sideParam)}`,
+      );
+      return;
+    }
     if (wardrobeLook) {
       const ids = wardrobeLook.pieces.map((piece) => piece.id);
       const clothing = clothingIds(ids);
@@ -274,7 +297,7 @@ export function PrivateHouse() {
   async function send(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-    if (!note.trim() && !settings.trim() && selected.length === 0 && !lineRef && !collectionLook) {
+    if (!note.trim() && !settings.trim() && selected.length === 0 && !lineRef && !collectionLook && !capsuleSlug) {
       return setError("Say what you are dressing for, or choose the pieces you want to discuss.");
     }
     setBusy(true);
@@ -294,6 +317,8 @@ export function PrivateHouse() {
           scope,
           lookId: activeLook?.id ?? "",
           collectionLook,
+          capsuleSlug,
+          capsuleSide,
           pieceIds: selected,
           lineRef,
           lineColor,
@@ -391,6 +416,7 @@ export function PrivateHouse() {
     <div>
       <WardrobeIntro />
       <WardrobePreview frame={preview} onClose={() => setPreview(null)} />
+      <CapsuleGrid limit={4} />
       <ArchiveGrid featuredOnly />
 
       <section id="build" className="scroll-mt-28">
@@ -736,10 +762,10 @@ export function PrivateHouse() {
               {(lineImage || castLook?.image) && (
                 <PreviewTrigger
                   src={lineImage || castLook!.image}
-                  alt={castLook?.alt ?? requestTitle}
+                  alt={capsule?.alt ?? castLook?.alt ?? requestTitle}
                   caption="Held for this enquiry."
-                  className="relative mt-4 block w-full max-w-[220px]"
-                  imgClassName="aspect-[3/4] w-full bg-[#e7e0d4] object-cover object-top"
+                  className={`relative mt-4 block w-full ${capsule ? "max-w-[320px]" : "max-w-[220px]"}`}
+                  imgClassName={`${capsule ? "aspect-[3/2] object-contain" : "aspect-[3/4] object-cover object-top"} w-full bg-[#e7e0d4]`}
                   onOpen={setPreview}
                 >
                   <span className="pointer-events-none absolute bottom-2 right-2 bg-[#1c1a17]/75 px-2 py-1 text-[10px] tracking-[0.14em] text-[#f5f0e8] uppercase">
@@ -748,6 +774,11 @@ export function PrivateHouse() {
                 </PreviewTrigger>
               )}
               <ul className="mt-4 space-y-2 text-sm">
+                {capsule && (
+                  <li>
+                    Capsule {capsule.number} · {capsuleSide === "women" ? "Women" : "Men"}
+                  </li>
+                )}
                 {heldLine && (
                   <li>
                     {heldLine.ref} · {customerName(heldLine)}
@@ -767,7 +798,9 @@ export function PrivateHouse() {
                     <span className="text-[#1c1a17]/50"> · {IMAGE_STATUS_MARK[statusFromNote(piece.note, Boolean(piece.image))]}</span>
                   </li>
                 ))}
-                {clothes.length === 0 && !heldLine && <li className="text-[#1c1a17]/60">No piece selected yet — color and fit can still go in the note.</li>}
+                {clothes.length === 0 && !heldLine && !capsule && (
+                  <li className="text-[#1c1a17]/60">No piece selected yet — color and fit can still go in the note.</li>
+                )}
               </ul>
               <div className="mt-6 space-y-3 border-t border-[#1c1a17]/10 pt-4 text-[13px] leading-relaxed text-[#1c1a17]/70">
                 <p>

@@ -1,0 +1,378 @@
+{
+  "schemaVersion": 1,
+  "comparison": "Archive images are shortlisted by a mean absolute RGB difference below 2 on a 20 \u00d7 20 comparison. Full-size review and original approval are required.",
+  "candidates": {
+    "/bags/backpack-front.webp": {
+      "archiveSha256": "4692cc604afea9e772b4d161be019185005cce0ae801afabd404dac91dc22498",
+      "archiveDimensions": [
+        1024,
+        1536
+      ],
+      "repositoryDimensions": [
+        682,
+        1024
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/bags/backpack-open.webp": {
+      "archiveSha256": "9600bcc689751991c18018804d745c010c31a6cfdca2b663b753b4a34de598a7",
+      "archiveDimensions": [
+        1024,
+        1536
+      ],
+      "repositoryDimensions": [
+        682,
+        1024
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/bags/backpack-side.webp": {
+      "archiveSha256": "f32fd03430ad779b2d44d2342dbe00f8f394f6e40645de8af02be8059975241b",
+      "archiveDimensions": [
+        1024,
+        1536
+      ],
+      "repositoryDimensions": [
+        682,
+        1024
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/collection/lucien-tulips.webp": {
+      "archiveSha256": "6089a817766b047c10df803eaed6376736bcf42ad552346ef4fb0fa30adecc98",
+      "archiveDimensions": [
+        1632,
+        2048
+      ],
+      "repositoryDimensions": [
+        816,
+        1024
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/collection/styling-ivory.webp": {
+      "archiveSha256": "8d469672130c337ddcdd23e3924f7bbfe0f843be92b7d5dd038db7986d69289b",
+      "archiveDimensions": [
+        941,
+        1672
+      ],
+      "repositoryDimensions": [
+        576,
+        1024
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/collection/taupe.webp": {
+      "archiveSha256": "8c2ffaf1c73a4afd5c328deb628dc504bd6c0bc65321938685d3502bef996871",
+      "archiveDimensions": [
+        1024,
+        1536
+      ],
+      "repositoryDimensions": [
+        682,
+        1024
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/collection/tee-black.webp": {
+      "archiveSha256": "0eb1ca6e5448cb253c260e9e1bc16d0a5b594eaec04b01e01d43ba562d5ef4d5",
+      "archiveDimensions": [
+        1440,
+        1920
+      ],
+      "repositoryDimensions": [
+        1440,
+        1920
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/collection/tee-butter.webp": {
+      "archiveSha256": "024d7dfbb4640d5f2fd579ad8902a0f9da711a1577161f357759f17f94773796",
+      "archiveDimensions": [
+        1440,
+        1920
+      ],
+      "repositoryDimensions": [
+        1440,
+        1920
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/collection/tee-denim.webp": {
+      "archiveSha256": "82aa6e6d3b525c6494ca7b7ab7276acdbe009afb987aecb5f625ed52f9e82e54",
+      "archiveDimensions": [
+        1440,
+        1920
+      ],
+      "repositoryDimensions": [
+        1440,
+        1920
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/hero/saint-john.webp": {
+      "archiveSha256": "5a2ff6065f625464c305b67610c7ab10e6698577f6f55db3a0864ed3ca5d9c79",
+      "archiveDimensions": [
+        1856,
+        2304
+      ],
+      "repositoryDimensions": [
+        1856,
+        2304
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/knit/turtleneck-mauve-views.webp": {
+      "archiveSha256": "262f1b7769a9a295efc102ce2d5f5460a0faa5e8af76a1bb347afdc935899812",
+      "archiveDimensions": [
+        1536,
+        1024
+      ],
+      "repositoryDimensions": [
+        1536,
+        1024
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/line/f44.webp": {
+      "archiveSha256": "966a32f9fb0eb956dc07559130a7a65cc232dde9cb9836f9b0dff13392669a18",
+      "archiveDimensions": [
+        1179,
+        1334
+      ],
+      "repositoryDimensions": [
+        1179,
+        1334
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/line/f46.webp": {
+      "archiveSha256": "3deeac92be0ad08f770d62c01ccfa891274d7f14fec72df92ab17e7b624867f0",
+      "archiveDimensions": [
+        461,
+        503
+      ],
+      "repositoryDimensions": [
+        461,
+        503
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/line/f47.webp": {
+      "archiveSha256": "fb5537295f28272d354257935bcd8c1d7534bdf47fd5c52974ae16bfe19453a1",
+      "archiveDimensions": [
+        574,
+        1024
+      ],
+      "repositoryDimensions": [
+        574,
+        1024
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/line/f48.webp": {
+      "archiveSha256": "12e7bd6e2e658f5b234107a7589ebda009af1b0d28ee6c8b66af84fabf4010db",
+      "archiveDimensions": [
+        461,
+        516
+      ],
+      "repositoryDimensions": [
+        461,
+        516
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/line/f49.webp": {
+      "archiveSha256": "2bfc70ee6cb68f715485e9ab35e944cdb035c91dcc1ecf8fb635234ef63a0330",
+      "archiveDimensions": [
+        338,
+        681
+      ],
+      "repositoryDimensions": [
+        338,
+        681
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/line/f51.webp": {
+      "archiveSha256": "666c451bf299ce9dbbcf4899335a2f73a8383316f26b5af999f28fb5905062de",
+      "archiveDimensions": [
+        1024,
+        1536
+      ],
+      "repositoryDimensions": [
+        1024,
+        1536
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/line/f52.webp": {
+      "archiveSha256": "bef8651907d624ee704aa528482b2dea7af75691093527fe3ead0ff31ded33e0",
+      "archiveDimensions": [
+        1024,
+        1536
+      ],
+      "repositoryDimensions": [
+        1024,
+        1536
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/line/f53.webp": {
+      "archiveSha256": "5812a1bc4d4fd6fcb3eb46351c43b33ec8ea0f8c73b3a2de3c0eb621909de01a",
+      "archiveDimensions": [
+        1024,
+        1536
+      ],
+      "repositoryDimensions": [
+        1024,
+        1536
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/line/f56.webp": {
+      "archiveSha256": "025744d7e7f6056105b982a704d6b8c29a3a9b2dcfa269213194126f75de37e8",
+      "archiveDimensions": [
+        1024,
+        1536
+      ],
+      "repositoryDimensions": [
+        1024,
+        1536
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/line/f57.webp": {
+      "archiveSha256": "75fdff68c4440a1b5e4db23861645fa08fd7100608576c85afdbcbf40ade2b8f",
+      "archiveDimensions": [
+        1024,
+        1536
+      ],
+      "repositoryDimensions": [
+        1024,
+        1536
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/line/f58.webp": {
+      "archiveSha256": "1811e39d776225ae278bcefdbf0dc012c22dd750d0d565d2888aa8683366c1d1",
+      "archiveDimensions": [
+        1024,
+        1536
+      ],
+      "repositoryDimensions": [
+        1024,
+        1536
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/line/f59.webp": {
+      "archiveSha256": "97ceb12115a3c0b465c79f8b36c56e826ba95db999dc0a27f3efc38cba05bcb7",
+      "archiveDimensions": [
+        1024,
+        1536
+      ],
+      "repositoryDimensions": [
+        1024,
+        1536
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/line/f65.webp": {
+      "archiveSha256": "262f1b7769a9a295efc102ce2d5f5460a0faa5e8af76a1bb347afdc935899812",
+      "archiveDimensions": [
+        1536,
+        1024
+      ],
+      "repositoryDimensions": [
+        1536,
+        1024
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/opening/black-worn.webp": {
+      "archiveSha256": "153195b0d032d90c33cdf3e2b0c5355f3709e6cfd2d96cc0615c5e961d32dc79",
+      "archiveDimensions": [
+        1024,
+        1285
+      ],
+      "repositoryDimensions": [
+        1024,
+        1285
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/opening/butter-worn.webp": {
+      "archiveSha256": "6089a817766b047c10df803eaed6376736bcf42ad552346ef4fb0fa30adecc98",
+      "archiveDimensions": [
+        1632,
+        2048
+      ],
+      "repositoryDimensions": [
+        816,
+        1024
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/runners/1213/sacred-light-worn-butter.webp": {
+      "archiveSha256": "9d210e7b4a8638f94cd2b5d8ec1a87c798f324f0c228282f134eae0eed24b109",
+      "archiveDimensions": [
+        1024,
+        1536
+      ],
+      "repositoryDimensions": [
+        1024,
+        1536
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/runners/1213/sacred-light-worn-plum.webp": {
+      "archiveSha256": "a0ec78eb889b971cc2066d0737ac748bb127db45620399ad121f7091034ad23b",
+      "archiveDimensions": [
+        1024,
+        1536
+      ],
+      "repositoryDimensions": [
+        1024,
+        1536
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/wardrobe/archive/gallery-opening-alt.webp": {
+      "archiveSha256": "d5b95c0e7cb9a25385c87deb5e4df50ccd5b9ab7d058d33986f596e2a763edec",
+      "archiveDimensions": [
+        1536,
+        1024
+      ],
+      "repositoryDimensions": [
+        1400,
+        933
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/wardrobe/archive/miami-arrival-alt.webp": {
+      "archiveSha256": "bdd39bb36fcd0bf881517b03a01d7683b581960c7b599f6cd73e2fbe319064ef",
+      "archiveDimensions": [
+        1672,
+        941
+      ],
+      "repositoryDimensions": [
+        1400,
+        788
+      ],
+      "status": "candidate_pending_full_size_review"
+    },
+    "/wardrobe/archive/olive-saint-alt.webp": {
+      "archiveSha256": "a7d50b5f64a95fd0aabdc2274325087928579808c0fc780dc7e61f02f4f6a6aa",
+      "archiveDimensions": [
+        1536,
+        1024
+      ],
+      "repositoryDimensions": [
+        1400,
+        933
+      ],
+      "status": "candidate_pending_full_size_review"
+    }
+  }
+}

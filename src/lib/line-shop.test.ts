@@ -3,6 +3,7 @@ import test from "node:test";
 import { CAMPAIGN_BLOCKS, COLLECTION_LOOKS, FEATURED, catalogDiagnostics, customerMaterial, customerName, customerStatus, lineAssetManifest, publishedLooks } from "./line-shop";
 import { lineByRef } from "./line";
 import { listedLine } from "./imagery";
+import { studioImage } from "./studio-image";
 // lineByRef used for R010 customer copy assertions
 
 test("published looks only list pieces already named on the frames", () => {
@@ -46,7 +47,10 @@ test("published looks only list pieces already named on the frames", () => {
   const courtyard = COLLECTION_LOOKS.filter((look) => look.series === "courtyard");
   assert.equal(courtyard.length, 11);
   for (const look of courtyard) {
-    assert.ok(look.image.startsWith("/collection/"), look.slug);
+    assert.ok(
+      look.image.startsWith("/collection/") || look.image === studioImage(`/collection/${look.slug}.webp`),
+      look.slug,
+    );
     for (const offer of look.offers ?? []) {
       if (offer.kind === "runner") {
         assert.match(offer.href, /^\/shop\/ms-runner-/);

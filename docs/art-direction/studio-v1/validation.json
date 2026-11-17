@@ -9,11 +9,12 @@
     "failed": 0
   },
   "inventoryCheck": "passed: 978 paths; no baseline byte drift; one known missing source",
-  "productionBuild": "passed: all 174 generated pages, existing warnings",
+  "productionBuild": "passed: 174 pages, existing warnings",
   "lint": "passed: generated public/ms-static bundles and .next-export excluded; application source rules unchanged",
-  "assetRelease": "blocked as expected: 197 photographic sources unapproved; 159 scope reviews pending",
-  "approvedProductionReplacements": 0,
+  "assetRelease": "Global release remains blocked. Four integrated images await browser usage checks, 323 other sources await replacement.",
+  "approvedProductionReplacements": 4,
   "proof": "Solene charcoal proof rejected: small jersey print and lettering drift",
   "mainMerged": false,
-  "deployment": "not attempted"
+  "deployment": "PR preview pending",
+  "browserQA": "pending preview deployment"
 }

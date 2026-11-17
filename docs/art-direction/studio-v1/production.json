@@ -1,4 +1,105 @@
 {
   "schemaVersion": 1,
-  "replacements": {}
+  "replacements": {
+    "/collection/taupe.webp": {
+      "status": "approved",
+      "target": "/art/studio-v1/taupe.webp",
+      "sourceSha256": "85482dfb71d838fe3dd9aba19a970bdd720c13df19454b7d79343a14414d661a",
+      "masterSource": "/art/studio-v1/masters/taupe.webp",
+      "masterSha256": "cbacfe7e5b00baeaf942b167c584be669ba77685a501851f9a0ce7978ef15ef0",
+      "archiveSha256": "8c2ffaf1c73a4afd5c328deb628dc504bd6c0bc65321938685d3502bef996871",
+      "outputSha256": "fdcda56219b4a3a0d252929b320cc113d470d8d20881cf1cfb82e9cdc9c3edca",
+      "editor": "OpenAI image generation, background and lighting edit",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17",
+      "width": 1024,
+      "height": 1536,
+      "maxRenderWidth": 1024,
+      "maxRenderHeight": 1536,
+      "sourceResolution": "Recovered matching archive image. Exported at original-supported dimensions.",
+      "qa": {
+        "geometry": true,
+        "identity": true,
+        "color": true,
+        "texture": true,
+        "background": true,
+        "all_usages": false
+      }
+    },
+    "/wardrobe/archive/gallery-opening-alt.webp": {
+      "status": "approved",
+      "target": "/art/studio-v1/gallery-opening.webp",
+      "sourceSha256": "a3fcd2751bf318cb89d532eda93f01d5092440d3b6ffe6daff2e411df199cfde",
+      "masterSource": "/art/studio-v1/masters/gallery-opening.webp",
+      "masterSha256": "b8d4729f978b65efb140ee4647bc579283d95858889549d159428f78c9ee9d78",
+      "archiveSha256": "d5b95c0e7cb9a25385c87deb5e4df50ccd5b9ab7d058d33986f596e2a763edec",
+      "outputSha256": "40d03d7b6aa6cabb6c047748ad1d2f7c3b3f0859eaf7a05ec3966beaeacad387",
+      "editor": "OpenAI image generation, background and lighting edit",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17",
+      "width": 1536,
+      "height": 1024,
+      "maxRenderWidth": 1536,
+      "maxRenderHeight": 1024,
+      "sourceResolution": "Recovered matching archive image. Exported at original-supported dimensions.",
+      "qa": {
+        "geometry": true,
+        "identity": true,
+        "color": true,
+        "texture": true,
+        "background": true,
+        "all_usages": false
+      }
+    },
+    "/wardrobe/archive/olive-saint-alt.webp": {
+      "status": "approved",
+      "target": "/art/studio-v1/olive-saint.webp",
+      "sourceSha256": "e213f523b0e3d562a6fdd7180a4266c8148193d4f62ecc3265582f999aa7b686",
+      "masterSource": "/art/studio-v1/masters/olive-saint.webp",
+      "masterSha256": "55f51aaadc14a9c37727ff3afe4646f53baeb4cc9405e9bfdb7b3c0dda601b1e",
+      "archiveSha256": "a7d50b5f64a95fd0aabdc2274325087928579808c0fc780dc7e61f02f4f6a6aa",
+      "outputSha256": "c082614a593f034e0031bd3dd56542bb2e0dcd2b838020fe8628a8079abd694a",
+      "editor": "OpenAI image generation, background and lighting edit",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17",
+      "width": 1536,
+      "height": 1024,
+      "maxRenderWidth": 1536,
+      "maxRenderHeight": 1024,
+      "sourceResolution": "Recovered matching archive image. Exported at original-supported dimensions.",
+      "qa": {
+        "geometry": true,
+        "identity": true,
+        "color": true,
+        "texture": true,
+        "background": true,
+        "all_usages": false
+      }
+    },
+    "/wardrobe/archive/miami-arrival-alt.webp": {
+      "status": "approved",
+      "target": "/art/studio-v1/miami-arrival.webp",
+      "sourceSha256": "af7399f3f659bc674d08c0e7b0295ff88a93746f051529765b0d10699104e507",
+      "masterSource": "/art/studio-v1/masters/miami-arrival.webp",
+      "masterSha256": "f1315d3d701aeb04e52746fcc46e00957585eda49df94b7a60f3db0215708e9d",
+      "archiveSha256": "bdd39bb36fcd0bf881517b03a01d7683b581960c7b599f6cd73e2fbe319064ef",
+      "outputSha256": "7cd4e42605959ebfe3f65bb2f66d536c03e79bee0a63b6a5b5164544f25f9ae1",
+      "editor": "OpenAI image generation, background and lighting edit",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17",
+      "width": 1672,
+      "height": 941,
+      "maxRenderWidth": 1672,
+      "maxRenderHeight": 941,
+      "sourceResolution": "Recovered matching archive image. Exported at original-supported dimensions.",
+      "qa": {
+        "geometry": true,
+        "identity": true,
+        "color": true,
+        "texture": true,
+        "background": true,
+        "all_usages": false
+      }
+    }
+  }
 }

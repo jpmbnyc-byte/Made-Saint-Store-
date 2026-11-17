@@ -1,6 +1,6 @@
-# Global charcoal studio pass — blocked draft
+# Global charcoal studio pass — partial integration
 
-This branch contains source reconciliation and production acceptance checks. It does **not** implement the finished photographic pass and must not be merged as though it does. Existing production image assignments are intact. No retouched image has been approved or deployed.
+This branch connects four reviewed charcoal edits to the existing Stone Velour lookbook entry and the Miami Arrival, Gallery Opening, and Olive Saint archive alternates. Versioned web images and recovered source masters are in `public/art/studio-v1/`. The shared resolver reads `production.json`. Browser acceptance and the rest of the 327-path remap remain outstanding.
 
 The direction is one neutral charcoal studio, a broad upper-left key and readable shadows, with small fill differences between product, lookbook and campaign. Preserve garment color, product construction, face, fit, print, logos, hair, cords and hardware. The original direction references and full audit are in the supplied `MADE_SAiNT_Global_Studio_Pass_2026-11-16.zip`; the four production briefs included here retain that scope.
 

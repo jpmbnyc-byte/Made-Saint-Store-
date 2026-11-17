@@ -1405,6 +1405,7 @@
       "canonicalSource": "/collection/solene.webp",
       "sourceOwners": [
         "src/lib/geography.ts",
+        "src/lib/imagery.test.ts",
         "src/lib/line-shop.ts"
       ],
       "routes": [
@@ -12781,7 +12782,8 @@
       ],
       "canonicalSource": "/runners/1213/1101-brown-pair.webp",
       "sourceOwners": [
-        "src/lib/catalog.ts"
+        "src/lib/catalog.ts",
+        "src/lib/imagery.test.ts"
       ],
       "routes": [
         "/shop/ms-runner-1101-butter"
@@ -12802,6 +12804,7 @@
       "sourceOwners": [
         "src/lib/business.ts",
         "src/lib/catalog.ts",
+        "src/lib/imagery.test.ts",
         "src/lib/tonal-runners.ts"
       ],
       "routes": [

@@ -92,6 +92,7 @@ async function inventory() {
   const sourceFiles = (await walk(path.join(root, "src"))).filter((file) => /\.(tsx?|jsx?|json|css)$/.test(file));
   const owners = new Map();
   const add = (src, file) => {
+    if (src.startsWith("/art/studio-v1/")) return;
     if (!owners.has(src)) owners.set(src, new Set());
     owners.get(src).add(path.relative(root, file));
   };

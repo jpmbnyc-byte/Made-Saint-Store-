@@ -1,6 +1,6 @@
 # Global charcoal studio pass — partial integration
 
-This branch connects four reviewed charcoal edits to the existing Stone Velour lookbook entry and the Miami Arrival, Gallery Opening, and Olive Saint archive alternates. Versioned web images and recovered source masters are in `public/art/studio-v1/`. The shared resolver reads `production.json`. Browser acceptance and the rest of the 327-path remap remain outstanding.
+This branch connects twelve reviewed charcoal edits covering thirteen source paths. They include the Stone Velour lookbook entry, three archive alternates, and the five active 1101 colorways with their existing lateral views. Versioned web images and recovered source masters are in `public/art/studio-v1/`. The shared resolver reads `production.json`. Browser acceptance and the remaining 314 source paths in the remap are outstanding. The Vercel preview requires sign-in.
 
 The direction is one neutral charcoal studio, a broad upper-left key and readable shadows, with small fill differences between product, lookbook and campaign. Preserve garment color, product construction, face, fit, print, logos, hair, cords and hardware. The original direction references and full audit are in the supplied `MADE_SAiNT_Global_Studio_Pass_2026-11-16.zip`; the four production briefs included here retain that scope.
 
@@ -31,3 +31,7 @@ The direction is one neutral charcoal studio, a broad upper-left key and readabl
 6. Complete repository tests, lint, production build and visual checks at 390 px and 1440 px plus zoom. Follow `07_QA_AND_MERGE.md`; verify the real main commit and deployment separately.
 
 The draft intentionally introduces no CSS filter, photographic overlay, changed product assignment or invented replacement for a missing source.
+
+## Static snapshot export
+
+The standard Next.js build succeeds. The optional static snapshot export fails because `src/app/line/[ref]/page.tsx` awaits `searchParams` during export. Existing tracked snapshots were restored after that failed attempt. The current integration requires the Next.js deployment for updated page mappings.

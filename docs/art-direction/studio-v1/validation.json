@@ -1,7 +1,7 @@
 {
   "baselineCommit": "25ae5e209dbd74e6dea1fff129319e66d17e371e",
   "repositoryTests": {
-    "passed": 56,
+    "passed": 57,
     "failed": 0
   },
   "studioGuardTests": {
@@ -11,10 +11,13 @@
   "inventoryCheck": "passed: 978 paths; no baseline byte drift; one known missing source",
   "productionBuild": "passed: 174 pages, existing warnings",
   "lint": "passed: generated public/ms-static bundles and .next-export excluded; application source rules unchanged",
-  "assetRelease": "Global release remains blocked. Four integrated images await browser usage checks, 323 other sources await replacement.",
-  "approvedProductionReplacements": 4,
+  "assetRelease": "Global release blocked: 314 sources await replacement, 13 integrated paths await browser usage checks.",
+  "approvedProductionReplacements": 13,
   "proof": "Solene charcoal proof rejected: small jersey print and lettering drift",
   "mainMerged": false,
-  "deployment": "PR preview pending",
-  "browserQA": "pending preview deployment"
+  "deployment": "First four-image preview deployment passed both Vercel checks; expanded runner preview pending",
+  "browserQA": "blocked: Vercel preview requires sign-in; local review browser cannot reach the isolated development server",
+  "integratedImageMasters": 12,
+  "integratedAssetHashesAndDimensions": "verified for all 13 paths",
+  "staticSnapshotExport": "failed: pre-existing query-dependent /line/[ref] route awaits searchParams; tracked snapshots restored"
 }

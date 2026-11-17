@@ -46,7 +46,6 @@ const EXTRA: Record<string, CatalogView[]> = {
   ],
   "ms-runner-1101-butter": [
     { id: "threequarter", src: "/runners/1213/1101-butter-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Brown Mesh, the pair" },
-    { id: "study", src: "/runners/1213/1101-brown-atelier.webp", label: "Atelier", alt: "MADE SAiNT 1101 Runner — Brown Mesh, atelier floor" },
     { id: "product", src: "/runners/1213/1101-brown-pair.webp", label: "Studio", alt: "MADE SAiNT 1101 Runner — Brown Mesh, studio pair" },
   ],
   "ms-runner-1101-teal": [

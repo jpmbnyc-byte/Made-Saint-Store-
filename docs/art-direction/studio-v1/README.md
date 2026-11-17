@@ -30,7 +30,7 @@ The direction is one neutral charcoal studio, a broad upper-left key and readabl
 5. Run `npm run test:studio` and `npm run imagery:release`. The latter is expected to fail on this draft. Passing it establishes asset records only; integrate those mappings into all actual image owners, gallery/zoom/social/desktop/mobile paths, and check for double grading.
 6. Complete repository tests, lint, production build and visual checks at 390 px and 1440 px plus zoom. Follow `07_QA_AND_MERGE.md`; verify the real main commit and deployment separately.
 
-The draft intentionally introduces no CSS filter, photographic overlay, changed product assignment or invented replacement for a missing source.
+The integration uses versioned image assets resolved from the production manifest. Remaining source blockers are recorded in the inventory.
 
 ## Static snapshot export
 

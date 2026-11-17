@@ -1,4 +1,959 @@
 {
   "schemaVersion": 1,
-  "decisions": {}
+  "decisions": {
+    "/bags/backpack-front.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/bags/backpack-open.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/bags/backpack-side.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/brand/name-0929.webp": {
+      "disposition": "preserve_brand_graphic",
+      "reason": "Brand artwork retains its original legibility and presentation.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/brand/name-1101.webp": {
+      "disposition": "preserve_brand_graphic",
+      "reason": "Brand artwork retains its original legibility and presentation.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/brand/name-1223.webp": {
+      "disposition": "preserve_brand_graphic",
+      "reason": "Brand artwork retains its original legibility and presentation.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/brand/wordmark-light.png": {
+      "disposition": "preserve_brand_graphic",
+      "reason": "Brand artwork retains its original legibility and presentation.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/cast/cast-01.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/cast/cast-02.jpg": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/cast/cast-03.jpg": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/cast/cast-04.jpg": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/cast/cast-05.jpg": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/collection/butter-tee.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/collection/cast003/sheet.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/collection/hero-cast.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/collection/ines-campaign.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/collection/jersey-sage-pack.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/collection/lucien-tulips.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/collection/malik-chair.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/collection/malik-coast.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/collection/ren-sage-studio.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/collection/rust.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/collection/solene-campaign.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/collection/solene-walk.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/collection/styling-ivory.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/collection/styling-plum.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/collection/trail-mule.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/editorial/fit-ease.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/editorial/saint-john-back.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/editorial/saint-john-front.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/editorial/saint-michael-front.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/editorial/tonal-carbon.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/hero/campaign/butter.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/hero/campaign/camel.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/hero/campaign/olive.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/hero/campaign/rose.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/hero/campaign/teal.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/hero/campaign/washed.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/hero/chalk-tall.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/hero/chalk-wide.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/hero/leather-navy.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/hero/saint-john.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/hero/saint-michael.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/knit/turtleneck-mauve-views.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/knit/turtleneck-mauve.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f08.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f09.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f10.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f11.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f12.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f13.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f14.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f15.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f16.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f17.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f18.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f19.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f20.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f21.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f22.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f24.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f28.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f31.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f34.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f38.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f39.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f40.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f41.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f42.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f43.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f44.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f45.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f46.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f47.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f48.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f49.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f51.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f52.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f53.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f54.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f55.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f56.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f57.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f58.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f59.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/line/f65.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/opening/black-hand.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/opening/black-worn.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/opening/butter-hand.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/opening/butter-worn.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/opening/leather-tall.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/opening/leather.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/opening/mesh-earth-hand.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/opening/mesh-rose-hand.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/opening/mesh-rose-overhead.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/opening/mesh-rose-plinth.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/opening/mesh-rose-side.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/opening/mesh-rose.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/opening/navy-hand.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/opening/navy-wave.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/opening/runner-black.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/opening/runner-butter.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/opening/runner-navy.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/runners/0929-carbon.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/runners/0929-chambray.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/runners/0929-chestnut.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/runners/0929-dune.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/runners/0929-sage.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/runners/0929-slate.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/runners/1213/1101-bronze-lateral.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/runners/1213/1101-bronze-pair.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/runners/1213/1101-navy-stool.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/runners/1213/shoulder-bag-plum.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/runners/1213/tongue-wallet.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/stories/chalk-navy.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/stories/chalk-threequarter.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/stories/espresso-oxblood.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/stories/graphite-tonal.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/stories/navy-intrecciato.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/stories/washed-denim-threequarter.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/stories/washed-denim.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/blouson-dusty-rose.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/blouson-rose-sheet.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/capsules/masters/01_miami_arrival_men_women.png": {
+      "disposition": "preserve_source_master",
+      "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/capsules/masters/02_brooklyn_after_dark_men_women.png": {
+      "disposition": "preserve_source_master",
+      "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/capsules/masters/03_course_to_club_men_women.png": {
+      "disposition": "preserve_source_master",
+      "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/capsules/masters/04_camel_residence_men_women.png": {
+      "disposition": "preserve_source_master",
+      "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/capsules/masters/05_olive_saint_men_women.png": {
+      "disposition": "preserve_source_master",
+      "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/capsules/masters/06_blue_hour_men_women.png": {
+      "disposition": "preserve_source_master",
+      "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/capsules/masters/07_private_departure_men_women.png": {
+      "disposition": "preserve_source_master",
+      "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/capsules/masters/08_gallery_opening_men_women.png": {
+      "disposition": "preserve_source_master",
+      "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/capsules/masters/09_downtown_denim_men_women.png": {
+      "disposition": "preserve_source_master",
+      "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/capsules/masters/10_winter_tunnel_men_women.png": {
+      "disposition": "preserve_source_master",
+      "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/capsules/masters/11_clubhouse_social_men_women.png": {
+      "disposition": "preserve_source_master",
+      "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/capsules/masters/12_weekend_residence_men_women.png": {
+      "disposition": "preserve_source_master",
+      "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/gabriel-seven.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/look-art-jacket-magdalene.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/look-nylon-travel.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/trouser-rose-sheet.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/trouser-terracotta.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/wardrobe/turtleneck-teal-sheet.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/azores/blue-tiled-church.webp": {
+      "disposition": "preserve_location_reference",
+      "reason": "Keep the São Roque location photography as place evidence.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/azores/fenais-coast.webp": {
+      "disposition": "preserve_location_reference",
+      "reason": "Keep the São Roque location photography as place evidence.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/azores/garden-entrance.webp": {
+      "disposition": "preserve_location_reference",
+      "reason": "Keep the São Roque location photography as place evidence.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/azores/igreja-sao-roque-street.webp": {
+      "disposition": "preserve_location_reference",
+      "reason": "Keep the São Roque location photography as place evidence.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/azores/igreja-sao-roque.webp": {
+      "disposition": "preserve_location_reference",
+      "reason": "Keep the São Roque location photography as place evidence.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/azores/praia-sao-roque.webp": {
+      "disposition": "preserve_location_reference",
+      "reason": "Keep the São Roque location photography as place evidence.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/azores/procession.webp": {
+      "disposition": "preserve_location_reference",
+      "reason": "Keep the São Roque location photography as place evidence.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/azores/refs/azulejo-walker.webp": {
+      "disposition": "preserve_location_reference",
+      "reason": "Keep the São Roque location photography as place evidence.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/azores/refs/garden-gate.webp": {
+      "disposition": "preserve_location_reference",
+      "reason": "Keep the São Roque location photography as place evidence.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/azores/refs/procession.webp": {
+      "disposition": "preserve_location_reference",
+      "reason": "Keep the São Roque location photography as place evidence.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/azores/refs/workshop-gate-sign.webp": {
+      "disposition": "preserve_location_reference",
+      "reason": "Keep the São Roque location photography as place evidence.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/azores/refs/workshop-street.webp": {
+      "disposition": "preserve_location_reference",
+      "reason": "Keep the São Roque location photography as place evidence.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/azores/workshop-gate.webp": {
+      "disposition": "preserve_location_reference",
+      "reason": "Keep the São Roque location photography as place evidence.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/coast.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/courtyard.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/gathering.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/hero.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    },
+    "/world/walk.webp": {
+      "disposition": "retouch",
+      "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+      "reviewedBy": "Codex",
+      "reviewedAt": "2026-11-17"
+    }
+  }
 }

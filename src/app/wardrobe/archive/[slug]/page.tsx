@@ -46,7 +46,7 @@ export default async function ArchiveChapterPage({
           <p className="ms-lede mt-4 max-w-2xl">{chapter.line}</p>
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-start">
-            <figure className="relative aspect-[3/4] overflow-hidden bg-[#efefed]">
+            <figure className="ms-studio-stage relative aspect-[3/4] overflow-hidden">
               <Image
                 src={chapter.primary.src}
                 alt={chapter.primary.alt}
@@ -97,15 +97,20 @@ export default async function ArchiveChapterPage({
                   <ul className="mt-4 grid gap-4 sm:grid-cols-2">
                     {chapter.alternates.map((view) => (
                       <li key={view.src}>
-                        <figure className="relative aspect-[4/5] overflow-hidden bg-[#efefed]">
-                          <Image
-                            src={view.src}
-                            alt={view.alt}
-                            fill
-                            sizes="(min-width: 640px) 20vw, 45vw"
-                            className="object-cover object-top"
-                          />
-                        </figure>
+                        <a href={view.src} aria-label={`Enlarge ${view.alt}`} className="block">
+                          <figure
+                            className="ms-studio-stage relative overflow-hidden"
+                            style={{ aspectRatio: view.width && view.height ? view.width / view.height : 4 / 5 }}
+                          >
+                            <Image
+                              src={view.src}
+                              alt={view.alt}
+                              fill
+                              sizes="(min-width: 640px) 20vw, 45vw"
+                              className="object-contain"
+                            />
+                          </figure>
+                        </a>
                         <p className="mt-2 text-[12px] tracking-[0.08em] text-[#1c1a17]/55 uppercase">
                           {view.label}
                         </p>

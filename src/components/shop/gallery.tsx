@@ -4,8 +4,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { CatalogView } from "@/lib/catalog";
 
 /**
- * Warm Atelier sneaker media: ivory ground, editorial pair / studio toggle,
- * enlarge dialog. No dark player well, no overlay captions.
+ * Charcoal studio sneaker media: house stage ground, editorial pair / studio
+ * toggle, enlarge dialog. No CSS filters on photographs.
  */
 export function ProductGallery({
   views,
@@ -91,7 +91,7 @@ export function ProductGallery({
       <button
         ref={heroRef}
         type="button"
-        className="relative block w-full overflow-hidden bg-[#ece3d5]"
+        className="ms-studio-stage relative block w-full overflow-hidden"
         style={{ aspectRatio: "0.765" }}
         onPointerDown={() => {
           scrollYRef.current = window.scrollY;
@@ -101,8 +101,8 @@ export function ProductGallery({
         aria-label={`Enlarge ${productName} photograph`}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={currentSrc} alt={currentAlt} className="h-full w-full object-cover" fetchPriority="high" />
-        <span className="absolute right-3 bottom-3 bg-[#f6f2eb] px-2.5 py-2 text-[11px] tracking-[0.14em] text-[#352a23] uppercase opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100">
+        <img src={currentSrc} alt={currentAlt} className="h-full w-full object-contain" fetchPriority="high" />
+        <span className="absolute right-3 bottom-3 bg-[#f6f2eb]/92 px-2.5 py-2 text-[11px] tracking-[0.14em] text-[#352a23] uppercase opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100">
           Enlarge
         </span>
       </button>
@@ -145,10 +145,10 @@ export function ProductGallery({
                 onClick={() => selectStudio(index)}
                 aria-label={view.label}
                 aria-pressed={active}
-                className={`relative h-16 w-16 shrink-0 overflow-hidden bg-[#ece3d5] ${active ? "ring-1 ring-[#352a23]" : "opacity-75 hover:opacity-100"}`}
+                className={`ms-studio-stage relative h-16 w-16 shrink-0 overflow-hidden ${active ? "ring-1 ring-[#352a23]" : "opacity-75 hover:opacity-100"}`}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={view.src} alt="" className="h-full w-full object-cover" loading="lazy" />
+                <img src={view.src} alt="" className="h-full w-full object-contain" loading="lazy" />
               </button>
             );
           })}
@@ -157,7 +157,7 @@ export function ProductGallery({
 
       <div className="mt-3 hidden flex-col gap-2 lg:flex">
         {ordered.slice(0, 3).map((view, index) => (
-          <figure key={`${view.src}-stack-${index}`} className="bg-[#ece3d5]">
+          <figure key={`${view.src}-stack-${index}`} className="ms-studio-stage">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={view.src}
@@ -171,7 +171,7 @@ export function ProductGallery({
 
       <dialog
         ref={dialogRef}
-        className="fixed inset-0 z-[80] m-0 hidden h-[100dvh] max-h-none w-full max-w-none items-center justify-center border-0 bg-[#261e16cc] p-4 open:flex backdrop:bg-[#261e16cc]"
+        className="fixed inset-0 z-[80] m-0 hidden h-[100dvh] max-h-none w-full max-w-none items-center justify-center border-0 bg-[#1c1a17cc] p-4 open:flex backdrop:bg-[#1c1a17cc]"
         onClick={(event) => {
           if (event.target === event.currentTarget) setEnlarge(false);
         }}
@@ -181,11 +181,11 @@ export function ProductGallery({
         }}
         onClose={() => setEnlarge(false)}
       >
-        <div className="relative max-h-[90dvh] w-full max-w-[1000px] overflow-auto border border-[#dfd6ca] bg-[#f6f2eb] p-4 md:p-8">
+        <div className="ms-studio-stage relative max-h-[90dvh] w-full max-w-[1000px] overflow-auto p-4 md:p-8">
           <button
             type="button"
             autoFocus
-            className="absolute top-3 right-3 z-10 px-2 text-[11px] tracking-[0.16em] uppercase"
+            className="absolute top-3 right-3 z-10 px-2 text-[11px] tracking-[0.16em] text-[#f6f4ef] uppercase"
             onClick={() => setEnlarge(false)}
           >
             Close

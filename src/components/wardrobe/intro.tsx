@@ -51,7 +51,7 @@ export function WardrobeIntro() {
           </p>
         </div>
 
-        <figure className="relative aspect-[4/5] overflow-hidden bg-[#efefed] md:aspect-[5/6]">
+        <figure className="ms-studio-stage relative aspect-[4/5] overflow-hidden md:aspect-[5/6]">
           <Image
             src="/wardrobe/hero-private.webp"
             alt="A private wardrobe fitting — navy pinstripe set, MADE SAiNT boxes and a garment bag"

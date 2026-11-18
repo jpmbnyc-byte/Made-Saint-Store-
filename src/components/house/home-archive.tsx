@@ -20,7 +20,7 @@ export function HomeArchive() {
           {HOME_ARCHIVE_CHAPTERS.map((chapter) => (
             <li key={chapter.slug}>
               <Link href={`/wardrobe/archive/${chapter.slug}`} className="group block">
-                <span className="relative block aspect-[3/4] overflow-hidden bg-[#efefed]">
+                <span className="ms-studio-stage relative block aspect-[3/4] overflow-hidden">
                   <Image
                     src={chapter.primary.src}
                     alt={chapter.primary.alt}

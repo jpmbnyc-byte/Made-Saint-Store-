@@ -44,10 +44,10 @@ export function CampaignBanner({
 }) {
   const Heading = heading;
   const frameClass = compact
-    ? "relative mx-auto aspect-[4/5] max-h-[min(58vh,640px)] w-full max-w-[1440px] overflow-hidden bg-[#efefed] md:aspect-[16/10] md:max-h-[min(62vh,680px)]"
+    ? "relative mx-auto aspect-[4/5] max-h-[min(58vh,640px)] w-full max-w-[1440px] overflow-hidden ms-studio-stage md:aspect-[16/10] md:max-h-[min(62vh,680px)]"
     : tall
-      ? "relative mx-auto aspect-[3/4] w-full max-w-[1440px] overflow-hidden bg-[#efefed] sm:aspect-[4/5] md:aspect-[5/6] lg:aspect-[4/5]"
-      : "relative mx-auto aspect-[4/5] w-full max-w-[1440px] overflow-hidden bg-[#efefed] md:aspect-[3/4]";
+      ? "relative mx-auto aspect-[3/4] w-full max-w-[1440px] overflow-hidden ms-studio-stage sm:aspect-[4/5] md:aspect-[5/6] lg:aspect-[4/5]"
+      : "relative mx-auto aspect-[4/5] w-full max-w-[1440px] overflow-hidden ms-studio-stage md:aspect-[3/4]";
 
   return (
     <section

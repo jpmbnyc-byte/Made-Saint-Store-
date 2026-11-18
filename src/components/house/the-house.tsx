@@ -34,7 +34,7 @@ export function TheHouse() {
           <p className="mt-8 font-serif text-2xl tracking-[-0.01em]">{copy.house.conviction}</p>
           <p className="ms-lede mt-3 max-w-lg">{copy.house.collection}</p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            <figure className="relative aspect-[3/4] overflow-hidden bg-[#efefed]">
+            <figure className="ms-studio-stage relative aspect-[3/4] overflow-hidden">
               <Image
                 src="/wardrobe/archive/course-to-club-primary.webp"
                 alt="Blue printed jersey over a shirt and tie — conviction worn daily"
@@ -43,7 +43,7 @@ export function TheHouse() {
                 className="object-cover object-top"
               />
             </figure>
-            <figure className="relative aspect-[3/4] overflow-hidden bg-[#efefed]">
+            <figure className="ms-studio-stage relative aspect-[3/4] overflow-hidden">
               <Image
                 src="/wardrobe/archive/miami-arrival-primary.webp"
                 alt="Pale sage set with a sculptural runner beneath a tailored trouser"

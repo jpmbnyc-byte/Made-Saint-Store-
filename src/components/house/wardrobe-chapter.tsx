@@ -16,7 +16,7 @@ export function WardrobeChapter() {
     >
       <div className="mx-auto max-w-[1200px] px-5 py-14 md:px-8 md:py-20">
         <div className="grid gap-10 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:items-center md:gap-14">
-          <div className="relative aspect-[3/4] overflow-hidden bg-[#efefed] md:aspect-[4/5]">
+          <div className="ms-studio-stage relative aspect-[3/4] overflow-hidden md:aspect-[4/5]">
             <Image
               src={look.primary.src}
               alt={look.primary.alt}

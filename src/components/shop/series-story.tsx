@@ -27,7 +27,7 @@ export function SeriesStoryPanel({ story, leadColorway }: { story: SeriesStory; 
             {expanded ? "Close the founder’s reflection" : "Read the founder’s reflection"}
           </button>
         </div>
-        <div className="min-w-0 bg-[#ece3d5]">
+        <div className="ms-studio-stage min-w-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={story.detail}

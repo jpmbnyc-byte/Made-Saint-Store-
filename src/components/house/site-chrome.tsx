@@ -92,7 +92,7 @@ export function SiteHeader({
         </nav>
 
         <Link href="/" className="justify-self-start md:justify-self-center" aria-label="MADE Saint — home" onClick={() => setOpen(false)}>
-          <Wordmark className="text-[1.35rem] md:text-[1.65rem]" />
+          <Wordmark className="h-7 w-auto sm:h-9" />
         </Link>
 
         <div className="flex items-center justify-end gap-4 md:gap-6">
@@ -147,7 +147,7 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-[#1c1a17]/10 bg-[#f5f0e8] text-[#1c1a17]">
       <div className="mx-auto flex max-w-[1440px] flex-col gap-8 px-4 py-10 md:flex-row md:items-end md:justify-between md:px-8">
-        <Wordmark className="text-[1.25rem]" />
+        <Wordmark className="h-7 w-auto" />
         <nav className="flex flex-wrap gap-x-6 gap-y-3 text-[12px] tracking-[0.08em]" aria-label="Footer">
           <Link href="/brand" className="hover:opacity-70">
             About

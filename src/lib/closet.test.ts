@@ -57,20 +57,24 @@ test("creating a group names it, attaches selected pieces, and refuses a blank n
   assert.equal(hasPiece(named, { productRef: "R027", color: "Cobalt", size: "M", lookId: "" }), true);
 });
 
-test("only a launched runner with a size can enter the bag, and a retry does not duplicate", () => {
-  const line = decideBag({ productRef: "R027", kind: "line", size: "M", launch: false });
+test("launched runners need a size; priced line styles can enter the bag for quotation", () => {
+  const unpriced = decideBag({ productRef: "R027", kind: "line", size: "M", launch: false, priced: false });
+  const priced = decideBag({ productRef: "R027", kind: "line", size: "M", launch: false, priced: true });
   const bare = decideBag({ productRef: "ms-runner-1101-butter", kind: "runner", size: "", launch: true });
   const pair = decideBag({ productRef: "ms-runner-1101-butter", kind: "runner", size: "9", launch: true });
-  assert.equal(line.ok, false);
+  assert.equal(unpriced.ok, false);
+  assert.equal(priced.ok, true);
   assert.equal(bare.ok, false);
   assert.equal(pair.ok, true);
-  const first = addToBag(emptyBag(), [line, bare, pair]);
+  const first = addToBag(emptyBag(), [unpriced, bare, pair]);
   assert.deepEqual(first.added, ["ms-runner-1101-butter"]);
   assert.equal(first.blocked.length, 2);
-  const second = addToBag(first.bag, [pair]);
+  const withLine = addToBag(first.bag, [priced], { kind: "line", color: "Cobalt" });
+  assert.deepEqual(withLine.added, ["R027"]);
+  const second = addToBag(withLine.bag, [pair]);
   assert.deepEqual(second.added, []);
   assert.deepEqual(second.alreadyThere, ["ms-runner-1101-butter"]);
-  assert.equal(second.bag.items.length, 1);
+  assert.equal(second.bag.items.length, 2);
 });
 
 test("a corrupt or old closet record opens empty", () => {

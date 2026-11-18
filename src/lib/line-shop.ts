@@ -160,7 +160,7 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     image: frameSrc(35),
     alt: "Malik in a navy zip jacket, white layer, and matching trouser, worn full length",
     frames: [35].map((n) => FRAMES.find((frame) => frame.n === n)!),
-    pieces: [],
+    pieces: [piece("N005", "Jacket", "Midnight"), piece("N006", "Trouser", "Midnight")],
     styling: ["The navy set is made to order. The shoes are brown mules, not a founding runner."],
   },
   {

@@ -11,6 +11,7 @@ import { ShopFooter, ShopHeader } from "@/components/shop/chrome";
 import { ProductGallery } from "@/components/shop/gallery";
 import { ReserveForm } from "@/components/shop/reserve";
 import { SaveRunner } from "@/components/shop/save-runner";
+import { AddRunnerBag } from "@/components/shop/add-runner-bag";
 import { HashScroll } from "@/components/shop/hash-scroll";
 import { ProductBreakdown, SeriesStoryPanel } from "@/components/shop/series-story";
 import { breakdownForProduct, seriesStory } from "@/lib/series-story";
@@ -110,6 +111,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                   sizes={SIZES}
                 />
               </Suspense>
+              {product.launch ? <AddRunnerBag productId={product.id} launch={product.launch} /> : null}
               {product.launch ? <SaveRunner productId={product.id} color={product.line} /> : null}
             </div>
 

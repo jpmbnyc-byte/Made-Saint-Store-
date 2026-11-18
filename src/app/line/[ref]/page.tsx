@@ -14,7 +14,8 @@ import {
   looksForRef,
 } from "@/lib/line-shop";
 import { LINE, frameSrc, lineByRef } from "@/lib/line";
-import { FRAME_PX, largeFramesFor } from "@/lib/imagery";
+import { FRAME_PX, largeFramesFor, productHero } from "@/lib/imagery";
+import { formatUsd } from "@/lib/pricing";
 
 export function generateStaticParams() {
   return LINE.map((item) => ({ ref: item.ref.toLowerCase() }));
@@ -52,8 +53,10 @@ export default async function LineProductPage({
   const heroImage = selectedColorway?.image ?? fromLook?.image ?? looks.find((look) => look.slug === "sand-jersey")?.image;
   const lookSlug = selectedColorway?.look ?? fromLook?.slug;
 
+  const still = !isJersey && frames.length === 0 ? productHero(product.ref) : null;
+
   return (
-    <div className="min-h-screen bg-[#f7f7f5] text-[#111]">
+    <div className="min-h-screen bg-[#f5f0e8] text-[#111]">
       <CollectionChrome view="product" />
       <main className="mx-auto max-w-[1440px] px-4 pb-20 md:px-8">
         <div className="grid min-w-0 gap-10 md:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.7fr)] md:gap-16">
@@ -62,7 +65,7 @@ export default async function LineProductPage({
               <img
                 src={heroImage}
                 alt={selectedColorway ? `${selectedColorway.label} printed jersey` : fromLook?.alt ?? "Printed jersey"}
-                className="w-full bg-[#f3f3f1] object-contain"
+                className="w-full bg-[#efefed] object-contain"
               />
             )}
             {!isJersey && frames.map((frame, index) => {
@@ -75,23 +78,34 @@ export default async function LineProductPage({
                   width={size?.[0]}
                   height={size?.[1]}
                   loading={index === 0 ? "eager" : "lazy"}
-                  className="w-full bg-[#f3f3f1] object-contain"
+                  className="w-full bg-[#efefed] object-contain"
                 />
               );
             })}
-            {!isJersey && frames.length === 0 && looks[0] && (
-              <img src={looks[0].image} alt={looks[0].alt} className="w-full bg-[#f3f3f1] object-contain" />
+            {!isJersey && frames.length === 0 && still && (
+              <img
+                src={still.src}
+                alt={still.alt}
+                width={still.width}
+                height={still.height}
+                className="w-full bg-[#efefed] object-contain"
+              />
+            )}
+            {!isJersey && frames.length === 0 && !still && looks[0] && (
+              <img src={looks[0].image} alt={looks[0].alt} className="w-full bg-[#efefed] object-contain" />
             )}
             {isJersey && frames.map((frame) => (
-              <img key={frame.n} src={frameSrc(frame.n)} alt={frame.alt} className="w-full bg-[#f3f3f1] object-contain" />
+              <img key={frame.n} src={frameSrc(frame.n)} alt={frame.alt} className="w-full bg-[#efefed] object-contain" />
             ))}
           </div>
           <div>
             <p className="text-[11px] tracking-[0.18em] uppercase text-[#111]/50">{product.category}</p>
-            <h1 className="mt-3 text-2xl tracking-tight md:text-3xl">
+            <h1 className="mt-3 font-serif text-[clamp(2rem,4vw,2.75rem)] tracking-[-0.02em]">
               {isJersey && selectedColorway ? `${selectedColorway.color} printed jersey` : customerName(product)}
             </h1>
-            <p className="mt-5 text-lg">{status.price ?? "Not offered"}</p>
+            <p className="mt-5 font-serif text-[1.75rem] tabular-nums">
+              {product.retail != null ? formatUsd(product.retail) : status.price ?? "Not offered"}
+            </p>
             <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#111]/70">{status.detail}</p>
             {isJersey && (
               <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#111]/70">

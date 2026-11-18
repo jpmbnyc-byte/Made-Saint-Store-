@@ -33,8 +33,11 @@ export type ClosetData = {
 
 export type BagItem = {
   productId: string;
+  /** Defaults to runner for older bag payloads. */
+  kind?: "runner" | "line";
   size: string;
   qty: number;
+  color?: string;
 };
 
 export type BagData = { version: 1; items: BagItem[] };
@@ -186,16 +189,32 @@ export type BagDecision =
   | { ok: true; productId: string; size: string; qty: number }
   | { ok: false; productRef: string; reason: string };
 
-/** Runners with a size can be requested through the existing pair page. Line styles cannot. */
-export function decideBag(input: { productRef: string; kind: "line" | "runner"; size: string; launch: boolean }): BagDecision {
-  if (input.kind !== "runner" || !input.launch) {
+/** Runners with a size check out. Priced Line styles enter the bag for a quotation checkout. */
+export function decideBag(input: {
+  productRef: string;
+  kind: "line" | "runner";
+  size: string;
+  launch: boolean;
+  priced?: boolean;
+}): BagDecision {
+  if (input.kind === "runner") {
+    if (!input.launch) {
+      return { ok: false, productRef: input.productRef, reason: "This runner is not open for checkout." };
+    }
+    if (!input.size) return { ok: false, productRef: input.productRef, reason: "Choose a size before checkout." };
+    return { ok: true, productId: input.productRef, size: input.size, qty: 1 };
+  }
+  if (!input.priced) {
     return { ok: false, productRef: input.productRef, reason: "This style is made through an enquiry. It is not a checkout item." };
   }
-  if (!input.size) return { ok: false, productRef: input.productRef, reason: "Choose a size before purchase." };
-  return { ok: true, productId: input.productRef, size: input.size, qty: 1 };
+  return { ok: true, productId: input.productRef, size: input.size || "", qty: 1 };
 }
 
-export function addToBag(bag: BagData, decisions: BagDecision[]): { bag: BagData; added: string[]; blocked: { productRef: string; reason: string }[]; alreadyThere: string[] } {
+export function addToBag(
+  bag: BagData,
+  decisions: BagDecision[],
+  meta: { kind?: "runner" | "line"; color?: string } = {},
+): { bag: BagData; added: string[]; blocked: { productRef: string; reason: string }[]; alreadyThere: string[] } {
   const added: string[] = [];
   const blocked: { productRef: string; reason: string }[] = [];
   const alreadyThere: string[] = [];
@@ -205,13 +224,38 @@ export function addToBag(bag: BagData, decisions: BagDecision[]): { bag: BagData
       blocked.push({ productRef: decision.productRef, reason: decision.reason });
       continue;
     }
-    const existing = items.find((item) => item.productId === decision.productId && item.size === decision.size);
+    const kind = meta.kind ?? "runner";
+    const existing = items.find(
+      (item) =>
+        item.productId === decision.productId &&
+        item.size === decision.size &&
+        (item.kind ?? "runner") === kind &&
+        (item.color ?? "") === (meta.color ?? ""),
+    );
     if (existing) {
       alreadyThere.push(decision.productId);
       continue;
     }
-    items = [...items, { productId: decision.productId, size: decision.size, qty: decision.qty }];
+    items = [
+      ...items,
+      {
+        productId: decision.productId,
+        kind,
+        size: decision.size,
+        qty: decision.qty,
+        color: meta.color,
+      },
+    ];
     added.push(decision.productId);
   }
   return { bag: { version: 1, items }, added, blocked, alreadyThere };
+}
+
+export function removeBagItem(bag: BagData, productId: string, size: string, kind: "runner" | "line" = "runner"): BagData {
+  return {
+    ...bag,
+    items: bag.items.filter(
+      (item) => !(item.productId === productId && item.size === size && (item.kind ?? "runner") === kind),
+    ),
+  };
 }

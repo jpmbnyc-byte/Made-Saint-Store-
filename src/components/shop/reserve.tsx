@@ -105,21 +105,25 @@ export function ReserveForm({
       {error && <p className="text-[13px] text-[#9a2a1f]">{error}</p>}
 
       <div className="border border-[#1c1a17]/15 px-4 py-3 text-sm leading-relaxed text-[#1c1a17]/75">
-        <p className="text-[11px] tracking-[0.14em] text-[#1c1a17] uppercase">Enquiry</p>
+        <p className="text-[11px] tracking-[0.14em] text-[#1c1a17] uppercase">
+          {payments === "stripe" ? "Checkout" : "Reserve"}
+        </p>
         <p className="mt-2">{copy.runnerProduct.body}</p>
-        <p className="mt-2">{copy.enquiry.noPayment}</p>
-        {payments === "stripe" && (
-          <p className="mt-2">Listed reference ${priceUsd}. Checkout, when offered, follows the terms shown there.</p>
+        <p className="mt-2">Listed reference ${priceUsd}.</p>
+        {payments === "stripe" ? (
+          <p className="mt-2">Continue to secure checkout. Availability and delivery are confirmed with your order.</p>
+        ) : (
+          <p className="mt-2">{copy.enquiry.noPayment}</p>
         )}
       </div>
 
       <button
         type="submit"
         disabled={busy}
-        className="flex h-14 w-full items-center justify-center gap-3 bg-[#1c1a17] text-[11px] tracking-[0.2em] text-[#f6f4ef] uppercase transition hover:bg-[#1c1a17]/85 disabled:opacity-60"
+        className="flex h-14 w-full items-center justify-center gap-3 bg-[#B03236] text-[11px] tracking-[0.2em] text-[#f6f4ef] uppercase transition hover:opacity-90 disabled:opacity-60"
       >
         {busy ? <Loader2 className="size-4 animate-spin" /> : null}
-        {busy ? copy.enquiry.submitting : copy.runnerProduct.primaryAction}
+        {busy ? copy.enquiry.submitting : payments === "stripe" ? "Checkout" : "Reserve this pair"}
       </button>
       <p className="text-center text-sm leading-relaxed text-[#1c1a17]/70">
         {offerLine(productById(productId)?.series ?? "0929")}

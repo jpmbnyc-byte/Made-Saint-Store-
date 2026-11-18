@@ -149,7 +149,7 @@ export const FRAMES: Frame[] = [
   { n: 32, alt: "Ren in the grouped-stripe suit, on a course", refs: ["R031", "R032"] },
   { n: 33, alt: "Ren in the grouped-stripe suit, full length, on a course", refs: ["R031", "R032"] },
   { n: 34, alt: "Navy zip set on a course. Not the pinstripe styles", refs: [] },
-  { n: 35, alt: "Malik in the navy pinstripe zip set, full length, on a course", refs: [] },
+  { n: 35, alt: "Malik in the navy Arrival zip set, full length, on a course", refs: ["N005", "N006"] },
   { n: 36, alt: "Lucien in a cobalt zip jacket on a course", refs: ["R027"] },
   { n: 37, alt: "Lucien in a cobalt zip jacket, full length, on a course", refs: ["R027"] },
   { n: 38, alt: "Blue-grey zip leisure set", refs: [] },

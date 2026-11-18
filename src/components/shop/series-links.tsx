@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { SeriesId } from "@/lib/business";
 import { seriesHref } from "@/lib/business";
 
-const SERIES: SeriesId[] = ["1101", "1213", "0929"];
+const SERIES: SeriesId[] = ["0106", "1101", "1213", "0929"];
 
 function scrollToSeries(series: SeriesId) {
   const el = document.getElementById(series);

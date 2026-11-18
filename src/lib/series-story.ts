@@ -20,6 +20,28 @@ export type SeriesStory = {
  * Calendar dates are Catholic feast days; digit meanings are personal reflection.
  */
 export const SERIES_STORIES: Record<SeriesId, SeriesStory> = {
+  "0106": {
+    series: "0106",
+    date: "January 6",
+    feast: "The Epiphany of the Lord",
+    title: "Shown in light.",
+    quote:
+      "0106 is a wardrobe runner meant to be seen with the pieces around it — colour, crease, and sole working as one.",
+    detail: "/runners/0106/forest-stone.webp",
+    editorialHero: "/looks/set12/ivory-forest.webp",
+    leadProductId: "ms-runner-0106-forest-stone",
+    parts: ["Forest suede", "Stone accents", "Cream midsole"],
+    facts: [
+      "Forest suede overlays in the Forest / Stone colourway.",
+      "Stone accents on the tongue, laces, and signature mark.",
+      "A cream sculpted midsole with black traction rubber.",
+    ],
+    reflection: [
+      "January 6 marks the Epiphany: a feast of manifestation, of what was hidden being brought into the open.",
+      "In the sequence 0-1-0-6 I read an origin, a step forward, a return to origin, then a fuller step — motion that reveals rather than conceals.",
+      "For MADE SAiNT, 0106 is the runner that completes a look already considered: knit, column, and sole in conversation.",
+    ],
+  },
   "1101": {
     series: "1101",
     date: "November 1",

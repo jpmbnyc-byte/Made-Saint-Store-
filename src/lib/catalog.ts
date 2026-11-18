@@ -20,6 +20,36 @@ const overhead = (p: Product): CatalogView => ({
 const worn = "Worn study. Not a client.";
 
 const EXTRA: Record<string, CatalogView[]> = {
+  "ms-runner-0106-rust-espresso": [
+    { id: "threequarter", src: "/runners/0106/rust-espresso.webp", label: "Board", alt: "MADE SAiNT 0106 Runner — Rust / Espresso, product board" },
+    { id: "reverse", src: "/runners/0106/rust-espresso-alt.webp", label: "Profile", alt: "MADE SAiNT 0106 Runner — Rust / Espresso, alternate board" },
+    { id: "study", src: "/looks/set12/ivory-rust.webp", label: "Worn", alt: `MADE SAiNT 0106 Runner — Rust / Espresso. ${worn}` },
+  ],
+  "ms-runner-0106-ochre-forest": [
+    { id: "threequarter", src: "/runners/0106/ochre-forest.webp", label: "Board", alt: "MADE SAiNT 0106 Runner — Ochre / Forest, product board" },
+  ],
+  "ms-runner-0106-forest-stone": [
+    { id: "threequarter", src: "/runners/0106/forest-stone.webp", label: "Board", alt: "MADE SAiNT 0106 Runner — Forest / Stone, product board" },
+    { id: "study", src: "/looks/set12/ivory-forest.webp", label: "Worn", alt: `MADE SAiNT 0106 Runner — Forest / Stone. ${worn}` },
+  ],
+  "ms-runner-0106-cobalt-ivory": [
+    { id: "threequarter", src: "/runners/0106/cobalt-ivory.webp", label: "Board", alt: "MADE SAiNT 0106 Runner — Cobalt / Ivory, product board" },
+    { id: "study", src: "/looks/set12/ivory-cobalt.webp", label: "Worn", alt: `MADE SAiNT 0106 Runner — Cobalt / Ivory. ${worn}` },
+  ],
+  "ms-runner-0106-rose-taupe": [
+    { id: "threequarter", src: "/runners/0106/rose-taupe.webp", label: "Board", alt: "MADE SAiNT 0106 Runner — Rose / Taupe, product board" },
+    { id: "study", src: "/looks/set12/taupe-zip.webp", label: "Worn", alt: `MADE SAiNT 0106 Runner — Rose / Taupe. ${worn}` },
+    { id: "study", src: "/looks/set12/polo-mauve.webp", label: "Worn, polo", alt: `MADE SAiNT 0106 Runner — Rose / Taupe, with knit polo. ${worn}` },
+  ],
+  "ms-runner-0106-butter-sulphur": [
+    { id: "threequarter", src: "/runners/0106/butter-sulphur.webp", label: "Board", alt: "MADE SAiNT 0106 Runner — Butter / Sulphur, product board" },
+    { id: "study", src: "/looks/set12/forest-mustard.webp", label: "Worn", alt: `MADE SAiNT 0106 Runner — Butter / Sulphur. ${worn}` },
+    { id: "study", src: "/looks/set12/bone-hoodie.webp", label: "Worn, bone", alt: `MADE SAiNT 0106 Runner — Butter / Sulphur, with bone leisure set. ${worn}` },
+  ],
+  "ms-runner-0106-midnight-pearl": [
+    { id: "threequarter", src: "/runners/0106/midnight-pearl.webp", label: "Board", alt: "MADE SAiNT 0106 Runner — Midnight / Pearl, product board" },
+    { id: "study", src: "/looks/set12/charcoal-lilac.webp", label: "Worn", alt: `MADE SAiNT 0106 Runner — Midnight / Pearl. ${worn}` },
+  ],
   "ms-runner-chalk-navy": [
     { id: "threequarter", src: "/runners/navy-ivory-pair.webp", label: "Pair", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, the pair" },
     { id: "threequarter", src: "/runners/navy-ivory-threequarter.webp", label: "Three-quarter", alt: "MADE SAiNT 0929 Runner — Navy / Ivory, three-quarter" },

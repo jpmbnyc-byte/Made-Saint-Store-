@@ -33,6 +33,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ShopPage() {
+  const wardrobe = productsIn("0106");
   const lead = productsIn("1101");
   const sculpted = productsIn("1213");
   const founding = productsIn("0929");
@@ -48,33 +49,61 @@ export default async function ShopPage() {
       <section className="mx-auto max-w-[1100px] px-5 pt-12 md:px-8 md:pt-16">
         <h1 className="font-serif text-[44px] leading-[0.95] text-[#1c1a17] md:text-[64px]">{copy.footwearCollection.heading}</h1>
         <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">{copy.footwearCollection.intro}</p>
+        <p className="mt-4 max-w-xl text-[14px] leading-relaxed text-[#1c1a17]/65">
+          Wardrobe knits and columns live on{" "}
+          <Link href="/pieces" className="underline underline-offset-4">
+            Pieces
+          </Link>
+          .
+        </p>
       </section>
 
-      <section id="1101" className="mx-auto max-w-[1100px] scroll-mt-36 px-5 py-12 md:scroll-mt-28 md:px-8 md:py-16">
-        <SeriesPlate series="1101" size="md" />
+      <section id="0106" className="mx-auto max-w-[1100px] scroll-mt-36 px-5 py-12 md:scroll-mt-28 md:px-8 md:py-16">
+        <SeriesPlate series="0106" size="md" />
         <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">
-          Brown Mesh, Teal, Navy, Blush and Onyx. $550.
+          Rust / Espresso, Ochre / Forest, Forest / Stone, Cobalt / Ivory, Rose / Taupe, Butter / Sulphur and Midnight / Pearl. $550.
+        </p>
+        <p className="mt-3 max-w-xl text-[14px] leading-relaxed text-[#1c1a17]/65">
+          List price follows the house runner anchor until the working sheet names 0106.{" "}
+          <Link href="/pieces" className="underline underline-offset-4">
+            See the looks
+          </Link>
+          .
         </p>
         <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
-          {lead.map((p) => (
+          {wardrobe.map((p) => (
             <li key={p.id}>
-              <Listing product={p} frame="aspect-square" />
+              <Listing product={p} frame="aspect-[2/1]" />
             </li>
           ))}
         </ul>
       </section>
 
-      <section id="1213" className="scroll-mt-36 border-t border-[#1c1a17]/10 bg-[#f6f4ef] md:scroll-mt-28">
-        <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-8">
-          <SeriesPlate series="1213" size="md" />
-          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
-            Espresso, Olive, Mineral Blue, Midnight, Chestnut, Sacred Light and Graphite. $550.
+      <section id="1101" className="scroll-mt-36 border-t border-[#1c1a17]/10 bg-[#f6f4ef] md:scroll-mt-28">
+        <div className="mx-auto max-w-[1100px] px-5 py-12 md:px-8 md:py-16">
+          <SeriesPlate series="1101" size="md" />
+          <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[#1c1a17]/75">
+            Brown Mesh, Teal, Navy, Blush and Onyx. $550.
           </p>
-          <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3">
-            {sculpted.map((p) => (
-              <Listing key={p.id} product={p} frame="aspect-square" />
+          <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
+            {lead.map((p) => (
+              <li key={p.id}>
+                <Listing product={p} frame="aspect-square" />
+              </li>
             ))}
-          </div>
+          </ul>
+        </div>
+      </section>
+
+      <section id="1213" className="mx-auto max-w-[1100px] scroll-mt-36 border-t border-[#1c1a17]/10 px-5 py-16 md:scroll-mt-28 md:px-8">
+        <SeriesPlate series="1213" size="md" />
+        <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#1c1a17]/70">
+          Espresso, Olive, Mineral Blue, Midnight, Chestnut, Sacred Light and Graphite. $550.
+        </p>
+        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3">
+          {sculpted.map((p) => (
+            <Listing key={p.id} product={p} frame="aspect-square" />
+          ))}
         </div>
       </section>
 

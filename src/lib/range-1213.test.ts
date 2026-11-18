@@ -9,16 +9,28 @@ test("runner and series links open on the title or series plate", () => {
 });
 
 test("the runner series keep the handoff colorways and the price order", () => {
-  assert.deepEqual(SERIES_ORDER, ["1101", "1213", "0929"]);
+  assert.deepEqual(SERIES_ORDER, ["0106", "1101", "1213", "0929"]);
+  assert.equal(productsIn("0106").length, 7);
   assert.equal(productsIn("1101").length, 5);
   assert.equal(productsIn("1213").length, 7);
   assert.equal(productsIn("0929").length, 3);
   const names = productsIn("1213").map((product) => product.name.split("—").pop()?.trim());
   assert.deepEqual(names, ["Espresso", "Olive", "Mineral Blue", "Midnight", "Chestnut", "Sacred Light", "Graphite"]);
+  const wardrobe = productsIn("0106").map((product) => product.name.split("—").pop()?.trim());
+  assert.deepEqual(wardrobe, [
+    "Rust / Espresso",
+    "Ochre / Forest",
+    "Forest / Stone",
+    "Cobalt / Ivory",
+    "Rose / Taupe",
+    "Butter / Sulphur",
+    "Midnight / Pearl",
+  ]);
   for (const product of productsIn("0929")) assert.equal(product.usd, 490);
-  for (const product of [...productsIn("1101"), ...productsIn("1213")]) assert.equal(product.usd, 550);
+  for (const product of [...productsIn("0106"), ...productsIn("1101"), ...productsIn("1213")]) assert.equal(product.usd, 550);
   assert.ok(productsIn("1101")[0].usd >= productsIn("1213")[0].usd);
   assert.ok(productsIn("1101")[0].usd > productsIn("0929")[0].usd);
+  assert.equal(SERIES_PLATE["0106"].src.endsWith("name-0106.webp"), true);
   assert.equal(SERIES_PLATE["0929"].src.endsWith("name-0929.webp"), true);
   assert.equal(SERIES_PLATE["1101"].src.endsWith("name-1101.webp"), true);
   assert.equal(SERIES_PLATE["1213"].alt, "MADE Saint 1213 v1");

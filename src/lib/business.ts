@@ -26,13 +26,14 @@ export const LUXURY_SPEC = [
 ];
 export const LUXURY_UPCHARGE = LUXURY_SPEC.reduce((s, x) => s + x.eur, 0);
 
-export type SeriesId = "1101" | "1213" | "0929";
+export type SeriesId = "0106" | "1101" | "1213" | "0929";
 
-/** Shop, navigation, and homepage order. 1101 leads, at the top price. */
-export const SERIES_ORDER: SeriesId[] = ["1101", "1213", "0929"];
+/** Shop, navigation, and homepage order. 0106 leads the current wardrobe pieces. */
+export const SERIES_ORDER: SeriesId[] = ["0106", "1101", "1213", "0929"];
 
 /** The founder's series plates. Each listing uses the plate that names it. */
 export const SERIES_PLATE: Record<SeriesId, { src: string; alt: string }> = {
+  "0106": { src: "/brand/name-0106.webp", alt: "MADE Saint 0106" },
   "1101": { src: "/brand/name-1101.webp", alt: "MADE Saint 1101 v1" },
   "1213": { src: "/brand/name-1223.webp", alt: "MADE Saint 1213 v1" },
   "0929": { src: "/brand/name-0929.webp", alt: "MADE Saint 0929 v1" },
@@ -59,8 +60,19 @@ const PRICE_MESH = 490;
 const PRICE_TOP = 550;
 /** The 1213 sculpted sole sits at that Bogner price. */
 const PRICE_SCULPTED = PRICE_TOP;
-/** 1101 is listed first. It shares the confirmed top price, Bogner Bucharest at $550. */
+/** 1101 shares the confirmed top price, Bogner Bucharest at $550. */
 const PRICE_1101 = PRICE_TOP;
+/**
+ * 0106 is not on the 17 Nov 2026 working price sheet.
+ * List uses the house runner anchor ($550) until the sheet names 0106; delivery stays quotation-confirmed.
+ */
+const PRICE_0106 = PRICE_TOP;
+const CONSTRUCTION_0106 = [
+  "Suede and textile upper panels",
+  "Cream sculpted midsole",
+  "Black traction outsole",
+  "Side signature mark",
+];
 
 /**
  * Price ladder. The base runner sits just above Bogner's top full-price sneaker and well under
@@ -75,6 +87,13 @@ const CONSTRUCTION_BASE = [
 /** Shared construction for leather/wave 1101 and 1213 colorways that use the Gris Medio mesh family. */
 const CONSTRUCTION_GRIS = ["29 Gris Medio mesh", ...CONSTRUCTION_BASE];
 export const PRODUCTS: Product[] = [
+  { id: "ms-runner-0106-rust-espresso", series: "0106", name: "MADE SAiNT 0106 Runner — Rust / Espresso", line: "Rust panels, espresso suede, cream midsole", usd: PRICE_0106, image: "/runners/0106/rust-espresso.webp", launch: true, materials: ["Rust textile panels", "Espresso suede overlays", "Cream midsole", ...CONSTRUCTION_0106], costUsd: 0, notice: "List price follows the house runner anchor until the working sheet names 0106." },
+  { id: "ms-runner-0106-ochre-forest", series: "0106", name: "MADE SAiNT 0106 Runner — Ochre / Forest", line: "Ochre panels, forest suede, cream midsole", usd: PRICE_0106, image: "/runners/0106/ochre-forest.webp", launch: true, materials: ["Ochre textile panels", "Forest suede overlays", "Cream midsole", ...CONSTRUCTION_0106], costUsd: 0, notice: "List price follows the house runner anchor until the working sheet names 0106." },
+  { id: "ms-runner-0106-forest-stone", series: "0106", name: "MADE SAiNT 0106 Runner — Forest / Stone", line: "Forest suede, stone accents, cream midsole", usd: PRICE_0106, image: "/runners/0106/forest-stone.webp", launch: true, materials: ["Forest suede overlays", "Stone accents", "Cream midsole", ...CONSTRUCTION_0106], costUsd: 0, notice: "List price follows the house runner anchor until the working sheet names 0106." },
+  { id: "ms-runner-0106-cobalt-ivory", series: "0106", name: "MADE SAiNT 0106 Runner — Cobalt / Ivory", line: "Cobalt upper, ivory accents, cream midsole", usd: PRICE_0106, image: "/runners/0106/cobalt-ivory.webp", launch: true, materials: ["Cobalt suede and textile", "Ivory accents", "Cream midsole", ...CONSTRUCTION_0106], costUsd: 0, notice: "List price follows the house runner anchor until the working sheet names 0106." },
+  { id: "ms-runner-0106-rose-taupe", series: "0106", name: "MADE SAiNT 0106 Runner — Rose / Taupe", line: "Dusty rose panels, taupe overlays, cream midsole", usd: PRICE_0106, image: "/runners/0106/rose-taupe.webp", launch: true, materials: ["Dusty rose panels", "Taupe overlays", "Cream midsole", ...CONSTRUCTION_0106], costUsd: 0, notice: "List price follows the house runner anchor until the working sheet names 0106." },
+  { id: "ms-runner-0106-butter-sulphur", series: "0106", name: "MADE SAiNT 0106 Runner — Butter / Sulphur", line: "Butter body, sulphur suede, cream midsole", usd: PRICE_0106, image: "/runners/0106/butter-sulphur.webp", launch: true, materials: ["Butter textile and leather", "Sulphur suede overlays", "Cream midsole", ...CONSTRUCTION_0106], costUsd: 0, notice: "List price follows the house runner anchor until the working sheet names 0106." },
+  { id: "ms-runner-0106-midnight-pearl", series: "0106", name: "MADE SAiNT 0106 Runner — Midnight / Pearl", line: "Midnight suede, pearl accents, cream midsole", usd: PRICE_0106, image: "/runners/0106/midnight-pearl.webp", launch: true, materials: ["Midnight suede overlays", "Pearl accents", "Cream midsole", ...CONSTRUCTION_0106], costUsd: 0, notice: "List price follows the house runner anchor until the working sheet names 0106." },
   { id: "ms-runner-chalk-navy", storyId: "chalk-navy", series: "0929", name: "MADE SAiNT 0929 Runner — Navy / Ivory", line: "Ivory suede, navy mesh", usd: PRICE_MESH, image: "/runners/navy-ivory-overhead.webp", launch: true, materials: ["Ivory suede overlays", "Navy mesh", "Nub-lug rubber sole"], costUsd: 0 },
   { id: "ms-runner-navy-intrecciato", storyId: "navy-intrecciato", series: "0929", name: "MADE SAiNT 0929 Runner — Navy / Sand", line: "Navy overlays, sand mesh", usd: PRICE_MESH, image: "/runners/navy-sand-overhead.webp", launch: true, materials: ["Navy mesh and suede overlays", "Sand mesh windows", "Nub-lug rubber sole"], costUsd: 0 },
   { id: "ms-runner-washed-denim", storyId: "washed-denim", series: "0929", name: "MADE SAiNT 0929 Runner — Washed / Indigo", line: "Blue suede, navy mesh", usd: PRICE_MESH, image: "/runners/indigo-overhead.webp", launch: true, materials: ["Blue suede overlays", "Navy mesh", "Light blue laces", "Nub-lug rubber sole"], costUsd: 0 },

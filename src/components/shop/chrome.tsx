@@ -16,6 +16,9 @@ export function ShopHeader({ status }: { status?: string }) {
         className="border-b border-[#1c1a17]/08 bg-[#f5f0e8] px-4 py-2 md:px-8"
       >
         <div className="mx-auto flex max-w-[1440px] gap-4 overflow-x-auto text-[11px] tracking-[0.16em] uppercase [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <Link href={seriesHref("0106")} className="inline-flex h-10 shrink-0 items-center hover:text-[#B03236]">
+            0106
+          </Link>
           <Link href={seriesHref("1101")} className="inline-flex h-10 shrink-0 items-center hover:text-[#B03236]">
             1101
           </Link>
@@ -24,6 +27,9 @@ export function ShopHeader({ status }: { status?: string }) {
           </Link>
           <Link href={seriesHref("0929")} className="inline-flex h-10 shrink-0 items-center hover:text-[#B03236]">
             0929
+          </Link>
+          <Link href="/pieces" className="inline-flex h-10 shrink-0 items-center hover:text-[#B03236]">
+            Pieces
           </Link>
           <Link href="/shop#faq" className="inline-flex h-10 shrink-0 items-center hover:text-[#B03236]">
             Care

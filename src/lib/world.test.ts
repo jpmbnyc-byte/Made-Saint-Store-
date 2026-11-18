@@ -46,7 +46,7 @@ test("research references stay out of the site and campaign frames are marked as
 });
 
 test("every runner shares the quotation delivery line", () => {
-  for (const series of ["1101", "1213", "0929"] as const) {
+  for (const series of ["0106", "1101", "1213", "0929"] as const) {
     assert.match(offerLine(series), /Delivery is confirmed with your quotation/);
   }
 });

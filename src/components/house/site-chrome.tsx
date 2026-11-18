@@ -6,6 +6,7 @@ import { Wordmark } from "@/components/house/wordmark";
 
 const PRIMARY = [
   { href: "/line", label: "Collection" },
+  { href: "/pieces", label: "Pieces" },
   { href: "/wardrobe", label: "Private Wardrobe" },
 ] as const;
 
@@ -28,7 +29,7 @@ export function SiteHeader({
   active,
   showBanner = true,
 }: {
-  active?: "collection" | "wardrobe" | "closet" | "checkout" | "enquire" | "shop" | "house";
+  active?: "collection" | "pieces" | "wardrobe" | "closet" | "checkout" | "enquire" | "shop" | "house";
   showBanner?: boolean;
 }) {
   const [open, setOpen] = useState(false);
@@ -81,7 +82,9 @@ export function SiteHeader({
             <Link
               key={item.href}
               href={item.href}
-              className={linkClass(item.label === "Collection" ? "collection" : "wardrobe")}
+              className={linkClass(
+                item.label === "Collection" ? "collection" : item.label === "Pieces" ? "pieces" : "wardrobe",
+              )}
             >
               {item.label}
             </Link>

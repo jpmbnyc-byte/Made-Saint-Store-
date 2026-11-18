@@ -10,12 +10,18 @@ test("series stories cover every launched series with feast and reflection", () 
     assert.ok(story.title.length > 0);
     assert.ok(story.feast.length > 0);
     assert.ok(story.reflection.length >= 3);
-    assert.ok(story.editorialHero.startsWith("/runners/atelier/"));
-    assert.ok(story.detail.startsWith("/runners/atelier/"));
+    assert.ok(
+      story.editorialHero.startsWith("/runners/atelier/") ||
+        story.editorialHero.startsWith("/runners/0106/") ||
+        story.editorialHero.startsWith("/looks/"),
+    );
+    assert.ok(
+      story.detail.startsWith("/runners/atelier/") || story.detail.startsWith("/runners/0106/"),
+    );
     assert.equal(story.parts.length, 3);
     assert.equal(story.facts.length, 3);
   }
-  assert.equal(Object.keys(SERIES_STORIES).length, 3);
+  assert.equal(Object.keys(SERIES_STORIES).length, 4);
 });
 
 test("breakdown uses lead parts only for the lead colourway", () => {

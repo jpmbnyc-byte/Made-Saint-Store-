@@ -34,7 +34,7 @@ export function Campaign002() {
                 href={look.href}
                 className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B03236]"
               >
-                <span className="relative block aspect-[3/4] overflow-hidden bg-[#efefed]">
+                <span className="ms-studio-stage relative block aspect-[3/4] overflow-hidden">
                   <Image
                     src={look.lookSrc}
                     alt={look.lookAlt}

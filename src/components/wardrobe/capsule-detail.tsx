@@ -29,7 +29,7 @@ export function CapsuleDetail({ capsule }: { capsule: Capsule }) {
           <button
             type="button"
             onClick={() => setEnlarged(true)}
-            className="group relative block w-full overflow-hidden bg-[#efefed] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8d7349]"
+            className="ms-studio-stage group relative block w-full overflow-hidden text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8d7349]"
             aria-haspopup="dialog"
             aria-controls={dialogId}
             aria-expanded={enlarged}

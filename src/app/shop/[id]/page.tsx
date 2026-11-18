@@ -82,7 +82,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                   aria-current="page"
                   className="w-[57px] min-w-[57px] shrink-0 overflow-hidden ring-1 ring-[#352a23]"
                 >
-                  <span className="relative block aspect-square bg-[#ece3d5]">
+                  <span className="ms-studio-stage relative block aspect-square">
                     <Image src={product.image} alt="" fill sizes="57px" className="object-contain p-1" />
                   </span>
                 </Link>
@@ -93,7 +93,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                     className="w-[57px] min-w-[57px] shrink-0 overflow-hidden opacity-75 hover:opacity-100"
                     title={color(p.name)}
                   >
-                    <span className="relative block aspect-square bg-[#ece3d5]">
+                    <span className="ms-studio-stage relative block aspect-square">
                       <Image src={p.image} alt="" fill sizes="57px" className="object-contain p-1" />
                     </span>
                   </Link>

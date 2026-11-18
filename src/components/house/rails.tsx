@@ -15,7 +15,7 @@ export function EditionSlider({ products }: { products: Product[] }) {
   return (
     <div className="min-w-0">
       <div className="grid min-w-0 items-center gap-8 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-12">
-        <div {...slider.bind} className="relative aspect-[2/3] min-w-0 touch-pan-y bg-[#f7f4ef]">
+        <div {...slider.bind} className="ms-studio-stage relative aspect-[2/3] min-w-0 touch-pan-y">
           <Image src={product.image} alt={product.name} fill sizes="(min-width: 768px) 42vw, 100vw" className="object-contain" priority={slider.index === 0} />
         </div>
         <div className="min-w-0">
@@ -56,7 +56,7 @@ export function ListRail() {
     <CardRail label="Colorway" count={waiting.length}>
       {waiting.map((product) => (
         <Link key={product.id} href="/shop#list" className="w-[78%] shrink-0 snap-start sm:w-[46%] lg:w-[32%]">
-          <span className="relative block aspect-[2/3] bg-[#f7f4ef]">
+          <span className="ms-studio-stage relative block aspect-[2/3]">
             <Image src={product.image} alt={product.name} fill sizes="(min-width: 1024px) 32vw, 78vw" className="object-contain" />
           </span>
           <span className="mt-3 block text-[11px] tracking-[0.16em] text-[#8d7349] uppercase">Available</span>
@@ -81,7 +81,7 @@ export function LeatherSlider({
 
   return (
     <div>
-      <div {...slider.bind} className="relative mx-auto aspect-[4/5] max-w-md touch-pan-y overflow-hidden bg-[#e7e0d4]">
+      <div {...slider.bind} className="ms-studio-stage relative mx-auto aspect-[4/5] max-w-md touch-pan-y overflow-hidden">
         <Image src={runner.src} alt={runner.alt} fill sizes="(min-width: 768px) 28rem, 100vw" className="object-contain" />
       </div>
       <p className="mt-4 text-center font-serif text-3xl text-[#1c1a17]">{runner.name}</p>

@@ -52,7 +52,7 @@ export function WardrobePreview({
       {frame ? (
         <div className="flex min-h-full items-center justify-center px-3 py-8 sm:px-6">
           <div className="relative grid w-full max-w-[1100px] overflow-hidden border border-[#1c1a17]/12 bg-[#f5f0e8] text-[#1c1a17] shadow-[0_24px_80px_rgba(28,26,23,0.28)] md:grid-cols-[minmax(0,1.2fr)_minmax(260px,0.8fr)]">
-            <div className="ms-studio-stage relative min-h-[55vh] md:min-h-[70vh]">
+            <div className="relative min-h-[55vh] bg-[#e7e0d4] md:min-h-[70vh]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={frame.src} alt={frame.alt} className="absolute inset-0 h-full w-full object-contain object-top" />
             </div>

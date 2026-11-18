@@ -1,4 +1,3 @@
-import { studioImage } from "./studio-image";
 import { PRODUCTS, type Product } from "@/lib/business";
 
 /** Approved store views. The overhead photograph is the pair. */
@@ -46,27 +45,27 @@ const EXTRA: Record<string, CatalogView[]> = {
     { id: "study", src: "/runners/indigo-worn.webp", label: "Worn", alt: `MADE SAiNT 0929 Runner — Washed / Indigo. ${worn}` },
   ],
   "ms-runner-1101-butter": [
-    { id: "threequarter", src: studioImage("/runners/1213/1101-butter-pair.webp"), label: "Pair", alt: "MADE SAiNT 1101 Runner — Brown Mesh, the pair" },
-    { id: "product", src: studioImage("/runners/1213/1101-brown-pair.webp"), label: "Studio", alt: "MADE SAiNT 1101 Runner — Brown Mesh, studio pair" },
+    { id: "threequarter", src: "/runners/1213/1101-butter-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Brown Mesh, the pair" },
+    { id: "product", src: "/runners/1213/1101-brown-pair.webp", label: "Studio", alt: "MADE SAiNT 1101 Runner — Brown Mesh, studio pair" },
   ],
   "ms-runner-1101-teal": [
-    { id: "threequarter", src: studioImage("/runners/1213/1101-teal-pair.webp"), label: "Pair", alt: "MADE SAiNT 1101 Runner — Teal, the pair" },
+    { id: "threequarter", src: "/runners/1213/1101-teal-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Teal, the pair" },
   ],
   "ms-runner-1101-navy": [
-    { id: "threequarter", src: studioImage("/runners/1213/1101-navy-pair.webp"), label: "Pair", alt: "MADE SAiNT 1101 Runner — Navy, the pair" },
-    { id: "reverse", src: studioImage("/runners/1213/1101-navy-lateral.webp"), label: "Lateral", alt: "MADE SAiNT 1101 Runner — Navy, lateral" },
+    { id: "threequarter", src: "/runners/1213/1101-navy-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Navy, the pair" },
+    { id: "reverse", src: "/runners/1213/1101-navy-lateral.webp", label: "Lateral", alt: "MADE SAiNT 1101 Runner — Navy, lateral" },
   ],
   "ms-runner-1101-bronze": [
     { id: "threequarter", src: "/runners/1213/1101-bronze-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Bronze, the pair" },
     { id: "reverse", src: "/runners/1213/1101-bronze-lateral.webp", label: "Lateral", alt: "MADE SAiNT 1101 Runner — Bronze, lateral" },
   ],
   "ms-runner-1101-blush": [
-    { id: "threequarter", src: studioImage("/runners/1213/1101-blush-pair.webp"), label: "Pair", alt: "MADE SAiNT 1101 Runner — Blush, the pair" },
-    { id: "reverse", src: studioImage("/runners/1213/1101-blush-lateral.webp"), label: "Lateral", alt: "MADE SAiNT 1101 Runner — Blush, lateral" },
+    { id: "threequarter", src: "/runners/1213/1101-blush-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Blush, the pair" },
+    { id: "reverse", src: "/runners/1213/1101-blush-lateral.webp", label: "Lateral", alt: "MADE SAiNT 1101 Runner — Blush, lateral" },
   ],
   "ms-runner-1101-onyx": [
-    { id: "threequarter", src: studioImage("/runners/1213/1101-onyx-pair.webp"), label: "Pair", alt: "MADE SAiNT 1101 Runner — Onyx, the pair" },
-    { id: "reverse", src: studioImage("/runners/1213/1101-onyx-lateral.webp"), label: "Lateral", alt: "MADE SAiNT 1101 Runner — Onyx, lateral" },
+    { id: "threequarter", src: "/runners/1213/1101-onyx-pair.webp", label: "Pair", alt: "MADE SAiNT 1101 Runner — Onyx, the pair" },
+    { id: "reverse", src: "/runners/1213/1101-onyx-lateral.webp", label: "Lateral", alt: "MADE SAiNT 1101 Runner — Onyx, lateral" },
   ],
   "ms-runner-1213-sacred-light": [
     { id: "threequarter", src: "/runners/1213/sacred-light.webp", label: "Three-quarter", alt: "MADE SAiNT 1213 Runner — Sacred Light, three-quarter" },

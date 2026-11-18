@@ -1,4 +1,3 @@
-import { studioImage } from "./studio-image";
 import { runnerHref } from "@/lib/business";
 
 /** Compatible founding runners for each Tonal Collection colorway. */
@@ -7,7 +6,7 @@ export const TONAL_RUNNERS = {
     productId: "ms-runner-1101-onyx",
     name: "1101 Runner — Onyx",
     price: "$550",
-    image: studioImage("/runners/1213/1101-onyx-pair.webp"),
+    image: "/runners/1213/1101-onyx-pair.webp",
     note: "Onyx leather against carbon cloth.",
   },
   midnight: {
@@ -28,7 +27,7 @@ export const TONAL_RUNNERS = {
     productId: "ms-runner-1101-butter",
     name: "1101 Runner — Brown Mesh",
     price: "$550",
-    image: studioImage("/runners/1213/1101-butter-pair.webp"),
+    image: "/runners/1213/1101-butter-pair.webp",
     note: "Brown mesh with warm camel cloth.",
   },
   sand: {

@@ -153,7 +153,7 @@ function ChapterView({ chapter }: { chapter: Chapter }) {
           </Link>
         </div>
         <div>
-          <div className="ms-studio-stage relative aspect-[3/4]">
+          <div className="relative aspect-[3/4] bg-[#f7f4ef]">
             <Image
               key={view.src}
               src={view.src}

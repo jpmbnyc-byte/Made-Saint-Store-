@@ -178,7 +178,7 @@ export function ClosetWorkspace() {
                 </label>
                 {look && (
                   <Link href={`/line/looks/${look.slug}`} className="mt-4 block max-w-sm">
-                    <img src={look.image} alt={look.alt} className="ms-studio-stage h-72 w-full object-contain" />
+                    <img src={look.image} alt={look.alt} className="h-72 w-full bg-[#f3f3f1] object-contain" />
                   </Link>
                 )}
                 <ul className="mt-4 space-y-2 text-sm">

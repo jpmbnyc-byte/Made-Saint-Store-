@@ -20,7 +20,7 @@ test("the 2027 line keeps proposed prices and leaves licensing concepts off the 
   assert.equal(FRAMES.length, 68);
   assert.equal(framesFor("R067").length, 2);
   assert.equal(framesFor("R043").length, 3);
-  assert.equal(framesFor("N005").length, 0);
+  assert.equal(framesFor("N005").length, 1);
   assert.equal(framesFor("R046").length, 3);
   assert.ok(framesFor("N014").some((frame) => frame.n === 61));
   assert.equal(framesFor("N015")[0]?.n, 66);

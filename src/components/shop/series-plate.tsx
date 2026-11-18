@@ -2,9 +2,9 @@ import { Wordmark } from "@/components/house/wordmark";
 import type { SeriesId } from "@/lib/business";
 
 const SCALE = {
-  sm: { mark: "h-[18px]", num: "text-[26px]" },
-  md: { mark: "h-6 sm:h-7", num: "text-[40px] sm:text-[48px]" },
-  lg: { mark: "h-7 sm:h-8", num: "text-[52px] sm:text-[68px]" },
+  sm: { mark: "text-[11px] leading-none", num: "text-[26px]" },
+  md: { mark: "text-[15px] leading-none sm:text-[17px]", num: "text-[40px] sm:text-[48px]" },
+  lg: { mark: "text-[17px] leading-none sm:text-[20px]", num: "text-[52px] sm:text-[68px]" },
 } as const;
 
 /** Logo and series number, set the way a sneaker product title is set. */

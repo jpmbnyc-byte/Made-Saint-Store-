@@ -16,7 +16,7 @@ import {
   type UseCase,
 } from "@/lib/line-shop";
 import { FRAMES, frameSrc, lineByRef } from "@/lib/line";
-import { primaryFrame } from "@/lib/imagery";
+import { productHero } from "@/lib/imagery";
 import { CollectionChrome } from "@/components/line/chrome";
 import { saveLook } from "@/lib/closet";
 import { useCloset } from "@/components/line/store";
@@ -116,7 +116,7 @@ function BlockFigure({
         >
           {customerName(product)}
         </Link>
-        {status.price && <span className="mt-1 block text-[13px] text-[#1c1a17]/55">{status.price}</span>}
+        {status.price && <span className="mt-1 block text-[14px] tabular-nums text-[#1c1a17]">{status.price}</span>}
       </figcaption>
     </figure>
   );
@@ -256,12 +256,12 @@ export function FeaturedView() {
 }
 
 function ProductCard({ refId, name, price }: { refId: string; name: string; price: string | null }) {
-  const frame = firstFrame(refId);
+  const hero = productHero(refId);
   return (
     <Link href={`/line/${refId.toLowerCase()}`} className="group block">
-      {frame ? (
+      {hero ? (
         <img
-          src={frameSrc(frame)}
+          src={hero.src}
           alt={name}
           className="aspect-[4/5] w-full bg-[#efefed] object-contain transition-opacity duration-500 group-hover:opacity-90"
         />
@@ -269,13 +269,9 @@ function ProductCard({ refId, name, price }: { refId: string; name: string; pric
         <span className="block aspect-[4/5] bg-[#efefed]" />
       )}
       <span className="mt-4 block text-[13px] tracking-[-0.01em]">{name}</span>
-      {price && <span className="mt-1 block text-[12px] text-[#1c1a17]/55">{price}</span>}
+      {price && <span className="mt-1 block text-[14px] tabular-nums text-[#1c1a17]">{price}</span>}
     </Link>
   );
-}
-
-function firstFrame(ref: string) {
-  return primaryFrame(ref)?.n ?? null;
 }
 
 export function LookbookView() {

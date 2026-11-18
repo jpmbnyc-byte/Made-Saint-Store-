@@ -15,7 +15,9 @@ test("public line cards use a large linked photograph", () => {
     assert.ok((record?.width ?? 0) >= MIN_EDGE && (record?.height ?? 0) >= MIN_EDGE, item.ref);
   }
   assert.equal(publicFrames().some((frame) => frame.n === 45 || frame.n === 54), false);
-  assert.equal(lineAssignments().find((row) => row.id === "N005")?.primary, null);
+  assert.ok(lineAssignments().find((row) => row.id === "N005")?.primary);
+  assert.ok(lineAssignments().find((row) => row.id === "N003")?.primary);
+  assert.ok(listed.some((item) => item.ref === "N006"));
 });
 
 test("editorial heroes are not enlarged thumbnails, and unresolved shoes stay marked", () => {

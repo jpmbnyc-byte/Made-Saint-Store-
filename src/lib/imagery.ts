@@ -1,4 +1,5 @@
 import { FRAMES, LINE, framesFor, frameSrc, type LineProduct } from "@/lib/line";
+import { productStill } from "@/lib/product-stills";
 
 /**
  * Pixel sizes of the files already in the repository.
@@ -51,8 +52,26 @@ export const primaryFrame = (ref: string) => framesFor(ref).find((frame) => fram
 
 export const largeFramesFor = (ref: string) => framesFor(ref).filter((frame) => frameLarge(frame.n));
 
-/** A style appears on the public grid only with a proposed price and a large photograph. */
-export const listedLine = (item: LineProduct) => item.status === "proposed" && item.retail != null && Boolean(primaryFrame(item.ref));
+/** Hero image for a Line product: linked frame first, then an approved still. */
+export function productHero(ref: string): { src: string; width: number; height: number; alt: string } | null {
+  const frame = primaryFrame(ref);
+  if (frame) {
+    const size = FRAME_PX[frame.n];
+    return {
+      src: frameSrc(frame.n),
+      width: size?.[0] ?? 1024,
+      height: size?.[1] ?? 1536,
+      alt: frame.alt,
+    };
+  }
+  const still = productStill(ref);
+  if (!still) return null;
+  return { src: still.src, width: still.width, height: still.height, alt: still.alt };
+}
+
+/** A style appears on the public grid with a proposed list price and a photograph. */
+export const listedLine = (item: LineProduct) =>
+  item.status === "proposed" && item.retail != null && Boolean(productHero(item.ref));
 
 export type ImageAssignment = {
   id: string;
@@ -71,20 +90,24 @@ export function lineAssignments(): ImageAssignment[] {
   return LINE.map((item) => {
     const frames = largeFramesFor(item.ref);
     const primary = frames[0];
-    const size = primary ? FRAME_PX[primary.n] : null;
+    const still = !primary ? productStill(item.ref) : null;
+    const size = primary ? FRAME_PX[primary.n] : still ? [still.width, still.height] : null;
+    const src = primary ? frameSrc(primary.n) : still?.src ?? null;
     return {
       id: item.ref,
       name: item.name,
-      primary: primary ? frameSrc(primary.n) : null,
+      primary: src,
       alternates: frames.slice(1).map((frame) => frameSrc(frame.n)),
       lifestyle: [],
       width: size?.[0] ?? null,
       height: size?.[1] ?? null,
-      status: primary ? "study" : "unassigned",
-      confidence: primary ? "high" : "review",
+      status: src ? "study" : "unassigned",
+      confidence: src ? "high" : "review",
       note: primary
         ? "Matched to a photograph already linked to this style, and large enough to show."
-        : "No photograph in the set is both linked to this style and large enough to show. The record stays in the line data.",
+        : still
+          ? "Matched to an approved collection still for this priced style."
+          : "No photograph in the set is both linked to this style and large enough to show. The record stays in the line data.",
     };
   });
 }

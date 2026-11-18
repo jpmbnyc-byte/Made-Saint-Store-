@@ -78,8 +78,8 @@ export function LookStage({ slug }: { slug: string }) {
   return (
     <div ref={root} role="dialog" aria-modal="true" aria-label={`Look ${look.number}`} className="fixed inset-0 z-50 overflow-y-auto bg-[#f7f7f5] text-[#1c1a17]">
       <div className="flex min-h-full flex-col md:grid md:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]">
-        <div className="ms-studio-stage md:sticky md:top-0 md:h-screen">
-          <img src={image} alt={frame?.alt ?? look.alt} className="h-[70vh] w-full object-contain object-top md:h-screen" />
+        <div className="bg-[#efefed] md:sticky md:top-0 md:h-screen">
+          <img src={image} alt={frame?.alt ?? look.alt} className="h-[70vh] w-full object-cover object-top md:h-screen md:object-contain" />
         </div>
         <div className="flex flex-col px-5 py-6 md:px-8 md:py-8">
           <div className="flex items-center justify-between gap-3">
@@ -107,7 +107,7 @@ export function LookStage({ slug }: { slug: string }) {
                   : `/line/${item.ref.toLowerCase()}`;
                 return (
                   <li key={item.ref} className="flex gap-4 py-4">
-                    <img src={thumb} alt="" className="ms-studio-stage h-20 w-16 object-contain" />
+                    <img src={thumb} alt="" className="h-20 w-16 bg-[#f3f3f1] object-contain" />
                     <div className="min-w-0 flex-1">
                       <Link href={productHref} className="text-[15px] underline underline-offset-4">{pieceLabel}</Link>
                       <p className="mt-1 text-[12px] text-[#1c1a17]/60">{item.color}</p>
@@ -203,7 +203,7 @@ export function LookStage({ slug }: { slug: string }) {
           {look.frames.length > 1 && (
             <div className="mt-6 flex gap-2">
               {look.frames.map((item, at) => (
-                <button key={item.n} type="button" aria-label={`Frame ${at + 1}`} onClick={() => setFrameAt(at)} className={`ms-studio-stage h-16 w-12 ${at === frameAt ? "ring-1 ring-[#1c1a17]" : ""}`}>
+                <button key={item.n} type="button" aria-label={`Frame ${at + 1}`} onClick={() => setFrameAt(at)} className={`h-16 w-12 bg-[#f3f3f1] ${at === frameAt ? "ring-1 ring-[#1c1a17]" : ""}`}>
                   <img src={lookImage(look, item)} alt="" className="h-full w-full object-contain" />
                 </button>
               ))}

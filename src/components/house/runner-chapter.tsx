@@ -84,7 +84,7 @@ export function RunnerChapter() {
         {/* Image panel */}
         <div className="relative mb-10 lg:mb-0">
           <div
-            className="ms-studio-stage ms-resin relative overflow-hidden"
+            className="ms-resin relative overflow-hidden bg-[#ede6d8]"
             style={{ aspectRatio: "3/4" }}
           >
             {/* Primary image */}

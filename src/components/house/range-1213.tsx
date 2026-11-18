@@ -32,7 +32,7 @@ export function Range1213() {
           {lead.map((product) => (
             <li key={product.id} className="w-36 shrink-0 sm:w-44">
               <Link href={`/shop/${product.id}#gallery`} className="block">
-                <span className="ms-studio-stage relative block aspect-square">
+                <span className="relative block aspect-square bg-[#f3f3f1]">
                   <Image src={product.image} alt={product.name} fill sizes="176px" className="object-contain p-2" />
                 </span>
                 <span className="ms-meta mt-2 block">{colorOf(product.name)}</span>

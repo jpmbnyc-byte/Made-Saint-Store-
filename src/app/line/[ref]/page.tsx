@@ -62,7 +62,7 @@ export default async function LineProductPage({
               <img
                 src={heroImage}
                 alt={selectedColorway ? `${selectedColorway.label} printed jersey` : fromLook?.alt ?? "Printed jersey"}
-                className="ms-studio-stage w-full object-contain"
+                className="w-full bg-[#f3f3f1] object-contain"
               />
             )}
             {!isJersey && frames.map((frame, index) => {
@@ -75,15 +75,15 @@ export default async function LineProductPage({
                   width={size?.[0]}
                   height={size?.[1]}
                   loading={index === 0 ? "eager" : "lazy"}
-                  className="ms-studio-stage w-full object-contain"
+                  className="w-full bg-[#f3f3f1] object-contain"
                 />
               );
             })}
             {!isJersey && frames.length === 0 && looks[0] && (
-              <img src={looks[0].image} alt={looks[0].alt} className="ms-studio-stage w-full object-contain" />
+              <img src={looks[0].image} alt={looks[0].alt} className="w-full bg-[#f3f3f1] object-contain" />
             )}
             {isJersey && frames.map((frame) => (
-              <img key={frame.n} src={frameSrc(frame.n)} alt={frame.alt} className="ms-studio-stage w-full object-contain" />
+              <img key={frame.n} src={frameSrc(frame.n)} alt={frame.alt} className="w-full bg-[#f3f3f1] object-contain" />
             ))}
           </div>
           <div>
@@ -187,7 +187,7 @@ export default async function LineProductPage({
               {looks.map((look) => (
                 <li key={look.slug}>
                   <Link href={`/line/looks/${look.slug}`}>
-                    <img src={look.image} alt={look.alt} className="ms-studio-stage aspect-[4/5] w-full max-w-sm object-contain" />
+                    <img src={look.image} alt={look.alt} className="aspect-[4/5] w-full max-w-sm bg-[#f3f3f1] object-contain" />
                     <span className="mt-3 block text-[15px] underline underline-offset-4">Look {look.number} · {look.title}</span>
                   </Link>
                 </li>
@@ -206,7 +206,7 @@ export default async function LineProductPage({
                 return (
                   <li key={`${item.look.slug}-${item.ref}`}>
                     <Link href={`/line/${item.ref.toLowerCase()}`}>
-                      <img src={item.look.image} alt={item.look.alt} className="ms-studio-stage aspect-[4/5] w-full max-w-sm object-contain" />
+                      <img src={item.look.image} alt={item.look.alt} className="aspect-[4/5] w-full max-w-sm bg-[#f3f3f1] object-contain" />
                       <span className="mt-3 block text-[15px] underline underline-offset-4">{other ? customerName(other) : item.role}</span>
                     </Link>
                     <p className="mt-1 text-[13px] text-[#111]/60">{item.color}{offer?.price ? ` · ${offer.price}` : ""}</p>

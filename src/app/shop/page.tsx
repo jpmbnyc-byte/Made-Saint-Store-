@@ -16,7 +16,7 @@ const colorOf = (name: string) => name.split("—").pop()?.trim() ?? name;
 function Listing({ product, frame }: { product: Product; frame: string }) {
   return (
     <Link href={runnerHref(product.id)} className="block">
-      <span className={`ms-studio-stage relative block ${frame}`}>
+      <span className={`relative block bg-[#f3efe8] ${frame}`}>
         <Image src={product.image} alt={product.name} fill sizes="(min-width: 1024px) 30vw, 50vw" className="object-contain" />
       </span>
       <SeriesPlate series={product.series} size="sm" className="mt-3" />

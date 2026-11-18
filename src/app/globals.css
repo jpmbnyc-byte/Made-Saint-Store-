@@ -747,10 +747,6 @@ th:first-child {
   --ms-gold: #8d7349;
   --ms-red: #B03236;
   --ms-cream: #f6f4ef;
-  /* Charcoal studio stage — matches approved studio-v1 masters (center / edge / ground) */
-  --ms-studio-center: #505352;
-  --ms-studio-edge: #353837;
-  --ms-studio-ground: #454847;
 }
 
 /* House type scale. Layered so color utilities can invert it on dark surfaces. */
@@ -961,20 +957,14 @@ th:first-child {
   will-change: transform;
 }
 
-/*
- * Charcoal studio stage for product / look media wells.
- * Matches the house photographic standard (center #505352 → edge #353837).
- * Letterboxing only — never a substitute for remapped photographs, and
- * never paired with CSS filters on the image itself.
- */
-.ms-studio-stage,
+/* Gallery well used on shop PDPs — cream page, underlit photograph */
 .ms-gallery-well {
   background:
-    radial-gradient(
-      ellipse 72% 68% at 42% 34%,
-      var(--ms-studio-center) 0%,
-      var(--ms-studio-edge) 100%
-    );
+    radial-gradient(ellipse 65% 80% at 70% 30%, rgba(70, 62, 50, 0.22), transparent 55%),
+    #1a1d24;
+}
+.ms-gallery-well img {
+  filter: brightness(0.9) contrast(1.1) saturate(0.94);
 }
 
 /* Hero slide crossfade */

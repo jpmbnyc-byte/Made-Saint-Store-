@@ -38,7 +38,7 @@ function Frame({
       src={src}
       alt={alt}
       loading={priority ? "eager" : "lazy"}
-      className={`ms-studio-stage w-full object-contain object-top ${wide ? "max-w-none" : ""}`}
+      className={`w-full bg-[#efefed] object-contain object-top ${wide ? "max-w-none" : ""}`}
     />
   );
 }
@@ -263,10 +263,10 @@ function ProductCard({ refId, name, price }: { refId: string; name: string; pric
         <img
           src={frameSrc(frame)}
           alt={name}
-          className="ms-studio-stage aspect-[4/5] w-full object-contain transition-opacity duration-500 group-hover:opacity-90"
+          className="aspect-[4/5] w-full bg-[#efefed] object-contain transition-opacity duration-500 group-hover:opacity-90"
         />
       ) : (
-        <span className="ms-studio-stage block aspect-[4/5]" />
+        <span className="block aspect-[4/5] bg-[#efefed]" />
       )}
       <span className="mt-4 block text-[13px] tracking-[-0.01em]">{name}</span>
       {price && <span className="mt-1 block text-[12px] text-[#1c1a17]/55">{price}</span>}
@@ -340,7 +340,7 @@ function LookCard({ look, onSave }: { look: CollectionLook; onSave: () => void }
   return (
     <div className="text-left">
       <Link href={`/line/looks/${look.slug}`}>
-        <img src={look.image} alt={look.alt} className="ms-studio-stage w-full object-contain" />
+        <img src={look.image} alt={look.alt} className="w-full bg-[#efefed] object-contain" />
       </Link>
       <p className="ms-meta mt-5 text-[#1c1a17]/45">Look {look.number}</p>
       <p className="mt-1 font-serif text-[1.5rem] leading-tight tracking-[-0.02em]">{look.title}</p>

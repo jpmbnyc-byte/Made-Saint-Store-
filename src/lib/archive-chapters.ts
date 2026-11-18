@@ -1,5 +1,3 @@
-import { studioImage } from "./studio-image";
-
 /**
  * Private Wardrobe archive chapters from the Archive Lookbook (Nov 15, 2026).
  * Chapter titles are editorial names, not evidence of a shoot location.
@@ -10,8 +8,6 @@ export type ArchiveView = {
   src: string;
   alt: string;
   label: string;
-  width?: number;
-  height?: number;
 };
 
 export type ArchiveChapter = {
@@ -49,9 +45,7 @@ export const ARCHIVE_CHAPTERS: ArchiveChapter[] = [
     },
     alternates: [
       {
-        src: studioImage("/wardrobe/archive/miami-arrival-alt.webp"),
-        width: 1672,
-        height: 941,
+        src: "/wardrobe/archive/miami-arrival-alt.webp",
         alt: "Alternate view from the Miami Arrival archive chapter",
         label: "Alternate styling",
       },
@@ -141,9 +135,7 @@ export const ARCHIVE_CHAPTERS: ArchiveChapter[] = [
     },
     alternates: [
       {
-        src: studioImage("/wardrobe/archive/olive-saint-alt.webp"),
-        width: 1536,
-        height: 1024,
+        src: "/wardrobe/archive/olive-saint-alt.webp",
         alt: "Alternate view from the Olive Saint archive chapter",
         label: "Alternate styling",
       },
@@ -206,9 +198,7 @@ export const ARCHIVE_CHAPTERS: ArchiveChapter[] = [
     },
     alternates: [
       {
-        src: studioImage("/wardrobe/archive/gallery-opening-alt.webp"),
-        width: 1536,
-        height: 1024,
+        src: "/wardrobe/archive/gallery-opening-alt.webp",
         alt: "Alternate view from the Gallery Opening archive chapter",
         label: "Alternate styling",
       },

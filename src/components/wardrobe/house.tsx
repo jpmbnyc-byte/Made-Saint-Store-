@@ -41,7 +41,7 @@ function AlternateCard({
   const status = statusFromNote(piece.note, Boolean(piece.image));
   return (
     <div className="flex flex-col border border-[#1c1a17]/10 bg-white">
-      <div className="ms-studio-stage relative">
+      <div className="relative bg-[#e7e0d4]">
         {piece.image ? (
           <PreviewTrigger
             src={piece.image}
@@ -460,7 +460,7 @@ export function PrivateHouse() {
                       alt={castLook?.alt ?? customerName(heldLine)}
                       caption="Line piece held for this enquiry."
                       className="relative shrink-0"
-                      imgClassName="ms-studio-stage size-20 object-cover object-top"
+                      imgClassName="size-20 bg-[#e7e0d4] object-cover object-top"
                       onOpen={setPreview}
                     />
                   )}
@@ -491,7 +491,7 @@ export function PrivateHouse() {
                           alt={piece.name}
                           caption={`${IMAGE_STATUS_LABEL[status]} · $${offer.usd}`}
                           className="relative shrink-0"
-                          imgClassName="ms-studio-stage size-20 object-contain"
+                          imgClassName="size-20 bg-[#e7e0d4] object-contain"
                           onOpen={setPreview}
                         >
                           <StatusMark status={status} className="pointer-events-none absolute -left-1 -top-1 scale-90" />
@@ -518,7 +518,7 @@ export function PrivateHouse() {
                           alt={piece.name}
                           caption={`${IMAGE_STATUS_LABEL[status]} · available to request`}
                           className="relative shrink-0"
-                          imgClassName="ms-studio-stage size-20 object-contain"
+                          imgClassName="size-20 bg-[#e7e0d4] object-contain"
                           onOpen={setPreview}
                         >
                           <StatusMark status={status} className="pointer-events-none absolute -left-1 -top-1 scale-90" />
@@ -765,7 +765,7 @@ export function PrivateHouse() {
                   alt={capsule?.alt ?? castLook?.alt ?? requestTitle}
                   caption="Held for this enquiry."
                   className={`relative mt-4 block w-full ${capsule ? "max-w-[320px]" : "max-w-[220px]"}`}
-                  imgClassName={`${capsule ? "aspect-[3/2] object-contain" : "aspect-[3/4] object-cover object-top"} w-full ms-studio-stage`}
+                  imgClassName={`${capsule ? "aspect-[3/2] object-contain" : "aspect-[3/4] object-cover object-top"} w-full bg-[#e7e0d4]`}
                   onOpen={setPreview}
                 >
                   <span className="pointer-events-none absolute bottom-2 right-2 bg-[#1c1a17]/75 px-2 py-1 text-[10px] tracking-[0.14em] text-[#f5f0e8] uppercase">

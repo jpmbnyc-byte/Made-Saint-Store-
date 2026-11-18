@@ -24,7 +24,7 @@ export function CapsuleGrid({ limit }: { limit?: number }) {
           {capsules.map((capsule, index) => (
             <li key={capsule.slug}>
               <Link href={`/wardrobe/capsules/${capsule.slug}`} className="group block">
-                <span className="ms-studio-stage relative block aspect-[3/2] overflow-hidden">
+                <span className="relative block aspect-[3/2] overflow-hidden bg-[#efefed]">
                   <Image
                     src={capsule.cardImage}
                     alt={capsule.alt}

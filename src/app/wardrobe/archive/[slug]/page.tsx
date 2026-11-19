@@ -97,15 +97,20 @@ export default async function ArchiveChapterPage({
                   <ul className="mt-4 grid gap-4 sm:grid-cols-2">
                     {chapter.alternates.map((view) => (
                       <li key={view.src}>
-                        <figure className="relative aspect-[4/5] overflow-hidden bg-[#efefed]">
-                          <Image
-                            src={view.src}
-                            alt={view.alt}
-                            fill
-                            sizes="(min-width: 640px) 20vw, 45vw"
-                            className="object-cover object-top"
-                          />
-                        </figure>
+                        <a href={view.src} aria-label={`Enlarge ${view.alt}`} className="block">
+                          <figure
+                            className="relative overflow-hidden bg-[#efefed]"
+                            style={{ aspectRatio: view.width && view.height ? view.width / view.height : 4 / 5 }}
+                          >
+                            <Image
+                              src={view.src}
+                              alt={view.alt}
+                              fill
+                              sizes="(min-width: 640px) 20vw, 45vw"
+                              className="object-contain"
+                            />
+                          </figure>
+                        </a>
                         <p className="mt-2 text-[12px] tracking-[0.08em] text-[#1c1a17]/55 uppercase">
                           {view.label}
                         </p>

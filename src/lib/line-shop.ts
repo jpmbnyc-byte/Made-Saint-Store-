@@ -1,3 +1,4 @@
+import { studioImage } from "./studio-image";
 import { FRAMES, LINE, frameSrc, lineByRef, usd, type LineProduct } from "@/lib/line";
 import { FRAME_PX, frameLarge, listedLine } from "@/lib/imagery";
 
@@ -212,8 +213,8 @@ export const COLLECTION_LOOKS: CollectionLook[] = [
     number: "14",
     title: "Stone velour",
     use: "Leisure",
-    image: "/collection/taupe.webp",
-    alt: "Ren in a taupe velour zip set with yellow piping, in the limestone arcade",
+    image: studioImage("/collection/taupe.webp"),
+    alt: "Ren in a taupe velour zip set with yellow piping, in the charcoal studio",
     frames: [],
     pieces: [],
     styling: ["The velour set is made to order. The cream and yellow shoes in the photograph are not a founding runner."],

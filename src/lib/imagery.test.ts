@@ -3,6 +3,21 @@ import test from "node:test";
 import { LINE } from "./line";
 import { LOOKS } from "./looks";
 import { EDITORIAL_HEROES, MIN_EDGE, UNRESOLVED, lineAssignments, listedLine, publicFrames } from "./imagery";
+import { productById } from "./business";
+import { viewsFor } from "./catalog";
+import { studioImage } from "./studio-image";
+import { TONAL_RUNNERS } from "./tonal-runners";
+
+test("Brown Mesh uses one studio master across listing, gallery and tonal pairing", () => {
+  const target = studioImage("/runners/1213/1101-brown-pair.webp");
+  const product = productById("ms-runner-1101-butter")!;
+  assert.equal(target, "/art/studio-v1/brown-mesh.webp");
+  assert.equal(studioImage("/runners/1213/1101-butter-pair.webp"), target);
+  assert.equal(product.image, target);
+  assert.ok(viewsFor(product).every((view) => view.src === target));
+  assert.equal(TONAL_RUNNERS.camel.image, target);
+  assert.equal(studioImage("/collection/solene.webp"), "/collection/solene.webp");
+});
 
 test("public line cards use a large linked photograph", () => {
   const listed = LINE.filter(listedLine);

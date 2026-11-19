@@ -6,9 +6,9 @@
     "baselinePaths": 200,
     "repositoryRasters": 977,
     "inventoriedPaths": 978,
-    "retouchRequired": 197,
-    "scopeReview": 159,
-    "preservedReferences": 622,
+    "retouchRequired": 327,
+    "scopeReview": 0,
+    "preservedReferences": 651,
     "missingSources": 1
   },
   "identicalSourceGroups": [
@@ -374,8 +374,14 @@
       "sha256": "24acafc733bf7f5e3dbc8b35711aa6bc0d2e60a4c7436f2971bfc408f0a0c7b4",
       "bytes": 99968,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -386,8 +392,14 @@
       "sha256": "69320ae887490273eaab4f55758cc1d7ee68a7d17473091f5984a27bfd4ffc72",
       "bytes": 100716,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -398,8 +410,14 @@
       "sha256": "209a6bcef920c84e9e8134da4628b90ed1efe58d645883614ba8f7d10b78100b",
       "bytes": 61088,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -410,8 +428,14 @@
       "sha256": "a8f90b2dc6267d285812ea5678f40b5663aae1487e9524c5381f9017e8c28832",
       "bytes": 18990,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_brand_graphic",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_brand_graphic",
+        "reason": "Brand artwork retains its original legibility and presentation.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/business.ts"
       ],
@@ -424,8 +448,14 @@
       "sha256": "9332d031f04b057db49b05fdb997a0ffedfb2f1ca333331726bd711d51b4a369",
       "bytes": 18454,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_brand_graphic",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_brand_graphic",
+        "reason": "Brand artwork retains its original legibility and presentation.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/business.ts"
       ],
@@ -438,8 +468,14 @@
       "sha256": "ee10de5de1edad69e1ad18833bf4bd25b9b4c448cf9d6774a1dd9909ac2a98f8",
       "bytes": 18974,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_brand_graphic",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_brand_graphic",
+        "reason": "Brand artwork retains its original legibility and presentation.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/business.ts"
       ],
@@ -452,8 +488,14 @@
       "sha256": "6286afe3462e5c2b538fcd1972a8839567be435c44501e65c773fa3e489dfb46",
       "bytes": 208413,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_brand_graphic",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_brand_graphic",
+        "reason": "Brand artwork retains its original legibility and presentation.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/components/house/wordmark.tsx"
       ],
@@ -548,8 +590,14 @@
       "sha256": "e40b956090d02b99bfc2f93e390ba075811869255a167577724a8b905f7a3f7e",
       "bytes": 119892,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -560,8 +608,14 @@
       "sha256": "4d0c0c2301c67268775026edf62b250098672bdf4dd4d8396a65aca6a9a32287",
       "bytes": 35705,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -572,8 +626,14 @@
       "sha256": "074d37a04887391c19f0dedb6770d7dbc69d0ec044069ab99737b2dfcb88a135",
       "bytes": 237879,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -584,8 +644,14 @@
       "sha256": "60dfbc1a4dfdd62708712eea361f3b1a03b929732ab487c795e2dc21a41e74a4",
       "bytes": 107660,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -596,8 +662,14 @@
       "sha256": "6b4b1791a14c08c3f430a9547f63ee9d465ce176c740939740b1d1f26953bd14",
       "bytes": 101364,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -727,8 +799,14 @@
       "sha256": "30b2697fa45183ce6cc39d661237b74e2ef3b0334e3456e0d26a40ef6f20d8e3",
       "bytes": 55848,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -765,8 +843,14 @@
       "sha256": "5926b38f3c58da5c64bef43369cbcc9b9143cd508f250663f120d2e65262ca0a",
       "bytes": 87806,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -866,8 +950,14 @@
       "sha256": "53869ee7abeb8aae0d01d5dc44ad271fb7df00842e6bfa8ffb357adf3c9e01cf",
       "bytes": 198032,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -901,8 +991,14 @@
       "sha256": "b68d94027c13302a60a22ad685c896fdba0dc76dd4fdce24c47a9a7ba5e3f871",
       "bytes": 275922,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -913,8 +1009,14 @@
       "sha256": "e6596027937ae77a33600fe536504261f3e7c6f0abff1ce53dad3c8d7c55216a",
       "bytes": 196008,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -949,8 +1051,14 @@
       "sha256": "37741ee10998f9d1e926dc2d236be4b525f4c97f17a8cf6f3f2fb39655703d21",
       "bytes": 74250,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -961,8 +1069,14 @@
       "sha256": "8d8042144d130976f5bc134017924bbee6146bcbe4fb96c84b0838a19add982a",
       "bytes": 83794,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -973,8 +1087,14 @@
       "sha256": "fe27db9e3754513193c7b6488f619d5c4433af9a349bebe1a44d64435246bcd5",
       "bytes": 140998,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1138,8 +1258,14 @@
       "sha256": "b534225327cd098bb56e51e0dfb41037ba1638bdb6a36b87eb26c9fc8aaecf45",
       "bytes": 96636,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1150,8 +1276,14 @@
       "sha256": "0960911078f38d267ee269b5f6c879b22e7c375f2cac5d412ac6cbef86dded19",
       "bytes": 207114,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1229,8 +1361,14 @@
       "sha256": "b7ac910e872c78d55d5b56b6cbd947198e079334ba352a053dc125b74cdb3f9d",
       "bytes": 313600,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1241,8 +1379,14 @@
       "sha256": "419700b6a9175621e753b8aaf3020128ba6eb60951ece43ba3d4bb478166698b",
       "bytes": 35410,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1261,6 +1405,7 @@
       "canonicalSource": "/collection/solene.webp",
       "sourceOwners": [
         "src/lib/geography.ts",
+        "src/lib/imagery.test.ts",
         "src/lib/line-shop.ts"
       ],
       "routes": [
@@ -1279,8 +1424,14 @@
       "sha256": "9a7b91871f8697e6616f60f97bec89f200e172b843133db2885fbb967ddb24fd",
       "bytes": 46054,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1291,8 +1442,14 @@
       "sha256": "1d1c6fab172f3561d548008b676432dc8cfc3b1ee17fde7216d027c4df85c7f5",
       "bytes": 57080,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1379,8 +1536,14 @@
       "sha256": "88b617cd1642b4275fd3c13fce8373f2600aebe340793f1b2079836fa321c6ca",
       "bytes": 94288,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1429,8 +1592,14 @@
       "sha256": "b8c668f9a9fba784e2d3d22a4ae8ce0df03daaa4d6158efa68ee4ec73927cb10",
       "bytes": 21820,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1441,8 +1610,14 @@
       "sha256": "b982dfc9bb5f3ea9d02c5422538f44290edbbf379a01989980a24fa1e1392786",
       "bytes": 112756,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/components/house/chapters.tsx",
         "src/lib/imagery.ts"
@@ -1456,8 +1631,14 @@
       "sha256": "fb136cd2fa070c2e3a25e4941eb6c998203efbb640235041eb2ef06cc8d28c06",
       "bytes": 131744,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/components/house/chapters.tsx",
         "src/lib/imagery.ts"
@@ -1518,8 +1699,14 @@
       "sha256": "af37c8d00f8acf70dc46ec143e40b61cd2a42bc40178c32483ac8d4769121cfa",
       "bytes": 117386,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/components/house/chapters.tsx",
         "src/lib/imagery.ts"
@@ -1533,8 +1720,14 @@
       "sha256": "79d6a389353cdd9247cfc0f9f361beafec7a35e58d35fee2a13b2cec396878b4",
       "bytes": 29796,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1684,8 +1877,14 @@
       "sha256": "c43c6eaf2f4ff385df117815ad8acb87ae8e268c6ada9a741ed08d3863ce9c3a",
       "bytes": 45266,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1696,8 +1895,14 @@
       "sha256": "9a2c2a32004ad3f628ba6822a4c6a5e5c7a981a87b800d378d517a8372a80cb7",
       "bytes": 51634,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1708,8 +1913,14 @@
       "sha256": "2c989fcd5b25195ac8aa1e58ff3de58978dba119234fc5585643e137209e2ed3",
       "bytes": 46252,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1720,8 +1931,14 @@
       "sha256": "16dbba8ba9efdbb1bffabfa8c76f98c76e43294f0232c781907e9131be0e6a69",
       "bytes": 48694,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1732,8 +1949,14 @@
       "sha256": "6a9be5315b039b382c32409f9a3b9b1cbcab81e4be8d99b50baec2303c2fde3d",
       "bytes": 49600,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1744,8 +1967,14 @@
       "sha256": "f22a680db60bf6be0d7afc635ca6b81b329556f77c7ffc0572b71ff469a9ac97",
       "bytes": 88426,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1756,8 +1985,14 @@
       "sha256": "b58661bd7bc34709a5c21a4a1db8db8ed8834dcd8c2766a3906232938663c83a",
       "bytes": 325514,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1768,8 +2003,14 @@
       "sha256": "01a209e5ad86bdb8de4a394d08a5b94a188d81605a1416bc32d51b33b9d6387c",
       "bytes": 307784,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -1780,8 +2021,14 @@
       "sha256": "b61b48fe915a907ffa83be96be999e5d8904f16798de67d17b36eb236213c804",
       "bytes": 290538,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/components/house/material-study.tsx"
       ],
@@ -1813,8 +2060,14 @@
       "sha256": "612450a21d6e61730eee14e30ebdcbae136a02c586fd3e7ae841800c99bfc8d9",
       "bytes": 431276,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/components/house/chapters.tsx",
         "src/lib/imagery.ts"
@@ -1828,8 +2081,14 @@
       "sha256": "e2b6931d34098eefa12ebd688545a3b1ac5d3b62891b791847a23feb4d9925f6",
       "bytes": 367466,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/components/house/chapters.tsx",
         "src/lib/imagery.ts",
@@ -2012,8 +2271,14 @@
       "sha256": "678c922544b47699fd86bd3dcd12e794ad8cb6ea55638bba9ca9f59c62c8f753",
       "bytes": 286268,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2024,8 +2289,14 @@
       "sha256": "c630d7cd4247229cac23bf72b164a5929ad48bd38be0184689e7174d08444fa5",
       "bytes": 144340,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2160,8 +2431,14 @@
       "sha256": "ea82888b6acd5900196cf7c50242ac35f4a4e8e2427b7c3120e33b696a505ea5",
       "bytes": 154996,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/imagery.ts"
       ],
@@ -2174,8 +2451,14 @@
       "sha256": "757a5a2dc3ee24454746c7caa48d7036d7ccf2974efafd623813aee637081a50",
       "bytes": 316430,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/components/house/chapters.tsx",
         "src/lib/imagery.ts"
@@ -2189,8 +2472,14 @@
       "sha256": "d7d4b63bb5a6ebbc593c17f486805057b4d554512c5a876dd94c5ff68aa2abd2",
       "bytes": 90404,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/components/house/chapters.tsx",
         "src/lib/imagery.ts"
@@ -2204,8 +2493,14 @@
       "sha256": "eb7a1480067c7bec1a28e6aeeb64e04ce7eba56f8868abe9893ef1dba8ee45b8",
       "bytes": 151662,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/imagery.ts"
       ],
@@ -2218,8 +2513,14 @@
       "sha256": "cde63e88e1895fb86c07cee264a7e2edc231343765f58ac13bef4401f2ee4a01",
       "bytes": 37730,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2230,8 +2531,14 @@
       "sha256": "8706c058eca93d62ce6e6a9b5cd310c65b3888cee12a7c4cafcbb7771cc32528",
       "bytes": 29456,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2242,8 +2549,14 @@
       "sha256": "426bae3c48a5e1f0341715c399bb56b02d68489645f9123fb5b186f14c06c4b4",
       "bytes": 70338,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2254,8 +2567,14 @@
       "sha256": "acb1ef95f90764d32a3149f5ebe2880d5bed6149cbf9438382f853fa9b0638a9",
       "bytes": 46172,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2266,8 +2585,14 @@
       "sha256": "055e6b3ae605d7c402d873c93df0017953a985cad79876cae5096bf2750f47a9",
       "bytes": 133120,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2278,8 +2603,14 @@
       "sha256": "2e68162d673139c995840927d5fe6d599bd93c2f9efea7df107a7b3f8db454b9",
       "bytes": 180802,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2290,8 +2621,14 @@
       "sha256": "4927e4fb3346516247c1a5fd9c2d2ee46f616e87cf877039ba8c02c23113bd10",
       "bytes": 42862,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2302,8 +2639,14 @@
       "sha256": "8c460683aaf34223d020ef035cc62abff53ef86485286fada5290cc175eb045b",
       "bytes": 26534,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2314,8 +2657,14 @@
       "sha256": "c9c28a3bd68f5b76e4654d6ba0265b5900091682af6a2a56c9108d2bc7b9986c",
       "bytes": 74550,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2326,8 +2675,14 @@
       "sha256": "6d30d02ab138bfd7eb3f1c5afea5bb5435015a81fd1b6a0b65b79ddd92c2a4fe",
       "bytes": 128184,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2338,8 +2693,14 @@
       "sha256": "40e2428ae5dd7559e8136a6cfa94319b6f8e906b0ac515b35201b550ff9341d5",
       "bytes": 154168,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2368,8 +2729,14 @@
       "sha256": "ece888dabc1eecf6e444567afc04dae1bd90fccebceb5ad8a62677c764a48606",
       "bytes": 160082,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/imagery.ts"
       ],
@@ -2436,8 +2803,14 @@
       "sha256": "95279c1f2b22bd1090e04cfa15a3713c36b1f324416e40245757da37f029d9f0",
       "bytes": 174590,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/components/house/chapters.tsx",
         "src/components/wardrobe/house.tsx",
@@ -2495,8 +2868,14 @@
       "sha256": "16db9e08186575982dd2d068cbca0a6eab80488b74b270b3504b646da3ba6393",
       "bytes": 140874,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2547,8 +2926,14 @@
       "sha256": "e3325084f5d33e0445a83b9dda84f35f3a5ee440dcda805fd95f26a3b2f257d5",
       "bytes": 231876,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/imagery.ts"
       ],
@@ -2622,8 +3007,14 @@
       "sha256": "04aa2f1516fcf2d5fbb41fe0140bd4bf93f3c034dcc659392e83471c1548b8d8",
       "bytes": 33782,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2634,8 +3025,14 @@
       "sha256": "129067f9f75027b1a78e22dc6548ea40d3461408d7f89f78b837d9ef07e7bb7b",
       "bytes": 41710,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2646,8 +3043,14 @@
       "sha256": "161f785b22ea85a3d821b03e2e21f15129e29dee06da107efa62c074753705b1",
       "bytes": 38468,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2658,8 +3061,14 @@
       "sha256": "7fb8cef8745a5502110f3ff7c474f1c8b68ce65f12c535f17a9d4317708f75fb",
       "bytes": 42920,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2670,8 +3079,14 @@
       "sha256": "82a5688d37c76aee101240a4e82bbc8a848f5196ab45904c2e4da73f29fc1756",
       "bytes": 37860,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2682,8 +3097,14 @@
       "sha256": "0005fff30f9b0bae783b66779d9d32edeed358ed587e2b0580227e4c54b0f342",
       "bytes": 48170,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2694,8 +3115,14 @@
       "sha256": "3408aadd6b9e31fd71c5ea64a469aef036006dd800476cbcdfdcb32fb54e37eb",
       "bytes": 153512,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2706,8 +3133,14 @@
       "sha256": "e34b979b1b522b7675a759ce1d9d9c0b418e49448642bec1180e35efbdf46917",
       "bytes": 10150,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2718,8 +3151,14 @@
       "sha256": "51eb15a6a3a03baf5e737ed605454288b6ad478042763ce8f245be631dfc6740",
       "bytes": 14208,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2730,8 +3169,14 @@
       "sha256": "c79b44ecfe1575ffecdb4dcc873bbe86e62e0297ee18679877fbcd34d2c75b65",
       "bytes": 62514,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2742,8 +3187,14 @@
       "sha256": "52be5161d76181c3e8af3075e741d4d595e6f54e4831dedae65736da693a1e58",
       "bytes": 20724,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2754,8 +3205,14 @@
       "sha256": "cfb9998d165456b938aa0e47e321ae24a4ec4b74c8eb89a8882a48f76daa92e1",
       "bytes": 22052,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2788,8 +3245,14 @@
       "sha256": "4e3840841890b6ca1777927389f40a9e4be0a42428421ee865fd14a52c72be2d",
       "bytes": 124082,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2800,8 +3263,14 @@
       "sha256": "cc06be79789ca46eecf4d336ed357056f626eafd6d966f1e48e9dea3dab2b999",
       "bytes": 84268,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2812,8 +3281,14 @@
       "sha256": "15e24769080f42f78ef018334eef5a0f6fd6e77f40492ef560fa249b262690ed",
       "bytes": 101452,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2824,8 +3299,14 @@
       "sha256": "334076b3d31c5c328500bbb27862ef9dea934f807d7f83c5f82ee6ac4ea35d2b",
       "bytes": 111388,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2836,8 +3317,14 @@
       "sha256": "2adcaff0dbd2c2ba1196022a7ff80427ad15f5abe9c26a8591239df8b8680c80",
       "bytes": 51810,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2848,8 +3335,14 @@
       "sha256": "2d504988d7814457d6539df139be4e6541011e72dc1bf4b196af984431291382",
       "bytes": 47346,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2860,8 +3353,14 @@
       "sha256": "aa87b06b2df4fa991bb464b3cfd543fb50aa3df710e1db25a2c50466525695ee",
       "bytes": 50510,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2872,8 +3371,14 @@
       "sha256": "b638e4ccb4d84ee597b23357b41c209b6b917df05b8163b3ffc5cf21252eb7fd",
       "bytes": 64800,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2884,8 +3389,14 @@
       "sha256": "376df8e2413066ca6954e7e4afc1d8fb6bb89a8c089f2c7814ed301a43914c95",
       "bytes": 53352,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -2943,8 +3454,14 @@
       "sha256": "678c922544b47699fd86bd3dcd12e794ad8cb6ea55638bba9ca9f59c62c8f753",
       "bytes": 286268,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11735,8 +12252,14 @@
       "sha256": "c86bf206c811c72357ae42359f5858776e3580c35276ef1148775086da33b5de",
       "bytes": 93238,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11747,8 +12270,14 @@
       "sha256": "42692ccf43bd4ed62549ebc042f0e3acdb61e01c75306296c307cd3385a9ffdd",
       "bytes": 84610,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11759,8 +12288,14 @@
       "sha256": "a6ef4c462627932b3c28fa1b84112aaab308b9d2ea6214f65090893c9689a2e3",
       "bytes": 68420,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/components/house/material-study.tsx",
         "src/lib/house-eye.ts"
@@ -11774,8 +12309,14 @@
       "sha256": "374cb25f4682e25ebd960c6704494532ba2c89779cd856960755c8c74c322de1",
       "bytes": 78972,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11786,8 +12327,14 @@
       "sha256": "9e68c2a292b2791212e1f11b423481294cc11d17b6942799fcf59c30e39b33bc",
       "bytes": 177232,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11798,8 +12345,14 @@
       "sha256": "4e710c9596a1ca51bf906917fddf8a20293c06c51231bf061ea1d24f0d471557",
       "bytes": 134224,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11810,8 +12363,14 @@
       "sha256": "a32a208983a224c52c0e2af1d43e05b7f3b1c85add69f821f1b43dfe16817d14",
       "bytes": 90466,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11822,8 +12381,14 @@
       "sha256": "03b31089a57d3672b6ed0c3a7c160ee523c43080c1218499101dfbb26d03ba79",
       "bytes": 89964,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11834,8 +12399,14 @@
       "sha256": "26d6c729523e7aa1bd891d76bf75bb39b1275207ef431b5915f2c6053a1ffd55",
       "bytes": 108548,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11846,8 +12417,14 @@
       "sha256": "86d0e2bf92b14fc7316bb2bde5c81b8fac42e949c042709eb09a6e9e1f7c8b63",
       "bytes": 70126,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/components/house/material-study.tsx",
         "src/lib/house-eye.ts"
@@ -11861,8 +12438,14 @@
       "sha256": "033348bf7360fec7b7522feb9fe3371da4cc24ec1ffc199d7efdafdb65aef360",
       "bytes": 50350,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11873,8 +12456,14 @@
       "sha256": "f1ffbc88c9167c49e8285fd6d7a684284c91b85adad96457ad2183d51d47b6a1",
       "bytes": 56214,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11885,8 +12474,14 @@
       "sha256": "6b7693da14991d981087d9bfea939fe732067d56c9cc41ef86dd0de8d1831f60",
       "bytes": 95080,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11897,8 +12492,14 @@
       "sha256": "ff7645692a0ef1e9b2df03fb8248c50386347aef892ef1eb427595968b70e1b1",
       "bytes": 83044,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11909,8 +12510,14 @@
       "sha256": "3aef3d86605dd9253c24adb58008799c468cf65b7eee330532a2a8482f103df5",
       "bytes": 317396,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11921,8 +12528,14 @@
       "sha256": "7a00c08b499e16a66beeba99156ea58601b3e09be17afd59763de87b760aeaa7",
       "bytes": 208906,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11933,8 +12546,14 @@
       "sha256": "c2e480d29b77845d5c36cf70b82788e9776d06b6210c4b7507c4108503e82896",
       "bytes": 296806,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11945,8 +12564,14 @@
       "sha256": "ecde5a56e66b4314fba7f2a23204a59b36df85a61071596166ebfe02a152a1e8",
       "bytes": 99258,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11957,8 +12582,14 @@
       "sha256": "46a1f82024a63ce9d2e65972f3c2ea76e001fafa4569e6d257e0ea06bc5690d6",
       "bytes": 102350,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11969,8 +12600,14 @@
       "sha256": "4462809c3ca25e3bf4e47c301ed53815c68603387cd1ac1cf55bb10fa77f53fa",
       "bytes": 110184,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11981,8 +12618,14 @@
       "sha256": "ba70c07e92e3c29419a99374ff55968fc99e162cdad9f4b56e061c977f790384",
       "bytes": 99666,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -11993,8 +12636,14 @@
       "sha256": "980943c1e5ac95eb18ac8f5ece7c33a9f062e6bd20dda4a9ca7055f653704dcc",
       "bytes": 125062,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -12005,8 +12654,14 @@
       "sha256": "2b83981a0dfda4a626cd45a89c96c72582cd1a50c0adda0a48c7ccc18ce4cf81",
       "bytes": 108216,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -12062,8 +12717,14 @@
       "sha256": "3e7d929e72fc67c6b1ec3972f3f98890b96d9ec42d8f2eedc4a668c8ed4c7288",
       "bytes": 160858,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/catalog.ts"
       ],
@@ -12076,8 +12737,14 @@
       "sha256": "7ca68e7775587cb4a5b46c8f9a0b3031a76e50cad8a1623485b84d31c16c0b7d",
       "bytes": 107958,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/business.ts",
         "src/lib/catalog.ts"
@@ -12097,9 +12764,7 @@
         "master_upgrade_needed_for_large_retina"
       ],
       "canonicalSource": "/runners/1213/1101-brown-atelier.webp",
-      "sourceOwners": [
-        "src/lib/catalog.ts"
-      ],
+      "sourceOwners": [],
       "routes": [
         "/shop/ms-runner-1101-butter"
       ]
@@ -12117,7 +12782,8 @@
       ],
       "canonicalSource": "/runners/1213/1101-brown-pair.webp",
       "sourceOwners": [
-        "src/lib/catalog.ts"
+        "src/lib/catalog.ts",
+        "src/lib/imagery.test.ts"
       ],
       "routes": [
         "/shop/ms-runner-1101-butter"
@@ -12138,6 +12804,7 @@
       "sourceOwners": [
         "src/lib/business.ts",
         "src/lib/catalog.ts",
+        "src/lib/imagery.test.ts",
         "src/lib/tonal-runners.ts"
       ],
       "routes": [
@@ -12202,8 +12869,14 @@
       "sha256": "8ae8c012135c2523028b779424c8f97559772453342e64878c0d27025506d00d",
       "bytes": 98974,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -12567,8 +13240,14 @@
       "sha256": "8cb80a0807e2e99ed188579546865406403f5e4c5ba8d742f9f808d4c44daeef",
       "bytes": 67374,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -12579,8 +13258,14 @@
       "sha256": "d9cbe076aef6b6721e61b58c323f898c12ae4cb6f014ab3c75ca91d6efd1135e",
       "bytes": 167800,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -13106,8 +13791,14 @@
       "sha256": "4e2d97b95e2d09c516f688e0a6bd95af92577d368e6ddbfe1e8dd457353e3f7a",
       "bytes": 280014,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/components/house/chapters.tsx",
         "src/components/house/film.tsx",
@@ -13123,8 +13814,14 @@
       "sha256": "147c9f57b879e7ed64b4148b2de4b413a18d58dbab169efb8fcde6657ab9ef0b",
       "bytes": 173060,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -13135,8 +13832,14 @@
       "sha256": "787c11167f6f6692dfa6440fe940abfb6e617e016a164e1759cb297db05a776f",
       "bytes": 192874,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/business.ts",
         "src/lib/stories.ts"
@@ -13150,8 +13853,14 @@
       "sha256": "f0431faff013a84ea1291f8437741fe5507c65bc456d9a2fcaf4c44589fb1146",
       "bytes": 243998,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -13162,8 +13871,14 @@
       "sha256": "f2587d9a8a20bd65f03d7753a19a51d8c255c49f2e2184b6c52090c3a0055c64",
       "bytes": 303062,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/stories.ts"
       ],
@@ -13176,8 +13891,14 @@
       "sha256": "6bab87d493139500a1faf00cbc3cedd517cef63f69aa9eed6b1a864ac2623741",
       "bytes": 212728,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -13188,8 +13909,14 @@
       "sha256": "c684d037760bc2d8cf8ad847fb574e275893f51551b86b08e9e6be8e6379678d",
       "bytes": 264908,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/components/house/chapters.tsx",
         "src/lib/imagery.ts",
@@ -13704,8 +14431,14 @@
       "sha256": "b7c09d3da6927a5217103b4c4300d9ccae5f10ed4d570abb35b55c8eae43ad44",
       "bytes": 99660,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -13716,8 +14449,14 @@
       "sha256": "6045dcf66e23d1e89a9a22a2f866758f48932f59e218a636c0edb9803e52b80c",
       "bytes": 376420,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/wardrobe.ts"
       ],
@@ -14110,8 +14849,14 @@
       "sha256": "3328dc6d9943dfa7f3371d241e35ae3942ea01d1e13c35af9dec932e535c1d3a",
       "bytes": 2407349,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_source_master",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_source_master",
+        "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14122,8 +14867,14 @@
       "sha256": "f105d58e2fcd4e9f3658944b3e7ec4178571665e16f30936569b3f33f7620ae3",
       "bytes": 2108560,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_source_master",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_source_master",
+        "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14134,8 +14885,14 @@
       "sha256": "54c28c10239a52bb8d5d36910b0a672756b0ec70530e0e2ee12c226e67eb7c43",
       "bytes": 2618098,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_source_master",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_source_master",
+        "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14146,8 +14903,14 @@
       "sha256": "76efd1b0185a3dd97f90a4ffac348efdeea9e49a76f0a36661dab3b4bf92d5c4",
       "bytes": 2365720,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_source_master",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_source_master",
+        "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14158,8 +14921,14 @@
       "sha256": "609f60e550fed3a24c5f1ebaab393ff4f61ffb7d551d1face6cf2e5f5c5cdbbb",
       "bytes": 2463365,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_source_master",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_source_master",
+        "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14170,8 +14939,14 @@
       "sha256": "6dde1750a374019a3e7bc700b7ff2cece26a01c80243e3e6cf029d7660b044c4",
       "bytes": 2646324,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_source_master",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_source_master",
+        "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14182,8 +14957,14 @@
       "sha256": "a0c5dba384fd88a5fde42a2df14e88fa82bfb31a24edfdc09b7dd8c1d61ebffa",
       "bytes": 2058458,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_source_master",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_source_master",
+        "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14194,8 +14975,14 @@
       "sha256": "f954906078cadae4b841db5e40c8e79bf8e60b47169e98ab33d534a18e20951d",
       "bytes": 2558243,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_source_master",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_source_master",
+        "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14206,8 +14993,14 @@
       "sha256": "6348b90e1127cbcdfeb784c60c02ac829a47e41fb6c1f716dfa7350ce7a4b8c4",
       "bytes": 2638148,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_source_master",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_source_master",
+        "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14218,8 +15011,14 @@
       "sha256": "9471630a5966b2ce7dad679396974ce55a8842a5b3987922f80caa2fcbeef0c2",
       "bytes": 2238980,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_source_master",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_source_master",
+        "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14230,8 +15029,14 @@
       "sha256": "644997049e24904e153c14121bc490466e14203357776f83036ad3c32517f093",
       "bytes": 2406172,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_source_master",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_source_master",
+        "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14242,8 +15047,14 @@
       "sha256": "1a6c02b8094e91958f94962edaaa4780712f2a0831c7ca84327eedf07bf1ab88",
       "bytes": 2164279,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_source_master",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_source_master",
+        "reason": "Keep this original as capsule provenance. The corresponding display derivatives are tracked separately and need a higher-resolution master.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14570,8 +15381,14 @@
       "sha256": "cbc19e2e775640cf9ce36c996de5ab8462885830dc3d1d7b15788fb95bad576c",
       "bytes": 94422,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14639,8 +15456,14 @@
       "sha256": "c5b2c37e9eaef8fec2c3bfc91bd03a18dc7e1d31cb3d23bdb317d1f06e26a55b",
       "bytes": 7048,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14694,8 +15517,14 @@
       "sha256": "41f7d4d0db7002ba4fe249574fe591ca6e468d1ff790c3c115db696b74b66217",
       "bytes": 4434,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14765,8 +15594,14 @@
       "sha256": "20771ecb4b4ff0a9dbe5050d6cb6a070acfb79d90e66684de7c97bf63a25d1ca",
       "bytes": 315660,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/wardrobe.ts"
       ],
@@ -14779,8 +15614,14 @@
       "sha256": "f043895de3081eacd06d9bd2360b16f9b2f3bf1bf94be4391e96d5c68018f310",
       "bytes": 3780,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14811,8 +15652,14 @@
       "sha256": "e5283c5bc8d9b4d296a8449d968113f8f5b1373bffa62ecf07de7647c6280905",
       "bytes": 180844,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/wardrobe.ts"
       ],
@@ -14825,8 +15672,14 @@
       "sha256": "60f260cbe4e2224a2fe1b4c06f6d2af5c20ca8afb6b3ec5179a4f6344064f2df",
       "bytes": 119884,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_location_reference",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_location_reference",
+        "reason": "Keep the São Roque location photography as place evidence.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14837,8 +15690,14 @@
       "sha256": "90691c77c505bebc171d5960d2addd13589b360b846930f722ad709db308abd4",
       "bytes": 727456,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_location_reference",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_location_reference",
+        "reason": "Keep the São Roque location photography as place evidence.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/asset-manifest.ts"
       ],
@@ -14851,8 +15710,14 @@
       "sha256": "873e9730454128e1b13345630fe5927df18f95f6fde24a6cdc8421c78eb7e638",
       "bytes": 19710,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_location_reference",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_location_reference",
+        "reason": "Keep the São Roque location photography as place evidence.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14863,8 +15728,14 @@
       "sha256": "6e7aa555c76932aa65abf9578729000af683b6f86f180c031bd3844565ce8826",
       "bytes": 103498,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_location_reference",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_location_reference",
+        "reason": "Keep the São Roque location photography as place evidence.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14875,8 +15746,14 @@
       "sha256": "25b6f24acc5be4b770da5a8ca85e1a645e16d05948b922d0acc6da1bad4a6a76",
       "bytes": 508664,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_location_reference",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_location_reference",
+        "reason": "Keep the São Roque location photography as place evidence.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/asset-manifest.ts"
       ],
@@ -14889,8 +15766,14 @@
       "sha256": "6a152c5b051e3d13c85b0bf20a3ffa9ce27c7788182fba54baa53440acb8e993",
       "bytes": 238512,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_location_reference",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_location_reference",
+        "reason": "Keep the São Roque location photography as place evidence.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/asset-manifest.ts"
       ],
@@ -14903,8 +15786,14 @@
       "sha256": "7d25d323702c8ebe2c7ca7c1b4721d846935cee83e254ac7075c8630eb2710e7",
       "bytes": 58786,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_location_reference",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_location_reference",
+        "reason": "Keep the São Roque location photography as place evidence.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14915,8 +15804,14 @@
       "sha256": "b740f08471ea37e33909168d29298090a1c6ef1f97d4241bd180f60bee0c930c",
       "bytes": 136712,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_location_reference",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_location_reference",
+        "reason": "Keep the São Roque location photography as place evidence.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14927,8 +15822,14 @@
       "sha256": "1c647ca07c73c66af1d543d60e4563ac80456c5b05464b0cfa0efd405d8db875",
       "bytes": 22136,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_location_reference",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_location_reference",
+        "reason": "Keep the São Roque location photography as place evidence.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14939,8 +15840,14 @@
       "sha256": "55358a2733f44ec6eccd68cd433558e7358960f6332d9fafe123a3f299a331f8",
       "bytes": 70458,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_location_reference",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_location_reference",
+        "reason": "Keep the São Roque location photography as place evidence.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14951,8 +15858,14 @@
       "sha256": "c6bc107dec00f0aff833ef686dc32fe445ce3fb34b6ab226a0f39275a37ae8a5",
       "bytes": 20746,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_location_reference",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_location_reference",
+        "reason": "Keep the São Roque location photography as place evidence.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14963,8 +15876,14 @@
       "sha256": "b740f08471ea37e33909168d29298090a1c6ef1f97d4241bd180f60bee0c930c",
       "bytes": 136712,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_location_reference",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_location_reference",
+        "reason": "Keep the São Roque location photography as place evidence.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14975,8 +15894,14 @@
       "sha256": "5142ec4d507d18e2ee39ef348759248b27e7dad4c30444bb5a0afd0c7ac9af55",
       "bytes": 17708,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "preserve_location_reference",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "preserve_location_reference",
+        "reason": "Keep the São Roque location photography as place evidence.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [],
       "routes": []
     },
@@ -14987,8 +15912,14 @@
       "sha256": "a622cc3102b02b1940a65f1231c33dc785441b3e766b473f4fff7d8fcae03ba5",
       "bytes": 93676,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/asset-manifest.ts"
       ],
@@ -15023,8 +15954,14 @@
       "sha256": "acdb6971a78988ecbbcd1bff5a9f5ce9e34467d46c7007899214f8e9673db208",
       "bytes": 131802,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/asset-manifest.ts"
       ],
@@ -15037,8 +15974,14 @@
       "sha256": "c316253b13c6916dacae00d902d3835cb24684caa492344bc967f146d3bf2e81",
       "bytes": 90118,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/asset-manifest.ts"
       ],
@@ -15051,8 +15994,14 @@
       "sha256": "6a019d2e58224ec1462e7291c20383b0411cf5794f98bbb612fae28ba12357db",
       "bytes": 245598,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/asset-manifest.ts"
       ],
@@ -15087,8 +16036,14 @@
       "sha256": "2a68ce07084bfa5e8a9d87ed711b1b5fbb860afc38bc8be0c9caa1eae12eadc0",
       "bytes": 107568,
       "baseline": false,
-      "disposition": "review_scope",
+      "disposition": "retouch",
       "blockers": [],
+      "scopeReview": {
+        "disposition": "retouch",
+        "reason": "Include this photographic or composite candidate in source and retouch review. Verify its routes, aliases, and render role before assigning a production derivative.",
+        "reviewedBy": "Codex",
+        "reviewedAt": "2026-11-17"
+      },
       "sourceOwners": [
         "src/lib/asset-manifest.ts"
       ],

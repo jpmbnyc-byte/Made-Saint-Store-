@@ -157,6 +157,36 @@ const STARTS = [
   },
 ] as const;
 
+
+const FOLD_HANDOFF = "made-saint-fold-handoff";
+const FOLD_FIELDS = ["height", "chest", "shoulder", "sleeve", "waist", "hip", "inseam"] as const;
+
+function readFoldBrief() {
+  try {
+    const raw = sessionStorage.getItem(FOLD_HANDOFF);
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    if (!data || !["set", "jacket", "pants"].includes(data.piece)) return null;
+    const name = data.piece === "set" ? "Full set" : data.piece === "jacket" ? "Jacket" : "Track pant";
+    const fit: Partial<FitInput> = {};
+    for (const key of FOLD_FIELDS) {
+      const value = data.fit?.[key];
+      if (typeof value === "string" && Number.isFinite(Number(value)) && Number(value) > 0) fit[key] = value;
+    }
+    const lines = ["The Saint Fold · Ivory Oxblood · " + name];
+    for (const row of Array.isArray(data.readings) ? data.readings.slice(0, 7) : []) {
+      if (Array.isArray(row) && row.length === 2) lines.push(String(row[0]).slice(0, 24) + ": " + String(row[1]).slice(0, 20));
+    }
+    if (data.ease) lines.push("Ease: " + String(data.ease).slice(0, 18));
+    if (data.hem) lines.push("Trouser hem: " + String(data.hem).slice(0, 18));
+    if (data.notes) lines.push(String(data.notes).slice(0, 240));
+    const easeId = data.ease === "Closer" ? "tailored" : data.ease === "Roomier" ? "relaxed" : "easy";
+    return { fit, name, note: lines.join("\n"), easeId, completeSet: data.piece === "set" } as const;
+  } catch {
+    return null;
+  }
+}
+
 export function PrivateHouse() {
   const [lifestyleId, setLifestyleId] = useState<LifestyleId>("arrival");
   const [startId, setStartId] = useState("");
@@ -188,6 +218,7 @@ export function PrivateHouse() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState<string | null>(null);
+  const [foldBrief, setFoldBrief] = useState<ReturnType<typeof readFoldBrief>>(null);
   const [remoteFitting, setRemoteFitting] = useState(false);
 
   const ease = EASES.find((item) => item.id === easeId) ?? EASES[0];
@@ -198,7 +229,7 @@ export function PrivateHouse() {
   const castLook = collectionLook ? lookBySlug(collectionLook) : undefined;
   const capsule = capsuleSlug ? capsuleBySlug(capsuleSlug) : undefined;
   const activeLook = focusLookId ? lookById(focusLookId) : roster.length ? lookForLifestyle(lifestyleId) : undefined;
-  const requestTitle = capsule
+  const requestTitle = foldBrief ? "The Saint Fold · " + foldBrief.name : capsule
     ? `${capsule.title} · ${capsuleSide === "women" ? "Women" : "Men"}`
     : castLook?.title
       ?? (clothes.length === 0 && heldLine ? customerName(heldLine) : activeLook?.name)
@@ -206,6 +237,17 @@ export function PrivateHouse() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    if (params.get("fitting") === "saint-fold") {
+      const brief = readFoldBrief();
+      if (brief) {
+        setFoldBrief(brief);
+        setNote(brief.note);
+        setScope(brief.completeSet ? "look" : "piece");
+        setEaseId(brief.easeId);
+        setMatchingPieces(brief.completeSet ? ["Saint Fold jacket", "Saint Fold track pant"] : ["Saint Fold " + brief.name]);
+        return;
+      }
+    }
     const lookParam = params.get("look") ?? "";
     const wardrobeLook = lookById(lookParam);
     const cast = lookBySlug(lookParam);
@@ -325,7 +367,7 @@ export function PrivateHouse() {
           lineSize,
           lineImage,
           matchingPieces,
-          fit: {
+          fit: foldBrief ? { ...foldBrief.fit, ease: ease.fit } : {
             shoulderStyle: shoulder.id,
             ease: ease.fit,
             height: physiqueId === "athletic-tall" ? "196" : "",
@@ -347,6 +389,7 @@ export function PrivateHouse() {
       }
       if (!res.ok || !json.id) throw new Error(json.error ?? "The commission could not be sent.");
       setSent(json.id);
+      if (foldBrief) { try { sessionStorage.removeItem(FOLD_HANDOFF); } catch { /* Storage may be unavailable. */ } }
     } catch (err) {
       setError(err instanceof Error ? err.message : "The commission could not be sent.");
       setBusy(false);
@@ -416,6 +459,10 @@ export function PrivateHouse() {
     <div>
       <WardrobeIntro />
       <WardrobePreview frame={preview} onClose={() => setPreview(null)} />
+      <section className="mx-auto flex max-w-[1100px] items-center justify-between gap-4 border-b border-[#1c1a17]/15 px-5 py-7 md:px-8">
+        <div><h2 className="font-serif text-3xl">The Saint Fold</h2><p className="mt-1 text-sm">Ivory Oxblood · Jacket and track pant</p></div>
+        <a href="/saint-fold/index.html" className="text-sm underline underline-offset-4">Explore the fit map →</a>
+      </section>
       <CapsuleGrid limit={4} />
       <ArchiveGrid featuredOnly />
 

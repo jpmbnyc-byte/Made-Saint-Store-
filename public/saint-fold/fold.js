@@ -37,7 +37,15 @@ function pressed(el,yes){el.setAttribute('aria-pressed',String(yes));}
 function display(cm){return Number.isFinite(cm)?String(+(cm/(state.unit==='in'?2.54:1)).toFixed(2)):'';}
 function fittingPart(key){return ['waist','hip','inseam'].includes(key)||state.piece==='pants'?'pants':'jacket';}
 function imagePath(part,view){return 'assets/'+part+'-'+view+'.webp';}
+const narrowScreen = window.matchMedia('(max-width:780px)');
+function placeFitInfo(){
+  const info=$('#fit-info');
+  if(narrowScreen.matches && state.mode==='map') $('.gallery').append(info);
+  else $('#main-action').before(info);
+}
+narrowScreen.addEventListener('change',placeFitInfo);
 function drawProduct(){
+  placeFitInfo();
   for(const key of ['mode','view','piece']) $$('[data-'+key+']').forEach(b=>pressed(b,b.dataset[key]===state[key]));
   const isMap=state.mode==='map', part=state.part, point=points[part][state.point];
   $('#plate-label').textContent='Ivory Oxblood';

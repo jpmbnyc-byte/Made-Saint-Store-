@@ -54,7 +54,7 @@ export function WardrobeIntro() {
         <figure className="relative aspect-[4/5] overflow-hidden bg-[#efefed] md:aspect-[5/6]">
           <Image
             src="/wardrobe/hero-private.webp"
-            alt="A private wardrobe fitting — navy pinstripe set, MADE SAiNT boxes and a garment bag"
+            alt="An associate presents the Ivory Oxblood Saint Fold jacket and track pants as a seated client inspects a runner beneath the MADE Saint wordmark"
             fill
             priority
             sizes="(min-width: 768px) 40vw, 90vw"

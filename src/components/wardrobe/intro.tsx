@@ -51,14 +51,14 @@ export function WardrobeIntro() {
           </p>
         </div>
 
-        <figure className="relative aspect-[4/5] overflow-hidden bg-[#efefed] md:aspect-[5/6]">
+        <figure className="relative aspect-[3/2] overflow-hidden bg-[#efefed]">
           <Image
-            src="/wardrobe/hero-private.webp"
+            src="/wardrobe/hero-private-landscape.webp"
             alt="An associate presents the Ivory Oxblood Saint Fold jacket and track pants as a seated client inspects a runner beneath the MADE Saint wordmark"
             fill
             priority
             sizes="(min-width: 768px) 40vw, 90vw"
-            className="object-cover object-[center_20%]"
+            className="object-contain"
           />
         </figure>
       </div>

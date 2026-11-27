@@ -150,7 +150,7 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-[#1c1a17]/10 bg-[#f5f0e8] text-[#1c1a17]">
       <div className="mx-auto flex max-w-[1440px] flex-col gap-8 px-4 py-10 md:flex-row md:items-end md:justify-between md:px-8">
-        <Wordmark className="h-7 w-auto" />
+        <Wordmark priority={false} className="h-auto w-28 max-w-full shrink-0 self-start object-contain md:self-end" />
         <nav className="flex flex-wrap gap-x-6 gap-y-3 text-[12px] tracking-[0.08em]" aria-label="Footer">
           <Link href="/brand" className="hover:opacity-70">
             About

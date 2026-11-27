@@ -28,7 +28,14 @@ const fields = {
 };
 const views = ['front','side','back'];
 const sizes = {jacket:[[369,478],[136,457],[360,477]],pants:[[203,486],[116,486],[198,486]]};
-const state = {piece:'set',mode:location.hash==='#fit-map'?'map':'product',view:'front',part:'jacket',point:0,unit:'cm',step:0,values:{},pending:{},ease:'',hem:'',notes:'',help:false};
+const colors={
+  ivory:{name:'Ivory Oxblood',palette:['#e3d2b6','#60272a','#8199aa','#a5b29a','#a38463','#c19a54']},
+  ink:{name:'Ink Slate',palette:['#222334','#232325','#565d71','#99949c','#e4dbd0','#48454b']},
+  olive:{name:'Olive Cacao',palette:['#382a27','#404535','#899278','#ad806e','#e9d899','#795741']}
+};
+const colorName=()=>colors[state.color].name;
+const assetPrefix=()=>state.color==='ivory'?'':state.color+'-';
+const state = {color:'ivory',piece:'set',mode:location.hash==='#fit-map'?'map':'product',view:'front',part:'jacket',point:0,unit:'cm',step:0,values:{},pending:{},ease:'',hem:'',notes:'',help:false};
 const activeKeys = () => ['height', ...(state.piece!=='pants'?['chest','shoulder','sleeve']:[]), ...(state.piece!=='jacket'?['waist','hip','inseam']:[])];
 let firstReading='';
 const orderedKeys=()=>activeKeys().includes(firstReading)?[firstReading,...activeKeys().filter(k=>k!==firstReading)]:activeKeys();
@@ -38,7 +45,7 @@ const esc = value => String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'
 function pressed(el,yes){el.setAttribute('aria-pressed',String(yes));}
 function display(cm){return Number.isFinite(cm)?String(+(cm/(state.unit==='in'?2.54:1)).toFixed(2)):'';}
 function fittingPart(key){return ['waist','hip','inseam'].includes(key)||state.piece==='pants'?'pants':'jacket';}
-function imagePath(part,view){return 'assets/'+part+'-'+view+'.webp';}
+function imagePath(part,view){return 'assets/'+assetPrefix()+part+'-'+view+'.webp';}
 const narrowScreen = window.matchMedia('(max-width:780px)');
 function placeFitInfo(){
   const info=$('#fit-info');
@@ -51,7 +58,11 @@ function drawProduct(){
   placeFitInfo();
   for(const key of ['mode','view','piece']) $$('[data-'+key+']').forEach(b=>pressed(b,b.dataset[key]===state[key]));
   const isMap=state.mode==='map', part=state.part, point=points[part][state.point];
-  $('#plate-label').textContent='Ivory Oxblood';
+  for(const el of [$('#plate-label'),$('.subtitle'),$('.section-head span')])el.textContent=colorName();
+  $$('[data-color]').forEach(el=>pressed(el,el.dataset.color===state.color));
+  $$('.palette i').forEach((el,i)=>el.style.setProperty('--c',colors[state.color].palette[i]));
+  $('.palette').title=colorName();
+  $$('.details-grid img').forEach((el,i)=>{const name=['wave','collar','crest'][i];el.src='assets/'+assetPrefix()+name+'.webp';el.alt=colorName()+' '+name+' detail';});
   $('#piece-map').innerHTML=isMap&&state.piece==='set'?['jacket','pants'].map(p=>'<button data-part="'+p+'" aria-pressed="'+(p===part)+'">'+pieceNames[p]+'</button>').join(''):'';
   $('#map-tools').hidden=!isMap;
   const picker=$('#point-picker');
@@ -65,7 +76,7 @@ function drawProduct(){
   const angle=views.indexOf(state.view);
   $('#figures').innerHTML=shown.map(p=>{
     const pins=isMap?points[p].map(([name,description,...coords],i)=>'<button class="pin" data-point="'+i+'" data-number="'+(i+1)+'" aria-label="'+esc(name)+'" aria-pressed="'+(i===state.point)+'" style="left:'+coords[angle][0]+'%;top:'+coords[angle][1]+'%"></button>').join(''):'';
-    return '<div class="figure" data-figure="'+p+'"><img src="'+imagePath(p,state.view)+'" alt="'+pieceNames[p]+', '+state.view+' design drawing in Ivory Oxblood">'+pins+'</div>';
+    return '<div class="figure" data-figure="'+p+'"><img src="'+imagePath(p,state.view)+'" alt="'+pieceNames[p]+', '+state.view+' design drawing in '+colorName()+'">'+pins+'</div>';
   }).join('');
   resizeFigures();
   $('#fit-info').innerHTML=isMap?'<div class="point-title"><h3>'+point[0]+'</h3><span class="fit-counter">'+(state.point+1)+' / '+points[part].length+'</span></div><p class="body">'+point[1]+'</p><div class="fit-nav"><button data-move="-1" aria-label="Previous fit point">← Previous</button><button data-move="1">Next fit point →</button></div>':'';
@@ -115,7 +126,7 @@ function preference(){
 }
 function brief(){
   const keys=activeKeys(), readings=keys.map(k=>[fields[k][0],state.pending[k]||!Number.isFinite(state.values[k])?'To measure':display(state.values[k])+' '+state.unit]);
-  return {piece:state.piece,title:'The Saint Fold · Ivory Oxblood · '+pieceNames[state.piece],readings,fit:Object.fromEntries(keys.filter(k=>!state.pending[k]&&Number.isFinite(state.values[k])).map(k=>[k,String(+state.values[k].toFixed(2))])),ease:state.ease,hem:state.piece==='jacket'?'':state.hem,notes:state.notes};
+  return {piece:state.piece,colorway:colorName(),title:'The Saint Fold · '+colorName()+' · '+pieceNames[state.piece],readings,fit:Object.fromEntries(keys.filter(k=>!state.pending[k]&&Number.isFinite(state.values[k])).map(k=>[k,String(+state.values[k].toFixed(2))])),ease:state.ease,hem:state.piece==='jacket'?'':state.hem,notes:state.notes};
 }
 function briefText(b){return [b.title,...b.readings.map(([k,v])=>k+': '+v),'Ease: '+b.ease,b.hem?'Trouser hem: '+b.hem:'',b.notes?'Notes: '+b.notes:'','For atelier review.'].filter(Boolean).join('\n');}
 const inStore=()=>['madesaint.store','www.madesaint.store'].includes(location.hostname)||document.documentElement.dataset.store==='true';
@@ -124,16 +135,58 @@ function review(){
   const outstanding=b.readings.filter(([,v])=>v==='To measure').map(([label])=>label);
   const summary=outstanding.length?'Still to measure · '+outstanding.join(', '):'All requested measurements entered';
   const rows=[...b.readings,['Overall ease',state.ease],...(b.hem?[['Trouser hem',b.hem]]:[]),...(b.notes?[['Fit notes',b.notes]]:[])];
-  return '<h2 id="fitting-title" tabindex="-1">Review your fitting</h2><p class="fit-copy">Ivory Oxblood · '+pieceNames[state.piece]+'</p><p class="helpbox">'+esc(summary)+'</p>'+rows.map(([k,v],i)=>'<div class="review-row"><span>'+esc(k)+'</span><span>'+esc(v)+' <button class="edit" data-edit="'+(i<activeKeys().length?steps().indexOf(activeKeys()[i]):activeKeys().length)+'" aria-label="Edit '+esc(k)+'">Edit</button></span></div>').join('')+'<p class="note">'+(inStore()?'Continue to Private Wardrobe to add contact details and send your fitting for review.':'Download your brief for Private Wardrobe. The brief lists the readings you supplied and anything still to measure.')+'</p><div class="error" role="alert"></div><button class="primary" id="'+(inStore()?'handoff':'download')+'">'+(inStore()?'Continue to Private Wardrobe':'Download fit brief')+' <span>→</span></button>'+(inStore()?'<button class="help" id="download">Download a copy</button>':'<a class="help" href="https://www.madesaint.store/wardrobe#introduction" target="_blank" rel="noopener">Open Private Wardrobe →</a>');
+  return '<h2 id="fitting-title" tabindex="-1">Review your fitting</h2><p class="fit-copy">'+colorName()+' · '+pieceNames[state.piece]+'</p><p class="helpbox">'+esc(summary)+'</p>'+rows.map(([k,v],i)=>'<div class="review-row"><span>'+esc(k)+'</span><span>'+esc(v)+' <button class="edit" data-edit="'+(i<activeKeys().length?steps().indexOf(activeKeys()[i]):activeKeys().length)+'" aria-label="Edit '+esc(k)+'">Edit</button></span></div>').join('')+'<p class="note">'+(inStore()?'Continue to Private Wardrobe to add contact details and send your fitting for review.':'Download your brief for Private Wardrobe. The brief lists the readings you supplied and anything still to measure.')+'</p><div class="error" role="alert"></div><button class="primary" id="'+(inStore()?'handoff':'download')+'">'+(inStore()?'Continue to Private Wardrobe':'Download fitting card')+' <span>→</span></button>'+(inStore()?'<button class="help" id="download">Download fitting card</button>':'<a class="help" href="https://www.madesaint.store/wardrobe#introduction" target="_blank" rel="noopener">Open Private Wardrobe →</a>');
 }
 function drawForm(){
   const all=steps(),key=all[state.step],part=fittingPart(key);
-  $('#fit-art').innerHTML='<img src="'+imagePath(part,'front')+'" alt="'+pieceNames[part]+' front design reference"><em>The Saint Fold · Ivory Oxblood</em>';
+  $('#fit-art').innerHTML='<img src="'+imagePath(part,'front')+'" alt="'+pieceNames[part]+' front design reference"><em>The Saint Fold · '+colorName()+'</em>';
   $('#fit-form').innerHTML='<div class="step-label">'+pieceNames[state.piece]+' &nbsp; / &nbsp; '+(state.step+1)+' of '+all.length+'</div><div class="rule"><div style="width:'+((state.step+1)/all.length*100)+'%"></div></div>'+(key==='review'?review():key==='preference'?preference():measurement(key))+(state.step>0?'<button class="back" id="back">← Back</button>':'');
 }
-function download(){
-  const text=briefText(brief()),url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));
-  const a=document.createElement('a');a.href=url;a.download='MADE-SAINT-Saint-Fold-Fitting.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
+async function download(){
+  const button=$('#download');button.disabled=true;
+  try{
+    const record=brief();
+    const parts=state.piece==='set'?['jacket','pants']:[state.piece];
+    const load=async src=>{const img=new Image();img.src=src;await img.decode();return img;};
+    const [logo,...garments]=await Promise.all([load('assets/made-saint-wordmark.webp'),...parts.map(p=>load(imagePath(p,'front')))]);
+    const canvas=document.createElement('canvas');canvas.width=1050;
+    const ctx=canvas.getContext('2d');
+    ctx.font='26px sans-serif';
+    const notes=[];let line='';
+    for(const char of record.notes){
+      if(char==='\n'||ctx.measureText(line+char).width>890){notes.push(line);line='';}
+      if(char!=='\n')line+=char;
+    }
+    if(line)notes.push(line);
+    const rows=[...record.readings,['Ease',record.ease],...(record.hem?[['Trouser hem',record.hem]]:[])];
+    canvas.height=900+rows.length*59+notes.length*40;
+    ctx.fillStyle='#f8f5ee';ctx.fillRect(0,0,1050,canvas.height);
+    ctx.drawImage(logo,56,32,250,250*logo.height/logo.width);
+    ctx.fillStyle='#67292f';ctx.font='22px sans-serif';ctx.fillText('PRIVATE WARDROBE',700,89);
+    ctx.fillStyle='#25231f';ctx.font='72px Georgia';ctx.fillText('The Saint Fold',65,209);
+    ctx.font='31px Georgia';ctx.fillText(record.colorway+'  /  '+pieceNames[record.piece],69,263);
+    ctx.fillStyle='#eae4d8';ctx.fillRect(65,304,920,338);
+    const widths=garments.map(im=>300*im.width/im.height);
+    let x=(1050-widths.reduce((a,b)=>a+b,0)-(garments.length-1)*45)/2;
+    garments.forEach((im,i)=>{ctx.drawImage(im,x,322,widths[i],300);x+=widths[i]+45;});
+    ctx.fillStyle='#67292f';ctx.font='24px sans-serif';ctx.fillText('YOUR FITTING RECORD',66,703);
+    let y=760;
+    for(const [label,value] of rows){
+      ctx.fillStyle='#454039';ctx.font='26px sans-serif';ctx.fillText(label,68,y);
+      ctx.textAlign='right';ctx.fillText(value,982,y);ctx.textAlign='left';
+      ctx.fillStyle='#d0c8ba';ctx.fillRect(68,y+17,914,1);y+=59;
+    }
+    ctx.fillStyle='#454039';ctx.font='26px sans-serif';
+    notes.forEach(n=>{ctx.fillText(n,68,y);y+=40;});
+    ctx.font='italic 25px Georgia';ctx.fillText('Prepared for atelier review',68,canvas.height-57);
+    const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));
+    if(!blob)throw Error('export');
+    const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;
+    link.download='MADE-Saint-Fitting-'+record.colorway.replaceAll(' ','-')+'-'+record.piece+'.png';link.click();
+    setTimeout(()=>URL.revokeObjectURL(url),60000);
+    button.textContent='Download fitting card again';if(!button.previousElementSibling?.matches('[role=status]'))button.insertAdjacentHTML('beforebegin','<p class="note" role="status">Your fitting card is ready.</p>');
+  }catch{$('.error').textContent='Your card could not be created. Please try again.';}
+  finally{button.disabled=false;}
 }
 $('#point-picker').addEventListener('change',e=>{
   state.point=Number(e.target.value);
@@ -151,6 +204,7 @@ document.addEventListener('click',e=>{
   const b=e.target.closest('button');if(!b)return;
   const d=b.dataset,id=b.id,key=steps()[state.step];
   if(d.start){firstReading=d.start;state.step=0;return openFit(b);}
+  if(d.color && Object.hasOwn(colors,d.color)){state.color=d.color;return drawProduct();}
   if(d.mode)return setMode(d.mode);
   if(d.piece)return changePiece(d.piece);
   if(d.view){state.view=d.view;return drawProduct();}
@@ -178,7 +232,7 @@ document.addEventListener('click',e=>{
   if(id==='download')return download();
   if(id==='handoff'){
     try{sessionStorage.setItem('made-saint-fold-handoff',JSON.stringify(brief()));location.assign('/wardrobe?fitting=saint-fold#introduction');}
-    catch{$('.error').textContent='This browser could not carry your brief across. Download a copy for Private Wardrobe.';}
+    catch{$('.error').textContent='This browser could not carry your brief across. Download fitting card for Private Wardrobe.';}
   }
 });
 const draftKey='saint-fold-tab-draft-v1';
@@ -193,6 +247,7 @@ try{
     ['cm','in'].includes(s.unit) && Number.isInteger(s.step) &&
     typeof s.notes==='string' && s.values && s.pending){
     for(const key of Object.keys(state)) if(Object.hasOwn(s,key))state[key]=s[key];
+    if(!Object.hasOwn(colors,state.color))state.color='ivory';
     firstReading=activeKeys().includes(draft.firstReading)?draft.firstReading:'';
     state.step=Math.max(0,Math.min(steps().length-1,state.step));
     if(location.hash==='#fit-map')state.mode='map';

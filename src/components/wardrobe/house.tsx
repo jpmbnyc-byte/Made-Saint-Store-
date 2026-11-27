@@ -173,7 +173,8 @@ function readFoldBrief() {
       const value = data.fit?.[key];
       if (typeof value === "string" && Number.isFinite(Number(value)) && Number(value) > 0) fit[key] = value;
     }
-    const lines = ["The Saint Fold · Ivory Oxblood · " + name];
+    const colorway = ["Ink Slate", "Olive Cacao"].includes(data.colorway) ? String(data.colorway) : "Ivory Oxblood";
+    const lines = ["The Saint Fold · " + colorway + " · " + name];
     for (const row of Array.isArray(data.readings) ? data.readings.slice(0, 7) : []) {
       if (Array.isArray(row) && row.length === 2) lines.push(String(row[0]).slice(0, 24) + ": " + String(row[1]).slice(0, 20));
     }
@@ -460,7 +461,7 @@ export function PrivateHouse() {
       <WardrobeIntro />
       <WardrobePreview frame={preview} onClose={() => setPreview(null)} />
       <section className="mx-auto flex max-w-[1100px] items-center justify-between gap-4 border-b border-[#1c1a17]/15 px-5 py-7 md:px-8">
-        <div><h2 className="font-serif text-3xl">The Saint Fold</h2><p className="mt-1 text-sm">Ivory Oxblood · Jacket and track pant</p></div>
+        <div><h2 className="font-serif text-3xl">The Saint Fold</h2><p className="mt-1 text-sm">Three colorways · Jacket and track pant</p></div>
         <a href="/saint-fold/index.html" className="text-sm underline underline-offset-4">Explore the fit map →</a>
       </section>
       <CapsuleGrid limit={4} />

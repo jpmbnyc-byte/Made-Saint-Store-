@@ -70,3 +70,5 @@ select:focus-visible {outline:3px solid #947242; outline-offset:3px}
 }
 #canvas {grid-template: minmax(0, 1fr) / minmax(0, 1fr)}
 #figures {min-width:0; min-height:0}
+
+.colors{margin:15px 0 12px}.colors button{padding-inline:5px}

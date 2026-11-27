@@ -28,7 +28,7 @@ const fields = {
 };
 const views = ['front','side','back'];
 const sizes = {jacket:[[369,478],[136,457],[360,477]],pants:[[203,486],[116,486],[198,486]]};
-const state = {piece:'set',mode:'product',view:'front',part:'jacket',point:0,unit:'cm',step:0,values:{},pending:{},ease:'',hem:'',notes:'',help:false};
+const state = {piece:'set',mode:location.hash==='#fit-map'?'map':'product',view:'front',part:'jacket',point:0,unit:'cm',step:0,values:{},pending:{},ease:'',hem:'',notes:'',help:false};
 const activeKeys = () => ['height', ...(state.piece!=='pants'?['chest','shoulder','sleeve']:[]), ...(state.piece!=='jacket'?['waist','hip','inseam']:[])];
 const steps = () => [...activeKeys(),'preference','review'];
 let opener=null, returnStep=null, savedScroll=0;
@@ -50,6 +50,12 @@ function drawProduct(){
   const isMap=state.mode==='map', part=state.part, point=points[part][state.point];
   $('#plate-label').textContent='Ivory Oxblood';
   $('#piece-map').innerHTML=isMap&&state.piece==='set'?['jacket','pants'].map(p=>'<button data-part="'+p+'" aria-pressed="'+(p===part)+'">'+pieceNames[p]+'</button>').join(''):'';
+  $('#map-tools').hidden=!isMap;
+  const picker=$('#point-picker');
+  if(isMap){
+    picker.replaceChildren(...points[part].map(([name],i)=>new Option((i+1)+'. '+name,String(i))));
+    picker.value=String(state.point);
+  }
   $('#figure-caption').textContent=isMap?pieceNames[part]+' · Fit map':'Design reference';
   $('#angle-caption').textContent=state.view[0].toUpperCase()+state.view.slice(1)+' view';
   const shown=isMap?[part]:state.piece==='set'?['jacket','pants']:[state.piece];
@@ -59,7 +65,7 @@ function drawProduct(){
     return '<div class="figure" data-figure="'+p+'"><img src="'+imagePath(p,state.view)+'" alt="'+pieceNames[p]+', '+state.view+' design drawing in Ivory Oxblood">'+pins+'</div>';
   }).join('');
   resizeFigures();
-  $('#fit-info').innerHTML=isMap?'<div class="point-title"><h3>'+point[0]+'</h3><span class="fit-counter">'+(state.point+1)+' / '+points[part].length+'</span></div><p class="body">'+point[1]+'</p><div class="fit-nav"><button data-move="-1" aria-label="Previous fit point">←</button><button data-move="1">Next fit point →</button></div>':'';
+  $('#fit-info').innerHTML=isMap?'<div class="point-title"><h3>'+point[0]+'</h3><span class="fit-counter">'+(state.point+1)+' / '+points[part].length+'</span></div><p class="body">'+point[1]+'</p><div class="fit-nav"><button data-move="-1" aria-label="Previous fit point">← Previous</button><button data-move="1">Next fit point →</button></div>':'';
   $('#main-action').innerHTML=(isMap?'Find my fit':'See the fit')+' <span>→</span>';
   $('#second-action').innerHTML=(isMap?'Return to product view':'Go to measurements')+' <span>→</span>';
 }
@@ -116,6 +122,10 @@ function download(){
   const text=briefText(brief()),url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));
   const a=document.createElement('a');a.href=url;a.download='MADE-SAINT-Saint-Fold-Fitting.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
 }
+$('#point-picker').addEventListener('change',e=>{
+  state.point=Number(e.target.value);
+  drawProduct();
+});
 document.addEventListener('input',e=>{
   if(e.target.id==='reading'){
     const key=steps()[state.step], val=e.target.value;

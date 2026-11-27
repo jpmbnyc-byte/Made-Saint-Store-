@@ -30,7 +30,9 @@ const views = ['front','side','back'];
 const sizes = {jacket:[[369,478],[136,457],[360,477]],pants:[[203,486],[116,486],[198,486]]};
 const state = {piece:'set',mode:location.hash==='#fit-map'?'map':'product',view:'front',part:'jacket',point:0,unit:'cm',step:0,values:{},pending:{},ease:'',hem:'',notes:'',help:false};
 const activeKeys = () => ['height', ...(state.piece!=='pants'?['chest','shoulder','sleeve']:[]), ...(state.piece!=='jacket'?['waist','hip','inseam']:[])];
-const steps = () => [...activeKeys(),'preference','review'];
+let firstReading='';
+const orderedKeys=()=>activeKeys().includes(firstReading)?[firstReading,...activeKeys().filter(k=>k!==firstReading)]:activeKeys();
+const steps = () => [...orderedKeys(),'preference','review'];
 let opener=null, returnStep=null, savedScroll=0;
 const esc = value => String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function pressed(el,yes){el.setAttribute('aria-pressed',String(yes));}
@@ -44,6 +46,7 @@ function placeFitInfo(){
   else $('#main-action').before(info);
 }
 narrowScreen.addEventListener('change',placeFitInfo);
+const relatedReadings={jacket:[null,'chest',null,'sleeve',null],pants:['waist','hip',null,'inseam']};
 function drawProduct(){
   placeFitInfo();
   for(const key of ['mode','view','piece']) $$('[data-'+key+']').forEach(b=>pressed(b,b.dataset[key]===state[key]));
@@ -66,6 +69,14 @@ function drawProduct(){
   }).join('');
   resizeFigures();
   $('#fit-info').innerHTML=isMap?'<div class="point-title"><h3>'+point[0]+'</h3><span class="fit-counter">'+(state.point+1)+' / '+points[part].length+'</span></div><p class="body">'+point[1]+'</p><div class="fit-nav"><button data-move="-1" aria-label="Previous fit point">← Previous</button><button data-move="1">Next fit point →</button></div>':'';
+  const related=relatedReadings[part][state.point];
+  if(isMap && related && !state.step && !Object.keys(state.values).length && !Object.keys(state.pending).length){
+    const start=document.createElement('button');
+    start.dataset.start=related;
+    start.className='help';
+    start.textContent='Start with '+fields[related][0].toLowerCase()+' →';
+    $('#fit-info').append(start);
+  }
   $('#main-action').innerHTML=(isMap?'Find my fit':'See the fit')+' <span>→</span>';
   $('#second-action').innerHTML=(isMap?'Return to product view':'Go to measurements')+' <span>→</span>';
 }
@@ -80,7 +91,7 @@ new ResizeObserver(resizeFigures).observe($('#figures'));
 function changePiece(piece){
   if(piece===state.piece)return;
   state.piece=piece;state.part=piece==='pants'?'pants':'jacket';state.point=0;
-  state.step=0;returnStep=null;state.help=false;drawProduct();
+  firstReading='';state.step=0;returnStep=null;state.help=false;drawProduct();
 }
 function setMode(mode,bring=false){state.mode=mode;drawProduct();if(bring&&innerWidth<=780)$('.gallery').scrollIntoView({block:'start'});}
 function openFit(trigger){
@@ -97,7 +108,7 @@ function next(){if(returnStep!==null){returnStep=null;stepTo(steps().length-1);}
 function choiceGroup(key,options,label){return '<p class="control-label">'+label+'</p><div class="choices" role="group" aria-label="'+label+'">'+options.map(v=>'<button class="choice" data-choice="'+key+'" data-value="'+v+'" aria-pressed="'+(state[key]===v)+'">'+v+'</button>').join('')+'</div>';}
 function measurement(key){
   const [label,guide]=fields[key];
-  return '<h2 id="fitting-title" tabindex="-1">'+label+'</h2><p class="fit-copy" id="guide">'+guide+'</p><div class="measure-row"><input aria-label="'+label+' in '+state.unit+'" aria-describedby="guide" id="reading" type="number" step="any" inputmode="decimal" placeholder="0.0" value="'+display(state.values[key])+'"><div class="units" role="group" aria-label="Measurement units">'+['cm','in'].map(u=>'<button data-unit="'+u+'" aria-pressed="'+(state.unit===u)+'">'+u+'</button>').join('')+'</div></div><button class="help" id="help" aria-expanded="'+state.help+'">No measuring tape?</button>'+(state.help?'<div class="helpbox">Use a non-stretch cord. Mark both ends of the distance, then lay it flat against a ruler. If you only have a phone, leave this reading for your fitting.<button class="help" id="defer">Add this measurement later →</button><button class="help" id="defer-all">Continue with preferences only →</button></div>':'')+'<div class="error" role="alert"></div><div class="actions"><button class="primary" id="next">Continue <span>→</span></button></div>';
+  return '<h2 id="fitting-title" tabindex="-1">'+label+'</h2><p class="fit-copy" id="guide">'+guide+'</p><div class="measure-row"><input aria-label="'+label+' in '+state.unit+'" aria-describedby="guide" id="reading" type="number" step="any" inputmode="decimal" placeholder="0.0" value="'+display(state.values[key])+'"><div class="units" role="group" aria-label="Measurement units">'+['cm','in'].map(u=>'<button data-unit="'+u+'" aria-pressed="'+(state.unit===u)+'">'+u+'</button>').join('')+'</div></div><button class="help" id="help" aria-expanded="'+state.help+'">No measuring tape?</button>'+(state.help?'<div class="helpbox">Use a non-stretch cord. Mark both ends of the distance, then lay it flat against a ruler. If you only have a phone, leave this reading for your fitting.<button class="help" id="defer">Add this measurement later →</button><button class="help" id="defer-all">Skip remaining measurements →</button></div>':'')+'<div class="error" role="alert"></div><div class="actions"><button class="primary" id="next">Continue <span>→</span></button></div>';
 }
 function preference(){
   return '<h2 id="fitting-title" tabindex="-1">How should it feel?</h2><p class="fit-copy">Choose the ease you like. The atelier will review it alongside your measurements.</p>'+choiceGroup('ease',['Closer','As designed','Roomier'],'Overall ease')+(state.piece!=='jacket'?choiceGroup('hem',['Above shoe','At shoe','Soft break'],'Trouser hem'):'')+'<label class="control-label" for="notes">Fit notes · optional</label><textarea id="notes" maxlength="240" rows="2" placeholder="Anything the atelier should know?">'+esc(state.notes)+'</textarea><div class="error" role="alert"></div><div class="actions"><button class="primary" id="next">Review fitting <span>→</span></button></div>';
@@ -110,8 +121,10 @@ function briefText(b){return [b.title,...b.readings.map(([k,v])=>k+': '+v),'Ease
 const inStore=()=>['madesaint.store','www.madesaint.store'].includes(location.hostname)||document.documentElement.dataset.store==='true';
 function review(){
   const b=brief();
+  const outstanding=b.readings.filter(([,v])=>v==='To measure').map(([label])=>label);
+  const summary=outstanding.length?'Still to measure · '+outstanding.join(', '):'All requested measurements entered';
   const rows=[...b.readings,['Overall ease',state.ease],...(b.hem?[['Trouser hem',b.hem]]:[]),...(b.notes?[['Fit notes',b.notes]]:[])];
-  return '<h2 id="fitting-title" tabindex="-1">Review your fitting</h2><p class="fit-copy">Ivory Oxblood · '+pieceNames[state.piece]+'</p>'+rows.map(([k,v],i)=>'<div class="review-row"><span>'+esc(k)+'</span><span>'+esc(v)+' <button class="edit" data-edit="'+Math.min(i,activeKeys().length)+'" aria-label="Edit '+esc(k)+'">Edit</button></span></div>').join('')+'<p class="note">'+(inStore()?'Continue to Private Wardrobe to add contact details and send your fitting for review.':'Download your brief for Private Wardrobe. Your entries stay in this tab until you close or refresh it.')+'</p><div class="error" role="alert"></div><button class="primary" id="'+(inStore()?'handoff':'download')+'">'+(inStore()?'Continue to Private Wardrobe':'Download fit brief')+' <span>→</span></button>'+(inStore()?'<button class="help" id="download">Download a copy</button>':'<a class="help" href="https://www.madesaint.store/wardrobe#introduction" target="_blank" rel="noopener">Open Private Wardrobe →</a>');
+  return '<h2 id="fitting-title" tabindex="-1">Review your fitting</h2><p class="fit-copy">Ivory Oxblood · '+pieceNames[state.piece]+'</p><p class="helpbox">'+esc(summary)+'</p>'+rows.map(([k,v],i)=>'<div class="review-row"><span>'+esc(k)+'</span><span>'+esc(v)+' <button class="edit" data-edit="'+(i<activeKeys().length?steps().indexOf(activeKeys()[i]):activeKeys().length)+'" aria-label="Edit '+esc(k)+'">Edit</button></span></div>').join('')+'<p class="note">'+(inStore()?'Continue to Private Wardrobe to add contact details and send your fitting for review.':'Download your brief for Private Wardrobe. The brief lists the readings you supplied and anything still to measure.')+'</p><div class="error" role="alert"></div><button class="primary" id="'+(inStore()?'handoff':'download')+'">'+(inStore()?'Continue to Private Wardrobe':'Download fit brief')+' <span>→</span></button>'+(inStore()?'<button class="help" id="download">Download a copy</button>':'<a class="help" href="https://www.madesaint.store/wardrobe#introduction" target="_blank" rel="noopener">Open Private Wardrobe →</a>');
 }
 function drawForm(){
   const all=steps(),key=all[state.step],part=fittingPart(key);
@@ -137,6 +150,7 @@ document.addEventListener('input',e=>{
 document.addEventListener('click',e=>{
   const b=e.target.closest('button');if(!b)return;
   const d=b.dataset,id=b.id,key=steps()[state.step];
+  if(d.start){firstReading=d.start;state.step=0;return openFit(b);}
   if(d.mode)return setMode(d.mode);
   if(d.piece)return changePiece(d.piece);
   if(d.view){state.view=d.view;return drawProduct();}
@@ -167,4 +181,21 @@ document.addEventListener('click',e=>{
     catch{$('.error').textContent='This browser could not carry your brief across. Download a copy for Private Wardrobe.';}
   }
 });
+const draftKey='saint-fold-tab-draft-v1';
+window.addEventListener('pagehide',()=>{
+  try{sessionStorage.setItem(draftKey,JSON.stringify({state,firstReading}));}catch{}
+});
+try{
+  const draft=JSON.parse(sessionStorage.getItem(draftKey)||'null');
+  const s=draft?.state;
+  if(s && Object.hasOwn(pieceNames,s.piece) && ['product','map'].includes(s.mode) &&
+    views.includes(s.view) && Object.hasOwn(points,s.part) && points[s.part][s.point] &&
+    ['cm','in'].includes(s.unit) && Number.isInteger(s.step) &&
+    typeof s.notes==='string' && s.values && s.pending){
+    for(const key of Object.keys(state)) if(Object.hasOwn(s,key))state[key]=s[key];
+    firstReading=activeKeys().includes(draft.firstReading)?draft.firstReading:'';
+    state.step=Math.max(0,Math.min(steps().length-1,state.step));
+    if(location.hash==='#fit-map')state.mode='map';
+  }
+}catch{}
 drawProduct();

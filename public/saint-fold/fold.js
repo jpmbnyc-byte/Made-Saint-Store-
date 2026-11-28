@@ -45,7 +45,7 @@ const esc = value => String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'
 function pressed(el,yes){el.setAttribute('aria-pressed',String(yes));}
 function display(cm){return Number.isFinite(cm)?String(+(cm/(state.unit==='in'?2.54:1)).toFixed(2)):'';}
 function fittingPart(key){return ['waist','hip','inseam'].includes(key)||state.piece==='pants'?'pants':'jacket';}
-function imagePath(part,view){return 'assets/'+assetPrefix()+part+'-'+view+'.webp';}
+function imagePath(part,view){return '/saint-fold/assets/'+assetPrefix()+part+'-'+view+'.webp';}
 const narrowScreen = window.matchMedia('(max-width:780px)');
 function placeFitInfo(){
   const info=$('#fit-info');
@@ -62,7 +62,7 @@ function drawProduct(){
   $$('[data-color]').forEach(el=>pressed(el,el.dataset.color===state.color));
   $$('.palette i').forEach((el,i)=>el.style.setProperty('--c',colors[state.color].palette[i]));
   $('.palette').title=colorName();
-  $$('.details-grid img').forEach((el,i)=>{const name=['wave','collar','crest'][i];el.src='assets/'+assetPrefix()+name+'.webp';el.alt=colorName()+' '+name+' detail';});
+  $$('.details-grid img').forEach((el,i)=>{const name=['wave','collar','crest'][i];el.src='/saint-fold/assets/'+assetPrefix()+name+'.webp';el.alt=colorName()+' '+name+' detail';});
   $('#piece-map').innerHTML=isMap&&state.piece==='set'?['jacket','pants'].map(p=>'<button data-part="'+p+'" aria-pressed="'+(p===part)+'">'+pieceNames[p]+'</button>').join(''):'';
   $('#map-tools').hidden=!isMap;
   const picker=$('#point-picker');
@@ -149,7 +149,7 @@ async function download(){
     const record=brief();
     const parts=state.piece==='set'?['jacket','pants']:[state.piece];
     const load=async src=>{const img=new Image();img.src=src;await img.decode();return img;};
-    const [logo,...garments]=await Promise.all([load('assets/made-saint-wordmark.webp'),...parts.map(p=>load(imagePath(p,'front')))]);
+    const [logo,...garments]=await Promise.all([load('/saint-fold/assets/made-saint-wordmark.webp'),...parts.map(p=>load(imagePath(p,'front')))]);
     const canvas=document.createElement('canvas');canvas.width=1050;
     const ctx=canvas.getContext('2d');
     ctx.font='26px sans-serif';

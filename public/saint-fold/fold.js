@@ -27,7 +27,7 @@ const fields = {
   inseam:['Inside leg','In the shoes you plan to wear, measure from the top of the inner leg to your preferred hem. A second person can help.',15,155]
 };
 const views = ['front','side','back'];
-const sizes = {"ivory": {"jacket": [[369, 479], [136, 457], [360, 476]], "pants": [[203, 486], [116, 486], [198, 485]]}, "ink": {"jacket": [[373, 479], [144, 461], [362, 479]], "pants": [[211, 482], [127, 476], [214, 482]]}, "olive": {"jacket": [[373, 479], [144, 461], [362, 479]], "pants": [[262, 656], [162, 657], [262, 657]]}};
+const sizes = {"ivory": {"jacket": [[477, 593], [196, 591], [468, 586]], "pants": [[266, 656], [163, 657], [267, 655]]}, "ink": {"jacket": [[534, 644], [230, 642], [521, 644]], "pants": [[262, 656], [161, 657], [263, 657]]}, "olive": {"jacket": [[535, 645], [230, 642], [521, 644]], "pants": [[264, 656], [164, 658], [265, 658]]}};
 const colors={
   ivory:{name:'Ivory Oxblood',palette:['#e3d2b6','#60272a','#8199aa','#a5b29a','#a38463','#c19a54']},
   ink:{name:'Ink Slate',palette:['#222334','#232325','#565d71','#99949c','#e4dbd0','#48454b']},

@@ -27,7 +27,7 @@ const fields = {
   inseam:['Inside leg','In the shoes you plan to wear, measure from the top of the inner leg to your preferred hem. A second person can help.',15,155]
 };
 const views = ['front','side','back'];
-const sizes = {jacket:[[369,478],[136,457],[360,477]],pants:[[203,486],[116,486],[198,486]]};
+const sizes = {"ivory": {"jacket": [[369, 479], [136, 457], [360, 476]], "pants": [[203, 486], [116, 486], [198, 485]]}, "ink": {"jacket": [[373, 479], [144, 461], [362, 479]], "pants": [[211, 482], [127, 476], [214, 482]]}, "olive": {"jacket": [[373, 479], [144, 461], [362, 479]], "pants": [[262, 656], [162, 657], [262, 657]]}};
 const colors={
   ivory:{name:'Ivory Oxblood',palette:['#e3d2b6','#60272a','#8199aa','#a5b29a','#a38463','#c19a54']},
   ink:{name:'Ink Slate',palette:['#222334','#232325','#565d71','#99949c','#e4dbd0','#48454b']},
@@ -94,8 +94,9 @@ function drawProduct(){
 function resizeFigures(){
   const box=$('#figures'),items=$$('.figure'),idx=views.indexOf(state.view);
   if(!items.length)return;
-  const ratios=items.map(el=>{const [w,h]=sizes[el.dataset.figure][idx];return w/h;});
-  const height=Math.min(box.clientHeight,(box.clientWidth*(items.length>1?.94:1))/ratios.reduce((a,b)=>a+b,0));
+  const dimensions=items.map(el=>sizes[state.color][el.dataset.figure][idx]);
+  const ratios=dimensions.map(([w,h])=>w/h);
+  const height=Math.min(...dimensions.map(([,h])=>h),box.clientHeight,(box.clientWidth*(items.length>1?.94:1))/ratios.reduce((a,b)=>a+b,0));
   items.forEach((el,i)=>{el.style.width=height*ratios[i]+'px';el.style.height=height+'px';});
 }
 new ResizeObserver(resizeFigures).observe($('#figures'));
